@@ -1,3 +1,23 @@
 @mixin light {
-    --theme-backround: #fff;
+    --app-box-shadow: 0 4px 10px #d2d2d2;
+    --app-backround: #fff;
+    --app-text: #18181a;
+    --app-border: #e5e5e5;
+
+    --theme-backround: #f8f9fa;
+
+    --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
+
+    --font-weight-s: 200;
+    --font-weight-m: 400;
+    --font-weight-l: 500;
+
+    --font-size-s: 16px;
+    --font-size-m: 18px;
+    --font-size-l: 20px;
+
+    --border-radius-s: 2px;
+    --border-radius-m: 4px;
+    --border-radius-l: 6px;
+    --border-radius-xl: 8px;
 }

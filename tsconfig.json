@@ -12,6 +12,10 @@
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "lib": ["esnext", "dom"],
-        "baseUrl": "."
+        "baseUrl": ".",
+        "paths": {
+            "@components": ["./src/app/components/*"],
+            "@state": ["./src/state/*"]
+        }
     }
 }

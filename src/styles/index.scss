@@ -4,7 +4,15 @@
 html, body, #app {
     width: 100%;
     height: 100%;
+}
+
+#app {
     background: var(--theme-backround);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    color: var(--app-text);
 }
 
 :root {
