@@ -1,7 +1,12 @@
 import {Budget, BudgetGroup, State} from './types';
 
 const generateBudget = (name: string): Budget =>
-    ({name, values: new Array(12).fill(0)});
+    ({
+        name,
+        values: new Array(12)
+            .fill(0)
+        // .map(()=> ~~(Math.random() * 1e2))
+    });
 
 const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup =>
     ({name, budgets: budgets.map(generateBudget)});
@@ -9,6 +14,7 @@ const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup =>
 export const generateTemplate = (): State => ({
     version: 1,
     unit: '€',
+    locale: navigator.language ?? 'en-US',
     startingBalance: 5000,
     title: 'Annual Budget',
     expenses: [

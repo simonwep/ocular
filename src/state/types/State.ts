@@ -10,11 +10,14 @@ export interface BudgetGroup {
     budgets: Budget[];
 }
 
+export type BudgetGroups = BudgetGroup[];
+
 export interface State {
     version: 1;
     title: string;
     unit: string;
+    locale: string;
     startingBalance: number;
-    expenses: BudgetGroup[];
-    income: BudgetGroup[];
+    expenses: BudgetGroups;
+    income: BudgetGroups;
 }

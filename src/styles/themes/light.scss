@@ -1,23 +1,43 @@
 @mixin light {
+    --app-max-width: 1600px;
+    --app-max-height: 1000px;
     --app-box-shadow: 0 4px 10px #d2d2d2;
     --app-backround: #fff;
     --app-text: #18181a;
     --app-border: #e5e5e5;
 
     --theme-backround: #f8f9fa;
+    --theme-primary: #1d3557;
 
     --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
-
     --font-weight-s: 200;
     --font-weight-m: 400;
     --font-weight-l: 500;
 
-    --font-size-s: 16px;
-    --font-size-m: 18px;
-    --font-size-l: 20px;
+    --font-size-xxs: 10px;
+    --font-size-xs: 12px;
+    --font-size-s: 14px;
+    --font-size-m: 16px;
+    --font-size-l: 28px;
+
+    --transition-s: 0.175s;
 
     --border-radius-s: 2px;
     --border-radius-m: 4px;
     --border-radius-l: 6px;
     --border-radius-xl: 8px;
+
+    --input-field-font-size: var(--font-size-xs);
+    --input-field-caret-color: #2d3036;
+    --input-field-border: 1px solid #f2eded;
+    --input-field-background: var(--app-backround);
+    --input-field-hover-border: 1px solid #d9d4d4;
+    --input-field-hover-background: var(--input-field-background);
+    --input-field-focus-border: 1px solid #0059ffac;
+    --input-field-focus-background: var(--input-field-background);
+    --input-field-focus-box-shadow: 0 0 0 2px #0059ff5c;
+
+    --header-color: #fcfcfd;
+    --header-background: var(--theme-primary);
+    --header-border-radius: var(--border-radius-m);
 }

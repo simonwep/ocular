@@ -3,43 +3,53 @@
     <h1 :class="$style.header">{{ state.title }}</h1>
     <div :class="$style.tabs">
       <div :class="$style.buttons">
-        <button>🏠</button>
-        <button>📈</button>
-        <button>📉</button>
+        <button @click="tab = 'dashboard'">🏠</button>
+        <button @click="tab = 'expenses'">📈</button>
+        <button @click="tab = 'income'">📉</button>
       </div>
       <div :class="$style.panes">
-        <Budget/>
-        <BudgetGroup/>
-        <BudgetSummary/>
-        <Dashboard/>
+        <Dashboard v-if="tab === 'dashboard'"/>
+        <Expenses v-else-if="tab === 'expenses'"/>
+        <Income v-else-if="tab === 'income'"/>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {ref} from 'vue';
 import {useState} from '../state';
-import BudgetGroup from './components/budget-group/BudgetGroup.vue';
-import BudgetSummary from './components/budget-summary/BudgetSummary.vue';
-import Budget from './components/budget/Budget.vue';
-import Dashboard from './components/dashboard/Dashboard.vue';
+import Dashboard from './panes/dashboard/Dashboard.vue';
+import Expenses from './panes/expenses/Expenses.vue';
+import Income from './panes/income/Income.vue';
 
+type Tabs = 'dashboard' | 'income' | 'expenses';
+
+const tab = ref<Tabs>('expenses');
 const state = useState();
-const tab = ref(0);
 
 </script>
 
 <style lang="scss" module>
+@use 'sass:math';
+
+$maxWidth: 1450px;
+$maxHeight: math.div($maxWidth, 1.6);
 
 .root {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  max-width: 1000px;
-  max-height: 500px;
+  max-width: $maxWidth;
+  max-height: $maxHeight;
   box-shadow: var(--app-box-shadow);
   border-radius: var(--border-radius-xl);
   background: var(--app-backround);
+
+  @media all and (max-width: $maxWidth), all and (max-height: $maxHeight) {
+    border-radius: 0;
+  }
 }
 
 .header {
@@ -51,13 +61,28 @@ const tab = ref(0);
 
 .tabs {
   display: flex;
+  flex-grow: 1;
+  overflow: hidden;
 
   .buttons {
-    border-left: 1px solid var(--app-border);
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    border-right: 1px solid var(--app-border);
+
+    > button {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      cursor: pointer;
+    }
   }
 
   .panes {
-
+    height: 100%;
+    width: 100%;
   }
 }
 

@@ -14,8 +14,8 @@
         "lib": ["esnext", "dom"],
         "baseUrl": ".",
         "paths": {
-            "@components": ["./src/app/components/*"],
-            "@state": ["./src/state/*"]
+            "@components/*": ["./src/app/components/*"],
+            "@state/*": ["./src/state/*"]
         }
     }
 }
