@@ -10,27 +10,56 @@
   <span :class="$style.top" @click="open = !open">Total</span>
   <span :class="[$style.top, $style.end]" @click="open = !open">Average</span>
 
-  <template v-for="{name, values} of group.budgets" v-if="open" :key="name">
-    <h4 :class="$style.header">{{ name }}</h4>
+  <template v-if="open">
 
-    <span v-for="(_, index) of values" :key="name + index">
-      <CurrencyInput v-model="values[index]"/>
+    <!-- Budgets -->
+    <template v-for="(budget, index) of group.budgets" :key="index">
+      <Button icon="trash" @click="remove(group.budgets, budget)"/>
+
+      <span :class="$style.header">
+      <TextInput v-model="budget.name"/>
     </span>
 
-    <span :class="$style.meta">
-      <Currency :locale="locale" :value="sum(values)"/>
+      <span v-for="(_, index) of budget.values" :key="budget.name + index">
+      <CurrencyInput v-model="budget.values[index]"/>
     </span>
 
-    <span :class="$style.meta">
-      <Currency :locale="locale" :value="average(values)"/>
+      <span :class="$style.meta">
+      <Currency :locale="locale" :value="sum(budget.values)"/>
     </span>
+
+      <span :class="$style.meta">
+      <Currency :locale="locale" :value="average(budget.values)"/>
+    </span>
+    </template>
+
+    <!-- Add budget -->
+    <span/>
+    <Button icon="plus" text="Add Budget"/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
   </template>
 </template>
 
 <script lang="ts" setup>
+import Button from '@components/button/Button.vue';
 import CurrencyInput from '@components/currency-input/CurrencyInput.vue';
 import Currency from '@components/currency/Currency.vue';
+import TextInput from '@components/text-input/TextInput.vue';
 import {BudgetGroup} from '@state/types';
+import {remove} from '@utils';
 import {computed, ref} from 'vue';
 
 const props = defineProps<{
@@ -53,14 +82,11 @@ const totals = computed(() => {
 
 const sum = (values: number[]) => values.reduce((a, b) => a + b, 0);
 const average = (values: number[]) => sum(values) / values.length;
-
 </script>
 
 <style lang="scss" module>
 
 .header {
-  all: unset;
-  cursor: pointer;
   font-style: italic;
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-m);
@@ -75,7 +101,7 @@ const average = (values: number[]) => sum(values) / values.length;
   display: inline-block;
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-l);
-  margin: 12px 0 4px;
+  margin: 8px 0;
   background: var(--header-background);
   color: var(--header-color);
   cursor: pointer;

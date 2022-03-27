@@ -1,15 +1,18 @@
 <template>
   <div :class="$style.budgetGroups">
+    <!-- Controls -->
+    <span/>
 
     <!-- Months -->
     <span/>
     <span v-for="month of months" :key="month" :class="$style.month">{{ month }}</span>
     <span/>
     <span/>
+    <span/>
 
     <!-- Sums -->
-    <span/>
-    <span v-for="(sum, index) of sums" :key="index" :class="$style.sum">
+    <span :class="$style.sum">Totals</span>
+    <span v-for="(sum, index) of totals" :key="index" :class="$style.sum">
       <Currency :locale="locale" :value="sum"/>
     </span>
     <span/>
@@ -17,6 +20,7 @@
 
     <!-- Groups -->
     <template v-for="group of groups" :key="group.name">
+      <Button icon="trash" @click="remove(props.groups, group)"/>
       <BudgetGroup :group="group" :locale="locale"/>
     </template>
   </div>
@@ -24,8 +28,10 @@
 
 <script lang="ts" setup>
 import BudgetGroup from '@components/budget-group/BudgetGroup.vue';
+import Button from '@components/button/Button.vue';
 import Currency from '@components/currency/Currency.vue';
 import {BudgetGroups} from '@state/types';
+import {remove} from '@utils';
 import {computed} from 'vue';
 
 const props = defineProps<{
@@ -45,37 +51,36 @@ const months = computed(() => {
   return months;
 });
 
-const sums = computed(() => {
-  const sums = (new Array(12)).fill(0);
+const totals = computed(() => {
+  const totals = (new Array(12)).fill(0);
 
   for (const {budgets} of props.groups) {
     for (const {values} of budgets) {
       for (let i = 0; i < values.length; i++) {
-        sums[i] += values[i];
+        totals[i] += values[i];
       }
     }
   }
 
-  return sums;
+  return totals;
 });
-
 </script>
 
 <style lang="scss" module>
 
 .budgetGroups {
   display: grid;
-  grid-template: auto / max-content repeat(12, 1fr) max-content max-content;
+  grid-template: auto / max-content max-content repeat(12, 1fr) max-content max-content;
   align-items: center;
 
   > * {
     padding: 2px 4px;
 
-    &:nth-child(15n + 1) {
+    &:nth-child(16n + 2) {
       padding-left: 8px;
     }
 
-    &:nth-child(15n) {
+    &:nth-child(16n) {
       padding-right: 8px;
     }
   }

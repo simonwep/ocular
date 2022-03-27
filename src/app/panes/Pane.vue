@@ -1,6 +1,9 @@
 <template>
   <div :class="[$style.pane, classes]">
-    <h1 :class="$style.header">{{ title }}</h1>
+    <div :class="$style.header">
+      <h1>{{ title + (subTitle ? `- ${subTitle}` : '') }}</h1>
+      <slot name="header"/>
+    </div>
     <slot/>
   </div>
 </template>
@@ -9,8 +12,9 @@
 import {computed} from 'vue';
 
 const props = defineProps<{
-  class: any;
+  class?: any;
   title: string;
+  subTitle?: string;
 }>();
 
 const classes = computed(() => props.class);
@@ -28,12 +32,19 @@ const classes = computed(() => props.class);
 }
 
 .header {
-  font-size: var(--font-size-s);
-  font-weight: var(--font-weight-l);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
   position: sticky;
   top: 0;
   padding: 5px 0;
   background: var(--app-backround);
+
+  > h1 {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-l);
+    margin-right: auto;
+  }
 }
 
 </style>

@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts" setup>
-
-import {computed} from 'vue';
+import {useCurrencyFormatter} from '@composables';
+import {toRefs} from 'vue';
 
 const props = withDefaults(defineProps<{
   value?: number;
@@ -15,16 +15,7 @@ const props = withDefaults(defineProps<{
   currency: 'USD'
 });
 
-const text = computed(() => {
-  if (props.value === undefined) {
-    return '';
-  }
-
-  return new Intl.NumberFormat(props.locale, {
-    currency: props.currency,
-    style: 'currency'
-  }).format(props.value);
-});
-
+const {locale, currency, value} = toRefs(props);
+const text = useCurrencyFormatter(value, locale, currency);
 </script>
 

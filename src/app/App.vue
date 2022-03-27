@@ -3,9 +3,9 @@
     <h1 :class="$style.header">{{ state.title }}</h1>
     <div :class="$style.tabs">
       <div :class="$style.buttons">
-        <button @click="tab = 'dashboard'">🏠</button>
-        <button @click="tab = 'expenses'">📈</button>
-        <button @click="tab = 'income'">📉</button>
+        <Button icon="chart" @click="tab = 'dashboard'"/>
+        <Button icon="external" @click="tab = 'expenses'"/>
+        <Button icon="internal" @click="tab = 'income'"/>
       </div>
       <div :class="$style.panes">
         <Dashboard v-if="tab === 'dashboard'"/>
@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts" setup>
+import Button from '@components/button/Button.vue';
 import {ref} from 'vue';
 import {useState} from '../state';
 import Dashboard from './panes/dashboard/Dashboard.vue';

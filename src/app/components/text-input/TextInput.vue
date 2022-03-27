@@ -1,13 +1,11 @@
 <template>
   <span :class="classes">
     <input ref="input"
-           :type="focused ? 'number' : 'text'"
-           :value="value"
+           :value="modelValue"
+           type="text"
            @blur="focused = false"
            @focus="focus"
            @input="change"
-           @keydown="keydown"
-           @wheel="wheel"
            @keydown.enter="input.blur"/>
   </span>
 </template>
@@ -16,49 +14,21 @@
 import {computed, nextTick, ref, useCssModule} from 'vue';
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: number): void;
+  (e: 'update:modelValue', v: string): void;
 }>();
 
-const props = withDefaults(defineProps<{
-  modelValue?: number;
-  locale?: string;
-  currency?: string;
-}>(), {
-  locale: 'en-us',
-  currency: 'USD'
-});
+const props = defineProps<{
+  modelValue?: string;
+}>();
 
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
 const focused = ref(false);
 
 const classes = computed(() => [
-  styles.currencyInput,
+  styles.textInput,
   {[styles.empty]: !props.modelValue}
 ]);
-
-const formatter = computed(() => {
-  return new Intl.NumberFormat(props.locale, {
-    currency: props.currency,
-    style: 'currency'
-  });
-});
-
-const value = computed(() => {
-  const value = props.modelValue;
-  return focused.value || !value ? (value || '') :
-      formatter.value.format(props.modelValue);
-});
-
-const updateModelValue = (v: number) => {
-  emit('update:modelValue', Math.max(v, 0));
-};
-
-const keydown = (e: KeyboardEvent) => {
-  if (e.key === '-') {
-    e.preventDefault();
-  }
-};
 
 const focus = () => {
   focused.value = true;
@@ -70,26 +40,16 @@ const focus = () => {
 };
 
 const change = (e: InputEvent) => {
-  const v = Number((e.target as HTMLInputElement).value);
-  !Number.isNaN(v) && updateModelValue(v);
-};
-
-const wheel = (e: WheelEvent) => {
-  if (focused.value) {
-    const value = e.ctrlKey ? 100 : e.shiftKey ? 10 : 1;
-    const dir = e.deltaY > 0 ? -1 : 1;
-    updateModelValue((props.modelValue ?? 0) + value * dir);
-    e.preventDefault();
-  }
+  emit('update:modelValue', (e.target as HTMLInputElement).value);
 };
 
 </script>
 
 <style lang="scss" module>
 
-.currencyInput {
+.textInput {
   display: inline-block;
-  width: auto;
+  width: 100%;
   border: var(--input-field-border);
   background: var(--input-field-background);
   border-radius: var(--border-radius-s);
