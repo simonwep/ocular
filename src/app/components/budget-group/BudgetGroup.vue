@@ -14,7 +14,7 @@
 
     <!-- Budgets -->
     <template v-for="(budget, index) of group.budgets" :key="index">
-      <Button icon="trash" @click="remove(group.budgets, budget)"/>
+      <Button color="error" icon="trash" textual @click="remove(group.budgets, budget)"/>
 
       <span :class="$style.header">
       <TextInput v-model="budget.name"/>
@@ -35,7 +35,7 @@
 
     <!-- Add budget -->
     <span/>
-    <Button icon="plus" text="Add Budget"/>
+    <Button text="Add Budget"/>
     <span/>
     <span/>
     <span/>

@@ -64,7 +64,7 @@ const path = computed(() => {
   > svg {
     height: 100%;
     width: 100%;
-    stroke: var(--theme-primary);
+    stroke: var(--c-primary);
     fill: transparent;
     stroke-width: 2;
     overflow: visible;

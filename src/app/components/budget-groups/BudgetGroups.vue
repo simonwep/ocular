@@ -20,7 +20,7 @@
 
     <!-- Groups -->
     <template v-for="group of groups" :key="group.name">
-      <Button icon="trash" @click="remove(props.groups, group)"/>
+      <Button color="error" icon="trash" textual @click="remove(props.groups, group)"/>
       <BudgetGroup :group="group" :locale="locale"/>
     </template>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div :class="[$style.pane, classes]">
     <div :class="$style.header">
-      <h1>{{ title + (subTitle ? `- ${subTitle}` : '') }}</h1>
+      <h1>{{ title + (subTitle ? ` - ${subTitle}` : '') }}</h1>
       <slot name="header"/>
     </div>
     <slot/>

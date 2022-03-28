@@ -3,11 +3,24 @@
     --app-max-height: 1000px;
     --app-box-shadow: 0 4px 10px #d2d2d2;
     --app-backround: #fff;
-    --app-text: #18181a;
     --app-border: #e5e5e5;
 
     --theme-backround: #f8f9fa;
-    --theme-primary: #1a73e8;
+
+    --c-text: #18181a;
+    --c-text-light: #fff;
+
+    --c-primary: #1a73e8;
+    --c-primary-hover: #145bb9;
+    --c-primary-inverted: var(--c-text-light);
+    --c-primary-inverted-hover: var(--c-primary-inverted);
+    --c-primary-shadow: 0 0 0 2px #0059ff5c;
+
+    --c-error: #f13b3b;
+    --c-error-hover: #fc3d3d;
+    --c-error-inverted: var(--c-text-light);
+    --c-error-inverted-hover: var(--c-error-inverted);
+    --c-error-shadow: 0 0 0 2px #f13b3b5c;
 
     --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
     --font-weight-s: 200;
@@ -38,6 +51,6 @@
     --input-field-focus-box-shadow: 0 0 0 2px #0059ff5c;
 
     --header-color: #fcfcfd;
-    --header-background: var(--theme-primary);
+    --header-background: var(--c-primary);
     --header-border-radius: var(--border-radius-m);
 }

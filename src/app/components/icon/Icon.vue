@@ -1,44 +1,36 @@
 <template>
-  <span :class="[$style.icon, classes]">
-    <img v-if="src" :alt="icon" :src="src"/>
-  </span>
+  <span :class="[$style.icon, classes]" v-html="svg"/>
 </template>
 
 <script lang="ts" setup>
-import {computed, ref, watchEffect} from 'vue';
-
-const icons = Object.fromEntries(
-    Object.entries(import.meta.glob('./icons/*.png'))
-        .map(v => [v[0].replace(/.*\/|\.\w+$/g, ''), v[1]])
-);
+import {icons} from '@components/icon/icons';
+import {computed} from 'vue';
 
 const props = defineProps<{
   class?: any;
   icon: string;
 }>();
 
-const src = ref<string>();
 const classes = computed(() => props.class);
-
-watchEffect(() => {
-  icons[props.icon]().then(ref => {
-    src.value = ref.default;
-  });
+const svg = computed(() => {
+  return icons[props.icon];
 });
-
 </script>
 
 <style lang="scss" module>
 
 .icon {
+  color: inherit;
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  > img {
-    width: 16px;
-    height: 16px;
+  > svg {
+    fill: currentColor;
+    height: 100%;
+    width: 100%;
   }
 }
 

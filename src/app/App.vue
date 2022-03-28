@@ -3,9 +3,9 @@
     <h1 :class="$style.header">{{ state.title }}</h1>
     <div :class="$style.tabs">
       <div :class="$style.buttons">
-        <Button icon="chart" @click="tab = 'dashboard'"/>
-        <Button icon="external" @click="tab = 'expenses'"/>
-        <Button icon="internal" @click="tab = 'income'"/>
+        <Button icon="chart" textual @click="tab = 'dashboard'"/>
+        <Button icon="shopping-basket" textual @click="tab = 'expenses'"/>
+        <Button icon="hand-coin" textual @click="tab = 'income'"/>
       </div>
       <div :class="$style.panes">
         <Dashboard v-if="tab === 'dashboard'"/>
@@ -70,15 +70,7 @@ $maxHeight: math.div($maxWidth, 1.6);
     height: 100%;
     flex-direction: column;
     border-right: 1px solid var(--app-border);
-
-    > button {
-      all: unset;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-      cursor: pointer;
-    }
+    margin-top: 10px;
   }
 
   .panes {
