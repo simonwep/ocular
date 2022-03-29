@@ -28,11 +28,23 @@
     --c-primary-inverted-hover: var(--c-primary-inverted);
     --c-primary-shadow: 0 0 0 2px #0059ff5c;
 
-    --c-error: #f13b3b;
-    --c-error-hover: #fc3d3d;
-    --c-error-inverted: var(--c-text-light);
-    --c-error-inverted-hover: var(--c-error-inverted);
-    --c-error-shadow: 0 0 0 2px #f13b3b5c;
+    --c-success: #4ad220;
+    --c-success-hover: #3eb81f;
+    --c-success-inverted: var(--c-text-light);
+    --c-success-inverted-hover: var(--c-success-inverted);
+    --c-success-shadow: 0 0 0 2px #4ad2205c;
+
+    --c-warning: #eaad1c;
+    --c-warning-hover: #c59524;
+    --c-warning-inverted: var(--c-text-light);
+    --c-warning-inverted-hover: var(--c-warning-inverted);
+    --c-warning-shadow: 0 0 0 2px #e5b4415c;
+
+    --c-danger: #f13b3b;
+    --c-danger-hover: #fc3d3d;
+    --c-danger-inverted: var(--c-text-light);
+    --c-danger-inverted-hover: var(--c-danger-inverted);
+    --c-danger-shadow: 0 0 0 2px #f13b3b5c;
 
     --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
     --font-weight-s: 200;

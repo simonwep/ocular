@@ -1,4 +1,4 @@
-import {uuid} from '../utils/uuid';
+import {uuid} from '@utils';
 import {Budget, BudgetGroup, State} from './types';
 
 const generateBudget = (name: string): Budget =>

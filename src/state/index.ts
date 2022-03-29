@@ -1,14 +1,15 @@
 import {State} from '@state/types';
-import {remove} from '@utils';
+import {remove, uuid} from '@utils';
 import {DeepReadonly} from '@vue/reactivity';
 import {inject, provide, reactive, readonly} from 'vue';
-import {uuid} from '../utils/uuid';
 import {generateTemplate} from './template';
 
 const STORE_KEY = Symbol('State');
 
 interface Store {
     state: DeepReadonly<State>;
+
+    serialize(): string;
 
     addBudgetGroup(target: 'expenses' | 'income'): void;
     addBudget(group: string): void;
@@ -27,6 +28,10 @@ export const provideStore = (): Store => {
 
     const store: Store = {
         state: readonly(state),
+
+        serialize(): string {
+            return JSON.stringify(state);
+        },
 
         setBudgetGroupName(id: string, name: string) {
             const group = groups().find(v => v.id === id);

@@ -1,1 +1,1 @@
-export type AppIcon = 'chart' | 'hand-coin' | 'plus' | 'shopping-basket' | 'trash';
+export type AppIcon = 'close-circle' | 'donut-chart' | 'download-cloud-2-line' | 'hand-coin' | 'plus' | 'save' | 'shopping-basket-2';

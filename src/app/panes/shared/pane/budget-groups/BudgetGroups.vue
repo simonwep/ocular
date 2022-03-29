@@ -20,7 +20,7 @@
 
     <!-- Groups -->
     <template v-for="group of groups" :key="group.id">
-      <Button color="dimmed" icon="trash" textual @click="removeBudgetGroup(group.id)"/>
+      <Button color="dimmed" icon="close-circle" textual @click="removeBudgetGroup(group.id)"/>
       <BudgetGroup :group="group" :locale="locale"/>
     </template>
 

@@ -14,7 +14,7 @@
 
     <!-- Budgets -->
     <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
-      <Button color="dimmed" icon="trash" textual @click="removeBudget(budget.id)"/>
+      <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)"/>
 
       <span :class="$style.header">
         <TextInput :model-value="budget.name"
@@ -62,6 +62,7 @@ import Currency from '@components/currency/Currency.vue';
 import TextInput from '@components/text-input/TextInput.vue';
 import {useStore} from '@state/index';
 import {BudgetGroup} from '@state/types';
+import {average, sum} from '@utils';
 import {DeepReadonly} from '@vue/reactivity';
 import {computed, ref} from 'vue';
 
@@ -85,8 +86,6 @@ const totals = computed(() => {
   return totals;
 });
 
-const sum = (values: readonly number[]) => values.reduce((a, b) => a + b, 0);
-const average = (values: readonly number[]) => sum(values) / values.length;
 </script>
 
 <style lang="scss" module>

@@ -9,6 +9,8 @@
                 :icon="button.icon"
                 textual
                 @click="tab = button.tab"/>
+
+        <SaveButton :class="$style.saveButton"/>
       </div>
       <div :class="$style.panes">
         <Dashboard v-if="tab === 'dashboard'"/>
@@ -27,6 +29,7 @@ import {ref} from 'vue';
 import Dashboard from './panes/dashboard/Dashboard.vue';
 import Expenses from './panes/expenses/Expenses.vue';
 import Income from './panes/income/Income.vue';
+import SaveButton from './SaveButton.vue';
 
 type Tab = 'dashboard' | 'income' | 'expenses';
 
@@ -34,8 +37,8 @@ const tab = ref<Tab>('expenses');
 const {state} = provideStore();
 
 const buttons: {icon: AppIcon; tab: Tab;}[] = [
-  {icon: 'chart', tab: 'dashboard'},
-  {icon: 'shopping-basket', tab: 'expenses'},
+  {icon: 'donut-chart', tab: 'dashboard'},
+  {icon: 'shopping-basket-2', tab: 'expenses'},
   {icon: 'hand-coin', tab: 'income'},
 ];
 
@@ -80,8 +83,13 @@ $maxHeight: math.div($maxWidth, 1.6);
     height: 100%;
     flex-direction: column;
     border-right: 1px solid var(--app-border);
-    margin-top: 10px;
+    padding-top: 10px;
     grid-gap: 6px;
+
+    .saveButton {
+      margin-top: auto;
+      margin-bottom: 10px;
+    }
   }
 
   .panes {
