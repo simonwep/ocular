@@ -6,7 +6,7 @@
            @blur="focused = false"
            @focus="focus"
            @input="change"
-           @keydown.enter="input.blur"/>
+           @keydown.enter="input?.blur"/>
   </span>
 </template>
 
@@ -45,7 +45,7 @@ const focus = () => {
   });
 };
 
-const change = (e: InputEvent) => {
+const change = (e: Event) => {
   emit('update:modelValue', (e.target as HTMLInputElement).value);
 };
 

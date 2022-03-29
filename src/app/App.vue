@@ -21,6 +21,7 @@
 
 <script lang="ts" setup>
 import Button from '@components/button/Button.vue';
+import {AppIcon} from '@components/icon/Icon.types';
 import {provideStore} from '@state/index';
 import {ref} from 'vue';
 import Dashboard from './panes/dashboard/Dashboard.vue';
@@ -32,7 +33,7 @@ type Tab = 'dashboard' | 'income' | 'expenses';
 const tab = ref<Tab>('expenses');
 const {state} = provideStore();
 
-const buttons: {icon: string; tab: Tab;}[] = [
+const buttons: {icon: AppIcon; tab: Tab;}[] = [
   {icon: 'chart', tab: 'dashboard'},
   {icon: 'shopping-basket', tab: 'expenses'},
   {icon: 'hand-coin', tab: 'income'},

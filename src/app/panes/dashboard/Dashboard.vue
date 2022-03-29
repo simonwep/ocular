@@ -1,11 +1,10 @@
 <template>
-  <Pane :class="$style.dashboard" title="Dashboard">
-
-  </Pane>
+  Dashboard
 </template>
 
 <script lang="ts" setup>
-import Pane from '@shared/pane/Pane.vue';</script>
+
+</script>
 
 <style lang="scss" module>
 

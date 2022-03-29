@@ -17,22 +17,22 @@
       <Button color="dimmed" icon="trash" textual @click="removeBudget(budget.id)"/>
 
       <span :class="$style.header">
-      <TextInput :model-value="budget.name"
-                 @update:model-value="setBudgetName(budget.id, $event)"/>
-    </span>
+        <TextInput :model-value="budget.name"
+                   @update:model-value="setBudgetName(budget.id, $event)"/>
+      </span>
 
       <span v-for="(_, index) of budget.values" :key="budget.id">
-      <CurrencyInput :model-value="budget.values[index]"
-                     @update:model-value="setBudget(budget.id, index, $event)"/>
-    </span>
+        <CurrencyInput :model-value="budget.values[index]"
+                       @update:model-value="setBudget(budget.id, index, $event)"/>
+      </span>
 
       <span :class="$style.meta">
-      <Currency :locale="locale" :value="sum(budget.values)"/>
-    </span>
+        <Currency :locale="locale" :value="sum(budget.values)"/>
+      </span>
 
       <span :class="$style.meta">
-      <Currency :locale="locale" :value="average(budget.values)"/>
-    </span>
+        <Currency :locale="locale" :value="average(budget.values)"/>
+      </span>
     </template>
 
     <!-- Add budget -->
@@ -62,10 +62,11 @@ import Currency from '@components/currency/Currency.vue';
 import TextInput from '@components/text-input/TextInput.vue';
 import {useStore} from '@state/index';
 import {BudgetGroup} from '@state/types';
+import {DeepReadonly} from '@vue/reactivity';
 import {computed, ref} from 'vue';
 
 const props = defineProps<{
-  group: BudgetGroup;
+  group: DeepReadonly<BudgetGroup>;
   locale?: string;
 }>();
 
@@ -84,8 +85,8 @@ const totals = computed(() => {
   return totals;
 });
 
-const sum = (values: number[]) => values.reduce((a, b) => a + b, 0);
-const average = (values: number[]) => sum(values) / values.length;
+const sum = (values: readonly number[]) => values.reduce((a, b) => a + b, 0);
+const average = (values: readonly number[]) => sum(values) / values.length;
 </script>
 
 <style lang="scss" module>

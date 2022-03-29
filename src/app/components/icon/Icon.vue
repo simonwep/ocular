@@ -3,12 +3,18 @@
 </template>
 
 <script lang="ts" setup>
-import {icons} from '@components/icon/icons';
+import {AppIcon} from '@components/icon/Icon.types';
 import {computed} from 'vue';
+
+const icons = Object.fromEntries(
+    Object.entries(
+        import.meta.globEager('/public/icons/*.svg', {assert: {type: 'raw'}})
+    ).map(v => [v[0].replace(/.*\/|\.\w+$/g, ''), v[1]])
+);
 
 const props = defineProps<{
   class?: any;
-  icon: string;
+  icon: AppIcon;
 }>();
 
 const classes = computed(() => props.class);

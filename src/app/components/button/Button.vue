@@ -6,6 +6,7 @@
 </template>
 
 <script lang="ts" setup>
+import {AppIcon} from '@components/icon/Icon.types';
 import Icon from '@components/icon/Icon.vue';
 import {computed, useCssModule} from 'vue';
 import {Color, useThemeStyles} from '../../../composables/useThemeStyles';
@@ -16,7 +17,7 @@ const emit = defineEmits<{
 
 const props = withDefaults(defineProps<{
   class?: any;
-  icon?: string
+  icon?: AppIcon;
   text?: string;
   color?: Color;
   textual?: boolean;

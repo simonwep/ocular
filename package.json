@@ -1,11 +1,14 @@
 {
     "name": "budgetler",
     "private": true,
+    "type": "module",
     "version": "0.0.0",
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "gen:icons": "node scripts/icons.js",
+        "postinstall": "npm run gen:icons"
     },
     "dependencies": {
         "vue": "^3.2.31"

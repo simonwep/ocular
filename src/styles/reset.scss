@@ -3,3 +3,14 @@
     padding: 0;
     margin: 0;
 }
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--c-dimmed);
+    background-clip: content-box;
+    border: 5px solid transparent;
+    border-radius: 10px;
+}

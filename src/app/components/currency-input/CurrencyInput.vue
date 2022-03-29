@@ -8,7 +8,7 @@
            @input="change"
            @keydown="keydown"
            @wheel="wheel"
-           @keydown.enter="input.blur"/>
+           @keydown.enter="input?.blur"/>
   </span>
 </template>
 
@@ -69,7 +69,7 @@ const focus = () => {
   });
 };
 
-const change = (e: InputEvent) => {
+const change = (e: Event) => {
   const v = Number((e.target as HTMLInputElement).value);
   !Number.isNaN(v) && updateModelValue(v);
 };

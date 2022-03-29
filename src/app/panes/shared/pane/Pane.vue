@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.pane">
     <div :class="$style.header">
-      <h1>{{ title + (subTitle ? ` - ${subTitle}` : '') }}</h1>
+      <h1>{{ title }} - {{ totalFormatted }}</h1>
       <MiniChart :values="totals"/>
     </div>
     <BudgetGroups v-model:totals="totals" :type="type"/>
@@ -17,7 +17,6 @@ import {computed} from 'vue';
 
 const props = defineProps<{
   title: string;
-  subTitle?: string;
   type: 'expenses' | 'income';
 }>();
 
@@ -41,7 +40,6 @@ const totals = computed(() => {
 const totalFormatted = useCurrencyFormatter(
     computed(() => totals.value.reduce((a, b) => a + b, 0))
 );
-
 
 </script>
 
