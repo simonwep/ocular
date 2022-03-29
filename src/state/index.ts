@@ -11,12 +11,14 @@ interface Store {
     state: DeepReadonly<State>;
 
     addBudgetGroup(target: 'expenses' | 'income'): void;
-
     addBudget(group: string): void;
 
     removeBudgetGroup(id: string): void;
-
     removeBudget(id: string): void;
+
+    setBudgetGroupName(id: string, name: string): void;
+    setBudgetName(id: string, name: string): void;
+    setBudget(id: string, month: number, amount: number): void;
 }
 
 export const provideStore = (): Store => {
@@ -25,6 +27,21 @@ export const provideStore = (): Store => {
 
     const store: Store = {
         state: readonly(state),
+
+        setBudgetGroupName(id: string, name: string) {
+            const group = groups().find(v => v.id === id);
+            group && (group.name = name);
+        },
+
+        setBudgetName(id: string, name: string) {
+            const group = groups().flatMap(v => v.budgets).find(v => v.id === id);
+            group && (group.name = name);
+        },
+
+        setBudget(id: string, month: number, amount: number) {
+            const group = groups().flatMap(v => v.budgets).find(v => v.id === id);
+            group && (group.values[month] = amount);
+        },
 
         removeBudget(id: string) {
             groups().forEach(({budgets}) => remove(budgets, v => v.id === id));

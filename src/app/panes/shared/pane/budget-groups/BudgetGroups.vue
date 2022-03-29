@@ -47,18 +47,17 @@
 <script lang="ts" setup>
 import Button from '@components/button/Button.vue';
 import Currency from '@components/currency/Currency.vue';
-import BudgetGroup from '@shared/budget-group/BudgetGroup.vue';
+import BudgetGroup from '@shared/pane/budget-group/BudgetGroup.vue';
 import {useStore} from '@state/index';
-import {BudgetGroups} from '@state/types';
 import {computed} from 'vue';
 
 const props = defineProps<{
-  groups: BudgetGroups;
   type: 'expenses' | 'income';
   locale?: string;
 }>();
 
-const {addBudgetGroup, removeBudgetGroup} = useStore();
+const {state, addBudgetGroup, removeBudgetGroup} = useStore();
+const groups = computed(() => state[props.type]);
 
 const months = computed(() => {
   const months: string[] = [];
@@ -75,7 +74,7 @@ const months = computed(() => {
 const totals = computed(() => {
   const totals = (new Array(12)).fill(0);
 
-  for (const {budgets} of props.groups) {
+  for (const {budgets} of groups.value) {
     for (const {values} of budgets) {
       for (let i = 0; i < values.length; i++) {
         totals[i] += values[i];

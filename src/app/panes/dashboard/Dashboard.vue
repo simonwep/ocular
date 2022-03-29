@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import Pane from '@shared/Pane.vue';</script>
+import Pane from '@shared/pane/Pane.vue';</script>
 
 <style lang="scss" module>
 

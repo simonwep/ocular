@@ -1,5 +1,7 @@
 <template>
-  <TextInput v-model="group.name" :class="[$style.top, $style.start]" inline/>
+  <TextInput :class="[$style.top, $style.start]"
+             :model-value="group.name"
+             inline @update:model-value="setBudgetGroupName(group.id, $event)"/>
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top" @click="open = !open">
     <Currency :locale="locale" :value="total"/>
@@ -15,11 +17,13 @@
       <Button color="dimmed" icon="trash" textual @click="removeBudget(budget.id)"/>
 
       <span :class="$style.header">
-      <TextInput v-model="budget.name"/>
+      <TextInput :model-value="budget.name"
+                 @update:model-value="setBudgetName(budget.id, $event)"/>
     </span>
 
       <span v-for="(_, index) of budget.values" :key="budget.id">
-      <CurrencyInput v-model="budget.values[index]"/>
+      <CurrencyInput :model-value="budget.values[index]"
+                     @update:model-value="setBudget(budget.id, index, $event)"/>
     </span>
 
       <span :class="$style.meta">
@@ -65,7 +69,7 @@ const props = defineProps<{
   locale?: string;
 }>();
 
-const {addBudget, removeBudget} = useStore();
+const {addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget} = useStore();
 
 const open = ref(false);
 const totals = computed(() => {
