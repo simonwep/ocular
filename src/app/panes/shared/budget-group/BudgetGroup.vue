@@ -1,7 +1,5 @@
 <template>
-  <span :class="[$style.top, $style.start]" @click="open = !open">
-    {{ group.name }}
-  </span>
+  <TextInput v-model="group.name" :class="[$style.top, $style.start]" inline/>
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top" @click="open = !open">
     <Currency :locale="locale" :value="total"/>
@@ -13,14 +11,14 @@
   <template v-if="open">
 
     <!-- Budgets -->
-    <template v-for="(budget, index) of group.budgets" :key="index">
-      <Button color="dimmed" icon="trash" textual @click="remove(group.budgets, budget)"/>
+    <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
+      <Button color="dimmed" icon="trash" textual @click="removeBudget(budget.id)"/>
 
       <span :class="$style.header">
       <TextInput v-model="budget.name"/>
     </span>
 
-      <span v-for="(_, index) of budget.values" :key="budget.name + index">
+      <span v-for="(_, index) of budget.values" :key="budget.id">
       <CurrencyInput v-model="budget.values[index]"/>
     </span>
 
@@ -35,7 +33,7 @@
 
     <!-- Add budget -->
     <span/>
-    <Button icon="plus" text="Add Budget" @click="addBudget"/>
+    <Button :class="$style.addBudgetBtn" icon="plus" text="Add Budget" @click="addBudget(group.id)"/>
     <span/>
     <span/>
     <span/>
@@ -58,14 +56,16 @@ import Button from '@components/button/Button.vue';
 import CurrencyInput from '@components/currency-input/CurrencyInput.vue';
 import Currency from '@components/currency/Currency.vue';
 import TextInput from '@components/text-input/TextInput.vue';
+import {useStore} from '@state/index';
 import {BudgetGroup} from '@state/types';
-import {remove} from '@utils';
 import {computed, ref} from 'vue';
 
 const props = defineProps<{
   group: BudgetGroup;
   locale?: string;
 }>();
+
+const {addBudget, removeBudget} = useStore();
 
 const open = ref(false);
 const totals = computed(() => {
@@ -82,13 +82,6 @@ const totals = computed(() => {
 
 const sum = (values: number[]) => values.reduce((a, b) => a + b, 0);
 const average = (values: number[]) => sum(values) / values.length;
-
-const addBudget = () => {
-  props.group.budgets.push({
-    name: 'Category',
-    values: new Array(12).fill(0)
-  });
-};
 </script>
 
 <style lang="scss" module>
@@ -117,6 +110,7 @@ const addBudget = () => {
     border-top-left-radius: var(--border-radius-m);
     border-bottom-left-radius: var(--border-radius-m);
     padding-left: 8px;
+    cursor: text;
   }
 
   &.end {
@@ -124,6 +118,10 @@ const addBudget = () => {
     border-bottom-right-radius: var(--border-radius-m);
     padding-right: 8px;
   }
+}
+
+.addBudgetBtn {
+  margin-top: 8px;
 }
 
 </style>

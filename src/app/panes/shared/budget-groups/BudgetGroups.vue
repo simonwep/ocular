@@ -19,25 +19,46 @@
     <span/>
 
     <!-- Groups -->
-    <template v-for="group of groups" :key="group.name">
-      <Button color="dimmed" icon="trash" textual @click="remove(props.groups, group)"/>
+    <template v-for="group of groups" :key="group.id">
+      <Button color="dimmed" icon="trash" textual @click="removeBudgetGroup(group.id)"/>
       <BudgetGroup :group="group" :locale="locale"/>
     </template>
+
+    <!-- Add group -->
+    <span/>
+    <Button :class="$style.addGroupBtn" icon="plus" text="Add Group" @click="addBudgetGroup(type)"/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
+    <span/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import BudgetGroup from '@components/budget-group/BudgetGroup.vue';
 import Button from '@components/button/Button.vue';
 import Currency from '@components/currency/Currency.vue';
+import BudgetGroup from '@shared/budget-group/BudgetGroup.vue';
+import {useStore} from '@state/index';
 import {BudgetGroups} from '@state/types';
-import {remove} from '@utils';
 import {computed} from 'vue';
 
 const props = defineProps<{
   groups: BudgetGroups;
+  type: 'expenses' | 'income';
   locale?: string;
 }>();
+
+const {addBudgetGroup, removeBudgetGroup} = useStore();
 
 const months = computed(() => {
   const months: string[] = [];
@@ -86,6 +107,10 @@ const totals = computed(() => {
 .month {
   font-size: var(--font-size-xxs);
   font-weight: var(--font-weight-m);
+}
+
+.addGroupBtn {
+  margin-top: 6px;
 }
 
 </style>

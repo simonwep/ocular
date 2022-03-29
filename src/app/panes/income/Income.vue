@@ -1,15 +1,15 @@
 <template>
   <Pane :class="$style.income" title="Income">
-    <BudgetGroups :groups="state.income"/>
+    <BudgetGroups :groups="state.income" type="income"/>
   </Pane>
 </template>
 
 <script lang="ts" setup>
-import BudgetGroups from '@components/budget-groups/BudgetGroups.vue';
-import {useState} from '@state/index';
-import Pane from '../Pane.vue';
+import BudgetGroups from '@shared/budget-groups/BudgetGroups.vue';
+import Pane from '@shared/Pane.vue';
+import {useStore} from '@state/index';
 
-const state = useState();
+const {state} = useStore();
 </script>
 
 <style lang="scss" module>

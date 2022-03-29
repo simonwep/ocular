@@ -3,19 +3,21 @@
     <template #header>
       <MiniChart :values="totals"/>
     </template>
-    <BudgetGroups v-model:totals="totals" :groups="state.expenses"/>
+    <BudgetGroups v-model:totals="totals"
+                  :groups="state.expenses"
+                  type="expenses"/>
   </Pane>
 </template>
 
 <script lang="ts" setup>
-import BudgetGroups from '@components/budget-groups/BudgetGroups.vue';
 import MiniChart from '@components/mini-chart/MiniChart.vue';
 import {useCurrencyFormatter} from '@composables';
-import {useState} from '@state/index';
+import BudgetGroups from '@shared/budget-groups/BudgetGroups.vue';
+import Pane from '@shared/Pane.vue';
+import {useStore} from '@state/index';
 import {computed} from 'vue';
-import Pane from '../Pane.vue';
 
-const state = useState();
+const {state} = useStore();
 
 const totals = computed(() => {
   const totals = (new Array(12)).fill(0);

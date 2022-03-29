@@ -1,10 +1,11 @@
+import {uuid} from '../utils/uuid';
 import {Budget, BudgetGroup, State} from './types';
 
 const generateBudget = (name: string): Budget =>
-    ({name, values: new Array(12).fill(0)});
+    ({id: uuid(), name, values: new Array(12).fill(0)});
 
 const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup =>
-    ({name, budgets: budgets.map(generateBudget)});
+    ({id: uuid(), name, budgets: budgets.map(generateBudget)});
 
 export const generateTemplate = (): State => ({
     version: 1,

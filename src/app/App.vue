@@ -21,8 +21,8 @@
 
 <script lang="ts" setup>
 import Button from '@components/button/Button.vue';
+import {provideStore} from '@state/index';
 import {ref} from 'vue';
-import {useState} from '../state';
 import Dashboard from './panes/dashboard/Dashboard.vue';
 import Expenses from './panes/expenses/Expenses.vue';
 import Income from './panes/income/Income.vue';
@@ -30,7 +30,7 @@ import Income from './panes/income/Income.vue';
 type Tab = 'dashboard' | 'income' | 'expenses';
 
 const tab = ref<Tab>('expenses');
-const state = useState();
+const {state} = provideStore();
 
 const buttons: {icon: string; tab: Tab;}[] = [
   {icon: 'chart', tab: 'dashboard'},
