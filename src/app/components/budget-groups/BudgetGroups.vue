@@ -20,7 +20,7 @@
 
     <!-- Groups -->
     <template v-for="group of groups" :key="group.name">
-      <Button color="error" icon="trash" textual @click="remove(props.groups, group)"/>
+      <Button color="dimmed" icon="trash" textual @click="remove(props.groups, group)"/>
       <BudgetGroup :group="group" :locale="locale"/>
     </template>
   </div>
@@ -75,14 +75,6 @@ const totals = computed(() => {
 
   > * {
     padding: 2px 4px;
-
-    &:nth-child(16n + 2) {
-      padding-left: 8px;
-    }
-
-    &:nth-child(16n) {
-      padding-right: 8px;
-    }
   }
 }
 

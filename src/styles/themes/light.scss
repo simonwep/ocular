@@ -10,6 +10,18 @@
     --c-text: #18181a;
     --c-text-light: #fff;
 
+    --c-dark: #29292a;
+    --c-dark-hover: #171718;
+    --c-dark-inverted: var(--c-text-light);
+    --c-dark-inverted-hover: var(--c-dark-inverted);
+    --c-dark-shadow: 0 0 0 2px #1717185c;
+
+    --c-dimmed: #a2a4a6;
+    --c-dimmed-hover: #575859;
+    --c-dimmed-inverted: var(--c-text-light);
+    --c-dimmed-inverted-hover: var(--c-dimmed-inverted);
+    --c-dimmed-shadow: 0 0 0 2px #5758595c;
+
     --c-primary: #1a73e8;
     --c-primary-hover: #145bb9;
     --c-primary-inverted: var(--c-text-light);

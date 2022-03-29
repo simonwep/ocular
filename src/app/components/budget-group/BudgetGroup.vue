@@ -14,7 +14,7 @@
 
     <!-- Budgets -->
     <template v-for="(budget, index) of group.budgets" :key="index">
-      <Button color="error" icon="trash" textual @click="remove(group.budgets, budget)"/>
+      <Button color="dimmed" icon="trash" textual @click="remove(group.budgets, budget)"/>
 
       <span :class="$style.header">
       <TextInput v-model="budget.name"/>
@@ -35,7 +35,7 @@
 
     <!-- Add budget -->
     <span/>
-    <Button text="Add Budget"/>
+    <Button icon="plus" text="Add Budget" @click="addBudget"/>
     <span/>
     <span/>
     <span/>
@@ -82,6 +82,13 @@ const totals = computed(() => {
 
 const sum = (values: number[]) => values.reduce((a, b) => a + b, 0);
 const average = (values: number[]) => sum(values) / values.length;
+
+const addBudget = () => {
+  props.group.budgets.push({
+    name: 'Category',
+    values: new Array(12).fill(0)
+  });
+};
 </script>
 
 <style lang="scss" module>
@@ -102,18 +109,20 @@ const average = (values: number[]) => sum(values) / values.length;
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-l);
   margin: 8px 0;
-  background: var(--header-background);
-  color: var(--header-color);
+  background: var(--c-dark);
+  color: var(--c-dark-inverted);
   cursor: pointer;
 
   &.start {
-    border-top-left-radius: var(--header-border-radius);
-    border-bottom-left-radius: var(--header-border-radius);
+    border-top-left-radius: var(--border-radius-m);
+    border-bottom-left-radius: var(--border-radius-m);
+    padding-left: 8px;
   }
 
   &.end {
-    border-top-right-radius: var(--header-border-radius);
-    border-bottom-right-radius: var(--header-border-radius);
+    border-top-right-radius: var(--border-radius-m);
+    border-bottom-right-radius: var(--border-radius-m);
+    padding-right: 8px;
   }
 }
 

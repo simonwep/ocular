@@ -1,12 +1,13 @@
-import {Color} from '@components/index';
 import {reactive, watchEffect} from 'vue';
 
-interface ColorPair {
+export type Color = 'primary' | 'error' | 'dimmed' | 'dark';
+
+export interface ColorPair {
     base: string;
     hover: string;
 }
 
-interface ThemeStyles {
+export interface ThemeStyles {
     focus: string;
     color: ColorPair;
     inverted: ColorPair;

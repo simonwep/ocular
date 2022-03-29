@@ -3,9 +3,12 @@
     <h1 :class="$style.header">{{ state.title }}</h1>
     <div :class="$style.tabs">
       <div :class="$style.buttons">
-        <Button icon="chart" textual @click="tab = 'dashboard'"/>
-        <Button icon="shopping-basket" textual @click="tab = 'expenses'"/>
-        <Button icon="hand-coin" textual @click="tab = 'income'"/>
+        <Button v-for="button of buttons"
+                :key="button.tab"
+                :color="tab === button.tab ? 'primary' : 'dimmed'"
+                :icon="button.icon"
+                textual
+                @click="tab = button.tab"/>
       </div>
       <div :class="$style.panes">
         <Dashboard v-if="tab === 'dashboard'"/>
@@ -24,10 +27,16 @@ import Dashboard from './panes/dashboard/Dashboard.vue';
 import Expenses from './panes/expenses/Expenses.vue';
 import Income from './panes/income/Income.vue';
 
-type Tabs = 'dashboard' | 'income' | 'expenses';
+type Tab = 'dashboard' | 'income' | 'expenses';
 
-const tab = ref<Tabs>('expenses');
+const tab = ref<Tab>('expenses');
 const state = useState();
+
+const buttons: {icon: string; tab: Tab;}[] = [
+  {icon: 'chart', tab: 'dashboard'},
+  {icon: 'shopping-basket', tab: 'expenses'},
+  {icon: 'hand-coin', tab: 'income'},
+];
 
 </script>
 
@@ -71,6 +80,7 @@ $maxHeight: math.div($maxWidth, 1.6);
     flex-direction: column;
     border-right: 1px solid var(--app-border);
     margin-top: 10px;
+    grid-gap: 6px;
   }
 
   .panes {

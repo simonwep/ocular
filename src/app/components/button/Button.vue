@@ -7,9 +7,8 @@
 
 <script lang="ts" setup>
 import Icon from '@components/icon/Icon.vue';
-import {Color} from '@components/index';
 import {computed, useCssModule} from 'vue';
-import {useThemeStyles} from '../../../composables/useThemeStyles';
+import {Color, useThemeStyles} from '../../../composables/useThemeStyles';
 
 const emit = defineEmits<{
   (e: 'click', v: MouseEvent): void;
@@ -49,7 +48,7 @@ const classes = computed(() => [
   background: v-bind('theme.color.base');
   color: v-bind('theme.inverted.base');
   border-radius: var(--border-radius-m);
-  padding: 6px 10px !important;
+  padding: 4px 10px !important;
   transition: all var(--transition-s);
 
   &.icon {
@@ -67,6 +66,7 @@ const classes = computed(() => [
     width: 100%;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-l);
+    line-height: 1em;
   }
 
   &:focus {
