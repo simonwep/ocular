@@ -1,23 +1,24 @@
 <template>
   <div :class="classes">
-    <Button icon="download-cloud-2-line" textual @click="save"/>
+    <Button color="success" icon="upload-cloud-2-line" textual @click="upload"/>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/button/Button.vue';
 import {useStore} from '@state/index';
-import {saveFile} from '@utils';
+import {selectFile} from '@utils';
 import {computed} from 'vue';
 
 const props = defineProps<{
-  class?: any;
+  class: any;
 }>();
 
 const classes = computed(() => props.class);
-const {state, serialize} = useStore();
+const {state, deserialize} = useStore();
 
-const save = () => {
-  saveFile(serialize(), `${state.title}.budget`, 'application/json');
-};
+const upload = () => selectFile({
+  multiple: false,
+  accept: '.budget'
+}).then(deserialize);
 </script>

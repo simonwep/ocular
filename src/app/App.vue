@@ -1,6 +1,7 @@
 <template>
   <div :class="$style.root">
     <h1 :class="$style.header">{{ state.title }}</h1>
+
     <div :class="$style.tabs">
       <div :class="$style.buttons">
         <Button v-for="button of buttons"
@@ -10,7 +11,8 @@
                 textual
                 @click="tab = button.tab"/>
 
-        <SaveButton :class="$style.saveButton"/>
+        <UploadButton :class="$style.top"/>
+        <SaveButton/>
       </div>
       <div :class="$style.panes">
         <Dashboard v-if="tab === 'dashboard'"/>
@@ -30,6 +32,7 @@ import Dashboard from './panes/dashboard/Dashboard.vue';
 import Expenses from './panes/expenses/Expenses.vue';
 import Income from './panes/income/Income.vue';
 import SaveButton from './SaveButton.vue';
+import UploadButton from './UploadButton.vue';
 
 type Tab = 'dashboard' | 'income' | 'expenses';
 
@@ -83,12 +86,11 @@ $maxHeight: math.div($maxWidth, 1.6);
     height: 100%;
     flex-direction: column;
     border-right: 1px solid var(--app-border);
-    padding-top: 10px;
+    padding: 10px 0;
     grid-gap: 6px;
 
-    .saveButton {
+    .top {
       margin-top: auto;
-      margin-bottom: 10px;
     }
   }
 

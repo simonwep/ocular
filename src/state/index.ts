@@ -2,6 +2,7 @@ import {State} from '@state/types';
 import {remove, uuid} from '@utils';
 import {DeepReadonly} from '@vue/reactivity';
 import {inject, provide, reactive, readonly} from 'vue';
+import {readFile} from '../utils/readFile';
 import {generateTemplate} from './template';
 
 const STORE_KEY = Symbol('State');
@@ -10,6 +11,10 @@ interface Store {
     state: DeepReadonly<State>;
 
     serialize(): string;
+    deserialize(file: File): Promise<void>;
+
+    setStartingBalance(amount: number): void;
+    setBudgetTitle(name: string): void;
 
     addBudgetGroup(target: 'expenses' | 'income'): void;
     addBudget(group: string): void;
@@ -31,6 +36,26 @@ export const provideStore = (): Store => {
 
         serialize(): string {
             return JSON.stringify(state);
+        },
+
+        deserialize(file: File): Promise<void> {
+            return readFile(file).then(JSON.parse).then(content => {
+                for (const key of Object.keys(state)) {
+                    if (!(key in content) && (key in state)) {
+                        delete (state as any)[key];
+                    }
+                }
+
+                Object.assign(state, content);
+            });
+        },
+
+        setStartingBalance(amount: number): void {
+            state.startingBalance = amount;
+        },
+
+        setBudgetTitle(name: string): void {
+            state.title = name;
         },
 
         setBudgetGroupName(id: string, name: string) {

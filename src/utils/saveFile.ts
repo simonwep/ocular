@@ -4,6 +4,7 @@ export const saveFile = (
     contentType: string
 ): void => {
     const link = document.createElement('a');
+    link.style.display = 'none';
     document.body.appendChild(link);
 
     const blob = new Blob([content], {'type': contentType});
