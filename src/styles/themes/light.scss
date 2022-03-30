@@ -1,10 +1,13 @@
-@mixin light {
-    --app-max-width: 1600px;
-    --app-max-height: 1000px;
-    --app-box-shadow: 0 4px 10px #d2d2d2;
-    --app-backround: #fff;
-    --app-border: #e5e5e5;
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
+@mixin light {
     --theme-backround: #f8f9fa;
 
     --c-text: #34343d;
@@ -59,10 +62,16 @@
 
     --transition-s: 0.175s;
 
-    --border-radius-s: 2px;
+    --border-radus-s: 2px;
     --border-radius-m: 4px;
     --border-radius-l: 6px;
     --border-radius-xl: 8px;
+
+    --app-max-width: 1600px;
+    --app-max-height: 1000px;
+    --app-box-shadow: 0 4px 10px #d2d2d2;
+    --app-backround: #fff;
+    --app-border: #e5e5e5;
 
     --input-field-font-size: var(--font-size-xs);
     --input-field-caret-color: #2d3036;
