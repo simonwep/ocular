@@ -1,7 +1,7 @@
 import {State} from '@state/types';
 import {remove, uuid} from '@utils';
 import {DeepReadonly} from '@vue/reactivity';
-import {inject, provide, reactive, readonly} from 'vue';
+import {inject, provide, reactive, readonly, watch} from 'vue';
 import {readFile} from '../utils/readFile';
 import {generateTemplate} from './template';
 
@@ -28,8 +28,13 @@ interface Store {
 }
 
 export const provideStore = (): Store => {
-    const state = reactive(generateTemplate());
+    const stored = localStorage.getItem('_state');
+    const state = reactive(stored ? JSON.parse(stored) : generateTemplate());
     const groups = () => [...state.expenses, ...state.income];
+
+    watch(state, () => {
+        localStorage.setItem('_state', JSON.stringify(state));
+    });
 
     const store: Store = {
         state: readonly(state),

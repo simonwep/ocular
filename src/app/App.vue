@@ -36,7 +36,7 @@ import UploadButton from './UploadButton.vue';
 
 type Tab = 'dashboard' | 'income' | 'expenses';
 
-const tab = ref<Tab>('expenses');
+const tab = ref<Tab>('dashboard');
 const {state} = provideStore();
 
 const buttons: {icon: AppIcon; tab: Tab;}[] = [
