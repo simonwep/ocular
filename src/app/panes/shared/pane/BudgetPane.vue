@@ -1,7 +1,7 @@
 <template>
   <Pane :sub-title="totalFormatted" :title="title">
     <template #header>
-      <MiniChart :values="total"/>
+      <MiniChart :class="$style.miniChart" :values="total"/>
     </template>
     <BudgetGroups v-model:totals="total" :type="type"/>
   </Pane>
@@ -29,3 +29,12 @@ const totalFormatted = useCurrencyFormatter(
 );
 
 </script>
+
+<style lang="scss" module>
+
+.miniChart {
+  width: 75px;
+  height: 100%;
+}
+
+</style>

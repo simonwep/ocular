@@ -1,74 +1,43 @@
 <template>
-  <div :class="[$style.miniChart, classes]">
-    <div ref="root" :class="$style.wrapper">
-      <svg :viewBox="viewBox" xmlns="http://www.w3.org/2000/svg">
-        <path :d="path"/>
-      </svg>
-    </div>
-  </div>
+  <EChart :class="classes" :options="options"/>
 </template>
 
 <script lang="ts" setup>
-import {useResizeObserver} from '@composables';
-import {computed, ref} from 'vue';
+import EChart from '@components/charts/e-chart/EChart.vue';
+import {GridComponentOption, LineSeriesOption} from 'echarts';
+import {LineChart} from 'echarts/charts';
+import {GridComponent} from 'echarts/components';
+import *  as echarts from 'echarts/core';
+import {SVGRenderer} from 'echarts/renderers';
+import {computed} from 'vue';
 
-const props = withDefaults(defineProps<{
+echarts.use([GridComponent, LineChart, SVGRenderer]);
+
+type EChartsOption = echarts.ComposeOption<GridComponentOption | LineSeriesOption>;
+
+const props = defineProps<{
   class?: any;
-  width?: number;
-  height?: number;
   values: number[];
-}>(), {
-  width: 75,
-  height: 30
-});
-
-const root = ref<HTMLDivElement>();
-const size = useResizeObserver(root);
+}>();
 
 const classes = computed(() => props.class);
-const viewBox = computed(() => `0 0 ${size.value.width} ${size.value.height}`);
-
-const path = computed(() => {
-  const {width, height} = size.value;
-  const max = Math.max(...props.values);
-  const normalized = props.values.map(v => max ? v / max : 0);
-  const points = [];
-
-  for (let i = 0; i < normalized.length; i++) {
-    const dx = i * (width / (normalized.length - 1));
-    const dy = height - normalized[i] * height;
-
-    !points.length && points.push(`M0,${dy}`);
-    points.push(`S ${dx - 2},${dy} ${dx},${dy}`);
-  }
-
-  return points.join(' ');
-});
+const options = computed((): EChartsOption => ({
+  xAxis: {type: 'category', show: false},
+  yAxis: {show: false},
+  grid: {
+    top: '10%',
+    left: 0,
+    bottom: 0,
+    right: 0
+  },
+  series: [
+    {
+      data: props.values,
+      type: 'line',
+      smooth: true,
+      showSymbol: false
+    }
+  ]
+}));
 
 </script>
-
-<style lang="scss" module>
-
-.miniChart {
-  display: flex;
-  height: calc(v-bind('props.height') * 1px);
-  width: calc(v-bind('props.width') * 1px);
-  padding: 5px;
-}
-
-.wrapper {
-  height: 100%;
-  width: 100%;
-  overflow: visible;
-
-  > svg {
-    height: 100%;
-    width: 100%;
-    stroke: var(--c-primary);
-    fill: transparent;
-    stroke-width: 2;
-    overflow: visible;
-  }
-}
-
-</style>

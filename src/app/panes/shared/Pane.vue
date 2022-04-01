@@ -33,6 +33,7 @@ defineProps<{
   justify-content: flex-end;
   position: sticky;
   top: 0;
+  padding-top: 10px;
   height: 40px;
   background: var(--app-backround);
 
