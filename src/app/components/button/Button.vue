@@ -32,8 +32,9 @@ const classes = computed(() => [
   props.class,
   styles.button,
   {
-    [styles.icon]: props.icon,
-    [styles.textual]: props.textual
+    [styles.hasIcon]: props.icon,
+    [styles.textual]: props.textual,
+    [styles.iconOnly]: props.icon && !props.text,
   }
 ]);
 </script>
@@ -49,18 +50,20 @@ const classes = computed(() => [
   background: v-bind('theme.color.base');
   color: v-bind('theme.inverted.base');
   border-radius: var(--border-radius-m);
-  padding: 4px 10px !important;
+  padding: 4px 10px;
   transition: all var(--transition-s);
 
-  &.icon {
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
+  &.iconOnly {
+    padding: 3px 3px;
+  }
 
-    .text {
-      margin-left: 5px;
-    }
+  &.hasIcon .text {
+    margin-left: 5px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
   }
 
   .text {

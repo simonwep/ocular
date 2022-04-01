@@ -1,4 +1,4 @@
-import {State} from '@state/types';
+import {BudgetGroup, State} from '@state/types';
 import {remove, uuid} from '@utils';
 import {DeepReadonly} from '@vue/reactivity';
 import {inject, provide, reactive, readonly, watch} from 'vue';
@@ -32,9 +32,7 @@ export const provideStore = (): Store => {
     const state = reactive(stored ? JSON.parse(stored) : generateTemplate());
     const groups = () => [...state.expenses, ...state.income];
 
-    watch(state, () => {
-        localStorage.setItem('_state', JSON.stringify(state));
-    });
+    watch(state, () => localStorage.setItem('_state', JSON.stringify(state)));
 
     const store: Store = {
         state: readonly(state),
@@ -79,12 +77,12 @@ export const provideStore = (): Store => {
         },
 
         removeBudget(id: string) {
-            groups().forEach(({budgets}) => remove(budgets, v => v.id === id));
+            groups().forEach(({budgets}) => remove<BudgetGroup>(budgets, v => v.id === id));
         },
 
         removeBudgetGroup(id: string) {
-            remove(state.expenses, v => v.id === id);
-            remove(state.income, v => v.id === id);
+            remove<BudgetGroup>(state.expenses, v => v.id === id);
+            remove<BudgetGroup>(state.income, v => v.id === id);
         },
 
         addBudget(id: string) {

@@ -1,6 +1,8 @@
 <template>
   <div :class="$style.budgetGroups">
-    <!-- Controls -->
+    <!-- Header -->
+    <span/>
+    <span/>
     <span/>
 
     <!-- Months -->
@@ -18,13 +20,14 @@
     <span/>
     <span/>
 
-    <!-- Groups -->
+    <!-- Body -->
     <template v-for="group of groups" :key="group.id">
       <Button color="dimmed" icon="close-circle" textual @click="removeBudgetGroup(group.id)"/>
       <BudgetGroup :group="group" :locale="locale"/>
     </template>
 
-    <!-- Add group -->
+    <!-- Footer -->
+    <span/>
     <span/>
     <Button :class="$style.addGroupBtn" icon="plus" text="Add Group" @click="addBudgetGroup(type)"/>
     <span/>
@@ -90,10 +93,10 @@ const totals = computed(() => {
 
 .budgetGroups {
   display: grid;
-  grid-template: auto / max-content max-content repeat(12, 1fr) max-content max-content;
+  grid-template: auto / max-content max-content max-content repeat(12, 1fr) max-content max-content;
   align-items: center;
 
-  > * {
+  > *:not(button) {
     padding: 2px 4px;
   }
 }

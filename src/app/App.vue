@@ -86,7 +86,7 @@ $maxHeight: math.div($maxWidth, 1.6);
     height: 100%;
     flex-direction: column;
     border-right: 1px solid var(--app-border);
-    padding: 10px 0;
+    padding: 10px;
     grid-gap: 6px;
 
     .top {

@@ -1,19 +1,24 @@
 <template>
+  <Button :icon="open ? 'arrow-down-s-line' : 'arrow-right-s-line'" color="dimmed"
+          textual
+          @click="open = !open"/>
+
   <TextInput :class="[$style.top, $style.start]"
              :model-value="group.name"
              inline @update:model-value="setBudgetGroupName(group.id, $event)"/>
 
-  <span v-for="(total, index) of totals" :key="index" :class="$style.top" @click="open = !open">
+  <span v-for="(total, index) of totals" :key="index" :class="$style.top">
     <Currency :locale="locale" :value="total"/>
   </span>
 
-  <span :class="$style.top" @click="open = !open">Total</span>
-  <span :class="[$style.top, $style.end]" @click="open = !open">Average</span>
+  <span :class="$style.top">Total</span>
+  <span :class="[$style.top, $style.end]">Average</span>
 
   <template v-if="open">
 
     <!-- Budgets -->
     <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
+      <span/>
       <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)"/>
 
       <span :class="$style.header">
@@ -37,7 +42,8 @@
 
     <!-- Add budget -->
     <span/>
-    <Button :class="$style.addBudgetBtn" icon="plus" text="Add Budget" @click="addBudget(group.id)"/>
+    <span/>
+    <Button :class="$style.addBudgetBtn" textual text="Add Budget" @click="addBudget(group.id)"/>
     <span/>
     <span/>
     <span/>
@@ -108,7 +114,6 @@ const totals = computed(() => {
   margin: 8px 0;
   background: var(--c-dark);
   color: var(--c-dark-inverted);
-  cursor: pointer;
 
   &.start {
     border-top-left-radius: var(--border-radius-m);
