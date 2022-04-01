@@ -11,7 +11,7 @@ import {selectFile} from '@utils';
 import {computed} from 'vue';
 
 const props = defineProps<{
-  class: any;
+  class?: any;
 }>();
 
 const classes = computed(() => props.class);

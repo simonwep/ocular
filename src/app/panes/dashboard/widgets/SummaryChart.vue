@@ -25,16 +25,14 @@ const data = computed((): LineChartConfig => {
 
   const income = totals(state.income);
   const expenses = totals(state.expenses);
-  const endingBalane = income.map((v, index) => {
-    return sum(income.slice(0, index)) - sum(expenses.slice(0, index));
-  });
+  const endingBalance = income.map((v, index) => sum(income.slice(0, index)) - sum(expenses.slice(0, index)));
 
   return {
     legend: months,
     series: [
-      {name: 'Income', color: '--c-success', data: income},
-      {name: 'Expenses', color: '--c-error', data: expenses},
-      {name: 'Ending Balance', color: '--c-primary', data: endingBalane},
+      {name: 'Income', color: '--c-success-light-dimmed', data: income},
+      {name: 'Expenses', color: '--c-warning-light-dimmed', data: expenses},
+      {name: 'Ending Balance', color: '--c-primary-light-dimmed', data: endingBalance},
     ]
   };
 });

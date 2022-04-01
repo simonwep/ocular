@@ -10,38 +10,44 @@
 @mixin light {
     --theme-backround: #f8f9fa;
 
-    --c-text: #34343d;
+    --c-text: #282d38;
     --c-text-light: #fff;
 
-    --c-dark: #29292a;
-    --c-dark-hover: #171718;
+    --c-dark: #343d4a;
+    --c-dark-hover: #282f38;
     --c-dark-inverted: var(--c-text-light);
     --c-dark-inverted-hover: var(--c-dark-inverted);
-    --c-dark-shadow: 0 0 0 2px #1717185c;
+    --c-dark-shadow: 0 0 0 2px #282f385c;
 
-    --c-dimmed: #a2a4a6;
-    --c-dimmed-hover: #575859;
+    --c-dimmed: #bec9d4;
+    --c-dimmed-hover: #a2a9b4;
     --c-dimmed-inverted: var(--c-text-light);
     --c-dimmed-inverted-hover: var(--c-dimmed-inverted);
-    --c-dimmed-shadow: 0 0 0 2px #5758595c;
+    --c-dimmed-shadow: 0 0 0 2px #555c655c;
 
-    --c-primary: #569fff;
-    --c-primary-hover: #4180d3;
+    --c-primary: #5c8ada;
+    --c-primary-light: #e8f0fb;
+    --c-primary-light-dimmed: #bac8e1;
+    --c-primary-hover: #5077be;
     --c-primary-inverted: var(--c-text-light);
     --c-primary-inverted-hover: var(--c-primary-inverted);
-    --c-primary-shadow: 0 0 0 2px #4180d35c;
+    --c-primary-shadow: 0 0 0 2px #5077be5c;
 
-    --c-success: #79e857;
-    --c-success-hover: #59bb3c;
+    --c-success: #64d37d;
+    --c-success-light: #eafdee;
+    --c-success-light-dimmed: #9fd0a9;
+    --c-success-hover: #55b26d;
     --c-success-inverted: var(--c-text-light);
     --c-success-inverted-hover: var(--c-success-inverted);
-    --c-success-shadow: 0 0 0 2px #59bb3c5c;
+    --c-success-shadow: 0 0 0 2px #55b26d5c;
 
-    --c-warning: #e3a92c;
-    --c-warning-hover: #c59524;
+    --c-warning: #d7895d;
+    --c-warning-light: #ffefe7;
+    --c-warning-light-dimmed: #e5b197;
+    --c-warning-hover: #ab6d4a;
     --c-warning-inverted: var(--c-text-light);
     --c-warning-inverted-hover: var(--c-warning-inverted);
-    --c-warning-shadow: 0 0 0 2px #e5b4415c;
+    --c-warning-shadow: 0 0 0 2px #ab6d4a5c;
 
     --c-error: #ff7f7f;
     --c-error-hover: #d55f5f;
@@ -53,17 +59,20 @@
     --font-weight-s: 200;
     --font-weight-m: 400;
     --font-weight-l: 500;
+    --font-weight-xl: 600;
+    --font-weight-xxl: 800;
 
     --font-size-xxs: 10px;
     --font-size-xs: 12px;
     --font-size-s: 14px;
     --font-size-m: 16px;
     --font-size-l: 18px;
+    --font-size-xl: 20px;
+    --font-size-xxl: 24px;
 
     --transition-s: 0.175s;
 
     --chart-legend: var(--c-text);
-    --chart-tooltip-background: red;
     --chart-x-axis-label: #a4a4b8;
     --chart-x-axis-line: #dddde3;
     --chart-y-axis-label: var(--chart-x-axis-label);
@@ -88,10 +97,12 @@
     --border-radius-m: 4px;
     --border-radius-l: 6px;
     --border-radius-xl: 8px;
+    --border-radius-xxl: 16px;
+    --border-radius-xxxl: 24px;
 
     --app-max-width: 1600px;
     --app-max-height: 1000px;
-    --app-box-shadow: 0 4px 10px #d2d2d2;
+    --app-box-shadow: 0 4px 7px #e8e7f5;
     --app-backround: #fff;
     --app-border: #e5e5e5;
 

@@ -89,7 +89,7 @@ const options = computed((): EChartsOption => ({
     color: v.color ? `var(${v.color})` : `var(--chart-series-${String(index).padStart(2, '0')})`,
     emphasis: {
       lineStyle: {
-        color: v.color ? `var(${v.color}-hover)` : `var(--chart-series-${String(index).padStart(2, '0')}-hover)`
+        color: v.color ? `var(${v.color})` : `var(--chart-series-${String(index).padStart(2, '0')})`,
       }
     }
   }))

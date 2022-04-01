@@ -4,17 +4,23 @@
       <h1>{{ title + (subTitle ? ` - ${subTitle}` : '') }}</h1>
       <slot name="header"/>
     </div>
-    <slot/>
+    <div :class="classes">
+      <slot/>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 
-defineProps<{
+import {computed} from 'vue';
+
+const props = defineProps<{
+  class?: any;
   title: string;
   subTitle?: string;
 }>();
 
+const classes = computed(() => props.class);
 </script>
 
 <style lang="scss" module>

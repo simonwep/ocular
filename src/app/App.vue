@@ -63,6 +63,7 @@ $maxHeight: math.div($maxWidth, 1.6);
   box-shadow: var(--app-box-shadow);
   border-radius: var(--border-radius-xl);
   background: var(--app-backround);
+  overflow: hidden;
 
   @media all and (max-width: $maxWidth), all and (max-height: $maxHeight) {
     border-radius: 0;
