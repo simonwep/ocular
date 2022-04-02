@@ -21,12 +21,12 @@ echarts.use([
   SVGRenderer
 ]);
 
+type EChartsOption = echarts.ComposeOption<LegendOption | TooltipOption | GridComponentOption | LineSeriesOption>;
+
 const props = defineProps<{
   class?: any;
   data: LineChartConfig
 }>();
-
-type EChartsOption = echarts.ComposeOption<LegendOption | TooltipOption | GridComponentOption | LineSeriesOption>;
 
 const classes = computed(() => props.class);
 const options = computed((): EChartsOption => ({
@@ -45,12 +45,8 @@ const options = computed((): EChartsOption => ({
     },
     axisPointer: {
       type: 'cross',
-      crossStyle: {
-        color: 'var(--chart-tooltip-pointer-cross)'
-      },
-      lineStyle: {
-        color: 'var(--chart-tooltip-pointer-cross)'
-      },
+      crossStyle: {color: 'var(--chart-tooltip-pointer-cross)'},
+      lineStyle: {color: 'var(--chart-tooltip-pointer-cross)'},
       label: {
         backgroundColor: 'var(--chart-tooltip-pointer-background)',
         color: 'var(--chart-tooltip-pointer)',
@@ -68,25 +64,25 @@ const options = computed((): EChartsOption => ({
     type: 'category',
     boundaryGap: false,
     data: props.data.legend,
-    axisLabel: {
-      color: 'var(--chart-x-axis-label)',
-      fontFamily: 'var(--font-family)'
-    },
-    axisLine: {lineStyle: {color: 'var(--chart-x-axis-line)'}}
+    axisLabel: {color: 'var(--chart-label)', fontFamily: 'var(--font-family)'},
+    axisLine: {lineStyle: {color: 'var(--chart-axis-line)'}}
   },
   yAxis: {
     type: 'value',
-    axisLabel: {
-      color: 'var(--chart-y-axis-label)',
-      fontFamily: 'var(--font-family)'
-    },
-    splitLine: {lineStyle: {color: 'var(--chart-y-axis-line)'}}
+    axisLabel: {color: 'var(--chart-label)', fontFamily: 'var(--font-family)'},
+    splitLine: {lineStyle: {color: 'var(--chart-axis-line)'}}
   },
   series: props.data.series.map((v, index): LineSeriesOption => ({
     name: v.name,
     type: 'line',
     data: v.data,
+    smooth: true,
+    showSymbol: false,
     color: v.color ? `var(${v.color})` : `var(--chart-series-${String(index).padStart(2, '0')})`,
+    lineStyle: {
+      width: 5,
+      cap: 'round'
+    },
     emphasis: {
       lineStyle: {
         color: v.color ? `var(${v.color})` : `var(--chart-series-${String(index).padStart(2, '0')})`,

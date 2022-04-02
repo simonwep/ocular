@@ -6,7 +6,7 @@
 import {useResizeObserver} from '@composables';
 import * as echarts from 'echarts/core';
 import {EChartsType} from 'echarts/types/dist/shared';
-import {computed, onMounted, ref, shallowRef, watch} from 'vue';
+import {computed, onMounted, onUnmounted, ref, shallowRef, watch} from 'vue';
 
 const props = defineProps<{
   class?: any;
@@ -19,11 +19,25 @@ const rootSize = useResizeObserver(root);
 const chart = shallowRef<EChartsType>();
 
 const update = () => chart.value?.setOption(props.options);
+const resize = () => chart.value?.resize();
 
 watch(props, update);
 watch(chart, update);
-watch(rootSize, () => chart.value?.resize());
-onMounted(() => chart.value = echarts.init(root.value as HTMLDivElement));
+watch(rootSize, resize);
+
+onMounted(() => {
+  window.addEventListener('resize', resize);
+  chart.value = echarts.init(root.value as HTMLDivElement, {
+    color: new Array(25)
+        .fill(0)
+        .map((_, index) => `var(--c-pastell-${index + 1})`)
+        .sort(() => 0.5 - Math.random())
+  });
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resize);
+});
 </script>
 
 <style lang="scss" module>

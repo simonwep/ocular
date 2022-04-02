@@ -1,8 +1,5 @@
 <template>
   <div :class="$style.root">
-    <h1 :class="$style.header">{{ state.title }}</h1>
-
-    <div :class="$style.tabs">
       <div :class="$style.buttons">
         <Button v-for="button of buttons"
                 :key="button.tab"
@@ -14,12 +11,13 @@
         <UploadButton :class="$style.top"/>
         <SaveButton/>
       </div>
-      <div :class="$style.panes">
+
+
+    <div :class="$style.panes">
         <Dashboard v-if="tab === 'dashboard'"/>
         <Expenses v-else-if="tab === 'expenses'"/>
         <Income v-else-if="tab === 'income'"/>
       </div>
-    </div>
   </div>
 </template>
 
@@ -50,55 +48,43 @@ const buttons: {icon: AppIcon; tab: Tab;}[] = [
 <style lang="scss" module>
 @use 'sass:math';
 
-$maxWidth: 1450px;
-$maxHeight: math.div($maxWidth, 1.6);
+$maxWidth: 1500px;
+$maxHeight: math.div($maxWidth, 1.5);
 
 .root {
   display: flex;
-  flex-direction: column;
+  flex-grow: 1;
   width: 100%;
   height: 100%;
   max-width: $maxWidth;
   max-height: $maxHeight;
   box-shadow: var(--app-box-shadow);
   border-radius: var(--border-radius-xl);
-  background: var(--app-backround);
   overflow: hidden;
+  background: var(--app-backround);
 
-  @media all and (max-width: $maxWidth), all and (max-height: $maxHeight) {
+  @media all and (max-width: $maxWidth) {
     border-radius: 0;
   }
 }
 
-.header {
-  font-weight: var(--font-weight-m);
-  font-size: var(--font-size-m);
-  padding: 10px 20px;
-  border-bottom: 1px solid var(--app-border);
+
+.buttons {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border-right: 1px solid var(--app-border);
+  padding: 15px 10px;
+  grid-gap: 10px;
+
+  .top {
+    margin-top: auto;
+  }
 }
 
-.tabs {
-  display: flex;
-  flex-grow: 1;
-  overflow: hidden;
-
-  .buttons {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    border-right: 1px solid var(--app-border);
-    padding: 10px;
-    grid-gap: 6px;
-
-    .top {
-      margin-top: auto;
-    }
-  }
-
-  .panes {
-    height: 100%;
-    width: 100%;
-  }
+.panes {
+  height: 100%;
+  width: 100%;
 }
 
 </style>

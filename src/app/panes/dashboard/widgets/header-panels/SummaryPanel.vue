@@ -5,6 +5,7 @@
       <span :class="$style.title"><Currency :value="endingValue"/></span>
       <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
     </div>
+
     <SummaryPanelChart :class="$style.chart"
                        :color="chartColor"
                        :values="values"/>

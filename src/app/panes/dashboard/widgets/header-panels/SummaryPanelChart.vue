@@ -28,7 +28,8 @@ const options = computed((): EChartsOption => ({
   },
   yAxis: {
     type: 'value',
-    show: false
+    show: false,
+    min: Math.min(...props.values),
   },
   grid: {
     top: '5%',

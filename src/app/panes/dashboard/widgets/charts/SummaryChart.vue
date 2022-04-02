@@ -43,7 +43,6 @@ const data = computed((): LineChartConfig => {
 
 .summary {
   width: 100%;
-  height: 250px;
 }
 
 </style>

@@ -33,9 +33,11 @@ const {state} = useStore();
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));
 
-const income = computed(() => aggregate(incomeTotals.value));
-const expenses = computed(() => aggregate(expensesTotals.value));
-const endingBalance = computed(() => subtract(income.value, expenses.value));
+const income = computed(() => incomeTotals.value);
+const expenses = computed(() => expensesTotals.value);
+const endingBalance = computed(() =>
+    subtract(aggregate(income.value), aggregate(expenses.value))
+);
 
 const expensePercentage = computed(() => {
   const expenses = sum(expensesTotals.value);

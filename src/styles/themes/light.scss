@@ -73,25 +73,14 @@
     --transition-s: 0.175s;
 
     --chart-legend: var(--c-text);
-    --chart-x-axis-label: #a4a4b8;
-    --chart-x-axis-line: #dddde3;
-    --chart-y-axis-label: var(--chart-x-axis-label);
-    --chart-y-axis-line: var(--chart-x-axis-line);
+    --chart-label: #4a4a55;
+    --chart-axis-line: #dddde3;
 
     --chart-tooltip: var(--app-backround);
     --chart-tooltip-text: var(--c-text);
     --chart-tooltip-pointer: var(--c-text-light);
     --chart-tooltip-pointer-cross: var(--c-dimmed);
     --chart-tooltip-pointer-background: var(--c-dark);
-
-    --chart-series-01: #b99095;
-    --chart-series-01-hover: #866166;
-    --chart-series-02: #fcb5ac;
-    --chart-series-02-hover: #b4837d;
-    --chart-series-03: #b5e5cf;
-    --chart-series-03-hover: #708d80;
-    --chart-series-04: #3d5b59;
-    --chart-series-04-hover: #1d2a29;
 
     --border-radius-s: 2px;
     --border-radius-m: 4px;

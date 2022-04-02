@@ -4,7 +4,7 @@
       <h1>{{ title + (subTitle ? ` - ${subTitle}` : '') }}</h1>
       <slot name="header"/>
     </div>
-    <div :class="classes">
+    <div :class="[$style.content, classes]">
       <slot/>
     </div>
   </div>
@@ -26,6 +26,8 @@ const classes = computed(() => props.class);
 <style lang="scss" module>
 
 .pane {
+  display: flex;
+  flex-direction: column;
   padding: 0 20px 20px;
   height: 100%;
   width: 100%;
@@ -44,10 +46,14 @@ const classes = computed(() => props.class);
   background: var(--app-backround);
 
   > h1 {
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-m);
     font-weight: var(--font-weight-l);
     margin-right: auto;
   }
+}
+
+.content {
+  flex-grow: 1;
 }
 
 </style>
