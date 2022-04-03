@@ -8,7 +8,7 @@
              inline @update:model-value="setBudgetGroupName(group.id, $event)"/>
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
-    <Currency :locale="locale" :value="total"/>
+    <Currency :currency="state.unit" :locale="state.locale" :value="total"/>
   </span>
 
   <span :class="$style.top">Total</span>
@@ -28,15 +28,17 @@
 
       <span v-for="(_, index) of budget.values" :key="budget.id">
         <CurrencyInput :model-value="budget.values[index]"
+                       :currency="state.unit"
+                       :locale="state.locale"
                        @update:model-value="setBudget(budget.id, index, $event)"/>
       </span>
 
       <span :class="$style.meta">
-        <Currency :locale="locale" :value="sum(budget.values)"/>
+        <Currency :currency="state.unit" :locale="state.locale" :value="sum(budget.values)"/>
       </span>
 
       <span :class="$style.meta">
-        <Currency :locale="locale" :value="average(budget.values)"/>
+        <Currency :currency="state.unit" :locale="state.locale" :value="average(budget.values)"/>
       </span>
     </template>
 
@@ -74,10 +76,9 @@ import {computed, ref} from 'vue';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
-  locale?: string;
 }>();
 
-const {addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget} = useStore();
+const {state, addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget} = useStore();
 
 const open = ref(false);
 const totals = computed(() => {

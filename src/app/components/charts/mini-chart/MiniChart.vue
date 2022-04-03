@@ -23,11 +23,14 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const options = computed((): EChartsOption => ({
   xAxis: {type: 'category', show: false},
-  yAxis: {show: false},
+  yAxis: {
+    show: false,
+    min: Math.min(...props.values)
+  },
   grid: {
-    top: '10%',
+    top: '15%',
     left: 0,
-    bottom: 0,
+    bottom: '20%',
     right: 0
   },
   series: [

@@ -1,12 +1,11 @@
 <template>
-  {{ text }}
+  {{ formatCurrency(value, locale, currency) }}
 </template>
 
 <script lang="ts" setup>
-import {useCurrencyFormatter} from '@composables';
-import {toRefs} from 'vue';
+import {formatCurrency} from '@composables';
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   value?: number;
   locale?: string;
   currency?: string;
@@ -14,8 +13,5 @@ const props = withDefaults(defineProps<{
   locale: 'en-us',
   currency: 'USD'
 });
-
-const {locale, currency, value} = toRefs(props);
-const text = useCurrencyFormatter(value, locale, currency);
 </script>
 

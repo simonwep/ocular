@@ -1,7 +1,10 @@
 <template>
   <div :class="$style.pane">
     <div :class="$style.header">
-      <h1>{{ title + (subTitle ? ` - ${subTitle}` : '') }}</h1>
+      <h1>
+        <span>{{ title }} - </span>
+        <Currency :value="amount"/>
+      </h1>
       <slot name="header"/>
     </div>
     <div :class="[$style.content, classes]">
@@ -12,12 +15,13 @@
 
 <script lang="ts" setup>
 
+import Currency from '@components/currency/Currency.vue';
 import {computed} from 'vue';
 
 const props = defineProps<{
   class?: any;
   title: string;
-  subTitle?: string;
+  amount?: number;
 }>();
 
 const classes = computed(() => props.class);
@@ -42,7 +46,7 @@ const classes = computed(() => props.class);
   position: sticky;
   top: 0;
   padding-top: 10px;
-  height: 40px;
+  height: 50px;
   background: var(--app-backround);
 
   > h1 {

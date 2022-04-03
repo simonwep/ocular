@@ -5,6 +5,7 @@
 <script lang="ts" setup>
 import {SankeyChartConfig, SankeyChartLabel, SankeyChartLink} from '@components/charts/sankey-chart/SankeyChart.types';
 import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
+import {formatCurrency} from '@composables';
 import {useStore} from '@state/index';
 import {totals} from '@state/utils/budgets';
 import {sum, uuid} from '@utils';
@@ -17,15 +18,15 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const {state} = useStore();
 
-
 const data = computed((): SankeyChartConfig => {
+  const format = (v: number) => formatCurrency(v, state.locale, state.unit);
   const totalIncome = sum(totals(state.income));
   const totalExpenses = sum(totals(state.expenses));
   const labels: SankeyChartLabel[] = [];
   const links: SankeyChartLink[] = [];
 
   const color = (hue: number) => `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
-  const income = {id: uuid(), name: `Income ($${totalIncome})`, color: color(120)};
+  const income = {id: uuid(), name: `Income (${format(totalIncome)})`, color: color(120)};
 
   labels.push(income);
 
@@ -34,7 +35,7 @@ const data = computed((): SankeyChartConfig => {
 
     labels.push({
       id: group.id,
-      name: `${group.name} ($${total})`,
+      name: `${group.name} (${format(total)})`,
       color: color(60 + 60 * (total / totalIncome))
     });
 
@@ -50,7 +51,7 @@ const data = computed((): SankeyChartConfig => {
 
       labels.push({
         id: budget.id,
-        name: `${budget.name} ($${total})`,
+        name: `${budget.name} (${format(total)})`,
         color: color(60 + 60 * (total / totalIncome))
       });
 
@@ -66,7 +67,7 @@ const data = computed((): SankeyChartConfig => {
     const total = sum(group.budgets.flatMap(v => v.values));
     labels.push({
       id: group.id,
-      name: `${group.name} ($${total})`,
+      name: `${group.name} (${format(total)})`,
       color: color(60 * (1 - total / totalExpenses))
     });
 
@@ -82,7 +83,7 @@ const data = computed((): SankeyChartConfig => {
 
       labels.push({
         id: budget.id,
-        name: `${budget.name} ($${total})`,
+        name: `${budget.name} (${format(total)})`,
         color: color(60 * (1 - total / totalExpenses))
       });
 

@@ -1,2 +1,2 @@
 export * from './useResizeObserver';
-export * from './useCurrencyFormatter';
+export * from '../utils/formatCurrency';
