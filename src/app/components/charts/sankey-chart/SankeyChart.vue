@@ -1,0 +1,62 @@
+<template>
+  <EChart :class="[$style.sankeyChart, classes]" :options="options"/>
+</template>
+
+<script lang="ts" setup>
+import EChart from '@components/charts/e-chart/EChart.vue';
+import {SankeyChartConfig} from '@components/charts/sankey-chart/SankeyChart.types';
+import {SankeySeriesOption} from 'echarts';
+import {SankeyChart} from 'echarts/charts';
+import * as echarts from 'echarts/core';
+import {SVGRenderer} from 'echarts/renderers';
+import {computed} from 'vue';
+
+echarts.use([SankeyChart, SVGRenderer]);
+
+type EChartsOption = echarts.ComposeOption<SankeySeriesOption>;
+
+const props = defineProps<{
+  class?: any;
+  data: SankeyChartConfig;
+}>();
+
+const classes = computed(() => props.class);
+const options = computed((): EChartsOption => ({
+  series: {
+    type: 'sankey',
+    animation: false,
+    label: {
+      formatter: '{b}',
+      textBorderWidth: 0,
+      fontWeight: 'var(--font-weight-l)',
+      fontFamily: 'var(--font-family)',
+      color: 'var(--chart-label)'
+    },
+    lineStyle: {
+      color: 'source',
+      curveness: 0.5
+    },
+    nodeGap: 10,
+    nodeWidth: 7,
+    left: 0,
+    right: '10%',
+    data: props.data.labels.map(v => ({
+      name: v.name,
+      id: v.id,
+      itemStyle: {color: v.color},
+    })),
+    links: props.data.links
+  }
+}));
+
+</script>
+
+<style lang="scss" module>
+
+.sankeyChart {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+</style>

@@ -27,12 +27,7 @@ watch(rootSize, resize);
 
 onMounted(() => {
   window.addEventListener('resize', resize);
-  chart.value = echarts.init(root.value as HTMLDivElement, {
-    color: new Array(25)
-        .fill(0)
-        .map((_, index) => `var(--c-pastell-${index + 1})`)
-        .sort(() => 0.5 - Math.random())
-  });
+  chart.value = echarts.init(root.value as HTMLDivElement);
 });
 
 onUnmounted(() => {
