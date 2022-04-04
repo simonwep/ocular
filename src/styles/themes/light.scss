@@ -10,13 +10,19 @@
 @mixin light {
     --theme-backround: #f8f9fa;
 
+    --app-max-width: 1600px;
+    --app-max-height: 1000px;
+    --app-box-shadow: 0 4px 7px #e8e7f5;
+    --app-backround: #fff;
+    --app-border: #e5e5e5;
+
     --c-text: #282d38;
-    --c-text-light: #fff;
+    --c-text-light: var(--app-backround);
 
     --c-dark: #343d4a;
     --c-dark-hover: #282f38;
-    --c-dark-inverted: var(--c-text-light);
-    --c-dark-inverted-hover: var(--c-dark-inverted);
+    --c-dark-inverted: #dfe2e8;
+    --c-dark-inverted-hover: #c0c4cc;
     --c-dark-shadow: 0 0 0 2px #282f385c;
 
     --c-dimmed: #bec9d4;
@@ -70,20 +76,12 @@
     --font-size-xl: 20px;
     --font-size-xxl: 24px;
 
-    --transition-s: 0.175s;
+    --transitions: 1;
+    --transition-s: calc(var(--transitions) * 0.175s);
 
-    --chart-legend: var(--c-text);
-    --chart-label: #4a4a55;
-    --chart-axis-line: #dddde3;
-
-    --chart-tooltip: var(--app-backround);
-    --chart-tooltip-text: var(--c-text);
-    --chart-tooltip-pointer: var(--c-text-light);
-    --chart-tooltip-pointer-cross: var(--c-dimmed);
-    --chart-tooltip-pointer-background: var(--c-dark);
-
-    --chart-generic-saturation: 65%;
-    --chart-generic-lightness: 80%;
+    --chart-label: var(--c-text);
+    --chart-generic-saturation: 55%;
+    --chart-generic-lightness: 65%;
 
     --border-radius-s: 2px;
     --border-radius-m: 4px;
@@ -91,12 +89,6 @@
     --border-radius-xl: 8px;
     --border-radius-xxl: 16px;
     --border-radius-xxxl: 24px;
-
-    --app-max-width: 1600px;
-    --app-max-height: 1000px;
-    --app-box-shadow: 0 4px 7px #e8e7f5;
-    --app-backround: #fff;
-    --app-border: #e5e5e5;
 
     --input-field-font-size: var(--font-size-xs);
     --input-field-caret-color: #2d3036;

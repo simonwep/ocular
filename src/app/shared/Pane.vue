@@ -2,8 +2,11 @@
   <div :class="$style.pane">
     <div :class="$style.header">
       <h1>
-        <span>{{ title }} - </span>
-        <Currency :value="amount"/>
+        <span>{{ title }}</span>
+        <template v-if="amount">
+          <span> - </span>
+          <Currency :value="amount"/>
+        </template>
       </h1>
       <slot name="header"/>
     </div>
@@ -14,7 +17,6 @@
 </template>
 
 <script lang="ts" setup>
-
 import Currency from '@components/currency/Currency.vue';
 import {computed} from 'vue';
 

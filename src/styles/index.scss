@@ -7,6 +7,11 @@ html, body, #app {
 }
 
 #app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     background: var(--theme-backround);
     display: flex;
     align-items: center;
@@ -15,6 +20,22 @@ html, body, #app {
     color: var(--c-text);
 }
 
-:root {
+.dark {
+    @include themes.dark;
+}
+
+.light {
     @include themes.light;
+}
+
+@media (prefers-color-scheme: dark) {
+    #app:not(.dark, .light) {
+        @include themes.dark;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    #app:not(.dark, .light) {
+        @include themes.light;
+    }
 }

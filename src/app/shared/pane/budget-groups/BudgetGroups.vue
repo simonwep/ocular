@@ -6,8 +6,8 @@
     <span/>
 
     <!-- Months -->
-    <span/>
     <span v-for="month of months" :key="month" :class="$style.month">{{ month }}</span>
+    <span/>
     <span/>
     <span/>
     <span/>

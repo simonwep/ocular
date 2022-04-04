@@ -28,7 +28,7 @@ const options = computed((): EChartsOption => ({
     label: {
       formatter: '{b}',
       textBorderWidth: 0,
-      fontWeight: 'var(--font-weight-l)',
+      fontWeight: 'var(--font-weight-l)' as any,
       fontFamily: 'var(--font-family)',
       color: 'var(--chart-label)'
     },

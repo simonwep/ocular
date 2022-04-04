@@ -114,7 +114,7 @@ const totals = computed(() => {
   font-weight: var(--font-weight-l);
   margin: 8px 0;
   background: var(--c-dark);
-  color: var(--c-text-light);
+  color: var(--c-dark-inverted);
 
   &.start {
     border-top-left-radius: var(--border-radius-m);

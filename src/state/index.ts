@@ -1,17 +1,19 @@
-import {BudgetGroup, State} from '@state/types';
+import {BudgetGroup, State, Theme} from '@state/types';
 import {remove, uuid} from '@utils';
 import {DeepReadonly} from '@vue/reactivity';
-import {inject, provide, reactive, readonly, watch} from 'vue';
+import {inject, reactive, readonly, watch} from 'vue';
 import {readFile} from '../utils/readFile';
 import {generateTemplate} from './template';
 
-const STORE_KEY = Symbol('State');
+export const STORE_KEY = Symbol('State');
 
 interface Store {
     state: DeepReadonly<State>;
 
     serialize(): string;
     deserialize(file: File): Promise<void>;
+
+    setTheme(theme: Theme): void;
 
     setStartingBalance(amount: number): void;
     setBudgetTitle(name: string): void;
@@ -27,14 +29,15 @@ interface Store {
     setBudget(id: string, month: number, amount: number): void;
 }
 
-export const provideStore = (): Store => {
+
+export const createStore = (): Store => {
     const stored = localStorage.getItem('_state');
     const state = reactive(stored ? JSON.parse(stored) : generateTemplate());
     const groups = () => [...state.expenses, ...state.income];
 
     watch(state, () => localStorage.setItem('_state', JSON.stringify(state)));
 
-    const store: Store = {
+    return {
         state: readonly(state),
 
         serialize(): string {
@@ -51,6 +54,10 @@ export const provideStore = (): Store => {
 
                 Object.assign(state, content);
             });
+        },
+
+        setTheme(theme: Theme): void {
+            state.theme = theme;
         },
 
         setStartingBalance(amount: number): void {
@@ -101,9 +108,6 @@ export const provideStore = (): Store => {
             });
         }
     };
-
-    provide<Store>(STORE_KEY, store);
-    return store;
 };
 
 export const useStore = (): Store => {
