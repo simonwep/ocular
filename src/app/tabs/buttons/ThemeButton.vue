@@ -14,6 +14,7 @@ import {useAppElement} from '../../../composables/useAppElement';
 const {state, setTheme} = useStore();
 const button = ref<HTMLDivElement>();
 const app = useAppElement();
+let switchActive = false;
 
 const icon = computed((): AppIcon => state.theme === 'light' ? 'sun-fill' : 'moon-fill');
 
@@ -25,6 +26,12 @@ const getTransitionOrigin = () => {
 };
 
 const toggle = () => {
+
+  if (switchActive) {
+    return;
+  }
+
+  switchActive = true;
   const oldTheme = state.theme;
   setTheme(oldTheme === 'dark' ? 'light' : 'dark');
 
@@ -44,6 +51,7 @@ const toggle = () => {
       instance.style.removeProperty('transition');
       instance.style.removeProperty('clip-path');
       clone.remove();
+      switchActive = false;
     }
   };
 

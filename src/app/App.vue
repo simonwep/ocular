@@ -1,14 +1,14 @@
 <template>
   <div :class="$style.app">
-    <Tabs/>
+    <AsyncComponent :import="() => import('./tabs/Tabs.vue')"/>
   </div>
 </template>
 
 <script lang="ts" setup>
+import AsyncComponent from '@components/async-component/AsyncComponent.vue';
 import {useStore} from '@state/index';
 import {watch} from 'vue';
 import {useAppElement} from '../composables/useAppElement';
-import Tabs from './tabs/Tabs.vue';
 
 const {state} = useStore();
 const app = useAppElement();
