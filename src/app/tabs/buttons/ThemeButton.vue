@@ -26,37 +26,38 @@ const getTransitionOrigin = () => {
 };
 
 const toggle = () => {
-
-  if (switchActive) {
-    return;
-  }
-
+  if (switchActive) return;
   switchActive = true;
+
   const oldTheme = state.theme;
-  setTheme(oldTheme === 'dark' ? 'light' : 'dark');
+  const wasDark = oldTheme === 'dark';
+  setTheme(wasDark ? 'light' : 'dark');
 
   const origin = getTransitionOrigin();
-  const instance = app.value as HTMLElement;
+  const root = app.value as HTMLElement;
   const clone = app.value?.cloneNode(true) as HTMLElement;
-  document.body.prepend(clone);
-
   clone.classList.add(oldTheme);
-  instance.style.setProperty('--transitions', '0');
-  instance.style.setProperty('clip-path', `circle(0% at ${origin})`);
-  instance.style.setProperty('transition', `all 0.75s ease-in-out`);
 
-  instance.ontransitionend = (e) => {
-    if (e.target === instance) {
-      instance.style.removeProperty('--transition');
-      instance.style.removeProperty('transition');
-      instance.style.removeProperty('clip-path');
+  document.body[wasDark ? 'prepend' : 'append'](clone);
+  const [start, end] = wasDark ? [0, 150] : [150, 0];
+  const target = wasDark ? root : clone;
+
+  target.style.setProperty('--transitions', '0');
+  target.style.setProperty('clip-path', `circle(${start}% at ${origin})`);
+  target.style.setProperty('transition', `all 0.75s ease-in-out`);
+
+  target.addEventListener('transitionend', (e) => {
+    if (e.target === target) {
+      target.style.removeProperty('--transition');
+      target.style.removeProperty('transition');
+      target.style.removeProperty('clip-path');
       clone.remove();
       switchActive = false;
     }
-  };
+  });
 
   requestAnimationFrame(() => {
-    instance.style.setProperty('clip-path', `circle(150% at ${origin})`);
+    target.style.setProperty('clip-path', `circle(${end}% at ${origin})`);
   });
 };
 
