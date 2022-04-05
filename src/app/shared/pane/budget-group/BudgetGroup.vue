@@ -8,11 +8,18 @@
              inline @update:model-value="setBudgetGroupName(group.id, $event)"/>
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
-    <Currency :currency="state.unit" :locale="state.locale" :value="total"/>
+    <span>
+      <Currency :currency="state.unit" :locale="state.locale" :value="total"/>
+    </span>
   </span>
 
-  <span :class="$style.top">Total</span>
-  <span :class="[$style.top, $style.end]">Average</span>
+  <span :class="$style.top">
+    <span>Total</span>
+  </span>
+
+  <span :class="[$style.top, $style.end]">
+    <span>Average</span>
+  </span>
 
   <template v-if="open">
 
@@ -115,6 +122,11 @@ const totals = computed(() => {
   margin: 8px 0;
   background: var(--c-dark);
   color: var(--c-dark-inverted);
+
+  > span {
+    display: inline-block;
+    padding: 0 4px;
+  }
 
   &.start {
     border-top-left-radius: var(--border-radius-m);

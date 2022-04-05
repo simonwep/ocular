@@ -8,6 +8,7 @@ export interface SankeyChartLabel {
     id: string;
     name: string;
     color: string;
+    align?: 'left' | 'right';
 }
 
 export interface SankeyChartConfig {

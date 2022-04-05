@@ -11,7 +11,7 @@
     --c-text-light: var(--app-backround);
 
     --c-dark: #343d4a;
-    --c-dark-hover: #282f38;
+    --c-dark-hover: #39404a;
     --c-dark-inverted: #dfe2e8;
     --c-dark-inverted-hover: #c0c4cc;
     --c-dark-shadow: 0 0 0 2px #282f385c;
@@ -22,35 +22,35 @@
     --c-dimmed-inverted-hover: var(--c-dimmed-inverted);
     --c-dimmed-shadow: 0 0 0 2px #555c655c;
 
-    --c-primary: #5c8ada;
+    --c-primary: #4fa2ff;
     --c-primary-light: var(--c-primary);
-    --c-primary-light-dimmed: #bac8e1;
-    --c-primary-hover: #5077be;
+    --c-primary-light-dimmed: #9bcaff;
+    --c-primary-hover: #4791e6;
     --c-primary-inverted: var(--c-text-light);
     --c-primary-inverted-hover: var(--c-primary-inverted);
-    --c-primary-shadow: 0 0 0 2px #5077be5c;
+    --c-primary-shadow: 0 0 0 2px #4fa2ff5c;
 
-    --c-success: #48a45b;
+    --c-success: #19b897;
     --c-success-light: var(--c-success);
-    --c-success-light-dimmed: #9fd0a9;
-    --c-success-hover: #55b26d;
+    --c-success-light-dimmed: #35e8c3;
+    --c-success-hover: #17a689;
     --c-success-inverted: var(--c-text-light);
     --c-success-inverted-hover: var(--c-success-inverted);
-    --c-success-shadow: 0 0 0 2px #55b26d5c;
+    --c-success-shadow: 0 0 0 2px #17a6895c;
 
-    --c-warning: #d7895d;
+    --c-warning: #e7b634;
     --c-warning-light: var(--c-warning);
-    --c-warning-light-dimmed: #e5b197;
+    --c-warning-light-dimmed: #ffe191;
     --c-warning-hover: #ab6d4a;
     --c-warning-inverted: var(--c-text-light);
     --c-warning-inverted-hover: var(--c-warning-inverted);
-    --c-warning-shadow: 0 0 0 2px #ab6d4a5c;
+    --c-warning-shadow: 0 0 0 2px #e7b6345c;
 
     --c-error: #ff7f7f;
     --c-error-hover: #d55f5f;
     --c-error-inverted: var(--c-text-light);
     --c-error-inverted-hover: var(--c-error-inverted);
-    --c-error-shadow: 0 0 0 2px #d55f5f5c;
+    --c-error-shadow: 0 0 0 2px #ff7f7f5c;
 
     --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
     --font-weight-s: 200;
@@ -72,8 +72,8 @@
     --transition-xl: calc(var(--transitions) * 0.75s);
 
     --chart-label: var(--c-text);
-    --chart-generic-saturation: 65%;
-    --chart-generic-lightness: 80%;
+    --chart-generic-saturation: 75%;
+    --chart-generic-lightness: 75%;
 
     --border-radius-s: 2px;
     --border-radius-m: 4px;
@@ -84,9 +84,9 @@
 
     --input-field-font-size: var(--font-size-xs);
     --input-field-caret-color: #2d3036;
-    --input-field-border: 1px solid #f2eded;
+    --input-field-border: 1px solid var(--c-dark);
     --input-field-background: var(--app-backround);
-    --input-field-hover-border: 1px solid #d9d4d4;
+    --input-field-hover-border: 1px solid var(--c-dark-hover);
     --input-field-hover-background: var(--input-field-background);
     --input-field-focus-border: 1px solid #0059ffac;
     --input-field-focus-background: var(--input-field-background);

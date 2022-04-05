@@ -96,7 +96,7 @@ const totals = computed(() => {
   align-items: center;
 
   > *:not(button) {
-    padding: 4px 8px;
+    padding: 6px 10px;
   }
 }
 

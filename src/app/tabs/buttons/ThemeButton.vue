@@ -42,13 +42,17 @@ const toggle = () => {
   const [start, end] = wasDark ? [0, 150] : [150, 0];
   const target = wasDark ? root : clone;
 
-  target.style.setProperty('--transitions', '0');
+  root.style.setProperty('--transitions', '0');
+  clone.style.setProperty('--transitions', '0');
+
   target.style.setProperty('clip-path', `circle(${start}% at ${origin})`);
   target.style.setProperty('transition', `all 0.75s ease-in-out`);
 
   target.addEventListener('transitionend', (e) => {
     if (e.target === target) {
-      target.style.removeProperty('--transition');
+      root.style.removeProperty('--transitions');
+      clone.style.removeProperty('--transitions');
+
       target.style.removeProperty('transition');
       target.style.removeProperty('clip-path');
       clone.remove();

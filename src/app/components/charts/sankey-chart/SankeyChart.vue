@@ -39,13 +39,17 @@ const options = computed((): EChartsOption => ({
     nodeGap: 10,
     nodeWidth: 7,
     left: 0,
-    right: '10%',
-    data: props.data.labels.map(v => ({
+    right: 0,
+    links: props.data.links,
+    data: props.data.labels.map((v) => ({
       name: v.name,
       id: v.id,
       itemStyle: {color: v.color},
-    })),
-    links: props.data.links
+      label: v.align === 'left' ? {
+        align: 'right',
+        padding: [0, 20, 0, 0]
+      } : undefined
+    }))
   }
 }));
 

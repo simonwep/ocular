@@ -84,7 +84,8 @@ const data = computed((): SankeyChartConfig => {
       labels.push({
         id: budget.id,
         name: `${budget.name} (${format(total)})`,
-        color: color(60 * (1 - total / totalExpenses))
+        color: color(60 * (1 - total / totalExpenses)),
+        align: 'left'
       });
 
       links.push({
