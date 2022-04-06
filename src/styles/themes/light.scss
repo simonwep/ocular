@@ -71,7 +71,8 @@
     --font-size-xxl: 24px;
 
     --transitions: 1;
-    --transition-s: calc(var(--transitions) * 0.175s);
+    --transition-s: calc(var(--transitions) * 0.125s);
+    --transition-m: calc(var(--transitions) * 0.25s);
     --transition-xl: calc(var(--transitions) * 0.75s);
 
     --chart-label: var(--theme-text);

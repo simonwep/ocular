@@ -17,7 +17,7 @@ const props = defineProps<{
 const component = shallowRef();
 
 onMounted(() => {
-  props.import().then(module => component.value = module.default);
+    props.import().then(module => component.value = module.default);
 });
 </script>
 
@@ -56,7 +56,7 @@ onMounted(() => {
   display: flex;
   width: 100%;
   height: 100%;
-  animation: var(--transition);
+  animation: var(--animation-fade-in-scale) var(--transition-s);
 }
 
 </style>

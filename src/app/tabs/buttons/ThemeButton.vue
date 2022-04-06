@@ -1,5 +1,5 @@
 <template>
-  <div ref="button" :class="$style.themeButton">
+  <div ref="button" :class="[classes, $style.themeButton]">
     <Button :icon="icon" textual @click="toggle"/>
   </div>
 </template>
@@ -11,12 +11,17 @@ import {useStore} from '@state/index';
 import {computed, ref} from 'vue';
 import {useAppElement} from '../../../composables/useAppElement';
 
+const props = defineProps<{
+  class?: any;
+}>();
+
 const {state, setTheme} = useStore();
 const button = ref<HTMLDivElement>();
 const app = useAppElement();
 let switchActive = false;
 
 const icon = computed((): AppIcon => state.theme === 'light' ? 'sun-fill' : 'moon-fill');
+const classes = computed(() => props.class);
 
 const getTransitionOrigin = () => {
   const originRect = button.value?.getBoundingClientRect() as DOMRect;

@@ -20,7 +20,7 @@
                 :leave-active-class="$style.transitionTarget"
                 :leave-to-class="$style.transitionOrigin"
                 mode="out-in">
-      <component :is="buttons.find(v => v.tab === tab).component"/>
+      <component v-if="component" :is="component"/>
     </Transition>
   </div>
 </template>
@@ -28,7 +28,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import {AppIcon} from '@components/base/icon/Icon.types';
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import SaveButton from './buttons/SaveButton.vue';
 import ThemeButton from './buttons/ThemeButton.vue';
 import UploadButton from './buttons/UploadButton.vue';
@@ -39,7 +39,7 @@ import Income from './income/Income.vue';
 type Tab = 'dashboard' | 'income' | 'expenses';
 
 const tab = ref<Tab>('dashboard');
-
+const component = computed(() => buttons.find(v => v.tab === tab.value)?.component);
 const buttons: {icon: AppIcon; tab: Tab; component: any}[] = [
   {icon: 'donut-chart', tab: 'dashboard', component: Dashboard},
   {icon: 'shopping-basket-2', tab: 'expenses', component: Expenses},
@@ -81,6 +81,18 @@ const buttons: {icon: AppIcon; tab: Tab; component: any}[] = [
 .panes {
   height: 100%;
   width: 100%;
+}
+
+.fromLeft {
+  animation: var(--animation-fade-in-right) var(--transition-m);
+}
+
+.fromTop {
+  animation: var(--animation-fade-in-top) var(--transition-m);
+}
+
+.fromBottom {
+  animation: var(--animation-fade-in-bottom) var(--transition-m);
 }
 
 </style>

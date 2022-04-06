@@ -18,6 +18,7 @@ html, body, #app {
     justify-content: center;
     font-family: var(--font-family);
     color: var(--theme-text);
+    @include themes.animations;
 }
 
 .dark {
@@ -37,5 +38,11 @@ html, body, #app {
 @media (prefers-color-scheme: light) {
     #app:not(.dark, .light) {
         @include themes.light;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #app {
+        --transitions: 0 !important;
     }
 }

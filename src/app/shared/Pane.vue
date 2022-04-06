@@ -31,18 +31,6 @@ const classes = computed(() => props.class);
 
 <style lang="scss" module>
 
-
-@keyframes fade-down {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 .pane {
   display: flex;
   flex-direction: column;
@@ -62,7 +50,7 @@ const classes = computed(() => props.class);
   padding-top: 10px;
   height: 50px;
   background: var(--app-backround);
-  animation: fade-down var(--transition-s);
+  animation: var(--animation-fade-in-right) var(--transition-s);
 
   > h1 {
     font-size: var(--font-size-m);

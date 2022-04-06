@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Auto-generated files
+src/app/components/base/icon/Icon.types.ts
