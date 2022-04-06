@@ -48,8 +48,8 @@
 </template>
 
 <script lang="ts" setup>
-import Button from '@components/button/Button.vue';
-import Currency from '@components/currency/Currency.vue';
+import Button from '@components/base/button/Button.vue';
+import Currency from '@components/base/currency/Currency.vue';
 import BudgetGroup from '@shared/pane/budget-group/BudgetGroup.vue';
 import {useStore} from '@state/index';
 import {computed} from 'vue';

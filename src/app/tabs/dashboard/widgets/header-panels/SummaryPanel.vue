@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import Currency from '@components/currency/Currency.vue';
+import Currency from '@components/base/currency/Currency.vue';
 import {useStore} from '@state/index';
 import {computed} from 'vue';
 import SummaryPanelChart from './SummaryPanelChart.vue';

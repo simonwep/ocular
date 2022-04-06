@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import Button from '@components/button/Button.vue';
+import Button from '@components/base/button/Button.vue';
 import {useStore} from '@state/index';
 import {saveFile} from '@utils';
 import {computed} from 'vue';

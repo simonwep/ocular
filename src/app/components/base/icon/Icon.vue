@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import {AppIcon} from '@components/icon/Icon.types';
+import {AppIcon} from '@components/base/icon/Icon.types';
 import {computed} from 'vue';
 
 const icons = Object.fromEntries(

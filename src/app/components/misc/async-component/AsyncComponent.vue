@@ -35,15 +35,6 @@ onMounted(() => {
   }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .asyncComponent {
   display: flex;
   align-items: center;
@@ -65,7 +56,7 @@ onMounted(() => {
   display: flex;
   width: 100%;
   height: 100%;
-  animation: fade-in var(--transition-xl);
+  animation: var(--transition);
 }
 
 </style>

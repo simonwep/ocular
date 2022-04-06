@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import EChart from '@components/charts/e-chart/EChart.vue';
+import EChart from '@components/charts/echart/EChart.vue';
 import {SankeyChartConfig} from '@components/charts/sankey-chart/SankeyChart.types';
 import {SankeySeriesOption} from 'echarts';
 import {SankeyChart} from 'echarts/charts';

@@ -71,10 +71,10 @@
 </template>
 
 <script lang="ts" setup>
-import Button from '@components/button/Button.vue';
-import CurrencyInput from '@components/currency-input/CurrencyInput.vue';
-import Currency from '@components/currency/Currency.vue';
-import TextInput from '@components/text-input/TextInput.vue';
+import Button from '@components/base/button/Button.vue';
+import CurrencyInput from '@components/base/currency-input/CurrencyInput.vue';
+import Currency from '@components/base/currency/Currency.vue';
+import TextInput from '@components/base/text-input/TextInput.vue';
 import {useStore} from '@state/index';
 import {BudgetGroup} from '@state/types';
 import {average, sum} from '@utils';
@@ -121,7 +121,7 @@ const totals = computed(() => {
   font-weight: var(--font-weight-l);
   margin: 8px 0;
   background: var(--c-dark);
-  color: var(--c-dark-inverted);
+  color: var(--c-dark-text);
 
   > span {
     display: inline-block;

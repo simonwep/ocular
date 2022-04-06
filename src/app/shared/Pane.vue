@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import Currency from '@components/currency/Currency.vue';
+import Currency from '@components/base/currency/Currency.vue';
 import {computed} from 'vue';
 
 const props = defineProps<{
@@ -30,6 +30,18 @@ const classes = computed(() => props.class);
 </script>
 
 <style lang="scss" module>
+
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 .pane {
   display: flex;
@@ -50,6 +62,7 @@ const classes = computed(() => props.class);
   padding-top: 10px;
   height: 50px;
   background: var(--app-backround);
+  animation: fade-down var(--transition-s);
 
   > h1 {
     font-size: var(--font-size-m);

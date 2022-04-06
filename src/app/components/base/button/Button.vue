@@ -6,10 +6,10 @@
 </template>
 
 <script lang="ts" setup>
-import {AppIcon} from '@components/icon/Icon.types';
-import Icon from '@components/icon/Icon.vue';
+import {AppIcon} from '@components/base/icon/Icon.types';
+import Icon from '@components/base/icon/Icon.vue';
 import {computed, useCssModule} from 'vue';
-import {Color, useThemeStyles} from '../../../composables/useThemeStyles';
+import {Color, useThemeStyles} from '../../../../composables/useThemeStyles';
 
 const emit = defineEmits<{
   (e: 'click', v: MouseEvent): void;
@@ -48,7 +48,7 @@ const classes = computed(() => [
   align-items: center;
   cursor: pointer;
   background: v-bind('theme.color.base');
-  color: v-bind('theme.inverted.base');
+  color: v-bind('theme.text.base');
   border-radius: var(--border-radius-m);
   padding: 4px 10px;
   transition: all var(--transition-s);
@@ -79,20 +79,20 @@ const classes = computed(() => [
 
   &:hover {
     background: v-bind('theme.color.hover');
-    color: v-bind('theme.inverted.hover');
+    color: v-bind('theme.text.hover');
   }
 
   &.textual {
-    background: v-bind('theme.inverted.base');
-    color: v-bind('theme.color.base');
+    background: transparent;
+    color: v-bind('theme.pure.base');
 
     &:focus {
       box-shadow: none;
     }
 
     &:hover {
-      background: v-bind('theme.inverted.hover');
-      color: v-bind('theme.color.hover');
+      background: transparent;
+      color: v-bind('theme.pure.hover');
     }
   }
 }

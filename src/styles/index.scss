@@ -12,12 +12,12 @@ html, body, #app {
     left: 0;
     bottom: 0;
     right: 0;
-    background: var(--theme-backround);
+    background: var(--theme);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-family);
-    color: var(--c-text);
+    color: var(--theme-text);
 }
 
 .dark {

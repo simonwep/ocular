@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import AsyncComponent from '@components/async-component/AsyncComponent.vue';
+import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import {useStore} from '@state/index';
 import {watch} from 'vue';
 import {useAppElement} from '../composables/useAppElement';

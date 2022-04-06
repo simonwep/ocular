@@ -1,5 +1,6 @@
 @mixin light {
-    --theme-backround: #f8f9fa;
+    --theme: #f8f9fa;
+    --theme-text: var(--c-text-dark);
 
     --app-max-width: 1600px;
     --app-max-height: 1000px;
@@ -7,50 +8,52 @@
     --app-backround: #fff;
     --app-border: #e5e5e5;
 
-    --c-text: #282d38;
-    --c-text-light: var(--app-backround);
+    --c-text-dark: #282d38;
+    --c-text-light: #fff;
 
     --c-dark: #343d4a;
     --c-dark-hover: #282f38;
-    --c-dark-inverted: #dfe2e8;
-    --c-dark-inverted-hover: #c0c4cc;
+    --c-dark-text: #dfe2e8;
+    --c-dark-text-hover: #c0c4cc;
     --c-dark-shadow: 0 0 0 2px #282f385c;
 
     --c-dimmed: #bec9d4;
     --c-dimmed-hover: #a2a9b4;
-    --c-dimmed-inverted: var(--c-text-light);
-    --c-dimmed-inverted-hover: var(--c-dimmed-inverted);
+    --c-dimmed-text: var(--c-text-light);
+    --c-dimmed-text-hover: var(--c-dimmed-text);
+    --c-dimmed-pure: var(--c-dimmed);
+    --c-dimmed-pure-hover: var(--c-dimmed-hover);
     --c-dimmed-shadow: 0 0 0 2px #555c655c;
 
     --c-primary: #5c8ada;
     --c-primary-light: #e8f0fb;
     --c-primary-light-dimmed: #bac8e1;
     --c-primary-hover: #5077be;
-    --c-primary-inverted: var(--c-text-light);
-    --c-primary-inverted-hover: var(--c-primary-inverted);
+    --c-primary-text: var(--c-text-light);
+    --c-primary-text-hover: var(--c-primary-text);
+    --c-primary-pure: var(--c-primary);
+    --c-primary-pure-hover: var(--c-primary-hover);
     --c-primary-shadow: 0 0 0 2px #5077be5c;
 
     --c-success: #64d37d;
     --c-success-light: #eafdee;
     --c-success-light-dimmed: #9fd0a9;
     --c-success-hover: #55b26d;
-    --c-success-inverted: var(--c-text-light);
-    --c-success-inverted-hover: var(--c-success-inverted);
+    --c-success-text: var(--c-text-light);
+    --c-success-text-hover: var(--c-success-text);
+    --c-success-pure: var(--c-success);
+    --c-success-pure-hover: var(--c-success-hover);
     --c-success-shadow: 0 0 0 2px #55b26d5c;
 
     --c-warning: #d7895d;
     --c-warning-light: #ffefe7;
     --c-warning-light-dimmed: #e5b197;
     --c-warning-hover: #ab6d4a;
-    --c-warning-inverted: var(--c-text-light);
-    --c-warning-inverted-hover: var(--c-warning-inverted);
+    --c-warning-text: var(--c-text-light);
+    --c-warning-text-hover: var(--c-warning-text);
+    --c-warning-pure: var(--c-warning);
+    --c-warning-pure-hover: var(--c-warning-hover);
     --c-warning-shadow: 0 0 0 2px #ab6d4a5c;
-
-    --c-error: #ff7f7f;
-    --c-error-hover: #d55f5f;
-    --c-error-inverted: var(--c-text-light);
-    --c-error-inverted-hover: var(--c-error-inverted);
-    --c-error-shadow: 0 0 0 2px #d55f5f5c;
 
     --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
     --font-weight-s: 200;
@@ -71,7 +74,7 @@
     --transition-s: calc(var(--transitions) * 0.175s);
     --transition-xl: calc(var(--transitions) * 0.75s);
 
-    --chart-label: var(--c-text);
+    --chart-label: var(--theme-text);
     --chart-generic-saturation: 55%;
     --chart-generic-lightness: 82%;
 

@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import Button from '@components/button/Button.vue';
-import {AppIcon} from '@components/icon/Icon.types';
+import Button from '@components/base/button/Button.vue';
+import {AppIcon} from '@components/base/icon/Icon.types';
 import {useStore} from '@state/index';
 import {computed, ref} from 'vue';
 import {useAppElement} from '../../../composables/useAppElement';

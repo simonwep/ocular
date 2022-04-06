@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import EChart from '@components/charts/e-chart/EChart.vue';
+import EChart from '@components/charts/echart/EChart.vue';
 import {LineChart, LineSeriesOption} from 'echarts/charts';
 import {GridComponent, GridComponentOption} from 'echarts/components';
 import * as echarts from 'echarts/core';

@@ -10,14 +10,16 @@ export interface ColorPair {
 export interface ThemeStyles {
     focus: string;
     color: ColorPair;
-    inverted: ColorPair;
+    text: ColorPair;
+    pure: ColorPair;
 }
 
 export const useThemeStyles = (effect: () => Color): ThemeStyles => {
     const resolve = (c = effect()): ThemeStyles => ({
         focus: `var(--c-${c}-shadow)`,
         color: {base: `var(--c-${c})`, hover: `var(--c-${c}-hover)`},
-        inverted: {base: `var(--c-${c}-inverted)`, hover: `var(--c-${c}-inverted-hover)`}
+        text: {base: `var(--c-${c}-text)`, hover: `var(--c-${c}-text-hover)`},
+        pure: {base: `var(--c-${c}-pure)`, hover: `var(--c-${c}-pure-hover)`}
     });
 
     const styles = reactive<ThemeStyles>(resolve());
