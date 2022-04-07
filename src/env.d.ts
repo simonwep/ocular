@@ -6,3 +6,11 @@ declare module '*.vue' {
     const component: DefineComponent<{}, {}, any>;
     export default component;
 }
+
+declare interface HTMLDialogElement {
+    open: boolean;
+    returnValue: string;
+    close(): void;
+    slow(): void;
+    showModal(): void;
+}

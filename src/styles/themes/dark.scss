@@ -12,9 +12,11 @@
     --c-text-light: #fff;
 
     --c-dark: #343d4a;
-    --c-dark-hover: #39404a;
+    --c-dark-hover: #515b6e;
     --c-dark-text: #dfe2e8;
     --c-dark-text-hover: #c0c4cc;
+    --c-dark-pure: #646b76;
+    --c-dark-pure-hover: var(--c-dark-pure);
     --c-dark-shadow: 0 0 0 2px #282f385c;
 
     --c-dimmed: #bec9d4;
@@ -86,13 +88,15 @@
     --border-radius-xxl: 16px;
     --border-radius-xxxl: 24px;
 
+    --input-field-transition: var(--transition-s);
     --input-field-font-size: var(--font-size-xs);
     --input-field-caret-color: #2d3036;
-    --input-field-border: 1px solid var(--c-dark);
+    --input-field-placeholder: var(--c-dark-pure);
+    --input-field-border: var(--c-dark);
     --input-field-background: var(--app-backround);
-    --input-field-hover-border: 1px solid var(--c-dark-hover);
+    --input-field-hover-border: var(--c-dark-hover);
     --input-field-hover-background: var(--input-field-background);
-    --input-field-focus-border: 1px solid #0059ffac;
+    --input-field-focus-border: #0059ffac;
     --input-field-focus-background: var(--input-field-background);
     --input-field-focus-box-shadow: 0 0 0 2px #0059ff5c;
 

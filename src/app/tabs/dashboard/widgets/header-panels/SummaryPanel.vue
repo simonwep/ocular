@@ -2,7 +2,9 @@
   <div :class="[$style.summaryPanel, classes]">
     <div :class="$style.header">
       <h3 :class="$style.head">{{ title }}</h3>
-      <span :class="$style.title"><Currency :currency="state.unit" :locale="state.locale" :value="endingValue"/></span>
+      <span :class="$style.title">
+        <Currency :currency="state.unit" :locale="state.locale" :value="endingValue"/>
+      </span>
       <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
     </div>
 

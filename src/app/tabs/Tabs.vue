@@ -10,7 +10,7 @@
             textual
             @click="tab = button.tab"/>
 
-    <UploadButton :class="$style.top"/>
+    <ImportButton :class="$style.top"/>
     <SaveButton/>
   </div>
 
@@ -29,12 +29,12 @@
 import Button from '@components/base/button/Button.vue';
 import {AppIcon} from '@components/base/icon/Icon.types';
 import {computed, ref} from 'vue';
-import SaveButton from './buttons/SaveButton.vue';
-import ThemeButton from './buttons/ThemeButton.vue';
-import UploadButton from './buttons/UploadButton.vue';
 import Dashboard from './dashboard/Dashboard.vue';
 import Expenses from './expenses/Expenses.vue';
 import Income from './income/Income.vue';
+import ImportButton from './navigation/import/ImportButton.vue';
+import SaveButton from './navigation/SaveButton.vue';
+import ThemeButton from './navigation/ThemeButton.vue';
 
 type Tab = 'dashboard' | 'income' | 'expenses';
 

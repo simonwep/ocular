@@ -13,8 +13,6 @@ export interface BudgetGroup {
     budgets: Budget[];
 }
 
-export type BudgetGroups = BudgetGroup[];
-
 export interface State {
     version: 1;
     theme: Theme;
@@ -22,6 +20,6 @@ export interface State {
     unit: string;
     locale: string;
     startingBalance: number;
-    expenses: BudgetGroups;
-    income: BudgetGroups;
+    expenses: BudgetGroup[];
+    income: BudgetGroup[];
 }

@@ -62,11 +62,11 @@ const change = (e: Event) => {
   }
 
   &:not(.inline) {
-    border: var(--input-field-border);
+    border: 1px solid var(--input-field-border);
     background: var(--input-field-background);
     border-radius: var(--border-radius-s);
     font-size: var(--input-field-font-size);
-    transition: all var(--transition-s);
+    transition: all var(--input-field-transition);
 
     &:not(.empty) {
       border-color: transparent;
@@ -78,7 +78,7 @@ const change = (e: Event) => {
     }
 
     &:focus-within {
-      border: var(--input-field-focus-border);
+      border: 1px solid var(--input-field-focus-border);
       background: var(--input-field-focus-background);
       box-shadow: var(--input-field-focus-box-shadow);
     }

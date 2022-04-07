@@ -7,6 +7,8 @@ import {generateTemplate} from './template';
 
 export const STORE_KEY = Symbol('State');
 
+type Group = 'expenses' | 'income';
+
 interface Store {
     state: DeepReadonly<State>;
 
@@ -18,7 +20,8 @@ interface Store {
     setStartingBalance(amount: number): void;
     setBudgetTitle(name: string): void;
 
-    addBudgetGroup(target: 'expenses' | 'income'): void;
+    setBudgetGroups(target: Group, groups: BudgetGroup[]): void;
+    addBudgetGroup(target: Group): void;
     addBudget(group: string): void;
 
     removeBudgetGroup(id: string): void;
@@ -64,6 +67,10 @@ export const createStore = (): Store => {
             state.startingBalance = amount;
         },
 
+        setBudgetGroups(target: Group, groups: BudgetGroup[]): void {
+            state[target] = groups;
+        },
+
         setBudgetTitle(name: string): void {
             state.title = name;
         },
@@ -100,7 +107,7 @@ export const createStore = (): Store => {
             });
         },
 
-        addBudgetGroup(target: 'expenses' | 'income') {
+        addBudgetGroup(target: Group) {
             state[target].push({
                 id: uuid(),
                 name: 'New Group',
