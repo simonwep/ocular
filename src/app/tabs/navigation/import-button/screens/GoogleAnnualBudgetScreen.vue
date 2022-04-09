@@ -2,7 +2,7 @@
   <Screen title="Import from Google's Annual Budget sheet" :class="$style.screen">
     <FilePicker :class="$style.input" v-model="incomeFile" placeholder="Income.csv" :accept="['.csv']"/>
     <FilePicker :class="$style.input" v-model="expensesFile" placeholder="Expenses.csv" :accept="['.csv']"/>
-    <Button v-if="expensesFile && incomeFile" icon="arrow-up-down-line" text="Import" @click="load"/>
+    <Button v-if="expensesFile && incomeFile" icon="upload-cloud-2-line" text="Import" @click="load"/>
   </Screen>
 </template>
 

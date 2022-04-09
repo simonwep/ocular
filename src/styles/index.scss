@@ -16,6 +16,7 @@ html, body, #app {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: var(--font-size-s);
     font-family: var(--font-family);
     color: var(--theme-text);
     @include themes.animations;

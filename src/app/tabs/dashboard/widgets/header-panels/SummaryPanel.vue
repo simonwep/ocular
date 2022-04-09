@@ -45,6 +45,7 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
   width: 100%;
   border-radius: var(--border-radius-xxxl);
   background: v-bind('backgroundColor');
+  animation: var(--animation-fade-in-down) var(--transition-m);
 }
 
 .header {

@@ -1,8 +1,16 @@
 <template>
-  <SankeyChart :class="[$style.distributionChart, classes]" :data="data"/>
+  <div v-if="isEmpty" :class="$style.placeholder">
+    <div :class="$style.icons">
+      <Icon icon="shopping-basket-2"/>
+      <Icon icon="hand-coin"/>
+    </div>
+    <span>Start by filling out the income / expenses tabs! :)</span>
+  </div>
+  <SankeyChart v-else :class="[$style.distributionChart, classes]" :data="data"/>
 </template>
 
 <script lang="ts" setup>
+import Icon from '@components/base/icon/Icon.vue';
 import {SankeyChartConfig, SankeyChartLabel, SankeyChartLink} from '@components/charts/sankey-chart/SankeyChart.types';
 import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
 import {formatCurrency} from '@composables';
@@ -17,6 +25,12 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const {state} = useStore();
+
+const isEmpty = computed(() => {
+  const totalIncome = sum(totals(state.income));
+  const totalExpenses = sum(totals(state.expenses));
+  return !totalIncome || !totalExpenses;
+});
 
 const data = computed((): SankeyChartConfig => {
   const format = (v: number) => formatCurrency(v, state.locale, state.unit);
@@ -105,6 +119,20 @@ const data = computed((): SankeyChartConfig => {
 .distributionChart {
   height: 100%;
   width: 100%;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 10px;
+
+  .icons {
+    display: flex;
+    grid-gap: 10px;
+    color: var(--theme-text);
+  }
 }
 
 </style>
