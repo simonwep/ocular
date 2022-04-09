@@ -32,7 +32,7 @@ import {computed, ref} from 'vue';
 import Dashboard from './dashboard/Dashboard.vue';
 import Expenses from './expenses/Expenses.vue';
 import Income from './income/Income.vue';
-import ImportButton from './navigation/import/ImportButton.vue';
+import ImportButton from './navigation/import-button/ImportButton.vue';
 import SaveButton from './navigation/SaveButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';
 

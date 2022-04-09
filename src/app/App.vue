@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import {useStore} from '@state/index';
-import {watch} from 'vue';
+import {watch, watchEffect} from 'vue';
 import {useAppElement} from '../composables/useAppElement';
 
 const {state} = useStore();
@@ -16,6 +16,10 @@ const app = useAppElement();
 watch(() => state.theme, (newTheme, oldTheme) => {
   app.value?.classList.add(newTheme);
   app.value?.classList.remove(oldTheme);
+});
+
+watchEffect(() => {
+  app.value?.classList.add(state.theme);
 });
 
 </script>

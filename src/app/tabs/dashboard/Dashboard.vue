@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import Pane from '@shared/Pane.vue';
+import Pane from '../shared/Pane.vue';
 import {useStore} from '@state/index';
 import DistributionChart from './widgets/charts/DistributionChart.vue';
 import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';

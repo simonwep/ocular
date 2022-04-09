@@ -10,7 +10,7 @@ const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup =>
 export const generateTemplate = (): State => ({
     version: 1,
     unit: 'EUR',
-    theme: 'light',
+    theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
     locale: navigator.language ?? 'en-US',
     startingBalance: 5000,
     title: 'Annual Budget',

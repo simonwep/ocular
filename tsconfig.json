@@ -17,7 +17,6 @@
         "paths": {
             "@composables": ["./src/composables/index.ts"],
             "@components/*": ["./src/app/components/*"],
-            "@shared/*": ["./src/app/shared/*"],
             "@utils": ["./src/utils/index.ts"],
             "@state/*": ["./src/state/*"]
         }

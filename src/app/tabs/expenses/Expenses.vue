@@ -3,4 +3,4 @@
 </template>
 
 <script lang="ts" setup>
-import BudgetPane from '@shared/pane/BudgetPane.vue';</script>
+import BudgetPane from '../shared/pane/BudgetPane.vue';</script>

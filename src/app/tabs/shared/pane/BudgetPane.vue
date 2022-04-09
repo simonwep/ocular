@@ -9,8 +9,8 @@
 
 <script lang="ts" setup>
 import MiniChart from '@components/charts/mini-chart/MiniChart.vue';
-import Pane from '@shared/Pane.vue';
-import BudgetGroups from '@shared/pane/budget-groups/BudgetGroups.vue';
+import Pane from '../Pane.vue';
+import BudgetGroups from './budget-groups/BudgetGroups.vue';
 import {useStore} from '@state/index';
 import {totals} from '@state/utils/budgets';
 import {computed} from 'vue';
