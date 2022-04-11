@@ -108,7 +108,7 @@ const totals = computed(() => {
   grid-template: auto / max-content max-content max-content repeat(12, 1fr) max-content max-content;
   align-items: center;
 
-  > *:not(button) {
+  > * {
     padding: 6px 10px;
   }
 }

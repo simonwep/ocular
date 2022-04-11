@@ -74,10 +74,10 @@ watchEffect(() => {
 }
 
 .content {
-  background: var(--app-backround);
+  background: var(--dialog-background);
   color: var(--theme-text);
   padding: 10px;
   border-radius: var(--border-radius-l);
-  box-shadow: var(--app-box-shadow);
+  box-shadow: var(--dialog-box-shadow);
 }
 </style>

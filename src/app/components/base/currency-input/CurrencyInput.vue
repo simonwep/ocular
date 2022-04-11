@@ -100,13 +100,18 @@ const wheel = (e: WheelEvent) => {
   font-size: var(--input-field-font-size);
   transition: all var(--input-field-transition);
 
-  &:not(.empty) {
-    border-color: transparent;
-  }
-
   &:hover {
     border: 1px solid var(--input-field-hover-border);
     background: var(--input-field-hover-background);
+  }
+
+  &:not(.empty) {
+    border-color: transparent;
+
+    &:hover {
+      border: 1px solid var(--input-field-border);
+      background: var(--input-field-hover-background);
+    }
   }
 
   &:focus-within {

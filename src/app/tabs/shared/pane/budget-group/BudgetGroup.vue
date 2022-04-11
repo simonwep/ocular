@@ -6,7 +6,7 @@
     @click="open = !open"
   />
 
-  <InlineTextInput
+  <TextInput
     :class="[$style.top, $style.start]"
     :model-value="group.name"
     inline
@@ -39,14 +39,14 @@
       />
 
       <span :class="$style.header">
-        <InlineTextInput
+        <TextInput
           :model-value="budget.name"
           @update:model-value="setBudgetName(budget.id, $event)"
         />
       </span>
 
       <span v-for="(_, index) of budget.values" :key="budget.id + index">
-        <InlineCurrencyInput
+        <CurrencyInput
           :currency="state.unit"
           :locale="state.locale"
           :model-value="budget.values[index]"
@@ -100,8 +100,8 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import InlineCurrencyInput from '@components/base/inline-currency-input/InlineCurrencyInput.vue';
-import InlineTextInput from '@components/base/inline-text-input/InlineTextInput.vue';
+import CurrencyInput from '@components/base/currency-input/CurrencyInput.vue';
+import TextInput from '@components/base/text-input/TextInput.vue';
 import { useStore } from '@state/index';
 import { BudgetGroup } from '@state/types';
 import { average, sum } from '@utils';

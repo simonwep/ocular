@@ -36,15 +36,17 @@ const classes = computed(() => props.class);
   flex-direction: column;
   padding: 0 20px 20px;
   height: 100%;
-  width: 100%;
-  overflow: auto;
+  overflow: hidden;
   background: var(--app-backround);
+}
+
+.header,
+.content {
 }
 
 .header {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: sticky;
   top: 0;
   padding-top: 10px;
@@ -55,11 +57,11 @@ const classes = computed(() => props.class);
   > h1 {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-l);
-    margin-right: auto;
   }
 }
 
 .content {
+  overflow: auto;
   flex-grow: 1;
 }
 </style>

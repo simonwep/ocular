@@ -23,10 +23,12 @@ const props = withDefaults(
     text?: string;
     color?: Color;
     textual?: boolean;
+    inline?: boolean;
   }>(),
   {
     color: 'primary',
     textual: false,
+    inline: false,
   }
 );
 
@@ -38,6 +40,7 @@ const classes = computed(() => [
   {
     [styles.hasIcon]: props.icon,
     [styles.textual]: props.textual,
+    [styles.inline]: props.inline,
     [styles.iconOnly]: props.icon && !props.text,
   },
 ]);
@@ -53,11 +56,14 @@ const classes = computed(() => [
   background: v-bind('theme.color.base');
   color: v-bind('theme.text.base');
   border-radius: var(--border-radius-m);
-  padding: 6px 10px;
   transition: all var(--transition-s);
 
-  &.iconOnly {
-    padding: 3px 3px;
+  &:not(.inline) {
+    padding: 6px 10px;
+  }
+
+  &.iconOnly:not(.inline) {
+    padding: 3px;
   }
 
   &.hasIcon .text {

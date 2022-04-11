@@ -86,8 +86,9 @@ const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
 }
 
 .panes {
+  overflow: hidden;
   height: 100%;
-  width: 100%;
+  flex-grow: 1;
 }
 
 .fromLeft {

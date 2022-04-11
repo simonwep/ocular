@@ -14,3 +14,7 @@
     border: 5px solid transparent;
     border-radius: 10px;
 }
+
+::-webkit-scrollbar-corner {
+    display: none;
+}
