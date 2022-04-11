@@ -3,9 +3,9 @@
           textual
           @click="open = !open"/>
 
-  <TextInput :class="[$style.top, $style.start]"
-             :model-value="group.name"
-             inline @update:model-value="setBudgetGroupName(group.id, $event)"/>
+  <InlineTextInput :class="[$style.top, $style.start]"
+                   :model-value="group.name"
+                   inline @update:model-value="setBudgetGroupName(group.id, $event)"/>
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
     <span>
@@ -29,15 +29,15 @@
       <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)"/>
 
       <span :class="$style.header">
-        <TextInput :model-value="budget.name"
-                   @update:model-value="setBudgetName(budget.id, $event)"/>
+        <InlineTextInput :model-value="budget.name"
+                         @update:model-value="setBudgetName(budget.id, $event)"/>
       </span>
 
       <span v-for="(_, index) of budget.values" :key="budget.id">
-        <CurrencyInput :model-value="budget.values[index]"
-                       :currency="state.unit"
-                       :locale="state.locale"
-                       @update:model-value="setBudget(budget.id, index, $event)"/>
+        <InlineCurrencyInput :currency="state.unit"
+                             :locale="state.locale"
+                             :model-value="budget.values[index]"
+                             @update:model-value="setBudget(budget.id, index, $event)"/>
       </span>
 
       <span :class="$style.meta">
@@ -72,9 +72,9 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import CurrencyInput from '@components/base/currency-input/CurrencyInput.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import TextInput from '@components/base/text-input/TextInput.vue';
+import InlineCurrencyInput from '@components/base/inline-currency-input/InlineCurrencyInput.vue';
+import InlineTextInput from '@components/base/inline-text-input/InlineTextInput.vue';
 import {useStore} from '@state/index';
 import {BudgetGroup} from '@state/types';
 import {average, sum} from '@utils';

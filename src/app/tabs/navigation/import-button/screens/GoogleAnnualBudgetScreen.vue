@@ -1,5 +1,5 @@
 <template>
-  <Screen title="Import from Google's Annual Budget sheet" :class="$style.screen">
+  <Screen :back="back" :class="$style.screen" title="Import from Google's Annual Budget sheet">
     <FilePicker :class="$style.input" v-model="incomeFile" placeholder="Income.csv" :accept="['.csv']"/>
     <FilePicker :class="$style.input" v-model="expensesFile" placeholder="Expenses.csv" :accept="['.csv']"/>
     <Button v-if="expensesFile && incomeFile" icon="upload-cloud-2-line" text="Import" @click="load"/>
@@ -17,6 +17,10 @@ import Screen from './Screen.vue';
 
 const emit = defineEmits<{
   (e: 'loaded'): void;
+}>();
+
+const props = defineProps<{
+  back: () => void;
 }>();
 
 const {setBudgetGroups} = useStore();

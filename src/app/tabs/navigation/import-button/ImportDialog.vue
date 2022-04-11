@@ -1,13 +1,13 @@
 <template>
   <Dialog @close="close" :open="open" :class="$style.dialog">
-    <Steps ref="steps" @finish="close">
+    <Steps ref="steps" v-slot="{previous}" @finish="close">
       <Step :class="$style.step">
         <h1 :class="$style.title">What would you like to import?</h1>
         <Button icon="file-fill" text="A previously exported file" @click="next(BudgetFileScreen)"/>
         <Button icon="google-fill" text="Google-sheets annual budget" @click="next(GoogleAnnualBudgetScreen)"/>
       </Step>
       <Step>
-        <component v-if="screen" :is="screen" @loaded="close"/>
+        <component :is="screen" v-if="screen" :back="previous" @loaded="close"/>
       </Step>
     </Steps>
   </Dialog>

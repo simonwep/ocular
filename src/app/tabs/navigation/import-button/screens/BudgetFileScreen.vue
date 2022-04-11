@@ -1,5 +1,5 @@
 <template>
-  <Screen :class="$style.screen" title="Import a previously imported file">
+  <Screen :back="back" :class="$style.screen" title="Import a previously imported file">
     <FilePicker v-model="budgetFile"
                 :class="$style.input"
                 placeholder="Select your .budget file to import"
@@ -17,6 +17,10 @@ import Screen from './Screen.vue';
 
 const emit = defineEmits<{
   (e: 'loaded'): void;
+}>();
+
+const props = defineProps<{
+  back: () => void;
 }>();
 
 const {deserialize} = useStore();

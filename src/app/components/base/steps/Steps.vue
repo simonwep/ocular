@@ -1,6 +1,6 @@
 <template>
   <div ref="root" :class="[$style.steps, classes]">
-    <slot :next="next" :previous="previous"/>
+    <slot :next="next" :previous="previous" :reset="reset"/>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ provide<OnboardingStore>(ONBOARDING_STORE, {
 
 const reset = () => screenIndex.value = 0;
 
-const previous = () => screenIndex.value = Math.max(0, screenIndex.value--);
+const previous = () => screenIndex.value = Math.max(0, screenIndex.value - 1);
 
 const next = () => {
   if (screenIndex.value + 1 < sizes.length) {
