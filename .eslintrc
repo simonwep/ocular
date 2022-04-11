@@ -20,5 +20,4 @@
         "prettier/prettier": "error",
         "no-console": "error"
     }
-
 }

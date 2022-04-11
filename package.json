@@ -8,8 +8,7 @@
         "build": "vue-tsc --noEmit && vite build",
         "lint": "eslint src/**/*.{ts,vue}",
         "lint:fix": "npm run lint -- --fix",
-        "gen:icons": "node scripts/icons.js",
-        "postinstall": "npm run gen:icons"
+        "gen:icons": "node scripts/icons.js"
     },
     "dependencies": {
         "echarts": "^5.3.1",
