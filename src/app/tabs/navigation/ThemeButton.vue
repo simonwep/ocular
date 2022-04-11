@@ -1,26 +1,29 @@
 <template>
   <div ref="button" :class="[classes, $style.themeButton]">
-    <Button :icon="icon" textual @click="toggle"/>
+    <Button :icon="icon" textual @click="toggle" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import {AppIcon} from '@components/base/icon/Icon.types';
-import {useStore} from '@state/index';
-import {computed, ref} from 'vue';
-import {useAppElement} from '../../../composables/useAppElement';
+import { AppIcon } from '@components/base/icon/Icon.types';
+import { useStore } from '@state/index';
+import { ClassNames } from '@utils';
+import { computed, ref } from 'vue';
+import { useAppElement } from '../../../composables/useAppElement';
 
 const props = defineProps<{
-  class?: any;
+  class?: ClassNames;
 }>();
 
-const {state, setTheme} = useStore();
+const { state, setTheme } = useStore();
 const button = ref<HTMLDivElement>();
 const app = useAppElement();
 let switchActive = false;
 
-const icon = computed((): AppIcon => state.theme === 'light' ? 'sun-fill' : 'moon-fill');
+const icon = computed(
+  (): AppIcon => (state.theme === 'light' ? 'sun-fill' : 'moon-fill')
+);
 const classes = computed(() => props.class);
 
 const getTransitionOrigin = () => {
@@ -69,13 +72,10 @@ const toggle = () => {
     target.style.setProperty('clip-path', `circle(${end}% at ${origin})`);
   });
 };
-
 </script>
 
 <style lang="scss" module>
-
 .themeButton {
   display: flex;
 }
-
 </style>

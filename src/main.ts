@@ -1,5 +1,5 @@
-import {createStore, STORE_KEY} from '@state/index';
-import {createApp} from 'vue';
+import { createStore, STORE_KEY } from '@state/index';
+import { createApp } from 'vue';
 import App from './app/App.vue';
 import './styles/index.scss';
 

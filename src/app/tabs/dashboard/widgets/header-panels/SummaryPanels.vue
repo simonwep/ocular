@@ -1,34 +1,38 @@
 <template>
   <div :class="[$style.summaryPanels, classes]">
-    <SummaryPanel :values="income"
-                  color="--c-success"
-                  title="Income"/>
+    <SummaryPanel :values="income" color="--c-success" title="Income" />
 
-    <SummaryPanel :sub-title="`~${Math.round(expensePercentage * 100)} %`"
-                  :values="expenses"
-                  color="--c-warning"
-                  title="Expenses"/>
+    <SummaryPanel
+      :sub-title="`~${Math.round(expensePercentage * 100)} %`"
+      :values="expenses"
+      color="--c-warning"
+      title="Expenses"
+    />
 
-    <SummaryPanel :sub-title="`~${Math.round(expensePercentage ? (1 - expensePercentage) * 100 : 0)} %`"
-                  :values="endingBalance"
-                  color="--c-primary"
-                  title="Ending Balance"/>
+    <SummaryPanel
+      :sub-title="`~${Math.round(
+        expensePercentage ? (1 - expensePercentage) * 100 : 0
+      )} %`"
+      :values="endingBalance"
+      color="--c-primary"
+      title="Ending Balance"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import {useStore} from '@state/index';
-import {totals} from '@state/utils/budgets';
-import {aggregate, subtract, sum} from '@utils';
-import {computed} from 'vue';
+import { useStore } from '@state/index';
+import { totals } from '@state/utils/budgets';
+import { aggregate, ClassNames, subtract, sum } from '@utils';
+import { computed } from 'vue';
 import SummaryPanel from './SummaryPanel.vue';
 
 const props = defineProps<{
-  class?: any;
+  class?: ClassNames;
 }>();
 
 const classes = computed(() => props.class);
-const {state} = useStore();
+const { state } = useStore();
 
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));
@@ -45,7 +49,6 @@ const expensePercentage = computed(() => {
 </script>
 
 <style lang="scss" module>
-
 .summaryPanels {
   display: grid;
   grid-template: 1fr / 1fr 1fr 1fr;
@@ -53,5 +56,4 @@ const expensePercentage = computed(() => {
   height: 150px;
   grid-gap: 10px;
 }
-
 </style>

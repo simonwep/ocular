@@ -1,19 +1,20 @@
 <template>
-  <span :class="[$style.icon, classes]" v-html="svg"/>
+  <span :class="[$style.icon, classes]" v-html="svg" />
 </template>
 
 <script lang="ts" setup>
-import {AppIcon} from '@components/base/icon/Icon.types';
-import {computed} from 'vue';
+import { AppIcon } from '@components/base/icon/Icon.types';
+import { ClassNames } from '@utils';
+import { computed } from 'vue';
 
 const icons = Object.fromEntries(
-    Object.entries(
-        import.meta.globEager('/public/icons/*.svg', {assert: {type: 'raw'}})
-    ).map(v => [v[0].replace(/.*\/|\.\w+$/g, ''), v[1]])
+  Object.entries(
+    import.meta.globEager('/public/icons/*.svg', { assert: { type: 'raw' } })
+  ).map((v) => [v[0].replace(/.*\/|\.\w+$/g, ''), v[1]])
 );
 
 const props = defineProps<{
-  class?: any;
+  class?: ClassNames;
   icon: AppIcon;
 }>();
 
@@ -24,7 +25,6 @@ const svg = computed(() => {
 </script>
 
 <style lang="scss" module>
-
 .icon {
   color: inherit;
   height: 100%;
@@ -39,5 +39,4 @@ const svg = computed(() => {
     width: 100%;
   }
 }
-
 </style>

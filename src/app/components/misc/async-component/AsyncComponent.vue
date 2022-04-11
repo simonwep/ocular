@@ -1,28 +1,27 @@
 <template>
   <div v-if="component" :class="$style.wrapper">
-    <component :is="component"/>
+    <component :is="component" />
   </div>
   <div v-else :class="$style.asyncComponent">
-    <div/>
+    <div />
   </div>
 </template>
 
 <script lang="ts" setup>
-import {onMounted, shallowRef} from 'vue';
+import { onMounted, shallowRef } from 'vue';
 
 const props = defineProps<{
-  import: () => Promise<any>;
+  import: () => Promise<{ default: unknown }>;
 }>();
 
 const component = shallowRef();
 
 onMounted(() => {
-    props.import().then(module => component.value = module.default);
+  props.import().then((module) => (component.value = module.default));
 });
 </script>
 
 <style lang="scss" module>
-
 @keyframes flipper {
   0% {
     transform: rotate(0);
@@ -58,5 +57,4 @@ onMounted(() => {
   height: 100%;
   animation: var(--animation-fade-in-scale) var(--transition-s);
 }
-
 </style>

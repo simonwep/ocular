@@ -1,30 +1,38 @@
 <template>
   <div v-if="isEmpty" :class="$style.placeholder">
     <div :class="$style.icons">
-      <Icon icon="shopping-basket-2"/>
-      <Icon icon="hand-coin"/>
+      <Icon icon="shopping-basket-2" />
+      <Icon icon="hand-coin" />
     </div>
     <span>Start by filling out the income / expenses tabs! :)</span>
   </div>
-  <SankeyChart v-else :class="[$style.distributionChart, classes]" :data="data"/>
+  <SankeyChart
+    v-else
+    :class="[$style.distributionChart, classes]"
+    :data="data"
+  />
 </template>
 
 <script lang="ts" setup>
 import Icon from '@components/base/icon/Icon.vue';
-import {SankeyChartConfig, SankeyChartLabel, SankeyChartLink} from '@components/charts/sankey-chart/SankeyChart.types';
+import {
+  SankeyChartConfig,
+  SankeyChartLabel,
+  SankeyChartLink,
+} from '@components/charts/sankey-chart/SankeyChart.types';
 import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
-import {formatCurrency} from '@composables';
-import {useStore} from '@state/index';
-import {totals} from '@state/utils/budgets';
-import {sum, uuid} from '@utils';
-import {computed} from 'vue';
+import { formatCurrency } from '@composables';
+import { useStore } from '@state/index';
+import { totals } from '@state/utils/budgets';
+import { ClassNames, sum, uuid } from '@utils';
+import { computed } from 'vue';
 
 const props = defineProps<{
-  class?: any;
+  class?: ClassNames;
 }>();
 
 const classes = computed(() => props.class);
-const {state} = useStore();
+const { state } = useStore();
 
 const isEmpty = computed(() => {
   const totalIncome = sum(totals(state.income));
@@ -39,24 +47,29 @@ const data = computed((): SankeyChartConfig => {
   const labels: SankeyChartLabel[] = [];
   const links: SankeyChartLink[] = [];
 
-  const color = (hue: number) => `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
-  const income = {id: uuid(), name: `Income (${format(totalIncome)})`, color: color(120)};
+  const color = (hue: number) =>
+    `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
+  const income = {
+    id: uuid(),
+    name: `Income (${format(totalIncome)})`,
+    color: color(120),
+  };
 
   labels.push(income);
 
   for (const group of state.income) {
-    const total = sum(group.budgets.flatMap(v => v.values));
+    const total = sum(group.budgets.flatMap((v) => v.values));
 
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 + 60 * (total / totalIncome))
+      color: color(60 + 60 * (total / totalIncome)),
     });
 
     links.push({
       target: income.id,
       source: group.id,
-      value: total
+      value: total,
     });
 
     for (let i = 0; i < group.budgets.length; i++) {
@@ -66,29 +79,29 @@ const data = computed((): SankeyChartConfig => {
       labels.push({
         id: budget.id,
         name: `${budget.name} (${format(total)})`,
-        color: color(60 + 60 * (total / totalIncome))
+        color: color(60 + 60 * (total / totalIncome)),
       });
 
       links.push({
         target: group.id,
         source: budget.id,
-        value: total
+        value: total,
       });
     }
   }
 
   for (const group of state.expenses) {
-    const total = sum(group.budgets.flatMap(v => v.values));
+    const total = sum(group.budgets.flatMap((v) => v.values));
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 * (1 - total / totalExpenses))
+      color: color(60 * (1 - total / totalExpenses)),
     });
 
     links.push({
       target: group.id,
       source: income.id,
-      value: total
+      value: total,
     });
 
     for (let i = 0; i < group.budgets.length; i++) {
@@ -99,23 +112,22 @@ const data = computed((): SankeyChartConfig => {
         id: budget.id,
         name: `${budget.name} (${format(total)})`,
         color: color(60 * (1 - total / totalExpenses)),
-        align: 'left'
+        align: 'left',
       });
 
       links.push({
         target: budget.id,
         source: group.id,
-        value: total
+        value: total,
       });
     }
   }
 
-  return {labels, links};
+  return { labels, links };
 });
 </script>
 
 <style lang="scss" module>
-
 .distributionChart {
   height: 100%;
   width: 100%;
@@ -134,5 +146,4 @@ const data = computed((): SankeyChartConfig => {
     color: var(--theme-text);
   }
 }
-
 </style>

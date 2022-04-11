@@ -1,28 +1,33 @@
 <template>
   <span :class="classes">
-    <input ref="input"
-           :value="modelValue"
-           type="text"
-           @blur="focused = false"
-           @focus="focus"
-           @input="change"
-           @keydown.enter="input?.blur"/>
+    <input
+      ref="input"
+      :value="modelValue"
+      type="text"
+      @blur="focused = false"
+      @focus="focus"
+      @input="change"
+      @keydown.enter="input?.blur"
+    />
   </span>
 </template>
 
 <script lang="ts" setup>
-import {computed, nextTick, ref, useCssModule} from 'vue';
+import { computed, nextTick, ref, useCssModule } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: string): void;
 }>();
 
-const props = withDefaults(defineProps<{
-  modelValue?: string;
-  inline?: boolean;
-}>(), {
-  inline: false
-});
+const props = withDefaults(
+  defineProps<{
+    modelValue?: string;
+    inline?: boolean;
+  }>(),
+  {
+    inline: false,
+  }
+);
 
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
@@ -32,8 +37,8 @@ const classes = computed(() => [
   styles.textInput,
   {
     [styles.empty]: !props.modelValue,
-    [styles.inline]: props.inline
-  }
+    [styles.inline]: props.inline,
+  },
 ]);
 
 const focus = () => {
@@ -48,11 +53,9 @@ const focus = () => {
 const change = (e: Event) => {
   emit('update:modelValue', (e.target as HTMLInputElement).value);
 };
-
 </script>
 
 <style lang="scss" module>
-
 .textInput {
   display: inline-block;
   width: 100%;
@@ -97,5 +100,4 @@ const change = (e: Event) => {
     }
   }
 }
-
 </style>

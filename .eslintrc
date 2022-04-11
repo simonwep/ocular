@@ -1,0 +1,24 @@
+{
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".vue"]
+    },
+    "globals": {
+        "defineProps": true,
+        "defineEmits": true,
+        "withDefaults": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:vue/vue3-essential",
+        "@vue/eslint-config-typescript/recommended",
+        "@vue/eslint-config-prettier"
+    ],
+    "rules": {
+        "vue/multi-word-component-names": "off",
+        "prettier/prettier": "error",
+        "no-console": "error"
+    }
+
+}

@@ -1,13 +1,11 @@
 <template>
   <li :class="$style.listItem">
-    <slot/>
+    <slot />
   </li>
 </template>
 
 <style lang="scss" module>
-
 .listItem {
   margin: 0;
 }
-
 </style>

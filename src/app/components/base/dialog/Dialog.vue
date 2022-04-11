@@ -1,13 +1,14 @@
 <template>
   <dialog ref="dialog" :class="$style.dialog">
     <div ref="content" :class="[$style.content, classes]">
-      <slot/>
+      <slot />
     </div>
   </dialog>
 </template>
 
 <script lang="ts" setup>
-import {computed, onUnmounted, ref, watchEffect} from 'vue';
+import { ClassNames } from '@utils';
+import { computed, onUnmounted, ref, watchEffect } from 'vue';
 
 const emit = defineEmits<{
   (e: 'close'): void;
@@ -15,7 +16,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   open: boolean;
-  class?: any;
+  class?: ClassNames;
 }>();
 
 const content = ref<HTMLDivElement>();
@@ -27,7 +28,10 @@ const showDialog = (show: boolean) => {
 };
 
 const detectOutOfBoundsClick = (e: MouseEvent) => {
-  if (dialog.value?.open && !e.composedPath().includes(content.value as HTMLDivElement)) {
+  if (
+    dialog.value?.open &&
+    !e.composedPath().includes(content.value as HTMLDivElement)
+  ) {
     emit('close');
   }
 };
@@ -44,11 +48,9 @@ watchEffect(() => {
     }
   });
 });
-
 </script>
 
 <style lang="scss" module>
-
 .dialog {
   display: flex;
   align-items: center;
@@ -78,5 +80,4 @@ watchEffect(() => {
   border-radius: var(--border-radius-l);
   box-shadow: var(--app-box-shadow);
 }
-
 </style>

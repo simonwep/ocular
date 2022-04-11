@@ -1,32 +1,37 @@
 <template>
   <span :class="classes">
-    <input ref="input"
-           :type="focused ? 'number' : 'text'"
-           :value="value"
-           @blur="focused = false"
-           @focus="focus"
-           @input="change"
-           @keydown="keydown"
-           @wheel="wheel"
-           @keydown.enter="input?.blur"/>
+    <input
+      ref="input"
+      :type="focused ? 'number' : 'text'"
+      :value="value"
+      @blur="focused = false"
+      @focus="focus"
+      @input="change"
+      @keydown="keydown"
+      @wheel="wheel"
+      @keydown.enter="input?.blur"
+    />
   </span>
 </template>
 
 <script lang="ts" setup>
-import {computed, nextTick, ref, useCssModule} from 'vue';
+import { computed, nextTick, ref, useCssModule } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: number): void;
 }>();
 
-const props = withDefaults(defineProps<{
-  modelValue?: number;
-  locale?: string;
-  currency?: string;
-}>(), {
-  locale: 'en-us',
-  currency: 'USD'
-});
+const props = withDefaults(
+  defineProps<{
+    modelValue?: number;
+    locale?: string;
+    currency?: string;
+  }>(),
+  {
+    locale: 'en-us',
+    currency: 'USD',
+  }
+);
 
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
@@ -34,20 +39,21 @@ const focused = ref(false);
 
 const classes = computed(() => [
   styles.currencyInput,
-  {[styles.empty]: !props.modelValue}
+  { [styles.empty]: !props.modelValue },
 ]);
 
 const formatter = computed(() => {
   return new Intl.NumberFormat(props.locale, {
     currency: props.currency,
-    style: 'currency'
+    style: 'currency',
   });
 });
 
 const value = computed(() => {
   const value = props.modelValue;
-  return focused.value || !value ? (value || '') :
-      formatter.value.format(props.modelValue);
+  return focused.value || !value
+    ? value || ''
+    : formatter.value.format(props.modelValue);
 });
 
 const updateModelValue = (v: number) => {
@@ -82,11 +88,9 @@ const wheel = (e: WheelEvent) => {
     e.preventDefault();
   }
 };
-
 </script>
 
 <style lang="scss" module>
-
 .currencyInput {
   display: inline-block;
   width: auto;
@@ -125,5 +129,4 @@ const wheel = (e: WheelEvent) => {
     }
   }
 }
-
 </style>

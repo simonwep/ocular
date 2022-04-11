@@ -1,29 +1,40 @@
 <template>
-  <Screen :back="back" :class="$style.screen" title="Import a previously imported file">
-    <FilePicker v-model="budgetFile"
-                :class="$style.input"
-                placeholder="Select your .budget file to import"
-                :accept="['.budget']"/>
-    <Button v-if="budgetFile" icon="arrow-up-down-line" text="Import" @click="load"/>
+  <Screen
+    :back="back"
+    :class="$style.screen"
+    title="Import a previously imported file"
+  >
+    <FilePicker
+      v-model="budgetFile"
+      :class="$style.input"
+      placeholder="Select your .budget file to import"
+      :accept="['.budget']"
+    />
+    <Button
+      v-if="budgetFile"
+      icon="arrow-up-down-line"
+      text="Import"
+      @click="load"
+    />
   </Screen>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import FilePicker from '@components/base/file-picker/FilePicker.vue';
-import {useStore} from '@state/index';
-import {ref} from 'vue';
+import { useStore } from '@state/index';
+import { ref } from 'vue';
 import Screen from './Screen.vue';
 
 const emit = defineEmits<{
   (e: 'loaded'): void;
 }>();
 
-const props = defineProps<{
+defineProps<{
   back: () => void;
 }>();
 
-const {deserialize} = useStore();
+const { deserialize } = useStore();
 const budgetFile = ref<File>();
 
 const load = async () => {
@@ -35,7 +46,6 @@ const load = async () => {
 </script>
 
 <style lang="scss" module>
-
 .screen {
   display: flex;
   flex-direction: column;
@@ -46,5 +56,4 @@ const load = async () => {
 .input {
   width: 250px;
 }
-
 </style>

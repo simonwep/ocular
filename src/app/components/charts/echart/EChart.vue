@@ -1,15 +1,17 @@
 <template>
-  <div ref="root" :class="[$style.chart, classes]"/>
+  <div ref="root" :class="[$style.chart, classes]" />
 </template>
 
 <script lang="ts" setup>
-import {useResizeObserver} from '@composables';
+import { useResizeObserver } from '@composables';
+import { ClassNames } from '@utils';
 import * as echarts from 'echarts/core';
-import {EChartsType} from 'echarts/types/dist/shared';
-import {computed, onMounted, onUnmounted, ref, shallowRef, watch} from 'vue';
+import { EChartsType } from 'echarts/types/dist/shared';
+import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const props = defineProps<{
-  class?: any;
+  class?: ClassNames;
   options?: any;
 }>();
 
@@ -36,10 +38,8 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss" module>
-
 .chart {
   height: 100%;
   width: 100%;
 }
-
 </style>

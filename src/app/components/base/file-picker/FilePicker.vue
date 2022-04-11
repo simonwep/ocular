@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import {selectFile} from '@utils';
-import {computed, useCssModule} from 'vue';
+import { ClassNames, selectFile } from '@utils';
+import { computed, useCssModule } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:model-value', v: File): void;
@@ -14,7 +14,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   modelValue?: File;
-  class?: any;
+  class?: ClassNames;
   placeholder?: string;
   accept?: string[];
 }>();
@@ -24,22 +24,21 @@ const classes = computed(() => [
   props.class,
   styles.filePicker,
   {
-    [styles.empty]: !props.modelValue
-  }
+    [styles.empty]: !props.modelValue,
+  },
 ]);
 
 const pick = () => {
   selectFile({
     accept: props.accept?.join(','),
-    multiple: false
-  }).then(file => {
+    multiple: false,
+  }).then((file) => {
     emit('update:model-value', file);
   });
 };
 </script>
 
 <style lang="scss" module>
-
 .filePicker {
   all: unset;
   display: flex;
@@ -78,8 +77,7 @@ const pick = () => {
   }
 
   &.empty .label {
-    color: var(--input-field-placeholder)
+    color: var(--input-field-placeholder);
   }
 }
-
 </style>

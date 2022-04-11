@@ -5,23 +5,24 @@
         <span>{{ title }}</span>
         <template v-if="amount">
           <span> - </span>
-          <Currency :value="amount"/>
+          <Currency :value="amount" />
         </template>
       </h1>
-      <slot name="header"/>
+      <slot name="header" />
     </div>
     <div :class="[$style.content, classes]">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
-import {computed} from 'vue';
+import { ClassNames } from '@utils';
+import { computed } from 'vue';
 
 const props = defineProps<{
-  class?: any;
+  class?: ClassNames;
   title: string;
   amount?: number;
 }>();
@@ -30,7 +31,6 @@ const classes = computed(() => props.class);
 </script>
 
 <style lang="scss" module>
-
 .pane {
   display: flex;
   flex-direction: column;
@@ -62,5 +62,4 @@ const classes = computed(() => props.class);
 .content {
   flex-grow: 1;
 }
-
 </style>

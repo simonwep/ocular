@@ -3,32 +3,39 @@
     <div :class="$style.header">
       <h3 :class="$style.head">{{ title }}</h3>
       <span :class="$style.title">
-        <Currency :currency="state.unit" :locale="state.locale" :value="endingValue"/>
+        <Currency
+          :currency="state.unit"
+          :locale="state.locale"
+          :value="endingValue"
+        />
       </span>
       <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
     </div>
 
-    <SummaryPanelChart :class="$style.chart"
-                       :color="chartColor"
-                       :values="values"/>
+    <SummaryPanelChart
+      :class="$style.chart"
+      :color="chartColor"
+      :values="values"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
-import {useStore} from '@state/index';
-import {computed} from 'vue';
+import { useStore } from '@state/index';
+import { ClassNames } from '@utils';
+import { computed } from 'vue';
 import SummaryPanelChart from './SummaryPanelChart.vue';
 
 const props = defineProps<{
-  class?: any;
+  class?: ClassNames;
   title: string;
   subTitle?: string;
   color: string;
   values: number[];
 }>();
 
-const {state} = useStore();
+const { state } = useStore();
 const classes = computed(() => props.class);
 const endingValue = computed(() => props.values[props.values.length - 1]);
 const backgroundColor = computed(() => `var(${props.color}-light)`);
@@ -36,7 +43,6 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
 </script>
 
 <style lang="scss" module>
-
 .summaryPanel {
   display: flex;
   justify-content: space-between;
@@ -72,5 +78,4 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
 .chart {
   width: 30%;
 }
-
 </style>
