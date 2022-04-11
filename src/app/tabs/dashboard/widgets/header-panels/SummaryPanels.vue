@@ -21,8 +21,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from '@state/index';
-import { totals } from '@state/utils/budgets';
+import { useDataStore } from '@store/data';
+import { totals } from '@store/data/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
 import { computed } from 'vue';
 import SummaryPanel from './SummaryPanel.vue';
@@ -32,7 +32,7 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
-const { state } = useStore();
+const { state } = useDataStore();
 
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));

@@ -1,5 +1,4 @@
 export type BudgetValues = number[];
-export type Theme = 'light' | 'dark';
 
 export interface Budget {
   id: string;
@@ -13,9 +12,8 @@ export interface BudgetGroup {
   budgets: Budget[];
 }
 
-export interface State {
+export interface DataState {
   version: 1;
-  theme: Theme;
   title: string;
   unit: string;
   locale: string;

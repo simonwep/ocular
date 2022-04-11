@@ -99,14 +99,14 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import Currency from '@components/base/currency/Currency.vue';
 import CurrencyInput from '@components/base/currency-input/CurrencyInput.vue';
+import Currency from '@components/base/currency/Currency.vue';
 import TextInput from '@components/base/text-input/TextInput.vue';
-import { useStore } from '@state/index';
-import { BudgetGroup } from '@state/types';
 import { average, sum } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
 import { computed, ref } from 'vue';
+import { useDataStore } from '@store/data';
+import { BudgetGroup } from '@store/data/types';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
@@ -119,7 +119,7 @@ const {
   setBudgetGroupName,
   setBudget,
   removeBudget,
-} = useStore();
+} = useDataStore();
 
 const open = ref(false);
 const totals = computed(() => {

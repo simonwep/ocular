@@ -18,7 +18,7 @@
             "@composables": ["./src/composables/index.ts"],
             "@components/*": ["./src/app/components/*"],
             "@utils": ["./src/utils/index.ts"],
-            "@state/*": ["./src/state/*"]
+            "@store/*": ["./src/store/*"]
         }
     }
 }

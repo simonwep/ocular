@@ -1,5 +1,5 @@
 import { uuid } from '@utils';
-import { Budget, BudgetGroup, State } from './types';
+import { Budget, BudgetGroup, DataState } from './types';
 
 const generateBudget = (name: string): Budget => ({
   id: uuid(),
@@ -13,12 +13,9 @@ const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup => ({
   budgets: budgets.map(generateBudget),
 });
 
-export const generateTemplate = (): State => ({
+export const generateTemplate = (): DataState => ({
   version: 1,
   unit: 'EUR',
-  theme: window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light',
   locale: navigator.language ?? 'en-US',
   startingBalance: 5000,
   title: 'Annual Budget',

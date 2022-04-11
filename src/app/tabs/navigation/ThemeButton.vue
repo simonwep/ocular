@@ -7,22 +7,22 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
-import { useStore } from '@state/index';
+import { useSettingsStore } from '@store/settings';
 import { ClassNames } from '@utils';
 import { computed, ref } from 'vue';
-import { useAppElement } from '../../../composables/useAppElement';
+import { useAppElement } from '@composables';
 
 const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const { state, setTheme } = useStore();
+const { state, setTheme } = useSettingsStore();
 const button = ref<HTMLDivElement>();
 const app = useAppElement();
 let switchActive = false;
 
 const icon = computed(
-  (): AppIcon => (state.theme === 'light' ? 'sun-fill' : 'moon-fill')
+  (): AppIcon => (state.appearance.theme === 'light' ? 'sun-fill' : 'moon-fill')
 );
 const classes = computed(() => props.class);
 
@@ -37,7 +37,7 @@ const toggle = () => {
   if (switchActive) return;
   switchActive = true;
 
-  const oldTheme = state.theme;
+  const oldTheme = state.appearance.theme;
   const wasDark = oldTheme === 'dark';
   setTheme(wasDark ? 'light' : 'dark');
 

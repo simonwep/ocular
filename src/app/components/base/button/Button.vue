@@ -10,7 +10,7 @@ import { AppIcon } from '@components/base/icon/Icon.types';
 import Icon from '@components/base/icon/Icon.vue';
 import { ClassNames } from '@utils';
 import { computed, useCssModule } from 'vue';
-import { Color, useThemeStyles } from '../../../../composables/useThemeStyles';
+import { Color, useThemeStyles } from '@composables';
 
 const emit = defineEmits<{
   (e: 'click', v: MouseEvent): void;

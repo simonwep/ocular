@@ -1,21 +1,19 @@
-import { BudgetGroup, State, Theme } from '@state/types';
 import { remove, uuid } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
-import { inject, reactive, readonly, watch } from 'vue';
-import { readFile } from '../utils/readFile';
+import { inject, reactive, readonly } from 'vue';
+import { readFile } from '@utils';
+import { Budget, BudgetGroup, DataState } from './types';
 import { generateTemplate } from './template';
 
-export const STORE_KEY = Symbol('State');
+export const DATA_STORE_KEY = Symbol('DataStore');
 
 type Group = 'expenses' | 'income';
 
 interface Store {
-  state: DeepReadonly<State>;
+  state: DeepReadonly<DataState>;
 
   serialize(): string;
   deserialize(file: File): Promise<void>;
-
-  setTheme(theme: Theme): void;
 
   setStartingBalance(amount: number): void;
   setBudgetTitle(name: string): void;
@@ -32,12 +30,9 @@ interface Store {
   setBudget(id: string, month: number, amount: number): void;
 }
 
-export const createStore = (): Store => {
-  const stored = localStorage.getItem('_state');
-  const state = reactive(stored ? JSON.parse(stored) : generateTemplate());
+export const createDataStore = (): Store => {
+  const state = reactive(generateTemplate());
   const groups = () => [...state.expenses, ...state.income];
-
-  watch(state, () => localStorage.setItem('_state', JSON.stringify(state)));
 
   return {
     state: readonly(state),
@@ -59,10 +54,6 @@ export const createStore = (): Store => {
 
           Object.assign(state, content);
         });
-    },
-
-    setTheme(theme: Theme): void {
-      state.theme = theme;
     },
 
     setStartingBalance(amount: number): void {
@@ -98,7 +89,7 @@ export const createStore = (): Store => {
 
     removeBudget(id: string) {
       groups().forEach(({ budgets }) =>
-        remove<BudgetGroup>(budgets, (v) => v.id === id)
+        remove<Budget>(budgets, (v) => v.id === id)
       );
     },
 
@@ -127,6 +118,6 @@ export const createStore = (): Store => {
   };
 };
 
-export const useStore = (): Store => {
-  return inject<Store>(STORE_KEY) as Store;
+export const useDataStore = (): Store => {
+  return inject<Store>(DATA_STORE_KEY) as Store;
 };

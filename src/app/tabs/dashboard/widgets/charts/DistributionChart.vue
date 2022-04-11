@@ -21,10 +21,9 @@ import {
   SankeyChartLink,
 } from '@components/charts/sankey-chart/SankeyChart.types';
 import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
-import { formatCurrency } from '@composables';
-import { useStore } from '@state/index';
-import { totals } from '@state/utils/budgets';
-import { ClassNames, sum, uuid } from '@utils';
+import { useDataStore } from '@store/data';
+import { totals } from '@store/data/utils/budgets';
+import { ClassNames, formatCurrency, sum, uuid } from '@utils';
 import { computed } from 'vue';
 
 const props = defineProps<{
@@ -32,7 +31,7 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
-const { state } = useStore();
+const { state } = useDataStore();
 
 const isEmpty = computed(() => {
   const totalIncome = sum(totals(state.income));
@@ -49,6 +48,7 @@ const data = computed((): SankeyChartConfig => {
 
   const color = (hue: number) =>
     `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
+
   const income = {
     id: uuid(),
     name: `Income (${format(totalIncome)})`,

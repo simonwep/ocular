@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { formatCurrency } from '@composables';
+import { formatCurrency } from '@utils';
 
 withDefaults(
   defineProps<{

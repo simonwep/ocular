@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { useStore } from '@state/index';
+import { useDataStore } from '@store/data';
 import { ClassNames, saveFile } from '@utils';
 import { computed } from 'vue';
 
@@ -15,7 +15,7 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
-const { state, serialize } = useStore();
+const { state, serialize } = useDataStore();
 
 const save = () => {
   saveFile(serialize(), `${state.title}.budget`, 'application/json');

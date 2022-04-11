@@ -22,7 +22,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import FilePicker from '@components/base/file-picker/FilePicker.vue';
-import { useStore } from '@state/index';
+import { useDataStore } from '@store/data';
 import { ref } from 'vue';
 import Screen from './Screen.vue';
 
@@ -34,7 +34,7 @@ defineProps<{
   back: () => void;
 }>();
 
-const { deserialize } = useStore();
+const { deserialize } = useDataStore();
 const budgetFile = ref<File>();
 
 const load = async () => {

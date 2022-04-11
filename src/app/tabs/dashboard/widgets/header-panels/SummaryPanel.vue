@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
-import { useStore } from '@state/index';
+import { useDataStore } from '@store/data';
 import { ClassNames } from '@utils';
 import { computed } from 'vue';
 import SummaryPanelChart from './SummaryPanelChart.vue';
@@ -35,7 +35,7 @@ const props = defineProps<{
   values: number[];
 }>();
 
-const { state } = useStore();
+const { state } = useDataStore();
 const classes = computed(() => props.class);
 const endingValue = computed(() => props.values[props.values.length - 1]);
 const backgroundColor = computed(() => `var(${props.color}-light)`);

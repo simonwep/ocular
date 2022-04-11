@@ -6,12 +6,12 @@
 </template>
 
 <script lang="ts" setup>
+import { useDataStore } from '@store/data';
 import Pane from '../shared/Pane.vue';
-import { useStore } from '@state/index';
 import DistributionChart from './widgets/charts/DistributionChart.vue';
 import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';
 
-const { state } = useStore();
+const { state } = useDataStore();
 </script>
 
 <style lang="scss" module>

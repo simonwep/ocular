@@ -1,6 +1,6 @@
-import { BudgetGroup } from '@state/types';
 import { uuid } from '@utils';
 import { parse } from 'papaparse';
+import { BudgetGroup } from '../../data/types';
 
 export const convertGoogleAnnualBudgetCSVToBudgetGroups = (
   csv: string

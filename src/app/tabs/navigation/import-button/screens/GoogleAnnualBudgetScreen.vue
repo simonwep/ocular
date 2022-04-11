@@ -28,10 +28,10 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import FilePicker from '@components/base/file-picker/FilePicker.vue';
-import { useStore } from '@state/index';
-import { convertGoogleAnnualBudgetCSVToBudgetGroups } from '@state/parser/google-annual-budget-sheet';
-import { ref } from 'vue';
 import { readFile } from '@utils';
+import { ref } from 'vue';
+import { useDataStore } from '@store/data';
+import { convertGoogleAnnualBudgetCSVToBudgetGroups } from '@store/data/parser/google-annual-budget-sheet';
 import Screen from './Screen.vue';
 
 const emit = defineEmits<{
@@ -42,7 +42,7 @@ defineProps<{
   back: () => void;
 }>();
 
-const { setBudgetGroups } = useStore();
+const { setBudgetGroups } = useDataStore();
 const expensesFile = ref<File>();
 const incomeFile = ref<File>();
 
