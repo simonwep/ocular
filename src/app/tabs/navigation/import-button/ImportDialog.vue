@@ -52,7 +52,8 @@ const close = () => {
   steps.value?.reset();
 };
 
-const next = (component: DefineComponent) => {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const next = (component: any) => {
   screen.value = component;
   steps.value?.next();
 };

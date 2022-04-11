@@ -12,7 +12,7 @@
     />
     <Button
       v-if="budgetFile"
-      icon="arrow-up-down-line"
+      icon="upload-cloud-2-line"
       text="Import"
       @click="load"
     />
