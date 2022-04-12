@@ -12,6 +12,7 @@ export type AppIcon =
   | 'moon-fill'
   | 'plus'
   | 'save'
+  | 'settings-4-line'
   | 'shopping-basket-2'
   | 'sun-fill'
   | 'upload-cloud-2-line';

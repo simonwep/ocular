@@ -19,31 +19,20 @@ html, body, #app {
     font-size: var(--font-size-s);
     font-family: var(--font-family);
     color: var(--theme-text);
+}
+
+#app, ::backdrop {
     @include themes.animations;
 }
 
-.dark {
-    @include themes.dark;
-}
-
-.light {
-    @include themes.light;
-}
-
-@media (prefers-color-scheme: dark) {
-    #app:not(.dark, .light) {
-        @include themes.dark;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    #app:not(.dark, .light) {
+#app {
+    &.light,
+    &.light ::backdrop {
         @include themes.light;
     }
-}
 
-@media (prefers-reduced-motion: reduce) {
-    #app {
-        --transitions: 0 !important;
+    &.dark,
+    &.dark ::backdrop {
+        @include themes.dark;
     }
 }

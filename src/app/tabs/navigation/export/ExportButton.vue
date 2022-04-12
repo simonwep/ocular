@@ -1,6 +1,6 @@
 <template>
   <div :class="classes">
-    <Button icon="download-cloud-2-line" textual @click="save" />
+    <Button icon="download-cloud-2-line" color="dimmed" textual @click="save" />
   </div>
 </template>
 

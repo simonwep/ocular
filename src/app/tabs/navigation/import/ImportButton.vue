@@ -1,5 +1,11 @@
 <template>
-  <Dialog @close="close" :open="open" :class="$style.dialog">
+  <DialogButton
+    :class="classes"
+    color="dimmed"
+    icon="upload-cloud-2-line"
+    textual
+    @close="close"
+  >
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
         <h1 :class="$style.title">What would you like to import?</h1>
@@ -23,34 +29,29 @@
         />
       </Step>
     </Steps>
-  </Dialog>
+  </DialogButton>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import Dialog from '@components/base/dialog/Dialog.vue';
+import DialogButton from '@components/base/dialog-button/DialogButton.vue';
 import Step from '@components/base/steps/Step.vue';
 import { StepsExposed } from '@components/base/steps/Steps.types';
 import Steps from '@components/base/steps/Steps.vue';
-import { DefineComponent, shallowRef } from 'vue';
+import { ClassNames } from '@utils';
+import { computed, DefineComponent, shallowRef } from 'vue';
 import BudgetFileScreen from './screens/BudgetFileScreen.vue';
 import GoogleAnnualBudgetScreen from './screens/GoogleAnnualBudgetScreen.vue';
 
-const emit = defineEmits<{
-  (e: 'close'): void;
+const props = defineProps<{
+  class?: ClassNames;
 }>();
 
-defineProps<{
-  open: boolean;
-}>();
-
+const classes = computed(() => props.class);
 const screen = shallowRef<DefineComponent>();
 const steps = shallowRef<StepsExposed>();
 
-const close = () => {
-  emit('close');
-  steps.value?.reset();
-};
+const close = () => steps.value?.reset();
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const next = (component: any) => {

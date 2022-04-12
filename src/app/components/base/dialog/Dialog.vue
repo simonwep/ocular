@@ -1,14 +1,20 @@
 <template>
-  <dialog ref="dialog" :class="$style.dialog">
-    <div ref="content" :class="[$style.content, classes]">
+  <dialog ref="dialog" :class="classes" @transitionend="transitionEnd">
+    <div ref="content" :class="$style.content">
       <slot />
     </div>
   </dialog>
 </template>
 
 <script lang="ts" setup>
-import { ClassNames } from '@utils';
-import { computed, onUnmounted, ref, watchEffect } from 'vue';
+import {
+  computed,
+  onUnmounted,
+  ref,
+  useCssModule,
+  watch,
+  watchEffect,
+} from 'vue';
 
 const emit = defineEmits<{
   (e: 'close'): void;
@@ -16,29 +22,49 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   open: boolean;
-  class?: ClassNames;
 }>();
 
+const visible = ref(false);
 const content = ref<HTMLDivElement>();
 const dialog = ref<HTMLDialogElement>();
-const classes = computed(() => props.class);
 
-const showDialog = (show: boolean) => {
-  show ? dialog.value?.showModal() : dialog.value?.close();
-};
+const styles = useCssModule();
+const classes = computed(() => [
+  styles.dialog,
+  { [styles.open]: visible.value },
+]);
 
 const detectOutOfBoundsClick = (e: MouseEvent) => {
   if (
-    dialog.value?.open &&
+    props.open &&
     !e.composedPath().includes(content.value as HTMLDivElement)
   ) {
     emit('close');
   }
 };
 
+const transitionEnd = () => {
+  if (!props.open) {
+    dialog.value?.close();
+  }
+};
+
+watch(
+  () => props.open,
+  (value) => {
+    if (value) {
+      dialog.value?.showModal();
+      visible.value = true;
+    } else {
+      visible.value = false;
+    }
+  }
+);
+
 onUnmounted(() => window.removeEventListener('click', detectOutOfBoundsClick));
+
 watchEffect(() => {
-  showDialog(props.open);
+  void props.open;
 
   requestAnimationFrame(() => {
     if (props.open) {
@@ -52,6 +78,9 @@ watchEffect(() => {
 
 <style lang="scss" module>
 .dialog {
+  position: fixed;
+  left: 0;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,18 +88,24 @@ watchEffect(() => {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+.dialog,
+.dialog[open]::backdrop {
+  visibility: hidden;
   opacity: 0;
-  pointer-events: none;
-  transition: var(--transition-m);
+  transition: visibility 0s var(--transition-m), opacity var(--transition-m);
+}
 
-  &::backdrop {
-    backdrop-filter: blur(2px);
-  }
+.dialog[open].open,
+.dialog[open].open::backdrop {
+  transition-delay: 0s;
+}
 
-  &[open] {
-    opacity: 1;
-    pointer-events: all;
-  }
+.dialog[open].open,
+.dialog[open].open::backdrop {
+  opacity: 1;
+  visibility: visible;
 }
 
 .content {
