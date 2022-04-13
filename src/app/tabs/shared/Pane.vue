@@ -40,16 +40,12 @@ const classes = computed(() => props.class);
   background: var(--app-backround);
 }
 
-.header,
-.content {
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding-top: 10px;
+  padding-top: 16px;
   height: 50px;
   background: var(--app-backround);
   animation: var(--animation-fade-in-right) var(--transition-s);

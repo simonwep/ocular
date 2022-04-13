@@ -2,14 +2,14 @@ import { uuid } from '@utils';
 import { Budget, BudgetGroup, DataState } from './types';
 
 const generateBudget = (name: string): Budget => ({
-  id: uuid(),
   name,
+  id: uuid(),
   values: new Array(12).fill(0),
 });
 
 const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup => ({
-  id: uuid(),
   name,
+  id: uuid(),
   budgets: budgets.map(generateBudget),
 });
 

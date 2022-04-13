@@ -14,8 +14,6 @@
 
     <ImportButton :class="$style.top" />
     <ExportButton />
-    <div :class="$style.divider" />
-    <SettingsButton />
   </div>
 
   <div :class="$style.panes">
@@ -40,10 +38,10 @@ import Expenses from './expenses/Expenses.vue';
 import Income from './income/Income.vue';
 import ExportButton from './navigation/export/ExportButton.vue';
 import ImportButton from './navigation/import/ImportButton.vue';
-import SettingsButton from './navigation/settings/SettingsButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';
+import Settings from './settings/Settings.vue';
 
-type Tab = 'dashboard' | 'income' | 'expenses';
+type Tab = 'dashboard' | 'income' | 'expenses' | 'settings';
 
 const tab = ref<Tab>('dashboard');
 const component = computed(
@@ -53,8 +51,9 @@ const component = computed(
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
   { icon: 'donut-chart', tab: 'dashboard', component: Dashboard },
-  { icon: 'shopping-basket-2', tab: 'expenses', component: Expenses },
   { icon: 'hand-coin', tab: 'income', component: Income },
+  { icon: 'shopping-basket-2', tab: 'expenses', component: Expenses },
+  { icon: 'settings-4-line', tab: 'settings', component: Settings },
 ];
 </script>
 

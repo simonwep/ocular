@@ -13,6 +13,7 @@ import { watch, watchEffect } from 'vue';
 const { state } = useSettingsStore();
 const app = useAppElement();
 
+watchEffect(() => app.value?.classList.add(state.appearance.theme));
 watch(
   () => state.appearance.theme,
   (newTheme, oldTheme) => {
@@ -21,9 +22,12 @@ watch(
   }
 );
 
-watchEffect(() => {
-  app.value?.classList.add(state.appearance.theme);
-});
+watch(
+  () => state.appearance.animations,
+  (enabled) => {
+    app.value?.classList[enabled ? 'remove' : 'add']('reducedMotion');
+  }
+);
 </script>
 
 <style lang="scss" module>

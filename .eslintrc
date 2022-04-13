@@ -7,7 +7,8 @@
     "globals": {
         "defineProps": true,
         "defineEmits": true,
-        "withDefaults": true
+        "withDefaults": true,
+        "defineExpose": true
     },
     "extends": [
         "eslint:recommended",
