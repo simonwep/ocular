@@ -1,12 +1,16 @@
 <template>
   <div :class="[$style.summaryPanels, classes]">
-    <SummaryPanel :values="income" color="--c-success" title="Income" />
+    <SummaryPanel
+      :values="income"
+      color="--c-success"
+      :title="t('dashboard.income')"
+    />
 
     <SummaryPanel
       :sub-title="`~${Math.round(expensePercentage * 100)} %`"
       :values="expenses"
       color="--c-warning"
-      title="Expenses"
+      :title="t('dashboard.expenses')"
     />
 
     <SummaryPanel
@@ -15,7 +19,7 @@
       )} %`"
       :values="endingBalance"
       color="--c-primary"
-      title="Ending Balance"
+      :title="t('dashboard.endingBalance')"
     />
   </div>
 </template>
@@ -25,6 +29,7 @@ import { useDataStore } from '@store/data';
 import { totals } from '@store/data/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import SummaryPanel from './SummaryPanel.vue';
 
 const props = defineProps<{
@@ -33,6 +38,7 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const { state } = useDataStore();
+const { t } = useI18n();
 
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));

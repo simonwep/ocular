@@ -4,7 +4,7 @@
       <Icon icon="shopping-basket-2" />
       <Icon icon="hand-coin" />
     </div>
-    <span>Start by filling out the income / expenses tabs! :)</span>
+    <span>{{ t('dashboard.graph.placeholder') }}</span>
   </div>
   <SankeyChart
     v-else
@@ -25,6 +25,7 @@ import { useDataStore } from '@store/data';
 import { totals } from '@store/data/utils/budgets';
 import { ClassNames, formatCurrency, sum, uuid } from '@utils';
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -32,6 +33,7 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const { state } = useDataStore();
+const { t } = useI18n();
 
 const isEmpty = computed(() => {
   const totalIncome = sum(totals(state.income));

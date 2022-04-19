@@ -8,15 +8,15 @@
   >
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
-        <h1 :class="$style.title">What would you like to import?</h1>
+        <h1 :class="$style.title">{{ t('import.start.title') }}</h1>
         <Button
           icon="file-fill"
-          text="A previously exported file"
+          :text="t('import.start.budgeter')"
           @click="next(BudgetFileScreen)"
         />
         <Button
           icon="google-fill"
-          text="Google-sheets annual budget"
+          :text="t('import.start.google')"
           @click="next(GoogleAnnualBudgetScreen)"
         />
       </Step>
@@ -40,6 +40,7 @@ import { StepsExposed } from '@components/base/steps/Steps.types';
 import Steps from '@components/base/steps/Steps.vue';
 import { ClassNames } from '@utils';
 import { computed, DefineComponent, shallowRef } from 'vue';
+import { useI18n } from 'vue-i18n';
 import BudgetFileScreen from './screens/BudgetFileScreen.vue';
 import GoogleAnnualBudgetScreen from './screens/GoogleAnnualBudgetScreen.vue';
 
@@ -50,6 +51,8 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const screen = shallowRef<DefineComponent>();
 const steps = shallowRef<StepsExposed>();
+
+const { t } = useI18n();
 
 const close = () => steps.value?.reset();
 

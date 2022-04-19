@@ -20,11 +20,11 @@
   </span>
 
   <span :class="$style.top">
-    <span>Total</span>
+    <span>{{ t('budget.total') }}</span>
   </span>
 
   <span :class="[$style.top, $style.end]">
-    <span>Average</span>
+    <span>{{ t('budget.average') }}</span>
   </span>
 
   <template v-if="open">
@@ -77,7 +77,7 @@
     <Button
       :class="$style.addBudgetBtn"
       textual
-      text="Add Budget"
+      :text="t('budget.addBudget')"
       @click="addBudget(group.id)"
     />
     <span />
@@ -107,6 +107,7 @@ import { DeepReadonly } from '@vue/reactivity';
 import { computed, ref } from 'vue';
 import { useDataStore } from '@store/data';
 import { BudgetGroup } from '@store/data/types';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
@@ -121,6 +122,7 @@ const {
   removeBudget,
 } = useDataStore();
 
+const { t } = useI18n();
 const open = ref(false);
 const totals = computed(() => {
   const totals: number[] = new Array(12).fill(0);

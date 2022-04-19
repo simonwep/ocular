@@ -15,7 +15,7 @@
     <span />
 
     <!-- Sums -->
-    <span :class="$style.sum">Totals</span>
+    <span :class="$style.sum">{{ t('budget.totals') }}</span>
     <span v-for="(sum, index) of totals" :key="index" :class="$style.sum">
       <Currency :currency="state.unit" :locale="state.locale" :value="sum" />
     </span>
@@ -39,7 +39,7 @@
     <Button
       :class="$style.addGroupBtn"
       icon="plus"
-      text="Add Group"
+      :text="t('budget.addGroup')"
       @click="addBudgetGroup(type)"
     />
     <span />
@@ -62,8 +62,9 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import { computed } from 'vue';
 import { useDataStore } from '@store/data';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import BudgetGroup from '../budget-group/BudgetGroup.vue';
 
 const props = defineProps<{
@@ -71,17 +72,15 @@ const props = defineProps<{
 }>();
 
 const { state, addBudgetGroup, removeBudgetGroup } = useDataStore();
+const { t, d } = useI18n();
+
 const groups = computed(() => state[props.type]);
 
 const months = computed(() => {
   const months: string[] = [];
 
   for (let i = 0; i < 12; i++) {
-    months.push(
-      new Date(0, i).toLocaleDateString(state.locale, {
-        month: 'long',
-      })
-    );
+    months.push(d(new Date(0, i), 'month'));
   }
 
   return months;

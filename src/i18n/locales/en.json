@@ -1,0 +1,36 @@
+{
+    "_dateTimeFormats": {
+        "month": {"month": "long"}
+    },
+    "dashboard": {
+        "dashboard": "Dashboard - {title}",
+        "income": "Income",
+        "expenses": "Expenses",
+        "endingBalance": "Ending Balance",
+        "graph": {
+            "placeholder": "Start by filling out the income / expenses tabs! :)"
+        }
+    },
+    "budget": {
+        "addBudget": "Add Budget",
+        "addGroup": "Add Group",
+        "totals": "Totals",
+        "total": "Total",
+        "average": "Average"
+    },
+    "import": {
+        "import": "Import",
+        "start": {
+            "title": "What would you like to import?",
+            "budgeter": "A previously exported file",
+            "google": "Google-Sheets annual budget file"
+        },
+        "budgeter": {
+            "pickFile": "Select your .budget file to import"
+        },
+        "google": {
+            "income": "Income.csv",
+            "expenses": "Expenses.csv"
+        }
+    }
+}

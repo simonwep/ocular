@@ -1,0 +1,36 @@
+{
+    "_dateTimeFormats": {
+        "month": {"month": "long"}
+    },
+    "dashboard": {
+        "dashboard": "Übersicht - {title}",
+        "income": "Einkommen",
+        "expenses": "Ausgaben",
+        "endingBalance": "Endsaldo",
+        "graph": {
+            "placeholder": "Beginn damit die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
+        }
+    },
+    "budget": {
+        "addBudget": "Budget hinzufügen",
+        "addGroup": "Gruppe hinzufügen",
+        "totals": "Summen",
+        "total": "Summe",
+        "average": "Durchschnitt"
+    },
+    "import": {
+        "import": "Importieren",
+        "start": {
+            "title": "Was soll importiert werden?",
+            "budgeter": "Eine von budgeter exportierte Datei",
+            "google": "Eine Annual-Budget-Datei von Google-Sheets"
+        },
+        "budgeter": {
+            "pickFile": ".budget-Datei auswählen"
+        },
+        "google": {
+            "income": "Einkommen.csv",
+            "expenses": "Ausgaben.csv"
+        }
+    }
+}

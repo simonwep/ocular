@@ -1,5 +1,8 @@
 <template>
-  <Pane :class="$style.dashboard" :title="`Dashboard - ${state.title}`">
+  <Pane
+    :class="$style.dashboard"
+    :title="t('dashboard.dashboard', { title: state.title })"
+  >
     <SummaryPanels />
     <DistributionChart />
   </Pane>
@@ -7,11 +10,14 @@
 
 <script lang="ts" setup>
 import { useDataStore } from '@store/data';
+import { useI18n } from 'vue-i18n';
 import Pane from '../shared/Pane.vue';
 import DistributionChart from './widgets/charts/DistributionChart.vue';
 import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';
 
 const { state } = useDataStore();
+
+const { t } = useI18n();
 </script>
 
 <style lang="scss" module>
