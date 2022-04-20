@@ -31,7 +31,7 @@ const styles = useCssModule();
 const classes = computed(() => [
   styles.switch,
   props.class,
-  { [styles.checked]: props.modelValue },
+  { [styles.checked]: props.modelValue }
 ]);
 
 const change = () => {

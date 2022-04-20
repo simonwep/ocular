@@ -15,45 +15,33 @@
 </template>
 
 <script lang="ts" setup>
+import { formatCurrency } from '@utils';
 import { computed, nextTick, ref, useCssModule } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: number): void;
 }>();
 
-const props = withDefaults(
-  defineProps<{
-    modelValue?: number;
-    locale?: string;
-    currency?: string;
-  }>(),
-  {
-    locale: 'en-us',
-    currency: 'USD',
-  }
-);
+const props = defineProps<{
+  modelValue?: number;
+  locale?: string;
+  currency?: string;
+}>();
 
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
 const focused = ref(false);
 
 const classes = computed(() => [
-  styles.currencyInput,
-  { [styles.empty]: !props.modelValue },
+  styles.currencyCell,
+  { [styles.empty]: !props.modelValue }
 ]);
-
-const formatter = computed(() => {
-  return new Intl.NumberFormat(props.locale, {
-    currency: props.currency,
-    style: 'currency',
-  });
-});
 
 const value = computed(() => {
   const value = props.modelValue;
   return focused.value || !value
     ? value || ''
-    : formatter.value.format(props.modelValue);
+    : formatCurrency(props.modelValue, props.locale, props.currency);
 });
 
 const updateModelValue = (v: number) => {
@@ -91,7 +79,7 @@ const wheel = (e: WheelEvent) => {
 </script>
 
 <style lang="scss" module>
-.currencyInput {
+.currencyCell {
   display: inline-block;
   width: auto;
   border: 1px solid var(--input-field-border);

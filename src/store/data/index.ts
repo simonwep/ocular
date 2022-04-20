@@ -15,9 +15,6 @@ interface Store {
   serialize(): string;
   deserialize(file: File): Promise<void>;
 
-  setStartingBalance(amount: number): void;
-  setBudgetTitle(name: string): void;
-
   setBudgetGroups(target: Group, groups: BudgetGroup[]): void;
   addBudgetGroup(target: Group): void;
   addBudget(group: string): void;
@@ -56,16 +53,8 @@ export const createDataStore = (): Store => {
         });
     },
 
-    setStartingBalance(amount: number): void {
-      state.startingBalance = amount;
-    },
-
     setBudgetGroups(target: Group, groups: BudgetGroup[]): void {
       state[target] = groups;
-    },
-
-    setBudgetTitle(name: string): void {
-      state.title = name;
     },
 
     setBudgetGroupName(id: string, name: string) {
@@ -104,7 +93,7 @@ export const createDataStore = (): Store => {
         ?.budgets.push({
           id: uuid(),
           name: 'Category',
-          values: new Array(12).fill(0),
+          values: new Array(12).fill(0)
         });
     },
 
@@ -112,9 +101,9 @@ export const createDataStore = (): Store => {
       state[target].push({
         id: uuid(),
         name: 'New Group',
-        budgets: [],
+        budgets: []
       });
-    },
+    }
   };
 };
 

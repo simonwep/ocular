@@ -1,0 +1,18 @@
+@use 'sass:math';
+
+$appMaxWidth: 1500px;
+$appMaxHeight: math.div($appMaxWidth, 1.5);
+
+$appMobileBreakpoint: 786px;
+
+@mixin onAppMinSizeReached {
+    @media all and (max-width: $appMaxWidth), (max-height: $appMaxHeight) {
+        @content;
+    }
+}
+
+@mixin onMobileDevices {
+    @media all and (max-width: $appMobileBreakpoint) {
+        @content;
+    }
+}

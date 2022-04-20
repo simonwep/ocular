@@ -25,7 +25,7 @@ const props = withDefaults(
     inline?: boolean;
   }>(),
   {
-    inline: false,
+    inline: false
   }
 );
 
@@ -37,8 +37,8 @@ const classes = computed(() => [
   styles.textInput,
   {
     [styles.empty]: !props.modelValue,
-    [styles.inline]: props.inline,
-  },
+    [styles.inline]: props.inline
+  }
 ]);
 
 const focus = () => {

@@ -5,15 +5,9 @@
 <script lang="ts" setup>
 import { formatCurrency } from '@utils';
 
-withDefaults(
-  defineProps<{
-    value?: number;
-    locale?: string;
-    currency?: string;
-  }>(),
-  {
-    locale: 'en-us',
-    currency: 'USD',
-  }
-);
+defineProps<{
+  value?: number;
+  locale?: string;
+  currency?: string;
+}>();
 </script>

@@ -1,5 +1,8 @@
 <template>
-  <div v-if="isEmpty" :class="$style.placeholder">
+  <div
+    v-if="isEmpty"
+    :class="[$style.placeholder, $style.distributionChart, classes]"
+  >
     <div :class="$style.icons">
       <Icon icon="shopping-basket-2" />
       <Icon icon="hand-coin" />
@@ -18,7 +21,7 @@ import Icon from '@components/base/icon/Icon.vue';
 import {
   SankeyChartConfig,
   SankeyChartLabel,
-  SankeyChartLink,
+  SankeyChartLink
 } from '@components/charts/sankey-chart/SankeyChart.types';
 import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
 import { useDataStore } from '@store/data';
@@ -33,7 +36,7 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const { state } = useDataStore();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const isEmpty = computed(() => {
   const totalIncome = sum(totals(state.income));
@@ -42,7 +45,7 @@ const isEmpty = computed(() => {
 });
 
 const data = computed((): SankeyChartConfig => {
-  const format = (v: number) => formatCurrency(v, state.locale, state.unit);
+  const format = (v: number) => formatCurrency(v, locale.value);
   const totalIncome = sum(totals(state.income));
   const totalExpenses = sum(totals(state.expenses));
   const labels: SankeyChartLabel[] = [];
@@ -54,7 +57,7 @@ const data = computed((): SankeyChartConfig => {
   const income = {
     id: uuid(),
     name: `Income (${format(totalIncome)})`,
-    color: color(120),
+    color: color(120)
   };
 
   labels.push(income);
@@ -65,13 +68,13 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 + 60 * (total / totalIncome)),
+      color: color(60 + 60 * (total / totalIncome))
     });
 
     links.push({
       target: income.id,
       source: group.id,
-      value: total,
+      value: total
     });
 
     for (let i = 0; i < group.budgets.length; i++) {
@@ -81,13 +84,13 @@ const data = computed((): SankeyChartConfig => {
       labels.push({
         id: budget.id,
         name: `${budget.name} (${format(total)})`,
-        color: color(60 + 60 * (total / totalIncome)),
+        color: color(60 + 60 * (total / totalIncome))
       });
 
       links.push({
         target: group.id,
         source: budget.id,
-        value: total,
+        value: total
       });
     }
   }
@@ -97,13 +100,13 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 * (1 - total / totalExpenses)),
+      color: color(60 * (1 - total / totalExpenses))
     });
 
     links.push({
       target: group.id,
       source: income.id,
-      value: total,
+      value: total
     });
 
     for (let i = 0; i < group.budgets.length; i++) {
@@ -114,13 +117,13 @@ const data = computed((): SankeyChartConfig => {
         id: budget.id,
         name: `${budget.name} (${format(total)})`,
         color: color(60 * (1 - total / totalExpenses)),
-        align: 'left',
+        align: 'left'
       });
 
       links.push({
         target: budget.id,
         source: group.id,
-        value: total,
+        value: total
       });
     }
   }
@@ -130,6 +133,8 @@ const data = computed((): SankeyChartConfig => {
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .distributionChart {
   height: 100%;
   width: 100%;

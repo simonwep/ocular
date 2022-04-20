@@ -1,20 +1,23 @@
 <template>
-  <div v-if="component" :class="$style.wrapper">
+  <div v-if="component" :class="[$style.wrapper, classes]">
     <component :is="component" />
   </div>
-  <div v-else :class="$style.asyncComponent">
+  <div v-else :class="$style.placeholder">
     <div />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, shallowRef } from 'vue';
+import { ClassNames } from '@utils';
+import { computed, onMounted, shallowRef } from 'vue';
 
 const props = defineProps<{
+  class?: ClassNames;
   import: () => Promise<{ default: unknown }>;
 }>();
 
 const component = shallowRef();
+const classes = computed(() => props.class);
 
 onMounted(() => {
   props.import().then((module) => (component.value = module.default));
@@ -34,7 +37,7 @@ onMounted(() => {
   }
 }
 
-.asyncComponent {
+.placeholder {
   display: flex;
   align-items: center;
   justify-content: center;

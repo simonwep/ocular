@@ -1,6 +1,9 @@
 <template>
   <div :class="$style.app">
-    <AsyncComponent :import="() => import('./tabs/Tabs.vue')" />
+    <AsyncComponent
+      :class="$style.root"
+      :import="() => import('./tabs/Tabs.vue')"
+    />
   </div>
 </template>
 
@@ -31,25 +34,33 @@ watch(
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
 @use 'sass:math';
-
-$maxWidth: 1500px;
-$maxHeight: math.div($maxWidth, 1.5);
 
 .app {
   display: flex;
   flex-grow: 1;
   width: 100%;
   height: 100%;
-  max-width: $maxWidth;
-  max-height: $maxHeight;
+  max-width: globals.$appMaxWidth;
+  max-height: globals.$appMaxHeight;
   box-shadow: var(--app-box-shadow);
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   background: var(--app-backround);
 
-  @media all and (max-width: $maxWidth) {
+  @include globals.onAppMinSizeReached {
     border-radius: 0;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.root {
+  display: flex;
+
+  @include globals.onMobileDevices {
+    flex-direction: column-reverse;
   }
 }
 </style>

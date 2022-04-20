@@ -24,7 +24,7 @@ export const createSettingsStore = (): Store => {
 
     setAnimations(enable: boolean): void {
       state.appearance.animations = enable;
-    },
+    }
   };
 };
 

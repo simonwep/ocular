@@ -1,6 +1,7 @@
 <template>
   <DialogButton
     :class="classes"
+    ref="dialog"
     color="dimmed"
     icon="upload-cloud-2-line"
     textual
@@ -34,12 +35,13 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
+import { DialogButtonExposed } from '@components/base/dialog-button/DialogButton.types';
 import DialogButton from '@components/base/dialog-button/DialogButton.vue';
 import Step from '@components/base/steps/Step.vue';
 import { StepsExposed } from '@components/base/steps/Steps.types';
 import Steps from '@components/base/steps/Steps.vue';
 import { ClassNames } from '@utils';
-import { computed, DefineComponent, shallowRef } from 'vue';
+import { computed, DefineComponent, ref, shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BudgetFileScreen from './screens/BudgetFileScreen.vue';
 import GoogleAnnualBudgetScreen from './screens/GoogleAnnualBudgetScreen.vue';
@@ -51,10 +53,14 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const screen = shallowRef<DefineComponent>();
 const steps = shallowRef<StepsExposed>();
+const dialog = ref<DialogButtonExposed>();
 
 const { t } = useI18n();
 
-const close = () => steps.value?.reset();
+const close = () => {
+  dialog.value?.close();
+  steps.value?.reset();
+};
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const next = (component: any) => {

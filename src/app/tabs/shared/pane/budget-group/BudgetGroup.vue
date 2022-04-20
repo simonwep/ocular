@@ -15,7 +15,7 @@
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
     <span>
-      <Currency :currency="state.unit" :locale="state.locale" :value="total" />
+      <Currency :locale="locale" :value="total" />
     </span>
   </span>
 
@@ -46,28 +46,19 @@
       </span>
 
       <span v-for="(_, index) of budget.values" :key="budget.id + index">
-        <CurrencyInput
-          :currency="state.unit"
-          :locale="state.locale"
+        <CurrencyCell
+          :locale="locale"
           :model-value="budget.values[index]"
           @update:model-value="setBudget(budget.id, index, $event)"
         />
       </span>
 
       <span :class="$style.meta">
-        <Currency
-          :currency="state.unit"
-          :locale="state.locale"
-          :value="sum(budget.values)"
-        />
+        <Currency :locale="locale" :value="sum(budget.values)" />
       </span>
 
       <span :class="$style.meta">
-        <Currency
-          :currency="state.unit"
-          :locale="state.locale"
-          :value="average(budget.values)"
-        />
+        <Currency :locale="locale" :value="average(budget.values)" />
       </span>
     </template>
 
@@ -99,7 +90,7 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import CurrencyInput from '@components/base/currency-input/CurrencyInput.vue';
+import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import TextInput from '@components/base/text-input/TextInput.vue';
 import { average, sum } from '@utils';
@@ -114,15 +105,14 @@ const props = defineProps<{
 }>();
 
 const {
-  state,
   addBudget,
   setBudgetName,
   setBudgetGroupName,
   setBudget,
-  removeBudget,
+  removeBudget
 } = useDataStore();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const open = ref(false);
 const totals = computed(() => {
   const totals: number[] = new Array(12).fill(0);

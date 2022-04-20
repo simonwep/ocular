@@ -8,6 +8,6 @@ const reducedMotion = window.matchMedia(
 export const generateTemplate = (): SettingsState => ({
   appearance: {
     theme: dark ? 'dark' : 'light',
-    animations: !reducedMotion,
-  },
+    animations: !reducedMotion
+  }
 });

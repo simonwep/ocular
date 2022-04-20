@@ -14,10 +14,6 @@ export interface BudgetGroup {
 
 export interface DataState {
   version: 1;
-  title: string;
-  unit: string;
-  locale: string;
-  startingBalance: number;
   expenses: BudgetGroup[];
   income: BudgetGroup[];
 }

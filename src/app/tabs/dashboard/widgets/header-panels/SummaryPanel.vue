@@ -3,11 +3,7 @@
     <div :class="$style.header">
       <h3 :class="$style.head">{{ title }}</h3>
       <span :class="$style.title">
-        <Currency
-          :currency="state.unit"
-          :locale="state.locale"
-          :value="endingValue"
-        />
+        <Currency :locale="locale" :value="endingValue" />
       </span>
       <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
     </div>
@@ -22,9 +18,9 @@
 
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
-import { useDataStore } from '@store/data';
 import { ClassNames } from '@utils';
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import SummaryPanelChart from './SummaryPanelChart.vue';
 
 const props = defineProps<{
@@ -35,7 +31,7 @@ const props = defineProps<{
   values: number[];
 }>();
 
-const { state } = useDataStore();
+const { locale } = useI18n();
 const classes = computed(() => props.class);
 const endingValue = computed(() => props.values[props.values.length - 1]);
 const backgroundColor = computed(() => `var(${props.color}-light)`);

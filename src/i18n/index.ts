@@ -15,5 +15,5 @@ export const i18n = createI18n({
   fallbackLocale: 'en',
   locale: navigator.language.slice(0, 2),
   datetimeFormats,
-  messages,
+  messages
 });

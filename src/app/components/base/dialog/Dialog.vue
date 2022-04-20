@@ -13,7 +13,7 @@ import {
   ref,
   useCssModule,
   watch,
-  watchEffect,
+  watchEffect
 } from 'vue';
 
 const emit = defineEmits<{
@@ -31,7 +31,7 @@ const dialog = ref<HTMLDialogElement>();
 const styles = useCssModule();
 const classes = computed(() => [
   styles.dialog,
-  { [styles.open]: visible.value },
+  { [styles.open]: visible.value }
 ]);
 
 const detectOutOfBoundsClick = (e: MouseEvent) => {
@@ -93,6 +93,7 @@ watchEffect(() => {
 .dialog,
 .dialog[open]::backdrop {
   visibility: hidden;
+  backdrop-filter: blur(2px);
   opacity: 0;
   transition: visibility 0s var(--transition-m), opacity var(--transition-m);
 }

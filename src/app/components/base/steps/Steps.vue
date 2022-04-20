@@ -29,7 +29,7 @@ const offset = computed(() =>
 
 provide<OnboardingStore>(ONBOARDING_STORE, {
   register: (size) => sizes.push(size),
-  unregister: (size) => remove(sizes, size),
+  unregister: (size) => remove(sizes, size)
 });
 
 const reset = () => (screenIndex.value = 0);
@@ -47,7 +47,7 @@ const next = () => {
 defineExpose<StepsExposed>({
   reset,
   previous,
-  next,
+  next
 });
 </script>
 

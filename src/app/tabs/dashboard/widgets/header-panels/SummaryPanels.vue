@@ -55,11 +55,18 @@ const expensePercentage = computed(() => {
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .summaryPanels {
   display: grid;
   grid-template: 1fr / 1fr 1fr 1fr;
   width: 100%;
   height: 150px;
   grid-gap: 10px;
+
+  @include globals.onMobileDevices {
+    grid-template: 1fr 1fr 1fr / 1fr;
+    height: 100%;
+  }
 }
 </style>

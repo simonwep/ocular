@@ -28,18 +28,18 @@ const options = computed(
   (): EChartsOption => ({
     xAxis: {
       type: 'category',
-      show: false,
+      show: false
     },
     yAxis: {
       type: 'value',
       show: false,
-      min: Math.min(...props.values),
+      min: Math.min(...props.values)
     },
     grid: {
       top: '5%',
       left: '5%',
       bottom: '5%',
-      right: '5%',
+      right: '5%'
     },
     series: [
       {
@@ -50,10 +50,10 @@ const options = computed(
         lineStyle: {
           width: 5,
           cap: 'round',
-          color: props.color,
-        },
-      },
-    ],
+          color: props.color
+        }
+      }
+    ]
   })
 );
 </script>

@@ -25,7 +25,7 @@ export const useThemeStyles = (effect: () => Color): ThemeStyles => {
     focus: `var(--c-${c}-shadow)`,
     color: { base: `var(--c-${c})`, hover: `var(--c-${c}-hover)` },
     text: { base: `var(--c-${c}-text)`, hover: `var(--c-${c}-text-hover)` },
-    pure: { base: `var(--c-${c}-pure)`, hover: `var(--c-${c}-pure-hover)` },
+    pure: { base: `var(--c-${c}-pure)`, hover: `var(--c-${c}-pure-hover)` }
   });
 
   const styles = reactive<ThemeStyles>(resolve());

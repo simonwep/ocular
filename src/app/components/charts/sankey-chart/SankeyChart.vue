@@ -34,11 +34,11 @@ const options = computed(
         textBorderWidth: 0,
         fontWeight: 'var(--font-weight-l)' as any,
         fontFamily: 'var(--font-family)',
-        color: 'var(--chart-label)',
+        color: 'var(--chart-label)'
       },
       lineStyle: {
         color: 'source',
-        curveness: 0.5,
+        curveness: 0.5
       },
       nodeGap: 10,
       nodeWidth: 7,
@@ -53,11 +53,11 @@ const options = computed(
           v.align === 'left'
             ? {
                 align: 'right',
-                padding: [0, 20, 0, 0],
+                padding: [0, 20, 0, 0]
               }
-            : undefined,
-      })),
-    },
+            : undefined
+      }))
+    }
   })
 );
 </script>

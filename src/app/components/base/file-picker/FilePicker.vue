@@ -24,14 +24,14 @@ const classes = computed(() => [
   props.class,
   styles.filePicker,
   {
-    [styles.empty]: !props.modelValue,
-  },
+    [styles.empty]: !props.modelValue
+  }
 ]);
 
 const pick = () => {
   selectFile({
     accept: props.accept?.join(','),
-    multiple: false,
+    multiple: false
   }).then((file) => {
     emit('update:model-value', file);
   });

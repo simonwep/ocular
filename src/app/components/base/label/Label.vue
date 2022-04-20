@@ -28,5 +28,7 @@ const classes = computed(() => props.class);
 .label {
   padding-right: 32px;
   margin-right: auto;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-m);
 }
 </style>

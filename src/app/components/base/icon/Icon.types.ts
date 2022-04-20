@@ -9,6 +9,7 @@ export type AppIcon =
   | 'file-fill'
   | 'google-fill'
   | 'hand-coin'
+  | 'menu-line'
   | 'moon-fill'
   | 'plus'
   | 'save'

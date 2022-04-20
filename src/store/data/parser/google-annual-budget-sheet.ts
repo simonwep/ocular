@@ -7,7 +7,7 @@ export const convertGoogleAnnualBudgetCSVToBudgetGroups = (
 ): BudgetGroup[] => {
   const groups: BudgetGroup[] = [];
   const rows = parse(csv, {
-    skipEmptyLines: 'greedy',
+    skipEmptyLines: 'greedy'
   }).data as string[];
 
   rows.shift(); // Ignore header
@@ -28,7 +28,7 @@ export const convertGoogleAnnualBudgetCSVToBudgetGroups = (
       budgetGroup.budgets.push({
         id: uuid(),
         name: header.trim(),
-        values: parsed,
+        values: parsed
       });
     }
   }

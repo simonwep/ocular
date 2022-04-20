@@ -32,4 +32,8 @@ const close = () => {
   open.value = false;
   emit('close');
 };
+
+defineExpose({
+  close: () => (open.value = false)
+});
 </script>

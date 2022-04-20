@@ -2,8 +2,16 @@
     "_dateTimeFormats": {
         "month": {"month": "long"}
     },
+    "menu": {
+        "dashboard": "Dashboard",
+        "income": "Income",
+        "expenses": "Expenses",
+        "import": "Import",
+        "export": "Export"
+    },
     "dashboard": {
-        "dashboard": "Dashboard - {title}",
+        "title": "Annual Budget",
+        "dashboard": "Dashboard - Annual Budget",
         "income": "Income",
         "expenses": "Expenses",
         "endingBalance": "Ending Balance",

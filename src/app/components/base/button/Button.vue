@@ -28,7 +28,7 @@ const props = withDefaults(
   {
     color: 'primary',
     textual: false,
-    inline: false,
+    inline: false
   }
 );
 
@@ -41,8 +41,8 @@ const classes = computed(() => [
     [styles.hasIcon]: props.icon,
     [styles.textual]: props.textual,
     [styles.inline]: props.inline,
-    [styles.iconOnly]: props.icon && !props.text,
-  },
+    [styles.iconOnly]: props.icon && !props.text
+  }
 ]);
 </script>
 

@@ -4,21 +4,17 @@ import { Budget, BudgetGroup, DataState } from './types';
 const generateBudget = (name: string): Budget => ({
   name,
   id: uuid(),
-  values: new Array(12).fill(0),
+  values: new Array(12).fill(0)
 });
 
 const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup => ({
   name,
   id: uuid(),
-  budgets: budgets.map(generateBudget),
+  budgets: budgets.map(generateBudget)
 });
 
 export const generateTemplate = (): DataState => ({
   version: 1,
-  unit: 'EUR',
-  locale: navigator.language ?? 'en-US',
-  startingBalance: 5000,
-  title: 'Annual Budget',
   expenses: [
     generateBudgetGroup('Children', [
       'Activities',
@@ -27,20 +23,20 @@ export const generateTemplate = (): DataState => ({
       'Clothing',
       'School',
       'Toys',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Debt', [
       'Credit cards',
       'Student loans',
       'Other loans',
       'Taxes',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Education', [
       'Tuition',
       'Books',
       'Music lessons',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Entertainment', [
       'Books',
@@ -54,7 +50,7 @@ export const generateTemplate = (): DataState => ({
       'Sport',
       'Theatre/plays',
       'TV',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Everyday', [
       'Groceries',
@@ -64,7 +60,7 @@ export const generateTemplate = (): DataState => ({
       'Laundry/dry cleaning',
       'Hair/beauty',
       'Subscriptions',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Gifts', ['Gifts', 'Donations (charity)', 'Other']),
     generateBudgetGroup('Health / Medical', [
@@ -72,7 +68,7 @@ export const generateTemplate = (): DataState => ({
       'Specialist care',
       'Pharmacy',
       'Emergency',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Home', [
       'Rent/mortgage',
@@ -83,28 +79,28 @@ export const generateTemplate = (): DataState => ({
       'Maintenance',
       'Improvements',
       'Moving',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Insurance', [
       'Car',
       'Health',
       'Home',
       'Life',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Pets', [
       'Food',
       'Vet/medical',
       'Toys',
       'Supplies',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Technology', [
       'Domains & hosting',
       'Online services',
       'Hardware',
       'Software',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Transportation', [
       'Fuel',
@@ -113,7 +109,7 @@ export const generateTemplate = (): DataState => ({
       'Registration/license',
       'Supplies',
       'Public transit',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Travel', [
       'Airfare',
@@ -121,7 +117,7 @@ export const generateTemplate = (): DataState => ({
       'Food',
       'Transportation',
       'Entertainment',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Utilities', [
       'Phone',
@@ -130,9 +126,9 @@ export const generateTemplate = (): DataState => ({
       'Electricity',
       'Heat/gas',
       'Water',
-      'Other',
+      'Other'
     ]),
-    generateBudgetGroup('Other', ['[Category 1]', '[Category 2]']),
+    generateBudgetGroup('Other', ['[Category 1]', '[Category 2]'])
   ],
   income: [
     generateBudgetGroup('Wages', [
@@ -140,7 +136,7 @@ export const generateTemplate = (): DataState => ({
       'Tips',
       'Bonus',
       'Commission',
-      'Other',
+      'Other'
     ]),
     generateBudgetGroup('Other', [
       'Transfer from savings',
@@ -148,7 +144,7 @@ export const generateTemplate = (): DataState => ({
       'Dividends',
       'Gifts',
       'Refunds',
-      'Other',
-    ]),
-  ],
+      'Other'
+    ])
+  ]
 });

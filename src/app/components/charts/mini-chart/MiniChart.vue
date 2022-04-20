@@ -29,22 +29,22 @@ const options = computed(
     xAxis: { type: 'category', show: false },
     yAxis: {
       show: false,
-      min: Math.min(...props.values),
+      min: Math.min(...props.values)
     },
     grid: {
       top: '15%',
       left: 0,
       bottom: '20%',
-      right: 0,
+      right: 0
     },
     series: [
       {
         data: props.values,
         type: 'line',
         smooth: true,
-        showSymbol: false,
-      },
-    ],
+        showSymbol: false
+      }
+    ]
   })
 );
 </script>

@@ -2,8 +2,16 @@
     "_dateTimeFormats": {
         "month": {"month": "long"}
     },
+    "menu": {
+        "dashboard": "Übersicht",
+        "income": "Einkommen",
+        "expenses": "Ausgaben",
+        "import": "Imoportiere",
+        "export": "Exportieren"
+    },
     "dashboard": {
-        "dashboard": "Übersicht - {title}",
+        "title": "Jährliches Budget",
+        "dashboard": "Übersicht - Jährliches Budget",
         "income": "Einkommen",
         "expenses": "Ausgaben",
         "endingBalance": "Endsaldo",
