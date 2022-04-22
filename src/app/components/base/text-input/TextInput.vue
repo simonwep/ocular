@@ -1,8 +1,10 @@
 <template>
   <span :class="classes">
+    <span :class="$style.shadow" ref="shadow">{{ modelValue }}</span>
     <input
       ref="input"
       :value="modelValue"
+      :style="{ width }"
       type="text"
       @blur="focused = false"
       @focus="focus"
@@ -29,6 +31,8 @@ const props = withDefaults(
   }
 );
 
+const width = ref('auto');
+const shadow = ref<HTMLSpanElement>();
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
 const focused = ref(false);
@@ -52,6 +56,9 @@ const focus = () => {
 
 const change = (e: Event) => {
   emit('update:modelValue', (e.target as HTMLInputElement).value);
+  requestAnimationFrame(() => {
+    width.value = `${shadow.value?.offsetWidth}px`;
+  });
 };
 </script>
 
@@ -62,6 +69,16 @@ const change = (e: Event) => {
 
   > input {
     all: unset;
+    max-width: var(--input-field-max-width);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .shadow {
+    all: inherit;
+    position: fixed;
+    width: auto;
+    visibility: hidden;
   }
 
   &:not(.inline) {
@@ -92,7 +109,6 @@ const change = (e: Event) => {
     }
 
     > input {
-      width: 100%;
       max-height: 100%;
       padding: 2px 4px;
       caret-color: var(--input-field-caret-color);

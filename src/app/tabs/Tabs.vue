@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$style.buttons, { [$style.open]: open }]">
+  <div ref="menu" :class="[$style.buttons, { [$style.open]: open }]">
     <ThemeButton :class="$style.btn" />
     <div :class="$style.divider" />
 
@@ -10,7 +10,7 @@
       :color="tab === button.tab ? 'primary' : 'dimmed'"
       :icon="button.icon"
       textual
-      @click="tab = button.tab"
+      @click="(tab = button.tab) && (open = false)"
     />
 
     <ImportButton :class="[$style.top, $style.btn]" />
@@ -41,6 +41,7 @@ import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import BurgerButton from '@components/base/burger-button/BurgerButton.vue';
 import { computed, ref } from 'vue';
+import { useOutOfElementClick } from '../../composables/useOutOfElementClick';
 import Dashboard from './dashboard/Dashboard.vue';
 import Expenses from './expenses/Expenses.vue';
 import Income from './income/Income.vue';
@@ -50,8 +51,11 @@ import ThemeButton from './navigation/ThemeButton.vue';
 
 type Tab = 'dashboard' | 'income' | 'expenses' | 'settings';
 
+const menu = ref<HTMLDivElement>();
 const open = ref(false);
 const tab = ref<Tab>('dashboard');
+useOutOfElementClick(menu, () => (open.value = false));
+
 const component = computed(
   () => buttons.find((v) => v.tab === tab.value)?.component
 );
@@ -119,10 +123,12 @@ const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
     }
 
     .mobileMenuTrigger,
-    .btn {
+    .btn,
+    .mobileMenuTrigger:hover,
+    .btn:hover {
       background: var(--app-backround);
       border-radius: 100%;
-      box-shadow: var(--app-box-shadow);
+      box-shadow: var(--menu-button-shadow);
       padding: 0 !important;
       height: 42px;
       width: 42px;

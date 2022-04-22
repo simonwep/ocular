@@ -34,11 +34,13 @@ const props = defineProps<{
 
 const { locale } = useI18n();
 const classes = computed(() => props.class);
+
 const endingValue = computed(() =>
   Array.isArray(props.values)
     ? props.values[props.values.length - 1]
     : props.values
 );
+
 const backgroundColor = computed(() => `var(${props.color}-light)`);
 const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
 </script>
@@ -68,10 +70,6 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
   .title {
     font-size: var(--font-size-xxl);
     font-weight: var(--font-weight-xxl);
-
-    @include globals.onMobileDevices {
-      margin-top: 3px;
-    }
   }
 
   .subTitle {
@@ -83,8 +81,14 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
 
 .chart {
   width: 30%;
+}
 
-  @include globals.onMobileDevices {
+@include globals.onMobileDevices {
+  .header .title {
+    margin-top: 5spx;
+  }
+
+  .chart {
     width: 50%;
   }
 }
