@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.app">
-    <AsyncComponent
+    <LoadingScreen
       :class="$style.root"
       :import="() => import('./tabs/Tabs.vue')"
     />
@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
+import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
 import { useAppElement } from '@composables';
 import { useSettingsStore } from '@store/settings';
 import { watch, watchEffect } from 'vue';

@@ -74,6 +74,7 @@
     --transition-s: calc(var(--transitions) * 0.125s);
     --transition-m: calc(var(--transitions) * 0.25s);
     --transition-xl: calc(var(--transitions) * 0.75s);
+    --transition-xxl: calc(var(--transitions) * 1.5s);
 
     --chart-label: var(--theme-text);
     --chart-generic-saturation: 55%;
