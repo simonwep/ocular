@@ -15,6 +15,7 @@
         "income": "Einkommen",
         "expenses": "Ausgaben",
         "endingBalance": "Endsaldo",
+        "remainingBalance": "Verbleibender Saldo",
         "graph": {
             "placeholder": "Beginn damit die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
         }

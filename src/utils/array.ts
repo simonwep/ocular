@@ -8,4 +8,4 @@ export const average = (values: readonly number[]) =>
   sum(values) / values.length;
 
 export const aggregate = (values: readonly number[]) =>
-  values.map((_, index) => sum(values.slice(0, index)));
+  values.map((_, index) => sum(values.slice(0, index + 1)));

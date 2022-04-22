@@ -21,6 +21,17 @@
       color="--c-primary"
       :title="t('dashboard.endingBalance')"
     />
+
+    <SummaryPanel
+      :sub-title="`~${Math.round(
+        endingBalance[endingBalance.length - 1]
+          ? (remainingBalance / endingBalance[endingBalance.length - 1]) * 100
+          : 0
+      )} %`"
+      :values="remainingBalance"
+      color="--c-secondary"
+      :title="t('dashboard.remainingBalance')"
+    />
   </div>
 </template>
 
@@ -52,20 +63,32 @@ const expensePercentage = computed(() => {
   const income = sum(incomeTotals.value);
   return income ? expenses / income : 0;
 });
+
+const remainingBalance = computed(() => {
+  const currentMonth = new Date().getMonth();
+
+  return sum(
+    subtract(
+      incomeTotals.value.slice(currentMonth),
+      expensesTotals.value.slice(currentMonth)
+    )
+  );
+});
 </script>
 
 <style lang="scss" module>
 @use 'src/styles/globals';
 
 .summaryPanels {
+  --panels: 4;
   display: grid;
-  grid-template: 1fr / 1fr 1fr 1fr;
+  grid-template: 1fr / repeat(var(--panels), 1fr);
   width: 100%;
   height: 150px;
   grid-gap: 10px;
 
   @include globals.onMobileDevices {
-    grid-template: 1fr 1fr 1fr / 1fr;
+    grid-template: repeat(var(--panels), 1fr) / 1fr;
     height: 100%;
   }
 }

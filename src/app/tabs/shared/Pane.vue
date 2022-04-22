@@ -31,6 +31,8 @@ const classes = computed(() => props.class);
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .pane {
   display: flex;
   flex-direction: column;
@@ -53,6 +55,10 @@ const classes = computed(() => props.class);
   > h1 {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-l);
+  }
+
+  @include globals.onMobileDevices {
+    margin-top: 5px;
   }
 }
 

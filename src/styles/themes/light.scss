@@ -27,13 +27,23 @@
 
     --c-primary: #5c8ada;
     --c-primary-light: #e8f0fb;
-    --c-primary-light-dimmed: #bac8e1;
+    --c-primary-light-dimmed: #b0c3e6;
     --c-primary-hover: #5077be;
     --c-primary-text: var(--c-text-light);
     --c-primary-text-hover: var(--c-primary-text);
     --c-primary-pure: var(--c-primary);
     --c-primary-pure-hover: var(--c-primary-hover);
     --c-primary-shadow: 0 0 0 2px #5077be5c;
+
+    --c-secondary: #f2e3ff;
+    --c-secondary-light: var(--c-secondary);
+    --c-secondary-light-dimmed: #dab2ff;
+    --c-secondary-hover: #e2bfff;
+    --c-secondary-text: var(--c-text-light);
+    --c-secondary-text-hover: var(--c-secondary-text);
+    --c-secondary-pure: var(--c-secondary);
+    --c-secondary-pure-hover: var(--c-secondary-hover);
+    --c-secondary-shadow: 0 0 0 2px #f2e3ff5c;
 
     --c-success: #64d37d;
     --c-success-light: #eafdee;

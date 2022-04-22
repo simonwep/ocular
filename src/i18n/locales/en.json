@@ -15,6 +15,7 @@
         "income": "Income",
         "expenses": "Expenses",
         "endingBalance": "Ending Balance",
+        "remainingBalance": "Remaining Balance",
         "graph": {
             "placeholder": "Start by filling out the income / expenses tabs! :)"
         }
