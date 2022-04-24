@@ -26,7 +26,7 @@ import {
 import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
 import { useDataStore } from '@store/data';
 import { totals } from '@store/data/utils/budgets';
-import { ClassNames, formatCurrency, sum, uuid } from '@utils';
+import { ClassNames, sum, uuid } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -36,7 +36,7 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const { state } = useDataStore();
-const { t, locale } = useI18n();
+const { t, n } = useI18n();
 
 const isEmpty = computed(() => {
   const totalIncome = sum(totals(state.income));
@@ -45,7 +45,7 @@ const isEmpty = computed(() => {
 });
 
 const data = computed((): SankeyChartConfig => {
-  const format = (v: number) => formatCurrency(v, locale.value);
+  const format = (v: number) => n(v, 'currency');
   const totalIncome = sum(totals(state.income));
   const totalExpenses = sum(totals(state.expenses));
   const labels: SankeyChartLabel[] = [];

@@ -15,7 +15,7 @@
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
     <span>
-      <Currency :locale="locale" :value="total" />
+      <Currency :value="total" />
     </span>
   </span>
 
@@ -54,11 +54,11 @@
       </span>
 
       <span :class="$style.meta">
-        <Currency :locale="locale" :value="sum(budget.values)" />
+        <Currency :value="sum(budget.values)" />
       </span>
 
       <span :class="$style.meta">
-        <Currency :locale="locale" :value="average(budget.values)" />
+        <Currency :value="average(budget.values)" />
       </span>
     </template>
 

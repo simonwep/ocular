@@ -7,27 +7,21 @@
     />
 
     <SummaryPanel
-      :sub-title="`~${Math.round(expensePercentage * 100)} %`"
+      :sub-title="`~${n(expensePercentage, 'percent')}`"
       :values="expenses"
       color="--c-warning"
       :title="t('dashboard.expenses')"
     />
 
     <SummaryPanel
-      :sub-title="`~${Math.round(
-        expensePercentage ? (1 - expensePercentage) * 100 : 0
-      )} %`"
+      :sub-title="`${n(endingBalance ? 1 - expensePercentage : 0, 'percent')}`"
       :values="endingBalance"
       color="--c-primary"
       :title="t('dashboard.endingBalance')"
     />
 
     <SummaryPanel
-      :sub-title="`~${Math.round(
-        endingBalance[endingBalance.length - 1]
-          ? (remainingBalance / endingBalance[endingBalance.length - 1]) * 100
-          : 0
-      )} %`"
+      :sub-title="`~${n(remainingBalancePercentage, 'percent')}`"
       :values="remainingBalance"
       color="--c-secondary"
       :title="t('dashboard.remainingBalance')"
@@ -49,7 +43,7 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const { state } = useDataStore();
-const { t } = useI18n();
+const { t, n } = useI18n();
 
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));
@@ -73,6 +67,11 @@ const remainingBalance = computed(() => {
       expensesTotals.value.slice(currentMonth)
     )
   );
+});
+
+const remainingBalancePercentage = computed(() => {
+  const endBalance = endingBalance.value[endingBalance.value.length - 1];
+  return endBalance ? remainingBalance.value / endBalance : 0;
 });
 </script>
 

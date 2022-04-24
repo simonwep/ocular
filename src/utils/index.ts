@@ -1,5 +1,4 @@
 export * from './array';
-export * from './formatCurrency';
 export * from './readFile';
 export * from './remove';
 export * from './saveFile';

@@ -1,13 +1,14 @@
 <template>
-  {{ formatCurrency(value, locale, currency) }}
+  {{ n(value, 'currency') }}
 </template>
 
 <script lang="ts" setup>
-import { formatCurrency } from '@utils';
+import { useI18n } from 'vue-i18n';
+
+const { n } = useI18n();
 
 defineProps<{
   value?: number;
   locale?: string;
-  currency?: string;
 }>();
 </script>

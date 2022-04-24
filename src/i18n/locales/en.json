@@ -2,6 +2,17 @@
     "_dateTimeFormats": {
         "month": {"month": "long"}
     },
+    "_numberFormats": {
+        "percent": {
+            "style": "percent",
+            "maximumFractionDigits": 0
+        },
+        "currency": {
+            "style": "currency",
+            "currency": "GBP",
+            "minimumFractionDigits": 0
+        }
+    },
     "menu": {
         "dashboard": "Dashboard",
         "income": "Income",

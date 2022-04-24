@@ -10,10 +10,15 @@ const datetimeFormats = Object.fromEntries(
   Object.entries(messages).map((v) => [[v[0]], v[1]._dateTimeFormats])
 );
 
+const numberFormats = Object.fromEntries(
+  Object.entries(messages).map((v) => [[v[0]], v[1]._numberFormats])
+);
+
 export const i18n = createI18n({
   legacy: false,
   fallbackLocale: 'en',
   locale: navigator.language.slice(0, 2),
   datetimeFormats,
+  numberFormats,
   messages
 });

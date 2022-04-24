@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-import { formatCurrency } from '@utils';
 import { computed, nextTick, ref, useCssModule } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: number): void;
@@ -24,13 +24,12 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   modelValue?: number;
-  locale?: string;
-  currency?: string;
 }>();
 
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
 const focused = ref(false);
+const { n } = useI18n();
 
 const classes = computed(() => [
   styles.currencyCell,
@@ -41,7 +40,7 @@ const value = computed(() => {
   const value = props.modelValue;
   return focused.value || !value
     ? value || ''
-    : formatCurrency(props.modelValue, props.locale, props.currency);
+    : n(props.modelValue, 'currency');
 });
 
 const updateModelValue = (v: number) => {

@@ -17,7 +17,7 @@
     <!-- Sums -->
     <span :class="$style.sum">{{ t('budget.totals') }}</span>
     <span v-for="(sum, index) of totals" :key="index" :class="$style.sum">
-      <Currency :locale="locale" :value="sum" />
+      <Currency :value="sum" />
     </span>
     <span />
     <span />
@@ -72,7 +72,7 @@ const props = defineProps<{
 }>();
 
 const { state, addBudgetGroup, removeBudgetGroup } = useDataStore();
-const { t, d, locale } = useI18n();
+const { t, d } = useI18n();
 
 const groups = computed(() => state[props.type]);
 
@@ -108,7 +108,7 @@ const totals = computed(() => {
   align-items: center;
 
   > * {
-    padding: 6px 10px;
+    padding: 4px 6px;
   }
 }
 
