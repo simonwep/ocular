@@ -15,16 +15,22 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, useCssModule } from 'vue';
+import { computed, nextTick, ref, useCssModule, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: number): void;
 }>();
 
-const props = defineProps<{
-  modelValue?: number;
-}>();
+const props = withDefaults(
+  defineProps<{
+    modelValue?: number;
+    max?: number;
+  }>(),
+  {
+    max: Number.MAX_SAFE_INTEGER
+  }
+);
 
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
@@ -75,6 +81,15 @@ const wheel = (e: WheelEvent) => {
     e.preventDefault();
   }
 };
+
+watch(
+  () => props.modelValue,
+  (value, oldValue) => {
+    if ((value ?? 0) > props.max && oldValue !== undefined) {
+      emit('update:modelValue', oldValue);
+    }
+  }
+);
 </script>
 
 <style lang="scss" module>

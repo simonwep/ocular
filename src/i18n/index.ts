@@ -14,11 +14,12 @@ const numberFormats = Object.fromEntries(
   Object.entries(messages).map((v) => [[v[0]], v[1]._numberFormats])
 );
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const i18n = createI18n({
   legacy: false,
   fallbackLocale: 'en',
   locale: navigator.language.slice(0, 2),
+  messages: messages as any,
   datetimeFormats,
-  numberFormats,
-  messages
+  numberFormats
 });

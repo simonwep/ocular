@@ -1,5 +1,5 @@
 <template>
-  {{ n(value, 'currency') }}
+  {{ n(value ?? 0, 'currency') }}
 </template>
 
 <script lang="ts" setup>

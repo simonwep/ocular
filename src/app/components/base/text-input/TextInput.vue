@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, useCssModule } from 'vue';
+import { computed, nextTick, ref, useCssModule, watchEffect } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: string): void;
@@ -56,10 +56,14 @@ const focus = () => {
 
 const change = (e: Event) => {
   emit('update:modelValue', (e.target as HTMLInputElement).value);
+};
+
+watchEffect(() => {
+  void props.modelValue;
   requestAnimationFrame(() => {
     width.value = `${shadow.value?.offsetWidth}px`;
   });
-};
+});
 </script>
 
 <style lang="scss" module>
