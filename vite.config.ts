@@ -7,5 +7,8 @@ export default defineConfig({
     plugins: [
         tsconfigPaths({loose: true}),
         vue()
+    ],
+    envPrefix: [
+        'OAUTH'
     ]
 });

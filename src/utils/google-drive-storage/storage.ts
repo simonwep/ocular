@@ -1,0 +1,150 @@
+import { ref, watch } from 'vue';
+import {
+  GoogleDriveAuth,
+  GoogleDriveAuthReponse,
+  Storage,
+  StorageSync
+} from './types';
+import { parseOAuth2Login } from './utils';
+
+export const createGoogleDriveStorage = (auth: GoogleDriveAuth): Storage => {
+  const accessToken = ref<string | undefined>();
+  const fileIdCache = new Map<string, string>();
+  let loginTimeout = -1;
+
+  const login = () => {
+    accessToken.value = undefined;
+
+    const authentication = parseOAuth2Login();
+    if (authentication) {
+      window.postMessage(JSON.stringify(authentication));
+      window.close();
+      return;
+    }
+
+    // Open OAuth screen
+    const url = new URL(auth.authUri);
+    url.searchParams.set('scope', auth.scope);
+    url.searchParams.set('include_granted_scopes', 'true');
+    url.searchParams.set('response_type', 'token');
+    url.searchParams.set('redirect_uri', location.origin);
+    url.searchParams.set('client_id', auth.clientId);
+
+    return new Promise<void>((resolve, reject) => {
+      window.open(url, '_blank')?.addEventListener('message', (message) => {
+        const { error, ...rest } = JSON.parse(
+          message.data
+        ) as GoogleDriveAuthReponse;
+
+        if (error) {
+          return reject(error);
+        } else if (rest.expiresIn && rest.accessToken) {
+          clearTimeout(loginTimeout);
+          accessToken.value = rest.accessToken;
+          loginTimeout = setTimeout(
+            login,
+            Number(rest.expiresIn) * 1000
+          ) as unknown as number;
+        }
+
+        resolve();
+      });
+    });
+  };
+
+  const getFileId = async (name: string): Promise<string | undefined> => {
+    if (!accessToken.value) return Promise.reject('Not authenticated');
+
+    const url = new URL('https://www.googleapis.com/drive/v3/files');
+    url.searchParams.set('access_token', accessToken.value);
+    url.searchParams.set('spaces', 'appDataFolder');
+    url.searchParams.set('q', `name='${name}'`);
+
+    return fetch(url.toString())
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((body) => body.files[0]?.id);
+  };
+
+  const upsert = async (name: string, json: string): Promise<void> => {
+    if (!accessToken.value) return Promise.reject('Not authenticated');
+
+    const fileId = fileIdCache.get(name) ?? (await getFileId(name));
+
+    if (fileId) {
+      fileIdCache.set(name, fileId);
+      const url = new URL('https://www.googleapis.com/upload/drive/v3/files');
+      url.searchParams.set('access_token', accessToken.value);
+      url.searchParams.set('uploadType', 'media');
+
+      await fetch(
+        `https://www.googleapis.com/upload/drive/v3/files/${fileId}?access_token=${accessToken.value}`,
+        {
+          method: 'PATCH',
+          body: json
+        }
+      );
+    } else {
+      const form = new FormData();
+
+      form.append(
+        'metadata',
+        new Blob(
+          [
+            JSON.stringify({
+              name: name,
+              mimeType: 'application/json',
+              parents: ['appDataFolder']
+            })
+          ],
+          { type: 'application/json' }
+        )
+      );
+
+      form.append('file', new Blob([json], { type: 'application/json' }));
+
+      const url = new URL('https://www.googleapis.com/upload/drive/v3/files');
+      url.searchParams.set('access_token', accessToken.value);
+      url.searchParams.set('uploadType', 'multipart');
+
+      const file = await fetch(url.toString(), {
+        method: 'post',
+        body: form
+      }).then((res) => res.json());
+
+      fileIdCache.set(name, file.id);
+    }
+  };
+
+  const sync = <T>(config: StorageSync<T>) => {
+    watch(
+      () => JSON.stringify(config.state()),
+      (value) => {
+        void upsert(config.name, value);
+      }
+    );
+
+    watch(accessToken, async (token) => {
+      if (token) {
+        const fileId = await getFileId(config.name);
+
+        if (fileId) {
+          const content = await fetch(
+            `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken.value}`
+              }
+            }
+          ).then((res) => res.json());
+
+          config.push(content);
+        } else {
+          await upsert(config.name, JSON.stringify(config.state()));
+        }
+      }
+    });
+  };
+
+  login();
+  return { sync };
+};

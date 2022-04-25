@@ -2,6 +2,7 @@ import { generateTemplate } from '@store/settings/template';
 import { SettingsState, Theme } from '@store/settings/types';
 import { DeepReadonly } from '@vue/reactivity';
 import { inject, reactive, readonly } from 'vue';
+import { Storage } from '../../utils/google-drive-storage';
 
 export const SETTINGS_STORE_KEY = Symbol('SettingsStore');
 
@@ -12,8 +13,14 @@ interface Store {
   setAnimations(enable: boolean): void;
 }
 
-export const createSettingsStore = (): Store => {
+export const createSettingsStore = (storage?: Storage): Store => {
   const state = reactive<SettingsState>(generateTemplate());
+
+  storage?.sync<SettingsState>({
+    name: 'settings',
+    state: () => state,
+    push: (data) => Object.assign(state, data)
+  });
 
   return {
     state: readonly(state),
