@@ -3,12 +3,8 @@ import {
   GoogleDriveAuthReponse
 } from '@storage/google-drive-storage/types';
 import { reactive, readonly, ref, watch } from 'vue';
-import {
-  AppStorage,
-  StorageAuthenticationState,
-  StorageState,
-  StorageSync
-} from '../types';
+import { debounce } from '../../utils/debounce';
+import { AppStorage, StorageState, StorageSync } from '../types';
 import { parseOAuth2Login } from './utils';
 
 export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
@@ -16,6 +12,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
   const accessToken = ref<string | undefined>();
   const fileIdCache = new Map<string, string>();
   let loginTimeout = -1;
+  let syncsActive = 0;
 
   const authentication = parseOAuth2Login();
   if (authentication) {
@@ -126,10 +123,21 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
   };
 
   const sync = <T>(config: StorageSync<T>) => {
+    const change = debounce(async (value: string) => {
+      syncsActive++;
+      await upsert(config.name, value);
+
+      syncsActive--;
+      if (syncsActive === 0) {
+        state.status = 'authenticated';
+      }
+    }, 500);
+
     watch(
       () => JSON.stringify(config.state()),
       (value) => {
-        void upsert(config.name, value);
+        state.status = 'syncing';
+        void change(value);
       }
     );
 

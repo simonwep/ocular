@@ -24,7 +24,14 @@ const classes = computed(() => props.class);
 const { login, state } = useStorage();
 
 const icon = computed((): AppIcon => {
-  return state.status === 'idle' ? 'cloud-off-line' : 'cloud-line';
+  switch (state.status) {
+    case 'syncing':
+      return 'refresh-line';
+    case 'idle':
+      return 'cloud-off-line';
+  }
+
+  return 'cloud-line';
 });
 
 const color = computed((): Color => {
@@ -35,6 +42,8 @@ const color = computed((): Color => {
       return 'warning';
     case 'idle':
       return 'danger';
+    case 'syncing':
+      return 'primary';
   }
 
   return 'danger';

@@ -14,6 +14,7 @@ export type AppIcon =
   | 'menu-line'
   | 'moon-fill'
   | 'plus'
+  | 'refresh-line'
   | 'save'
   | 'settings-4-line'
   | 'shopping-basket-2'

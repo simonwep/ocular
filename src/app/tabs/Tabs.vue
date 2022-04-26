@@ -11,7 +11,7 @@
         :color="tab === button.tab ? 'primary' : 'dimmed'"
         :icon="button.icon"
         textual
-        @click="(tab = button.tab) && (open = false)"
+        @click="tab = button.tab"
       />
 
       <ImportButton :class="[$style.top, $style.btn]" />

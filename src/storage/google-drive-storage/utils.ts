@@ -1,4 +1,4 @@
-import { GoogleDriveAuthReponse } from '../types';
+import { GoogleDriveAuthReponse } from '@storage/google-drive-storage/types';
 
 export const parseOAuth2Login = (): GoogleDriveAuthReponse | undefined => {
   if (location.hash.length > 1) {
