@@ -1,5 +1,5 @@
 <template>
-  <div v-if="component" :class="[$style.wrapper, classes]">
+  <div v-if="component && !loading" :class="[$style.wrapper, classes]">
     <component :is="component" />
   </div>
   <div v-else :class="$style.placeholder">
@@ -23,10 +23,16 @@
 import { ClassNames } from '@utils';
 import { computed, onMounted, shallowRef } from 'vue';
 
-const props = defineProps<{
-  class?: ClassNames;
-  import: () => Promise<{ default: unknown }>;
-}>();
+const props = withDefaults(
+  defineProps<{
+    class?: ClassNames;
+    loading?: boolean;
+    import: () => Promise<{ default: unknown }>;
+  }>(),
+  {
+    loading: false
+  }
+);
 
 const component = shallowRef();
 const classes = computed(() => props.class);

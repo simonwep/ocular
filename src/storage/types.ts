@@ -1,6 +1,10 @@
-import { Ref } from 'vue';
+import { DeepReadonly } from '@vue/reactivity';
 
 export type StorageAuthenticationState = 'idle' | 'loading' | 'authenticated';
+
+export interface StorageState {
+  status: StorageAuthenticationState;
+}
 
 export interface StorageSync<T> {
   name: string;
@@ -9,7 +13,7 @@ export interface StorageSync<T> {
 }
 
 export interface AppStorage {
-  state: Ref<StorageAuthenticationState>;
+  state: DeepReadonly<StorageState>;
   login(): void;
   sync<T>(config: StorageSync<T>): void;
 }

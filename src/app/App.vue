@@ -1,6 +1,7 @@
 <template>
   <div :class="$style.app">
     <LoadingScreen
+      :loading="storage.state.status === 'loading'"
       :class="$style.root"
       :import="() => import('./tabs/Tabs.vue')"
     />
@@ -10,10 +11,12 @@
 <script lang="ts" setup>
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
 import { useAppElement } from '@composables';
+import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
 import { watch, watchEffect } from 'vue';
 
 const { state } = useSettingsStore();
+const storage = useStorage();
 const app = useAppElement();
 
 watchEffect(() => app.value?.classList.add(state.appearance.theme));

@@ -21,14 +21,14 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
-const storage = useStorage();
+const { login, state } = useStorage();
 
 const icon = computed((): AppIcon => {
-  return storage.state.value === 'idle' ? 'cloud-off-line' : 'cloud-line';
+  return state.status === 'idle' ? 'cloud-off-line' : 'cloud-line';
 });
 
 const color = computed((): Color => {
-  switch (storage.state.value) {
+  switch (state.status) {
     case 'authenticated':
       return 'success';
     case 'loading':
@@ -41,8 +41,8 @@ const color = computed((): Color => {
 });
 
 const auth = () => {
-  if (storage.state.value === 'idle') {
-    storage.login();
+  if (state.status === 'idle') {
+    login();
   }
 };
 </script>

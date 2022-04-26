@@ -2,12 +2,17 @@ import {
   GoogleDriveAuth,
   GoogleDriveAuthReponse
 } from '@storage/google-drive-storage/types';
-import { ref, watch } from 'vue';
-import { AppStorage, StorageAuthenticationState, StorageSync } from '../types';
+import { reactive, readonly, ref, watch } from 'vue';
+import {
+  AppStorage,
+  StorageAuthenticationState,
+  StorageState,
+  StorageSync
+} from '../types';
 import { parseOAuth2Login } from './utils';
 
 export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
-  const state = ref<StorageAuthenticationState>('idle');
+  const state = reactive<StorageState>({ status: 'idle' });
   const accessToken = ref<string | undefined>();
   const fileIdCache = new Map<string, string>();
   let loginTimeout = -1;
@@ -28,7 +33,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     url.searchParams.set('client_id', auth.clientId);
 
     return new Promise<void>((resolve, reject) => {
-      state.value = 'loading';
+      state.status = 'loading';
 
       window.open(url, '_blank');
       window.addEventListener(
@@ -42,7 +47,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
             clearTimeout(loginTimeout);
 
             accessToken.value = rest.accessToken;
-            state.value = 'authenticated';
+            state.status = 'authenticated';
 
             loginTimeout = setTimeout(() => {
               accessToken.value = undefined;
@@ -150,5 +155,5 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     });
   };
 
-  return { state, login, sync };
+  return { state: readonly(state), login, sync };
 };
