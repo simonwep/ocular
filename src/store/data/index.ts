@@ -1,8 +1,8 @@
+import { AppStorage } from '@storage/types';
 import { remove, uuid } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
 import { inject, reactive, readonly } from 'vue';
 import { readFile } from '@utils';
-import { Storage } from '../../utils/google-drive-storage';
 import { Budget, BudgetGroup, DataState } from './types';
 import { generateTemplate } from './template';
 
@@ -28,7 +28,7 @@ interface Store {
   setBudget(id: string, month: number, amount: number): void;
 }
 
-export const createDataStore = (storage?: Storage): Store => {
+export const createDataStore = (storage?: AppStorage): Store => {
   const state = reactive(generateTemplate());
   const groups = () => [...state.expenses, ...state.income];
 

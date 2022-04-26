@@ -1,27 +1,24 @@
-import { ref, watch } from 'vue';
 import {
   GoogleDriveAuth,
-  GoogleDriveAuthReponse,
-  Storage,
-  StorageSync
-} from './types';
+  GoogleDriveAuthReponse
+} from '@storage/google-drive-storage/types';
+import { ref, watch } from 'vue';
+import { AppStorage, StorageAuthenticationState, StorageSync } from '../types';
 import { parseOAuth2Login } from './utils';
 
-export const createGoogleDriveStorage = (auth: GoogleDriveAuth): Storage => {
+export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
+  const state = ref<StorageAuthenticationState>('idle');
   const accessToken = ref<string | undefined>();
   const fileIdCache = new Map<string, string>();
   let loginTimeout = -1;
 
+  const authentication = parseOAuth2Login();
+  if (authentication) {
+    window.postMessage(JSON.stringify(authentication));
+    window.close();
+  }
+
   const login = () => {
-    accessToken.value = undefined;
-
-    const authentication = parseOAuth2Login();
-    if (authentication) {
-      window.postMessage(JSON.stringify(authentication));
-      window.close();
-      return;
-    }
-
     // Open OAuth screen
     const url = new URL(auth.authUri);
     url.searchParams.set('scope', auth.scope);
@@ -31,6 +28,8 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): Storage => {
     url.searchParams.set('client_id', auth.clientId);
 
     return new Promise<void>((resolve, reject) => {
+      state.value = 'loading';
+
       window.open(url, '_blank')?.addEventListener('message', (message) => {
         const { error, ...rest } = JSON.parse(
           message.data
@@ -40,11 +39,14 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): Storage => {
           return reject(error);
         } else if (rest.expiresIn && rest.accessToken) {
           clearTimeout(loginTimeout);
+
           accessToken.value = rest.accessToken;
-          loginTimeout = setTimeout(
-            login,
-            Number(rest.expiresIn) * 1000
-          ) as unknown as number;
+          state.value = 'authenticated';
+
+          loginTimeout = setTimeout(() => {
+            accessToken.value = undefined;
+            login();
+          }, Number(rest.expiresIn) * 1000) as unknown as number;
         }
 
         resolve();
@@ -145,6 +147,5 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): Storage => {
     });
   };
 
-  login();
-  return { sync };
+  return { state, login, sync };
 };

@@ -15,6 +15,8 @@
 
     <ImportButton :class="[$style.top, $style.btn]" />
     <ExportButton :class="$style.btn" />
+    <div :class="$style.divider" />
+    <CloudButton :class="$style.btn" />
 
     <BurgerButton
       @click="open = !open"
@@ -45,6 +47,7 @@ import { useOutOfElementClick } from '../../composables/useOutOfElementClick';
 import Dashboard from './dashboard/Dashboard.vue';
 import Expenses from './expenses/Expenses.vue';
 import Income from './income/Income.vue';
+import CloudButton from './navigation/CloudButton.vue';
 import ExportButton from './navigation/export/ExportButton.vue';
 import ImportButton from './navigation/import/ImportButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';

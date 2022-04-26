@@ -4,6 +4,8 @@ export type AppIcon =
   | 'arrow-right-s-line'
   | 'check'
   | 'close-circle'
+  | 'cloud-line'
+  | 'cloud-off-line'
   | 'donut-chart'
   | 'download-cloud-2-line'
   | 'file-fill'

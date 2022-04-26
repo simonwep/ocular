@@ -67,6 +67,16 @@
     --c-warning-pure-hover: var(--c-warning-hover);
     --c-warning-shadow: 0 0 0 2px #e7b6345c;
 
+    --c-danger: #ed3d3d;
+    --c-danger-light: var(--c-danger);
+    --c-danger-light-dimmed: #ffa4a4;
+    --c-danger-hover: #c42a2a;
+    --c-danger-text: var(--c-text-light);
+    --c-danger-text-hover: var(--c-danger-text);
+    --c-danger-pure: var(--c-danger);
+    --c-danger-pure-hover: var(--c-danger-hover);
+    --c-danger-shadow: 0 0 0 2px #c42a2a5c;
+
     --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
     --font-weight-s: 200;
     --font-weight-m: 400;
