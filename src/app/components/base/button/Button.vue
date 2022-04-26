@@ -83,12 +83,7 @@ const classes = computed(() => [
   }
 
   &:focus {
-    box-shadow: v-bind('theme.focus');
-  }
-
-  &:hover {
-    background: v-bind('theme.color.hover');
-    color: v-bind('theme.text.hover');
+    box-shadow: 0 0 0 2px v-bind('theme.focus');
   }
 
   &.textual {
@@ -98,8 +93,17 @@ const classes = computed(() => [
     &:focus {
       box-shadow: none;
     }
+  }
+}
 
+@media (pointer: fine) {
+  .button {
     &:hover {
+      background: v-bind('theme.color.hover');
+      color: v-bind('theme.text.hover');
+    }
+
+    &.textual:hover {
       background: transparent;
       color: v-bind('theme.pure.hover');
     }

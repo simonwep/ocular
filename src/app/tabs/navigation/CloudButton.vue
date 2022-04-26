@@ -4,12 +4,13 @@
     @click="auth"
     textual
     :color="color"
-    icon="cloud-line"
+    :icon="icon"
   />
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
+import { AppIcon } from '@components/base/icon/Icon.types';
 import { Color } from '@composables';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
@@ -21,6 +22,10 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const storage = useStorage();
+
+const icon = computed((): AppIcon => {
+  return storage.state.value === 'idle' ? 'cloud-off-line' : 'cloud-line';
+});
 
 const color = computed((): Color => {
   switch (storage.state.value) {

@@ -50,7 +50,7 @@ $padding: 20px;
   position: sticky;
   top: 0;
   padding-top: 16px;
-  height: 50px;
+  padding-bottom: 8px;
   background: var(--app-backround);
   animation: var(--animation-fade-in-right) var(--transition-s);
 
@@ -71,9 +71,8 @@ $padding: 20px;
   }
 
   .header {
-    padding: 0 $padding 5px $padding;
+    padding: 18px $padding 5px $padding;
     align-items: flex-end;
-    height: 51px;
   }
 
   .content {

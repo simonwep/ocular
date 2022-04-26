@@ -17,7 +17,7 @@
     --c-dark-text-hover: #c0c4cc;
     --c-dark-pure: #646b76;
     --c-dark-pure-hover: var(--c-dark-pure);
-    --c-dark-shadow: 0 0 0 2px #282f385c;
+    --c-dark-shadow: #282f385c;
 
     --c-dimmed: #bec9d4;
     --c-dimmed-hover: #a2a9b4;
@@ -25,7 +25,7 @@
     --c-dimmed-text-hover: var(--c-dimmed-text);
     --c-dimmed-pure: var(--c-dimmed);
     --c-dimmed-pure-hover: var(--c-dimmed-hover);
-    --c-dimmed-shadow: 0 0 0 2px #555c655c;
+    --c-dimmed-shadow: #555c655c;
 
     --c-primary: #6bb1ff;
     --c-primary-light: var(--c-primary);
@@ -35,7 +35,7 @@
     --c-primary-text-hover: var(--c-primary-text);
     --c-primary-pure: var(--c-primary);
     --c-primary-pure-hover: var(--c-primary-hover);
-    --c-primary-shadow: 0 0 0 2px #4fa2ff5c;
+    --c-primary-shadow: #4fa2ff5c;
 
     --c-secondary: #b460ff;
     --c-secondary-light: var(--c-secondary);
@@ -45,7 +45,7 @@
     --c-secondary-text-hover: var(--c-secondary-text);
     --c-secondary-pure: var(--c-secondary);
     --c-secondary-pure-hover: var(--c-secondary-hover);
-    --c-secondary-shadow: 0 0 0 2px #ac4fff5c;
+    --c-secondary-shadow: #ac4fff5c;
 
     --c-success: #36b399;
     --c-success-light: var(--c-success);
@@ -55,7 +55,7 @@
     --c-success-text-hover: var(--c-success-text);
     --c-success-pure: var(--c-success);
     --c-success-pure-hover: var(--c-success-hover);
-    --c-success-shadow: 0 0 0 2px #17a6895c;
+    --c-success-shadow: #17a6895c;
 
     --c-warning: #edbc3d;
     --c-warning-light: var(--c-warning);
@@ -65,7 +65,7 @@
     --c-warning-text-hover: var(--c-warning-text);
     --c-warning-pure: var(--c-warning);
     --c-warning-pure-hover: var(--c-warning-hover);
-    --c-warning-shadow: 0 0 0 2px #e7b6345c;
+    --c-warning-shadow: #e7b6345c;
 
     --c-danger: #ed3d3d;
     --c-danger-light: var(--c-danger);
@@ -75,7 +75,7 @@
     --c-danger-text-hover: var(--c-danger-text);
     --c-danger-pure: var(--c-danger);
     --c-danger-pure-hover: var(--c-danger-hover);
-    --c-danger-shadow: 0 0 0 2px #c42a2a5c;
+    --c-danger-shadow: #c42a2a5c;
 
     --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
     --font-weight-s: 200;
@@ -121,7 +121,7 @@
 
     --input-field-focus-border: #0750b1;
     --input-field-focus-background: var(--input-field-background);
-    --input-field-focus-box-shadow: 0 0 0 2px #005ad173;
+    --input-field-focus-box-shadow: #005ad173;
 
     --input-field-max-width: 200px;
 

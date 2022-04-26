@@ -1,49 +1,43 @@
 <template>
-  <div ref="menu" :class="[$style.buttons, { [$style.open]: open }]">
-    <ThemeButton :class="$style.btn" />
-    <div :class="$style.divider" />
+  <div :class="$style.tabs">
+    <div ref="menu" :class="$style.buttons">
+      <ThemeButton :class="$style.btn" />
+      <div :class="$style.divider" />
 
-    <Button
-      v-for="button of buttons"
-      :class="$style.btn"
-      :key="button.tab"
-      :color="tab === button.tab ? 'primary' : 'dimmed'"
-      :icon="button.icon"
-      textual
-      @click="(tab = button.tab) && (open = false)"
-    />
+      <Button
+        v-for="button of buttons"
+        :class="$style.btn"
+        :key="button.tab"
+        :color="tab === button.tab ? 'primary' : 'dimmed'"
+        :icon="button.icon"
+        textual
+        @click="(tab = button.tab) && (open = false)"
+      />
 
-    <ImportButton :class="[$style.top, $style.btn]" />
-    <ExportButton :class="$style.btn" />
-    <div :class="$style.divider" />
-    <CloudButton :class="$style.btn" />
+      <ImportButton :class="[$style.top, $style.btn]" />
+      <ExportButton :class="$style.btn" />
+      <div :class="$style.divider" />
+      <CloudButton :class="$style.btn" />
+    </div>
 
-    <BurgerButton
-      @click="open = !open"
-      :active="open"
-      :class="[$style.mobileMenuTrigger, $style.btn]"
-    />
-  </div>
-
-  <div :class="$style.panes">
-    <Transition
-      :enter-active-class="$style.transitionTarget"
-      :enter-from-class="$style.transitionOrigin"
-      :leave-active-class="$style.transitionTarget"
-      :leave-to-class="$style.transitionOrigin"
-      mode="out-in"
-    >
-      <component v-if="component" :is="component" />
-    </Transition>
+    <div :class="$style.panes">
+      <Transition
+        :enter-active-class="$style.transitionTarget"
+        :enter-from-class="$style.transitionOrigin"
+        :leave-active-class="$style.transitionTarget"
+        :leave-to-class="$style.transitionOrigin"
+        mode="out-in"
+      >
+        <component v-if="component" :is="component" />
+      </Transition>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
-import BurgerButton from '@components/base/burger-button/BurgerButton.vue';
 import { computed, ref } from 'vue';
-import { useOutOfElementClick } from '../../composables/useOutOfElementClick';
 import Dashboard from './dashboard/Dashboard.vue';
 import Expenses from './expenses/Expenses.vue';
 import Income from './income/Income.vue';
@@ -55,9 +49,7 @@ import ThemeButton from './navigation/ThemeButton.vue';
 type Tab = 'dashboard' | 'income' | 'expenses' | 'settings';
 
 const menu = ref<HTMLDivElement>();
-const open = ref(false);
 const tab = ref<Tab>('dashboard');
-useOutOfElementClick(menu, () => (open.value = false));
 
 const component = computed(
   () => buttons.find((v) => v.tab === tab.value)?.component
@@ -83,10 +75,16 @@ const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
   opacity: 0;
 }
 
+.tabs {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
 .panes {
   overflow: hidden;
   height: 100%;
-  flex-grow: 1;
+  width: 100%;
 }
 
 .buttons {
@@ -106,53 +104,29 @@ const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
     height: 1px;
     background: var(--app-border);
   }
-
-  .mobileMenuTrigger {
-    display: none;
-  }
 }
 
 @include globals.onMobileDevices {
-  .buttons {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
+  .tabs {
+    flex-direction: column-reverse;
+  }
+
+  .panes {
     height: auto;
+    flex-grow: 1;
+  }
+
+  .buttons {
     border: none;
-    z-index: 1000;
-
-    .mobileMenuTrigger {
-      display: flex;
-    }
-
-    .mobileMenuTrigger,
-    .btn,
-    .mobileMenuTrigger:hover,
-    .btn:hover {
-      background: var(--app-backround);
-      border-radius: 100%;
-      box-shadow: var(--menu-button-shadow);
-      padding: 0 !important;
-      height: 42px;
-      width: 42px;
-    }
-
-    &:not(.open) .btn:not(.mobileMenuTrigger) {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-    }
+    border-top: 1px solid var(--app-border);
+    align-items: center;
+    margin-top: 0;
+    justify-content: space-evenly;
+    flex-direction: row;
+    height: auto;
 
     .divider {
       display: none;
-    }
-
-    .btn:not(.mobileMenuTrigger) {
-      justify-content: center;
-
-      &:hover {
-        background: var(--app-backround);
-      }
     }
   }
 }

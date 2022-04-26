@@ -39,6 +39,7 @@ const endingValue = computed(() =>
     : props.values
 );
 
+const shadow = computed(() => `var(${props.color}-shadow)`);
 const backgroundColor = computed(() => `var(${props.color}-light)`);
 const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
 </script>
@@ -82,8 +83,12 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
 }
 
 @include globals.onMobileDevices {
+  .summaryPanel {
+    box-shadow: 0 2px 2px v-bind('shadow');
+  }
+
   .header .title {
-    margin-top: 5 spx;
+    margin-top: 5px;
   }
 
   .chart {

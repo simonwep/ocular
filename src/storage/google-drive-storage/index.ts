@@ -14,7 +14,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
 
   const authentication = parseOAuth2Login();
   if (authentication) {
-    window.postMessage(JSON.stringify(authentication));
+    window.opener.postMessage(authentication, location.origin);
     window.close();
   }
 
@@ -30,27 +30,30 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     return new Promise<void>((resolve, reject) => {
       state.value = 'loading';
 
-      window.open(url, '_blank')?.addEventListener('message', (message) => {
-        const { error, ...rest } = JSON.parse(
-          message.data
-        ) as GoogleDriveAuthReponse;
+      window.open(url, '_blank');
+      window.addEventListener(
+        'message',
+        (message) => {
+          const { error, ...rest } = message.data as GoogleDriveAuthReponse;
 
-        if (error) {
-          return reject(error);
-        } else if (rest.expiresIn && rest.accessToken) {
-          clearTimeout(loginTimeout);
+          if (error) {
+            return reject(error);
+          } else if (rest.expiresIn && rest.accessToken) {
+            clearTimeout(loginTimeout);
 
-          accessToken.value = rest.accessToken;
-          state.value = 'authenticated';
+            accessToken.value = rest.accessToken;
+            state.value = 'authenticated';
 
-          loginTimeout = setTimeout(() => {
-            accessToken.value = undefined;
-            login();
-          }, Number(rest.expiresIn) * 1000) as unknown as number;
-        }
+            loginTimeout = setTimeout(() => {
+              accessToken.value = undefined;
+              void login();
+            }, Number(rest.expiresIn) * 1000) as unknown as number;
+          }
 
-        resolve();
-      });
+          resolve();
+        },
+        { once: true }
+      );
     });
   };
 
