@@ -61,7 +61,7 @@ const change = (e: Event) => {
 watchEffect(() => {
   void props.modelValue;
   requestAnimationFrame(() => {
-    width.value = `${shadow.value?.offsetWidth}px`;
+    width.value = `${(shadow.value?.offsetWidth ?? 0) + 5}px`;
   });
 });
 </script>
@@ -86,28 +86,22 @@ watchEffect(() => {
   }
 
   &:not(.inline) {
-    border: 1px solid var(--input-field-border);
     background: var(--input-field-background);
     border-radius: var(--border-radius-s);
     font-size: var(--input-field-font-size);
     transition: all var(--input-field-transition);
 
     &:hover {
-      border: 1px solid var(--input-field-hover-border);
       background: var(--input-field-hover-background);
     }
 
     &:not(.empty) {
-      border-color: transparent;
-
       &:hover {
-        border: 1px solid var(--input-field-border);
         background: var(--input-field-hover-background);
       }
     }
 
     &:focus-within {
-      border: 1px solid var(--input-field-focus-border);
       background: var(--input-field-focus-background);
       box-shadow: var(--input-field-focus-box-shadow);
     }

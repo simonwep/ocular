@@ -106,10 +106,6 @@ const totals = computed(() => {
   display: grid;
   grid-template: auto / max-content max-content max-content repeat(12, 1fr) max-content max-content;
   align-items: center;
-
-  > * {
-    padding: 4px 6px;
-  }
 }
 
 .sum {

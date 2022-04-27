@@ -94,33 +94,11 @@ watch(
 
 <style lang="scss" module>
 .currencyCell {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   width: auto;
-  border: 1px solid var(--input-field-border);
-  background: var(--input-field-background);
-  border-radius: var(--border-radius-s);
+  height: 100%;
   font-size: var(--input-field-font-size);
-  transition: all var(--input-field-transition);
-
-  &:hover {
-    border: 1px solid var(--input-field-hover-border);
-    background: var(--input-field-hover-background);
-  }
-
-  &:not(.empty) {
-    border-color: transparent;
-
-    &:hover {
-      border: 1px solid var(--input-field-border);
-      background: var(--input-field-hover-background);
-    }
-  }
-
-  &:focus-within {
-    border: 1px solid var(--input-field-focus-border);
-    background: var(--input-field-focus-background);
-    box-shadow: var(--input-field-focus-box-shadow);
-  }
 
   > input {
     all: unset;

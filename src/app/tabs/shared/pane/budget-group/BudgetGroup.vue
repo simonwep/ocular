@@ -1,4 +1,5 @@
 <template>
+  <!-- Header -->
   <Button
     :icon="open ? 'arrow-down-s-line' : 'arrow-right-s-line'"
     color="dimmed"
@@ -6,7 +7,7 @@
     @click="open = !open"
   />
 
-  <TextInput
+  <TextCell
     :class="[$style.top, $style.start]"
     :model-value="group.name"
     inline
@@ -27,8 +28,8 @@
     <span>{{ t('budget.average') }}</span>
   </span>
 
+  <!-- Budgets -->
   <template v-if="open">
-    <!-- Budgets -->
     <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
       <span />
       <Button
@@ -39,17 +40,31 @@
       />
 
       <span :class="$style.header">
-        <TextInput
+        <TextCell
           :model-value="budget.name"
           @update:model-value="setBudgetName(budget.id, $event)"
         />
       </span>
 
-      <span v-for="(_, index) of budget.values" :key="budget.id + index">
+      <span
+        v-for="(_, month) of budget.values"
+        :class="[
+          $style.currencyCell,
+          {
+            [$style.even]: index % 2,
+            [$style.firstRow]: index === 0,
+            [$style.firstColumn]: month === 0,
+            [$style.tlc]: index === 0 && month === 0,
+            [$style.trc]: index === 0 && month === 11,
+            [$style.blc]: index === group.budgets.length - 1 && month === 0,
+            [$style.brc]: index === group.budgets.length - 1 && month === 11
+          }
+        ]"
+        :key="budget.id + month"
+      >
         <CurrencyCell
-          :locale="locale"
-          :model-value="budget.values[index]"
-          @update:model-value="setBudget(budget.id, index, $event)"
+          :model-value="budget.values[month]"
+          @update:model-value="setBudget(budget.id, month, $event)"
         />
       </span>
 
@@ -62,7 +77,7 @@
       </span>
     </template>
 
-    <!-- Add budget -->
+    <!-- Footer -->
     <span />
     <span />
     <Button
@@ -92,7 +107,7 @@
 import Button from '@components/base/button/Button.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import TextInput from '@components/base/text-input/TextInput.vue';
+import TextCell from '@components/base/text-cell/TextCell.vue';
 import { average, sum } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
 import { computed, ref } from 'vue';
@@ -112,8 +127,8 @@ const {
   removeBudget
 } = useDataStore();
 
-const { t, locale } = useI18n();
-const open = ref(false);
+const { t } = useI18n();
+const open = ref(true);
 const totals = computed(() => {
   const totals: number[] = new Array(12).fill(0);
 
@@ -137,6 +152,7 @@ const totals = computed(() => {
 .meta {
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-m);
+  padding: 0 10px;
 }
 
 .top {
@@ -144,6 +160,7 @@ const totals = computed(() => {
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-l);
   margin: 8px 0;
+  padding: 5px 0;
   background: var(--c-dark);
   color: var(--c-dark-text);
 
@@ -163,6 +180,50 @@ const totals = computed(() => {
     border-top-right-radius: var(--border-radius-m);
     border-bottom-right-radius: var(--border-radius-m);
     padding-right: 8px;
+  }
+}
+
+.currencyCell {
+  background: var(--grid-background-odd);
+  height: 100%;
+  border-right: 1px solid var(--grid-border-color);
+  border-bottom: 1px solid var(--grid-border-color);
+  transition: all var(--input-field-transition);
+
+  &:hover {
+    background: var(--grid-background-odd-hover);
+  }
+
+  &.firstRow {
+    border-top: 1px solid var(--grid-border-color);
+  }
+
+  &.firstColumn {
+    border-left: 1px solid var(--grid-border-color);
+  }
+
+  &.even {
+    background: var(--grid-background-even);
+
+    &:hover {
+      background: var(--grid-background-even-hover);
+    }
+  }
+
+  &.tlc {
+    border-top-left-radius: var(--grid-border-radius);
+  }
+
+  &.trc {
+    border-top-right-radius: var(--grid-border-radius);
+  }
+
+  &.blc {
+    border-bottom-left-radius: var(--grid-border-radius);
+  }
+
+  &.brc {
+    border-bottom-right-radius: var(--grid-border-radius);
   }
 }
 

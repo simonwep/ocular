@@ -126,5 +126,10 @@
     --dialog-background: var(--app-backround);
     --dialog-box-shadow: 0 2px 5px #00000012;
 
-    --menu-button-shadow: 0 2px 5px #c5c5c599;
+    --grid-background-odd: #f0f2f3;
+    --grid-background-odd-hover: hsl(200deg 11% 91%);
+    --grid-background-even: #ffffff;
+    --grid-background-even-hover: #f5f5f7;
+    --grid-border-color: #c6cfdd;
+    --grid-border-radius: var(--border-radius-m);
 }
