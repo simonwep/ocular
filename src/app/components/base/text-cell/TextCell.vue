@@ -1,10 +1,8 @@
 <template>
   <span :class="classes">
-    <span :class="$style.shadow" ref="shadow">{{ modelValue }}</span>
     <input
       ref="input"
       :value="modelValue"
-      :style="{ width }"
       type="text"
       @blur="focused = false"
       @focus="focus"
@@ -15,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, useCssModule, watchEffect } from 'vue';
+import { computed, nextTick, ref, useCssModule } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: string): void;
@@ -31,8 +29,6 @@ const props = withDefaults(
   }
 );
 
-const width = ref('auto');
-const shadow = ref<HTMLSpanElement>();
 const input = ref<HTMLInputElement>();
 const styles = useCssModule();
 const focused = ref(false);
@@ -57,13 +53,6 @@ const focus = () => {
 const change = (e: Event) => {
   emit('update:modelValue', (e.target as HTMLInputElement).value);
 };
-
-watchEffect(() => {
-  void props.modelValue;
-  requestAnimationFrame(() => {
-    width.value = `${(shadow.value?.offsetWidth ?? 0) + 5}px`;
-  });
-});
 </script>
 
 <style lang="scss" module>
@@ -76,13 +65,6 @@ watchEffect(() => {
     max-width: var(--input-field-max-width);
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .shadow {
-    all: inherit;
-    position: fixed;
-    width: auto;
-    visibility: hidden;
   }
 
   &:not(.inline) {
