@@ -118,7 +118,7 @@ const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
 
   .buttons {
     border: none;
-    border-top: 1px solid var(--app-border);
+    border-top: 3px solid var(--app-border);
     align-items: center;
     margin-top: 0;
     justify-content: space-evenly;

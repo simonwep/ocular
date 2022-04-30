@@ -90,7 +90,7 @@ watch(
   width: 100%;
   font-size: var(--input-field-font-size);
   max-height: 100%;
-  padding: 2px 4px;
+  padding: 0 4px;
   caret-color: var(--input-field-caret-color);
 
   &::-webkit-outer-spin-button,

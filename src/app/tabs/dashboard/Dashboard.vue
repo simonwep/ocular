@@ -20,8 +20,6 @@ const { t } = useI18n();
 .dashboard {
   display: grid;
   grid-template: auto 1fr / 1fr;
-  grid-gap: 20px;
-  padding-top: 20px;
   flex-grow: 1;
 
   @include globals.onMobileDevices {

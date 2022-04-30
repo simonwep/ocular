@@ -7,21 +7,21 @@
     />
 
     <SummaryPanel
-      :sub-title="`~${n(expensePercentage, 'percent')}`"
+      :sub-title="n(expensePercentage, 'percent')"
       :values="expenses"
       color="--c-warning"
       :title="t('dashboard.expenses')"
     />
 
     <SummaryPanel
-      :sub-title="`${n(endingBalance ? 1 - expensePercentage : 0, 'percent')}`"
+      :sub-title="n(endingBalanceTotal ? 1 - expensePercentage : 0, 'percent')"
       :values="endingBalance"
       color="--c-primary"
       :title="t('dashboard.endingBalance')"
     />
 
     <SummaryPanel
-      :sub-title="`~${n(remainingBalancePercentage, 'percent')}`"
+      :sub-title="n(remainingBalancePercentage, 'percent')"
       :values="remainingBalance"
       color="--c-secondary"
       :title="t('dashboard.remainingBalance')"
@@ -51,6 +51,7 @@ const expensesTotals = computed(() => totals(state.expenses));
 const income = computed(() => aggregate(incomeTotals.value));
 const expenses = computed(() => aggregate(expensesTotals.value));
 const endingBalance = computed(() => subtract(income.value, expenses.value));
+const endingBalanceTotal = computed(() => sum(endingBalance.value));
 
 const expensePercentage = computed(() => {
   const expenses = sum(expensesTotals.value);

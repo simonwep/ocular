@@ -136,6 +136,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     watch(
       () => JSON.stringify(config.state()),
       (value) => {
+        if (!accessToken.value) return;
         state.status = 'syncing';
         void change(value);
       }

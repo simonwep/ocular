@@ -19,3 +19,10 @@
 ::-webkit-scrollbar-corner {
     display: none;
 }
+
+@media (pointer: coarse) {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+

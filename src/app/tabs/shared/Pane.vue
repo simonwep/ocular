@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.pane">
-    <div :class="$style.header">
-      <h1>
+    <div ref="header" :class="$style.header">
+      <h1 :class="$style.title">
         <span>{{ title }}</span>
         <template v-if="amount">
           <span> - </span>
@@ -10,7 +10,7 @@
       </h1>
       <slot name="header" />
     </div>
-    <div :class="[$style.content, classes]">
+    <div ref="content" :class="[$style.content, classes]">
       <slot />
     </div>
   </div>
@@ -19,7 +19,8 @@
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
 import { ClassNames } from '@utils';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import { useScrollShadow } from '../../../composables/useScrollShadow';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -27,7 +28,10 @@ const props = defineProps<{
   amount?: number;
 }>();
 
+const header = ref<HTMLDivElement>();
+const content = ref<HTMLDivElement>();
 const classes = computed(() => props.class);
+useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
 </script>
 
 <style lang="scss" module>
@@ -36,7 +40,6 @@ const classes = computed(() => props.class);
 .pane {
   display: flex;
   flex-direction: column;
-  padding: 0 10px 10px;
   height: 100%;
   overflow: hidden;
   background: var(--app-backround);
@@ -49,11 +52,11 @@ const classes = computed(() => props.class);
   top: 0;
   padding-top: 14px;
   padding-bottom: 15px;
-  border-bottom: 1px solid var(--app-border);
   background: var(--app-backround);
   animation: var(--animation-fade-in-right) var(--transition-s);
+  transition: all var(--transition-m);
 
-  > h1 {
+  .title {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-l);
     margin-left: 10px;
@@ -63,7 +66,7 @@ const classes = computed(() => props.class);
 .content {
   overflow: auto;
   flex-grow: 1;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 @include globals.onMobileDevices {
