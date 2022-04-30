@@ -39,7 +39,6 @@ const classes = computed(() => [
   {
     [styles.hasIcon]: props.icon,
     [styles.textual]: props.textual,
-    [styles.inline]: props.inline,
     [styles.iconOnly]: props.icon && !props.text
   }
 ]);

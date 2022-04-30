@@ -2,16 +2,19 @@ import {
   GoogleDriveAuth,
   GoogleDriveAuthReponse
 } from '@storage/google-drive-storage/types';
-import { reactive, readonly, ref, watch } from 'vue';
+import { createKeyStorage } from '@storage/key-storage';
+import { reactive, readonly, watch, watchEffect } from 'vue';
 import { debounce } from '../../utils/debounce';
 import { AppStorage, StorageState, StorageSync } from '../types';
 import { parseOAuth2Login } from './utils';
 
+const CACHE_KEY = 'GOOGLE_DRIVE_STORAGE_KEY';
+
 export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
+  const keyStorage = createKeyStorage(CACHE_KEY);
   const state = reactive<StorageState>({ status: 'idle' });
-  const accessToken = ref<string | undefined>();
   const fileIdCache = new Map<string, string>();
-  let loginTimeout = -1;
+  let initialSyncsActive = 0;
   let syncsActive = 0;
 
   const authentication = parseOAuth2Login();
@@ -41,15 +44,10 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
           if (error) {
             return reject(error);
           } else if (rest.expiresIn && rest.accessToken) {
-            clearTimeout(loginTimeout);
-
-            accessToken.value = rest.accessToken;
-            state.status = 'authenticated';
-
-            loginTimeout = setTimeout(() => {
-              accessToken.value = undefined;
-              void login();
-            }, Number(rest.expiresIn) * 1000) as unknown as number;
+            keyStorage.register(
+              rest.accessToken as string,
+              Number(rest.expiresIn) * 1000
+            );
           }
 
           resolve();
@@ -60,10 +58,10 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
   };
 
   const getFileId = async (name: string): Promise<string | undefined> => {
-    if (!accessToken.value) return Promise.reject('Not authenticated');
+    if (!keyStorage.key) return Promise.reject('Not authenticated');
 
     const url = new URL('https://www.googleapis.com/drive/v3/files');
-    url.searchParams.set('access_token', accessToken.value);
+    url.searchParams.set('access_token', keyStorage.key);
     url.searchParams.set('spaces', 'appDataFolder');
     url.searchParams.set('q', `name='${name}'`);
 
@@ -73,18 +71,18 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
   };
 
   const upsert = async (name: string, json: string): Promise<void> => {
-    if (!accessToken.value) return Promise.reject('Not authenticated');
+    if (!keyStorage.key) return Promise.reject('Not authenticated');
 
     const fileId = fileIdCache.get(name) ?? (await getFileId(name));
 
     if (fileId) {
       fileIdCache.set(name, fileId);
       const url = new URL('https://www.googleapis.com/upload/drive/v3/files');
-      url.searchParams.set('access_token', accessToken.value);
+      url.searchParams.set('access_token', keyStorage.key);
       url.searchParams.set('uploadType', 'media');
 
       await fetch(
-        `https://www.googleapis.com/upload/drive/v3/files/${fileId}?access_token=${accessToken.value}`,
+        `https://www.googleapis.com/upload/drive/v3/files/${fileId}?access_token=${keyStorage.key}`,
         {
           method: 'PATCH',
           body: json
@@ -110,7 +108,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
       form.append('file', new Blob([json], { type: 'application/json' }));
 
       const url = new URL('https://www.googleapis.com/upload/drive/v3/files');
-      url.searchParams.set('access_token', accessToken.value);
+      url.searchParams.set('access_token', keyStorage.key);
       url.searchParams.set('uploadType', 'multipart');
 
       const file = await fetch(url.toString(), {
@@ -136,22 +134,24 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     watch(
       () => JSON.stringify(config.state()),
       (value) => {
-        if (!accessToken.value) return;
+        if (!keyStorage.key || initialSyncsActive--) return;
         state.status = 'syncing';
         void change(value);
       }
     );
 
-    watch(accessToken, async (token) => {
-      if (token) {
+    watchEffect(async () => {
+      if (keyStorage.key) {
+        state.status = 'authenticated';
         const fileId = await getFileId(config.name);
+        initialSyncsActive++;
 
         if (fileId) {
           const content = await fetch(
             `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`,
             {
               headers: {
-                Authorization: `Bearer ${accessToken.value}`
+                Authorization: `Bearer ${keyStorage.key}`
               }
             }
           ).then((res) => res.json());

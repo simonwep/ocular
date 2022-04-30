@@ -21,6 +21,7 @@ const { t } = useI18n();
   display: grid;
   grid-template: auto 1fr / 1fr;
   flex-grow: 1;
+  overflow: hidden;
 
   @include globals.onMobileDevices {
     grid-template: 1fr / 1fr;
