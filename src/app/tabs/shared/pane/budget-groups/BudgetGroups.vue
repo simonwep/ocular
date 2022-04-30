@@ -119,6 +119,6 @@ const totals = computed(() => {
 }
 
 .addGroupBtn {
-  margin-top: 6px;
+  margin-top: 20px;
 }
 </style>

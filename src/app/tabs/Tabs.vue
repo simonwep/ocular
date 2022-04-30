@@ -122,7 +122,7 @@ const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
     align-items: center;
     margin-top: 0;
     justify-content: space-evenly;
-    flex-direction: row;
+    flex-direction: row-reverse;
     height: auto;
 
     .divider {

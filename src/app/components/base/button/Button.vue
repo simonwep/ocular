@@ -1,6 +1,6 @@
 <template>
   <button :class="classes" @click="emit('click', $event)">
-    <Icon v-if="icon" :class="$style.icon" :icon="icon" />
+    <Icon v-if="icon" :class="[$style.icon, iconClass]" :icon="icon" />
     <span v-if="text" :class="$style.text">{{ text }}</span>
   </button>
 </template>
@@ -19,16 +19,15 @@ const emit = defineEmits<{
 const props = withDefaults(
   defineProps<{
     class?: ClassNames;
+    iconClass?: ClassNames;
     icon?: AppIcon;
     text?: string;
     color?: Color;
     textual?: boolean;
-    inline?: boolean;
   }>(),
   {
     color: 'primary',
-    textual: false,
-    inline: false
+    textual: false
   }
 );
 
@@ -57,12 +56,9 @@ const classes = computed(() => [
   color: v-bind('theme.text.base');
   border-radius: var(--border-radius-m);
   transition: all var(--transition-s);
+  padding: 6px 10px;
 
-  &:not(.inline) {
-    padding: 6px 10px;
-  }
-
-  &.iconOnly:not(.inline) {
+  &.iconOnly {
     padding: 3px;
   }
 

@@ -33,12 +33,10 @@ const classes = computed(() => props.class);
 <style lang="scss" module>
 @use 'src/styles/globals';
 
-$padding: 20px;
-
 .pane {
   display: flex;
   flex-direction: column;
-  padding: 0 $padding $padding;
+  padding: 0 10px 10px;
   height: 100%;
   overflow: hidden;
   background: var(--app-backround);
@@ -49,20 +47,23 @@ $padding: 20px;
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding-top: 16px;
-  padding-bottom: 8px;
+  padding-top: 14px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--app-border);
   background: var(--app-backround);
   animation: var(--animation-fade-in-right) var(--transition-s);
 
   > h1 {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-l);
+    margin-left: 10px;
   }
 }
 
 .content {
   overflow: auto;
   flex-grow: 1;
+  padding-top: 10px;
 }
 
 @include globals.onMobileDevices {
@@ -71,12 +72,12 @@ $padding: 20px;
   }
 
   .header {
-    padding: 18px $padding 5px $padding;
+    padding: 20px 10px 15px;
     align-items: flex-end;
   }
 
   .content {
-    padding: $padding;
+    padding: 10px;
   }
 }
 </style>
