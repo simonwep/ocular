@@ -81,17 +81,19 @@ const data = computed((): SankeyChartConfig => {
       const budget = group.budgets[i];
       const total = sum(budget.values);
 
-      labels.push({
-        id: budget.id,
-        name: `${budget.name} (${format(total)})`,
-        color: color(60 + 60 * (total / totalIncome))
-      });
+      if (total) {
+        labels.push({
+          id: budget.id,
+          name: `${budget.name} (${format(total)})`,
+          color: color(60 + 60 * (total / totalIncome))
+        });
 
-      links.push({
-        target: group.id,
-        source: budget.id,
-        value: total
-      });
+        links.push({
+          target: group.id,
+          source: budget.id,
+          value: total
+        });
+      }
     }
   }
 
@@ -113,18 +115,20 @@ const data = computed((): SankeyChartConfig => {
       const budget = group.budgets[i];
       const total = sum(budget.values);
 
-      labels.push({
-        id: budget.id,
-        name: `${budget.name} (${format(total)})`,
-        color: color(60 * (1 - total / totalExpenses)),
-        align: 'left'
-      });
+      if (total) {
+        labels.push({
+          id: budget.id,
+          name: `${budget.name} (${format(total)})`,
+          color: color(60 * (1 - total / totalExpenses)),
+          align: 'left'
+        });
 
-      links.push({
-        target: budget.id,
-        source: group.id,
-        value: total
-      });
+        links.push({
+          target: budget.id,
+          source: group.id,
+          value: total
+        });
+      }
     }
   }
 

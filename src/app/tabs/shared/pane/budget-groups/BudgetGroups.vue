@@ -117,6 +117,7 @@ const totals = computed(() => {
   font-size: var(--font-size-xxs);
   font-weight: var(--font-weight-m);
   padding-right: 20px;
+  padding-bottom: 5px;
 }
 
 .addGroupBtn {

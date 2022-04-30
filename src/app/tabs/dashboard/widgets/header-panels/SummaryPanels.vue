@@ -60,7 +60,7 @@ const expensePercentage = computed(() => {
 });
 
 const remainingBalance = computed(() => {
-  const currentMonth = new Date().getMonth();
+  const currentMonth = new Date().getMonth() + 1;
 
   return sum(
     subtract(
