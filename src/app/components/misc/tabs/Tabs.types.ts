@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export interface AsyncTab {
-  id: string;
+export interface AsyncTab<ID = string> {
+  id: ID;
   component: any;
 }

@@ -37,13 +37,14 @@
 import { BudgetGroup } from '@store/data/types';
 import { flatten } from '@store/data/utils/budgets';
 import { average, ClassNames, sum } from '@utils';
+import { DeepReadonly } from '@vue/reactivity';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import SummaryTable from './SummaryTable.vue';
 
 const props = defineProps<{
   class?: ClassNames;
-  groups: BudgetGroup[];
+  groups: DeepReadonly<BudgetGroup[]>;
   title: string;
 }>();
 

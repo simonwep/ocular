@@ -31,7 +31,7 @@ const { t } = useI18n();
 
 type View = 'charts' | 'tables';
 
-interface ViewButton extends AsyncTab {
+interface ViewButton extends AsyncTab<View> {
   icon: AppIcon;
 }
 

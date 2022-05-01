@@ -42,7 +42,7 @@ import ThemeButton from './navigation/ThemeButton.vue';
 
 type Tab = 'dashboard' | 'income' | 'expenses' | 'settings';
 
-interface TabItem extends AsyncTab {
+interface TabItem extends AsyncTab<Tab> {
   icon: AppIcon;
 }
 
