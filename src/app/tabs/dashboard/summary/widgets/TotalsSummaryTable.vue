@@ -3,33 +3,60 @@
     <div :class="$style.table">
       <!-- Header -->
       <span />
-      <span :class="$style.bold" v-for="month of months" :key="month">{{ month }}</span>
+      <span
+        v-for="(month, index) of months"
+        :class="[$style.bold, { [$style.currentMonth]: index === currentMonth }]"
+        :key="month"
+        >{{ month }}</span
+      >
       <span :class="$style.bold">{{ t('budget.total') }}</span>
       <span :class="$style.bold">{{ t('budget.average') }}</span>
 
       <!-- Income -->
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.income') }}</span>
-      <span :class="$style.muted" v-for="(amount, index) of income" :key="index">{{ n(amount, 'currency') }}</span>
+      <span
+        v-for="(amount, index) of income"
+        :class="[$style.muted, $style.first, { [$style.current]: index === currentMonth }]"
+        :key="index"
+      >
+        {{ n(amount, 'currency') }}
+      </span>
       <span :class="$style.muted">{{ n(sum(income), 'currency') }}</span>
       <span :class="$style.muted">{{ n(average(income), 'currency') }}</span>
 
       <!-- Expenses -->
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.expenses') }}</span>
-      <span :class="$style.muted" v-for="(amount, index) of expenses" :key="index">{{ n(amount, 'currency') }}</span>
+      <span
+        v-for="(amount, index) of expenses"
+        :class="[$style.muted, { [$style.current]: index === currentMonth }]"
+        :key="index"
+      >
+        {{ n(amount, 'currency') }}
+      </span>
       <span :class="$style.muted">{{ n(sum(expenses), 'currency') }}</span>
       <span :class="$style.muted">{{ n(average(expenses), 'currency') }}</span>
 
       <!-- Ending balance  -->
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.endingBalance') }}</span>
-      <span :class="$style.muted" v-for="(amount, index) of endingBalance" :key="index">{{
-        n(amount, 'currency')
-      }}</span>
+      <span
+        :class="[$style.muted, { [$style.current]: index === currentMonth }]"
+        v-for="(amount, index) of endingBalance"
+        :key="index"
+      >
+        {{ n(amount, 'currency') }}
+      </span>
       <span />
       <span :class="$style.muted">{{ n(average(endingBalance), 'currency') }}</span>
 
       <!-- Net savings  -->
       <span :class="$style.bold">{{ t('dashboard.netSavings') }}</span>
-      <span :class="$style.bold" v-for="(amount, index) of netSavings" :key="index">{{ n(amount, 'currency') }}</span>
+      <span
+        v-for="(amount, index) of netSavings"
+        :class="[$style.bold, $style.last, { [$style.current]: index === currentMonth }]"
+        :key="index"
+      >
+        {{ n(amount, 'currency') }}
+      </span>
       <span :class="$style.bold">{{ n(sum(netSavings), 'currency') }}</span>
       <span :class="[$style.bold, $style.muted]">{{ n(average(netSavings), 'currency') }}</span>
     </div>
@@ -66,24 +93,18 @@ const months = computed(() => {
   return months;
 });
 
+const currentMonth = new Date().getMonth();
 const netSavings = computed(() => subtract(props.income, props.expenses));
 const endingBalance = computed(() => aggregate(netSavings.value));
 </script>
 
 <style lang="scss" module>
+@use 'shared';
+
 .table {
   display: grid;
-  grid-template: auto / repeat(15, minmax(max-content, 1fr));
-  grid-gap: 10px;
+  grid-template: auto / var(--grid-layout);
   width: 100%;
   font-size: var(--font-size-xs);
-
-  .muted {
-    color: var(--theme-text-muted);
-  }
-
-  .bold {
-    font-weight: var(--font-weight-l);
-  }
 }
 </style>

@@ -3,14 +3,29 @@
     <div :class="$style.table">
       <!-- Header -->
       <span />
-      <span :class="$style.bold" v-for="month of months" :key="month">{{ month }}</span>
+      <span
+        v-for="(month, index) of months"
+        :class="[$style.bold, { [$style.currentMonth]: index === currentMonth }]"
+        :key="month"
+      >
+        {{ month }}
+      </span>
       <span :class="$style.bold">{{ t('budget.total') }}</span>
       <span :class="$style.bold">{{ t('budget.average') }}</span>
 
       <!-- Groups -->
-      <template v-for="group of flatted" :key="group.id">
+      <template v-for="(group, groupIndex) of flatted" :key="group.id">
         <span :class="$style.bold">{{ group.name }}</span>
-        <span v-for="(amount, index) of group.totals" :key="index">{{ n(amount, 'currency') }}</span>
+        <span
+          v-for="(amount, index) of group.totals"
+          :class="{
+            [$style.current]: index === currentMonth,
+            [$style.first]: groupIndex === 0,
+            [$style.last]: groupIndex === flatted.length - 1
+          }"
+          :key="index"
+          >{{ n(amount, 'currency') }}</span
+        >
         <span :class="$style.bold">{{ n(sum(group.totals), 'currency') }}</span>
         <span :class="$style.bold">{{ n(average(group.totals), 'currency') }}</span>
       </template>
@@ -44,19 +59,17 @@ const months = computed(() => {
   return months;
 });
 
+const currentMonth = new Date().getMonth();
 const flatted = computed(() => flatten(props.groups));
 </script>
 
 <style lang="scss" module>
+@use 'shared';
+
 .table {
   display: grid;
-  grid-template: auto / repeat(15, minmax(max-content, 1fr));
-  grid-gap: 10px;
+  grid-template: auto / var(--grid-layout);
   width: 100%;
   font-size: var(--font-size-xs);
-
-  .bold {
-    font-weight: var(--font-weight-l);
-  }
 }
 </style>
