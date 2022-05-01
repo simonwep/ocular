@@ -84,9 +84,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
     },
 
     removeBudget(id: string) {
-      groups().forEach(({ budgets }) =>
-        remove<Budget>(budgets, (v) => v.id === id)
-      );
+      groups().forEach(({ budgets }) => remove<Budget>(budgets, (v) => v.id === id));
     },
 
     removeBudgetGroup(id: string) {

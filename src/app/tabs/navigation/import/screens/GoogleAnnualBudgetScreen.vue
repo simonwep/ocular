@@ -12,12 +12,7 @@
       :placeholder="t('import.google.expenses')"
       :accept="['.csv']"
     />
-    <Button
-      v-if="expensesFile && incomeFile"
-      icon="upload-cloud-2-line"
-      :text="t('import.import')"
-      @click="load"
-    />
+    <Button v-if="expensesFile && incomeFile" icon="upload-cloud-2-line" :text="t('import.import')" @click="load" />
   </Screen>
 </template>
 
@@ -46,12 +41,8 @@ const { t } = useI18n();
 
 const load = async () => {
   if (expensesFile.value && incomeFile.value) {
-    const expenses = convertGoogleAnnualBudgetCSVToBudgetGroups(
-      await readFile(expensesFile.value)
-    );
-    const income = convertGoogleAnnualBudgetCSVToBudgetGroups(
-      await readFile(incomeFile.value)
-    );
+    const expenses = convertGoogleAnnualBudgetCSVToBudgetGroups(await readFile(expensesFile.value));
+    const income = convertGoogleAnnualBudgetCSVToBudgetGroups(await readFile(incomeFile.value));
     setBudgetGroups('expenses', expenses);
     setBudgetGroups('income', income);
     emit('loaded');

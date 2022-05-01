@@ -1,11 +1,5 @@
 <template>
-  <Button
-    :class="[$style.cloudButton, classes]"
-    @click="auth"
-    textual
-    :color="color"
-    :icon="icon"
-  />
+  <Button :class="[$style.cloudButton, classes]" @click="auth" textual :color="color" :icon="icon" />
 </template>
 
 <script lang="ts" setup>

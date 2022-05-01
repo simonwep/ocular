@@ -16,28 +16,9 @@ const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup => ({
 export const generateTemplate = (): DataState => ({
   version: 1,
   expenses: [
-    generateBudgetGroup('Children', [
-      'Activities',
-      'Medical',
-      'Childcare',
-      'Clothing',
-      'School',
-      'Toys',
-      'Other'
-    ]),
-    generateBudgetGroup('Debt', [
-      'Credit cards',
-      'Student loans',
-      'Other loans',
-      'Taxes',
-      'Other'
-    ]),
-    generateBudgetGroup('Education', [
-      'Tuition',
-      'Books',
-      'Music lessons',
-      'Other'
-    ]),
+    generateBudgetGroup('Children', ['Activities', 'Medical', 'Childcare', 'Clothing', 'School', 'Toys', 'Other']),
+    generateBudgetGroup('Debt', ['Credit cards', 'Student loans', 'Other loans', 'Taxes', 'Other']),
+    generateBudgetGroup('Education', ['Tuition', 'Books', 'Music lessons', 'Other']),
     generateBudgetGroup('Entertainment', [
       'Books',
       'Concerts/shows',
@@ -81,27 +62,9 @@ export const generateTemplate = (): DataState => ({
       'Moving',
       'Other'
     ]),
-    generateBudgetGroup('Insurance', [
-      'Car',
-      'Health',
-      'Home',
-      'Life',
-      'Other'
-    ]),
-    generateBudgetGroup('Pets', [
-      'Food',
-      'Vet/medical',
-      'Toys',
-      'Supplies',
-      'Other'
-    ]),
-    generateBudgetGroup('Technology', [
-      'Domains & hosting',
-      'Online services',
-      'Hardware',
-      'Software',
-      'Other'
-    ]),
+    generateBudgetGroup('Insurance', ['Car', 'Health', 'Home', 'Life', 'Other']),
+    generateBudgetGroup('Pets', ['Food', 'Vet/medical', 'Toys', 'Supplies', 'Other']),
+    generateBudgetGroup('Technology', ['Domains & hosting', 'Online services', 'Hardware', 'Software', 'Other']),
     generateBudgetGroup('Transportation', [
       'Fuel',
       'Car payments',
@@ -111,40 +74,12 @@ export const generateTemplate = (): DataState => ({
       'Public transit',
       'Other'
     ]),
-    generateBudgetGroup('Travel', [
-      'Airfare',
-      'Hotels',
-      'Food',
-      'Transportation',
-      'Entertainment',
-      'Other'
-    ]),
-    generateBudgetGroup('Utilities', [
-      'Phone',
-      'TV',
-      'Internet',
-      'Electricity',
-      'Heat/gas',
-      'Water',
-      'Other'
-    ]),
+    generateBudgetGroup('Travel', ['Airfare', 'Hotels', 'Food', 'Transportation', 'Entertainment', 'Other']),
+    generateBudgetGroup('Utilities', ['Phone', 'TV', 'Internet', 'Electricity', 'Heat/gas', 'Water', 'Other']),
     generateBudgetGroup('Other', ['[Category 1]', '[Category 2]'])
   ],
   income: [
-    generateBudgetGroup('Wages', [
-      'Pay slip',
-      'Tips',
-      'Bonus',
-      'Commission',
-      'Other'
-    ]),
-    generateBudgetGroup('Other', [
-      'Transfer from savings',
-      'Interest income',
-      'Dividends',
-      'Gifts',
-      'Refunds',
-      'Other'
-    ])
+    generateBudgetGroup('Wages', ['Pay slip', 'Tips', 'Bonus', 'Commission', 'Other']),
+    generateBudgetGroup('Other', ['Transfer from savings', 'Interest income', 'Dividends', 'Gifts', 'Refunds', 'Other'])
   ]
 });

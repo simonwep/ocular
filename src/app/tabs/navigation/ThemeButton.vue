@@ -1,10 +1,5 @@
 <template>
-  <Button
-    :class="[$style.themeButton, classes]"
-    :icon="icon"
-    textual
-    @click="toggle"
-  />
+  <Button :class="[$style.themeButton, classes]" :icon="icon" textual @click="toggle" />
 </template>
 
 <script lang="ts" setup>
@@ -23,9 +18,7 @@ const { state, setTheme } = useSettingsStore();
 const app = useAppElement();
 let switchActive = false;
 
-const icon = computed(
-  (): AppIcon => (state.appearance.theme === 'light' ? 'sun-fill' : 'moon-fill')
-);
+const icon = computed((): AppIcon => (state.appearance.theme === 'light' ? 'sun-fill' : 'moon-fill'));
 const classes = computed(() => props.class);
 const instance = getCurrentInstance();
 

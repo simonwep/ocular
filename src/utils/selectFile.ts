@@ -3,10 +3,10 @@ interface Options<M = false> {
   multiple?: M;
 }
 
-export const selectFile = <
-  M extends boolean,
-  R = M extends true ? File[] : File
->({ accept, multiple }: Options<M> = {}): Promise<R> => {
+export const selectFile = <M extends boolean, R = M extends true ? File[] : File>({
+  accept,
+  multiple
+}: Options<M> = {}): Promise<R> => {
   const input = document.createElement('input');
   document.body.appendChild(input);
 

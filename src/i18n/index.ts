@@ -6,13 +6,9 @@ export type MessageSchema = typeof en;
 
 const messages: Record<string, MessageSchema> = { en, de } as const;
 
-const datetimeFormats = Object.fromEntries(
-  Object.entries(messages).map((v) => [[v[0]], v[1]._dateTimeFormats])
-);
+const datetimeFormats = Object.fromEntries(Object.entries(messages).map((v) => [[v[0]], v[1]._dateTimeFormats]));
 
-const numberFormats = Object.fromEntries(
-  Object.entries(messages).map((v) => [[v[0]], v[1]._numberFormats])
-);
+const numberFormats = Object.fromEntries(Object.entries(messages).map((v) => [[v[0]], v[1]._numberFormats]));
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const i18n = createI18n({

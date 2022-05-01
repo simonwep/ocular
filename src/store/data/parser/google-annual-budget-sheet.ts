@@ -2,9 +2,7 @@ import { uuid } from '@utils';
 import { parse } from 'papaparse';
 import { BudgetGroup } from '../../data/types';
 
-export const convertGoogleAnnualBudgetCSVToBudgetGroups = (
-  csv: string
-): BudgetGroup[] => {
+export const convertGoogleAnnualBudgetCSVToBudgetGroups = (csv: string): BudgetGroup[] => {
   const groups: BudgetGroup[] = [];
   const rows = parse(csv, {
     skipEmptyLines: 'greedy'

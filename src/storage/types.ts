@@ -1,10 +1,6 @@
 import { DeepReadonly } from '@vue/reactivity';
 
-export type StorageAuthenticationState =
-  | 'idle'
-  | 'loading'
-  | 'authenticated'
-  | 'syncing';
+export type StorageAuthenticationState = 'idle' | 'loading' | 'authenticated' | 'syncing';
 
 export interface StorageState {
   status: StorageAuthenticationState;

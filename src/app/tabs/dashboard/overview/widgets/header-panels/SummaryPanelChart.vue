@@ -19,9 +19,7 @@ const props = defineProps<{
 
 echarts.use([GridComponent, LineChart, SVGRenderer]);
 
-type EChartsOption = echarts.ComposeOption<
-  GridComponentOption | LineSeriesOption
->;
+type EChartsOption = echarts.ComposeOption<GridComponentOption | LineSeriesOption>;
 
 const classes = computed(() => props.class);
 const options = computed(

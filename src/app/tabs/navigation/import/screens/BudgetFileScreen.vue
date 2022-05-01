@@ -1,21 +1,12 @@
 <template>
-  <Screen
-    :back="back"
-    :class="$style.screen"
-    :title="t('import.start.budgeter')"
-  >
+  <Screen :back="back" :class="$style.screen" :title="t('import.start.budgeter')">
     <FilePicker
       v-model="budgetFile"
       :class="$style.input"
       :placeholder="t('import.budgeter.pickFile')"
       :accept="['.budget']"
     />
-    <Button
-      v-if="budgetFile"
-      icon="upload-cloud-2-line"
-      :text="t('import.import')"
-      @click="load"
-    />
+    <Button v-if="budgetFile" icon="upload-cloud-2-line" :text="t('import.import')" @click="load" />
   </Screen>
 </template>
 

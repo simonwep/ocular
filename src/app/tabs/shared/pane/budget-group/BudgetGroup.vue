@@ -1,11 +1,6 @@
 <template>
   <!-- Header -->
-  <Button
-    :icon="open ? 'arrow-down-s-line' : 'arrow-right-s-line'"
-    color="dimmed"
-    textual
-    @click="open = !open"
-  />
+  <Button :icon="open ? 'arrow-down-s-line' : 'arrow-right-s-line'" color="dimmed" textual @click="open = !open" />
 
   <TextCell
     :class="[$style.top, $style.start]"
@@ -32,18 +27,10 @@
   <template v-if="open">
     <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
       <span />
-      <Button
-        color="dimmed"
-        icon="close-circle"
-        textual
-        @click="removeBudget(budget.id)"
-      />
+      <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
 
       <span :class="$style.header">
-        <TextCell
-          :model-value="budget.name"
-          @update:model-value="setBudgetName(budget.id, $event)"
-        />
+        <TextCell :model-value="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
       </span>
 
       <span
@@ -62,10 +49,7 @@
         ]"
         :key="budget.id + month"
       >
-        <CurrencyCell
-          :model-value="budget.values[month]"
-          @update:model-value="setBudget(budget.id, month, $event)"
-        />
+        <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
       </span>
 
       <span :class="$style.meta">
@@ -80,12 +64,7 @@
     <!-- Footer -->
     <span />
     <span />
-    <Button
-      :class="$style.addBudgetBtn"
-      textual
-      :text="t('budget.addBudget')"
-      @click="addBudget(group.id)"
-    />
+    <Button :class="$style.addBudgetBtn" textual :text="t('budget.addBudget')" @click="addBudget(group.id)" />
     <span />
     <span />
     <span />
@@ -119,13 +98,7 @@ const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
 }>();
 
-const {
-  addBudget,
-  setBudgetName,
-  setBudgetGroupName,
-  setBudget,
-  removeBudget
-} = useDataStore();
+const { addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget } = useDataStore();
 
 const { t } = useI18n();
 const open = ref(true);

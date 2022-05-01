@@ -35,16 +35,11 @@ const styles = useCssModule();
 const focused = ref(false);
 const { n } = useI18n();
 
-const classes = computed(() => [
-  styles.currencyCell,
-  { [styles.empty]: !props.modelValue }
-]);
+const classes = computed(() => [styles.currencyCell, { [styles.empty]: !props.modelValue }]);
 
 const value = computed(() => {
   const value = props.modelValue;
-  return focused.value || !value
-    ? value || ''
-    : n(props.modelValue, 'currency');
+  return focused.value || !value ? value || '' : n(props.modelValue, 'currency');
 });
 
 const updateModelValue = (v: number) => {

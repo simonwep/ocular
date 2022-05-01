@@ -1,10 +1,6 @@
 <template>
   <div :class="[$style.summaryPanels, classes]">
-    <SummaryPanel
-      :values="income"
-      color="--c-success"
-      :title="t('dashboard.income')"
-    />
+    <SummaryPanel :values="income" color="--c-success" :title="t('dashboard.income')" />
 
     <SummaryPanel
       :sub-title="n(expensePercentage, 'percent')"
@@ -62,12 +58,7 @@ const expensePercentage = computed(() => {
 const remainingBalance = computed(() => {
   const currentMonth = new Date().getMonth() + 1;
 
-  return sum(
-    subtract(
-      incomeTotals.value.slice(currentMonth),
-      expensesTotals.value.slice(currentMonth)
-    )
-  );
+  return sum(subtract(incomeTotals.value.slice(currentMonth), expensesTotals.value.slice(currentMonth)));
 });
 
 const remainingBalancePercentage = computed(() => {

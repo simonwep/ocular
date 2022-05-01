@@ -1,12 +1,6 @@
 import { reactive, watchEffect } from 'vue';
 
-export type Color =
-  | 'primary'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'dimmed'
-  | 'dark';
+export type Color = 'primary' | 'success' | 'warning' | 'danger' | 'dimmed' | 'dark';
 
 export interface ColorPair {
   base: string;

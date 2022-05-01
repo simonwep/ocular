@@ -19,9 +19,7 @@ export interface FlattedBudgetGroup extends BudgetGroup {
   totals: number[];
 }
 
-export const flatten = (
-  groups: DeepReadonly<BudgetGroup[]>
-): FlattedBudgetGroup[] => {
+export const flatten = (groups: DeepReadonly<BudgetGroup[]>): FlattedBudgetGroup[] => {
   return groups.map((group) => {
     const totals = new Array(12).fill(0);
 

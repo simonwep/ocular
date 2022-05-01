@@ -8,12 +8,7 @@
       <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
     </div>
 
-    <SummaryPanelChart
-      v-if="Array.isArray(values)"
-      :class="$style.chart"
-      :color="chartColor"
-      :values="values"
-    />
+    <SummaryPanelChart v-if="Array.isArray(values)" :class="$style.chart" :color="chartColor" :values="values" />
   </div>
 </template>
 
@@ -34,9 +29,7 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 
 const endingValue = computed(() =>
-  Array.isArray(props.values)
-    ? props.values[props.values.length - 1]
-    : props.values
+  Array.isArray(props.values) ? props.values[props.values.length - 1] : props.values
 );
 
 const shadow = computed(() => `var(${props.color}-shadow)`);

@@ -1,15 +1,8 @@
 <template>
   <div :class="$style.summary">
-    <TotalsSummaryTable
-      :title="t('dashboard.summary')"
-      :income="income"
-      :expenses="expenses"
-    />
+    <TotalsSummaryTable :title="t('dashboard.summary')" :income="income" :expenses="expenses" />
     <GroupsSummaryTable :title="t('dashboard.income')" :groups="state.income" />
-    <GroupsSummaryTable
-      :title="t('dashboard.expenses')"
-      :groups="state.expenses"
-    />
+    <GroupsSummaryTable :title="t('dashboard.expenses')" :groups="state.expenses" />
   </div>
 </template>
 

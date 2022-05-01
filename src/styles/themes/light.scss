@@ -1,6 +1,7 @@
 @mixin light {
     --theme: #f8f9fa;
     --theme-text: var(--c-text-dark);
+    --theme-text-muted: var(--c-text-dark-muted);
 
     --app-max-width: 1600px;
     --app-max-height: 1000px;
@@ -11,7 +12,9 @@
     --app-scrollbar: #bec9d4;
 
     --c-text-dark: #282d38;
+    --c-text-dark-muted: #788090;
     --c-text-light: #fff;
+    --c-text-light-muted: #d2d2da;
 
     --c-dimmed: #bec9d4;
     --c-dimmed-hover: #a2a9b4;

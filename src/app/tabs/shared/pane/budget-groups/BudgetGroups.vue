@@ -24,24 +24,14 @@
 
     <!-- Body -->
     <template v-for="group of groups" :key="group.id">
-      <Button
-        color="dimmed"
-        icon="close-circle"
-        textual
-        @click="removeBudgetGroup(group.id)"
-      />
+      <Button color="dimmed" icon="close-circle" textual @click="removeBudgetGroup(group.id)" />
       <BudgetGroup :group="group" />
     </template>
 
     <!-- Footer -->
     <span />
     <span />
-    <Button
-      :class="$style.addGroupBtn"
-      icon="plus"
-      :text="t('budget.addGroup')"
-      @click="addBudgetGroup(type)"
-    />
+    <Button :class="$style.addGroupBtn" icon="plus" :text="t('budget.addGroup')" @click="addBudgetGroup(type)" />
     <span />
     <span />
     <span />

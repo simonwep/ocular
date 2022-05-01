@@ -16,9 +16,7 @@ const props = defineProps<{
 
 const root = ref<HTMLDivElement>();
 const intristicSize = useIntristicSize(root);
-const { register, unregister } = inject<OnboardingStore>(
-  ONBOARDING_STORE
-) as OnboardingStore;
+const { register, unregister } = inject<OnboardingStore>(ONBOARDING_STORE) as OnboardingStore;
 
 onMounted(() => register(intristicSize));
 onUnmounted(() => unregister(intristicSize));

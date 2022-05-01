@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const debounce = <F extends (...args: any[]) => void>(
-  f: F,
-  duration: number
-): F => {
+export const debounce = <F extends (...args: any[]) => void>(f: F, duration: number): F => {
   let lastArgs: Parameters<F>;
   let timeout = -1;
   let active = false;

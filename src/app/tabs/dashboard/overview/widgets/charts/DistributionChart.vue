@@ -1,19 +1,12 @@
 <template>
-  <div
-    v-if="isEmpty"
-    :class="[$style.placeholder, $style.distributionChart, classes]"
-  >
+  <div v-if="isEmpty" :class="[$style.placeholder, $style.distributionChart, classes]">
     <div :class="$style.icons">
       <Icon icon="shopping-basket-2" />
       <Icon icon="hand-coin" />
     </div>
     <span>{{ t('dashboard.graph.placeholder') }}</span>
   </div>
-  <SankeyChart
-    v-else
-    :class="[$style.distributionChart, classes]"
-    :data="data"
-  />
+  <SankeyChart v-else :class="[$style.distributionChart, classes]" :data="data" />
 </template>
 
 <script lang="ts" setup>
@@ -51,8 +44,7 @@ const data = computed((): SankeyChartConfig => {
   const labels: SankeyChartLabel[] = [];
   const links: SankeyChartLink[] = [];
 
-  const color = (hue: number) =>
-    `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
+  const color = (hue: number) => `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
 
   const income = {
     id: uuid(),

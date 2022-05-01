@@ -1,8 +1,6 @@
 import { ref, Ref, watch } from 'vue';
 
-export const useResizeObserver = (
-  el: Ref<HTMLElement | undefined>
-): Ref<DOMRect> => {
+export const useResizeObserver = (el: Ref<HTMLElement | undefined>): Ref<DOMRect> => {
   const rect = ref<DOMRect>(new DOMRect());
 
   const observer = new ResizeObserver((entries) => {

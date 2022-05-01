@@ -14,9 +14,7 @@ import { computed } from 'vue';
 
 echarts.use([GridComponent, LineChart, SVGRenderer]);
 
-type EChartsOption = echarts.ComposeOption<
-  GridComponentOption | LineSeriesOption
->;
+type EChartsOption = echarts.ComposeOption<GridComponentOption | LineSeriesOption>;
 
 const props = defineProps<{
   class?: ClassNames;

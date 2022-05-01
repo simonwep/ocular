@@ -1,11 +1,5 @@
 <template>
-  <Button
-    :class="classes"
-    icon="download-cloud-2-line"
-    color="dimmed"
-    textual
-    @click="save"
-  />
+  <Button :class="classes" icon="download-cloud-2-line" color="dimmed" textual @click="save" />
 </template>
 
 <script lang="ts" setup>

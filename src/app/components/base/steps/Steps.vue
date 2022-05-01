@@ -23,9 +23,7 @@ const classes = computed(() => props.class);
 const screenIndex = ref(0);
 
 const screen = computed(() => sizes[screenIndex.value]?.value ?? new DOMRect());
-const offset = computed(() =>
-  sizes.slice(0, screenIndex.value).reduce((a, b) => a + b.value.width, 0)
-);
+const offset = computed(() => sizes.slice(0, screenIndex.value).reduce((a, b) => a + b.value.width, 0));
 
 provide<OnboardingStore>(ONBOARDING_STORE, {
   register: (size) => sizes.push(size),

@@ -1,7 +1,4 @@
-import {
-  GoogleDriveAuth,
-  GoogleDriveAuthReponse
-} from '@storage/google-drive-storage/types';
+import { GoogleDriveAuth, GoogleDriveAuthReponse } from '@storage/google-drive-storage/types';
 import { createKeyStorage } from '@storage/key-storage';
 import { reactive, readonly, watch, watchEffect } from 'vue';
 import { debounce } from '../../utils/debounce';
@@ -44,10 +41,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
           if (error) {
             return reject(error);
           } else if (rest.expiresIn && rest.accessToken) {
-            keyStorage.register(
-              rest.accessToken as string,
-              Number(rest.expiresIn) * 1000
-            );
+            keyStorage.register(rest.accessToken as string, Number(rest.expiresIn) * 1000);
           }
 
           resolve();
@@ -81,13 +75,10 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
       url.searchParams.set('access_token', keyStorage.key);
       url.searchParams.set('uploadType', 'media');
 
-      await fetch(
-        `https://www.googleapis.com/upload/drive/v3/files/${fileId}?access_token=${keyStorage.key}`,
-        {
-          method: 'PATCH',
-          body: json
-        }
-      );
+      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?access_token=${keyStorage.key}`, {
+        method: 'PATCH',
+        body: json
+      });
     } else {
       const form = new FormData();
 
@@ -147,14 +138,11 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
         initialSyncsActive++;
 
         if (fileId) {
-          const content = await fetch(
-            `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`,
-            {
-              headers: {
-                Authorization: `Bearer ${keyStorage.key}`
-              }
+          const content = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+            headers: {
+              Authorization: `Bearer ${keyStorage.key}`
             }
-          ).then((res) => res.json());
+          }).then((res) => res.json());
 
           config.push(content);
         } else {

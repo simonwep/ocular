@@ -1,33 +1,13 @@
 <template>
-  <DialogButton
-    :class="classes"
-    ref="dialog"
-    color="dimmed"
-    icon="upload-cloud-2-line"
-    textual
-    @close="close"
-  >
+  <DialogButton :class="classes" ref="dialog" color="dimmed" icon="upload-cloud-2-line" textual @close="close">
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
         <h1 :class="$style.title">{{ t('import.start.title') }}</h1>
-        <Button
-          icon="file-fill"
-          :text="t('import.start.budgeter')"
-          @click="next(BudgetFileScreen)"
-        />
-        <Button
-          icon="google-fill"
-          :text="t('import.start.google')"
-          @click="next(GoogleAnnualBudgetScreen)"
-        />
+        <Button icon="file-fill" :text="t('import.start.budgeter')" @click="next(BudgetFileScreen)" />
+        <Button icon="google-fill" :text="t('import.start.google')" @click="next(GoogleAnnualBudgetScreen)" />
       </Step>
       <Step>
-        <component
-          :is="screen"
-          v-if="screen"
-          :back="previous"
-          @loaded="close"
-        />
+        <component :is="screen" v-if="screen" :back="previous" @loaded="close" />
       </Step>
     </Steps>
   </DialogButton>

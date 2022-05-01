@@ -1,13 +1,6 @@
 <template>
   <div :class="classes">
-    <input
-      ref="checkbox"
-      :id="id"
-      :class="$style.input"
-      type="checkbox"
-      @click.stop="() => 0"
-      @input="change"
-    />
+    <input ref="checkbox" :id="id" :class="$style.input" type="checkbox" @click.stop="() => 0" @input="change" />
     <div :class="$style.knob" />
   </div>
 </template>
@@ -28,11 +21,7 @@ const props = defineProps<{
 
 const checkbox = ref<HTMLInputElement>();
 const styles = useCssModule();
-const classes = computed(() => [
-  styles.switch,
-  props.class,
-  { [styles.checked]: props.modelValue }
-]);
+const classes = computed(() => [styles.switch, props.class, { [styles.checked]: props.modelValue }]);
 
 const change = () => {
   emit('update:modelValue', !!checkbox.value?.checked);

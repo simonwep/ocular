@@ -3,22 +3,16 @@
     <div :class="$style.table">
       <!-- Header -->
       <span />
-      <span :class="$style.bold" v-for="month of months" :key="month">{{
-        month
-      }}</span>
+      <span :class="$style.bold" v-for="month of months" :key="month">{{ month }}</span>
       <span :class="$style.bold">{{ t('budget.total') }}</span>
       <span :class="$style.bold">{{ t('budget.average') }}</span>
 
       <!-- Groups -->
       <template v-for="group of flatted" :key="group.id">
         <span :class="$style.bold">{{ group.name }}</span>
-        <span v-for="(amount, index) of group.totals" :key="index">{{
-          n(amount, 'currency')
-        }}</span>
+        <span v-for="(amount, index) of group.totals" :key="index">{{ n(amount, 'currency') }}</span>
         <span :class="$style.bold">{{ n(sum(group.totals), 'currency') }}</span>
-        <span :class="$style.bold">{{
-          n(average(group.totals), 'currency')
-        }}</span>
+        <span :class="$style.bold">{{ n(average(group.totals), 'currency') }}</span>
       </template>
     </div>
   </SummaryTable>
