@@ -25,8 +25,10 @@
         "dashboard": "Dashboard - Annual Budget",
         "income": "Income",
         "expenses": "Expenses",
+        "netSavings": "Net Savings",
         "endingBalance": "Ending Balance",
         "remainingBalance": "Remaining Balance",
+        "summary": "Summary",
         "graph": {
             "placeholder": "Start by filling out the income / expenses tabs! :)"
         }

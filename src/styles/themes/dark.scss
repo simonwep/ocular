@@ -8,17 +8,10 @@
     --app-scroll-box-shadow: 0 0 10px #0c0c0c;
     --app-backround: #1f2026;
     --app-border: var(--theme);
+    --app-scrollbar: #bec9d4;
 
     --c-text-dark: #282d38;
     --c-text-light: #fff;
-
-    --c-dark: #343d4a;
-    --c-dark-hover: #515b6e;
-    --c-dark-text: #dfe2e8;
-    --c-dark-text-hover: #c0c4cc;
-    --c-dark-pure: #646b76;
-    --c-dark-pure-hover: var(--c-dark-pure);
-    --c-dark-shadow: #282f385c;
 
     --c-dimmed: #bec9d4;
     --c-dimmed-hover: #a2a9b4;
@@ -135,4 +128,7 @@
     --grid-background-even-hover: #1e1f24;
     --grid-border-color: #131316;
     --grid-border-radius: var(--border-radius-m);
+
+    --grid-header-backround: #343d4a;
+    --grid-header-text: #dfe2e8;
 }

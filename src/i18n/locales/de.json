@@ -25,8 +25,10 @@
         "dashboard": "Übersicht - Jährliches Budget",
         "income": "Einkommen",
         "expenses": "Ausgaben",
+        "netSavings": "Netto-Einsparung",
         "endingBalance": "Endsaldo",
         "remainingBalance": "Verbleibender Saldo",
+        "summary": "Zusammenfassung",
         "graph": {
             "placeholder": "Beginn damit die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
         }

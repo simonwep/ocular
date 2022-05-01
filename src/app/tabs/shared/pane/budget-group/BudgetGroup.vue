@@ -161,8 +161,8 @@ const totals = computed(() => {
   font-weight: var(--font-weight-l);
   margin: 8px 0;
   padding: 5px 0;
-  background: var(--c-dark);
-  color: var(--c-dark-text);
+  background: var(--grid-header-backround);
+  color: var(--grid-header-text);
 
   > span {
     display: inline-block;

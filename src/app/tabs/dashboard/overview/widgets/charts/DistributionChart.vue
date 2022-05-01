@@ -137,7 +137,7 @@ const data = computed((): SankeyChartConfig => {
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '../../../../../../styles/globals';
 
 .distributionChart {
   height: 100%;

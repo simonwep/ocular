@@ -7,11 +7,11 @@
       <Button
         v-for="button of buttons"
         :class="$style.btn"
-        :key="button.tab"
-        :color="tab === button.tab ? 'primary' : 'dimmed'"
+        :key="button.id"
+        :color="tab === button.id ? 'primary' : 'dimmed'"
         :icon="button.icon"
         textual
-        @click="tab = button.tab"
+        @click="tab = button.id"
       />
 
       <ImportButton :class="[$style.top, $style.btn]" />
@@ -21,15 +21,7 @@
     </div>
 
     <div :class="$style.panes">
-      <Transition
-        :enter-active-class="$style.transitionTarget"
-        :enter-from-class="$style.transitionOrigin"
-        :leave-active-class="$style.transitionTarget"
-        :leave-to-class="$style.transitionOrigin"
-        mode="out-in"
-      >
-        <component v-if="component" :is="component" />
-      </Transition>
+      <Tabs :components="buttons" :active-tab="tab" />
     </div>
   </div>
 </template>
@@ -37,7 +29,9 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
-import { computed, ref } from 'vue';
+import { AsyncTab } from '@components/misc/tabs/Tabs.types';
+import Tabs from '@components/misc/tabs/Tabs.vue';
+import { ref } from 'vue';
 import Dashboard from './dashboard/Dashboard.vue';
 import Expenses from './expenses/Expenses.vue';
 import Income from './income/Income.vue';
@@ -48,32 +42,23 @@ import ThemeButton from './navigation/ThemeButton.vue';
 
 type Tab = 'dashboard' | 'income' | 'expenses' | 'settings';
 
+interface TabItem extends AsyncTab {
+  icon: AppIcon;
+}
+
 const menu = ref<HTMLDivElement>();
 const tab = ref<Tab>('dashboard');
 
-const component = computed(
-  () => buttons.find((v) => v.tab === tab.value)?.component
-);
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const buttons: { icon: AppIcon; tab: Tab; component: any }[] = [
-  { icon: 'donut-chart', tab: 'dashboard', component: Dashboard },
-  { icon: 'hand-coin', tab: 'income', component: Income },
-  { icon: 'shopping-basket-2', tab: 'expenses', component: Expenses }
+const buttons: TabItem[] = [
+  { icon: 'donut-chart', id: 'dashboard', component: Dashboard },
+  { icon: 'hand-coin', id: 'income', component: Income },
+  { icon: 'shopping-basket-2', id: 'expenses', component: Expenses }
 ];
 </script>
 
 <style lang="scss" module>
 @use 'sass:math';
 @use 'src/styles/globals';
-
-.transitionTarget {
-  transition: all var(--transition-s);
-}
-
-.transitionOrigin {
-  opacity: 0;
-}
 
 .tabs {
   display: flex;

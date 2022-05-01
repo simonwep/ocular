@@ -50,8 +50,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding-top: 14px;
-  padding-bottom: 15px;
+  padding: 14px 10px 15px;
   background: var(--app-backround);
   animation: var(--animation-fade-in-right) var(--transition-s);
   transition: all var(--transition-m);
@@ -59,14 +58,13 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   .title {
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-l);
-    margin-left: 10px;
   }
 }
 
 .content {
   overflow: auto;
   flex-grow: 1;
-  padding: 10px;
+  padding: 0 10px;
 }
 
 @include globals.onMobileDevices {
