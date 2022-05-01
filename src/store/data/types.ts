@@ -1,3 +1,5 @@
+import { StorageData } from '@storage/types';
+
 export type BudgetValues = number[];
 
 export interface Budget {
@@ -12,8 +14,7 @@ export interface BudgetGroup {
   budgets: Budget[];
 }
 
-export interface DataState {
-  version: 1;
+export interface DataState extends StorageData {
   expenses: BudgetGroup[];
   income: BudgetGroup[];
 }

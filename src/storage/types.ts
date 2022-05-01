@@ -10,7 +10,11 @@ export interface StorageState {
   status: StorageAuthenticationState;
 }
 
-export interface StorageSync<T> {
+export interface StorageData {
+  version: number;
+}
+
+export interface StorageSync<T extends StorageData> {
   name: string;
   state(): T;
   push(data: T): void;
@@ -19,5 +23,5 @@ export interface StorageSync<T> {
 export interface AppStorage {
   state: DeepReadonly<StorageState>;
   login(): void;
-  sync<T>(config: StorageSync<T>): void;
+  sync<T extends StorageData>(config: StorageSync<T>): void;
 }
