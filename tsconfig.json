@@ -14,6 +14,9 @@
         "esModuleInterop": true,
         "lib": ["esnext", "dom"],
         "baseUrl": ".",
+        "types": [
+            "vite-plugin-pwa/client"
+        ],
         "paths": {
             "@composables": ["./src/composables/index.ts"],
             "@components/*": ["./src/app/components/*"],
