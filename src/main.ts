@@ -1,6 +1,7 @@
 import { createStorage, STORAGE_KEY } from '@storage/index';
 import { createDataStore, DATA_STORE_KEY } from '@store/data';
 import { createSettingsStore, SETTINGS_STORE_KEY } from '@store/settings';
+import { registerSW } from 'virtual:pwa-register';
 import { createApp } from 'vue';
 import { i18n } from './i18n';
 import App from './app/App.vue';
@@ -22,3 +23,5 @@ app.provide(STORAGE_KEY, storage);
 
 app.use(i18n);
 app.mount('#app');
+
+registerSW();

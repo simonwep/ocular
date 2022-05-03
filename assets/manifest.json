@@ -1,0 +1,51 @@
+{
+    "name": "Budgetler - Budgeting made easy",
+    "short_name": "Budgetler",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#6bb1ff",
+    "theme_color": "#6bb1ff",
+    "description": "Budgeting app",
+    "icons": [
+        {
+            "src": "assets/images/maskable-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "assets/images/maskable-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "assets/images/maskable-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "assets/images/maskable-1024x1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "assets/images/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/favicon-1024x1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }
+    ]
+}
