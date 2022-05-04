@@ -20,3 +20,13 @@ declare interface HTMLDialogElement {
   slow(): void;
   showModal(): void;
 }
+
+interface ImportMetaEnv {
+  readonly OAUTH_URI: string;
+  readonly OAUTH_CLIENT_ID: string;
+  readonly OAUTH_SCOPE: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
