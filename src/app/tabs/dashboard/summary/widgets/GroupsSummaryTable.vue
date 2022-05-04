@@ -70,7 +70,6 @@ const flatted = computed(() => flatten(props.groups));
 .table {
   display: grid;
   grid-template: auto / var(--grid-layout);
-  width: 100%;
   font-size: var(--font-size-xs);
 }
 </style>

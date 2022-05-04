@@ -36,29 +36,29 @@
       <span :class="$style.muted">{{ n(sum(expenses), 'currency') }}</span>
       <span :class="$style.muted">{{ n(average(expenses), 'currency') }}</span>
 
-      <!-- Ending balance  -->
-      <span :class="[$style.bold, $style.muted]">{{ t('dashboard.endingBalance') }}</span>
+      <!-- Net savings  -->
+      <span :class="[$style.bold, $style.muted]">{{ t('dashboard.netSavings') }}</span>
       <span
+        v-for="(amount, index) of netSavings"
         :class="[$style.muted, { [$style.current]: index === currentMonth }]"
+        :key="index"
+      >
+        {{ n(amount, 'currency') }}
+      </span>
+      <span :class="$style.muted">{{ n(sum(netSavings), 'currency') }}</span>
+      <span :class="$style.muted">{{ n(average(netSavings), 'currency') }}</span>
+
+      <!-- Ending balance  -->
+      <span :class="$style.bold">{{ t('dashboard.endingBalance') }}</span>
+      <span
+        :class="[$style.bold, $style.last, { [$style.current]: index === currentMonth }]"
         v-for="(amount, index) of endingBalance"
         :key="index"
       >
         {{ n(amount, 'currency') }}
       </span>
       <span />
-      <span :class="$style.muted">{{ n(average(endingBalance), 'currency') }}</span>
-
-      <!-- Net savings  -->
-      <span :class="$style.bold">{{ t('dashboard.netSavings') }}</span>
-      <span
-        v-for="(amount, index) of netSavings"
-        :class="[$style.bold, $style.last, { [$style.current]: index === currentMonth }]"
-        :key="index"
-      >
-        {{ n(amount, 'currency') }}
-      </span>
-      <span :class="$style.bold">{{ n(sum(netSavings), 'currency') }}</span>
-      <span :class="[$style.bold, $style.muted]">{{ n(average(netSavings), 'currency') }}</span>
+      <span :class="$style.bold">{{ n(average(endingBalance), 'currency') }}</span>
     </div>
   </SummaryTable>
 </template>
@@ -104,7 +104,6 @@ const endingBalance = computed(() => aggregate(netSavings.value));
 .table {
   display: grid;
   grid-template: auto / var(--grid-layout);
-  width: 100%;
   font-size: var(--font-size-xs);
 }
 </style>

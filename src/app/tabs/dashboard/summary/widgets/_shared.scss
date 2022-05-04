@@ -1,4 +1,7 @@
 .table {
+    width: max-content;
+    min-width: 100%;
+
     > span {
         padding: 5px 8px;
         white-space: nowrap;

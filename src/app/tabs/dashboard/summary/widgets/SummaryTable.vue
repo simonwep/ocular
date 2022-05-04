@@ -16,7 +16,7 @@ defineProps<{
 
 <style lang="scss" module>
 .summaryTable {
-  width: 100%;
+  min-width: 100%;
 }
 
 .title {
@@ -24,13 +24,14 @@ defineProps<{
   font-weight: var(--font-weight-xl);
   margin-bottom: 5px;
   margin-left: 12px;
+  position: sticky;
+  left: 0;
 }
 
 .table {
   padding: 10px;
   border: 2px solid var(--app-border);
   border-radius: var(--border-radius-xxl);
-  overflow: auto;
 
   --grid-layout: 100px repeat(14, minmax(max-content, 1fr));
 }

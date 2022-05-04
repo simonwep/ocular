@@ -26,5 +26,7 @@ const expenses = computed(() => totals(state.expenses));
   display: flex;
   flex-direction: column;
   grid-gap: 20px;
+  width: max-content;
+  min-width: 100%;
 }
 </style>
