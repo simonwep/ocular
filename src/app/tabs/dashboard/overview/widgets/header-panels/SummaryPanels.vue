@@ -68,7 +68,7 @@ const remainingBalancePercentage = computed(() => {
 </script>
 
 <style lang="scss" module>
-@use '../../../../../../styles/globals';
+@use 'src/styles/globals';
 
 .summaryPanels {
   --panels: 4;

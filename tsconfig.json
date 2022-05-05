@@ -20,6 +20,7 @@
         "paths": {
             "@composables": ["./src/composables/index.ts"],
             "@components/*": ["./src/app/components/*"],
+            "@app/*": ["./src/app/*"],
             "@storage/*": ["./src/storage/*"],
             "@static/*": ["./src/static/*"],
             "@utils": ["./src/utils/index.ts"],

@@ -1,0 +1,9 @@
+export interface StackedLineChartSeries {
+  name: string;
+  data: number[];
+  color?: string;
+}
+
+export interface LineChartConfig {
+  series: StackedLineChartSeries[];
+}

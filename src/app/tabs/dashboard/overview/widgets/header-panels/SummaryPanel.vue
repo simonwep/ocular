@@ -38,7 +38,7 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
 </script>
 
 <style lang="scss" module>
-@use '../../../../../../styles/globals';
+@use 'src/styles/globals';
 
 .summaryPanel {
   display: flex;

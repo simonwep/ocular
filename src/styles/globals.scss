@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-$appMaxWidth: 1500px;
+$appMaxWidth: 1600px;
 $appMaxHeight: math.div($appMaxWidth, 1.5);
 
 $appMobileBreakpoint: 786px;

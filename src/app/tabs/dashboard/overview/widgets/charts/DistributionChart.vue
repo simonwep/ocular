@@ -1,16 +1,10 @@
 <template>
-  <div v-if="isEmpty" :class="[$style.placeholder, $style.distributionChart, classes]">
-    <div :class="$style.icons">
-      <Icon icon="shopping-basket-2" />
-      <Icon icon="hand-coin" />
-    </div>
-    <span>{{ t('dashboard.graph.placeholder') }}</span>
-  </div>
+  <ChartPlaceholder v-if="isEmpty" />
   <SankeyChart v-else :class="[$style.distributionChart, classes]" :data="data" />
 </template>
 
 <script lang="ts" setup>
-import Icon from '@components/base/icon/Icon.vue';
+import ChartPlaceholder from '@app/tabs/shared/ChartPlaceholder.vue';
 import {
   SankeyChartConfig,
   SankeyChartLabel,
@@ -29,7 +23,7 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const { state } = useDataStore();
-const { t, n } = useI18n();
+const { n } = useI18n();
 
 const isEmpty = computed(() => {
   const totalIncome = sum(totals(state.income));
@@ -129,24 +123,10 @@ const data = computed((): SankeyChartConfig => {
 </script>
 
 <style lang="scss" module>
-@use '../../../../../../styles/globals';
+@use 'src/styles/globals';
 
 .distributionChart {
   height: 100%;
   width: 100%;
-}
-
-.placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  grid-gap: 10px;
-
-  .icons {
-    display: flex;
-    grid-gap: 10px;
-    color: var(--theme-text);
-  }
 }
 </style>
