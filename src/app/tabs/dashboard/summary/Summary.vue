@@ -1,6 +1,11 @@
 <template>
   <div :class="$style.summary">
-    <DevelopmentChart :class="$style.chart" />
+    <AsyncComponent
+      :show="media !== 'mobile'"
+      :class="$style.chart"
+      :import="() => import('./widgets/charts/DevelopmentChart.vue')"
+    />
+
     <TotalsSummaryTable :title="t('dashboard.summary')" :income="income" :expenses="expenses" />
     <GroupsSummaryTable :title="t('dashboard.income')" :groups="state.income" />
     <GroupsSummaryTable :title="t('dashboard.expenses')" :groups="state.expenses" />
@@ -8,16 +13,18 @@
 </template>
 
 <script lang="ts" setup>
+import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import { useDataStore } from '@store/data';
 import { totals } from '@store/data/utils/budgets';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import DevelopmentChart from './widgets/charts/DevelopmentChart.vue';
+import { useMediaQuery } from '../../../../composables/useMediaQuery';
 import GroupsSummaryTable from './widgets/tables/GroupsSummaryTable.vue';
 import TotalsSummaryTable from './widgets/tables/TotalsSummaryTable.vue';
 
 const { state } = useDataStore();
 const { t } = useI18n();
+const media = useMediaQuery();
 
 const income = computed(() => totals(state.income));
 const expenses = computed(() => totals(state.expenses));

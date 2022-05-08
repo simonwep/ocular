@@ -31,6 +31,7 @@ const { t } = useI18n();
   align-items: center;
   justify-content: center;
   grid-gap: 10px;
+  flex-grow: 1;
 
   .icons {
     display: flex;

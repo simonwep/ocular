@@ -1,5 +1,6 @@
 @use 'themes';
 @use 'reset';
+@use 'globals';
 
 html, body, #app {
     width: 100%;
@@ -19,6 +20,17 @@ html, body, #app {
     font-size: var(--font-size-s);
     font-family: var(--font-family);
     color: var(--theme-text);
+
+    // Media queries
+    --media-type: 'normal';
+
+    @include globals.onAppMinSizeReached {
+        --media-type: 'minimized';
+    }
+
+    @include globals.onMobileDevices {
+        --media-type: 'mobile';
+    }
 }
 
 #app, ::backdrop {

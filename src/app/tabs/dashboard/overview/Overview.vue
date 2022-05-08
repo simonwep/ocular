@@ -1,13 +1,20 @@
 <template>
   <div :class="$style.overview">
     <SummaryPanels />
-    <DistributionChart :class="$style.chart" />
+    <AsyncComponent
+      :show="media !== 'mobile'"
+      :class="$style.chart"
+      :import="() => import('./widgets/charts/DistributionChart.vue')"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import DistributionChart from './widgets/charts/DistributionChart.vue';
+import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
+import { useMediaQuery } from '../../../../composables/useMediaQuery';
 import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';
+
+const media = useMediaQuery();
 </script>
 
 <style lang="scss" module>

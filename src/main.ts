@@ -22,6 +22,7 @@ app.provide(SETTINGS_STORE_KEY, createSettingsStore(storage));
 app.provide(STORAGE_KEY, storage);
 
 app.use(i18n);
+
 app.mount('#app');
 
 registerSW();
