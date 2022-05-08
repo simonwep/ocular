@@ -133,7 +133,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
 
     watchEffect(async () => {
       if (keyStorage.key) {
-        state.status = 'authenticated';
+        state.status = 'loading';
         const fileId = await getFileId(config.name);
         initialSyncsActive++;
 
@@ -145,8 +145,10 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
           }).then((res) => res.json());
 
           config.push(content);
+          state.status = 'authenticated';
         } else {
           await upsert(config.name, JSON.stringify(config.state()));
+          state.status = 'authenticated';
         }
       }
     });

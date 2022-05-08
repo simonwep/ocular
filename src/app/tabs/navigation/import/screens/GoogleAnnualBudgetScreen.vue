@@ -22,7 +22,7 @@ import FilePicker from '@components/base/file-picker/FilePicker.vue';
 import { readFile } from '@utils';
 import { ref } from 'vue';
 import { useDataStore } from '@store/data';
-import { convertGoogleAnnualBudgetCSVToBudgetGroups } from '@store/data/parser/google-annual-budget-sheet';
+import { convertGoogleAnnualBudgetCSVToBudgetGroups } from '@store/data/parser/googleAnnualBudgetSheet';
 import { useI18n } from 'vue-i18n';
 import Screen from './Screen.vue';
 
