@@ -4,6 +4,7 @@ import { createSettingsStore, SETTINGS_STORE_KEY } from '@store/settings';
 import { registerSW } from 'virtual:pwa-register';
 import { createApp } from 'vue';
 import { i18n } from './i18n';
+import { router } from './router';
 import App from './app/App.vue';
 import './styles/index.scss';
 
@@ -22,6 +23,7 @@ app.provide(SETTINGS_STORE_KEY, createSettingsStore(storage));
 app.provide(STORAGE_KEY, storage);
 
 app.use(i18n);
+app.use(router);
 
 app.mount('#app');
 

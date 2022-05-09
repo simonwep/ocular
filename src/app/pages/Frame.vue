@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.tabs">
+  <div :class="$style.frame">
     <div ref="menu" :class="$style.buttons">
       <ThemeButton :class="$style.btn" />
       <div :class="$style.divider" />
@@ -8,10 +8,10 @@
         v-for="button of buttons"
         :class="$style.btn"
         :key="button.id"
-        :color="tab === button.id ? 'primary' : 'dimmed'"
+        :color="router.currentRoute.value.path.startsWith(button.link) ? 'primary' : 'dimmed'"
         :icon="button.icon"
+        @click="router.push(button.link)"
         textual
-        @click="tab = button.id"
       />
 
       <ImportButton :class="[$style.top, $style.btn]" />
@@ -21,7 +21,7 @@
     </div>
 
     <div :class="$style.panes">
-      <Tabs :components="buttons" :active-tab="tab" />
+      <RouterView />
     </div>
   </div>
 </template>
@@ -29,30 +29,26 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
-import { AsyncTab } from '@components/misc/tabs/Tabs.types';
-import Tabs from '@components/misc/tabs/Tabs.vue';
 import { ref } from 'vue';
-import Dashboard from './dashboard/Dashboard.vue';
-import Expenses from './expenses/Expenses.vue';
-import Income from './income/Income.vue';
+import { useRouter } from 'vue-router';
 import CloudButton from './navigation/CloudButton.vue';
 import ExportButton from './navigation/export/ExportButton.vue';
 import ImportButton from './navigation/import/ImportButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';
 
-type Tab = 'dashboard' | 'income' | 'expenses' | 'settings';
+const menu = ref<HTMLDivElement>();
+const router = useRouter();
 
-interface TabItem extends AsyncTab<Tab> {
+interface FrameButton {
   icon: AppIcon;
+  id: string;
+  link: string;
 }
 
-const menu = ref<HTMLDivElement>();
-const tab = ref<Tab>('dashboard');
-
-const buttons: TabItem[] = [
-  { icon: 'donut-chart', id: 'dashboard', component: Dashboard },
-  { icon: 'hand-coin', id: 'income', component: Income },
-  { icon: 'shopping-basket-2', id: 'expenses', component: Expenses }
+const buttons: FrameButton[] = [
+  { icon: 'donut-chart', id: 'dashboard', link: '/dashboard' },
+  { icon: 'hand-coin', id: 'income', link: '/income' },
+  { icon: 'shopping-basket-2', id: 'expenses', link: '/expenses' }
 ];
 </script>
 
@@ -60,7 +56,7 @@ const buttons: TabItem[] = [
 @use 'sass:math';
 @use 'src/styles/globals';
 
-.tabs {
+.frame {
   display: flex;
   height: 100%;
   width: 100%;

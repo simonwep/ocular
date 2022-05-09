@@ -6,7 +6,6 @@
 import { useResizeObserver } from '@composables';
 import { ClassNames } from '@utils';
 import * as echarts from 'echarts/core';
-import { EChartsType } from 'echarts/types/dist/shared';
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -18,7 +17,7 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const root = ref<HTMLDivElement>();
 const rootSize = useResizeObserver(root);
-const chart = shallowRef<EChartsType>();
+const chart = shallowRef();
 
 const update = () => chart.value?.setOption(props.options);
 const resize = () => chart.value?.resize();

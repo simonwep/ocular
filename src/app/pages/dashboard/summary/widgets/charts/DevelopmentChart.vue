@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts" setup>
-import ChartPlaceholder from '@app/tabs/shared/ChartPlaceholder.vue';
+import ChartPlaceholder from '@app/pages/shared/ChartPlaceholder.vue';
 import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
 import LineChart from '@components/charts/line-chart/LineChart.vue';
 import { useDataStore } from '@store/data';

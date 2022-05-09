@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts" setup>
-import ChartPlaceholder from '@app/tabs/shared/ChartPlaceholder.vue';
+import ChartPlaceholder from '@app/pages/shared/ChartPlaceholder.vue';
 import {
   SankeyChartConfig,
   SankeyChartLabel,

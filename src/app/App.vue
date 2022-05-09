@@ -3,7 +3,7 @@
     <LoadingScreen
       :loading="storage.state.status === 'loading'"
       :class="$style.root"
-      :import="() => import('./tabs/Tabs.vue')"
+      :import="() => import('./pages/Frame.vue')"
     />
   </div>
 </template>
