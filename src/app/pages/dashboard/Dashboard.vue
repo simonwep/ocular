@@ -12,13 +12,14 @@
         />
       </div>
     </template>
-    <RouterView />
+    <AnimatedRouterView />
   </Pane>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
+import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import Pane from '../shared/Pane.vue';

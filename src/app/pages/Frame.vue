@@ -21,7 +21,7 @@
     </div>
 
     <div :class="$style.panes">
-      <RouterView />
+      <AnimatedRouterView />
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
+import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import CloudButton from './navigation/CloudButton.vue';
