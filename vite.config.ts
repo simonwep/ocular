@@ -9,11 +9,11 @@ export default defineConfig(({mode}) => ({
 
   css: {
     modules: {
-      generateScopedName: mode === 'development' ? '[name]_[local]_[hash:base64:5]' : (() => {
+      generateScopedName: mode === 'development' ? '[local]_[hash:base64:5]' : (() => {
         let index = 0;
         return () => {
           const hash = (index++).toString(36);
-          return hash[0].match(/^\d/) ? `_${hash}` : hash;
+          return /^\d/.test(hash[0]) ? `_${hash}` : hash;
         };
       })()
     }

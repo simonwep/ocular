@@ -5,11 +5,10 @@ export const router = createRouter({
   routes: [
     {
       path: '/dashboard',
-      alias: '/',
       component: () => import('./app/pages/dashboard/Dashboard.vue'),
       children: [
         {
-          path: 'overview',
+          path: '',
           component: () => import('./app/pages/dashboard/overview/Overview.vue')
         },
         {
@@ -25,6 +24,10 @@ export const router = createRouter({
     {
       path: '/expenses',
       component: () => import('./app/pages/expenses/Expenses.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/dashboard'
     }
   ]
 });

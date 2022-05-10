@@ -6,7 +6,7 @@
           v-for="button of buttons"
           textual
           @click="router.push(button.link)"
-          :color="router.currentRoute.value.path.startsWith(button.link) ? 'primary' : 'dimmed'"
+          :color="router.currentRoute.value.path.endsWith(button.link) ? 'primary' : 'dimmed'"
           :icon="button.icon"
           :key="button.id"
         />
@@ -33,7 +33,7 @@ interface DashboardTab {
 }
 
 const buttons = [
-  { id: 'charts', icon: 'pi-chart-line', link: '/overview' },
+  { id: 'charts', icon: 'pi-chart-line', link: '' },
   { id: 'tables', icon: 'grid-line', link: '/summary' }
 ].map((v) => ({ ...v, link: `/dashboard${v.link}` })) as DashboardTab[];
 </script>
