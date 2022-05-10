@@ -2,10 +2,9 @@
   <Pane :class="$style.dashboard" :title="t('dashboard.dashboard')">
     <template #header>
       <div :class="$style.viewButtons">
-        <Button
+        <Link
           v-for="button of buttons"
-          textual
-          @click="router.push(button.link)"
+          :to="button.link"
           :color="router.currentRoute.value.path.endsWith(button.link) ? 'primary' : 'dimmed'"
           :icon="button.icon"
           :key="button.id"
@@ -17,9 +16,9 @@
 </template>
 
 <script lang="ts" setup>
-import Button from '@components/base/button/Button.vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
+import Link from '@components/base/link/Link.vue';
 import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
+import { AppIcon } from '@components/base/icon/Icon.types';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import Pane from '../shared/Pane.vue';
@@ -48,6 +47,6 @@ const buttons = [
 
 .viewButtons {
   display: flex;
-  grid-gap: 5px;
+  grid-gap: 10px;
 }
 </style>

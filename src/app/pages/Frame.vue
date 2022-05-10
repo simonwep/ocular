@@ -4,14 +4,13 @@
       <ThemeButton :class="$style.btn" />
       <div :class="$style.divider" />
 
-      <Button
+      <Link
         v-for="button of buttons"
         :class="$style.btn"
         :key="button.id"
         :color="router.currentRoute.value.path.startsWith(button.link) ? 'primary' : 'dimmed'"
         :icon="button.icon"
-        @click="router.push(button.link)"
-        textual
+        :to="button.link"
       />
 
       <ImportButton :class="[$style.top, $style.btn]" />
@@ -27,8 +26,8 @@
 </template>
 
 <script lang="ts" setup>
-import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
+import Link from '@components/base/link/Link.vue';
 import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -89,7 +88,7 @@ const buttons: FrameButton[] = [
 }
 
 @include globals.onMobileDevices {
-  .tabs {
+  .frame {
     flex-direction: column-reverse;
   }
 

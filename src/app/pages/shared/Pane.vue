@@ -50,7 +50,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding: 14px 10px 15px;
+  padding: 15px 10px;
   background: var(--app-backround);
   animation: var(--animation-fade-in-right) var(--transition-s);
   transition: all var(--transition-m);
