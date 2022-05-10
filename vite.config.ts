@@ -19,6 +19,10 @@ export default defineConfig(({mode}) => ({
     }
   },
 
+  define: {
+    'import.meta.env.APP_BUILD_TIMESTAMP': Date.now()
+  },
+
   plugins: [
     tsconfigPaths({loose: true}),
     vue(),

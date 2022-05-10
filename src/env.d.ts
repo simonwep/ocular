@@ -25,6 +25,8 @@ interface ImportMetaEnv {
   readonly OAUTH_URI: string;
   readonly OAUTH_CLIENT_ID: string;
   readonly OAUTH_SCOPE: string;
+
+  readonly APP_BUILD_TIMESTAMP: string;
 }
 
 interface ImportMeta {
