@@ -13,25 +13,32 @@ import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
 import { useAppElement } from '@composables';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
-import { watch, watchEffect } from 'vue';
+import { nextTick, watch, watchEffect } from 'vue';
 
 const { state } = useSettingsStore();
 const storage = useStorage();
 const app = useAppElement();
 
-watchEffect(() => app.value?.classList.add(state.appearance.theme));
+watchEffect(() => {
+  app.classList.add(state.appearance.theme);
+
+  nextTick(() => {
+    const appColor = getComputedStyle(app).getPropertyValue('--app-backround').trim();
+    document
+      .querySelectorAll('[data-meta="theme-color"]')
+      .forEach((el) => ((el as HTMLMetaElement).content = appColor));
+  });
+});
+
 watch(
   () => state.appearance.theme,
-  (newTheme, oldTheme) => {
-    app.value?.classList.add(newTheme);
-    app.value?.classList.remove(oldTheme);
-  }
+  (_, oldTheme) => app.classList.remove(oldTheme)
 );
 
 watch(
   () => state.appearance.animations,
   (enabled) => {
-    app.value?.classList[enabled ? 'remove' : 'add']('reducedMotion');
+    app.classList[enabled ? 'remove' : 'add']('reducedMotion');
   }
 );
 </script>

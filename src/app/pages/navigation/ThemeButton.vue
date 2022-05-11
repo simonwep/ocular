@@ -38,15 +38,14 @@ const toggle = () => {
   setTheme(wasDark ? 'light' : 'dark');
 
   const origin = getTransitionOrigin();
-  const root = app.value as HTMLElement;
-  const clone = app.value?.cloneNode(true) as HTMLElement;
+  const clone = app.cloneNode(true) as HTMLElement;
   clone.classList.add(oldTheme);
 
   document.body[wasDark ? 'prepend' : 'append'](clone);
   const [start, end] = wasDark ? [0, 150] : [150, 0];
-  const target = wasDark ? root : clone;
+  const target = wasDark ? app : clone;
 
-  root.style.setProperty('--transitions', '0');
+  app.style.setProperty('--transitions', '0');
   clone.style.setProperty('--transitions', '0');
 
   target.style.setProperty('clip-path', `circle(${start}% at ${origin})`);
@@ -54,7 +53,7 @@ const toggle = () => {
 
   target.addEventListener('transitionend', (e) => {
     if (e.target === target) {
-      root.style.removeProperty('--transitions');
+      app.style.removeProperty('--transitions');
       clone.style.removeProperty('--transitions');
 
       target.style.removeProperty('transition');
