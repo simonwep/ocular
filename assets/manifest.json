@@ -4,8 +4,8 @@
     "start_url": "/",
     "display": "standalone",
     "orientation": "portrait",
-    "background_color": "#6bb1ff",
-    "theme_color": "#6bb1ff",
+    "background_color": "#fff",
+    "theme_color": "#fff",
     "description": "Budgeting app",
     "icons": [
         {
