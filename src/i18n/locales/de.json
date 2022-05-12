@@ -13,6 +13,9 @@
             "minimumFractionDigits": 0
         }
     },
+    "app": {
+        "name": "Budgetler"
+    },
     "menu": {
         "dashboard": "Übersicht",
         "income": "Einkommen",
@@ -21,14 +24,14 @@
         "export": "Exportieren"
     },
     "dashboard": {
-        "title": "Jährliches Budget",
-        "dashboard": "Übersicht - Jährliches Budget",
+        "header": "Übersicht - Jährliches Budget",
         "income": "Einkommen",
         "expenses": "Ausgaben",
         "netSavings": "Netto-Einsparung",
         "endingBalance": "Endsaldo",
         "remainingBalance": "Verbleibender Saldo",
         "summary": "Zusammenfassung",
+        "distribution": "Verteilung",
         "graph": {
             "placeholder": "Beginn damit die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
         }
@@ -54,5 +57,8 @@
             "income": "Einkommen.csv",
             "expenses": "Ausgaben.csv"
         }
+    },
+    "export": {
+        "fileName": "Jährliches Budget"
     }
 }

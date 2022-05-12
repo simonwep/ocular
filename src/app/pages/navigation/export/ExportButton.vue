@@ -18,6 +18,6 @@ const { serialize } = useDataStore();
 const { t } = useI18n();
 
 const save = () => {
-  saveFile(serialize(), `${t('dashboard.title')}.budget`, 'application/json');
+  saveFile(serialize(), `${t('export.fileName')}.budget`, 'application/json');
 };
 </script>

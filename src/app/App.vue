@@ -14,8 +14,12 @@ import { useAppElement } from '@composables';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
 import { nextTick, watch, watchEffect } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 const { state } = useSettingsStore();
+const { t } = useI18n();
+const router = useRouter();
 const storage = useStorage();
 const app = useAppElement();
 
@@ -41,6 +45,10 @@ watch(
     app.classList[enabled ? 'remove' : 'add']('reducedMotion');
   }
 );
+
+watchEffect(() => {
+  document.title = ['app.name', ...router.currentRoute.value.matched.map((v) => v.name as string)].map(t).join(' / ');
+});
 </script>
 
 <style lang="scss" module>

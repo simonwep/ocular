@@ -1,5 +1,5 @@
 <template>
-  <Pane :class="$style.dashboard" :title="t('dashboard.dashboard')">
+  <Pane :class="$style.dashboard" :title="t('dashboard.header')">
     <template #header>
       <div :class="$style.viewButtons">
         <Link

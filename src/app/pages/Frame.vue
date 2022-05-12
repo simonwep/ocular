@@ -74,7 +74,7 @@ const buttons: FrameButton[] = [
   flex-direction: column;
   border-right: 1px solid var(--app-border);
   padding: 15px 10px;
-  grid-gap: 10px;
+  grid-gap: 15px;
 
   .top {
     margin-top: auto;

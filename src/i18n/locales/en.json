@@ -13,6 +13,9 @@
             "minimumFractionDigits": 0
         }
     },
+    "app": {
+        "name": "Budgetler"
+    },
     "menu": {
         "dashboard": "Dashboard",
         "income": "Income",
@@ -21,14 +24,14 @@
         "export": "Export"
     },
     "dashboard": {
-        "title": "Annual Budget",
-        "dashboard": "Dashboard - Annual Budget",
+        "header": "Dashboard - Annual Budget",
         "income": "Income",
         "expenses": "Expenses",
         "netSavings": "Net Savings",
         "endingBalance": "Ending Balance",
         "remainingBalance": "Remaining Balance",
         "summary": "Summary",
+        "distribution": "Distribution",
         "graph": {
             "placeholder": "Start by filling out the income / expenses tabs! :)"
         }
@@ -54,5 +57,8 @@
             "income": "Income.csv",
             "expenses": "Expenses.csv"
         }
+    },
+    "export": {
+        "fileName":  "Annual Budget"
     }
 }
