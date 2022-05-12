@@ -1,6 +1,6 @@
 import { GoogleDriveAuth, GoogleDriveAuthReponse } from '@storage/google-drive-storage/types';
 import { createKeyStorage } from '@storage/key-storage';
-import { reactive, readonly, watch, watchEffect } from 'vue';
+import { nextTick, reactive, readonly, watch, watchEffect } from 'vue';
 import { debounce } from '../../utils/debounce';
 import { AppStorage, StorageData, StorageState, StorageSync } from '../types';
 import { parseOAuth2Login } from './utils';
@@ -125,7 +125,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     watch(
       () => JSON.stringify(config.state()),
       (value) => {
-        if (!keyStorage.key || initialSyncsActive--) return;
+        if (!keyStorage.key || initialSyncsActive) return;
         state.status = 'syncing';
         void change(value);
       }
@@ -150,6 +150,8 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
           await upsert(config.name, JSON.stringify(config.state()));
           state.status = 'authenticated';
         }
+
+        await nextTick(() => initialSyncsActive--);
       }
     });
   };
