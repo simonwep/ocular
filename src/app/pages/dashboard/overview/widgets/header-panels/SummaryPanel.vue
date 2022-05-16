@@ -1,7 +1,7 @@
 <template>
   <div :class="[$style.summaryPanel, classes]">
     <div :class="$style.header">
-      <h3 :class="$style.head">{{ title }}</h3>
+      <h2 :class="$style.head">{{ title }}</h2>
       <span :class="$style.title">
         <Currency :value="endingValue" />
       </span>
