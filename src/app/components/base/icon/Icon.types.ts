@@ -14,6 +14,7 @@ export type AppIcon =
   | 'hand-coin'
   | 'menu-line'
   | 'moon-fill'
+  | 'pencil-fill'
   | 'pi-chart-line'
   | 'plus'
   | 'refresh-line'

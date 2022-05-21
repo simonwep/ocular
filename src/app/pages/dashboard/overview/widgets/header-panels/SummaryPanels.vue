@@ -1,9 +1,10 @@
 <template>
   <div :class="[$style.summaryPanels, classes]">
-    <SummaryPanel :values="income" color="--c-success" :title="t('dashboard.income')" />
+    <SummaryPanel :values="income" color="--c-success" to="/income" :title="t('dashboard.income')" />
 
     <SummaryPanel
       :sub-title="n(expensePercentage, 'percent')"
+      to="/expenses"
       :values="expenses"
       color="--c-warning"
       :title="t('dashboard.expenses')"

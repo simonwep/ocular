@@ -1,6 +1,7 @@
 <template>
-  <RouterLink :to="to" :class="[$style.link, classes]">
+  <RouterLink :to="to" :class="classes">
     <Icon :class="$style.icon" v-if="icon" :icon="icon" />
+    <slot />
   </RouterLink>
 </template>
 
@@ -9,21 +10,32 @@ import { AppIcon } from '@components/base/icon/Icon.types';
 import Icon from '@components/base/icon/Icon.vue';
 import { Color, useThemeStyles } from '@composables';
 import { ClassNames } from '@utils';
-import { computed } from 'vue';
+import { computed, useCssModule, useSlots } from 'vue';
 
 const props = withDefaults(
   defineProps<{
     class?: ClassNames;
     icon?: AppIcon;
     color?: Color;
+    custom?: boolean;
     to: string;
   }>(),
   {
-    color: 'primary'
+    color: 'primary',
+    custom: undefined
   }
 );
 
-const classes = computed(() => props.class);
+const slots = useSlots();
+const styles = useCssModule();
+const classes = computed(() => [
+  props.class,
+  styles.link,
+  {
+    [styles.custom]: props.custom ?? slots.default
+  }
+]);
+
 const theme = useThemeStyles(() => props.color);
 </script>
 
@@ -36,14 +48,18 @@ const theme = useThemeStyles(() => props.color);
     width: 20px;
     height: 20px;
   }
+
+  &.custom {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+  }
 }
 
 @media (pointer: fine) {
-  .link {
-    &:hover {
-      background: transparent;
-      color: v-bind('theme.pure.hover');
-    }
+  .link:not(.custom):hover {
+    background: transparent;
+    color: v-bind('theme.pure.hover');
   }
 }
 </style>

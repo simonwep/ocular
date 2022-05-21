@@ -1,5 +1,7 @@
 <template>
-  <div :class="[$style.summaryPanel, classes]">
+  <component :is="element" :to="to" :class="[$style.summaryPanel, classes]">
+    <Icon v-if="to" :class="$style.editIcon" icon="pencil-fill" />
+
     <div :class="$style.header">
       <h2 :class="$style.head">{{ title }}</h2>
       <span :class="$style.title">
@@ -9,11 +11,13 @@
     </div>
 
     <SummaryPanelChart v-if="Array.isArray(values)" :class="$style.chart" :color="chartColor" :values="values" />
-  </div>
+  </component>
 </template>
 
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
+import Icon from '@components/base/icon/Icon.vue';
+import Link from '@components/base/link/Link.vue';
 import { ClassNames } from '@utils';
 import { computed } from 'vue';
 import SummaryPanelChart from './SummaryPanelChart.vue';
@@ -22,6 +26,7 @@ const props = defineProps<{
   class?: ClassNames;
   title: string;
   subTitle?: string;
+  to?: string;
   color: string;
   values: number[] | number;
 }>();
@@ -35,6 +40,7 @@ const endingValue = computed(() =>
 const shadow = computed(() => `var(${props.color}-shadow)`);
 const backgroundColor = computed(() => `var(${props.color}-light)`);
 const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
+const element = computed(() => (props.to ? Link : 'div'));
 </script>
 
 <style lang="scss" module>
@@ -46,8 +52,25 @@ const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
   grid-gap: 2px;
   padding: 30px;
   width: 100%;
+  position: relative;
   border-radius: var(--border-radius-xxxl);
   background: v-bind('backgroundColor');
+
+  .editIcon {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 18px;
+    right: 18px;
+    opacity: 0;
+    transform: translateX(5px);
+    transition: all var(--transition-m);
+  }
+
+  &:hover .editIcon {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .header {
