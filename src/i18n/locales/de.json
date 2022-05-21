@@ -33,7 +33,7 @@
         "summary": "Zusammenfassung",
         "distribution": "Verteilung",
         "graph": {
-            "placeholder": "Beginn damit die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
+            "placeholder": "Beginne damit, die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
         }
     },
     "budget": {
