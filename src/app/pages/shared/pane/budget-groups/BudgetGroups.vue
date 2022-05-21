@@ -96,11 +96,13 @@ const totals = computed(() => {
   display: grid;
   grid-template: auto / max-content max-content max-content repeat(12, 1fr) max-content max-content;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .sum {
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-l);
+  padding-right: 10px;
 }
 
 .month {
