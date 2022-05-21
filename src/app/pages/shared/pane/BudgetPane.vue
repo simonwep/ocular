@@ -3,7 +3,7 @@
     <template #header>
       <MiniChart :class="$style.miniChart" :values="total" />
     </template>
-    <BudgetGroups v-model:totals="total" :type="type" />
+    <BudgetGroups :type="type" />
   </Pane>
 </template>
 

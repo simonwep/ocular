@@ -11,7 +11,7 @@
       :key="month"
       :class="[$style.month, { [$style.current]: index === currentMonth }]"
     >
-      {{ month }}
+      <span>{{ month }}</span>
     </span>
     <span />
     <span />
@@ -115,9 +115,17 @@ const totals = computed(() => {
   font-weight: var(--font-weight-m);
   padding-right: 20px;
   padding-bottom: 5px;
+  position: sticky;
+  z-index: 10;
+  top: 0;
 
   &.current {
     color: var(--c-primary-pure);
+  }
+
+  > span {
+    position: fixed;
+    margin-top: -20px;
   }
 }
 
