@@ -34,8 +34,8 @@
 </template>
 
 <script lang="ts" setup>
-import { BudgetGroup } from '@store/data/types';
-import { flatten } from '@store/data/utils/budgets';
+import { BudgetGroup } from '@store/state/types';
+import { flatten } from '@store/state/utils/budgets';
 import { average, ClassNames, sum } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
 import { computed } from 'vue';

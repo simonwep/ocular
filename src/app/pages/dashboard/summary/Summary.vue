@@ -14,8 +14,8 @@
 
 <script lang="ts" setup>
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
-import { useDataStore } from '@store/data';
-import { totals } from '@store/data/utils/budgets';
+import { useDataStore } from '@store/state';
+import { totals } from '@store/state/utils/budgets';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useMediaQuery } from '../../../../composables/useMediaQuery';

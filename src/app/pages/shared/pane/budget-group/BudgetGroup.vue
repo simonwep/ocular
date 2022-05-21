@@ -90,8 +90,8 @@ import TextCell from '@components/base/text-cell/TextCell.vue';
 import { average, sum } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
 import { computed, ref } from 'vue';
-import { useDataStore } from '@store/data';
-import { BudgetGroup } from '@store/data/types';
+import { useDataStore } from '@store/state';
+import { BudgetGroup } from '@store/state/types';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{

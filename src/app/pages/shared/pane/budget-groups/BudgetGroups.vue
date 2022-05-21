@@ -52,7 +52,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import { useDataStore } from '@store/data';
+import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BudgetGroup from '../budget-group/BudgetGroup.vue';

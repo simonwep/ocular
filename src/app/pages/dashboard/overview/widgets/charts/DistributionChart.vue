@@ -11,8 +11,8 @@ import {
   SankeyChartLink
 } from '@components/charts/sankey-chart/SankeyChart.types';
 import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
-import { useDataStore } from '@store/data';
-import { totals } from '@store/data/utils/budgets';
+import { useDataStore } from '@store/state';
+import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum, uuid } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';

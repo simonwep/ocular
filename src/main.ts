@@ -1,5 +1,5 @@
 import { createStorage, STORAGE_KEY } from '@storage/index';
-import { createDataStore, DATA_STORE_KEY } from '@store/data';
+import { createDataStore, DATA_STORE_KEY } from '@store/state';
 import { createSettingsStore, SETTINGS_STORE_KEY } from '@store/settings';
 import { registerSW } from 'virtual:pwa-register';
 import { createLogger } from './utils/logger';

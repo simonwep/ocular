@@ -1,5 +1,5 @@
 import { DeepReadonly } from '@vue/reactivity';
-import { BudgetGroup } from '../../data/types';
+import { BudgetGroup } from '../types';
 
 export const totals = (groups: DeepReadonly<BudgetGroup[]>): number[] => {
   const totals = new Array(12).fill(0);

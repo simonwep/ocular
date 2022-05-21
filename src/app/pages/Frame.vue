@@ -19,7 +19,7 @@
       <CloudButton :class="$style.btn" />
     </div>
 
-    <div :class="$style.panes">
+    <div ref="panes" :class="$style.panes">
       <AnimatedRouterView />
     </div>
   </div>
@@ -99,7 +99,7 @@ const buttons: FrameButton[] = [
 
   .buttons {
     border: none;
-    border-top: 3px solid var(--app-border);
+    border-top: 1px solid var(--app-border);
     align-items: center;
     margin-top: 0;
     justify-content: space-evenly;

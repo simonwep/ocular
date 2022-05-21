@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { useDataStore } from '@store/data';
+import { useDataStore } from '@store/state';
 import { ClassNames, saveFile } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
