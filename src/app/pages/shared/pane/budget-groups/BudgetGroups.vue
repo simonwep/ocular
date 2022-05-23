@@ -97,6 +97,8 @@ const totals = computed(() => {
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .budgetGroups {
   display: grid;
   grid-template: auto / max-content max-content max-content repeat(12, 1fr) max-content max-content;
@@ -115,17 +117,20 @@ const totals = computed(() => {
   font-weight: var(--font-weight-m);
   padding-right: 20px;
   padding-bottom: 5px;
-  position: sticky;
-  z-index: 10;
-  top: 0;
 
   &.current {
     color: var(--c-primary-pure);
   }
 
   > span {
-    position: fixed;
+    position: absolute;
+    display: inline-block;
     margin-top: -20px;
+
+    @include globals.onMobileDevices {
+      position: static;
+      margin-top: 0;
+    }
   }
 }
 
