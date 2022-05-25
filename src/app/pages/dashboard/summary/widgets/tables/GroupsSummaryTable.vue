@@ -34,6 +34,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useMonthNames } from '@composables';
 import { BudgetGroup } from '@store/state/types';
 import { flatten } from '@store/state/utils/budgets';
 import { average, ClassNames, sum } from '@utils';
@@ -48,17 +49,8 @@ const props = defineProps<{
   title: string;
 }>();
 
-const { d, t, n } = useI18n();
-
-const months = computed(() => {
-  const months: string[] = [];
-
-  for (let i = 0; i < 12; i++) {
-    months.push(d(new Date(0, i), 'month'));
-  }
-
-  return months;
-});
+const { t, n } = useI18n();
+const months = useMonthNames();
 
 const currentMonth = new Date().getMonth();
 const flatted = computed(() => flatten(props.groups));

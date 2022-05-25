@@ -64,6 +64,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useMonthNames } from '@composables';
 import { aggregate, average, subtract, sum } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -81,17 +82,8 @@ const props = withDefaults(
   }
 );
 
-const { d, t, n } = useI18n();
-
-const months = computed(() => {
-  const months: string[] = [];
-
-  for (let i = 0; i < 12; i++) {
-    months.push(d(new Date(0, i), 'month'));
-  }
-
-  return months;
-});
+const { t, n } = useI18n();
+const months = useMonthNames();
 
 const currentMonth = new Date().getMonth();
 const netSavings = computed(() => subtract(props.income, props.expenses));

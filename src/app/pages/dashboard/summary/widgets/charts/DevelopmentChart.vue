@@ -7,6 +7,7 @@
 import ChartPlaceholder from '@app/pages/shared/ChartPlaceholder.vue';
 import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
 import LineChart from '@components/charts/line-chart/LineChart.vue';
+import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
@@ -18,6 +19,7 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
+const months = useMonthNames();
 const { state } = useDataStore();
 const { t } = useI18n();
 
@@ -33,6 +35,7 @@ const data = computed((): LineChartConfig => {
   const endingBalance = aggregate(subtract(income, expenses));
 
   return {
+    labels: months.value,
     series: [
       { name: t('dashboard.income'), color: 'var(--c-success-light-dimmed)', data: income },
       { name: t('dashboard.expenses'), color: 'var(--c-warning-light-dimmed)', data: expenses },

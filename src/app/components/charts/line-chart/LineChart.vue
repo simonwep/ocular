@@ -8,12 +8,12 @@ import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
 import { ClassNames } from '@utils';
 import { GridComponentOption, LegendComponentOption, LineSeriesOption } from 'echarts';
 import { LineChart } from 'echarts/charts';
-import { LegendComponent } from 'echarts/components';
+import { LegendComponent, GridComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
 
-echarts.use([LineChart, SVGRenderer, LegendComponent]);
+echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent]);
 
 type EChartsOption = echarts.ComposeOption<LineSeriesOption | GridComponentOption | LegendComponentOption>;
 
@@ -42,7 +42,7 @@ const options = computed(
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      data: props.data.labels,
       axisTick: { lineStyle: { color: 'var(--chart-line-color)' } },
       axisLine: { lineStyle: { color: 'var(--chart-line-color)' } },
       axisLabel: { color: 'var(--chart-label)' }

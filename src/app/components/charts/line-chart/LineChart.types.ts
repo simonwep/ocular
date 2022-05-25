@@ -6,4 +6,5 @@ export interface StackedLineChartSeries {
 
 export interface LineChartConfig {
   series: StackedLineChartSeries[];
+  labels: string[];
 }

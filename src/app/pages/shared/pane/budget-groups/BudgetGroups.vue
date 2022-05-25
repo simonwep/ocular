@@ -56,6 +56,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
+import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -66,20 +67,11 @@ const props = defineProps<{
 }>();
 
 const { state, addBudgetGroup, removeBudgetGroup } = useDataStore();
-const { t, d } = useI18n();
+const { t } = useI18n();
 
 const currentMonth = new Date().getMonth();
 const groups = computed(() => state[props.type]);
-
-const months = computed(() => {
-  const months: string[] = [];
-
-  for (let i = 0; i < 12; i++) {
-    months.push(d(new Date(0, i), 'month'));
-  }
-
-  return months;
-});
+const months = useMonthNames();
 
 const totals = computed(() => {
   const totals = new Array(12).fill(0);
