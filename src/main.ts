@@ -1,13 +1,13 @@
 import { createStorage, STORAGE_KEY } from '@storage/index';
-import { createDataStore, DATA_STORE_KEY } from '@store/state';
 import { createSettingsStore, SETTINGS_STORE_KEY } from '@store/settings';
+import { createDataStore, DATA_STORE_KEY } from '@store/state';
 import { registerSW } from 'virtual:pwa-register';
-import { createLogger } from './utils/logger';
 import { createApp } from 'vue';
+import App from './app/App.vue';
 import { i18n } from './i18n';
 import { router } from './router';
-import App from './app/App.vue';
 import './styles/index.scss';
+import { createLogger } from './utils/logger';
 
 const { OAUTH_URI, OAUTH_CLIENT_ID, OAUTH_SCOPE } = import.meta.env;
 

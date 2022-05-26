@@ -87,11 +87,11 @@ import Button from '@components/base/button/Button.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import TextCell from '@components/base/text-cell/TextCell.vue';
+import { useDataStore } from '@store/state';
+import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
 import { computed, ref } from 'vue';
-import { useDataStore } from '@store/state';
-import { BudgetGroup } from '@store/state/types';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{

@@ -16,9 +16,9 @@
 </template>
 
 <script lang="ts" setup>
+import { AppIcon } from '@components/base/icon/Icon.types';
 import Link from '@components/base/link/Link.vue';
 import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import Pane from '../shared/Pane.vue';

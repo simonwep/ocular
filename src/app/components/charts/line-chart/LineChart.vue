@@ -8,7 +8,7 @@ import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
 import { ClassNames } from '@utils';
 import { GridComponentOption, LegendComponentOption, LineSeriesOption } from 'echarts';
 import { LineChart } from 'echarts/charts';
-import { LegendComponent, GridComponent } from 'echarts/components';
+import { GridComponent, LegendComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';

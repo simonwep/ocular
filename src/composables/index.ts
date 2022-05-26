@@ -5,4 +5,5 @@ export * from './useMonthNames';
 export * from './useMutationObserver';
 export * from './useResizeObserver';
 export * from './useScrollShadow';
+export * from './useStateHistory';
 export * from './useThemeStyles';

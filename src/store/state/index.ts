@@ -1,10 +1,10 @@
+import { useStateHistory } from '@composables';
 import { AppStorage } from '@storage/types';
-import { remove, uuid } from '@utils';
+import { readFile, remove, uuid } from '@utils';
 import { DeepReadonly } from '@vue/reactivity';
 import { inject, reactive, readonly } from 'vue';
-import { readFile } from '@utils';
-import { Budget, BudgetGroup, DataState } from './types';
 import { generateTemplate } from './template';
+import { Budget, BudgetGroup, DataState } from './types';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -31,6 +31,21 @@ interface Store {
 export const createDataStore = (storage?: AppStorage): Store => {
   const state = reactive(generateTemplate());
   const groups = () => [...state.expenses, ...state.income];
+
+  const history = useStateHistory(
+    () => state,
+    (v) => Object.assign(state, v)
+  );
+
+  window.addEventListener('keypress', (evt: KeyboardEvent) => {
+    if (evt.ctrlKey || evt.metaKey) {
+      if (evt.code === 'KeyZ') {
+        history.undo();
+      } else if (evt.code === 'KeyY') {
+        history.redo();
+      }
+    }
+  });
 
   storage?.sync<DataState>({
     name: 'data',

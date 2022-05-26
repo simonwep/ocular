@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useIntristicSize } from '@composables';
 import { ClassNames } from '@utils';
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
-import { useIntristicSize } from '@composables';
 import { ONBOARDING_STORE, OnboardingStore } from './Steps.types';
 
 const props = defineProps<{
