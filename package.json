@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "vite --host",
         "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
         "lint": "eslint src/**/*.{ts,vue}",
         "lint:fix": "npm run lint -- --fix",
         "gen:icons": "node scripts/icons.js"
