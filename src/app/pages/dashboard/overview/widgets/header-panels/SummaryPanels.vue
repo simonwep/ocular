@@ -70,6 +70,7 @@ const remainingBalancePercentage = computed(() => {
 
 <style lang="scss" module>
 @use 'src/styles/globals';
+@use 'sass:math';
 
 .summaryPanels {
   --panels: 4;
@@ -82,6 +83,17 @@ const remainingBalancePercentage = computed(() => {
   @include globals.onMobileDevices {
     grid-template: repeat(var(--panels), 1fr) / 1fr;
     height: auto;
+  }
+
+  > * {
+    opacity: 0;
+    animation: var(--animation-fade-in-right) var(--transition-m) forwards;
+  }
+
+  @for $i from 1 through 4 {
+    > *:nth-child(#{$i}) {
+      animation-delay: calc(var(--transition-s) * #{math.div($i, 4)});
+    }
   }
 }
 </style>
