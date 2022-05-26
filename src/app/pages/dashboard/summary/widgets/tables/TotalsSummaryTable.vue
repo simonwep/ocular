@@ -16,7 +16,7 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.income') }}</span>
       <span
         v-for="(amount, index) of income"
-        :class="[$style.muted, $style.first, { [$style.current]: index === currentMonth }]"
+        :class="[$style.muted, $style.first, $style.income, { [$style.current]: index === currentMonth }]"
         :key="index"
       >
         {{ n(amount, 'currency') }}
@@ -28,7 +28,7 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.expenses') }}</span>
       <span
         v-for="(amount, index) of expenses"
-        :class="[$style.muted, { [$style.current]: index === currentMonth }]"
+        :class="[$style.muted, $style.expense, { [$style.current]: index === currentMonth }]"
         :key="index"
       >
         {{ n(amount, 'currency') }}
@@ -97,5 +97,15 @@ const endingBalance = computed(() => aggregate(netSavings.value));
   display: grid;
   grid-template: auto / var(--grid-layout);
   font-size: var(--font-size-xs);
+}
+
+.current {
+  &.income {
+    background: var(--c-success-light);
+  }
+
+  &.expense {
+    background: var(--c-danger-light);
+  }
 }
 </style>

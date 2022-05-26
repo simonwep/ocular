@@ -38,7 +38,7 @@ const data = computed((): LineChartConfig => {
     labels: months.value,
     series: [
       { name: t('dashboard.income'), color: 'var(--c-success-light-dimmed)', data: income },
-      { name: t('dashboard.expenses'), color: 'var(--c-warning-light-dimmed)', data: expenses },
+      { name: t('dashboard.expenses'), color: 'var(--c-danger-light-dimmed)', data: expenses },
       { name: t('dashboard.endingBalance'), color: 'var(--c-primary-light-dimmed)', data: endingBalance }
     ]
   };
