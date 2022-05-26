@@ -1,6 +1,6 @@
 {
-    "name": "Budgetler",
-    "short_name": "Budgetler",
+    "name": "Ocular",
+    "short_name": "Ocular",
     "start_url": "/",
     "display": "standalone",
     "orientation": "any",

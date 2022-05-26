@@ -32,7 +32,7 @@ app.mount('#app');
 const logger = createLogger('app');
 const date = new Date(import.meta.env.APP_BUILD_TIMESTAMP).toLocaleDateString();
 const time = new Date(import.meta.env.APP_BUILD_TIMESTAMP).toLocaleTimeString();
-logger.info(`Budgetler build on the ${date} at around ${time}`);
+logger.info(`Ocular build on the ${date} at around ${time}`);
 
 registerSW({
   onOfflineReady: () => logger.success('App available offline'),
