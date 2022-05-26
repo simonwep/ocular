@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" :class="[$style.chart, classes]" />
+  <div ref="root" :class="classes" />
 </template>
 
 <script lang="ts" setup>
@@ -35,10 +35,3 @@ onUnmounted(() => {
   window.removeEventListener('resize', resize);
 });
 </script>
-
-<style lang="scss" module>
-.chart {
-  height: 100%;
-  width: 100%;
-}
-</style>
