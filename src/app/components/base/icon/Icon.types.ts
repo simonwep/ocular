@@ -1,6 +1,6 @@
 export type AppIcon =
   | 'arrow-down-s-line'
-  | 'arrow-left-s'
+  | 'arrow-left-s-line'
   | 'arrow-right-s-line'
   | 'check'
   | 'close-circle'

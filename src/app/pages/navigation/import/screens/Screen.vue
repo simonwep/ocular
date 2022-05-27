@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.screen">
     <h1 v-if="title" :class="$style.title">
-      <Button v-if="back" color="dark" icon="arrow-left-s" textual @click="back" />
+      <Button v-if="back" color="dark" icon="arrow-left-s-line" textual @click="back" />
       <span>{{ title }}</span>
     </h1>
     <div :class="classes">

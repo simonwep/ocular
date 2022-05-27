@@ -7,13 +7,12 @@ const detectSize = () => {
   const el = document.getElementById('app');
 
   if (el) {
-    const value = getComputedStyle(el).getPropertyValue('--media-type').replaceAll('"', '').trim();
-
-    query.value = (value as MediaQuery) || 'normal';
+    query.value =
+      (getComputedStyle(el).getPropertyValue('--media-type').replaceAll('"', '').trim() as MediaQuery) || 'normal';
   }
 };
 
-detectSize();
 window.addEventListener('resize', detectSize);
+window.addEventListener('load', detectSize);
 
 export const useMediaQuery = (): Ref<MediaQuery> => query;
