@@ -1,3 +1,5 @@
+<br/>
+
 <h3 align="center">
   <img src="https://user-images.githubusercontent.com/30767528/169694460-0e85f361-6fd6-4ac6-bf7a-6f98d9241c20.png" alt="Logo" height="200">
 </h3>
@@ -26,7 +28,23 @@ This app comes without any backend and all your data is stored in your google-dr
 does not have access to anything else except its own files**. The (latest) version I use is automatically deployed to [ocular.reinisch.io](https://ocular.reinisch.io) - but feel
 free to [set it up yourself](#setup)!
 
+> **Attention:** It's currently **not** possibly to sync the app with your personal gmail account due to the google-cloud app not being verified yet. You can still use it and
+> download / upload your data or [deploy it yourself](#setup) (which is even cooler!).
+
 > Thanks [@nateseymour](https://github.com/nateseymour) for coming up with a good name for this!
+
+### State of this project
+
+I consider the current state of it as the MVP for my personal use.
+ButI'm planning on adding more [features](https://github.com/Simonwep/ocular/issues) - I'm not planning of making it any more in-depth as it already is, planned features may only
+include adding a way to define goals or general improvements for mobile usage. As I already said, if you're looking for an in-depth tool to manage your finances check
+out [firefly](https://www.firefly-iii.org/)!
+
+### Contributing
+
+If you want to work on this, make sure to out the [contributing guidelines](CONTRIBUTING.md) :)
+Furthermore this project *does not* have releases.
+Because of its simplicity the master branch is considered stable and any new feature will directly be merged into it.
 
 ### Features
 
@@ -50,7 +68,7 @@ npm run preview
 
 To work on it simply run `npm run dev`.
 
-#### Production
+#### _Production_
 
 To run this app in production and to add cloud connectivity, you'll need a [Google Cloud App](https://support.google.com/googleplay/android-developer/answer/9859152?hl=en) with
 the `drive.appdata` scope.
