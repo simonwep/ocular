@@ -1,0 +1,1 @@
+import{d as s,f as a,A as t,b as o}from"./index.bb660df9.js";const p=s({props:{value:null,locale:null},setup(e){const{n:r}=a();return(u,c)=>{var n;return t(o(r)((n=e.value)!=null?n:0,"currency"))}}});export{p as _};
