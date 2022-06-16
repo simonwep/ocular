@@ -4,7 +4,8 @@ export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/dashboard',
+      path: '/',
+      alias: ['/dashboard'],
       name: 'menu.dashboard',
       component: () => import('./app/pages/dashboard/Dashboard.vue'),
       children: [
