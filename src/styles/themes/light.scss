@@ -74,7 +74,7 @@
     --c-danger-pure-hover: var(--c-danger-hover);
     --c-danger-shadow: #ee7a7a5c;
 
-    --font-family: Segoe UI, system-ui, -apple-system, sans-serif;
+    --font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
     --font-weight-s: 200;
     --font-weight-m: 400;
     --font-weight-l: 500;
@@ -128,7 +128,7 @@
 
     --grid-background-odd: #f0f2f3;
     --grid-background-odd-hover: hsl(200deg 11% 91%);
-    --grid-background-even: #ffffff;
+    --grid-background-even: #fff;
     --grid-background-even-hover: #f5f5f7;
     --grid-border-color: #c6cfdd;
     --grid-border-radius: var(--border-radius-m);
