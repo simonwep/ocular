@@ -1,1 +1,0 @@
-import{r as n,w as o}from"./index.7e9efac6.js";const i=s=>{const r=n(new DOMRect),t=new ResizeObserver(e=>{r.value=e[0].target.getBoundingClientRect()});return o(s,e=>{t.disconnect(),e&&t.observe(e)}),r};export{i as u};
