@@ -21,6 +21,10 @@ jobs:
         run: npm run lint
 
       - name: Build
+        env:
+          OAUTH_URI: ${{ secrets.OAUTH_URI }}
+          OAUTH_SCOPE: ${{ secrets.OAUTH_SCOPE }}
+          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
         run: npm run build
 
       - name: Deploy
