@@ -1,4 +1,4 @@
-import { DeepReadonly } from '@vue/reactivity';
+import { DeepReadonly } from 'vue';
 
 export type StorageAuthenticationState = 'idle' | 'loading' | 'authenticated' | 'syncing';
 

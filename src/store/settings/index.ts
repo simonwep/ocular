@@ -1,7 +1,7 @@
 import { AppStorage } from '@storage/types';
 import { generateTemplate } from '@store/settings/template';
 import { SettingsState, Theme } from '@store/settings/types';
-import { DeepReadonly } from '@vue/reactivity';
+import { DeepReadonly } from 'vue';
 import { inject, reactive, readonly } from 'vue';
 
 export const SETTINGS_STORE_KEY = Symbol('SettingsStore');

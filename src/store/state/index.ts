@@ -1,7 +1,7 @@
 import { useStateHistory } from '@composables';
 import { AppStorage } from '@storage/types';
 import { readFile, remove, uuid } from '@utils';
-import { DeepReadonly } from '@vue/reactivity';
+import { DeepReadonly } from 'vue';
 import { inject, reactive, readonly } from 'vue';
 import { generateTemplate } from './template';
 import { Budget, BudgetGroup, DataState } from './types';

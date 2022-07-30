@@ -8,7 +8,7 @@ import { ClassNames } from '@utils';
 import { computed } from 'vue';
 
 const icons = Object.fromEntries(
-  Object.entries(import.meta.globEager('/public/icons/*.svg', { as: 'raw' })).map((v) => [
+  Object.entries(import.meta.glob('/src/icons/*.svg', { eager: true, as: 'raw' })).map((v) => [
     v[0].replace(/.*\/|\.\w+$/g, ''),
     v[1]
   ])

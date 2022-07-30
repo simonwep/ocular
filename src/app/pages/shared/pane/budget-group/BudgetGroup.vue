@@ -90,7 +90,7 @@ import TextCell from '@components/base/text-cell/TextCell.vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils';
-import { DeepReadonly } from '@vue/reactivity';
+import { DeepReadonly } from 'vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 

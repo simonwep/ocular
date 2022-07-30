@@ -1,4 +1,4 @@
-import { DeepReadonly } from '@vue/reactivity';
+import { DeepReadonly } from 'vue';
 import { BudgetGroup } from '../types';
 
 export const totals = (groups: DeepReadonly<BudgetGroup[]>): number[] => {

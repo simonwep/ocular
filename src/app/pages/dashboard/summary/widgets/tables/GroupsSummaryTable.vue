@@ -38,7 +38,7 @@ import { useMonthNames } from '@composables';
 import { BudgetGroup } from '@store/state/types';
 import { flatten } from '@store/state/utils/budgets';
 import { average, ClassNames, sum } from '@utils';
-import { DeepReadonly } from '@vue/reactivity';
+import { DeepReadonly } from 'vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import SummaryTable from './SummaryTable.vue';

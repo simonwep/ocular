@@ -1,4 +1,4 @@
-import { DeepReadonly } from '@vue/reactivity';
+import { DeepReadonly } from 'vue';
 import { reactive, readonly, watch } from 'vue';
 
 interface CachedData {
