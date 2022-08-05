@@ -127,12 +127,14 @@
     --dialog-box-shadow: 0 2px 5px #00000012;
 
     --grid-background-odd: #f0f2f3;
-    --grid-background-odd-hover: hsl(200deg 11% 91%);
+    --grid-background-odd-hover: #e6e9eb;
+    --grid-background-odd-active: #e1e4e6;
     --grid-background-even: #fff;
     --grid-background-even-hover: #f5f5f7;
+    --grid-background-even-active: #f5f5f5;
     --grid-border-color: #c6cfdd;
     --grid-border-radius: var(--border-radius-m);
-
+    --grid-cell-shadow-color: #1f2123;
 
     --grid-header-backround: #343d4a;
     --grid-header-text: #dfe2e8;

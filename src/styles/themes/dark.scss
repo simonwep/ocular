@@ -129,10 +129,13 @@
 
     --grid-background-odd: #27282d;
     --grid-background-odd-hover: #2a2b30;
+    --grid-background-odd-active: #2f2f36;
     --grid-background-even: #1c1d21;
     --grid-background-even-hover: #1e1f24;
+    --grid-background-even-active: #232429;
     --grid-border-color: #131316;
     --grid-border-radius: var(--border-radius-m);
+    --grid-cell-shadow-color: #8c8bff;
 
     --grid-header-backround: #343d4a;
     --grid-header-text: #dfe2e8;

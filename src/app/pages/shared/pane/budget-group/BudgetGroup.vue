@@ -41,6 +41,7 @@
             [$style.even]: index % 2,
             [$style.firstRow]: index === 0,
             [$style.firstColumn]: month === 0,
+            [$style.currentMonth]: month === currentMonth,
             [$style.tlc]: index === 0 && month === 0,
             [$style.trc]: index === 0 && month === 11,
             [$style.blc]: index === group.budgets.length - 1 && month === 0,
@@ -98,10 +99,13 @@ const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
 }>();
 
+const currentMonth = new Date().getMonth();
+
 const { addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget } = useDataStore();
 
 const { t } = useI18n();
 const open = ref(true);
+
 const totals = computed(() => {
   const totals: number[] = new Array(12).fill(0);
 
@@ -162,9 +166,11 @@ const totals = computed(() => {
   border-right: 1px solid var(--grid-border-color);
   border-bottom: 1px solid var(--grid-border-color);
   transition: all var(--input-field-transition);
+  box-shadow: inset 0 0 0 1px transparent;
 
-  &:hover {
-    background: var(--grid-background-odd-hover);
+  &:hover,
+  &:focus-within {
+    box-shadow: inset 0 0 0 1px var(--grid-cell-shadow-color);
   }
 
   &.firstRow {
@@ -175,11 +181,15 @@ const totals = computed(() => {
     border-left: 1px solid var(--grid-border-color);
   }
 
+  &.currentMonth {
+    background: var(--grid-background-odd-active);
+  }
+
   &.even {
     background: var(--grid-background-even);
 
-    &:hover {
-      background: var(--grid-background-even-hover);
+    &.currentMonth {
+      background: var(--grid-background-even-active);
     }
   }
 

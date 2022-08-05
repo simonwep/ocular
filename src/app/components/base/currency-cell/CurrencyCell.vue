@@ -1,7 +1,7 @@
 <template>
   <input
     ref="input"
-    :class="classes"
+    :class="$style.currencyCell"
     :type="focused ? 'number' : 'text'"
     :value="value"
     @blur="focused = false"
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, useCssModule, watch } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
@@ -31,11 +31,8 @@ const props = withDefaults(
 );
 
 const input = ref<HTMLInputElement>();
-const styles = useCssModule();
 const focused = ref(false);
 const { n } = useI18n();
-
-const classes = computed(() => [styles.currencyCell, { [styles.empty]: !props.modelValue }]);
 
 const value = computed(() => {
   const value = props.modelValue;
