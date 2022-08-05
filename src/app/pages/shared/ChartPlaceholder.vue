@@ -34,7 +34,8 @@ const { t } = useI18n();
   flex-grow: 1;
 
   .icons {
-    display: flex;
+    display: grid;
+    grid-template-columns: 24px 24px;
     grid-gap: 10px;
     color: var(--theme-text);
   }
