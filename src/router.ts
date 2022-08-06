@@ -5,7 +5,11 @@ export const router = createRouter({
   routes: [
     {
       path: '/',
-      alias: ['/dashboard'],
+      strict: true,
+      redirect: '/dashboard'
+    },
+    {
+      path: '/dashboard',
       name: 'menu.dashboard',
       component: () => import('./app/pages/dashboard/Dashboard.vue'),
       children: [
