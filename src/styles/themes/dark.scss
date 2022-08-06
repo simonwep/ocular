@@ -10,7 +10,7 @@
     --app-scroll-box-shadow: 0 0 10px #0c0c0c;
     --app-backround: #1f2026;
     --app-border: var(--theme);
-    --app-scrollbar: #bec9d4;
+    --app-scrollbar: #3f4354;
 
     --c-text-dark: #282d38;
     --c-text-dark-muted: #788090;
@@ -126,6 +126,11 @@
 
     --dialog-background: var(--app-backround);
     --dialog-box-shadow: 0 2px 10px #00000080;
+
+    --context-menu-item-color: #c1c1cf;
+    --context-menu-item-color-hover: #ededf6;
+    --context-menu-backdrop: blur(4px) brightness(0.3);
+    --context-menu-shadow: 0 2px 10px #080606;
 
     --grid-background-odd: #27282d;
     --grid-background-odd-hover: #2a2b30;

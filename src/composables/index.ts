@@ -3,6 +3,7 @@ export * from './useIntristicSize';
 export * from './useMediaQuery';
 export * from './useMonthNames';
 export * from './useMutationObserver';
+export * from './useOutOfElementClick';
 export * from './useResizeObserver';
 export * from './useScrollShadow';
 export * from './useStateHistory';

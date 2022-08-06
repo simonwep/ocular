@@ -7,7 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onUnmounted, ref, useCssModule, watch, watchEffect } from 'vue';
+import { computed, ref, useCssModule, watch } from 'vue';
+import { useOutOfElementClick } from '@composables';
 
 const emit = defineEmits<{
   (e: 'close'): void;
@@ -17,18 +18,15 @@ const props = defineProps<{
   open: boolean;
 }>();
 
-const visible = ref(false);
 const content = ref<HTMLDivElement>();
 const dialog = ref<HTMLDialogElement>();
+const visible = ref(false);
 
 const styles = useCssModule();
-const classes = computed(() => [styles.dialog, { [styles.open]: visible.value }]);
+const classes = computed(() => [styles.dialog, { [styles.open]: props.open }]);
 
-const detectOutOfBoundsClick = (e: MouseEvent) => {
-  if (props.open && e.isTrusted && !e.composedPath().includes(content.value as HTMLDivElement)) {
-    emit('close');
-  }
-};
+// Todo: somewhat triggered while modal is made visible
+useOutOfElementClick(content, () => visible.value && emit('close'));
 
 const transitionEnd = () => {
   if (!props.open) {
@@ -38,29 +36,15 @@ const transitionEnd = () => {
 
 watch(
   () => props.open,
-  (value) => {
-    if (value) {
+  (open) => {
+    if (open) {
       dialog.value?.showModal();
-      visible.value = true;
+      requestAnimationFrame(() => (visible.value = true));
     } else {
       visible.value = false;
     }
   }
 );
-
-onUnmounted(() => window.removeEventListener('click', detectOutOfBoundsClick));
-
-watchEffect(() => {
-  void props.open;
-
-  requestAnimationFrame(() => {
-    if (props.open) {
-      window.addEventListener('click', detectOutOfBoundsClick);
-    } else {
-      window.removeEventListener('click', detectOutOfBoundsClick);
-    }
-  });
-});
 </script>
 
 <style lang="scss" module>

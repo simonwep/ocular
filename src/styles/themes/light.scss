@@ -1,5 +1,6 @@
 @mixin light {
     --theme: #f8f9fa;
+
     --theme-text: var(--c-text-dark);
     --theme-text-muted: var(--c-text-dark-muted);
 
@@ -125,6 +126,11 @@
 
     --dialog-background: var(--app-backround);
     --dialog-box-shadow: 0 2px 5px #00000012;
+
+    --context-menu-item-color: #777788;
+    --context-menu-item-color-hover: #222228;
+    --context-menu-backdrop: blur(4px) brightness(1.1);
+    --context-menu-shadow: 0 2px 10px #c5c3db;
 
     --grid-background-odd: #f0f2f3;
     --grid-background-odd-hover: #e6e9eb;

@@ -12,6 +12,7 @@
         "gen:icons": "node scripts/icons.js"
     },
     "dependencies": {
+        "@popperjs/core": "^2.11.5",
         "echarts": "^5.3.3",
         "papaparse": "^5.3.2",
         "vue": "^3.2.37",

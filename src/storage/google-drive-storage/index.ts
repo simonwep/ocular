@@ -111,7 +111,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     }
   };
 
-  const sync = <T extends StorageData>(config: StorageSync<T>) => {
+  const sync = <T extends StorageData, P extends StorageData = T>(config: StorageSync<T, P>) => {
     const change = debounce(async (value: string) => {
       syncsActive++;
       await upsert(config.name, value);

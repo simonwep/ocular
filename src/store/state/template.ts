@@ -1,17 +1,5 @@
-import { uuid } from '@utils';
-import { Budget, BudgetGroup, DataState } from './types';
-
-const generateBudget = (name: string): Budget => ({
-  name,
-  id: uuid(),
-  values: new Array(12).fill(0)
-});
-
-const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup => ({
-  name,
-  id: uuid(),
-  budgets: budgets.map(generateBudget)
-});
+import { DataState } from './types';
+import { generateBudgetGroup } from './utils';
 
 export const generateTemplate = (): DataState => ({
   version: 2,

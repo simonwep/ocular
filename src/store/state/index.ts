@@ -1,20 +1,22 @@
 import { useStateHistory } from '@composables';
 import { AppStorage } from '@storage/types';
 import { readFile, remove, uuid } from '@utils';
-import { DeepReadonly } from 'vue';
+import { DeepReadonly, ref } from 'vue';
 import { inject, reactive, readonly } from 'vue';
 import { generateTemplate } from './template';
-import { Budget, BudgetGroup, DataStateV1, DataState } from './types';
+import { Budget, BudgetGroup, DataStateV1, DataState, BudgetYear } from './types';
+import { generateBudgetYear } from '@store/state/utils';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
 type Group = 'expenses' | 'income';
 
 interface Store {
-  state: DeepReadonly<DataState>;
+  state: DeepReadonly<StoreView>;
 
   serialize(): string;
   deserialize(file: File): Promise<void>;
+  changeYear(year: number): void;
 
   setBudgetGroups(target: Group, groups: BudgetGroup[]): void;
   addBudgetGroup(target: Group): void;
@@ -28,9 +30,19 @@ interface Store {
   setBudget(id: string, month: number, amount: number): void;
 }
 
+type StoreView = Omit<BudgetYear, 'year'> & {
+  years: BudgetYear[];
+};
+
 export const createDataStore = (storage?: AppStorage): Store => {
-  const state = reactive(generateTemplate());
-  const groups = () => [...state.expenses, ...state.income];
+  const activeYear = ref(new Date().getFullYear());
+  const state = reactive<DataState>(generateTemplate());
+
+  const getCurrentYear = () => state.years.find((v) => v.year === activeYear.value) as BudgetYear;
+  const groups = () => {
+    const currentYear = getCurrentYear();
+    return [...currentYear.expenses, ...currentYear.income];
+  };
 
   const history = useStateHistory(
     () => state,
@@ -51,16 +63,44 @@ export const createDataStore = (storage?: AppStorage): Store => {
     name: 'data',
     state: () => state,
     push: (data) => {
-      if (data.version !== 1) {
+      if (![1,2].includes(data.version)) {
         throw new Error(`Cannot process state of version v${data.version}`);
       }
 
-      Object.assign(state, data);
+      const currentYear = new Date().getFullYear();
+      switch (data.version) {
+        case 1:
+          state.years = [
+            {
+              year: currentYear,
+              expenses: data.expenses,
+              income: data.income
+            }
+          ];
+          break;
+        case 2:
+          Object.assign(state, data);
+          break;
+      }
+
+      activeYear.value = state.years.at(-1)?.year ?? currentYear;
     }
   });
 
   return {
-    state: readonly(state),
+    state: readonly(
+      reactive<StoreView>({
+        get years() {
+          return state.years;
+        },
+        get expenses() {
+          return getCurrentYear().expenses;
+        },
+        get income() {
+          return getCurrentYear().income;
+        }
+      })
+    ),
 
     serialize(): string {
       return JSON.stringify(state);
@@ -81,8 +121,20 @@ export const createDataStore = (storage?: AppStorage): Store => {
         });
     },
 
+    changeYear(year: number) {
+      let data = state.years.find((v) => v.year === year);
+
+      if (!data) {
+        data = generateBudgetYear(year);
+        state.years.push(data);
+        state.years.sort((a, b) => a.year - b.year);
+      }
+
+      activeYear.value = year;
+    },
+
     setBudgetGroups(target: Group, groups: BudgetGroup[]): void {
-      state[target] = groups;
+      getCurrentYear()[target] = groups;
     },
 
     setBudgetGroupName(id: string, name: string) {
@@ -109,8 +161,8 @@ export const createDataStore = (storage?: AppStorage): Store => {
     },
 
     removeBudgetGroup(id: string) {
-      remove<BudgetGroup>(state.expenses, (v) => v.id === id);
-      remove<BudgetGroup>(state.income, (v) => v.id === id);
+      remove<BudgetGroup>(getCurrentYear().expenses, (v) => v.id === id);
+      remove<BudgetGroup>(getCurrentYear().income, (v) => v.id === id);
     },
 
     addBudget(id: string) {
@@ -124,7 +176,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
     },
 
     addBudgetGroup(target: Group) {
-      state[target].push({
+      getCurrentYear()[target].push({
         id: uuid(),
         name: 'New Group',
         budgets: []
