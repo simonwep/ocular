@@ -99,7 +99,7 @@ watchEffect(() => {
 .content {
   background: var(--dialog-background);
   color: var(--theme-text);
-  padding: 10px;
+  padding: 10px 13px;
   border-radius: var(--border-radius-l);
   box-shadow: var(--dialog-box-shadow);
 }

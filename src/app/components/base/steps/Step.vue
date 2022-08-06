@@ -15,11 +15,11 @@ const props = defineProps<{
 }>();
 
 const root = ref<HTMLDivElement>();
-const intristicSize = useIntristicSize(root);
+const intrinsicSize = useIntristicSize(root);
 const { register, unregister } = inject<OnboardingStore>(ONBOARDING_STORE) as OnboardingStore;
 
-onMounted(() => register(intristicSize));
-onUnmounted(() => unregister(intristicSize));
+onMounted(() => register(intrinsicSize));
+onUnmounted(() => unregister(intrinsicSize));
 
 const classes = computed(() => props.class);
 </script>

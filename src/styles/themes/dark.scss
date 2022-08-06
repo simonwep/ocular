@@ -111,11 +111,11 @@
     --input-field-transition: var(--transition-s);
     --input-field-font-size: var(--font-size-xs);
     --input-field-caret-color: #a6aab7;
+    --input-field-border: var(--c-dimmed);
     --input-field-placeholder: var(--c-dark-pure);
-    --input-field-border: var(--c-dark);
     --input-field-background: var(--app-backround);
 
-    --input-field-hover-border: var(--c-dark-hover);
+    --input-field-hover-border: var(--c-dimmed-hover);
     --input-field-hover-background: var(--input-field-background);
 
     --input-field-focus-border: #0750b1;

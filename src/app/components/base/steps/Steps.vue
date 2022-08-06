@@ -54,11 +54,11 @@ defineExpose<StepsExposed>({
   display: flex;
   width: calc(v-bind('screen.width') * 1px);
   height: calc(v-bind('screen.height') * 1px);
-  transition: all var(--transition-s);
+  transition: all var(--transition-m);
   overflow: hidden;
 
   > *:first-child {
-    transition: all var(--transition-s);
+    transition: all var(--transition-m);
     margin-left: calc(v-bind('offset') * -1px);
   }
 }
