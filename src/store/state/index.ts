@@ -4,7 +4,7 @@ import { readFile, remove, uuid } from '@utils';
 import { DeepReadonly } from 'vue';
 import { inject, reactive, readonly } from 'vue';
 import { generateTemplate } from './template';
-import { Budget, BudgetGroup, DataState } from './types';
+import { Budget, BudgetGroup, DataStateV1, DataState } from './types';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -47,7 +47,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
     }
   });
 
-  storage?.sync<DataState>({
+  storage?.sync<DataState, DataState | DataStateV1>({
     name: 'data',
     state: () => state,
     push: (data) => {

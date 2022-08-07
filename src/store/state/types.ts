@@ -14,7 +14,22 @@ export interface BudgetGroup {
   budgets: Budget[];
 }
 
-export interface DataState extends StorageData {
+export interface BudgetYear {
+  year: number;
   expenses: BudgetGroup[];
   income: BudgetGroup[];
 }
+
+export interface DataStateV2 extends StorageData {
+  version: 2;
+  years: BudgetYear[];
+}
+
+export interface DataStateV1 extends StorageData {
+  version: 1;
+  expenses: BudgetGroup[];
+  income: BudgetGroup[];
+}
+
+// Latest structure
+export type DataState = DataStateV2;
