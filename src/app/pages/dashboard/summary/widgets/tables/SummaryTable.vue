@@ -32,6 +32,7 @@ defineProps<{
   padding: 10px;
   border: 2px solid var(--app-border);
   border-radius: var(--border-radius-xxl);
+  overflow: auto;
 
   --grid-layout: 100px repeat(14, minmax(max-content, 1fr));
 }
