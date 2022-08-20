@@ -25,7 +25,6 @@ const visible = ref(false);
 const styles = useCssModule();
 const classes = computed(() => [styles.dialog, { [styles.open]: props.open }]);
 
-// Todo: somewhat triggered while modal is made visible
 useOutOfElementClick(content, () => visible.value && emit('close'));
 
 const transitionEnd = () => {

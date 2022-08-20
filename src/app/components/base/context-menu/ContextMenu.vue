@@ -1,10 +1,10 @@
 <template>
   <div :class="$style.contextMenu">
-    <button ref="reference" :class="$style.reference" @click="open = !open">
+    <button ref="reference" :class="$style.reference" @click="toggle">
       <slot />
     </button>
     <div ref="popper" :class="$style.popper">
-      <ul :class="[$style.list, { [$style.visible]: open }]">
+      <ul :class="[$style.list, { [$style.visible]: visible }]">
         <li :class="$style.item" v-for="option of options" :key="option.id">
           <button :class="$style.btn" @click="select(option)">
             {{ option.label ?? option.id }}
@@ -19,6 +19,7 @@
 import { ref, watch } from 'vue';
 import { createPopper, Instance } from '@popperjs/core';
 import { ContextMenuOption } from '.';
+import { useOutOfElementClick } from '@composables';
 
 const emit = defineEmits<{
   (e: 'select', option: ContextMenuOption): void;
@@ -30,8 +31,10 @@ defineProps<{
 
 const reference = ref<HTMLButtonElement>();
 const popper = ref<HTMLDivElement>();
-const open = ref(false);
+const visible = ref(false);
 let instance: Instance | undefined;
+
+useOutOfElementClick(popper, () => (visible.value = false));
 
 watch([reference, popper], () => {
   instance?.destroy();
@@ -46,7 +49,11 @@ watch([reference, popper], () => {
 
 const select = (option: ContextMenuOption): void => {
   emit('select', option);
-  open.value = false;
+  visible.value = false;
+};
+
+const toggle = () => {
+  requestAnimationFrame(() => (visible.value = !visible.value));
 };
 </script>
 
