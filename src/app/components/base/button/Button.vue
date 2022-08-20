@@ -55,7 +55,7 @@ const classes = computed(() => [
   color: v-bind('theme.text.base');
   border-radius: var(--border-radius-m);
   transition: all var(--transition-s);
-  padding: 6px 10px;
+  padding: 4px 8px;
 
   &.iconOnly {
     padding: 3px;

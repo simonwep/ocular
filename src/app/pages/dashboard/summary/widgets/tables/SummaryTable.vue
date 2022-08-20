@@ -34,6 +34,6 @@ defineProps<{
   border-radius: var(--border-radius-xxl);
   overflow: auto;
 
-  --grid-layout: 100px repeat(14, minmax(max-content, 1fr));
+  --grid-layout: 100px repeat(14, minmax(max-content, auto));
 }
 </style>
