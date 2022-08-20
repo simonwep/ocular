@@ -85,6 +85,12 @@ const buttons: FrameButton[] = [
     height: 1px;
     background: var(--app-border);
   }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 @include globals.onMobileDevices {
