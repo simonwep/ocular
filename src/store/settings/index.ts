@@ -19,7 +19,13 @@ export const createSettingsStore = (storage?: AppStorage): Store => {
   storage?.sync<SettingsState>({
     name: 'settings',
     state: () => state,
-    push: (data) => Object.assign(state, data)
+    push: (data) => {
+      if (data.version !== 1) {
+        throw new Error(`Cannot process state of version v${data.version}`);
+      }
+
+      Object.assign(state, data);
+    }
   });
 
   return {

@@ -50,7 +50,13 @@ export const createDataStore = (storage?: AppStorage): Store => {
   storage?.sync<DataState>({
     name: 'data',
     state: () => state,
-    push: (data) => Object.assign(state, data)
+    push: (data) => {
+      if (data.version !== 1) {
+        throw new Error(`Cannot process state of version v${data.version}`);
+      }
+
+      Object.assign(state, data);
+    }
   });
 
   return {
