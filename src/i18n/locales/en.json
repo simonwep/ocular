@@ -24,7 +24,7 @@
         "export": "Export"
     },
     "dashboard": {
-        "header": "Dashboard - Annual Budget",
+        "header": "Dashboard - Annual Budget {year}",
         "income": "Income",
         "expenses": "Expenses",
         "netSavings": "Net Savings",

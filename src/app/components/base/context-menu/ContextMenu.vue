@@ -6,7 +6,7 @@
     <div ref="popper" :class="$style.popper">
       <ul :class="[$style.list, { [$style.visible]: visible }]">
         <li :class="$style.item" v-for="option of options" :key="option.id">
-          <button :class="$style.btn" @click="select(option)">
+          <button :class="[$style.btn, { [$style.highlight]: highlight === option.id }]" @click="select(option)">
             {{ option.label ?? option.id }}
           </button>
         </li>
@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { createPopper, Instance } from '@popperjs/core';
-import { ContextMenuOption } from '.';
+import { ContextMenuOption, ContextMenuOptionId } from '.';
 import { useOutOfElementClick } from '@composables';
 
 const emit = defineEmits<{
@@ -27,6 +27,7 @@ const emit = defineEmits<{
 
 defineProps<{
   options: ContextMenuOption[];
+  highlight?: ContextMenuOptionId;
 }>();
 
 const reference = ref<HTMLButtonElement>();
@@ -81,7 +82,7 @@ const toggle = () => {
   backdrop-filter: var(--context-menu-backdrop);
   box-shadow: var(--context-menu-shadow);
   border-radius: var(--border-radius-m);
-  padding: 5px 2px;
+  padding: 5px 0;
   max-height: 130px;
   overflow: auto;
   visibility: hidden;
@@ -101,12 +102,12 @@ const toggle = () => {
     align-items: center;
     cursor: pointer;
     font-size: var(--font-size-xs);
-    border-radius: 10px;
-    padding: 6px 8px;
+    padding: 6px 10px;
     color: var(--context-menu-item-color);
     position: relative;
 
-    &:hover {
+    &:hover,
+    &.highlight {
       color: var(--context-menu-item-color-hover);
     }
   }

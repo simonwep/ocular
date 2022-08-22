@@ -31,6 +31,7 @@ interface Store {
 }
 
 type StoreView = Omit<BudgetYear, 'year'> & {
+  activeYear: number;
   years: BudgetYear[];
 };
 
@@ -63,7 +64,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
     name: 'data',
     state: () => state,
     push: (data) => {
-      if (![1,2].includes(data.version)) {
+      if (![1, 2].includes(data.version)) {
         throw new Error(`Cannot process state of version v${data.version}`);
       }
 
@@ -83,24 +84,27 @@ export const createDataStore = (storage?: AppStorage): Store => {
           break;
       }
 
-      activeYear.value = state.years.at(-1)?.year ?? currentYear;
+      activeYear.value = state.years.some((v) => v.year === currentYear)
+        ? currentYear
+        : state.years.at(-1)?.year ?? currentYear;
     }
   });
 
   return {
-    state: readonly(
-      reactive<StoreView>({
-        get years() {
-          return state.years;
-        },
-        get expenses() {
-          return getCurrentYear().expenses;
-        },
-        get income() {
-          return getCurrentYear().income;
-        }
-      })
-    ),
+    state: readonly<StoreView>({
+      get activeYear() {
+        return activeYear.value;
+      },
+      get years() {
+        return state.years;
+      },
+      get expenses() {
+        return getCurrentYear().expenses;
+      },
+      get income() {
+        return getCurrentYear().income;
+      }
+    }),
 
     serialize(): string {
       return JSON.stringify(state);

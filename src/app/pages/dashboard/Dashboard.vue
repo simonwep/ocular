@@ -1,5 +1,5 @@
 <template>
-  <Pane :class="$style.dashboard" :title="t('dashboard.header')">
+  <Pane :class="$style.dashboard" :title="t('dashboard.header', { year: state.activeYear })">
     <template #header>
       <div :class="$style.viewButtons">
         <Link
@@ -22,8 +22,10 @@ import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRo
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import Pane from '../shared/Pane.vue';
+import { useDataStore } from '@store/state';
 
 const { t } = useI18n();
+const { state } = useDataStore();
 const router = useRouter();
 
 interface DashboardTab {

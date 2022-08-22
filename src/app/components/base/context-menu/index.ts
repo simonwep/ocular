@@ -1,4 +1,6 @@
+export type ContextMenuOptionId = number;
+
 export interface ContextMenuOption {
-  id: number;
+  id: ContextMenuOptionId;
   label?: string;
 }

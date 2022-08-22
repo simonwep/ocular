@@ -1,5 +1,5 @@
 <template>
-  <ContextMenu :options="options" @select="changeYear($event.id)">
+  <ContextMenu :options="options" :highlight="state.activeYear" @select="changeYear($event.id)">
     <Button icon="calendar-line" textual color="dimmed" />
   </ContextMenu>
 </template>
