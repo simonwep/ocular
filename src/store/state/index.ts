@@ -4,8 +4,9 @@ import { readFile, remove, uuid } from '@utils';
 import { DeepReadonly, ref } from 'vue';
 import { inject, reactive, readonly } from 'vue';
 import { generateTemplate } from './template';
-import { Budget, BudgetGroup, DataStateV1, DataState, BudgetYear } from './types';
+import { Budget, BudgetGroup, DataStateV1, DataState, BudgetYear, DataStates } from './types';
 import { generateBudgetYear } from '@store/state/utils';
+import { migrateApplicationState } from '@store/state/migrateApplicationState';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -64,25 +65,9 @@ export const createDataStore = (storage?: AppStorage): Store => {
     name: 'data',
     state: () => state,
     push: (data) => {
-      if (![1, 2].includes(data.version)) {
-        throw new Error(`Cannot process state of version v${data.version}`);
-      }
-
       const currentYear = new Date().getFullYear();
-      switch (data.version) {
-        case 1:
-          state.years = [
-            {
-              year: currentYear,
-              expenses: data.expenses,
-              income: data.income
-            }
-          ];
-          break;
-        case 2:
-          Object.assign(state, data);
-          break;
-      }
+
+      Object.assign(state, migrateApplicationState(data));
 
       activeYear.value = state.years.some((v) => v.year === currentYear)
         ? currentYear
@@ -113,15 +98,8 @@ export const createDataStore = (storage?: AppStorage): Store => {
     deserialize(file: File): Promise<void> {
       return readFile(file)
         .then(JSON.parse)
-        .then((content) => {
-          /* eslint-disable @typescript-eslint/no-explicit-any */
-          for (const key of Object.keys(state)) {
-            if (!(key in content) && key in state) {
-              delete (state as any)[key];
-            }
-          }
-
-          Object.assign(state, content);
+        .then((content: DataStates) => {
+          Object.assign(state, migrateApplicationState(content));
         });
     },
 

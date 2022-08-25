@@ -20,6 +20,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Test
+        run: npm run test
+
       - name: Build
         env:
           OAUTH_URI: ${{ secrets.OAUTH_URI }}
