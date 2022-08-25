@@ -11,6 +11,8 @@ import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { ContextMenuOption } from '@components/base/context-menu';
 import { useDataStore } from '@store/state';
 
+const PRE_PLANNABLE_YEARS = 1;
+
 const { changeYear, state } = useDataStore();
 
 const options = computed((): ContextMenuOption[] => {
@@ -18,7 +20,7 @@ const options = computed((): ContextMenuOption[] => {
   const offset = Math.min(new Date().getFullYear(), ...yearsStored);
   const list: ContextMenuOption[] = [];
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i <= PRE_PLANNABLE_YEARS; i++) {
     list.push({ id: offset + i });
   }
 
