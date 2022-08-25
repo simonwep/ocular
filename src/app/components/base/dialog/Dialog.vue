@@ -25,7 +25,7 @@ const styles = useCssModule();
 const classes = computed(() => [styles.dialog, { [styles.open]: visible.value }]);
 
 const detectOutOfBoundsClick = (e: MouseEvent) => {
-  if (props.open && !e.composedPath().includes(content.value as HTMLDivElement)) {
+  if (props.open && e.isTrusted && !e.composedPath().includes(content.value as HTMLDivElement)) {
     emit('close');
   }
 };

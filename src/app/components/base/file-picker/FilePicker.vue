@@ -1,5 +1,5 @@
 <template>
-  <button @click="pick" :class="classes">
+  <button @click="pick" type="button" :class="classes">
     <span :class="$style.label"> {{ modelValue?.name ?? placeholder }}</span>
   </button>
 </template>

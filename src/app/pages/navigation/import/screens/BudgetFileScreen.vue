@@ -4,7 +4,7 @@
       v-model="budgetFile"
       :class="$style.input"
       :placeholder="t('import.budgeter.pickFile')"
-      :accept="['.budget']"
+      :accept="['.json']"
     />
     <Button v-if="budgetFile" icon="upload-cloud-2-line" :text="t('import.import')" @click="load" />
   </Screen>
