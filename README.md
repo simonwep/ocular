@@ -53,9 +53,9 @@ Because of its simplicity the master branch is considered stable and any new fea
 - [x] Installable (PWA).
 - [x] Import your data from Google sheet's annual planner.
 - [x] Export your data as a single `.json`-file.
+- [x] Add a budget for up to a year ahead.
 - [ ] Full mobile support ([#4](https://github.com/Simonwep/ocular/issues/4)).
 - [ ] A settings-page to customize things such as the currency / locale and possibly a starting balance ([#1](https://github.com/Simonwep/ocular/issues/1)).
-- [ ] Support for planning a budget for multiple years ([#2](https://github.com/Simonwep/ocular/issues/2)).
 
 ### Setup
 
