@@ -6,8 +6,8 @@ import { createApp } from 'vue';
 import App from './app/App.vue';
 import { i18n } from './i18n';
 import { router } from './router';
+import { createLogger } from '@utils';
 import './styles/index.scss';
-import { createLogger } from './utils/logger';
 
 const { OAUTH_URI, OAUTH_CLIENT_ID, OAUTH_SCOPE } = import.meta.env;
 

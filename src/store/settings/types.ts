@@ -1,8 +1,8 @@
-import { StorageData } from '@storage/types';
+import { MigratableState } from '@utils';
 
 export type Theme = 'light' | 'dark';
 
-export interface SettingsState extends StorageData {
+export interface SettingsState extends MigratableState<1> {
   appearance: {
     theme: Theme;
     animations: boolean;

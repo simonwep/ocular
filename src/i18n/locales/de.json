@@ -24,7 +24,7 @@
         "export": "Exportieren"
     },
     "dashboard": {
-        "header": "Übersicht - Jährliches Budget",
+        "header": "Übersicht - Jährliches Budget {year}",
         "income": "Einkommen",
         "expenses": "Ausgaben",
         "netSavings": "Netto-Einsparung",

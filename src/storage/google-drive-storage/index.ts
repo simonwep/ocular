@@ -1,8 +1,8 @@
 import { GoogleDriveAuth, GoogleDriveAuthReponse } from '@storage/google-drive-storage/types';
 import { createKeyStorage } from '@storage/key-storage';
 import { nextTick, reactive, readonly, watch, watchEffect } from 'vue';
-import { debounce } from '../../utils/debounce';
-import { AppStorage, StorageData, StorageState, StorageSync } from '../types';
+import { debounce, MigratableState } from '@utils';
+import { AppStorage, StorageState, StorageSync } from '../types';
 import { parseOAuth2Login } from './utils';
 
 const CACHE_KEY = 'GOOGLE_DRIVE_STORAGE_KEY';
@@ -111,7 +111,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
     }
   };
 
-  const sync = <T extends StorageData>(config: StorageSync<T>) => {
+  const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
     const change = debounce(async (value: string) => {
       syncsActive++;
       await upsert(config.name, value);

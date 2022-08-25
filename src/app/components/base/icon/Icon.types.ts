@@ -2,6 +2,7 @@ export type AppIcon =
   | 'arrow-down-s-line'
   | 'arrow-left-s-line'
   | 'arrow-right-s-line'
+  | 'calendar-line'
   | 'check'
   | 'close-circle'
   | 'cloud-line'

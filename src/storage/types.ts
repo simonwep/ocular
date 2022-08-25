@@ -1,4 +1,5 @@
 import { DeepReadonly } from 'vue';
+import { MigratableState } from '@utils';
 
 export type StorageAuthenticationState = 'idle' | 'loading' | 'authenticated' | 'syncing';
 
@@ -6,18 +7,14 @@ export interface StorageState {
   status: StorageAuthenticationState;
 }
 
-export interface StorageData {
-  version: number;
-}
-
-export interface StorageSync<T extends StorageData> {
+export interface StorageSync<T extends MigratableState, P extends MigratableState = T> {
   name: string;
   state(): T;
-  push(data: T): void;
+  push(data: P): void;
 }
 
 export interface AppStorage {
   state: DeepReadonly<StorageState>;
   login(): void;
-  sync<T extends StorageData>(config: StorageSync<T>): void;
+  sync<T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>): void;
 }

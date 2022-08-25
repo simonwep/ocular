@@ -1,4 +1,7 @@
 export * from './array';
+export * from './debounce';
+export * from './logger';
+export * from './migration';
 export * from './readFile';
 export * from './remove';
 export * from './saveFile';
