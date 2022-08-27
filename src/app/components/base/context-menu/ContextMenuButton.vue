@@ -67,7 +67,7 @@ const classes = computed(() => [
   }
 
   &.padIcon {
-    margin-left: 20px;
+    padding-left: calc(12px + 20px);
   }
 
   &:hover,
