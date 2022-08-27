@@ -1,22 +1,27 @@
 <template>
-  <DialogButton :class="classes" ref="dialog" color="dimmed" icon="upload-cloud-2-line" textual @close="close">
+  <ContextMenuButton
+    :class="classes"
+    :text="t('data.import.import')"
+    icon="upload-cloud-2-line"
+    @click="visible = true"
+  />
+
+  <Dialog ref="dialog" :open="visible" @close="visible = false">
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
-        <h1 :class="$style.title">{{ t('import.start.title') }}</h1>
-        <Button icon="file-fill" :text="t('import.start.budgeter')" @click="next(BudgetFileScreen)" />
-        <Button icon="google-fill" :text="t('import.start.google')" @click="next(GoogleAnnualBudgetScreen)" />
+        <h1 :class="$style.title">{{ t('data.import.start.title') }}</h1>
+        <Button icon="file-fill" :text="t('data.import.start.budgeter')" @click="next(BudgetFileScreen)" />
+        <Button icon="google-fill" :text="t('data.import.start.google')" @click="next(GoogleAnnualBudgetScreen)" />
       </Step>
       <Step>
         <component :is="screen" v-if="screen" :back="previous" @loaded="close" />
       </Step>
     </Steps>
-  </DialogButton>
+  </Dialog>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { DialogButtonExposed } from '@components/base/dialog-button/DialogButton.types';
-import DialogButton from '@components/base/dialog-button/DialogButton.vue';
 import Step from '@components/base/steps/Step.vue';
 import { StepsExposed } from '@components/base/steps/Steps.types';
 import Steps from '@components/base/steps/Steps.vue';
@@ -25,6 +30,8 @@ import { computed, DefineComponent, ref, shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BudgetFileScreen from './screens/BudgetFileScreen.vue';
 import GoogleAnnualBudgetScreen from './screens/GoogleAnnualBudgetScreen.vue';
+import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
+import Dialog from '@components/base/dialog/Dialog.vue';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -33,13 +40,13 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const screen = shallowRef<DefineComponent>();
 const steps = shallowRef<StepsExposed>();
-const dialog = ref<DialogButtonExposed>();
+const visible = ref(false);
 
 const { t } = useI18n();
 
 const close = () => {
-  dialog.value?.close();
   steps.value?.reset();
+  visible.value = false;
 };
 
 /* eslint-disable @typescript-eslint/no-explicit-any */

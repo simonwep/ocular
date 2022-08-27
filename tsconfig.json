@@ -21,6 +21,7 @@
             "@composables": ["./src/composables/index.ts"],
             "@components/*": ["./src/app/components/*"],
             "@app/*": ["./src/app/*"],
+            "@i18n/*": ["./src/i18n/*"],
             "@storage/*": ["./src/storage/*"],
             "@static/*": ["./src/static/*"],
             "@utils": ["./src/utils/index.ts"],

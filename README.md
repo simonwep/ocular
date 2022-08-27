@@ -31,7 +31,7 @@ free to [set it up yourself](#setup)!
 > **Attention:** It's currently **not** possibly to sync the app with your personal gmail account due to the google-cloud app not being verified yet. You can still use it and
 > download / upload your data or [deploy it yourself](#setup) (which is even cooler!).
 
-> Thanks [@nateseymour](https://github.com/nateseymour) for coming up with a good name for this!
+> Thanks, [@nateseymour](https://github.com/nateseymour) for coming up with a good name for this!
 
 ### State of this project
 

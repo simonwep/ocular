@@ -1,64 +1,78 @@
 {
-    "_dateTimeFormats": {
-        "month": {"month": "long"}
+  "_dateTimeFormats": {
+    "month": {
+      "month": "long"
+    }
+  },
+  "_numberFormats": {
+    "currency": {
+      "currency": "EUR",
+      "minimumFractionDigits": 0,
+      "style": "currency"
     },
-    "_numberFormats": {
-        "percent": {
-            "style": "percent",
-            "maximumFractionDigits": 0
-        },
-        "currency": {
-            "style": "currency",
-            "currency": "EUR",
-            "minimumFractionDigits": 0
-        }
+    "percent": {
+      "maximumFractionDigits": 0,
+      "style": "percent"
+    }
+  },
+  "app": {
+    "name": "Ocular"
+  },
+  "budget": {
+    "addBudget": "Budget hinzufügen",
+    "addGroup": "Gruppe hinzufügen",
+    "average": "Durchschnitt",
+    "total": "Summe",
+    "totals": "Summen"
+  },
+  "currency": {
+    "eur": "Euro",
+    "gbp": "Pfund",
+    "usd": "Dollar"
+  },
+  "dashboard": {
+    "distribution": "Verteilung",
+    "endingBalance": "Endsaldo",
+    "expenses": "Ausgaben",
+    "graph": {
+      "placeholder": "Beginne damit, die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
     },
-    "app": {
-        "name": "Ocular"
-    },
-    "menu": {
-        "dashboard": "Übersicht",
-        "income": "Einkommen",
-        "expenses": "Ausgaben",
-        "import": "Imoportiere",
-        "export": "Exportieren"
-    },
-    "dashboard": {
-        "header": "Übersicht - Jährliches Budget {year}",
-        "income": "Einkommen",
-        "expenses": "Ausgaben",
-        "netSavings": "Netto-Einsparung",
-        "endingBalance": "Endsaldo",
-        "remainingBalance": "Verbleibender Saldo",
-        "summary": "Zusammenfassung",
-        "distribution": "Verteilung",
-        "graph": {
-            "placeholder": "Beginne damit, die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
-        }
-    },
-    "budget": {
-        "addBudget": "Budget hinzufügen",
-        "addGroup": "Gruppe hinzufügen",
-        "totals": "Summen",
-        "total": "Summe",
-        "average": "Durchschnitt"
+    "header": "Übersicht - Jährliches Budget {year}",
+    "income": "Einkommen",
+    "netSavings": "Netto-Einsparung",
+    "remainingBalance": "Verbleibender Saldo",
+    "summary": "Zusammenfassung"
+  },
+  "data": {
+    "export": {
+      "export": "Daten als JSON-Datei exportieren",
+      "fileName": "Jährliches Budget"
     },
     "import": {
-        "import": "Importieren",
-        "start": {
-            "title": "Was soll importiert werden?",
-            "budgeter": "Eine von budgeter exportierte Datei",
-            "google": "Eine Annual-Budget-Datei von Google-Sheets"
-        },
-        "budgeter": {
-            "pickFile": ".budget-Datei auswählen"
-        },
-        "google": {
-            "income": "Einkommen.csv",
-            "expenses": "Ausgaben.csv"
-        }
-    },
-    "export": {
-        "fileName": "Jährliches Budget"
+      "budgeter": {
+        "pickFile": ".budget-Datei auswählen"
+      },
+      "google": {
+        "expenses": "Ausgaben.csv",
+        "income": "Einkommen.csv"
+      },
+      "import": "Daten von einer Datei importieren",
+      "start": {
+        "budgeter": "Eine von budgeter exportierte Datei",
+        "google": "Eine Annual-Budget-Datei von Google-Sheets",
+        "title": "Was soll importiert werden?"
+      }
     }
+  },
+  "locale": {
+    "de": "Deutsch",
+    "en": "Englisch"
+  },
+  "menu": {
+    "dashboard": "Übersicht",
+    "expenses": "Ausgaben",
+    "export": "Exportieren",
+    "import": "Imoportiere",
+    "income": "Einkommen"
+  }
 }

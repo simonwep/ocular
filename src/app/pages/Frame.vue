@@ -13,9 +13,10 @@
         :to="button.link"
       />
 
-      <ImportButton :class="[$style.top, $style.btn]" />
-      <ExportButton :class="$style.btn" />
+      <DataTransferButton :class="[$style.top, $style.btn]" />
       <SelectYearButton :class="$style.btn" />
+      <ChangeLanguageButton :class="$style.btn" />
+      <ChangeCurrencyButton :class="$style.btn" />
       <div :class="$style.divider" />
       <CloudButton :class="$style.btn" />
     </div>
@@ -33,10 +34,11 @@ import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRo
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import CloudButton from './navigation/CloudButton.vue';
-import ExportButton from './navigation/export/ExportButton.vue';
-import ImportButton from './navigation/import/ImportButton.vue';
 import SelectYearButton from './navigation/year/SelectYearButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';
+import DataTransferButton from './navigation/data-transfer/DataTransferButton.vue';
+import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue';
+import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue';
 
 const menu = ref<HTMLDivElement>();
 const router = useRouter();

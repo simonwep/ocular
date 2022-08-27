@@ -1,14 +1,15 @@
 <template>
   <dialog ref="dialog" :class="classes" @transitionend="transitionEnd">
-    <div ref="content" :class="$style.content">
+    <div ref="content" :class="[$style.content, contentClass]">
       <slot />
     </div>
   </dialog>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, useCssModule, watch } from 'vue';
+import { computed, onMounted, ref, useCssModule, watch } from 'vue';
 import { useOutOfElementClick } from '@composables';
+import { ClassNames } from '@utils';
 
 const emit = defineEmits<{
   (e: 'close'): void;
@@ -16,6 +17,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   open: boolean;
+  contentClass?: ClassNames;
 }>();
 
 const content = ref<HTMLDivElement>();
@@ -44,6 +46,13 @@ watch(
     }
   }
 );
+
+onMounted(() => {
+  if (dialog.value) {
+    dialog.value.remove();
+    document.getElementById('app')?.append(dialog.value);
+  }
+});
 </script>
 
 <style lang="scss" module>

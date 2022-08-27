@@ -1,18 +1,23 @@
 <template>
-  <Screen :back="back" :class="$style.screen" :title="t('import.start.google')">
+  <Screen :back="back" :class="$style.screen" :title="t('data.import.start.google')">
     <FilePicker
       :class="$style.input"
       v-model="incomeFile"
-      :placeholder="t('import.google.income')"
+      :placeholder="t('data.import.google.income')"
       :accept="['.csv']"
     />
     <FilePicker
       :class="$style.input"
       v-model="expensesFile"
-      :placeholder="t('import.google.expenses')"
+      :placeholder="t('data.import.google.expenses')"
       :accept="['.csv']"
     />
-    <Button v-if="expensesFile && incomeFile" icon="upload-cloud-2-line" :text="t('import.import')" @click="load" />
+    <Button
+      v-if="expensesFile && incomeFile"
+      icon="upload-cloud-2-line"
+      :text="t('data.import.import')"
+      @click="load"
+    />
   </Screen>
 </template>
 
