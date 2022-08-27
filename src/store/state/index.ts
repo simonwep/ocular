@@ -1,12 +1,13 @@
 import { useStateHistory } from '@composables';
 import { AppStorage } from '@storage/types';
 import { readFile, remove, uuid } from '@utils';
-import { DeepReadonly, ref } from 'vue';
+import { DeepReadonly, ref, watch } from 'vue';
 import { inject, reactive, readonly } from 'vue';
 import { generateTemplate } from './template';
-import { Budget, BudgetGroup, DataStateV1, DataState, BudgetYear, DataStates } from './types';
+import { Budget, BudgetGroup, DataStateV1, DataState, BudgetYear, DataStates, AvailableCurrency } from './types';
 import { generateBudgetYear } from '@store/state/utils';
 import { migrateApplicationState } from '@store/state/migrateApplicationState';
+import { AvailableLocale, i18n } from '@i18n/index';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -17,7 +18,10 @@ interface Store {
 
   serialize(): string;
   deserialize(file: File): Promise<void>;
+
   changeYear(year: number): void;
+  changeLocale(locale: AvailableLocale): void;
+  changeCurrency(currency: AvailableCurrency): void;
 
   setBudgetGroups(target: Group, groups: BudgetGroup[]): void;
   addBudgetGroup(target: Group): void;
@@ -33,18 +37,14 @@ interface Store {
 
 type StoreView = Omit<BudgetYear, 'year'> & {
   activeYear: number;
+  currency: AvailableCurrency;
+  locale: AvailableLocale;
   years: BudgetYear[];
 };
 
 export const createDataStore = (storage?: AppStorage): Store => {
   const activeYear = ref(new Date().getFullYear());
   const state = reactive<DataState>(generateTemplate());
-
-  const getCurrentYear = () => state.years.find((v) => v.year === activeYear.value) as BudgetYear;
-  const groups = () => {
-    const currentYear = getCurrentYear();
-    return [...currentYear.expenses, ...currentYear.income];
-  };
 
   const history = useStateHistory(
     () => state,
@@ -60,6 +60,30 @@ export const createDataStore = (storage?: AppStorage): Store => {
       }
     }
   });
+
+  const getCurrentYear = () => state.years.find((v) => v.year === activeYear.value) as BudgetYear;
+  const groups = () => {
+    const currentYear = getCurrentYear();
+    return [...currentYear.expenses, ...currentYear.income];
+  };
+
+  watch(
+    () => state.currency,
+    (currency) => {
+      for (const locale of i18n.global.availableLocales) {
+        const formats = i18n.global.getNumberFormat(locale);
+        i18n.global.setNumberFormat(locale, {
+          ...formats,
+          currency: { ...formats.currency, currency }
+        });
+      }
+    }
+  );
+
+  watch(
+    () => state.locale,
+    (locale) => (i18n.global.locale.value = locale)
+  );
 
   storage?.sync<DataState, DataState | DataStateV1>({
     name: 'data',
@@ -82,6 +106,12 @@ export const createDataStore = (storage?: AppStorage): Store => {
       },
       get years() {
         return state.years;
+      },
+      get currency() {
+        return state.currency;
+      },
+      get locale() {
+        return state.locale;
       },
       get expenses() {
         return getCurrentYear().expenses;
@@ -113,6 +143,14 @@ export const createDataStore = (storage?: AppStorage): Store => {
       }
 
       activeYear.value = year;
+    },
+
+    changeLocale(locale: AvailableLocale) {
+      state.locale = locale;
+    },
+
+    changeCurrency(currency: AvailableCurrency) {
+      state.currency = currency;
     },
 
     setBudgetGroups(target: Group, groups: BudgetGroup[]): void {

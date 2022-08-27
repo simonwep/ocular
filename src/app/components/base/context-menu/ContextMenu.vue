@@ -1,32 +1,42 @@
 <template>
-  <div :class="$style.contextMenu">
-    <button ref="reference" :class="$style.reference" @click="toggle">
+  <div :class="[$style.contextMenu, classes]">
+    <div ref="reference" :class="$style.reference" @click="toggle">
       <slot />
-    </button>
-    <div ref="popper" :class="$style.popper">
-      <ul :class="[$style.list, { [$style.visible]: visible }]">
-        <li :class="$style.item" v-for="option of options" :key="option.id">
-          <button :class="[$style.btn, { [$style.highlight]: highlight === option.id }]" @click="select(option)">
-            {{ option.label ?? option.id }}
-          </button>
-        </li>
+    </div>
+    <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
+      <ul :class="$style.list">
+        <slot name="options" v-if="$slots.options"></slot>
+        <template v-else-if="options">
+          <ContextMenuButton
+            v-for="option of options"
+            :pad-icon="hasOptionWithIcon"
+            :key="option.id"
+            :text="option.label ?? option.id"
+            :icon="option.icon"
+            :highlight="option.id === highlight"
+            @click="select(option)"
+          />
+        </template>
       </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { createPopper, Instance } from '@popperjs/core';
 import { ContextMenuOption, ContextMenuOptionId } from '.';
 import { useOutOfElementClick } from '@composables';
+import ContextMenuButton from './ContextMenuButton.vue';
+import { ClassNames } from '@utils';
 
 const emit = defineEmits<{
   (e: 'select', option: ContextMenuOption): void;
 }>();
 
-defineProps<{
-  options: ContextMenuOption[];
+const props = defineProps<{
+  class?: ClassNames;
+  options?: ContextMenuOption[];
   highlight?: ContextMenuOptionId;
 }>();
 
@@ -46,6 +56,12 @@ watch([reference, popper], () => {
       modifiers: [{ name: 'offset', options: { offset: [10, 10] } }]
     });
   }
+});
+
+const classes = computed(() => props.class);
+
+const hasOptionWithIcon = computed(() => {
+  return props.options?.some((v) => v.icon);
 });
 
 const select = (option: ContextMenuOption): void => {
@@ -71,7 +87,19 @@ const toggle = () => {
 .popper {
   display: flex;
   position: absolute;
-  z-index: 1;
+  transition: all var(--transition-m) var(--transition-m);
+  z-index: -1;
+
+  &.visible {
+    z-index: 1;
+    transition: all var(--transition-m);
+
+    .list {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 .list {
@@ -89,36 +117,5 @@ const toggle = () => {
   opacity: 0;
   transform: translateX(-10px);
   transition: all var(--transition-m);
-
-  &.visible {
-    visibility: visible;
-    opacity: 1;
-    transform: none;
-  }
-
-  .item {
-    display: flex;
-
-    .btn {
-      all: unset;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      font-size: var(--font-size-xs);
-      padding: 6px 12px;
-      transition: all var(--transition-s);
-      color: var(--context-menu-item-color);
-      position: relative;
-
-      &:hover,
-      &.highlight {
-        color: var(--context-menu-item-color-hover);
-      }
-
-      &:hover {
-        background: var(--context-menu-item-background-hover);
-      }
-    }
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <ContextMenu :options="options" :highlight="state.activeYear" @select="changeYear($event.id)">
+  <ContextMenu :options="options" :highlight="state.activeYear" @select="changeYear($event.id as number)">
     <Button icon="calendar-line" textual color="dimmed" />
   </ContextMenu>
 </template>
@@ -21,7 +21,10 @@ const options = computed((): ContextMenuOption[] => {
   const list: ContextMenuOption[] = [];
 
   for (let i = 0; i <= PRE_PLANNABLE_YEARS; i++) {
-    list.push({ id: offset + i });
+    list.push({
+      id: offset + i,
+      icon: state.activeYear === offset + i ? 'calendar-check-line' : 'calendar-todo-line'
+    });
   }
 
   return list;

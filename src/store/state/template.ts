@@ -1,8 +1,11 @@
 import { DataState } from './types';
 import { generateBudgetGroup } from './utils';
+import { initialLocale } from '@i18n/index';
 
 export const generateTemplate = (): DataState => ({
-  version: 2,
+  version: 3,
+  locale: initialLocale,
+  currency: 'gbp',
   years: [
     {
       year: new Date().getFullYear(),

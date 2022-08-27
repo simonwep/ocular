@@ -1,64 +1,78 @@
 {
-    "_dateTimeFormats": {
-        "month": {"month": "long"}
+  "_dateTimeFormats": {
+    "month": {
+      "month": "long"
+    }
+  },
+  "_numberFormats": {
+    "currency": {
+      "currency": "GBP",
+      "minimumFractionDigits": 0,
+      "style": "currency"
     },
-    "_numberFormats": {
-        "percent": {
-            "style": "percent",
-            "maximumFractionDigits": 0
-        },
-        "currency": {
-            "style": "currency",
-            "currency": "GBP",
-            "minimumFractionDigits": 0
-        }
+    "percent": {
+      "maximumFractionDigits": 0,
+      "style": "percent"
+    }
+  },
+  "app": {
+    "name": "Ocular"
+  },
+  "budget": {
+    "addBudget": "Add Budget",
+    "addGroup": "Add Group",
+    "average": "Average",
+    "total": "Total",
+    "totals": "Totals"
+  },
+  "currency": {
+    "eur": "Euro",
+    "gbp": "Pound",
+    "usd": "Dollar"
+  },
+  "dashboard": {
+    "distribution": "Distribution",
+    "endingBalance": "Ending Balance",
+    "expenses": "Expenses",
+    "graph": {
+      "placeholder": "Start by filling out the income / expenses tabs! :)"
     },
-    "app": {
-        "name": "Ocular"
-    },
-    "menu": {
-        "dashboard": "Dashboard",
-        "income": "Income",
-        "expenses": "Expenses",
-        "import": "Import",
-        "export": "Export"
-    },
-    "dashboard": {
-        "header": "Dashboard - Annual Budget {year}",
-        "income": "Income",
-        "expenses": "Expenses",
-        "netSavings": "Net Savings",
-        "endingBalance": "Ending Balance",
-        "remainingBalance": "Remaining Balance",
-        "summary": "Summary",
-        "distribution": "Distribution",
-        "graph": {
-            "placeholder": "Start by filling out the income / expenses tabs! :)"
-        }
-    },
-    "budget": {
-        "addBudget": "Add Budget",
-        "addGroup": "Add Group",
-        "totals": "Totals",
-        "total": "Total",
-        "average": "Average"
+    "header": "Dashboard - Annual Budget {year}",
+    "income": "Income",
+    "netSavings": "Net Savings",
+    "remainingBalance": "Remaining Balance",
+    "summary": "Summary"
+  },
+  "data": {
+    "export": {
+      "export": "Export as JSON",
+      "fileName": "Annual Budget"
     },
     "import": {
-        "import": "Import",
-        "start": {
-            "title": "What would you like to import?",
-            "budgeter": "A previously exported file",
-            "google": "Google-Sheets annual budget file"
-        },
-        "budgeter": {
-            "pickFile": "Select your .budget file to import"
-        },
-        "google": {
-            "income": "Income.csv",
-            "expenses": "Expenses.csv"
-        }
-    },
-    "export": {
-        "fileName": "Annual Budget"
+      "budgeter": {
+        "pickFile": "Select your .budget file to import"
+      },
+      "google": {
+        "expenses": "Expenses.csv",
+        "income": "Income.csv"
+      },
+      "import": "Import from file",
+      "start": {
+        "budgeter": "A previously exported file",
+        "google": "Google-Sheets annual budget file",
+        "title": "What would you like to import?"
+      }
     }
+  },
+  "locale": {
+    "de": "German",
+    "en": "English"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "expenses": "Expenses",
+    "export": "Export",
+    "import": "Import",
+    "income": "Income"
+  }
 }
