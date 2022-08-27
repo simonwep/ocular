@@ -3,48 +3,48 @@
 @use 'globals';
 
 html, body, #app {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #app {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: var(--theme);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--font-size-s);
-    font-family: var(--font-family);
-    color: var(--theme-text);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--theme);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-s);
+  font-family: var(--font-family);
+  color: var(--theme-text);
 
-    // Media queries
-    --media-type: 'normal';
+  // Media queries
+  --media-type: 'normal';
 
-    @include globals.onAppMinSizeReached {
-        --media-type: 'minimized';
-    }
+  @include globals.onAppMinSizeReached {
+    --media-type: 'minimized';
+  }
 
-    @include globals.onMobileDevices {
-        --media-type: 'mobile';
-    }
+  @include globals.onMobileDevices {
+    --media-type: 'mobile';
+  }
 }
 
 #app, ::backdrop {
-    @include themes.animations;
+  @include themes.animations;
 }
 
 #app {
-    &.light,
-    &.light ::backdrop {
-        @include themes.light;
-    }
+  &.light,
+  &.light ::backdrop {
+    @include themes.light;
+  }
 
-    &.dark,
-    &.dark ::backdrop {
-        @include themes.dark;
-    }
+  &.dark,
+  &.dark ::backdrop {
+    @include themes.dark;
+  }
 }

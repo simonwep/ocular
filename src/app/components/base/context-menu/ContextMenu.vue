@@ -82,7 +82,7 @@ const toggle = () => {
   backdrop-filter: var(--context-menu-backdrop);
   box-shadow: var(--context-menu-shadow);
   border-radius: var(--border-radius-m);
-  padding: 5px 0;
+  padding: 6px 0;
   max-height: 130px;
   overflow: auto;
   visibility: hidden;
@@ -96,19 +96,28 @@ const toggle = () => {
     transform: none;
   }
 
-  .item .btn {
-    all: unset;
+  .item {
     display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: var(--font-size-xs);
-    padding: 6px 10px;
-    color: var(--context-menu-item-color);
-    position: relative;
 
-    &:hover,
-    &.highlight {
-      color: var(--context-menu-item-color-hover);
+    .btn {
+      all: unset;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: var(--font-size-xs);
+      padding: 6px 12px;
+      transition: all var(--transition-s);
+      color: var(--context-menu-item-color);
+      position: relative;
+
+      &:hover,
+      &.highlight {
+        color: var(--context-menu-item-color-hover);
+      }
+
+      &:hover {
+        background: var(--context-menu-item-background-hover);
+      }
     }
   }
 }

@@ -1,38 +1,38 @@
 @mixin animations {
-    --animation-fade-in-down: fade-in-down;
-    --animation-fade-in-right: fade-in-right;
-    --animation-fade-in-scale: fade-in-scale;
+  --animation-fade-in-down: fade-in-down;
+  --animation-fade-in-right: fade-in-right;
+  --animation-fade-in-scale: fade-in-scale;
 }
 
 @keyframes fade-in-down {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes fade-in-right {
-    from {
-        opacity: 0;
-        transform: translateX(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes fade-in-scale {
-    from {
-        opacity: 0;
-        transform: scale(0.995);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

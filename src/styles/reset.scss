@@ -1,28 +1,28 @@
 * {
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+  width: 15px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--app-scrollbar);
-    background-clip: content-box;
-    border: 5px solid transparent;
-    border-radius: 10px;
+  background: var(--app-scrollbar);
+  background-clip: content-box;
+  border: 5px solid transparent;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-corner {
-    display: none;
+  display: none;
 }
 
 @media (pointer: coarse) {
-    ::-webkit-scrollbar {
-        display: none;
-    }
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
