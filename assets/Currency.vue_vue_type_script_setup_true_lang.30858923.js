@@ -1,0 +1,1 @@
+import{d as t,u as c,x as u,a as n,g as o}from"./index.c4438d17.js";const y=t({__name:"Currency",props:{value:null,locale:null},setup(r){const{n:a}=c(),{state:s}=o();return(l,p)=>{var e;return u(n(a)((e=r.value)!=null?e:0,{key:"currency",currency:n(s).currency}))}}});export{y as _};
