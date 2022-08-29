@@ -90,7 +90,6 @@ onMounted(() => {
 }
 
 .wrapper {
-  display: flex;
   width: 100%;
   height: 100%;
   animation: var(--animation-fade-in-scale) var(--transition-s);

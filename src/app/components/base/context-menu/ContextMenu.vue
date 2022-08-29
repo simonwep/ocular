@@ -47,10 +47,10 @@ let instance: Instance | undefined;
 
 useOutOfElementClick(popper, () => (visible.value = false));
 
-watch([reference, popper], () => {
+watch([visible, reference, popper], () => {
   instance?.destroy();
 
-  if (reference.value && popper.value) {
+  if (visible.value && reference.value && popper.value) {
     instance = createPopper(reference.value, popper.value, {
       placement: 'right-end',
       modifiers: [{ name: 'offset', options: { offset: [10, 10] } }]
@@ -87,17 +87,17 @@ const toggle = () => {
 .popper {
   display: flex;
   position: absolute;
-  transition: all var(--transition-m) var(--transition-m);
-  z-index: -1;
+  pointer-events: none;
+  z-index: 1;
 
   &.visible {
-    z-index: 1;
-    transition: all var(--transition-m);
+    pointer-events: all;
 
     .list {
       visibility: visible;
       opacity: 1;
       transform: none;
+      transition: all var(--transition-m);
     }
   }
 }
@@ -116,6 +116,6 @@ const toggle = () => {
   visibility: hidden;
   opacity: 0;
   transform: translateX(-10px);
-  transition: all var(--transition-m);
+  transition: none;
 }
 </style>
