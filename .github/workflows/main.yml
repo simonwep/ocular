@@ -30,6 +30,9 @@ jobs:
           OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
         run: npm run build
 
+      - name: Pre-Deploy
+        run: cp dist/index.html dist/404.html
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
