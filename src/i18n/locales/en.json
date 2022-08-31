@@ -45,21 +45,21 @@
   },
   "data": {
     "export": {
-      "export": "Export as JSON",
+      "export": "Export as JSON file",
       "fileName": "Annual Budget"
     },
     "import": {
-      "budgeter": {
-        "pickFile": "Select your .budget file to import"
-      },
       "google": {
         "expenses": "Expenses.csv",
         "income": "Income.csv"
       },
-      "import": "Import from file",
+      "import": "Import from JSON file",
+      "ocular": {
+        "pickFile": "Select your .budget file to import"
+      },
       "start": {
-        "budgeter": "A previously exported file",
         "google": "Google-Sheets annual budget file",
+        "ocular": "A previously exported file",
         "title": "What would you like to import?"
       }
     }

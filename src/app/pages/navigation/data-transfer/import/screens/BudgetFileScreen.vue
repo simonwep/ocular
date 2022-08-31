@@ -1,9 +1,9 @@
 <template>
-  <Screen :back="back" :class="$style.screen" :title="t('data.import.start.budgeter')">
+  <Screen :back="back" :class="$style.screen" :title="t('data.import.start.ocular')">
     <FilePicker
       v-model="budgetFile"
       :class="$style.input"
-      :placeholder="t('data.import.budgeter.pickFile')"
+      :placeholder="t('data.import.ocular.pickFile')"
       :accept="['.json']"
     />
     <Button v-if="budgetFile" icon="upload-cloud-2-line" :text="t('data.import.import')" @click="load" />

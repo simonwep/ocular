@@ -10,7 +10,7 @@
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
         <h1 :class="$style.title">{{ t('data.import.start.title') }}</h1>
-        <Button icon="file-fill" :text="t('data.import.start.budgeter')" @click="next(BudgetFileScreen)" />
+        <Button icon="file-fill" :text="t('data.import.start.ocular')" @click="next(BudgetFileScreen)" />
         <Button icon="google-fill" :text="t('data.import.start.google')" @click="next(GoogleAnnualBudgetScreen)" />
       </Step>
       <Step>

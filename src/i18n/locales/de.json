@@ -35,10 +35,10 @@
     "endingBalance": "Endsaldo",
     "expenses": "Ausgaben",
     "graph": {
-      "placeholder": "Beginne damit, die Einkommens- / Ausgabe-Tabellen auszufüllen! :)"
+      "placeholder": "Beginne damit, Einkünfte & Ausgaben einzutragen! :)"
     },
     "header": "Übersicht - Jährliches Budget {year}",
-    "income": "Einkommen",
+    "income": "Einkünfte",
     "netSavings": "Netto-Einsparung",
     "remainingBalance": "Verbleibender Saldo",
     "summary": "Zusammenfassung"
@@ -49,17 +49,17 @@
       "fileName": "Jährliches Budget"
     },
     "import": {
-      "budgeter": {
-        "pickFile": ".budget-Datei auswählen"
-      },
       "google": {
         "expenses": "Ausgaben.csv",
-        "income": "Einkommen.csv"
+        "income": "Einkünfte.csv"
       },
-      "import": "Daten von einer Datei importieren",
+      "import": "Daten von einer JSON-Datei importieren",
+      "ocular": {
+        "pickFile": ".budget-Datei auswählen"
+      },
       "start": {
-        "budgeter": "Eine von budgeter exportierte Datei",
         "google": "Eine Annual-Budget-Datei von Google-Sheets",
+        "ocular": "Eine von Ocular exportierte Datei",
         "title": "Was soll importiert werden?"
       }
     }
@@ -73,6 +73,6 @@
     "expenses": "Ausgaben",
     "export": "Exportieren",
     "import": "Imoportiere",
-    "income": "Einkommen"
+    "income": "Einkünfte"
   }
 }
