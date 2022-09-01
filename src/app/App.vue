@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.app">
+  <div :class="$style.app" ref="root">
     <LoadingScreen
       :loading="storage.state.status === 'loading'"
       :class="$style.root"
@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
-import { useAppElement } from '@composables';
+import { useAppElement, useSquircle } from '@composables';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
 import { nextTick, watch, watchEffect } from 'vue';
@@ -22,6 +22,7 @@ const { t } = useI18n();
 const router = useRouter();
 const storage = useStorage();
 const app = useAppElement();
+const root = useSquircle(0.035);
 
 watchEffect(() => {
   app.classList.add(state.appearance.theme);
@@ -63,7 +64,6 @@ watchEffect(() => {
   max-width: globals.$appMaxWidth;
   max-height: globals.$appMaxHeight;
   box-shadow: var(--app-box-shadow);
-  border-radius: var(--border-radius-xl);
   overflow: hidden;
   background: var(--app-backround);
 

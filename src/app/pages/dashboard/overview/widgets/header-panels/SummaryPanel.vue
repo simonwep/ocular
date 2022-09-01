@@ -1,17 +1,19 @@
 <template>
-  <component :is="element" :to="to" :class="[$style.summaryPanel, classes]">
-    <Icon v-if="to" :class="$style.editIcon" icon="pencil-fill" />
+  <div ref="root" :style="$style.wrapper">
+    <component :is="element" :to="to" :class="[$style.summaryPanel, classes]">
+      <Icon v-if="to" :class="$style.editIcon" icon="pencil-fill" />
 
-    <div :class="$style.header">
-      <h2 :class="$style.head">{{ title }}</h2>
-      <span :class="$style.title">
-        <Currency :value="endingValue" />
-      </span>
-      <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
-    </div>
+      <div :class="$style.header">
+        <h2 :class="$style.head">{{ title }}</h2>
+        <span :class="$style.title">
+          <Currency :value="endingValue" />
+        </span>
+        <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
+      </div>
 
-    <SummaryPanelChart v-if="Array.isArray(values)" :class="$style.chart" :color="chartColor" :values="values" />
-  </component>
+      <SummaryPanelChart v-if="Array.isArray(values)" :class="$style.chart" :color="chartColor" :values="values" />
+    </component>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -21,6 +23,7 @@ import Link from '@components/base/link/Link.vue';
 import { ClassNames } from '@utils';
 import { computed } from 'vue';
 import SummaryPanelChart from './SummaryPanelChart.vue';
+import { useSquircle } from '@composables';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -32,6 +35,7 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
+const root = useSquircle(0.25);
 
 const endingValue = computed(() =>
   Array.isArray(props.values) ? props.values[props.values.length - 1] : props.values
@@ -46,14 +50,20 @@ const element = computed(() => (props.to ? Link : 'div'));
 <style lang="scss" module>
 @use 'src/styles/globals';
 
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
 .summaryPanel {
   display: flex;
   justify-content: space-between;
   grid-gap: 2px;
   padding: 30px;
   width: 100%;
+  height: 100%;
   position: relative;
-  border-radius: var(--border-radius-xxxl);
   background: v-bind('backgroundColor');
 
   .editIcon {
