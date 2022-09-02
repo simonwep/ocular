@@ -40,7 +40,7 @@
     "header": "Dashboard - Annual Budget {year}",
     "income": "Income",
     "netSavings": "Net Savings",
-    "remainingBalance": "Remaining Balance",
+    "remainingBalance": "Remaining Balance until {year}",
     "summary": "Summary"
   },
   "data": {

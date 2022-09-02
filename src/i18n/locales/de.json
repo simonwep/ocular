@@ -40,7 +40,7 @@
     "header": "Übersicht - Jährliches Budget {year}",
     "income": "Einkünfte",
     "netSavings": "Netto-Einsparung",
-    "remainingBalance": "Verbleibender Saldo",
+    "remainingBalance": "Verbleibender Saldo bis {year}",
     "summary": "Zusammenfassung"
   },
   "data": {

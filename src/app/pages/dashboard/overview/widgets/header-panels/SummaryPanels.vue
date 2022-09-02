@@ -1,5 +1,5 @@
 <template>
-  <div :class="[$style.summaryPanels, classes]">
+  <div :class="classes" @animationend="animationsDone++">
     <SummaryPanel :values="income" color="--c-success" to="/income" :title="t('dashboard.income')" />
 
     <SummaryPanel
@@ -18,10 +18,11 @@
     />
 
     <SummaryPanel
+      v-if="currentYear === state.activeYear"
       :sub-title="n(remainingBalancePercentage, 'percent')"
       :values="remainingBalance"
       color="--c-secondary"
-      :title="t('dashboard.remainingBalance')"
+      :title="t('dashboard.remainingBalance', { year: currentYear + 1 })"
     />
   </div>
 </template>
@@ -30,7 +31,7 @@
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
-import { computed } from 'vue';
+import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
 import SummaryPanel from './SummaryPanel.vue';
 
@@ -38,9 +39,21 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const classes = computed(() => props.class);
+const currentYear = new Date().getFullYear();
+
 const { state } = useDataStore();
 const { t, n } = useI18n();
+const animationsDone = ref(0);
+
+const styles = useCssModule();
+const classes = computed(() => [
+  props.class,
+  styles.summaryPanels,
+  {
+    [styles.reduced]: state.activeYear !== currentYear,
+    [styles.unAnimated]: animationsDone.value >= 3
+  }
+]);
 
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));
@@ -85,9 +98,19 @@ const remainingBalancePercentage = computed(() => {
     height: auto;
   }
 
+  &.reduced {
+    --panels: 3;
+  }
+
   > * {
     opacity: 0;
     animation: var(--animation-fade-in-right) var(--transition-m) forwards;
+  }
+
+  &.unAnimated > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 
   @for $i from 1 through 4 {

@@ -56,7 +56,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   transition: all var(--transition-m);
 
   .title {
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
   }
 }
