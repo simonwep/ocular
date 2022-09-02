@@ -10,10 +10,10 @@
 
 <script lang="ts" setup>
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
-import { useAppElement, useSquircle } from '@composables';
+import { useAppElement, useMediaQuery, useSquircle } from '@composables';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
-import { nextTick, watch, watchEffect } from 'vue';
+import { computed, nextTick, watch, watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
@@ -21,8 +21,9 @@ const { state } = useSettingsStore();
 const { t } = useI18n();
 const router = useRouter();
 const storage = useStorage();
+const media = useMediaQuery();
 const app = useAppElement();
-const root = useSquircle(0.035);
+const root = useSquircle(computed(() => (media.value === 'minimized' ? 0 : 0.035)));
 
 watchEffect(() => {
   app.classList.add(state.appearance.theme);
@@ -68,7 +69,6 @@ watchEffect(() => {
   background: var(--app-backround);
 
   @include globals.onAppMinSizeReached {
-    border-radius: 0;
     max-width: 100%;
     max-height: 100%;
   }
