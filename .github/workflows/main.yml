@@ -31,7 +31,9 @@ jobs:
         run: npm run build
 
       - name: Pre-Deploy
-        run: cp dist/index.html dist/404.html
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.3
