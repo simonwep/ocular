@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.6",
+        "ackee-tracker": "^5.1.0",
         "echarts": "^5.3.3",
         "li18nt": "^5.0.0",
         "papaparse": "^5.3.2",
@@ -28,6 +29,7 @@
         "vue-router": "^4.1.5"
     },
     "devDependencies": {
+        "@types/ackee-tracker": "^5.0.2",
         "@types/node": "^16.11.56",
         "@types/papaparse": "^5.3.5",
         "@typescript-eslint/eslint-plugin": "^5.36.1",

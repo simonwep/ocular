@@ -6,7 +6,7 @@ import manifest from './assets/manifest.json';
 import { createCounter } from './utils/createCounter';
 
 export default defineConfig(({ mode }) => ({
-  envPrefix: ['OAUTH'],
+  envPrefix: ['OAUTH', 'ACKEE'],
 
   css: {
     modules: {
