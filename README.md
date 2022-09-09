@@ -16,20 +16,28 @@
      src="https://github.com/Simonwep/ocular/workflows/CI/badge.svg"/></a>
 </p>
 
+### Features
+
+- 🔐 Simple login via google drive.
+- 🌚 Dark / light theme.
+- 💻 Installable (PWA).
+- ⬆️ Import your data from Google sheet's annual planner.
+- ⬇️ Export your data as a single `.json`-file.
+- 🕰 Add a budget for up to a year ahead.
+- ...full mobile support ([#4](https://github.com/Simonwep/ocular/issues/4)).
+
 ### Summary
 
 A small budgeting app as an alternative to Google sheet's annual budget planner.
 The goal of the app is **not** to track individual expenses, work with multiple currencies at a time or anything related (if you're looking for something like this, check
 out [firefly-iii](https://www.firefly-iii.org/)).
-It should merely be used to roughly plan your budget across the year - a bit easier to use than google sheets and much simpler than highly sophisicated apps such
-as [firefly-iii](https://www.firefly-iii.org/).
 
 This app comes without any backend and all your data is stored in your google-drive account as an app (no worry - you can always export your data in the app). **This app
 does not have access to anything else except its own files**. The (latest) version I use is automatically deployed to [ocular.reinisch.io](https://ocular.reinisch.io) - but feel
-free to [set it up yourself](#setup)!
+free to [set it up yourself](#development)!
 
 > **Attention:** It's currently **not** possibly to sync the app with your personal gmail account due to the google-cloud app not being verified yet. You can still use it and
-> download / upload your data or [deploy it yourself](#setup) (which is even cooler!).
+> download / upload your data or [deploy it yourself](#development) (which is even cooler!).
 
 > Thanks, [@nateseymour](https://github.com/nateseymour) for coming up with a good name for this!
 
@@ -46,20 +54,10 @@ If you want to work on this, make sure to out the [contributing guidelines](CONT
 Furthermore this project *does not* have releases.
 Because of its simplicity the master branch is considered stable and any new feature will directly be merged into it.
 
-### Features
+#### Development
 
-- [x] Simple login via google drive.
-- [x] Dark / light theme.
-- [x] Installable (PWA).
-- [x] Import your data from Google sheet's annual planner.
-- [x] Export your data as a single `.json`-file.
-- [x] Add a budget for up to a year ahead.
-- [ ] Full mobile support ([#4](https://github.com/Simonwep/ocular/issues/4)).
-- [ ] A settings-page to customize things such as the currency / locale and possibly a starting balance ([#1](https://github.com/Simonwep/ocular/issues/1)).
-
-### Setup
-
-This app requires [NodeJS LTS](https://nodejs.org/en/) and uses [vite](https://vitejs.dev/) as builder. You can build and preview the app using the following commands:
+This app requires [NodeJS LTS](https://nodejs.org/en/) and uses [vite](https://vitejs.dev/) as builder.
+You can build and preview the app using the following commands:
 
 ```sh
 npm run build
@@ -68,7 +66,7 @@ npm run preview
 
 To work on it simply run `npm run dev`.
 
-#### _Production_
+#### Production
 
 To run this app in production and to add cloud connectivity, you'll need a [Google Cloud App](https://support.google.com/googleplay/android-developer/answer/9859152?hl=en) with
 the `drive.appdata` scope.
