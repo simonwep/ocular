@@ -36,7 +36,7 @@ free to [set it up yourself](#setup)!
 ### State of this project
 
 I consider the current state of it as the MVP for my personal use.
-ButI'm planning on adding more [features](https://github.com/Simonwep/ocular/issues) - I'm not planning of making it any more in-depth as it already is, planned features may only
+But I'm planning on adding more [features](https://github.com/Simonwep/ocular/issues) - I'm not planning of making it any more in-depth as it already is, planned features may only
 include adding a way to define goals or general improvements for mobile usage. As I already said, if you're looking for an in-depth tool to manage your finances check
 out [firefly](https://www.firefly-iii.org/)!
 

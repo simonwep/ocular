@@ -5,14 +5,7 @@
         "extraFileExtensions": [".vue"]
     },
     "env": {
-        "node": true,
-        "browser": true
-    },
-    "globals": {
-        "defineProps": true,
-        "defineEmits": true,
-        "withDefaults": true,
-        "defineExpose": true
+        "node": true
     },
     "extends": [
         "eslint:recommended",

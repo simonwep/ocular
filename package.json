@@ -3,6 +3,8 @@
     "private": true,
     "type": "module",
     "version": "0.0.0",
+    "license": "MIT",
+    "author": "Simon Reinisch <trash@reinisch.io>",
     "scripts": {
         "dev": "vite --host",
         "build": "vue-tsc --noEmit && vite build",
