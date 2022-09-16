@@ -101,11 +101,11 @@ const endingBalance = computed(() => aggregate(netSavings.value));
 
 .current {
   &.income {
-    background: var(--c-success-light);
+    color: var(--c-success-pure);
   }
 
   &.expense {
-    background: var(--c-danger-light);
+    color: var(--c-danger-pure);
   }
 }
 </style>

@@ -12,9 +12,10 @@
   --app-border: #e8e9f4;
   --app-scrollbar: #bec9d4;
 
-  --c-text-dark: #282d38;
+  --c-text-dark: #333946;
   --c-text-dark-muted: #788090;
   --c-text-light: #fff;
+  --c-text-light-accent: #b8bbcc;
   --c-text-light-muted: #d2d2da;
 
   --c-dimmed: #bec9d4;
@@ -25,10 +26,10 @@
   --c-dimmed-pure-hover: var(--c-dimmed-hover);
   --c-dimmed-shadow: #555c655c;
 
-  --c-primary: #5c8ada;
+  --c-primary: #202023;
   --c-primary-light: #e8f0fb;
-  --c-primary-light-dimmed: #b0c3e6;
-  --c-primary-hover: #5077be;
+  --c-primary-light-dimmed: #d9d9e3;
+  --c-primary-hover: #2f2f34;
   --c-primary-text: var(--c-text-light);
   --c-primary-text-hover: var(--c-primary-text);
   --c-primary-pure: var(--c-primary);
@@ -130,7 +131,7 @@
   --context-menu-item-color: #777788;
   --context-menu-item-color-hover: #222228;
   --context-menu-item-background-hover: #0000000d;
-  --context-menu-backdrop: blur(4px) brightness(1.1);
+  --context-menu-backdrop: brightness(10);
   --context-menu-shadow: 0 2px 10px #c5c3db;
 
   --grid-background-odd: #f0f2f3;
@@ -139,10 +140,9 @@
   --grid-background-even: #fff;
   --grid-background-even-hover: #f5f5f7;
   --grid-background-even-active: #f5f5f5;
-  --grid-border-color: #c6cfdd;
+  --grid-border-color: #e4e5e6;
   --grid-border-radius: var(--border-radius-m);
-  --grid-cell-shadow-color: #1f2123;
 
-  --grid-header-backround: #343d4a;
+  --grid-header-backround: #1a1c23;
   --grid-header-text: #dfe2e8;
 }

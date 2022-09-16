@@ -40,7 +40,8 @@ const options = computed(
         data: props.values,
         type: 'line',
         smooth: true,
-        showSymbol: false
+        showSymbol: false,
+        color: 'var(--c-primary)'
       }
     ]
   })

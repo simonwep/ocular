@@ -1,8 +1,8 @@
 <template>
   <div :class="[$style.placeholder, classes]">
     <div :class="$style.icons">
-      <Icon icon="shopping-basket-2" />
-      <Icon icon="hand-coin" />
+      <Icon icon="shopping-basket-2" :class="$style.icon" />
+      <Icon icon="hand-coin" :class="$style.icon" />
     </div>
     <span>{{ t('dashboard.graph.placeholder') }}</span>
   </div>
@@ -33,11 +33,15 @@ const { t } = useI18n();
   grid-gap: 10px;
   flex-grow: 1;
 
+  &,
+  .icon {
+    color: var(--c-dimmed-pure);
+  }
+
   .icons {
     display: grid;
     grid-template-columns: 24px 24px;
     grid-gap: 10px;
-    color: var(--theme-text);
   }
 }
 </style>

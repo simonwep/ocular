@@ -29,5 +29,6 @@ const amount = total.value.reduce((a, b) => a + b, 0);
 .miniChart {
   width: 75px;
   height: 100%;
+  cursor: default;
 }
 </style>

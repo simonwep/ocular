@@ -23,8 +23,6 @@
 
   .current {
     font-weight: var(--font-weight-xl);
-    background: var(--c-primary-light);
-    color: var(--theme-text);
 
     &.first {
       border-top-left-radius: var(--border-radius-l);

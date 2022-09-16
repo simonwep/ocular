@@ -68,7 +68,7 @@ To work on it simply run `npm run dev`.
 
 #### Production
 
-To run this app in production and to add cloud connectivity, you'll need a [Google Cloud App](https://support.google.com/googleplay/android-developer/answer/9859152?hl=en) with
+To run this app in production and to add cloud connectivity, you'll need a [Google Cloud App](https://console.cloud.google.com) with
 the `drive.appdata` scope.
 
 After you've set up your app fill copy the [.env.example](.env.example) to `.env` and fill in your credentials.

@@ -64,8 +64,8 @@
 
     <!-- Footer -->
     <span />
+    <Button icon="plus" :class="$style.addBudgetBtn" textual @click="addBudget(group.id)" color="success" />
     <span />
-    <Button :class="$style.addBudgetBtn" textual :text="t('budget.addBudget')" @click="addBudget(group.id)" />
     <span />
     <span />
     <span />
@@ -136,7 +136,7 @@ const totals = computed(() => {
   display: inline-block;
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-l);
-  margin: 8px 0;
+  margin: 4px 0;
   padding: 5px 0;
   background: var(--grid-header-backround);
   color: var(--grid-header-text);
@@ -167,11 +167,6 @@ const totals = computed(() => {
   border-bottom: 1px solid var(--grid-border-color);
   transition: all var(--input-field-transition);
   box-shadow: inset 0 0 0 1px transparent;
-
-  &:hover,
-  &:focus-within {
-    box-shadow: inset 0 0 0 1px var(--grid-cell-shadow-color);
-  }
 
   &.firstRow {
     border-top: 1px solid var(--grid-border-color);
@@ -208,9 +203,5 @@ const totals = computed(() => {
   &.brc {
     border-bottom-right-radius: var(--grid-border-radius);
   }
-}
-
-.addBudgetBtn {
-  margin-top: 8px;
 }
 </style>

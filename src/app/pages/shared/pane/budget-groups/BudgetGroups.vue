@@ -34,7 +34,6 @@
 
     <!-- Footer -->
     <span />
-    <span />
     <Button :class="$style.addGroupBtn" icon="plus" :text="t('budget.addGroup')" @click="addBudgetGroup(type)" />
     <span />
     <span />
@@ -99,9 +98,10 @@ const totals = computed(() => {
 }
 
 .sum {
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-l);
   padding-right: 10px;
+  margin-bottom: 4px;
 }
 
 .month {
@@ -128,5 +128,6 @@ const totals = computed(() => {
 
 .addGroupBtn {
   margin-top: 20px;
+  grid-area: auto / 2 / auto / 4;
 }
 </style>

@@ -43,6 +43,7 @@ const theme = useThemeStyles(() => props.color);
 .link {
   background: transparent;
   color: v-bind('theme.pure.base');
+  transition: all var(--transition-s);
 
   .icon {
     width: 20px;
