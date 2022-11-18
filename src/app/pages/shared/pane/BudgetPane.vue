@@ -22,7 +22,7 @@ const props = defineProps<{
 
 const { state } = useDataStore();
 const total = computed(() => totals(state[props.type]));
-const amount = total.value.reduce((a, b) => a + b, 0);
+const amount = computed(() => total.value.reduce((a, b) => a + b, 0));
 </script>
 
 <style lang="scss" module>
