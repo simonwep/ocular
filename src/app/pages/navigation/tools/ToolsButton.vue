@@ -5,6 +5,8 @@
     <template #options>
       <ExportButton />
       <ImportButton />
+      <CopyButton />
+      <PasteButton />
     </template>
   </ContextMenu>
 </template>
@@ -16,6 +18,8 @@ import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import Button from '@components/base/button/Button.vue';
 import ExportButton from './export/ExportButton.vue';
 import ImportButton from './import/ImportButton.vue';
+import CopyButton from './copy-paste/CopyButton.vue';
+import PasteButton from './copy-paste/PasteButton.vue';
 
 const props = defineProps<{
   class: ClassNames;

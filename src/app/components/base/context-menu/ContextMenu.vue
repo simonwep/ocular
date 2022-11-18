@@ -23,12 +23,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, provide, ref, watch } from 'vue';
 import { createPopper, Instance } from '@popperjs/core';
 import { ContextMenuOption, ContextMenuOptionId } from '.';
 import { useOutOfElementClick } from '@composables';
 import ContextMenuButton from './ContextMenuButton.vue';
 import { ClassNames } from '@utils';
+import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
 
 const emit = defineEmits<{
   (e: 'select', option: ContextMenuOption): void;
@@ -72,6 +73,10 @@ const select = (option: ContextMenuOption): void => {
 const toggle = () => {
   requestAnimationFrame(() => (visible.value = !visible.value));
 };
+
+provide<ContextMenuStore>(ContextMenuStoreKey, {
+  close: () => requestAnimationFrame(() => (visible.value = false))
+});
 </script>
 
 <style lang="scss" module>

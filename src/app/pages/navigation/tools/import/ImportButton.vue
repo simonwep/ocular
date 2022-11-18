@@ -1,10 +1,5 @@
 <template>
-  <ContextMenuButton
-    :class="classes"
-    :text="t('data.import.import')"
-    icon="upload-cloud-2-line"
-    @click="visible = true"
-  />
+  <ContextMenuButton :text="t('data.import.import')" icon="upload-cloud-2-line" @click="visible = true" />
 
   <Dialog ref="dialog" :open="visible" @close="visible = false">
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
@@ -25,19 +20,13 @@ import Button from '@components/base/button/Button.vue';
 import Step from '@components/base/steps/Step.vue';
 import { StepsExposed } from '@components/base/steps/Steps.types';
 import Steps from '@components/base/steps/Steps.vue';
-import { ClassNames } from '@utils';
-import { computed, DefineComponent, ref, shallowRef } from 'vue';
+import { DefineComponent, ref, shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BudgetFileScreen from './screens/BudgetFileScreen.vue';
 import GoogleAnnualBudgetScreen from './screens/GoogleAnnualBudgetScreen.vue';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 
-const props = defineProps<{
-  class?: ClassNames;
-}>();
-
-const classes = computed(() => props.class);
 const screen = shallowRef<DefineComponent>();
 const steps = shallowRef<StepsExposed>();
 const visible = ref(false);

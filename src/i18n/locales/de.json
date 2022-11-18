@@ -43,6 +43,10 @@
     "summary": "Zusammenfassung"
   },
   "data": {
+    "clipboard": {
+      "copy": "Daten von {year} kopieren",
+      "paste": "Daten von {from} in {to} einfügen"
+    },
     "export": {
       "export": "Daten als JSON-Datei exportieren",
       "fileName": "Jährliches Budget"

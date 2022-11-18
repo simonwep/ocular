@@ -1,10 +1,9 @@
 import { useStateHistory } from '@composables';
 import { AppStorage } from '@storage/types';
 import { readFile, remove, uuid } from '@utils';
-import { DeepReadonly, ref, watch } from 'vue';
-import { inject, reactive, readonly } from 'vue';
+import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
 import { generateTemplate } from './template';
-import { Budget, BudgetGroup, DataStateV1, DataState, BudgetYear, DataStates, AvailableCurrency } from './types';
+import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYear } from '@store/state/utils';
 import { migrateApplicationState } from '@store/state/migrateApplicationState';
 import { AvailableLocale, i18n } from '@i18n/index';
@@ -13,8 +12,20 @@ export const DATA_STORE_KEY = Symbol('DataStore');
 
 type Group = 'expenses' | 'income';
 
+interface StoredClipboardData {
+  year: number;
+  data: BudgetYear;
+}
+
+interface StoreClipboard {
+  data: DeepReadonly<ShallowRef<StoredClipboardData | undefined>>;
+  copy(): void;
+  paste(): void;
+}
+
 interface Store {
   state: DeepReadonly<StoreView>;
+  clipboard: StoreClipboard;
 
   serialize(): string;
   deserialize(file: File): Promise<void>;
@@ -43,7 +54,8 @@ type StoreView = Omit<BudgetYear, 'year'> & {
 };
 
 export const createDataStore = (storage?: AppStorage): Store => {
-  const activeYear = ref(new Date().getFullYear());
+  const activeYear = shallowRef(new Date().getFullYear());
+  const clipboard = shallowRef<StoredClipboardData | undefined>();
   const state = reactive<DataState>(generateTemplate());
 
   const history = useStateHistory(
@@ -120,6 +132,25 @@ export const createDataStore = (storage?: AppStorage): Store => {
         return getCurrentYear().income;
       }
     }),
+
+    clipboard: {
+      data: readonly(clipboard),
+      copy() {
+        clipboard.value = {
+          year: activeYear.value,
+          data: JSON.parse(JSON.stringify(getCurrentYear()))
+        };
+      },
+      paste() {
+        if (clipboard.value) {
+          const {
+            data: { expenses, income }
+          } = clipboard.value;
+          Object.assign(getCurrentYear(), { income, expenses });
+          clipboard.value = undefined;
+        }
+      }
+    },
 
     serialize(): string {
       return JSON.stringify(state);

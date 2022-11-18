@@ -6,6 +6,7 @@ export type AppIcon =
   | 'calendar-line'
   | 'calendar-todo-line'
   | 'check'
+  | 'clipboard-line'
   | 'close-circle'
   | 'cloud-line'
   | 'cloud-off-line'

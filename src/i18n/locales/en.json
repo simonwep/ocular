@@ -43,6 +43,10 @@
     "summary": "Summary"
   },
   "data": {
+    "clipboard": {
+      "copy": "Copy data from {year}",
+      "paste": "Paste data from {from} into {to}"
+    },
     "export": {
       "export": "Export as JSON file",
       "fileName": "Annual Budget"

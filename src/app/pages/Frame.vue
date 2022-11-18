@@ -13,7 +13,7 @@
         :to="button.link"
       />
 
-      <DataTransferButton :class="[$style.top, $style.btn]" />
+      <ToolsButton :class="[$style.top, $style.btn]" />
       <SelectYearButton :class="$style.btn" />
       <ChangeLanguageButton :class="$style.btn" />
       <ChangeCurrencyButton :class="$style.btn" />
@@ -36,7 +36,7 @@ import { useRouter } from 'vue-router';
 import CloudButton from './navigation/CloudButton.vue';
 import SelectYearButton from './navigation/year/SelectYearButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';
-import DataTransferButton from './navigation/data-transfer/DataTransferButton.vue';
+import ToolsButton from './navigation/tools/ToolsButton.vue';
 import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue';
 import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue';
 
