@@ -5,7 +5,7 @@
 </h3>
 
 <h3 align="center">
-  <a href="https://budget.reinisch.io/">Ocular</a> - Helps you see your budget more clearly.
+  <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budget more clearly.
 </h3>
 
 <br/>
@@ -25,6 +25,8 @@
 - ⬇️ Export your data as a single `.json`-file.
 - 🕰 Add a budget for up to a year ahead.
 - ...full mobile support ([#4](https://github.com/Simonwep/ocular/issues/4)).
+
+> Check out the [demo](https://budget.reinisch.io#demo)!
 
 ### Summary
 

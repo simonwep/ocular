@@ -18,6 +18,7 @@ export type AppIcon =
   | 'google-fill'
   | 'grid-line'
   | 'hand-coin'
+  | 'magic-line'
   | 'menu-line'
   | 'moon-fill'
   | 'pencil-fill'

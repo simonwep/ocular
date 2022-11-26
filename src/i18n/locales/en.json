@@ -47,6 +47,9 @@
       "copy": "Copy data from {year}",
       "paste": "Paste data from {from} into {to}"
     },
+    "demo": {
+      "loadDemoData": "Load demo data"
+    },
     "export": {
       "export": "Export as JSON file",
       "fileName": "Annual Budget"
