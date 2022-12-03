@@ -80,5 +80,11 @@
     "export": "Exportieren",
     "import": "Imoportiere",
     "income": "Einkünfte"
+  },
+  "settings": {
+    "mode": {
+      "disablePrivacyMode": "In den öffentlichen Modus wechseln",
+      "enablePrivacyMode": "In den Privatsphären-Modus wechseln"
+    }
   }
 }

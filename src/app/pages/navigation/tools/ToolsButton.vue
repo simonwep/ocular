@@ -4,6 +4,7 @@
 
     <template #options>
       <LoadDemoDataButton v-if="state.status === 'idle'" />
+      <PrivacyModeButton />
       <ExportButton />
       <ImportButton />
       <CopyButton />
@@ -22,6 +23,7 @@ import ExportButton from './export/ExportButton.vue';
 import ImportButton from './import/ImportButton.vue';
 import CopyButton from './copy-paste/CopyButton.vue';
 import PasteButton from './copy-paste/PasteButton.vue';
+import PrivacyModeButton from './privacy-mode-button/PrivacyModeButton.vue';
 import { useStorage } from '@storage/index';
 
 const props = defineProps<{

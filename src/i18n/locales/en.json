@@ -80,5 +80,11 @@
     "export": "Export",
     "import": "Import",
     "income": "Income"
+  },
+  "settings": {
+    "mode": {
+      "disablePrivacyMode": "Switch to public mode",
+      "enablePrivacyMode": "Switch to privacy mode"
+    }
   }
 }

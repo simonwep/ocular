@@ -1,14 +1,16 @@
 import { AppStorage } from '@storage/types';
-import { generateTemplate } from '@store/settings/template';
-import { SettingsState, Theme } from '@store/settings/types';
+import { generateTemplate } from './template';
+import { Mode, SettingsState, Theme } from './types';
 import { DeepReadonly } from 'vue';
 import { inject, reactive, readonly } from 'vue';
+import { migrateSettingsState } from './migrateSettingsState';
 
 export const SETTINGS_STORE_KEY = Symbol('SettingsStore');
 
 interface Store {
   state: DeepReadonly<SettingsState>;
 
+  setMode(mode: Mode): void;
   setTheme(theme: Theme): void;
   setAnimations(enable: boolean): void;
 }
@@ -19,13 +21,7 @@ export const createSettingsStore = (storage?: AppStorage): Store => {
   storage?.sync<SettingsState>({
     name: 'settings',
     state: () => state,
-    push: (data) => {
-      if (data.version !== 1) {
-        throw new Error(`Cannot process state of version v${data.version}`);
-      }
-
-      Object.assign(state, data);
-    }
+    push: (data) => Object.assign(state, migrateSettingsState(data))
   });
 
   return {
@@ -33,6 +29,10 @@ export const createSettingsStore = (storage?: AppStorage): Store => {
 
     setTheme(theme: Theme): void {
       state.appearance.theme = theme;
+    },
+
+    setMode(mode: Mode): void {
+      state.appearance.mode = mode;
     },
 
     setAnimations(enable: boolean): void {

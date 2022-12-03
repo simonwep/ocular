@@ -13,6 +13,8 @@ export type AppIcon =
   | 'currency-line'
   | 'donut-chart'
   | 'download-cloud-2-line'
+  | 'eye-close'
+  | 'eye-line'
   | 'file-fill'
   | 'global-line'
   | 'google-fill'

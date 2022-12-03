@@ -4,8 +4,8 @@ import { readFile, remove, uuid } from '@utils';
 import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
 import { generateTemplate } from './template';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
-import { generateBudgetYear } from '@store/state/utils';
-import { migrateApplicationState } from '@store/state/migrateApplicationState';
+import { generateBudgetYear } from './utils';
+import { migrateApplicationState } from './migrateApplicationState';
 import { AvailableLocale, i18n } from '@i18n/index';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
