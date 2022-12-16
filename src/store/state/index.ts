@@ -19,6 +19,7 @@ interface StoredClipboardData {
 
 interface StoreClipboard {
   data: DeepReadonly<ShallowRef<StoredClipboardData | undefined>>;
+
   copy(): void;
   paste(): void;
 }
@@ -44,6 +45,8 @@ interface Store {
   setBudgetGroupName(id: string, name: string): void;
   setBudgetName(id: string, name: string): void;
   setBudget(id: string, month: number, amount: number): void;
+
+  isCurrentMonth(month: number): boolean;
 }
 
 type StoreView = Omit<BudgetYear, 'year'> & {
@@ -232,6 +235,11 @@ export const createDataStore = (storage?: AppStorage): Store => {
         name: 'New Group',
         budgets: []
       });
+    },
+
+    isCurrentMonth(month: number): boolean {
+      const date = new Date();
+      return activeYear.value === date.getFullYear() && month === date.getMonth();
     }
   };
 };

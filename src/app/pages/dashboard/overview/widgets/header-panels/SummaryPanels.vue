@@ -70,9 +70,8 @@ const expensePercentage = computed(() => {
 });
 
 const remainingBalance = computed(() => {
-  const currentMonth = new Date().getMonth() + 1;
-
-  return sum(subtract(incomeTotals.value.slice(currentMonth), expensesTotals.value.slice(currentMonth)));
+  const nextMonth = new Date().getMonth() + 1;
+  return sum(subtract(incomeTotals.value.slice(nextMonth), expensesTotals.value.slice(nextMonth)));
 });
 
 const remainingBalancePercentage = computed(() => {

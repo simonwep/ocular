@@ -9,7 +9,7 @@
     <span
       v-for="(month, index) of months"
       :key="month"
-      :class="[$style.month, { [$style.current]: index === currentMonth }]"
+      :class="[$style.month, { [$style.current]: isCurrentMonth(index) }]"
     >
       <span>{{ month }}</span>
     </span>
@@ -65,10 +65,9 @@ const props = defineProps<{
   type: 'expenses' | 'income';
 }>();
 
-const { state, addBudgetGroup, removeBudgetGroup } = useDataStore();
+const { state, addBudgetGroup, removeBudgetGroup, isCurrentMonth } = useDataStore();
 const { t } = useI18n();
 
-const currentMonth = new Date().getMonth();
 const groups = computed(() => state[props.type]);
 const months = useMonthNames();
 

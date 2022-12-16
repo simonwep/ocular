@@ -5,7 +5,7 @@
       <span />
       <span
         v-for="(month, index) of months"
-        :class="[$style.bold, { [$style.currentMonth]: index === currentMonth }]"
+        :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
         :key="month"
         >{{ month }}</span
       >
@@ -16,7 +16,7 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.income') }}</span>
       <span
         v-for="(amount, index) of income"
-        :class="[$style.muted, $style.first, $style.income, { [$style.current]: index === currentMonth }]"
+        :class="[$style.muted, $style.first, $style.income, { [$style.current]: isCurrentMonth(index) }]"
         :key="index"
       >
         {{ n(amount, 'currency') }}
@@ -28,7 +28,7 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.expenses') }}</span>
       <span
         v-for="(amount, index) of expenses"
-        :class="[$style.muted, $style.expense, { [$style.current]: index === currentMonth }]"
+        :class="[$style.muted, $style.expense, { [$style.current]: isCurrentMonth(index) }]"
         :key="index"
       >
         {{ n(amount, 'currency') }}
@@ -40,7 +40,7 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.netSavings') }}</span>
       <span
         v-for="(amount, index) of netSavings"
-        :class="[$style.muted, { [$style.current]: index === currentMonth }]"
+        :class="[$style.muted, { [$style.current]: isCurrentMonth(index) }]"
         :key="index"
       >
         {{ n(amount, 'currency') }}
@@ -51,7 +51,7 @@
       <!-- Ending balance  -->
       <span :class="$style.bold">{{ t('dashboard.endingBalance') }}</span>
       <span
-        :class="[$style.bold, $style.last, { [$style.current]: index === currentMonth }]"
+        :class="[$style.bold, $style.last, { [$style.current]: isCurrentMonth(index) }]"
         v-for="(amount, index) of endingBalance"
         :key="index"
       >
@@ -69,6 +69,7 @@ import { aggregate, average, subtract, sum } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import SummaryTable from './SummaryTable.vue';
+import { useDataStore } from '@store/state';
 
 const props = withDefaults(
   defineProps<{
@@ -83,9 +84,9 @@ const props = withDefaults(
 );
 
 const { t, n } = useI18n();
+const { isCurrentMonth } = useDataStore();
 const months = useMonthNames();
 
-const currentMonth = new Date().getMonth();
 const netSavings = computed(() => subtract(props.income, props.expenses));
 const endingBalance = computed(() => aggregate(netSavings.value));
 </script>

@@ -5,7 +5,7 @@
       <span />
       <span
         v-for="(month, index) of months"
-        :class="[$style.bold, { [$style.currentMonth]: index === currentMonth }]"
+        :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
         :key="month"
       >
         {{ month }}
@@ -19,7 +19,7 @@
         <span
           v-for="(amount, index) of group.totals"
           :class="{
-            [$style.current]: index === currentMonth,
+            [$style.current]: isCurrentMonth(index),
             [$style.first]: groupIndex === 0,
             [$style.last]: groupIndex === flatted.length - 1
           }"
@@ -42,6 +42,7 @@ import { DeepReadonly } from 'vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import SummaryTable from './SummaryTable.vue';
+import { useDataStore } from '@store/state';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -50,9 +51,9 @@ const props = defineProps<{
 }>();
 
 const { t, n } = useI18n();
+const { isCurrentMonth } = useDataStore();
 const months = useMonthNames();
 
-const currentMonth = new Date().getMonth();
 const flatted = computed(() => flatten(props.groups));
 </script>
 

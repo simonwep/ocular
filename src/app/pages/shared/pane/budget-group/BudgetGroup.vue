@@ -41,7 +41,7 @@
             [$style.even]: index % 2,
             [$style.firstRow]: index === 0,
             [$style.firstColumn]: month === 0,
-            [$style.currentMonth]: month === currentMonth,
+            [$style.currentMonth]: isCurrentMonth(month),
             [$style.tlc]: index === 0 && month === 0,
             [$style.trc]: index === 0 && month === 11,
             [$style.blc]: index === group.budgets.length - 1 && month === 0,
@@ -99,9 +99,7 @@ const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
 }>();
 
-const currentMonth = new Date().getMonth();
-
-const { addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget } = useDataStore();
+const { addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget, isCurrentMonth } = useDataStore();
 
 const { t } = useI18n();
 const open = ref(true);
