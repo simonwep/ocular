@@ -15,7 +15,7 @@
         "preview": "vite preview",
         "lint:src": "eslint '{scripts,src}/**/*.{js,ts,vue}' --no-error-on-unmatched-pattern",
         "lint:src:fix": "npm run lint:src -- --fix",
-        "lint:i18n": "li18nt 'src/i18n/locales/*.json'",
+        "lint:i18n": "li18nt 'src/i18n/locales/*.json' --config src/i18n/.li18ntrc",
         "lint:i18n:fix": "npm run lint:i18n -- --fix",
         "lint": "npm run lint:i18n && npm run lint:src",
         "lint:fix": "npm run lint:i18n:fix && npm run lint:src:fix",
