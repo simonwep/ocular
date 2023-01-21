@@ -1,9 +1,10 @@
 import { GoogleDriveAuth, GoogleDriveAuthReponse } from '@storage/google-drive-storage/types';
 import { createKeyStorage } from '@storage/key-storage';
 import { nextTick, reactive, readonly, watch, watchEffect } from 'vue';
-import { debounce, MigratableState } from '@utils';
+import { debounce } from '@utils';
 import { AppStorage, StorageState, StorageSync } from '../types';
 import { parseOAuth2Login } from './utils';
+import { MigratableState } from 'yuppee';
 
 const CACHE_KEY = 'GOOGLE_DRIVE_STORAGE_KEY';
 

@@ -1,5 +1,5 @@
 import { DeepReadonly } from 'vue';
-import { MigratableState } from '@utils';
+import { MigratableState } from 'yuppee';
 
 export type StorageAuthenticationState = 'idle' | 'loading' | 'authenticated' | 'syncing';
 

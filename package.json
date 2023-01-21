@@ -19,9 +19,7 @@
         "lint:i18n:fix": "npm run lint:i18n -- --fix",
         "lint": "npm run lint:i18n && npm run lint:src",
         "lint:fix": "npm run lint:i18n:fix && npm run lint:src:fix",
-        "test": "vitest run",
-        "test:watch": "vitest",
-        "test:ci": "npm run build && npm run lint:fix && npm run test",
+        "test:ci": "npm run build && npm run lint:fix",
         "gen:icons": "node scripts/icons.js"
     },
     "dependencies": {
@@ -32,7 +30,8 @@
         "papaparse": "^5.3.2",
         "vue": "^3.2.45",
         "vue-i18n": "^9.2.2",
-        "vue-router": "^4.1.6"
+        "vue-router": "^4.1.6",
+        "yuppee": "^0.2.0"
     },
     "devDependencies": {
         "@types/ackee-tracker": "^5.0.2",
@@ -54,7 +53,6 @@
         "vite-plugin-optimize-css-modules": "^1.0.2",
         "vite-plugin-pwa": "^0.13.3",
         "vite-tsconfig-paths": "^3.6.0",
-        "vitest": "^0.25.6",
         "vue-tsc": "^1.0.12"
     }
 }

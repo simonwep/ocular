@@ -2,10 +2,9 @@ import { useStateHistory } from '@composables';
 import { AppStorage } from '@storage/types';
 import { readFile, remove, uuid } from '@utils';
 import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
-import { generateTemplate } from './template';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYear } from './utils';
-import { migrateApplicationState } from './migrateApplicationState';
+import { migrateApplicationState } from './migrator';
 import { AvailableLocale, i18n } from '@i18n/index';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
@@ -59,7 +58,7 @@ type StoreView = Omit<BudgetYear, 'year'> & {
 export const createDataStore = (storage?: AppStorage): Store => {
   const activeYear = shallowRef(new Date().getFullYear());
   const clipboard = shallowRef<StoredClipboardData | undefined>();
-  const state = reactive<DataState>(generateTemplate());
+  const state = reactive<DataState>(migrateApplicationState());
 
   const history = useStateHistory(
     () => state,

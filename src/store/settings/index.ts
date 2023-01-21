@@ -1,9 +1,8 @@
 import { AppStorage } from '@storage/types';
-import { generateTemplate } from './template';
 import { Mode, SettingsState, Theme } from './types';
 import { DeepReadonly } from 'vue';
 import { inject, reactive, readonly } from 'vue';
-import { migrateSettingsState } from './migrateSettingsState';
+import { migrateSettingsState } from './migrator';
 
 export const SETTINGS_STORE_KEY = Symbol('SettingsStore');
 
@@ -16,7 +15,7 @@ interface Store {
 }
 
 export const createSettingsStore = (storage?: AppStorage): Store => {
-  const state = reactive<SettingsState>(generateTemplate());
+  const state = reactive<SettingsState>(migrateSettingsState());
 
   storage?.sync<SettingsState>({
     name: 'settings',
