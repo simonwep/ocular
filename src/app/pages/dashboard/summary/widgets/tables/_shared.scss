@@ -8,30 +8,30 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
 
-  .bold {
-    font-weight: var(--font-weight-l);
+.bold {
+  font-weight: var(--font-weight-l);
+}
+
+.muted {
+  color: var(--theme-text-muted);
+}
+
+.currentMonth {
+  color: var(--c-primary-pure);
+}
+
+.current {
+  font-weight: var(--font-weight-xl);
+
+  &.first {
+    border-top-left-radius: var(--border-radius-l);
+    border-top-right-radius: var(--border-radius-l);
   }
 
-  .muted {
-    color: var(--theme-text-muted);
-  }
-
-  .currentMonth {
-    color: var(--c-primary-pure);
-  }
-
-  .current {
-    font-weight: var(--font-weight-xl);
-
-    &.first {
-      border-top-left-radius: var(--border-radius-l);
-      border-top-right-radius: var(--border-radius-l);
-    }
-
-    &.last {
-      border-bottom-left-radius: var(--border-radius-l);
-      border-bottom-right-radius: var(--border-radius-l);
-    }
+  &.last {
+    border-bottom-left-radius: var(--border-radius-l);
+    border-bottom-right-radius: var(--border-radius-l);
   }
 }
