@@ -18,13 +18,13 @@
 
 ### Features
 
-- 🔐 Simple login via google drive.
-- 🌚 Dark / light theme.
+- 🔐 Simple login via google.
+- 🌚 Dark and light theme.
 - 💻 Installable (PWA).
 - ⬆️ Import your data from Google sheet's annual planner.
 - ⬇️ Export your data as a single `.json`-file.
 - 🕰 Add a budget for up to a year ahead.
-- ...full mobile support ([#4](https://github.com/Simonwep/ocular/issues/4)).
+- 🙈 Privacy mode.
 
 > Check out the [demo](https://budget.reinisch.io#demo)!
 
@@ -40,8 +40,6 @@ free to [set it up yourself](#development)!
 
 > **Attention:** It's currently **not** possibly to sync the app with your personal gmail account due to the google-cloud app not being verified yet. You can still use it and
 > download / upload your data or [deploy it yourself](#development) (which is even cooler!).
-
-> Thanks, [@nateseymour](https://github.com/nateseymour) for coming up with a good name for this!
 
 ### State of this project
 
