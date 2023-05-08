@@ -41,7 +41,7 @@ const options = computed(
         type: 'line',
         smooth: true,
         showSymbol: false,
-        color: 'var(--c-primary)'
+        silent: true
       }
     ]
   })

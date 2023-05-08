@@ -56,7 +56,8 @@ const options = computed(
                 padding: [0, 20, 0, 0]
               }
             : undefined
-      }))
+      })),
+      silent: true
     }
   })
 );
@@ -66,6 +67,5 @@ const options = computed(
 .sankeyChart {
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 </style>

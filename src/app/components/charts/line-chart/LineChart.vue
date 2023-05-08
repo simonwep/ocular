@@ -58,7 +58,8 @@ const options = computed(
       name: v.name,
       type: 'line',
       data: v.data,
-      color: v.color
+      color: v.color,
+      silent: true
     }))
   })
 );
@@ -68,6 +69,5 @@ const options = computed(
 .stackedLineChart {
   width: 100%;
   height: 100%;
-  pointer-events: none;
 }
 </style>
