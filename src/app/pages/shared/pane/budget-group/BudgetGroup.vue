@@ -10,9 +10,7 @@
   />
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
-    <span>
-      <Currency :value="total" />
-    </span>
+    <Currency :value="total" />
   </span>
 
   <span :class="$style.top">
@@ -53,13 +51,8 @@
         <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
       </span>
 
-      <span :class="$style.meta">
-        <Currency :value="sum(budget.values)" />
-      </span>
-
-      <span :class="$style.meta">
-        <Currency :value="average(budget.values)" />
-      </span>
+      <Currency :class="$style.meta" :value="sum(budget.values)" />
+      <Currency :class="$style.meta" :value="average(budget.values)" />
     </template>
 
     <!-- Footer -->
@@ -78,8 +71,8 @@
     <span />
     <span />
     <span />
-    <span />
-    <span />
+    <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
+    <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
   </template>
 </template>
 
@@ -91,8 +84,7 @@ import TextCell from '@components/base/text-cell/TextCell.vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils';
-import { DeepReadonly } from 'vue';
-import { computed, ref } from 'vue';
+import { computed, DeepReadonly, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
@@ -115,6 +107,9 @@ const totals = computed(() => {
 
   return totals;
 });
+
+const totalAmount = computed(() => sum(totals.value));
+const averageAmount = computed(() => average(totals.value));
 </script>
 
 <style lang="scss" module>
@@ -128,6 +123,12 @@ const totals = computed(() => {
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-m);
   padding: 0 10px;
+
+  &.bold {
+    position: relative;
+    font-weight: var(--font-weight-l);
+    text-decoration: underline;
+  }
 }
 
 .top {

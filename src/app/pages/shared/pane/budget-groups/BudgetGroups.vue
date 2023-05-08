@@ -20,9 +20,7 @@
 
     <!-- Sums -->
     <span :class="$style.sum">{{ t('budget.totals') }}</span>
-    <span v-for="(sum, index) of totals" :key="index" :class="$style.sum">
-      <Currency :value="sum" />
-    </span>
+    <Currency v-for="(sum, index) of totals" :value="sum" :key="index" :class="$style.sum" />
     <span />
     <span />
 

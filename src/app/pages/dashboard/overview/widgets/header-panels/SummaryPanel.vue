@@ -5,9 +5,7 @@
 
       <div :class="$style.header">
         <h2 :class="$style.head">{{ title }}</h2>
-        <span :class="$style.title">
-          <Currency :value="endingValue" />
-        </span>
+        <Currency :class="$style.title" :value="endingValue" />
         <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
       </div>
 
