@@ -58,7 +58,7 @@
         {{ n(amount, 'currency') }}
       </span>
       <span />
-      <span :class="$style.bold">{{ n(average(endingBalance), 'currency') }}</span>
+      <span />
     </div>
   </SummaryTable>
 </template>
