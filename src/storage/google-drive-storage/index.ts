@@ -121,7 +121,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
       if (syncsActive === 0) {
         state.status = 'authenticated';
       }
-    }, 500);
+    }, 1000);
 
     watch(
       () => JSON.stringify(config.state()),
