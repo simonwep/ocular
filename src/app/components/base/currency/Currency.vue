@@ -3,9 +3,9 @@
     {{ n(value ?? 0, { key: 'currency', currency: dataState.currency }) }}
     <span :class="$style.overlay" />
   </span>
-  <spna :class="props.class" v-else>
+  <span :class="props.class" v-else>
     {{ n(value ?? 0, { key: 'currency', currency: dataState.currency }) }}
-  </spna>
+  </span>
 </template>
 
 <script lang="ts" setup>
