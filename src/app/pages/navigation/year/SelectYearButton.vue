@@ -17,13 +17,14 @@ const { changeYear, state } = useDataStore();
 
 const options = computed((): ContextMenuOption[] => {
   const yearsStored = state.years.map((v) => v.year);
-  const offset = Math.min(new Date().getFullYear(), ...yearsStored);
+  const currentYear = new Date().getFullYear();
+  const offset = Math.min(...yearsStored);
   const list: ContextMenuOption[] = [];
 
-  for (let i = 0; i <= PRE_PLANNABLE_YEARS; i++) {
+  for (let year = offset; year <= currentYear + PRE_PLANNABLE_YEARS; year++) {
     list.push({
-      id: offset + i,
-      icon: state.activeYear === offset + i ? 'calendar-check-line' : 'calendar-todo-line'
+      id: year,
+      icon: state.activeYear === year ? 'calendar-check-line' : 'calendar-todo-line'
     });
   }
 
