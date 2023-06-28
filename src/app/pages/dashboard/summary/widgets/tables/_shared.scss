@@ -10,8 +10,13 @@
   }
 }
 
+.underline,
 .bold {
   font-weight: var(--font-weight-l);
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .muted {

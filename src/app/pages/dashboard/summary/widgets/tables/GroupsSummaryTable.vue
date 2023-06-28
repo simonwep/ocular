@@ -24,10 +24,25 @@
             [$style.last]: groupIndex === flatted.length - 1
           }"
           :key="index"
-          >{{ n(amount, 'currency') }}</span
         >
+          {{ n(amount, 'currency') }}
+        </span>
         <span :class="$style.bold">{{ n(sum(group.totals), 'currency') }}</span>
         <span :class="$style.bold">{{ n(average(group.totals), 'currency') }}</span>
+      </template>
+
+      <!-- Totals -->
+      <template v-if="flatted.length > 1">
+        <span :class="$style.bold">{{ t('budget.total') }}</span>
+        <span :class="$style.bold" v-for="(month, index) of months" :key="month">
+          {{ n(sum(flatted.map((v) => v.totals[index])), 'currency') }}
+        </span>
+        <span :class="$style.underline">
+          {{ n(sum(add(...flatted.map((v) => v.totals))), 'currency') }}
+        </span>
+        <span :class="$style.underline">
+          {{ n(average(add(...flatted.map((v) => v.totals))), 'currency') }}
+        </span>
       </template>
     </div>
   </SummaryTable>
@@ -37,7 +52,7 @@
 import { useMonthNames } from '@composables';
 import { BudgetGroup } from '@store/state/types';
 import { flatten } from '@store/state/utils/budgets';
-import { average, ClassNames, sum } from '@utils';
+import { average, ClassNames, sum, add } from '@utils';
 import { DeepReadonly } from 'vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
