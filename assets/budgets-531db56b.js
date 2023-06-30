@@ -1,0 +1,1 @@
+const n=l=>{const o=new Array(12).fill(0);for(const{budgets:e}of l)for(const{values:s}of e)for(let t=0;t<s.length;t++)o[t]+=s[t];return o},r=l=>l.map(o=>{const e=new Array(12).fill(0);for(const{values:s}of o.budgets)for(let t=0;t<s.length;t++)e[t]+=s[t];return{...o,totals:e}});export{r as f,n as t};
