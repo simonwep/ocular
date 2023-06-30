@@ -1,8 +1,14 @@
 import { onMounted, onUnmounted, Ref } from 'vue';
+import { arrayify } from '@utils';
 
-export const useOutOfElementClick = (el: Ref<HTMLElement | undefined>, cb: (evt: MouseEvent) => void) => {
+export const useOutOfElementClick = (
+  valid: Ref<HTMLElement | undefined>[] | Ref<HTMLElement | undefined>,
+  cb: (evt: MouseEvent) => void
+) => {
+  const els = arrayify(valid);
+
   const click = (evt: MouseEvent) => {
-    if (el.value && evt.isTrusted && !evt.composedPath().includes(el.value)) {
+    if (evt.isTrusted && els.every((el) => !el.value || !evt.composedPath().includes(el.value))) {
       cb(evt);
     }
   };

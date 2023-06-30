@@ -46,7 +46,7 @@ const popper = ref<HTMLDivElement>();
 const visible = ref(false);
 let instance: Instance | undefined;
 
-useOutOfElementClick(popper, () => (visible.value = false));
+useOutOfElementClick([popper, reference], () => (visible.value = false));
 
 watch([visible, reference, popper], () => {
   instance?.destroy();
