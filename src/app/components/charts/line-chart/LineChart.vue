@@ -55,6 +55,7 @@ const options = computed(
       splitLine: { lineStyle: { color: 'var(--chart-line-color)' } }
     },
     series: props.data.series.map((v) => ({
+      animation: false,
       name: v.name,
       type: 'line',
       data: v.data,
