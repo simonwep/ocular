@@ -38,6 +38,8 @@ interface Store {
   addBudgetGroup(target: Group): void;
   addBudget(group: string): void;
 
+  moveBudget(id: string, target: string, after?: boolean): void;
+
   removeBudgetGroup(id: string): void;
   removeBudget(id: string): void;
 
@@ -76,6 +78,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
   });
 
   const getCurrentYear = () => state.years.find((v) => v.year === activeYear.value) as BudgetYear;
+
   const groups = () => {
     const currentYear = getCurrentYear();
     return [...currentYear.expenses, ...currentYear.income];
@@ -234,6 +237,23 @@ export const createDataStore = (storage?: AppStorage): Store => {
         name: 'New Group',
         budgets: []
       });
+    },
+
+    moveBudget(id: string, target: string, after?: boolean) {
+      for (const { budgets } of groups()) {
+        const srcIndex = budgets.findIndex((v) => v.id === target);
+        const [src] = srcIndex !== -1 ? budgets.splice(srcIndex, 1) : [];
+        if (!src) continue;
+
+        for (const { budgets } of groups()) {
+          const dstIndex = budgets.findIndex((v) => v.id === id);
+
+          if (dstIndex !== -1) {
+            budgets.splice(dstIndex + (after ? 1 : 0), 0, src);
+            return;
+          }
+        }
+      }
     },
 
     isCurrentMonth(month: number): boolean {

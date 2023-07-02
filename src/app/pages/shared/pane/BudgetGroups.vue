@@ -33,31 +33,17 @@
     <!-- Footer -->
     <span />
     <Button :class="$style.addGroupBtn" icon="plus" :text="t('budget.addGroup')" @click="addBudgetGroup(type)" />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
   </div>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
+import BudgetGroup from './BudgetGroup.vue';
 import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import BudgetGroup from '../budget-group/BudgetGroup.vue';
 
 const props = defineProps<{
   type: 'expenses' | 'income';

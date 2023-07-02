@@ -3,6 +3,7 @@
     <input
       ref="input"
       :value="modelValue"
+      :class="$style.input"
       type="text"
       @blur="focused = false"
       @focus="focus"
@@ -57,10 +58,11 @@ const change = (e: Event) => {
 
 <style lang="scss" module>
 .textInput {
+  position: relative;
   display: inline-block;
   width: 100%;
 
-  > input {
+  .input {
     all: unset;
     max-width: var(--input-field-max-width);
     overflow: hidden;
@@ -88,7 +90,7 @@ const change = (e: Event) => {
       box-shadow: var(--input-field-focus-box-shadow);
     }
 
-    > input {
+    .input {
       max-height: 100%;
       padding: 2px 4px;
       caret-color: var(--input-field-caret-color);

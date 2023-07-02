@@ -13,6 +13,7 @@ export type AppIcon =
   | 'currency-line'
   | 'donut-chart'
   | 'download-cloud-2-line'
+  | 'draggable'
   | 'eye-close'
   | 'eye-line'
   | 'file-fill'
@@ -30,5 +31,7 @@ export type AppIcon =
   | 'save'
   | 'settings-4-line'
   | 'shopping-basket-2'
+  | 'skip-down-line'
+  | 'skip-up-line'
   | 'sun-fill'
   | 'upload-cloud-2-line';

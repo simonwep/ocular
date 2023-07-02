@@ -24,7 +24,7 @@
   <!-- Budgets -->
   <template v-if="open">
     <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
-      <span />
+      <Draggable :text="budget.name" :data="budget.id" @drop="reorder" />
       <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
 
       <span :class="$style.header">
@@ -58,19 +58,7 @@
     <!-- Footer -->
     <span />
     <Button icon="plus" :class="$style.addBudgetBtn" textual @click="addBudget(group.id)" color="success" />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
-    <span />
+    <span style="grid-column: 3 / 16" />
     <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
     <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
   </template>
@@ -86,12 +74,15 @@ import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils';
 import { computed, DeepReadonly, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import Draggable from '@components/base/draggable/Draggable.vue';
+import { DropEvent } from '@components/base/draggable/types';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
 }>();
 
-const { addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget, isCurrentMonth } = useDataStore();
+const { moveBudget, addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget, isCurrentMonth } =
+  useDataStore();
 
 const { t } = useI18n();
 const open = ref(true);
@@ -110,6 +101,10 @@ const totals = computed(() => {
 
 const totalAmount = computed(() => sum(totals.value));
 const averageAmount = computed(() => average(totals.value));
+
+const reorder = (evt: DropEvent) => {
+  moveBudget(evt.source, evt.target, evt.type === 'after');
+};
 </script>
 
 <style lang="scss" module>
