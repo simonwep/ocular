@@ -47,6 +47,8 @@ interface Store {
   setBudgetName(id: string, name: string): void;
   setBudget(id: string, month: number, amount: number): void;
 
+  getBudget(id: string): [BudgetGroup, Budget] | undefined;
+
   isCurrentMonth(month: number): boolean;
 }
 
@@ -241,17 +243,27 @@ export const createDataStore = (storage?: AppStorage): Store => {
 
     moveBudget(id: string, target: string, after?: boolean) {
       for (const { budgets } of groups()) {
-        const srcIndex = budgets.findIndex((v) => v.id === target);
+        const srcIndex = budgets.findIndex((v) => v.id === id);
         const [src] = srcIndex !== -1 ? budgets.splice(srcIndex, 1) : [];
         if (!src) continue;
 
         for (const { budgets } of groups()) {
-          const dstIndex = budgets.findIndex((v) => v.id === id);
+          const dstIndex = budgets.findIndex((v) => v.id === target);
 
           if (dstIndex !== -1) {
             budgets.splice(dstIndex + (after ? 1 : 0), 0, src);
             return;
           }
+        }
+      }
+    },
+
+    getBudget(id: string) {
+      for (const group of groups()) {
+        const budget = group.budgets.find((v) => v.id === id);
+
+        if (budget) {
+          return [group, budget];
         }
       }
     },

@@ -20,7 +20,10 @@
   },
   "budget": {
     "addGroup": "Gruppe hinzufügen",
+    "append": "„{from}“ nach „{to}“ verschieben",
     "average": "Durchschnitt",
+    "move": "„{from}“ verschieben",
+    "prepend": "„{from}“ vor „{to}“ verschieben",
     "total": "Summe",
     "totals": "Summen"
   },

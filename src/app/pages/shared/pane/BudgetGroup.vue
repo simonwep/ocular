@@ -24,7 +24,7 @@
   <!-- Budgets -->
   <template v-if="open">
     <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
-      <Draggable :text="budget.name" :data="budget.id" @drop="reorder" />
+      <Draggable :text="buildDraggableText" :id="budget.id" @drop="reorder" />
       <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
 
       <span :class="$style.header">
@@ -75,13 +75,13 @@ import { average, sum } from '@utils';
 import { computed, DeepReadonly, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Draggable from '@components/base/draggable/Draggable.vue';
-import { DropEvent } from '@components/base/draggable/types';
+import { ReorderEvent, DraggableEvent } from '@components/base/draggable/types';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
 }>();
 
-const { moveBudget, addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget, isCurrentMonth } =
+const { moveBudget, getBudget, addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget, isCurrentMonth } =
   useDataStore();
 
 const { t } = useI18n();
@@ -102,7 +102,26 @@ const totals = computed(() => {
 const totalAmount = computed(() => sum(totals.value));
 const averageAmount = computed(() => average(totals.value));
 
-const reorder = (evt: DropEvent) => {
+const buildDraggableText = (store: DraggableEvent) => {
+  const [srcGroup, src] = store.source ? getBudget(store.source) ?? [] : [];
+  const [dstGroup, dst] = store.target ? getBudget(store.target) ?? [] : [];
+
+  if (src && srcGroup) {
+    if (dst && dstGroup) {
+      const sameGroup = srcGroup.id === dstGroup.id;
+      const srcLabel = sameGroup ? src.name : `${srcGroup.name} » ${src.name}`;
+      const dstLabel = sameGroup ? dst.name : `${dstGroup.name} » ${dst.name}`;
+
+      return store.type === 'before'
+        ? t('budget.prepend', { from: srcLabel, to: dstLabel })
+        : t('budget.append', { from: srcLabel, to: dstLabel });
+    } else {
+      return t('budget.move', { from: src.name });
+    }
+  }
+};
+
+const reorder = (evt: ReorderEvent) => {
   moveBudget(evt.source, evt.target, evt.type === 'after');
 };
 </script>

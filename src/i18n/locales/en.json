@@ -20,7 +20,10 @@
   },
   "budget": {
     "addGroup": "Add Group",
+    "append": "Move “{from}” after “{to}”",
     "average": "Average",
+    "move": "Move “{from}”",
+    "prepend": "Move “{from}” before “{to}”",
     "total": "Total",
     "totals": "Totals"
   },
