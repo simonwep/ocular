@@ -137,7 +137,7 @@ const averageAmount = computed(() => average(totals.value));
   font-weight: var(--font-weight-l);
   margin: 4px 0;
   padding: 5px 0;
-  background: var(--grid-header-backround);
+  background: var(--grid-header-background);
   color: var(--grid-header-text);
 
   > span {

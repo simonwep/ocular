@@ -8,7 +8,7 @@
   --app-max-height: 1000px;
   --app-box-shadow: 0 4px 7px #e8e7f5;
   --app-scroll-box-shadow: 0 0 10px #00000038;
-  --app-backround: #fff;
+  --app-background: #fff;
   --app-border: #e8e9f4;
   --app-scrollbar: #bec9d4;
 
@@ -114,7 +114,7 @@
   --input-field-caret-color: #2d3036;
   --input-field-border: var(--c-dimmed);
   --input-field-placeholder: var(--c-dimmed-pure);
-  --input-field-background: var(--app-backround);
+  --input-field-background: var(--app-background);
 
   --input-field-hover-border: var(--c-dimmed-hover);
   --input-field-hover-background: var(--input-field-background);
@@ -125,7 +125,7 @@
 
   --input-field-max-width: 200px;
 
-  --dialog-background: var(--app-backround);
+  --dialog-background: var(--app-background);
   --dialog-box-shadow: 0 2px 5px #00000012;
 
   --context-menu-item-color: #777788;
@@ -143,6 +143,6 @@
   --grid-border-color: #e4e5e6;
   --grid-border-radius: var(--border-radius-m);
 
-  --grid-header-backround: #1a1c23;
+  --grid-header-background: #1a1c23;
   --grid-header-text: #dfe2e8;
 }

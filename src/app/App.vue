@@ -29,7 +29,7 @@ watchEffect(() => {
   app.classList.add(state.appearance.theme);
 
   nextTick(() => {
-    const appColor = getComputedStyle(app).getPropertyValue('--app-backround').trim();
+    const appColor = getComputedStyle(app).getPropertyValue('--app-background').trim();
     document
       .querySelectorAll('[data-meta="theme-color"]')
       .forEach((el) => ((el as HTMLMetaElement).content = appColor));
@@ -66,7 +66,7 @@ watchEffect(() => {
   max-height: globals.$appMaxHeight;
   box-shadow: var(--app-box-shadow);
   overflow: hidden;
-  background: var(--app-backround);
+  background: var(--app-background);
 
   @include globals.onAppMinSizeReached {
     max-width: 100%;
