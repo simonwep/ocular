@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts" setup>
-import Icon from '@components/base/icon/Icon.vue';
-import { ClassNames } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import Icon from '@components/base/icon/Icon.vue';
+import { ClassNames } from '@utils';
 
 const props = defineProps<{
   class?: ClassNames;

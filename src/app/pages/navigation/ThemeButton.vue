@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, getCurrentInstance } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import { useAppElement } from '@composables';
 import { useSettingsStore } from '@store/settings';
 import { ClassNames } from '@utils';
-import { computed, getCurrentInstance } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;

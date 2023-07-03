@@ -1,12 +1,12 @@
 <template>
-  <button @click="pick" type="button" :class="classes">
+  <button type="button" :class="classes" @click="pick">
     <span :class="$style.label"> {{ modelValue?.name ?? placeholder }}</span>
   </button>
 </template>
 
 <script lang="ts" setup>
-import { ClassNames, selectFile } from '@utils';
 import { computed, useCssModule } from 'vue';
+import { ClassNames, selectFile } from '@utils';
 
 const emit = defineEmits<{
   (e: 'update:model-value', v: File): void;

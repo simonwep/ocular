@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.app" ref="root">
+  <div ref="root" :class="$style.app">
     <LoadingScreen
       :loading="storage.state.status === 'loading'"
       :class="$style.root"
@@ -9,13 +9,13 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, nextTick, watch, watchEffect } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
 import { useAppElement, useMediaQuery, useSquircle } from '@composables';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
-import { computed, nextTick, watch, watchEffect } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
 
 const { state } = useSettingsStore();
 const { t } = useI18n();

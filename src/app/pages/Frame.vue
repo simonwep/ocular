@@ -6,8 +6,8 @@
 
       <Link
         v-for="button of buttons"
-        :class="$style.btn"
         :key="button.id"
+        :class="$style.btn"
         :color="router.currentRoute.value.path.startsWith(button.link) ? 'primary' : 'dimmed'"
         :icon="button.icon"
         :to="button.link"
@@ -28,17 +28,17 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Link from '@components/base/link/Link.vue';
 import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import CloudButton from './navigation/CloudButton.vue';
-import SelectYearButton from './navigation/year/SelectYearButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';
-import ToolsButton from './navigation/tools/ToolsButton.vue';
-import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue';
 import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue';
+import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue';
+import ToolsButton from './navigation/tools/ToolsButton.vue';
+import SelectYearButton from './navigation/year/SelectYearButton.vue';
 
 const menu = ref<HTMLDivElement>();
 const router = useRouter();

@@ -28,11 +28,11 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, ref, useCssModule } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
-import { computed, ref, useCssModule } from 'vue';
-import { useI18n } from 'vue-i18n';
 import SummaryPanel from './SummaryPanel.vue';
 
 const props = defineProps<{

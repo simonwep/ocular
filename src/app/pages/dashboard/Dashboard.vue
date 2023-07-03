@@ -4,10 +4,10 @@
       <div :class="$style.viewButtons">
         <Link
           v-for="button of buttons"
+          :key="button.id"
           :to="button.link"
           :color="router.currentRoute.value.path.endsWith(button.link) ? 'primary' : 'dimmed'"
           :icon="button.icon"
-          :key="button.id"
         />
       </div>
     </template>
@@ -16,13 +16,13 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Link from '@components/base/link/Link.vue';
 import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
-import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
-import Pane from '../shared/Pane.vue';
 import { useDataStore } from '@store/state';
+import Pane from '../shared/Pane.vue';
 
 const { t } = useI18n();
 const { state } = useDataStore();

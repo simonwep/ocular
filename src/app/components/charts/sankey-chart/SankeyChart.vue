@@ -3,14 +3,14 @@
 </template>
 
 <script lang="ts" setup>
-import EChart from '@components/charts/echart/EChart.vue';
-import { SankeyChartConfig } from '@components/charts/sankey-chart/SankeyChart.types';
-import { ClassNames } from '@utils';
 import { SankeySeriesOption } from 'echarts';
 import { SankeyChart } from 'echarts/charts';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
+import EChart from '@components/charts/echart/EChart.vue';
+import { SankeyChartConfig } from '@components/charts/sankey-chart/SankeyChart.types';
+import { ClassNames } from '@utils';
 
 echarts.use([SankeyChart, SVGRenderer]);
 

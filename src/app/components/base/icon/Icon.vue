@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import { ClassNames } from '@utils';
-import { computed } from 'vue';
 
 const icons = Object.fromEntries(
   Object.entries(import.meta.glob('/src/icons/*.svg', { eager: true, as: 'raw' })).map((v) => [

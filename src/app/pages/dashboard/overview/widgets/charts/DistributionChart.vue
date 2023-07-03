@@ -4,6 +4,8 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import ChartPlaceholder from '@app/pages/shared/ChartPlaceholder.vue';
 import {
   SankeyChartConfig,
@@ -14,8 +16,6 @@ import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum, uuid } from '@utils';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   class?: ClassNames;

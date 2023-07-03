@@ -20,7 +20,7 @@
 
     <!-- Sums -->
     <span :class="$style.sum">{{ t('budget.totals') }}</span>
-    <Currency v-for="(sum, index) of totals" :value="sum" :key="index" :class="$style.sum" />
+    <Currency v-for="(sum, index) of totals" :key="index" :value="sum" :class="$style.sum" />
     <span />
     <span />
 
@@ -37,13 +37,13 @@
 </template>
 
 <script lang="ts" setup>
-import Button from '@components/base/button/Button.vue';
-import Currency from '@components/base/currency/Currency.vue';
-import BudgetGroup from './BudgetGroup.vue';
-import { useMonthNames } from '@composables';
-import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import Button from '@components/base/button/Button.vue';
+import Currency from '@components/base/currency/Currency.vue';
+import { useMonthNames } from '@composables';
+import { useDataStore } from '@store/state';
+import BudgetGroup from './BudgetGroup.vue';
 
 const props = defineProps<{
   type: 'expenses' | 'income';

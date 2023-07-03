@@ -3,15 +3,15 @@
     {{ n(value ?? 0, { key: 'currency', currency: dataState.currency }) }}
     <span :class="$style.overlay" />
   </span>
-  <span :class="props.class" v-else>
+  <span v-else :class="props.class">
     {{ n(value ?? 0, { key: 'currency', currency: dataState.currency }) }}
   </span>
 </template>
 
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
-import { useDataStore } from '@store/state';
 import { useSettingsStore } from '@store/settings';
+import { useDataStore } from '@store/state';
 import { ClassNames } from '@utils';
 
 const props = defineProps<{

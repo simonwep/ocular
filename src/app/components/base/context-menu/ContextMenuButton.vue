@@ -9,10 +9,10 @@
 
 <script lang="ts" setup>
 import { computed, inject, useCssModule } from 'vue';
-import { ClassNames } from '@utils';
-import Icon from '@components/base/icon/Icon.vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
 import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
+import { AppIcon } from '@components/base/icon/Icon.types';
+import Icon from '@components/base/icon/Icon.vue';
+import { ClassNames } from '@utils';
 
 const emit = defineEmits<{
   (e: 'click', evt: MouseEvent): void;

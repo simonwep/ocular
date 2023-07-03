@@ -5,8 +5,8 @@
       <span />
       <span
         v-for="(month, index) of months"
-        :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
         :key="month"
+        :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
       >
         {{ month }}
       </span>
@@ -18,12 +18,12 @@
         <span :class="$style.bold">{{ group.name }}</span>
         <span
           v-for="(amount, index) of group.totals"
+          :key="index"
           :class="{
             [$style.current]: isCurrentMonth(index),
             [$style.first]: groupIndex === 0,
             [$style.last]: groupIndex === flatted.length - 1
           }"
-          :key="index"
         >
           {{ n(amount, 'currency') }}
         </span>
@@ -34,7 +34,7 @@
       <!-- Totals -->
       <template v-if="flatted.length > 1">
         <span :class="$style.bold">{{ t('budget.total') }}</span>
-        <span :class="$style.bold" v-for="(month, index) of months" :key="month">
+        <span v-for="(month, index) of months" :key="month" :class="$style.bold">
           {{ n(sum(flatted.map((v) => v.totals[index])), 'currency') }}
         </span>
         <span :class="$style.underline">
@@ -49,15 +49,14 @@
 </template>
 
 <script lang="ts" setup>
+import { DeepReadonly, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useMonthNames } from '@composables';
+import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { flatten } from '@store/state/utils/budgets';
 import { average, ClassNames, sum, add } from '@utils';
-import { DeepReadonly } from 'vue';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import SummaryTable from './SummaryTable.vue';
-import { useDataStore } from '@store/state';
 
 const props = defineProps<{
   class?: ClassNames;

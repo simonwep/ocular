@@ -1,12 +1,13 @@
+/* eslint-disable-next-line import/no-unresolved */
+import { registerSW } from 'virtual:pwa-register';
+import { createApp } from 'vue';
 import { createStorage, STORAGE_KEY } from '@storage/index';
 import { createSettingsStore, SETTINGS_STORE_KEY } from '@store/settings';
 import { createDataStore, DATA_STORE_KEY } from '@store/state';
-import { registerSW } from 'virtual:pwa-register';
-import { createApp } from 'vue';
+import { createLogger } from '@utils';
 import App from './app/App.vue';
 import { i18n } from './i18n';
 import { router } from './router';
-import { createLogger } from '@utils';
 import './styles/index.scss';
 import './tracker';
 

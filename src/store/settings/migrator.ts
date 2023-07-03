@@ -1,5 +1,5 @@
-import { SettingsState, SettingsStateV1, SettingsStateV2 } from './types';
 import { createMigration, createMigrator } from 'yuppee';
+import { SettingsState, SettingsStateV1, SettingsStateV2 } from './types';
 
 type Versions = SettingsStateV1 | SettingsStateV2;
 

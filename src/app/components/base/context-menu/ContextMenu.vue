@@ -5,12 +5,12 @@
     </div>
     <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
       <ul :class="$style.list">
-        <slot name="options" v-if="$slots.options"></slot>
+        <slot v-if="$slots.options" name="options"></slot>
         <template v-else-if="options">
           <ContextMenuButton
             v-for="option of options"
-            :pad-icon="hasOptionWithIcon"
             :key="option.id"
+            :pad-icon="hasOptionWithIcon"
             :text="option.label ?? option.id"
             :icon="option.icon"
             :highlight="option.id === highlight"
@@ -23,13 +23,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, provide, ref, watch } from 'vue';
 import { createPopper, Instance } from '@popperjs/core';
-import { ContextMenuOption, ContextMenuOptionId } from '.';
-import { useOutOfElementClick } from '@composables';
-import ContextMenuButton from './ContextMenuButton.vue';
-import { ClassNames } from '@utils';
+import { computed, provide, ref, watch } from 'vue';
 import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
+import { useOutOfElementClick } from '@composables';
+import { ClassNames } from '@utils';
+import ContextMenuButton from './ContextMenuButton.vue';
+import { ContextMenuOption, ContextMenuOptionId } from '.';
 
 const emit = defineEmits<{
   (e: 'select', option: ContextMenuOption): void;

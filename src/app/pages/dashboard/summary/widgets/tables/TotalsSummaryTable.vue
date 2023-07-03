@@ -5,8 +5,8 @@
       <span />
       <span
         v-for="(month, index) of months"
-        :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
         :key="month"
+        :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
         >{{ month }}</span
       >
       <span :class="$style.bold">{{ t('budget.total') }}</span>
@@ -16,8 +16,8 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.income') }}</span>
       <span
         v-for="(amount, index) of income"
-        :class="[$style.muted, $style.first, $style.income, { [$style.current]: isCurrentMonth(index) }]"
         :key="index"
+        :class="[$style.muted, $style.first, $style.income, { [$style.current]: isCurrentMonth(index) }]"
       >
         {{ n(amount, 'currency') }}
       </span>
@@ -28,8 +28,8 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.expenses') }}</span>
       <span
         v-for="(amount, index) of expenses"
-        :class="[$style.muted, $style.expense, { [$style.current]: isCurrentMonth(index) }]"
         :key="index"
+        :class="[$style.muted, $style.expense, { [$style.current]: isCurrentMonth(index) }]"
       >
         {{ n(amount, 'currency') }}
       </span>
@@ -40,8 +40,8 @@
       <span :class="[$style.bold, $style.muted]">{{ t('dashboard.netSavings') }}</span>
       <span
         v-for="(amount, index) of netSavings"
-        :class="[$style.muted, { [$style.current]: isCurrentMonth(index), [$style.overdrawn]: amount < 0 }]"
         :key="index"
+        :class="[$style.muted, { [$style.current]: isCurrentMonth(index), [$style.overdrawn]: amount < 0 }]"
       >
         {{ n(amount, 'currency') }}
       </span>
@@ -51,9 +51,9 @@
       <!-- Ending balance  -->
       <span :class="$style.bold">{{ t('dashboard.endingBalance') }}</span>
       <span
-        :class="[$style.bold, $style.last, { [$style.current]: isCurrentMonth(index), [$style.overdrawn]: amount < 0 }]"
         v-for="(amount, index) of endingBalance"
         :key="index"
+        :class="[$style.bold, $style.last, { [$style.current]: isCurrentMonth(index), [$style.overdrawn]: amount < 0 }]"
       >
         {{ n(amount, 'currency') }}
       </span>
@@ -64,12 +64,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useMonthNames } from '@composables';
-import { aggregate, average, subtract, sum } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import SummaryTable from './SummaryTable.vue';
+import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
+import { aggregate, average, subtract, sum } from '@utils';
+import SummaryTable from './SummaryTable.vue';
 
 const props = withDefaults(
   defineProps<{

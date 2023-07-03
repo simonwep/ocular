@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, useCssModule } from 'vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Icon from '@components/base/icon/Icon.vue';
 import { Color, useThemeStyles } from '@composables';
 import { ClassNames } from '@utils';
-import { computed, useCssModule } from 'vue';
 
 const emit = defineEmits<{
   (e: 'click', v: MouseEvent): void;

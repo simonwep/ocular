@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import FilePicker from '@components/base/file-picker/FilePicker.vue';
 import { useDataStore } from '@store/state';
-import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Screen from './Screen.vue';
 
 const emit = defineEmits<{

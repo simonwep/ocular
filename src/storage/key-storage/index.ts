@@ -1,5 +1,4 @@
-import { DeepReadonly } from 'vue';
-import { reactive, readonly, watch } from 'vue';
+import { DeepReadonly, reactive, readonly, watch } from 'vue';
 
 interface CachedData {
   key: string;

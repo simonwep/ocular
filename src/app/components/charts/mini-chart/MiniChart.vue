@@ -3,14 +3,14 @@
 </template>
 
 <script lang="ts" setup>
-import EChart from '@components/charts/echart/EChart.vue';
-import { ClassNames } from '@utils';
 import { GridComponentOption, LineSeriesOption } from 'echarts';
 import { LineChart } from 'echarts/charts';
 import { GridComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
+import EChart from '@components/charts/echart/EChart.vue';
+import { ClassNames } from '@utils';
 
 echarts.use([GridComponent, LineChart, SVGRenderer]);
 

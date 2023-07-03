@@ -1,11 +1,11 @@
+import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
 import { useStateHistory } from '@composables';
+import { AvailableLocale, i18n } from '@i18n/index';
 import { AppStorage } from '@storage/types';
 import { readFile, remove, uuid } from '@utils';
-import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
+import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYear } from './utils';
-import { migrateApplicationState } from './migrator';
-import { AvailableLocale, i18n } from '@i18n/index';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 

@@ -1,13 +1,13 @@
 <template>
   <div :class="classes">
-    <input ref="checkbox" :id="id" :class="$style.input" type="checkbox" @click.stop="() => 0" @input="change" />
+    <input :id="id" ref="checkbox" :class="$style.input" type="checkbox" @click.stop="() => 0" @input="change" />
     <div :class="$style.knob" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ClassNames } from '@utils';
 import { computed, ref, useCssModule, watchEffect } from 'vue';
+import { ClassNames } from '@utils';
 
 const emit = defineEmits<{
   (e: 'update:modelValue', v: boolean): void;

@@ -1,6 +1,6 @@
 <template>
   <template v-if="show">
-    <component v-if="component" :is="component" :class="classes" />
+    <component :is="component" v-if="component" :class="classes" />
     <div v-else :class="[$style.placeholder, classes]">
       <span />
     </div>
@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ClassNames } from '@utils';
 import { computed, shallowRef, watchEffect } from 'vue';
+import { ClassNames } from '@utils';
 
 const props = withDefaults(
   defineProps<{

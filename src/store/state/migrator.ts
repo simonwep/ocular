@@ -1,7 +1,7 @@
-import { DataState, DataStateV1, DataStateV2, DataStateV3 } from '@store/state/types';
-import { initialLocale } from '@i18n/index';
 import { createMigration, createMigrator } from 'yuppee';
+import { initialLocale } from '@i18n/index';
 import { generateTemplate } from '@store/state/template';
+import { DataState, DataStateV1, DataStateV2, DataStateV3 } from '@store/state/types';
 
 type Versions = DataStateV1 | DataStateV2 | DataStateV3;
 

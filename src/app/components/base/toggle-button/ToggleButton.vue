@@ -2,9 +2,9 @@
   <div :class="[$style.toggleButton, classes]">
     <button
       v-for="btn of buttons"
-      @click="emit('update:model-value', btn.id)"
-      :class="[$style.btn, { [$style.active]: btn.id === modelValue }]"
       :key="btn.id"
+      :class="[$style.btn, { [$style.active]: btn.id === modelValue }]"
+      @click="emit('update:model-value', btn.id)"
     >
       <Icon :class="$style.icon" :icon="btn.icon" />
     </button>
@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import Icon from '@components/base/icon/Icon.vue';
 import { Selectable, SelectableId } from '@components/base/toggle-button/ToggleButton.types';
 import { ClassNames } from '@utils';
-import { computed } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:model-value', v: SelectableId): void;

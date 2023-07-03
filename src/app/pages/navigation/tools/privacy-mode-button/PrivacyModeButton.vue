@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
-import { computed } from 'vue';
 import { useSettingsStore } from '@store/settings';
 
 const { setMode, state } = useSettingsStore();

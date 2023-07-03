@@ -15,13 +15,13 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import Currency from '@components/base/currency/Currency.vue';
 import Icon from '@components/base/icon/Icon.vue';
 import Link from '@components/base/link/Link.vue';
-import { ClassNames } from '@utils';
-import { computed } from 'vue';
-import SummaryPanelChart from './SummaryPanelChart.vue';
 import { useSquircle } from '@composables';
+import { ClassNames } from '@utils';
+import SummaryPanelChart from './SummaryPanelChart.vue';
 
 const props = defineProps<{
   class?: ClassNames;

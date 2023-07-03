@@ -7,8 +7,8 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import Button from '@components/base/button/Button.vue';
-import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { ContextMenuOption } from '@components/base/context-menu';
+import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useDataStore } from '@store/state';
 
 const PRE_PLANNABLE_YEARS = 1;

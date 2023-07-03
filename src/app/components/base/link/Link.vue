@@ -1,16 +1,16 @@
 <template>
   <RouterLink :to="to" :class="classes">
-    <Icon :class="$style.icon" v-if="icon" :icon="icon" />
+    <Icon v-if="icon" :class="$style.icon" :icon="icon" />
     <slot />
   </RouterLink>
 </template>
 
 <script lang="ts" setup>
+import { computed, useCssModule, useSlots } from 'vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Icon from '@components/base/icon/Icon.vue';
 import { Color, useThemeStyles } from '@composables';
 import { ClassNames } from '@utils';
-import { computed, useCssModule, useSlots } from 'vue';
 
 const props = withDefaults(
   defineProps<{

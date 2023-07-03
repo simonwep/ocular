@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import { ClassNames } from '@utils';
-import { computed } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;

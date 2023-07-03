@@ -3,10 +3,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useDataStore } from '@store/state';
+import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
-import { onMounted, ref } from 'vue';
+import { useDataStore } from '@store/state';
 import { BudgetYear } from '@store/state/types';
 
 const { setBudgetGroups } = useDataStore();

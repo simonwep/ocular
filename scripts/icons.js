@@ -1,5 +1,5 @@
-import { resolve } from 'path';
 import { readdir, writeFile } from 'fs/promises';
+import { resolve } from 'path';
 
 (async () => {
   const icons = resolve(process.cwd(), 'src/icons');

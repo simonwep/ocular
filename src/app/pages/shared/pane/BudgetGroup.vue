@@ -24,7 +24,7 @@
   <!-- Budgets -->
   <template v-if="open">
     <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
-      <Draggable :text="buildDraggableText" :id="budget.id" @drop="reorder" />
+      <Draggable :id="budget.id" :text="buildDraggableText" @drop="reorder" />
       <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
 
       <span :class="$style.header">
@@ -33,6 +33,7 @@
 
       <span
         v-for="(_, month) of budget.values"
+        :key="budget.id + month"
         :class="[
           $style.currencyCell,
           {
@@ -46,7 +47,6 @@
             [$style.brc]: index === group.budgets.length - 1 && month === 11
           }
         ]"
-        :key="budget.id + month"
       >
         <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
       </span>
@@ -57,7 +57,7 @@
 
     <!-- Footer -->
     <span />
-    <Button icon="plus" :class="$style.addBudgetBtn" textual @click="addBudget(group.id)" color="success" />
+    <Button icon="plus" :class="$style.addBudgetBtn" textual color="success" @click="addBudget(group.id)" />
     <span style="grid-column: 3 / 16" />
     <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
     <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
@@ -65,17 +65,17 @@
 </template>
 
 <script lang="ts" setup>
+import { computed, DeepReadonly, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
-import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
 import Currency from '@components/base/currency/Currency.vue';
+import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
+import Draggable from '@components/base/draggable/Draggable.vue';
+import { ReorderEvent, DraggableEvent } from '@components/base/draggable/types';
 import TextCell from '@components/base/text-cell/TextCell.vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils';
-import { computed, DeepReadonly, ref } from 'vue';
-import { useI18n } from 'vue-i18n';
-import Draggable from '@components/base/draggable/Draggable.vue';
-import { ReorderEvent, DraggableEvent } from '@components/base/draggable/types';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;

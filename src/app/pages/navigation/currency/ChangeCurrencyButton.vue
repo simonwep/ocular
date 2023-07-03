@@ -6,13 +6,13 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
-import { ClassNames } from '@utils';
-import { ContextMenuOption } from '@components/base/context-menu';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
+import { ContextMenuOption } from '@components/base/context-menu';
+import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useDataStore } from '@store/state';
 import { availableCurrencies, AvailableCurrency } from '@store/state/types';
+import { ClassNames } from '@utils';
 
 const props = defineProps<{
   class?: ClassNames;

@@ -3,13 +3,13 @@
 </template>
 
 <script lang="ts" setup>
-import EChart from '@components/charts/echart/EChart.vue';
-import { ClassNames } from '@utils';
 import { LineChart, LineSeriesOption } from 'echarts/charts';
 import { GridComponent, GridComponentOption } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
+import EChart from '@components/charts/echart/EChart.vue';
+import { ClassNames } from '@utils';
 
 const props = defineProps<{
   class?: ClassNames;
