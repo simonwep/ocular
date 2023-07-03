@@ -11,14 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: '18'
-      - name: Install
-        run: npm ci
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Build
         env:
@@ -27,7 +34,7 @@ jobs:
           OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
           ACKEE_HOST: ${{ secrets.ACKEE_HOST }}
           ACKEE_DOMAIN_ID: ${{ secrets.ACKEE_DOMAIN_ID }}
-        run: npm run build
+        run: pnpm run build
 
       - name: Pre-Deploy
         run: |
