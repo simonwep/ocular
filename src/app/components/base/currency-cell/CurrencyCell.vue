@@ -35,8 +35,7 @@ const focused = ref(false);
 const { n } = useI18n();
 
 const value = computed(() => {
-  const value = props.modelValue;
-  return focused.value || !value ? value || '' : n(props.modelValue, 'currency');
+  return focused.value || !props.modelValue ? props.modelValue || '' : n(props.modelValue, 'currency');
 });
 
 const updateModelValue = (v: number) => {

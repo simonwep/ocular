@@ -15,7 +15,7 @@
 import Icon from '@components/base/icon/Icon.vue';
 import { Selectable, SelectableId } from '@components/base/toggle-button/ToggleButton.types';
 import { ClassNames } from '@utils';
-import { computed, defineEmits } from 'vue';
+import { computed } from 'vue';
 
 const emit = defineEmits<{
   (e: 'update:model-value', v: SelectableId): void;
