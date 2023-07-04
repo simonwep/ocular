@@ -2,7 +2,7 @@ import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch
 import { useStateHistory } from '@composables';
 import { AvailableLocale, i18n } from '@i18n/index';
 import { AppStorage } from '@storage/types';
-import { readFile, remove, uuid } from '@utils';
+import { moveInArrays, readFile, remove, uuid } from '@utils';
 import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYear } from './utils';
@@ -244,49 +244,19 @@ export const createDataStore = (storage?: AppStorage): Store => {
     },
 
     moveBudget(id: string, target: string, after?: boolean) {
-      for (const { budgets } of groups()) {
-        const srcIndex = budgets.findIndex((v) => v.id === id);
-        const [src] = ~srcIndex ? budgets.splice(srcIndex, 1) : [];
-
-        if (!src) {
-          continue;
-        }
-
-        for (const { budgets } of groups()) {
-          const dstIndex = budgets.findIndex((v) => v.id === target);
-
-          if (~dstIndex) {
-            budgets.splice(dstIndex + (after ? 1 : 0), 0, src);
-            return;
-          }
-        }
-      }
+      const budgets = groups().map((v) => v.budgets);
+      moveInArrays(budgets, id, target, after);
     },
 
     moveBudgetGroup(id: string, target: string, after?: boolean) {
       const { income, expenses } = getCurrentYear();
-
-      for (const group of [income, expenses]) {
-        const srcIndex = group.findIndex((v) => v.id === id);
-
-        if (~srcIndex) {
-          const [item] = group.splice(srcIndex, 1);
-          const dstIndex = group.findIndex((v) => v.id === target);
-
-          if (~dstIndex) {
-            group.splice(dstIndex + (after ? 1 : 0), 0, item);
-          }
-        }
-      }
+      moveInArrays([income, expenses], id, target, after);
     },
 
     getBudget(id: string) {
       for (const group of groups()) {
         const budget = group.budgets.find((v) => v.id === id);
-
-        if (budget) {
-          return [group, budget];
-        }
+        if (budget) return [group, budget];
       }
     },
 
