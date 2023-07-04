@@ -39,7 +39,7 @@
     "graph": {
       "placeholder": "Beginne damit, Einkünfte & Ausgaben einzutragen! :)"
     },
-    "header": "Übersicht - Jährliches Budget {year}",
+    "header": "Übersicht - Jährliches Budget für {year}",
     "income": "Einkünfte",
     "netSavings": "Netto-Einsparung",
     "remainingBalance": "Verbleibender Saldo bis {year}",

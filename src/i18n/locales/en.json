@@ -39,7 +39,7 @@
     "graph": {
       "placeholder": "Start by filling out the income / expenses tabs! :)"
     },
-    "header": "Dashboard - Annual Budget {year}",
+    "header": "Dashboard - Annual Budget for {year}",
     "income": "Income",
     "netSavings": "Net Savings",
     "remainingBalance": "Remaining Balance until {year}",
