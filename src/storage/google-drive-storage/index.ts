@@ -1,6 +1,6 @@
 import { nextTick, reactive, readonly, watch, watchEffect } from 'vue';
 import { MigratableState } from 'yuppee';
-import { GoogleDriveAuth, GoogleDriveAuthReponse } from '@storage/google-drive-storage/types';
+import { GoogleDriveAuth, GoogleDriveAuthResponse } from '@storage/google-drive-storage/types';
 import { createKeyStorage } from '@storage/key-storage';
 import { debounce } from '@utils';
 import { AppStorage, StorageState, StorageSync } from '../types';
@@ -37,7 +37,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
       window.addEventListener(
         'message',
         (message) => {
-          const { error, ...rest } = message.data as GoogleDriveAuthReponse;
+          const { error, ...rest } = message.data as GoogleDriveAuthResponse;
 
           if (error) {
             return reject(error);
@@ -117,8 +117,7 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
       syncsActive++;
       await upsert(config.name, value);
 
-      syncsActive--;
-      if (syncsActive === 0) {
+      if (--syncsActive === 0) {
         state.status = 'authenticated';
       }
     }, 1000);
@@ -146,12 +145,11 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
           }).then((res) => res.json());
 
           config.push(content);
-          state.status = 'authenticated';
         } else {
           await upsert(config.name, JSON.stringify(config.state()));
-          state.status = 'authenticated';
         }
 
+        state.status = 'authenticated';
         await nextTick(() => initialSyncsActive--);
       }
     });

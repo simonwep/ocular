@@ -4,7 +4,7 @@ export interface GoogleDriveAuth {
   scope: string;
 }
 
-export interface GoogleDriveAuthReponse {
+export interface GoogleDriveAuthResponse {
   expiresIn?: string;
   accessToken?: string;
   error?: string;

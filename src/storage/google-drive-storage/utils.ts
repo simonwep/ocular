@@ -1,6 +1,6 @@
-import { GoogleDriveAuthReponse } from '@storage/google-drive-storage/types';
+import { GoogleDriveAuthResponse } from '@storage/google-drive-storage/types';
 
-export const parseOAuth2Login = (): GoogleDriveAuthReponse | undefined => {
+export const parseOAuth2Login = (): GoogleDriveAuthResponse | undefined => {
   if (location.hash.length > 1) {
     const params = new URLSearchParams(location.hash.slice(1));
     const expiresIn = params.get('expires_in') ?? undefined;
