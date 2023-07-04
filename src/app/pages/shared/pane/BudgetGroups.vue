@@ -26,7 +26,7 @@
 
     <!-- Body -->
     <template v-for="group of groups" :key="group.id">
-      <Button color="dimmed" icon="close-circle" textual @click="removeBudgetGroup(group.id)" />
+      <Draggable :id="group.id" :text="buildDraggableText" name="budget-groups" @drop="reorder" />
       <BudgetGroup :group="group" />
     </template>
 
@@ -41,6 +41,8 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
+import Draggable from '@components/base/draggable/Draggable.vue';
+import { DraggableEvent, ReorderEvent } from '@components/base/draggable/types';
 import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
 import BudgetGroup from './BudgetGroup.vue';
@@ -49,7 +51,7 @@ const props = defineProps<{
   type: 'expenses' | 'income';
 }>();
 
-const { state, addBudgetGroup, removeBudgetGroup, isCurrentMonth } = useDataStore();
+const { state, moveBudgetGroup, addBudgetGroup, getBudgetGroup, isCurrentMonth } = useDataStore();
 const { t } = useI18n();
 
 const groups = computed(() => state[props.type]);
@@ -68,6 +70,25 @@ const totals = computed(() => {
 
   return totals;
 });
+
+const buildDraggableText = (store: DraggableEvent) => {
+  const src = store.source ? getBudgetGroup(store.source) : undefined;
+  const dst = store.target ? getBudgetGroup(store.target) : undefined;
+
+  if (src) {
+    if (dst) {
+      return store.type === 'before'
+        ? t('budget.prepend', { from: src.name, to: dst.name })
+        : t('budget.append', { from: src.name, to: dst.name });
+    }
+
+    return t('budget.move', { from: src.name });
+  }
+};
+
+const reorder = (evt: ReorderEvent) => {
+  moveBudgetGroup(evt.source, evt.target, evt.type === 'after');
+};
 </script>
 
 <style lang="scss" module>

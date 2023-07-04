@@ -10,7 +10,7 @@
     @drag="drag"
     @dragstart="dragStart"
   >
-    <Button :color="active ? 'primary' : 'dimmed'" :icon="icon" textual />
+    <Button :color="store.group === props.name ? (active ? 'primary' : 'dark') : 'dimmed'" :icon="icon" textual />
 
     <div
       v-if="store.source === props.id && top && left && label"
@@ -37,6 +37,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   text: (store: DraggableEvent) => string | undefined;
+  name: string;
   id: string;
 }>();
 
@@ -57,9 +58,11 @@ const label = computed(() => {
 
 const dragStart = (evt: DragEvent) => {
   if (evt.dataTransfer && element.value) {
+    store.group = props.name;
     store.source = props.id;
     evt.dataTransfer.effectAllowed = 'move';
     evt.dataTransfer.setDragImage(element.value, Infinity, Infinity);
+    evt.dataTransfer.setData('text/plain', props.name);
   }
 };
 
@@ -69,13 +72,15 @@ const drag = (evt: DragEvent) => {
 };
 
 const dragOver = (evt: DragEvent) => {
-  const rect = draggable.value?.getBoundingClientRect();
-  evt.preventDefault();
+  if (store.group === props.name) {
+    const rect = draggable.value?.getBoundingClientRect();
+    evt.preventDefault();
 
-  if (rect && props.id !== store.source) {
-    const type = evt.pageY < rect.top + rect.height / 2 ? 'before' : 'after';
-    store.target = props.id;
-    store.type = type;
+    if (rect && props.id !== store.source) {
+      const type = evt.pageY < rect.top + rect.height / 2 ? 'before' : 'after';
+      store.target = props.id;
+      store.type = type;
+    }
   }
 };
 
@@ -90,6 +95,7 @@ const dragEnd = () => {
   store.type = undefined;
   store.target = undefined;
   store.source = undefined;
+  store.group = undefined;
 };
 
 const drop = (evt: DragEvent) => {

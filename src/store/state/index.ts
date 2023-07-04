@@ -39,6 +39,7 @@ interface Store {
   addBudget(group: string): void;
 
   moveBudget(id: string, target: string, after?: boolean): void;
+  moveBudgetGroup(id: string, target: string, after?: boolean): void;
 
   removeBudgetGroup(id: string): void;
   removeBudget(id: string): void;
@@ -48,6 +49,7 @@ interface Store {
   setBudget(id: string, month: number, amount: number): void;
 
   getBudget(id: string): [BudgetGroup, Budget] | undefined;
+  getBudgetGroup(id: string): BudgetGroup | undefined;
 
   isCurrentMonth(month: number): boolean;
 }
@@ -244,15 +246,35 @@ export const createDataStore = (storage?: AppStorage): Store => {
     moveBudget(id: string, target: string, after?: boolean) {
       for (const { budgets } of groups()) {
         const srcIndex = budgets.findIndex((v) => v.id === id);
-        const [src] = srcIndex !== -1 ? budgets.splice(srcIndex, 1) : [];
-        if (!src) continue;
+        const [src] = ~srcIndex ? budgets.splice(srcIndex, 1) : [];
+
+        if (!src) {
+          continue;
+        }
 
         for (const { budgets } of groups()) {
           const dstIndex = budgets.findIndex((v) => v.id === target);
 
-          if (dstIndex !== -1) {
+          if (~dstIndex) {
             budgets.splice(dstIndex + (after ? 1 : 0), 0, src);
             return;
+          }
+        }
+      }
+    },
+
+    moveBudgetGroup(id: string, target: string, after?: boolean) {
+      const { income, expenses } = getCurrentYear();
+
+      for (const group of [income, expenses]) {
+        const srcIndex = group.findIndex((v) => v.id === id);
+
+        if (~srcIndex) {
+          const [item] = group.splice(srcIndex, 1);
+          const dstIndex = group.findIndex((v) => v.id === target);
+
+          if (~dstIndex) {
+            group.splice(dstIndex + (after ? 1 : 0), 0, item);
           }
         }
       }
@@ -266,6 +288,10 @@ export const createDataStore = (storage?: AppStorage): Store => {
           return [group, budget];
         }
       }
+    },
+
+    getBudgetGroup(id: string) {
+      return groups().find((v) => v.id === id);
     },
 
     isCurrentMonth(month: number): boolean {

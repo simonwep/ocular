@@ -1,6 +1,6 @@
 <template>
   <!-- Header -->
-  <Button :icon="open ? 'arrow-down-s-line' : 'arrow-right-s-line'" color="dimmed" textual @click="open = !open" />
+  <Button color="dimmed" icon="close-circle" textual @click="removeBudgetGroup(group.id)" />
 
   <TextCell
     :class="[$style.top, $style.start]"
@@ -22,50 +22,48 @@
   </span>
 
   <!-- Budgets -->
-  <template v-if="open">
-    <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
-      <Draggable :id="budget.id" :text="buildDraggableText" @drop="reorder" />
-      <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
+  <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
+    <Draggable :id="budget.id" name="budget-group" :text="buildDraggableText" @drop="reorder" />
+    <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
 
-      <span :class="$style.header">
-        <TextCell :model-value="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
-      </span>
+    <span :class="$style.header">
+      <TextCell :model-value="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
+    </span>
 
-      <span
-        v-for="(_, month) of budget.values"
-        :key="budget.id + month"
-        :class="[
-          $style.currencyCell,
-          {
-            [$style.even]: index % 2,
-            [$style.firstRow]: index === 0,
-            [$style.firstColumn]: month === 0,
-            [$style.currentMonth]: isCurrentMonth(month),
-            [$style.tlc]: index === 0 && month === 0,
-            [$style.trc]: index === 0 && month === 11,
-            [$style.blc]: index === group.budgets.length - 1 && month === 0,
-            [$style.brc]: index === group.budgets.length - 1 && month === 11
-          }
-        ]"
-      >
-        <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
-      </span>
+    <span
+      v-for="(_, month) of budget.values"
+      :key="budget.id + month"
+      :class="[
+        $style.currencyCell,
+        {
+          [$style.even]: index % 2,
+          [$style.firstRow]: index === 0,
+          [$style.firstColumn]: month === 0,
+          [$style.currentMonth]: isCurrentMonth(month),
+          [$style.tlc]: index === 0 && month === 0,
+          [$style.trc]: index === 0 && month === 11,
+          [$style.blc]: index === group.budgets.length - 1 && month === 0,
+          [$style.brc]: index === group.budgets.length - 1 && month === 11
+        }
+      ]"
+    >
+      <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
+    </span>
 
-      <Currency :class="$style.meta" :value="sum(budget.values)" />
-      <Currency :class="$style.meta" :value="average(budget.values)" />
-    </template>
-
-    <!-- Footer -->
-    <span />
-    <Button icon="plus" :class="$style.addBudgetBtn" textual color="success" @click="addBudget(group.id)" />
-    <span style="grid-column: 3 / 16" />
-    <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
-    <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
+    <Currency :class="$style.meta" :value="sum(budget.values)" />
+    <Currency :class="$style.meta" :value="average(budget.values)" />
   </template>
+
+  <!-- Footer -->
+  <span />
+  <Button icon="plus" :class="$style.addBudgetBtn" textual color="success" @click="addBudget(group.id)" />
+  <span style="grid-column: 3 / 16" />
+  <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
+  <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
 </template>
 
 <script lang="ts" setup>
-import { computed, DeepReadonly, ref } from 'vue';
+import { computed, DeepReadonly } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
@@ -81,11 +79,19 @@ const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
 }>();
 
-const { moveBudget, getBudget, addBudget, setBudgetName, setBudgetGroupName, setBudget, removeBudget, isCurrentMonth } =
-  useDataStore();
+const {
+  moveBudget,
+  removeBudgetGroup,
+  getBudget,
+  addBudget,
+  setBudgetName,
+  setBudgetGroupName,
+  setBudget,
+  removeBudget,
+  isCurrentMonth
+} = useDataStore();
 
 const { t } = useI18n();
-const open = ref(true);
 
 const totals = computed(() => {
   const totals: number[] = new Array(12).fill(0);
@@ -115,9 +121,9 @@ const buildDraggableText = (store: DraggableEvent) => {
       return store.type === 'before'
         ? t('budget.prepend', { from: srcLabel, to: dstLabel })
         : t('budget.append', { from: srcLabel, to: dstLabel });
-    } else {
-      return t('budget.move', { from: src.name });
     }
+
+    return t('budget.move', { from: src.name });
   }
 };
 

@@ -1,7 +1,14 @@
 import { reactive } from 'vue';
-import { DraggableEvent } from './types';
 
-export const store = reactive<Partial<DraggableEvent>>({
+export interface DraggableStore {
+  group?: string;
+  source?: string;
+  target?: string;
+  type?: string;
+}
+
+export const store = reactive<DraggableStore>({
+  group: undefined,
   source: undefined,
   target: undefined,
   type: undefined
