@@ -27,6 +27,7 @@ const classes = computed(() => props.class);
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const options = computed(
   (): EChartsOption => ({
+    animation: false,
     legend: {
       data: props.data.series.map((v) => v.name),
       textStyle: { color: 'var(--chart-label)' },
@@ -55,7 +56,6 @@ const options = computed(
       splitLine: { lineStyle: { color: 'var(--chart-line-color)' } }
     },
     series: props.data.series.map((v) => ({
-      animation: false,
       name: v.name,
       type: 'line',
       data: v.data,

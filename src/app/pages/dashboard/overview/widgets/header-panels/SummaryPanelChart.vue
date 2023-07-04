@@ -24,6 +24,7 @@ type EChartsOption = echarts.ComposeOption<GridComponentOption | LineSeriesOptio
 const classes = computed(() => props.class);
 const options = computed(
   (): EChartsOption => ({
+    animation: false,
     xAxis: {
       type: 'category',
       show: false
@@ -45,7 +46,6 @@ const options = computed(
         type: 'line',
         smooth: true,
         showSymbol: false,
-        animation: false,
         lineStyle: {
           width: 5,
           cap: 'round',

@@ -26,9 +26,9 @@ const classes = computed(() => props.class);
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const options = computed(
   (): EChartsOption => ({
+    animation: false,
     series: {
       type: 'sankey',
-      animation: false,
       label: {
         formatter: '{b}',
         textBorderWidth: 0,
