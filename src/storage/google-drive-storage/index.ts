@@ -1,4 +1,4 @@
-import { nextTick, reactive, readonly, watch, watchEffect } from 'vue';
+import { reactive, readonly, watch, watchEffect } from 'vue';
 import { MigratableState } from 'yuppee';
 import { GoogleDriveAuth, GoogleDriveAuthResponse } from '@storage/google-drive-storage/types';
 import { createKeyStorage } from '@storage/key-storage';
@@ -149,8 +149,9 @@ export const createGoogleDriveStorage = (auth: GoogleDriveAuth): AppStorage => {
           await upsert(config.name, JSON.stringify(config.state()));
         }
 
-        state.status = 'authenticated';
-        await nextTick(() => initialSyncsActive--);
+        if (!--initialSyncsActive) {
+          state.status = 'authenticated';
+        }
       }
     });
   };
