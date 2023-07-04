@@ -2,6 +2,7 @@
   <div :class="$style.pane">
     <div ref="header" :class="$style.header">
       <h1 :class="$style.title">
+        <slot name="beforeTitle" />
         <span>{{ title }}</span>
         <template v-if="amount">
           <span> - </span>
@@ -50,12 +51,15 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   justify-content: space-between;
   position: sticky;
   top: 0;
-  padding: 15px 10px;
+  padding: 16px 10px;
   background: var(--app-background);
   animation: var(--animation-fade-in-right) var(--transition-s);
   transition: all var(--transition-m);
 
   .title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
   }

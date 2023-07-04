@@ -45,6 +45,7 @@ const options = computed(
         type: 'line',
         smooth: true,
         showSymbol: false,
+        animation: false,
         lineStyle: {
           width: 5,
           cap: 'round',
