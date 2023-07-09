@@ -55,9 +55,9 @@ interface FrameButton {
 }
 
 const buttons = computed<FrameButton[]>(() => [
-  { icon: 'donut-chart', id: 'dashboard', link: '/dashboard', tooltip: t('menu.dashboard') },
-  { icon: 'hand-coin', id: 'income', link: '/income', tooltip: t('menu.income') },
-  { icon: 'shopping-basket-2', id: 'expenses', link: '/expenses', tooltip: t('menu.expenses') }
+  { icon: 'donut-chart', id: 'dashboard', link: '/dashboard', tooltip: t('navigation.menu.dashboard') },
+  { icon: 'hand-coin', id: 'income', link: '/income', tooltip: t('navigation.menu.income') },
+  { icon: 'shopping-basket-2', id: 'expenses', link: '/expenses', tooltip: t('navigation.menu.expenses') }
 ]);
 </script>
 

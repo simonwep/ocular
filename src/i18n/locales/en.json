@@ -41,14 +41,14 @@
     "summary": "Summary",
     "tableOverview": "Table overview"
   },
-  "data": {
+  "navigation": {
     "clipboard": {
       "copy": "Copy data from {year}",
       "paste": "Paste data from {from} into {to}"
     },
-    "demo": {
-      "loadDemoData": "Load demo data"
-    },
+    "currency": "Change the currency that should be used",
+    "disablePrivacyMode": "Switch to public mode",
+    "enablePrivacyMode": "Switch to privacy mode",
     "export": {
       "export": "Export as JSON file",
       "fileName": "Annual Budget"
@@ -67,26 +67,18 @@
         "ocular": "A previously exported file",
         "title": "What would you like to import?"
       }
-    }
-  },
-  "menu": {
-    "dashboard": "Dashboard",
-    "expenses": "Expenses",
-    "export": "Export",
-    "import": "Import",
-    "income": "Income"
-  },
-  "navigation": {
-    "currency": "Change the currency that should be used",
+    },
     "language": "Switch to a different language",
+    "loadDemoData": "Load demo data",
+    "menu": {
+      "dashboard": "Dashboard",
+      "expenses": "Expenses",
+      "export": "Export",
+      "import": "Import",
+      "income": "Income"
+    },
     "theme": "Switch theme",
     "tools": "Tools",
     "year": "Switch to a different year"
-  },
-  "settings": {
-    "mode": {
-      "disablePrivacyMode": "Switch to public mode",
-      "enablePrivacyMode": "Switch to privacy mode"
-    }
   }
 }

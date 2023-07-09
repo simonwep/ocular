@@ -41,14 +41,14 @@
     "summary": "Zusammenfassung",
     "tableOverview": "Tabellenübersicht"
   },
-  "data": {
+  "navigation": {
     "clipboard": {
       "copy": "Daten von {year} kopieren",
       "paste": "Daten von {from} in {to} einfügen"
     },
-    "demo": {
-      "loadDemoData": "Demo Daten laden"
-    },
+    "currency": "Zu andere Währung wechseln",
+    "disablePrivacyMode": "In den öffentlichen Modus wechseln",
+    "enablePrivacyMode": "In den Privatsphären-Modus wechseln",
     "export": {
       "export": "Daten als JSON-Datei exportieren",
       "fileName": "Jährliches Budget"
@@ -67,26 +67,18 @@
         "ocular": "Eine von Ocular exportierte Datei",
         "title": "Was soll importiert werden?"
       }
-    }
-  },
-  "menu": {
-    "dashboard": "Übersicht",
-    "expenses": "Ausgaben",
-    "export": "Exportieren",
-    "import": "Imoportiere",
-    "income": "Einkünfte"
-  },
-  "navigation": {
-    "currency": "Zu andere Währung wechseln",
+    },
     "language": "Andere Sprache verwenden",
+    "loadDemoData": "Demo Daten laden",
+    "menu": {
+      "dashboard": "Übersicht",
+      "expenses": "Ausgaben",
+      "export": "Exportieren",
+      "import": "Imoportiere",
+      "income": "Einkünfte"
+    },
     "theme": "Switch theme",
     "tools": "Hilfsmittel",
     "year": "Zu einem anderen Jahr springen"
-  },
-  "settings": {
-    "mode": {
-      "disablePrivacyMode": "In den öffentlichen Modus wechseln",
-      "enablePrivacyMode": "In den Privatsphären-Modus wechseln"
-    }
   }
 }

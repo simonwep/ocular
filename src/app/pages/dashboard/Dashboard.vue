@@ -44,7 +44,7 @@ interface DashboardTab {
 }
 
 const buttons = computed<DashboardTab[]>(() => [
-  { id: 'charts', icon: 'pi-chart-line', link: '/dashboard', tooltip: t('menu.dashboard') },
+  { id: 'charts', icon: 'pi-chart-line', link: '/dashboard', tooltip: t('navigation.menu.dashboard') },
   { id: 'tables', icon: 'grid-line', link: '/dashboard/summary', tooltip: t('dashboard.tableOverview') }
 ]);
 

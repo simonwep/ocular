@@ -10,7 +10,7 @@ export const router = createRouter({
     },
     {
       path: '/dashboard',
-      name: 'menu.dashboard',
+      name: 'navigation.menu.dashboard',
       component: () => import('./app/pages/dashboard/Dashboard.vue'),
       children: [
         {
@@ -27,12 +27,12 @@ export const router = createRouter({
     },
     {
       path: '/income',
-      name: 'menu.income',
+      name: 'navigation.menu.income',
       component: () => import('./app/pages/income/Income.vue')
     },
     {
       path: '/expenses',
-      name: 'menu.expenses',
+      name: 'navigation.menu.expenses',
       component: () => import('./app/pages/expenses/Expenses.vue')
     },
     {
