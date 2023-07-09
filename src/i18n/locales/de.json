@@ -69,10 +69,6 @@
       }
     }
   },
-  "locale": {
-    "de": "Deutsch",
-    "en": "Englisch"
-  },
   "menu": {
     "dashboard": "Übersicht",
     "expenses": "Ausgaben",

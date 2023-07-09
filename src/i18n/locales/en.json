@@ -69,10 +69,6 @@
       }
     }
   },
-  "locale": {
-    "de": "German",
-    "en": "English"
-  },
   "menu": {
     "dashboard": "Dashboard",
     "expenses": "Expenses",

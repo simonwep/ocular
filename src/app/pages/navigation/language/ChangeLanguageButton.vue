@@ -24,16 +24,18 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const { changeLocale, state } = useDataStore();
 
 const classes = computed(() => props.class);
 
-const locales = computed<ContextMenuOption[]>(() =>
-  availableLocales.map((value) => ({
+const locales = computed<ContextMenuOption[]>(() => {
+  const displayNames = new Intl.DisplayNames(locale.value, { type: 'language' });
+
+  return availableLocales.map((value) => ({
     id: value,
     icon: state.locale === value ? 'check' : undefined,
-    label: t(`locale.${value}`)
-  }))
-);
+    label: displayNames.of(value)
+  }));
+});
 </script>
