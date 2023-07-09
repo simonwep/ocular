@@ -2,7 +2,6 @@ export * from './array';
 export * from './debounce';
 export * from './logger';
 export * from './readFile';
-export * from './refs';
 export * from './remove';
 export * from './saveFile';
 export * from './selectFile';

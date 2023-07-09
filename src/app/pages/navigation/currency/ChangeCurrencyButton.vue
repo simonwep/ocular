@@ -24,8 +24,23 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const { changeCurrency, state } = useDataStore();
+
+const formatNumber = (currency: string, currencyDisplay?: string) => {
+  const text = (0)
+    .toLocaleString(locale.value, {
+      style: 'currency',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+      currencyDisplay,
+      currency
+    })
+    .replace(/\d/g, '')
+    .trim();
+
+  return text[0].toUpperCase() + text.slice(1);
+};
 
 const classes = computed(() => props.class);
 
@@ -33,7 +48,7 @@ const currencies = computed<ContextMenuOption[]>(() =>
   availableCurrencies.map((value) => ({
     id: value,
     icon: state.currency === value ? 'check' : undefined,
-    label: t(`currency.${value}`)
+    label: `${formatNumber(value, 'name')} (${formatNumber(value)})`
   }))
 );
 </script>

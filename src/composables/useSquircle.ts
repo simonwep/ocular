@@ -1,5 +1,4 @@
-import { ref, unref, watchEffect } from 'vue';
-import { MaybeRef } from '@utils';
+import { ref, MaybeRef, unref, watchEffect } from 'vue';
 
 export const useSquircle = (size: MaybeRef<number>) => {
   const el = ref<HTMLElement | undefined>();

@@ -27,11 +27,6 @@
     "total": "Summe",
     "totals": "Summen"
   },
-  "currency": {
-    "eur": "Euro",
-    "gbp": "Pfund",
-    "usd": "Dollar"
-  },
   "dashboard": {
     "distribution": "Verteilung",
     "endingBalance": "Endsaldo",

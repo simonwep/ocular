@@ -27,11 +27,6 @@
     "total": "Total",
     "totals": "Totals"
   },
-  "currency": {
-    "eur": "Euro",
-    "gbp": "Pound",
-    "usd": "Dollar"
-  },
   "dashboard": {
     "distribution": "Distribution",
     "endingBalance": "Ending Balance",
