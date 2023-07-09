@@ -9,6 +9,8 @@
         <Link
           v-for="button of buttons"
           :key="button.id"
+          :tooltip="button.tooltip"
+          tooltip-position="bottom-start"
           :to="button.link"
           :color="router.currentRoute.value.path.endsWith(button.link) ? 'primary' : 'dimmed'"
           :icon="button.icon"
@@ -20,6 +22,7 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import Button from '@components/base/button/Button.vue';
@@ -37,12 +40,13 @@ interface DashboardTab {
   icon: AppIcon;
   id: string;
   link: string;
+  tooltip: string;
 }
 
-const buttons = [
-  { id: 'charts', icon: 'pi-chart-line', link: '' },
-  { id: 'tables', icon: 'grid-line', link: '/summary' }
-].map((v) => ({ ...v, link: `/dashboard${v.link}` })) as DashboardTab[];
+const buttons = computed<DashboardTab[]>(() => [
+  { id: 'charts', icon: 'pi-chart-line', link: '/dashboard', tooltip: t('menu.dashboard') },
+  { id: 'tables', icon: 'grid-line', link: '/dashboard/summary', tooltip: t('dashboard.tableOverview') }
+]);
 
 const rotateYear = (dir: -1 | 1) => {
   const possibleYears = state.years.map((v) => v.year);

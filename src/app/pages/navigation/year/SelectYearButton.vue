@@ -1,11 +1,18 @@
 <template>
-  <ContextMenu :options="options" :highlight="state.activeYear" @select="changeYear($event.id as number)">
+  <ContextMenu
+    :tooltip="t('navigation.year')"
+    tooltip-position="right"
+    :options="options"
+    :highlight="state.activeYear"
+    @select="changeYear($event.id as number)"
+  >
     <Button icon="calendar-line" textual color="dimmed" />
   </ContextMenu>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import { ContextMenuOption } from '@components/base/context-menu';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
@@ -13,6 +20,7 @@ import { useDataStore } from '@store/state';
 
 const PRE_PLANNABLE_YEARS = 1;
 
+const { t } = useI18n();
 const { changeYear, state } = useDataStore();
 
 const options = computed((): ContextMenuOption[] => {

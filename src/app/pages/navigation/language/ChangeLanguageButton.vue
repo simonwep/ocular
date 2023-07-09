@@ -1,5 +1,11 @@
 <template>
-  <ContextMenu :class="classes" :options="locales" @select="changeLocale($event.id as AvailableLocale)">
+  <ContextMenu
+    :tooltip="t('navigation.language')"
+    tooltip-position="right"
+    :class="classes"
+    :options="locales"
+    @select="changeLocale($event.id as AvailableLocale)"
+  >
     <Button icon="global-line" textual color="dimmed" />
   </ContextMenu>
 </template>

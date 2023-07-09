@@ -19,6 +19,7 @@
         ],
         "paths": {
             "@composables": ["./src/composables/index.ts"],
+            "@directives": ["./src/directives/index.ts"],
             "@components/*": ["./src/app/components/*"],
             "@app/*": ["./src/app/*"],
             "@i18n/*": ["./src/i18n/*"],

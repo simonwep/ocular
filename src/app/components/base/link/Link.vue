@@ -1,11 +1,12 @@
 <template>
-  <RouterLink :to="to" :class="classes">
+  <RouterLink v-tooltip="{ text: tooltip, position: tooltipPosition }" :to="to" :class="classes">
     <Icon v-if="icon" :class="$style.icon" :icon="icon" />
     <slot />
   </RouterLink>
 </template>
 
 <script lang="ts" setup>
+import { Placement } from '@popperjs/core';
 import { computed, useCssModule, useSlots } from 'vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Icon from '@components/base/icon/Icon.vue';
@@ -18,6 +19,8 @@ const props = withDefaults(
     icon?: AppIcon;
     color?: Color;
     custom?: boolean;
+    tooltip?: string;
+    tooltipPosition?: Placement;
     to: string;
   }>(),
   {

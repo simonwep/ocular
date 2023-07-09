@@ -43,7 +43,8 @@
     "income": "Income",
     "netSavings": "Net Savings",
     "remainingBalance": "Remaining Balance until {year}",
-    "summary": "Summary"
+    "summary": "Summary",
+    "tableOverview": "Table overview"
   },
   "data": {
     "clipboard": {
@@ -83,6 +84,13 @@
     "export": "Export",
     "import": "Import",
     "income": "Income"
+  },
+  "navigation": {
+    "currency": "Change the currency that should be used",
+    "language": "Switch to a different language",
+    "theme": "Switch theme",
+    "tools": "Tools",
+    "year": "Switch to a different year"
   },
   "settings": {
     "mode": {

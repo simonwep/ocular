@@ -1,6 +1,11 @@
 <template>
   <div :class="[$style.contextMenu, classes]">
-    <div ref="reference" :class="$style.reference" @click="toggle">
+    <div
+      ref="reference"
+      v-tooltip="{ text: tooltip, position: tooltipPosition }"
+      :class="$style.reference"
+      @click="toggle"
+    >
       <slot />
     </div>
     <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
@@ -23,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { createPopper, Instance } from '@popperjs/core';
+import { createPopper, Instance, Placement } from '@popperjs/core';
 import { computed, provide, ref, watch } from 'vue';
 import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
 import { useOutOfElementClick } from '@composables';
@@ -37,6 +42,8 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   class?: ClassNames;
+  tooltip?: string;
+  tooltipPosition?: Placement;
   options?: ContextMenuOption[];
   highlight?: ContextMenuOptionId;
 }>();

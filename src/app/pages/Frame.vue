@@ -7,6 +7,8 @@
       <Link
         v-for="button of buttons"
         :key="button.id"
+        :tooltip="button.tooltip"
+        tooltip-position="right"
         :class="$style.btn"
         :color="router.currentRoute.value.path.startsWith(button.link) ? 'primary' : 'dimmed'"
         :icon="button.icon"
@@ -28,7 +30,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Link from '@components/base/link/Link.vue';
@@ -42,18 +45,20 @@ import SelectYearButton from './navigation/year/SelectYearButton.vue';
 
 const menu = ref<HTMLDivElement>();
 const router = useRouter();
+const { t } = useI18n();
 
 interface FrameButton {
   icon: AppIcon;
   id: string;
   link: string;
+  tooltip: string;
 }
 
-const buttons: FrameButton[] = [
-  { icon: 'donut-chart', id: 'dashboard', link: '/dashboard' },
-  { icon: 'hand-coin', id: 'income', link: '/income' },
-  { icon: 'shopping-basket-2', id: 'expenses', link: '/expenses' }
-];
+const buttons = computed<FrameButton[]>(() => [
+  { icon: 'donut-chart', id: 'dashboard', link: '/dashboard', tooltip: t('menu.dashboard') },
+  { icon: 'hand-coin', id: 'income', link: '/income', tooltip: t('menu.income') },
+  { icon: 'shopping-basket-2', id: 'expenses', link: '/expenses', tooltip: t('menu.expenses') }
+]);
 </script>
 
 <style lang="scss" module>

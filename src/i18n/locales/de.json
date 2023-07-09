@@ -43,7 +43,8 @@
     "income": "Einkünfte",
     "netSavings": "Netto-Einsparung",
     "remainingBalance": "Verbleibender Saldo bis {year}",
-    "summary": "Zusammenfassung"
+    "summary": "Zusammenfassung",
+    "tableOverview": "Tabellenübersicht"
   },
   "data": {
     "clipboard": {
@@ -83,6 +84,13 @@
     "export": "Exportieren",
     "import": "Imoportiere",
     "income": "Einkünfte"
+  },
+  "navigation": {
+    "currency": "Zu andere Währung wechseln",
+    "language": "Andere Sprache verwenden",
+    "theme": "Switch theme",
+    "tools": "Hilfsmittel",
+    "year": "Zu einem anderen Jahr springen"
   },
   "settings": {
     "mode": {

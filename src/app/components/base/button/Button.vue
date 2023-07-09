@@ -1,11 +1,17 @@
 <template>
-  <button :class="classes" type="button" @click="emit('click', $event)">
+  <button
+    v-tooltip="{ text: tooltip, position: tooltipPosition }"
+    :class="classes"
+    type="button"
+    @click="emit('click', $event)"
+  >
     <Icon v-if="icon" :class="[$style.icon, iconClass]" :icon="icon" />
     <span v-if="text" :class="$style.text">{{ text }}</span>
   </button>
 </template>
 
 <script lang="ts" setup>
+import { Placement } from '@popperjs/core';
 import { computed, useCssModule } from 'vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Icon from '@components/base/icon/Icon.vue';
@@ -22,6 +28,8 @@ const props = withDefaults(
     iconClass?: ClassNames;
     icon?: AppIcon;
     text?: string;
+    tooltip?: string;
+    tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
   }>(),

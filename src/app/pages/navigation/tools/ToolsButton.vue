@@ -1,5 +1,5 @@
 <template>
-  <ContextMenu :class="classes">
+  <ContextMenu :tooltip="t('navigation.tools')" tooltip-position="right" :class="classes">
     <Button icon="settings-4-line" textual color="dimmed"></Button>
 
     <template #options>
@@ -15,6 +15,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useStorage } from '@storage/index';
@@ -30,6 +31,8 @@ const props = defineProps<{
   class: ClassNames;
 }>();
 
-const classes = computed(() => props.class);
 const { state } = useStorage();
+const { t } = useI18n();
+
+const classes = computed(() => props.class);
 </script>

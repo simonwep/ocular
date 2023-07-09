@@ -1,9 +1,16 @@
 <template>
-  <Button :class="[$style.themeButton, classes]" :icon="icon" textual @click="toggle" />
+  <Button
+    :tooltip="t('navigation.theme')"
+    :class="[$style.themeButton, classes]"
+    :icon="icon"
+    textual
+    @click="toggle"
+  />
 </template>
 
 <script lang="ts" setup>
 import { computed, getCurrentInstance } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import { useAppElement } from '@composables';
@@ -15,6 +22,7 @@ const props = defineProps<{
 }>();
 
 const { state, setTheme } = useSettingsStore();
+const { t } = useI18n();
 const app = useAppElement();
 let switchActive = false;
 

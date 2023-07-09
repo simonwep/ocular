@@ -1,0 +1,14 @@
+.tooltip {
+  background: var(--tooltip-background);
+  padding: 4px 8px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-m);
+  border-radius: var(--border-radius-m);
+  box-shadow: var(--tooltip-shadow);
+  transition: opacity var(--transition-s);
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+  }
+}
