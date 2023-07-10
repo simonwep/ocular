@@ -131,8 +131,8 @@
   --context-menu-item-color: #c1c1cf;
   --context-menu-item-color-hover: #ededf6;
   --context-menu-item-background-hover: #00000080;
-  --context-menu-backdrop: blur(4px) brightness(0.3);
-  --context-menu-shadow: 0 2px 10px #080606;
+  --context-menu-backdrop: blur(4px) brightness(0.25);
+  --context-menu-shadow: 0 1px 5px #0c0b0e;
 
   --grid-background-odd: #27282d;
   --grid-background-odd-hover: #2a2b30;
@@ -146,6 +146,6 @@
   --grid-header-background: #15181b;
   --grid-header-text: #dfe2e8;
 
-  --tooltip-background: var(--theme);
+  --tooltip-backdrop: var(--context-menu-backdrop);
   --tooltip-shadow: 0 1px 2px #141416;
 }

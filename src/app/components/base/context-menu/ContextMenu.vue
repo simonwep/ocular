@@ -5,6 +5,7 @@
       v-tooltip="{ text: tooltip, position: tooltipPosition }"
       :class="$style.reference"
       @click="toggle"
+      @transitionend="transitionEnd"
     >
       <slot />
     </div>
@@ -56,8 +57,6 @@ let instance: Instance | undefined;
 useOutOfElementClick([popper, reference], () => (visible.value = false));
 
 watch([visible, reference, popper], () => {
-  instance?.destroy();
-
   if (visible.value && reference.value && popper.value) {
     instance = createPopper(reference.value, popper.value, {
       placement: 'right-end',
@@ -67,18 +66,19 @@ watch([visible, reference, popper], () => {
 });
 
 const classes = computed(() => props.class);
-
-const hasOptionWithIcon = computed(() => {
-  return props.options?.some((v) => v.icon);
-});
+const hasOptionWithIcon = computed(() => props.options?.some((v) => v.icon));
 
 const select = (option: ContextMenuOption): void => {
   emit('select', option);
   visible.value = false;
 };
 
-const toggle = () => {
-  requestAnimationFrame(() => (visible.value = !visible.value));
+const toggle = () => requestAnimationFrame(() => (visible.value = !visible.value));
+
+const transitionEnd = () => {
+  if (!visible.value) {
+    instance?.destroy();
+  }
 };
 
 provide<ContextMenuStore>(ContextMenuStoreKey, {
@@ -109,7 +109,6 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
       visibility: visible;
       opacity: 1;
       transform: none;
-      transition: all var(--transition-m);
     }
   }
 }
@@ -128,6 +127,6 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   visibility: hidden;
   opacity: 0;
   transform: translateX(-10px);
-  transition: none;
+  transition: all var(--transition-s);
 }
 </style>

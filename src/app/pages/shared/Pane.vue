@@ -3,7 +3,8 @@
     <div ref="header" :class="$style.header">
       <h1 :class="$style.title">
         <slot name="beforeTitle" />
-        <span>{{ title }}</span>
+        <slot v-if="$slots.title" name="title" />
+        <span v-else>{{ title }}</span>
         <template v-if="amount">
           <span> - </span>
           <Currency :value="amount" />
@@ -25,7 +26,7 @@ import { useScrollShadow } from '../../../composables/useScrollShadow';
 
 const props = defineProps<{
   class?: ClassNames;
-  title: string;
+  title?: string;
   amount?: number;
 }>();
 
