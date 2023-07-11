@@ -39,7 +39,9 @@
     "netSavings": "Net Savings",
     "remainingBalance": "Remaining Balance until {year}",
     "summary": "Summary",
-    "tableOverview": "Table overview"
+    "tableOverview": "Table overview",
+    "yearInTheFuture": "Year is in the future",
+    "yearInThePast": "Year is in the past"
   },
   "navigation": {
     "clipboard": {

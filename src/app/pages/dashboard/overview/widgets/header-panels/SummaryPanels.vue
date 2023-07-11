@@ -1,28 +1,34 @@
 <template>
   <div :class="classes" @animationend="animationsDone++">
-    <SummaryPanel :values="income" color="--c-success" to="/income" :title="t('dashboard.income')" />
+    <SummaryPanel :values="income" color="success" to="/income" :title="t('dashboard.income')" />
 
     <SummaryPanel
       :sub-title="n(expensePercentage, 'percent')"
       to="/expenses"
       :values="expenses"
-      color="--c-warning"
+      color="warning"
       :title="t('dashboard.expenses')"
     />
 
     <SummaryPanel
       :sub-title="n(endingBalanceTotal ? 1 - expensePercentage : 0, 'percent')"
       :values="endingBalance"
-      color="--c-primary"
+      color="primary"
       :title="t('dashboard.endingBalance')"
     />
 
     <SummaryPanel
-      v-if="currentYear === state.activeYear"
       :sub-title="n(remainingBalancePercentage, 'percent')"
+      :alt="
+        state.activeYear < currentYear
+          ? t('dashboard.yearInThePast')
+          : state.activeYear > currentYear
+          ? t('dashboard.yearInTheFuture')
+          : undefined
+      "
       :values="remainingBalance"
-      color="--c-secondary"
-      :title="t('dashboard.remainingBalance', { year: currentYear + 1 })"
+      color="secondary"
+      :title="t('dashboard.remainingBalance', { year: state.activeYear + 1 })"
     />
   </div>
 </template>
@@ -50,7 +56,6 @@ const classes = computed(() => [
   props.class,
   styles.summaryPanels,
   {
-    [styles.reduced]: state.activeYear !== currentYear,
     [styles.unAnimated]: animationsDone.value >= 3
   }
 ]);
@@ -70,7 +75,7 @@ const expensePercentage = computed(() => {
 });
 
 const remainingBalance = computed(() => {
-  const nextMonth = new Date().getMonth() + 1;
+  const nextMonth = currentYear === state.activeYear ? new Date().getMonth() + 1 : 0;
   return sum(subtract(incomeTotals.value.slice(nextMonth), expensesTotals.value.slice(nextMonth)));
 });
 
@@ -95,10 +100,6 @@ const remainingBalancePercentage = computed(() => {
   @include globals.onMobileDevices {
     grid-template: repeat(var(--panels), 1fr) / 1fr;
     height: auto;
-  }
-
-  &.reduced {
-    --panels: 3;
   }
 
   > * {

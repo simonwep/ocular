@@ -22,6 +22,7 @@
   --c-dimmed-hover: #b5bbc5;
   --c-dimmed-text: var(--c-text-light);
   --c-dimmed-text-hover: var(--c-dimmed-text);
+  --c-dimmed-text-accent: var(--c-text-light);
   --c-dimmed-pure: var(--c-dimmed);
   --c-dimmed-pure-hover: var(--c-dimmed-hover);
   --c-dimmed-shadow: #555c655c;
@@ -32,6 +33,7 @@
   --c-primary-hover: #4791e6;
   --c-primary-text: var(--c-text-light);
   --c-primary-text-hover: var(--c-primary-text);
+  --c-primary-text-accent: #eaf4ff;
   --c-primary-pure: var(--c-primary);
   --c-primary-pure-hover: var(--c-primary-hover);
   --c-primary-shadow: #4fa2ff5c;
@@ -42,6 +44,7 @@
   --c-secondary-hover: #9730f1;
   --c-secondary-text: var(--c-text-light);
   --c-secondary-text-hover: var(--c-secondary-text);
+  --c-secondary-text-accent: #f5ebff;
   --c-secondary-pure: var(--c-secondary);
   --c-secondary-pure-hover: var(--c-secondary-hover);
   --c-secondary-shadow: #ac4fff5c;
@@ -52,6 +55,7 @@
   --c-success-hover: #17a689;
   --c-success-text: var(--c-text-light);
   --c-success-text-hover: var(--c-success-text);
+  --c-success-text-accent: #dbfff8;
   --c-success-pure: var(--c-success);
   --c-success-pure-hover: var(--c-success-hover);
   --c-success-shadow: #17a6895c;
@@ -62,6 +66,7 @@
   --c-warning-hover: #ab6d4a;
   --c-warning-text: var(--c-text-light);
   --c-warning-text-hover: var(--c-warning-text);
+  --c-warning-text-accent: #fffbf2;
   --c-warning-pure: var(--c-warning);
   --c-warning-pure-hover: var(--c-warning-hover);
   --c-warning-shadow: #e7b6345c;
@@ -72,6 +77,7 @@
   --c-danger-hover: #c42a2a;
   --c-danger-text: var(--c-text-light);
   --c-danger-text-hover: var(--c-danger-text);
+  --c-danger-text-accent: #ffc7c7;
   --c-danger-pure: var(--c-danger);
   --c-danger-pure-hover: var(--c-danger-hover);
   --c-danger-shadow: #c42a2a5c;

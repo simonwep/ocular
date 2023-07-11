@@ -32,10 +32,12 @@ const props = withDefaults(
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
+    rounded?: boolean;
   }>(),
   {
     color: 'primary',
-    textual: false
+    textual: false,
+    rounded: false
   }
 );
 
@@ -47,6 +49,7 @@ const classes = computed(() => [
   {
     [styles.hasIcon]: props.icon,
     [styles.textual]: props.textual,
+    [styles.rounded]: props.rounded,
     [styles.iconOnly]: props.icon && !props.text
   }
 ]);
@@ -96,6 +99,10 @@ const classes = computed(() => [
     &:focus {
       box-shadow: none;
     }
+  }
+
+  &.rounded {
+    border-radius: 100px;
   }
 }
 

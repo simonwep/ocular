@@ -4,9 +4,16 @@
       <Icon v-if="to" :class="$style.editIcon" icon="pencil-fill" />
 
       <div :class="$style.header">
-        <h2 :class="$style.head">{{ title }}</h2>
-        <Currency :class="$style.title" :value="endingValue" />
-        <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
+        <div v-if="alt" :class="$style.placeholder">
+          <Icon :class="$style.icon" icon="calendar-2-line" />
+          <span :class="$style.text">{{ alt }}</span>
+        </div>
+
+        <template v-else>
+          <h2 :class="$style.head">{{ title }}</h2>
+          <Currency :class="$style.title" :value="endingValue" />
+          <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
+        </template>
       </div>
 
       <SummaryPanelChart v-if="Array.isArray(values)" :class="$style.chart" :color="chartColor" :values="values" />
@@ -28,6 +35,7 @@ const props = defineProps<{
   title: string;
   subTitle?: string;
   to?: string;
+  alt?: string;
   color: string;
   values: number[] | number;
 }>();
@@ -39,9 +47,10 @@ const endingValue = computed(() =>
   Array.isArray(props.values) ? props.values[props.values.length - 1] : props.values
 );
 
-const shadow = computed(() => `var(${props.color}-shadow)`);
-const backgroundColor = computed(() => `var(${props.color}-light)`);
-const chartColor = computed(() => `var(${props.color}-light-dimmed)`);
+const shadow = computed(() => `var(--c-${props.color}-shadow)`);
+const textColor = computed(() => `var(--c-${props.color}-text-accent)`);
+const backgroundColor = computed(() => `var(--c-${props.color}-light)`);
+const chartColor = computed(() => `var(--c-${props.color}-light-dimmed)`);
 const element = computed(() => (props.to ? Link : 'div'));
 </script>
 
@@ -84,6 +93,8 @@ const element = computed(() => (props.to ? Link : 'div'));
 .header {
   display: flex;
   flex-direction: column;
+  color: v-bind(textColor);
+  width: 100%;
 
   .head {
     font-weight: var(--font-weight-xl);
@@ -99,6 +110,25 @@ const element = computed(() => (props.to ? Link : 'div'));
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-xxl);
     color: v-bind('chartColor');
+  }
+
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    .icon {
+      height: 25px;
+    }
+
+    .text {
+      font-size: var(--font-size-s);
+      font-weight: var(--font-weight-l);
+    }
   }
 }
 

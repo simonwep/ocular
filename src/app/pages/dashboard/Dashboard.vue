@@ -1,8 +1,8 @@
 <template>
   <Pane :class="$style.dashboard">
     <template v-if="state.years.length > 1" #beforeTitle>
-      <Button icon="arrow-left-s-line" @click="rotateYear(-1)" />
-      <Button icon="arrow-right-s-line" @click="rotateYear(1)" />
+      <Button icon="arrow-left-s-line" rounded @click="rotateYear(-1)" />
+      <Button icon="arrow-right-s-line" rounded @click="rotateYear(1)" />
     </template>
     <template #title>
       <span>

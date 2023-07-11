@@ -27,19 +27,16 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const { changeCurrency, state } = useDataStore();
 
-const formatNumber = (currency: string, currencyDisplay?: string) => {
-  const text = (0)
-    .toLocaleString(locale.value, {
-      style: 'currency',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-      currencyDisplay,
-      currency
-    })
-    .replace(/\d/g, '')
-    .trim();
+const formatNumber = (locale: string, currency: string, currencyDisplay?: string) => {
+  const symbol = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currencyDisplay,
+    currency
+  })
+    .formatToParts(0)
+    .find((x) => x.type === 'currency')?.value;
 
-  return text[0].toUpperCase() + text.slice(1);
+  return symbol ? symbol[0].toUpperCase() + symbol.slice(1) : symbol;
 };
 
 const classes = computed(() => props.class);
@@ -48,7 +45,7 @@ const currencies = computed<ContextMenuOption[]>(() =>
   availableCurrencies.map((value) => ({
     id: value,
     icon: state.currency === value ? 'check' : undefined,
-    label: `${formatNumber(value, 'name')} (${formatNumber(value)})`
+    label: `${formatNumber(locale.value, value, 'name')} (${formatNumber(locale.value, value)})`
   }))
 );
 </script>
