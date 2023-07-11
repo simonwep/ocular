@@ -1,12 +1,7 @@
 {
-  "_dateTimeFormats": {
-    "month": {
-      "month": "long"
-    }
-  },
   "_numberFormats": {
     "currency": {
-      "currency": "GBP",
+      "currency": "USD",
       "minimumFractionDigits": 0,
       "style": "currency"
     },

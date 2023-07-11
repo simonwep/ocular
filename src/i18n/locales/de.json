@@ -1,9 +1,4 @@
 {
-  "_dateTimeFormats": {
-    "month": {
-      "month": "long"
-    }
-  },
   "_numberFormats": {
     "currency": {
       "currency": "EUR",

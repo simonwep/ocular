@@ -1,16 +1,20 @@
-import { computed, Ref } from 'vue';
+import { computed, ComputedRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-export const useMonthNames = (): Ref<string[]> => {
-  const { d } = useI18n();
+export const useMonthNames = (format: Intl.DateTimeFormatOptions['month'] = 'long'): ComputedRef<string[]> => {
+  const { locale } = useI18n();
 
   return computed(() => {
-    const months: string[] = [];
+    const list = [];
 
     for (let i = 0; i < 12; i++) {
-      months.push(d(new Date(0, i), 'month'));
+      list.push(
+        new Date(0, i).toLocaleDateString(locale.value, {
+          month: format
+        })
+      );
     }
 
-    return months;
+    return list;
   });
 };

@@ -12,16 +12,11 @@ export const initialLocale = availableLocales.includes(browserLocale) ? browserL
 
 export type AvailableLocale = keyof typeof messages;
 
-const datetimeFormats = Object.fromEntries(Object.entries(messages).map((v) => [[v[0]], v[1]._dateTimeFormats]));
-
-const numberFormats = Object.fromEntries(Object.entries(messages).map((v) => [[v[0]], v[1]._numberFormats]));
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const i18n = createI18n({
   legacy: false,
   fallbackLocale: 'en',
   locale: initialLocale,
   messages: messages as any,
-  datetimeFormats,
-  numberFormats
+  numberFormats: Object.fromEntries(Object.entries(messages).map((v) => [[v[0]], v[1]._numberFormats]))
 });
