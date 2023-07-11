@@ -9,3 +9,4 @@ export * from './useScrollShadow';
 export * from './useSquircle';
 export * from './useStateHistory';
 export * from './useThemeStyles';
+export * from './useTime';

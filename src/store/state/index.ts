@@ -1,5 +1,5 @@
 import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
-import { useStateHistory } from '@composables';
+import { useStateHistory, useTime } from '@composables';
 import { AvailableLocale, i18n } from '@i18n/index';
 import { AppStorage } from '@storage/types';
 import { moveInArrays, readFile, remove, uuid } from '@utils';
@@ -65,6 +65,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
   const activeYear = shallowRef(new Date().getFullYear());
   const clipboard = shallowRef<StoredClipboardData | undefined>();
   const state = reactive<DataState>(migrateApplicationState());
+  const time = useTime();
 
   const history = useStateHistory(
     () => state,
@@ -110,13 +111,11 @@ export const createDataStore = (storage?: AppStorage): Store => {
     name: 'data',
     state: () => state,
     push: (data) => {
-      const currentYear = new Date().getFullYear();
-
       Object.assign(state, migrateApplicationState(data));
 
-      activeYear.value = state.years.some((v) => v.year === currentYear)
-        ? currentYear
-        : state.years.at(-1)?.year ?? currentYear;
+      activeYear.value = state.years.some((v) => v.year === time.year.value)
+        ? time.year.value
+        : state.years.at(-1)?.year ?? time.year.value;
     }
   });
 
@@ -265,8 +264,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
     },
 
     isCurrentMonth(month: number): boolean {
-      const date = new Date();
-      return activeYear.value === date.getFullYear() && month === date.getMonth();
+      return activeYear.value === time.year.value && month === time.month.value;
     }
   };
 };

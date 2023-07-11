@@ -20,9 +20,9 @@
     <SummaryPanel
       :sub-title="n(remainingBalancePercentage, 'percent')"
       :alt="
-        state.activeYear < currentYear
+        state.activeYear < time.year.value
           ? t('dashboard.yearInThePast')
-          : state.activeYear > currentYear
+          : state.activeYear > time.year.value
           ? t('dashboard.yearInTheFuture')
           : undefined
       "
@@ -36,6 +36,7 @@
 <script lang="ts" setup>
 import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useTime } from '@composables';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
@@ -45,13 +46,13 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const currentYear = new Date().getFullYear();
-
 const { state } = useDataStore();
 const { t, n } = useI18n();
-const animationsDone = ref(0);
+const time = useTime();
 
+const animationsDone = ref(0);
 const styles = useCssModule();
+
 const classes = computed(() => [
   props.class,
   styles.summaryPanels,
@@ -75,7 +76,7 @@ const expensePercentage = computed(() => {
 });
 
 const remainingBalance = computed(() => {
-  const nextMonth = currentYear === state.activeYear ? new Date().getMonth() + 1 : 0;
+  const nextMonth = time.year.value === state.activeYear ? time.month.value + 1 : 0;
   return sum(subtract(incomeTotals.value.slice(nextMonth), expensesTotals.value.slice(nextMonth)));
 });
 
