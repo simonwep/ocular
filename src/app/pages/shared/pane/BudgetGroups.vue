@@ -115,7 +115,7 @@ const reorder = (evt: ReorderEvent) => {
   padding-bottom: 5px;
 
   &.current {
-    color: var(--c-primary-pure);
+    font-weight: var(--font-weight-l);
   }
 
   > span {

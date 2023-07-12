@@ -10,7 +10,7 @@
     @drag="drag"
     @dragstart="dragStart"
   >
-    <Button :color="store.group === props.name ? (active ? 'primary' : 'dark') : 'dimmed'" :icon="icon" textual />
+    <Button :color="store.group === props.name ? 'primary' : 'dimmed'" :icon="icon" textual />
 
     <div
       v-if="store.source === props.id && top && left && label"

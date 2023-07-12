@@ -1,11 +1,11 @@
 <br/>
 
 <h3 align="center">
-  <img src="https://user-images.githubusercontent.com/30767528/169694460-0e85f361-6fd6-4ac6-bf7a-6f98d9241c20.png" alt="Logo" height="200">
+  <img src="https://user-images.githubusercontent.com/30767528/169694460-0e85f361-6fd6-4ac6-bf7a-6f98d9241c20.png" alt="Logo" height="150">
 </h3>
 
 <h3 align="center">
-  <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budget more clearly.
+  <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budget more clearly ✨
 </h3>
 
 <br/>
@@ -18,35 +18,34 @@
 
 ### Features
 
-- 🔐 Simple login via google.
+- 🥳 Simple login via google.
 - 🌚 Dark and light theme.
 - 💻 Installable (PWA).
 - ⬆️ Import your data from Google sheet's annual planner.
 - ⬇️ Export your data as a single `.json`-file.
-- 🕰 Add a budget for up to a year ahead.
-- 🙈 Privacy mode.
+- 🕰 Track budgets across year.
+- 🙈 Privacy mode for when you're in a public place.
+- 🪩 Simple and straight-forward UI.
 
 > Check out the [demo](https://budget.reinisch.io#demo)!
 
 ### Summary
 
 A small budgeting app as an alternative to Google sheet's annual budget planner.
-The goal of the app is **not** to track individual expenses, work with multiple currencies at a time or anything related (if you're looking for something like this, check
-out [firefly-iii](https://www.firefly-iii.org/)).
+The goal of the app is **not** to track individual expenses, work with multiple currencies at a time or anything related (if you're looking for something like this, check out [firefly-iii](https://www.firefly-iii.org/)).
 
-This app comes without any backend and all your data is stored in your google-drive account as an app (no worry - you can always export your data in the app). **This app
-does not have access to anything else except its own files**. The (latest) version I use is automatically deployed to [ocular.reinisch.io](https://ocular.reinisch.io) - but feel
-free to [set it up yourself](#development)!
+This app comes without any backend and all your data is stored in your google-drive account as an app (no worry - you can always export your data in the app).
+**This app does not have access to anything else except its own files**.
+The (latest) version I use is automatically deployed to [ocular.reinisch.io](https://ocular.reinisch.io) - but feel free to [set it up yourself](#development)!
 
-> **Attention:** It's currently **not** possibly to sync the app with your personal gmail account due to the google-cloud app not being verified yet. You can still use it and
-> download / upload your data or [deploy it yourself](#development) (which is even cooler!).
+> **Attention:** It's currently **not** possibly to sync the app with your personal gmail account due to the google-cloud app not being verified yet.
+> You can still use it and download / upload your data or [deploy it yourself](#development) (which is even cooler!).
 
 ### State of this project
 
-I consider the current state of it as the MVP for my personal use.
-But I'm planning on adding more [features](https://github.com/Simonwep/ocular/issues) - I'm not planning of making it any more in-depth as it already is, planned features may only
-include adding a way to define goals or general improvements for mobile usage. As I already said, if you're looking for an in-depth tool to manage your finances check
-out [firefly](https://www.firefly-iii.org/)!
+I consider the current state of it as the MVP for personal use.
+But I'm planning on adding more [features](https://github.com/Simonwep/ocular/issues) - I'm not planning of making it any more in-depth as it already is, planned features may only include adding a way to define goals or general improvements for mobile usage.
+As I already said, if you're looking for an in-depth tool to manage your finances check out [firefly](https://www.firefly-iii.org/)!
 
 ### Contributing
 

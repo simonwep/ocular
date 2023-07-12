@@ -4,7 +4,7 @@
   </div>
   <div v-else :class="$style.placeholder">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-      <circle transform="rotate(-44.992 50 50.001)" cx="50" cy="50" style="fill: #4fa2ff" r="50" />
+      <circle transform="rotate(-44.992 50 50.001)" cx="50" cy="50" style="fill: var(--c-primary)" r="50" />
       <path
         d="M37.9 30h24.2c1.8 0 3.5.9 4.6 2.4l8 11.3c1.6 2.2 1.3 5.3-.6 7.3L54 71c-2.2 2.2-5.8 2.2-8 0L25.9 50.9c-1.9-1.9-2.2-5-.6-7.3l8-11.3c1.1-1.4 2.8-2.3 4.6-2.3z"
         style="fill: #fff"
