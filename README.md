@@ -1,14 +1,14 @@
 <br/>
 
 <h3 align="center">
-  <img src="https://user-images.githubusercontent.com/30767528/169694460-0e85f361-6fd6-4ac6-bf7a-6f98d9241c20.png" alt="Logo" height="150">
+  <img src="https://github.com/simonwep/ocular/assets/30767528/2cbd76cd-adfb-4183-a69a-15784c4dccb6" alt="Logo" height="150">
 </h3>
+
+<br/>
 
 <h3 align="center">
   <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budget more clearly ✨
 </h3>
-
-<br/>
 
 <p align="center">
   <a href="https://github.com/Simonwep/ocular/actions?query=workflow%3ACI"><img
