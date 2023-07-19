@@ -1,5 +1,6 @@
 import { createPopper, Instance, Placement } from '@popperjs/core';
 import { Directive, Ref, ref, unref } from 'vue';
+import { useMediaQuery } from '@composables';
 import styles from './vTooltip.module.scss';
 
 interface TooltipConfig {
@@ -20,6 +21,7 @@ const resolveConfig = (value: undefined | string | TooltipConfig): TooltipConfig
 export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig> = {
   mounted(el, { modifiers, value }) {
     const { text, position } = resolveConfig(value);
+    const media = useMediaQuery(); // doesn't need to be in a scope
 
     const element = document.createElement('span');
     const popper = ref<Instance | undefined>(undefined);
@@ -41,7 +43,10 @@ export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig
     };
 
     const show = () => {
-      if (!element.textContent) return;
+      if (!element.textContent || media.value === 'mobile') {
+        return;
+      }
+
       if (!popper.value) {
         document.getElementById('app')?.appendChild(element);
 
@@ -58,6 +63,7 @@ export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig
 
     el.addEventListener('pointerleave', hide);
     el.addEventListener('pointerdown', hide);
+    el.addEventListener('pointerup', hide);
     el.addEventListener('pointerenter', show);
     poppers.set(el, { element, popper });
   },

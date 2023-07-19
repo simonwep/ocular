@@ -17,8 +17,10 @@
 
       <ToolsButton :class="[$style.top, $style.btn]" />
       <SelectYearButton :class="$style.btn" />
-      <ChangeLanguageButton :class="$style.btn" />
-      <ChangeCurrencyButton :class="$style.btn" />
+      <template v-if="media !== 'mobile'">
+        <ChangeLanguageButton :class="$style.btn" />
+        <ChangeCurrencyButton :class="$style.btn" />
+      </template>
       <div :class="$style.divider" />
       <CloudButton :class="$style.btn" />
     </div>
@@ -36,6 +38,7 @@ import { useRouter } from 'vue-router';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Link from '@components/base/link/Link.vue';
 import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
+import { useMediaQuery } from '@composables';
 import CloudButton from './navigation/CloudButton.vue';
 import ThemeButton from './navigation/ThemeButton.vue';
 import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue';
@@ -45,6 +48,7 @@ import SelectYearButton from './navigation/year/SelectYearButton.vue';
 
 const menu = ref<HTMLDivElement>();
 const router = useRouter();
+const media = useMediaQuery();
 const { t } = useI18n();
 
 interface FrameButton {

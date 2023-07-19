@@ -75,7 +75,9 @@ onMounted(() => {
   visibility: hidden;
   backdrop-filter: blur(2px);
   opacity: 0;
-  transition: visibility 0s var(--transition-m), opacity var(--transition-m);
+  transition:
+    visibility 0s var(--transition-m),
+    opacity var(--transition-m);
 }
 
 .dialog[open].open,

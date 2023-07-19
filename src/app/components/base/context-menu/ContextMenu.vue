@@ -1,16 +1,15 @@
 <template>
-  <div :class="[$style.contextMenu, classes]">
+  <div :class="classes">
     <div
       ref="reference"
       v-tooltip="{ text: tooltip, position: tooltipPosition }"
       :class="$style.reference"
       @click="toggle"
-      @transitionend="transitionEnd"
     >
       <slot />
     </div>
     <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
-      <ul :class="$style.list">
+      <ul :class="listClasses">
         <slot v-if="$slots.options" name="options"></slot>
         <template v-else-if="options">
           <ContextMenuButton
@@ -29,8 +28,8 @@
 </template>
 
 <script lang="ts" setup>
-import { createPopper, Instance, Placement } from '@popperjs/core';
-import { computed, provide, ref, watch } from 'vue';
+import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
+import { computed, provide, ref, useCssModule, watch } from 'vue';
 import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
 import { useOutOfElementClick } from '@composables';
 import { ClassNames } from '@utils';
@@ -41,32 +40,55 @@ const emit = defineEmits<{
   (e: 'select', option: ContextMenuOption): void;
 }>();
 
-const props = defineProps<{
-  class?: ClassNames;
-  tooltip?: string;
-  tooltipPosition?: Placement;
-  options?: ContextMenuOption[];
-  highlight?: ContextMenuOptionId;
-}>();
+const props = withDefaults(
+  defineProps<{
+    class?: ClassNames;
+    tooltip?: string;
+    tooltipPosition?: Placement;
+    position?: Placement;
+    options?: ContextMenuOption[];
+    highlight?: ContextMenuOptionId;
+  }>(),
+  {
+    position: 'right-end'
+  }
+);
 
+const styles = useCssModule();
 const reference = ref<HTMLButtonElement>();
 const popper = ref<HTMLDivElement>();
 const visible = ref(false);
+const placement = ref<'top' | 'bottom' | 'left' | 'right' | 'auto'>('auto');
 let instance: Instance | undefined;
 
 useOutOfElementClick([popper, reference], () => (visible.value = false));
 
 watch([visible, reference, popper], () => {
   if (visible.value && reference.value && popper.value) {
+    instance?.destroy();
     instance = createPopper(reference.value, popper.value, {
-      placement: 'right-end',
-      modifiers: [{ name: 'offset', options: { offset: [10, 10] } }]
+      placement: props.position,
+      modifiers: [
+        { name: 'offset', options: { offset: [10, 10] } },
+        {
+          name: 'positionTracker',
+          enabled: true,
+          phase: 'afterWrite',
+          fn: ({ state }) => void (placement.value = state.placement.split('-')[0] as 'auto')
+        } satisfies Modifier<'positionTracker', Record<string, never>>
+      ]
     });
   }
 });
 
-const classes = computed(() => props.class);
+watch(
+  () => props.position,
+  (placement) => instance?.setOptions({ placement })
+);
+
 const hasOptionWithIcon = computed(() => props.options?.some((v) => v.icon));
+const classes = computed(() => [props.class, styles.contextMenu]);
+const listClasses = computed(() => [styles.list, { [styles[placement.value]]: placement.value in styles }]);
 
 const select = (option: ContextMenuOption): void => {
   emit('select', option);
@@ -74,12 +96,6 @@ const select = (option: ContextMenuOption): void => {
 };
 
 const toggle = () => requestAnimationFrame(() => (visible.value = !visible.value));
-
-const transitionEnd = () => {
-  if (!visible.value) {
-    instance?.destroy();
-  }
-};
 
 provide<ContextMenuStore>(ContextMenuStoreKey, {
   close: () => requestAnimationFrame(() => (visible.value = false))
@@ -126,7 +142,22 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   overflow: auto;
   visibility: hidden;
   opacity: 0;
-  transform: translateX(-10px);
   transition: all var(--transition-s);
+
+  &.top {
+    transform: translateY(6px);
+  }
+
+  &.bottom {
+    transform: translateY(-6px);
+  }
+
+  &.left {
+    transform: translateX(6px);
+  }
+
+  &.right {
+    transform: translateX(-6px);
+  }
 }
 </style>

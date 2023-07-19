@@ -2,6 +2,7 @@
   <ContextMenu
     :tooltip="t('navigation.year')"
     tooltip-position="right"
+    :position="media === 'mobile' ? 'top' : 'right-end'"
     :options="options"
     :highlight="state.activeYear"
     @select="changeYear($event.id as number)"
@@ -16,13 +17,14 @@ import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import { ContextMenuOption } from '@components/base/context-menu';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
-import { useTime } from '@composables';
+import { useMediaQuery, useTime } from '@composables';
 import { useDataStore } from '@store/state';
 
 const PRE_PLANNABLE_YEARS = 1;
 
 const { t } = useI18n();
 const { changeYear, state } = useDataStore();
+const media = useMediaQuery();
 const time = useTime();
 
 const options = computed((): ContextMenuOption[] => {

@@ -64,7 +64,9 @@ const onClick = (evt: MouseEvent) => {
   cursor: pointer;
   font-size: var(--font-size-xs);
   padding: 6px 12px;
-  transition: color var(--transition-s), background var(--transition-s);
+  transition:
+    color var(--transition-s),
+    background var(--transition-s);
   color: var(--context-menu-item-color);
   position: relative;
 
