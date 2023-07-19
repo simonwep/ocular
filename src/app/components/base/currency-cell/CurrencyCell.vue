@@ -9,6 +9,7 @@
     @input="change"
     @keydown="keydown"
     @keydown.enter="input?.blur"
+    @paste="paste"
   />
 </template>
 
@@ -50,15 +51,16 @@ const keydown = (e: KeyboardEvent) => {
 
 const focus = () => {
   focused.value = true;
-
-  nextTick(() => {
-    const element = input.value as HTMLInputElement;
-    element.select();
-  });
+  nextTick(() => (input.value as HTMLInputElement).select());
 };
 
 const change = (e: Event) => {
-  const v = Number((e.target as HTMLInputElement).value);
+  const v = Number((e.target as HTMLInputElement).value.trim() || NaN);
+  !Number.isNaN(v) && updateModelValue(v);
+};
+
+const paste = (e: ClipboardEvent) => {
+  const v = Number(e.clipboardData?.getData('text/plain').trim() || NaN);
   !Number.isNaN(v) && updateModelValue(v);
 };
 
