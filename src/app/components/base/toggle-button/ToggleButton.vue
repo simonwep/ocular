@@ -4,7 +4,7 @@
       v-for="btn of buttons"
       :key="btn.id"
       :class="[$style.btn, { [$style.active]: btn.id === modelValue }]"
-      @click="emit('update:model-value', btn.id)"
+      @click="modelValue = btn.id"
     >
       <Icon :class="$style.icon" :icon="btn.icon" />
     </button>
@@ -17,14 +17,11 @@ import Icon from '@components/base/icon/Icon.vue';
 import { Selectable, SelectableId } from '@components/base/toggle-button/ToggleButton.types';
 import { ClassNames } from '@utils';
 
-const emit = defineEmits<{
-  (e: 'update:model-value', v: SelectableId): void;
-}>();
+const modelValue = defineModel<SelectableId>();
 
 const props = defineProps<{
   class?: ClassNames;
   buttons: Selectable[];
-  modelValue: SelectableId;
 }>();
 
 const classes = computed(() => props.class);

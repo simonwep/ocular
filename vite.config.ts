@@ -13,5 +13,14 @@ export default defineConfig({
   define: {
     'import.meta.env.APP_BUILD_TIMESTAMP': Date.now()
   },
-  plugins: [tsconfigPaths({ loose: true }), optimizeCssModules(), vue(), VitePWA({ manifest })]
+  plugins: [
+    tsconfigPaths({ loose: true }),
+    optimizeCssModules(),
+    vue({
+      script: {
+        defineModel: true
+      }
+    }),
+    VitePWA({ manifest })
+  ]
 });

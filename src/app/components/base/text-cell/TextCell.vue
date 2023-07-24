@@ -16,13 +16,10 @@
 <script lang="ts" setup>
 import { computed, nextTick, ref, useCssModule } from 'vue';
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', v: string): void;
-}>();
+const modelValue = defineModel<string | undefined>();
 
 const props = withDefaults(
   defineProps<{
-    modelValue?: string;
     inline?: boolean;
   }>(),
   {
@@ -37,7 +34,7 @@ const focused = ref(false);
 const classes = computed(() => [
   styles.textInput,
   {
-    [styles.empty]: !props.modelValue,
+    [styles.empty]: !modelValue.value,
     [styles.inline]: props.inline
   }
 ]);
@@ -52,7 +49,7 @@ const focus = () => {
 };
 
 const change = (e: Event) => {
-  emit('update:modelValue', (e.target as HTMLInputElement).value);
+  modelValue.value = (e.target as HTMLInputElement).value;
 };
 </script>
 

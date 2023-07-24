@@ -8,12 +8,9 @@
 import { computed, useCssModule } from 'vue';
 import { ClassNames, selectFile } from '@utils';
 
-const emit = defineEmits<{
-  (e: 'update:model-value', v: File): void;
-}>();
+const modelValue = defineModel<File | undefined>();
 
 const props = defineProps<{
-  modelValue?: File;
   class?: ClassNames;
   placeholder?: string;
   accept?: string[];
@@ -24,7 +21,7 @@ const classes = computed(() => [
   props.class,
   styles.filePicker,
   {
-    [styles.empty]: !props.modelValue
+    [styles.empty]: !modelValue.value
   }
 ]);
 
@@ -33,7 +30,7 @@ const pick = () => {
     accept: props.accept?.join(','),
     multiple: false
   }).then((file) => {
-    emit('update:model-value', file);
+    modelValue.value = file;
   });
 };
 </script>

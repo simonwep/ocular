@@ -17,13 +17,10 @@
 import { computed, nextTick, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', v: number): void;
-}>();
+const modelValue = defineModel<number | undefined>();
 
 const props = withDefaults(
   defineProps<{
-    modelValue?: number;
     max?: number;
   }>(),
   {
@@ -36,11 +33,11 @@ const focused = ref(false);
 const { n } = useI18n();
 
 const value = computed(() => {
-  return focused.value || !props.modelValue ? props.modelValue || '' : n(props.modelValue, 'currency');
+  return focused.value || !modelValue.value ? modelValue.value || '' : n(modelValue.value, 'currency');
 });
 
 const updateModelValue = (v: number) => {
-  emit('update:modelValue', Math.max(v, 0));
+  modelValue.value = Math.max(v, 0);
 };
 
 const keydown = (e: KeyboardEvent) => {
@@ -65,10 +62,10 @@ const paste = (e: ClipboardEvent) => {
 };
 
 watch(
-  () => props.modelValue,
+  () => modelValue.value,
   (value, oldValue) => {
     if ((value ?? 0) > props.max && oldValue !== undefined) {
-      emit('update:modelValue', oldValue);
+      modelValue.value = oldValue;
     }
   }
 );
