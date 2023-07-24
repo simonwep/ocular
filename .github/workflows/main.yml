@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Build and deploy app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

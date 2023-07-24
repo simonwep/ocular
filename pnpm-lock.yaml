@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -6,102 +6,102 @@ settings:
 
 dependencies:
   '@popperjs/core':
-    specifier: ^2.11.8
+    specifier: 2.11.8
     version: 2.11.8
   ackee-tracker:
-    specifier: ^5.1.0
+    specifier: 5.1.0
     version: 5.1.0
   echarts:
-    specifier: ^5.4.3
+    specifier: 5.4.3
     version: 5.4.3
   li18nt:
-    specifier: ^5.0.0
+    specifier: 5.0.0
     version: 5.0.0
   papaparse:
-    specifier: ^5.4.1
+    specifier: 5.4.1
     version: 5.4.1
   vue:
-    specifier: ^3.3.4
+    specifier: 3.3.4
     version: 3.3.4
   vue-i18n:
-    specifier: ^9.2.2
+    specifier: 9.2.2
     version: 9.2.2(vue@3.3.4)
   vue-router:
-    specifier: ^4.2.4
+    specifier: 4.2.4
     version: 4.2.4(vue@3.3.4)
   yuppee:
-    specifier: ^0.3.0
+    specifier: 0.3.0
     version: 0.3.0
 
 devDependencies:
   '@types/ackee-tracker':
-    specifier: ^5.0.2
+    specifier: 5.0.2
     version: 5.0.2
   '@types/node':
-    specifier: ^20.4.2
+    specifier: 20.4.2
     version: 20.4.2
   '@types/papaparse':
-    specifier: ^5.3.7
+    specifier: 5.3.7
     version: 5.3.7
   '@typescript-eslint/eslint-plugin':
-    specifier: ^6.1.0
+    specifier: 6.1.0
     version: 6.1.0(@typescript-eslint/parser@6.1.0)(eslint@8.45.0)(typescript@5.1.6)
   '@typescript-eslint/parser':
-    specifier: ^6.1.0
+    specifier: 6.1.0
     version: 6.1.0(eslint@8.45.0)(typescript@5.1.6)
   '@vitejs/plugin-vue':
-    specifier: ^4.2.3
+    specifier: 4.2.3
     version: 4.2.3(vite@4.4.4)(vue@3.3.4)
   '@vue/eslint-config-prettier':
-    specifier: ^7.1.0
+    specifier: 7.1.0
     version: 7.1.0(eslint@8.45.0)(prettier@3.0.0)
   '@vue/eslint-config-typescript':
-    specifier: ^11.0.3
+    specifier: 11.0.3
     version: 11.0.3(eslint-plugin-vue@9.15.1)(eslint@8.45.0)(typescript@5.1.6)
   eslint:
-    specifier: ^8.45.0
+    specifier: 8.45.0
     version: 8.45.0
   eslint-config-prettier:
-    specifier: ^8.8.0
+    specifier: 8.8.0
     version: 8.8.0(eslint@8.45.0)
   eslint-import-resolver-typescript:
-    specifier: ^3.5.5
+    specifier: 3.5.5
     version: 3.5.5(@typescript-eslint/parser@6.1.0)(eslint-plugin-import@2.27.5)(eslint@8.45.0)
   eslint-plugin-import:
-    specifier: ^2.27.5
+    specifier: 2.27.5
     version: 2.27.5(@typescript-eslint/parser@6.1.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.45.0)
   eslint-plugin-prettier:
-    specifier: ^5.0.0
+    specifier: 5.0.0
     version: 5.0.0(eslint-config-prettier@8.8.0)(eslint@8.45.0)(prettier@3.0.0)
   eslint-plugin-vue:
-    specifier: ^9.15.1
+    specifier: 9.15.1
     version: 9.15.1(eslint@8.45.0)
   prettier:
-    specifier: ^3.0.0
+    specifier: 3.0.0
     version: 3.0.0
   sass:
-    specifier: ^1.63.6
+    specifier: 1.63.6
     version: 1.63.6
   typescript:
-    specifier: ^5.1.6
+    specifier: 5.1.6
     version: 5.1.6
   vite:
-    specifier: ^4.4.4
+    specifier: 4.4.4
     version: 4.4.4(@types/node@20.4.2)(sass@1.63.6)
   vite-plugin-optimize-css-modules:
-    specifier: ^1.0.4
+    specifier: 1.0.4
     version: 1.0.4(vite@4.4.4)
   vite-plugin-pwa:
-    specifier: ^0.16.4
+    specifier: 0.16.4
     version: 0.16.4(vite@4.4.4)(workbox-build@7.0.0)(workbox-window@7.0.0)
   vite-tsconfig-paths:
-    specifier: ^4.2.0
+    specifier: 4.2.0
     version: 4.2.0(typescript@5.1.6)(vite@4.4.4)
   vue-tsc:
-    specifier: ^1.8.5
+    specifier: 1.8.5
     version: 1.8.5(typescript@5.1.6)
   workbox-window:
-    specifier: ^7.0.0
+    specifier: 7.0.0
     version: 7.0.0
 
 packages:
@@ -2120,7 +2120,7 @@ packages:
       '@vue/shared': 3.3.4
       estree-walker: 2.0.2
       magic-string: 0.30.0
-      postcss: 8.4.24
+      postcss: 8.4.26
       source-map-js: 1.0.2
 
   /@vue/compiler-ssr@3.3.4:
@@ -2969,7 +2969,7 @@ packages:
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.0.13
-      semver: 7.5.3
+      semver: 7.5.4
       vue-eslint-parser: 9.3.1(eslint@8.45.0)
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
@@ -4058,14 +4058,6 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /postcss@8.4.24:
-    resolution: {integrity: sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-
   /postcss@8.4.26:
     resolution: {integrity: sha512-jrXHFF8iTloAenySjM/ob3gSj7pCu0Ji49hnjqzsgSRa50hkWCKD0HQ+gMNJkW38jBI68MpAAg7ZWwHwX8NMMw==}
     engines: {node: ^10 || ^12 || >=14}
@@ -4073,7 +4065,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -4276,14 +4267,6 @@ packages:
   /semver@6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
-    dev: true
-
-  /semver@7.5.3:
-    resolution: {integrity: sha512-QBlUtyVk/5EeHbi7X0fw6liDZc7BBmEaSYn01fMU1OUYbf6GPsbTtd8WmnqbI20SeycoHSeiybkE/q1Q+qlThQ==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      lru-cache: 6.0.0
     dev: true
 
   /semver@7.5.4:

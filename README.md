@@ -71,3 +71,15 @@ To run this app in production and to add cloud connectivity, you'll need a [Goog
 the `drive.appdata` scope.
 
 After you've set up your app fill copy the [.env.example](.env.example) to `.env` and fill in your credentials.
+
+
+##### Using docker
+
+This project can be build as a docker-image, that serves the app via nginx.
+You can build and run it via:
+
+```sh
+docker build -t ocular . && docker run -p 8080:80 ocular
+```
+
+Ocular should then be available under [localhost:8080](http://localhost:8080)
