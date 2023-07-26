@@ -36,8 +36,9 @@ const value = computed(() => {
   return focused.value || !modelValue.value ? modelValue.value || '' : n(modelValue.value, 'currency');
 });
 
-const updateModelValue = (v: number) => {
-  modelValue.value = Math.max(v, 0);
+const updateModelValue = (raw?: string) => {
+  const number = Number(raw?.trim() || NaN);
+  modelValue.value = !Number.isNaN(number) ? number : 0;
 };
 
 const keydown = (e: KeyboardEvent) => {
@@ -51,15 +52,9 @@ const focus = () => {
   nextTick(() => (input.value as HTMLInputElement).select());
 };
 
-const change = (e: Event) => {
-  const v = Number((e.target as HTMLInputElement).value.trim() || NaN);
-  !Number.isNaN(v) && updateModelValue(v);
-};
+const change = (e: Event) => updateModelValue((e.target as HTMLInputElement).value);
 
-const paste = (e: ClipboardEvent) => {
-  const v = Number(e.clipboardData?.getData('text/plain').trim() || NaN);
-  !Number.isNaN(v) && updateModelValue(v);
-};
+const paste = (e: ClipboardEvent) => updateModelValue(e.clipboardData?.getData('text/plain').trim());
 
 watch(
   () => modelValue.value,
