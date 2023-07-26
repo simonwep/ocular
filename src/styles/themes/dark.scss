@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;400;500;600;700&display=swap');
+
+
 @mixin dark {
   --theme: #02040a;
 
@@ -82,12 +85,12 @@
   --c-danger-pure-hover: var(--c-danger-hover);
   --c-danger-shadow: #c42a2a5c;
 
-  --font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-  --font-weight-s: 200;
+  --font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  --font-weight-s: 300;
   --font-weight-m: 400;
   --font-weight-l: 500;
   --font-weight-xl: 600;
-  --font-weight-xxl: 800;
+  --font-weight-xxl: 700;
 
   --font-size-xxs: 10px;
   --font-size-xs: 12px;
