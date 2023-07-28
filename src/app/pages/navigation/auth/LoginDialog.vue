@@ -3,13 +3,7 @@
     <div :class="$style.fields">
       <h3 :class="$style.title">Sign in</h3>
       <InputField v-model="username" placeholder="Enter your username" label="User" type="text" />
-      <InputField
-        v-model="password"
-        placeholder="Your password"
-        show-password-strength
-        label="Password"
-        type="password"
-      />
+      <InputField v-model="password" placeholder="Your password" label="Password" type="password" />
       <Button :class="$style.btn" text="Sign in" color="success" @click="signIn" />
     </div>
   </Dialog>
@@ -31,8 +25,8 @@ defineProps<{
 }>();
 
 const { login } = useStorage();
-const username = ref('foo');
-const password = ref('hgEiPCZP');
+const username = ref(import.meta.env.APP_USERNAME ?? '');
+const password = ref(import.meta.env.APP_PASSWORD ?? '');
 const state = ref<'idle' | 'loading' | 'errored'>('idle');
 
 const signIn = async () => {

@@ -1,60 +1,42 @@
 import { computed, nextTick, ref, shallowReactive, watch } from 'vue';
 import { MigratableState } from 'yuppee';
-import { createKeyStorage } from '@storage/key-storage';
 import { AppStorage, StorageAuthenticationState, StorageSync } from '@storage/types';
 import { debounce } from '@utils';
-
-const CACHE_KEY = 'GENESIS_STORAGE_KEY';
+import { createGenesisStore } from './sdk';
 
 export const createGenesisStorage = (): AppStorage => {
-  const { register, unregister, token } = createKeyStorage(CACHE_KEY);
+  const store = createGenesisStore('/api');
   const storesToInitialize = shallowReactive(new Set<string>());
   const syncsActive = ref(0);
-  const loggedIn = ref(!!token.value);
+  const loggedIn = ref(store.isLoggedIn());
 
   const login = async (user: string, password: string): Promise<boolean> =>
-    fetch('/api/login', {
-      method: 'POST',
-      body: JSON.stringify({ user, password })
-    })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-      .then((body) => {
-        register(body.token, body.expiresAt);
-        loggedIn.value = true;
-        return true;
-      })
+    store
+      .login({ user, password })
+      .then(() => (loggedIn.value = true))
       .catch(() => false);
 
-  const upsert = async (name: string, json: string) =>
-    fetch(`/api/data/${name}`, {
-      headers: { Authorization: `Bearer ${token.value}` },
-      method: 'POST',
-      body: json
-    });
-
-  const get = async (name: string) =>
-    fetch(`/api/data/${name}`, {
-      headers: { Authorization: `Bearer ${token.value}` }
-    }).then((res) => (res.ok ? (res.status === 204 ? undefined : res.json()) : Promise.reject(res)));
-
-  const logout = () => (loggedIn.value = false);
+  const logout = () => {
+    loggedIn.value = false;
+  };
 
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
     const initialSyncRequired = ref(true);
     const syncing = ref(false);
     storesToInitialize.add(config.name);
 
-    const change = debounce(async (json: string) => {
-      await upsert(config.name, json);
-      syncing.value = false;
+    const change = debounce(async () => {
+      await store
+        .setDataByKey(config.name, config.state())
+        .catch(logout)
+        .then(() => (syncing.value = false));
     }, 1000);
 
     watch(
-      [token, initialSyncRequired],
-      async ([token, sync]) => {
-        if (token && sync) {
-          const data = await get(config.name);
-          data && config.push(data);
+      [loggedIn, initialSyncRequired],
+      async ([loggedIn, sync]) => {
+        if (loggedIn && sync) {
+          await store.getDataByKey(config.name).catch(logout);
 
           await nextTick(() => {
             initialSyncRequired.value = false;
@@ -67,11 +49,11 @@ export const createGenesisStorage = (): AppStorage => {
 
     // push data
     watch(
-      [token, () => JSON.stringify(config.state())],
-      ([key, state]) => {
-        if (key && !initialSyncRequired.value) {
+      [loggedIn, () => JSON.stringify(config.state())],
+      ([loggedIn]) => {
+        if (loggedIn && !initialSyncRequired.value) {
           syncing.value = true;
-          void change(state);
+          void change();
         }
       },
       { immediate: true }
@@ -81,8 +63,8 @@ export const createGenesisStorage = (): AppStorage => {
     watch([loggedIn, syncing, initialSyncRequired], ([loggedIn, syncing, initializing]) => {
       if (!loggedIn && !syncing && !initializing) {
         initialSyncRequired.value = true;
+        store.logout();
         config.clear();
-        unregister();
       }
     });
 
@@ -91,7 +73,7 @@ export const createGenesisStorage = (): AppStorage => {
   };
 
   const status = computed((): StorageAuthenticationState => {
-    if (token.value) {
+    if (loggedIn.value) {
       if (storesToInitialize.size) {
         return 'loading';
       } else if (syncsActive.value) {
