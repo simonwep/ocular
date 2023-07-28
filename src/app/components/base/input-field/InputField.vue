@@ -18,12 +18,14 @@
       />
     </div>
 
-    <div :class="$style.passwordStrength"></div>
+    <div v-if="showPasswordStrength && type === 'password'" :class="$style.passwordStrength">
+      <div :class="$style.bar" />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import { uuid } from '@utils';
 
@@ -44,6 +46,22 @@ withDefaults(
 
 const showPassword = ref(false);
 const inputId = uuid();
+
+const calculateEntropy = (password?: string) => {
+  return password ? Math.log2(new Set(password).size) * password.length : 0;
+};
+
+const passwordEntropy = computed(() => calculateEntropy(modelValue.value));
+const passwordBarWidth = computed(() => Math.min(1, passwordEntropy.value / 80));
+const passwordBarColor = computed(() => {
+  if (passwordEntropy.value < 25) {
+    return 'var(--c-danger)';
+  } else if (passwordEntropy.value < 60) {
+    return 'var(--c-warning)';
+  } else {
+    return 'var(--c-success)';
+  }
+});
 </script>
 
 <style lang="scss" module>
@@ -93,8 +111,28 @@ const inputId = uuid();
 
 .label {
   font-weight: var(--font-weight-l);
+  font-size: var(--font-size-s);
 }
 
 .passwordStrength {
+  display: flex;
+  flex-direction: column;
+
+  .bar {
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    position: relative;
+    background: var(--c-dimmed);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      border-radius: 5px;
+      width: calc(v-bind('passwordBarWidth') * 100%);
+      background: v-bind('passwordBarColor');
+    }
+  }
 }
 </style>

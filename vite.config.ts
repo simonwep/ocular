@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import manifest from './assets/manifest.json';
 
 export default defineConfig({
-  envPrefix: ['OAUTH', 'ACKEE'],
+  envPrefix: ['APP', 'ACKEE'],
   server: {
     port: 3000,
     proxy: {
