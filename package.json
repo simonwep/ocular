@@ -19,7 +19,7 @@
         "lint:i18n:fix": "pnpm run lint:i18n --fix",
         "lint": "pnpm run lint:i18n && pnpm run lint:src",
         "lint:fix": "pnpm run lint:i18n:fix && pnpm run lint:src:fix",
-        "test:ci": "pnpm run build && pnpm run lint:fix",
+        "test:ci": "pnpm run lint:fix && pnpm run build",
         "gen:icons": "node scripts/icons.js"
     },
     "dependencies": {

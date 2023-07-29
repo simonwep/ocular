@@ -1,19 +1,20 @@
 <template>
   <Dialog :open="open" @close="emit('close')">
-    <div :class="$style.fields">
-      <h3 :class="$style.title">Sign in</h3>
-      <InputField v-model="username" placeholder="Enter your username" label="User" type="text" />
-      <InputField v-model="password" placeholder="Your password" label="Password" type="password" />
-      <Button :class="$style.btn" text="Sign in" color="success" @click="signIn" />
-    </div>
+    <InputFields :title="t('auth.signIn')" @submit="signIn">
+      <InputField v-model="username" :label="t('auth.username')" type="text" />
+      <InputField v-model="password" :label="t('auth.password')" type="password" />
+      <Alert v-if="state === 'errored'" :text="t('auth.errors.login')" color="danger" />
+    </InputFields>
   </Dialog>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import Button from '@components/base/button/Button.vue';
+import { useI18n } from 'vue-i18n';
+import Alert from '@components/base/alert/Alert.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import InputField from '@components/base/input-field/InputField.vue';
+import InputFields from '@components/base/input-field/InputFields.vue';
 import { useStorage } from '@storage/index';
 
 const emit = defineEmits<{
@@ -24,14 +25,20 @@ defineProps<{
   open: boolean;
 }>();
 
+const { t } = useI18n();
 const { login } = useStorage();
+
 const username = ref(import.meta.env.APP_USERNAME ?? '');
 const password = ref(import.meta.env.APP_PASSWORD ?? '');
 const state = ref<'idle' | 'loading' | 'errored'>('idle');
 
 const signIn = async () => {
   if (state.value !== 'loading') {
+    state.value = 'loading';
+
     if (await login(username.value, password.value)) {
+      username.value = '';
+      password.value = '';
       state.value = 'idle';
       emit('close');
     } else {
@@ -40,23 +47,3 @@ const signIn = async () => {
   }
 };
 </script>
-
-<style lang="scss" module>
-.fields {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  gap: 8px;
-  padding-top: 8px;
-
-  .title {
-    text-align: center;
-    font-weight: var(--font-weight-xl);
-    font-style: var(--font-size-m);
-  }
-
-  .btn {
-    text-align: center;
-  }
-}
-</style>
