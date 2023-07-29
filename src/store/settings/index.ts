@@ -1,5 +1,5 @@
 import { DeepReadonly, inject, reactive, readonly } from 'vue';
-import { AppStorage } from '@storage/types';
+import { Storage } from '@storage/index';
 import { migrateSettingsState } from './migrator';
 import { Mode, SettingsState, Theme } from './types';
 
@@ -13,7 +13,7 @@ interface Store {
   setAnimations(enable: boolean): void;
 }
 
-export const createSettingsStore = (storage?: AppStorage): Store => {
+export const createSettingsStore = (storage?: Storage): Store => {
   const state = reactive<SettingsState>(migrateSettingsState());
 
   storage?.sync<SettingsState>({

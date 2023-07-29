@@ -13,6 +13,18 @@
   "app": {
     "name": "Ocular"
   },
+  "auth": {
+    "changePassword": "Passwort ändern",
+    "currentPassword": "Aktuelles Passwort",
+    "errors": {
+      "changePassword": "Aktuelles Passwort ungültig oder neues Passwort zu unsicher. Stellen Sie sicher, dass es mindestens 6 Zeichen hat.",
+      "login": "Anmeldung fehlgeschlagen, Benutzername und/oder Passwort ungültig."
+    },
+    "newPassword": "Neues Passwort",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "username": "Benutzername"
+  },
   "budget": {
     "addGroup": "Gruppe hinzufügen",
     "append": "„{from}“ nach „{to}“ verschieben",

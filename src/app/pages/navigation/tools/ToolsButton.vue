@@ -9,6 +9,7 @@
 
     <template #options>
       <LoadDemoDataButton v-if="status === 'idle'" />
+      <ChangePasswordButton />
       <PrivacyModeButton />
       <ExportButton />
       <ImportButton />
@@ -26,6 +27,7 @@ import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useMediaQuery } from '@composables';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
+import ChangePasswordButton from './change-password/ChangePasswordButton.vue';
 import CopyButton from './copy-paste/CopyButton.vue';
 import PasteButton from './copy-paste/PasteButton.vue';
 import LoadDemoDataButton from './demo/LoadDemoDataButton.vue';

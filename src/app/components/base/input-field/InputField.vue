@@ -111,7 +111,7 @@ const passwordBarColor = computed(() => {
 
 .label {
   font-weight: var(--font-weight-l);
-  font-size: var(--font-size-s);
+  font-size: var(--font-size-xs);
 }
 
 .passwordStrength {

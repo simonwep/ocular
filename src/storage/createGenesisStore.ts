@@ -56,6 +56,11 @@ export const createGenesisStore = (baseUrl: string) => {
     }
   };
 
+  const logout = async () => {
+    await fetch(`${baseUrl}/logout`, { method: 'POST' });
+    removeToken();
+  };
+
   const refreshToken = async (): Promise<void> => {
     const response = await fetch(`${baseUrl}/login/refresh`, { method: 'POST' });
 
@@ -139,8 +144,6 @@ export const createGenesisStore = (baseUrl: string) => {
     scheduleTokenClear(tokenDataObj.expiresAt);
     refreshToken().catch(removeToken);
   }
-
-  const logout = () => removeToken();
 
   const isLoggedIn = () => !!tokenDataObj;
 

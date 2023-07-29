@@ -22,6 +22,7 @@ export type AppIcon =
   | 'google-fill'
   | 'grid-line'
   | 'hand-coin'
+  | 'key-2-line'
   | 'magic-line'
   | 'menu-line'
   | 'moon-fill'

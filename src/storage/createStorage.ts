@@ -1,47 +1,53 @@
-import { computed, nextTick, ref, shallowReactive, watch } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { MigratableState } from 'yuppee';
-import { AppStorage, StorageAuthenticationState, StorageSync } from '@storage/types';
 import { debounce } from '@utils';
-import { createGenesisStore } from './sdk';
+import { createGenesisStore } from './createGenesisStore';
+import { StorageAuthenticationState, StorageSync } from './types';
 
-export const createGenesisStorage = (): AppStorage => {
+export type Storage = ReturnType<typeof createStorage>;
+
+export const createStorage = () => {
   const store = createGenesisStore('/api');
-  const storesToInitialize = shallowReactive(new Set<string>());
+  const authenticated = ref(store.isLoggedIn());
   const syncsActive = ref(0);
-  const loggedIn = ref(store.isLoggedIn());
 
   const login = async (user: string, password: string): Promise<boolean> =>
     store
       .login({ user, password })
-      .then(() => (loggedIn.value = true))
+      .then(() => (authenticated.value = true))
       .catch(() => false);
 
   const logout = () => {
-    loggedIn.value = false;
+    authenticated.value = false;
   };
+
+  const updatePassword = async (currentPassword: string, newPassword: string) =>
+    store
+      .updatePassword({ currentPassword, newPassword })
+      .then(() => true)
+      .catch(() => false);
 
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
     const initialSyncRequired = ref(true);
     const syncing = ref(false);
-    storesToInitialize.add(config.name);
 
     const change = debounce(async () => {
       await store
         .setDataByKey(config.name, config.state())
-        .catch(logout)
-        .then(() => (syncing.value = false));
+        .then(() => (syncing.value = false))
+        .catch(() => false);
     }, 1000);
 
     watch(
-      [loggedIn, initialSyncRequired],
+      [authenticated, initialSyncRequired],
       async ([loggedIn, sync]) => {
         if (loggedIn && sync) {
-          await store.getDataByKey(config.name).catch(logout);
+          await store
+            .getDataByKey(config.name)
+            .then((data) => config.push(data as P))
+            .catch(() => false);
 
-          await nextTick(() => {
-            initialSyncRequired.value = false;
-            storesToInitialize.delete(config.name);
-          });
+          await nextTick(() => (initialSyncRequired.value = false));
         }
       },
       { immediate: true }
@@ -49,7 +55,7 @@ export const createGenesisStorage = (): AppStorage => {
 
     // push data
     watch(
-      [loggedIn, () => JSON.stringify(config.state())],
+      [authenticated, () => JSON.stringify(config.state())],
       ([loggedIn]) => {
         if (loggedIn && !initialSyncRequired.value) {
           syncing.value = true;
@@ -60,10 +66,9 @@ export const createGenesisStorage = (): AppStorage => {
     );
 
     // clear on log out
-    watch([loggedIn, syncing, initialSyncRequired], ([loggedIn, syncing, initializing]) => {
+    watch([authenticated, syncing, initialSyncRequired], ([loggedIn, syncing, initializing]) => {
       if (!loggedIn && !syncing && !initializing) {
         initialSyncRequired.value = true;
-        store.logout();
         config.clear();
       }
     });
@@ -72,11 +77,16 @@ export const createGenesisStorage = (): AppStorage => {
     watch(syncing, (value) => (syncsActive.value += value ? 1 : -1));
   };
 
+  // clear on log out
+  watch([authenticated, syncsActive], ([loggedIn, syncsActive]) => {
+    if (!loggedIn && !syncsActive) {
+      void store.logout();
+    }
+  });
+
   const status = computed((): StorageAuthenticationState => {
-    if (loggedIn.value) {
-      if (storesToInitialize.size) {
-        return 'loading';
-      } else if (syncsActive.value) {
+    if (authenticated.value) {
+      if (syncsActive.value) {
         return 'syncing';
       } else {
         return 'authenticated';
@@ -88,6 +98,7 @@ export const createGenesisStorage = (): AppStorage => {
 
   return {
     status,
+    updatePassword,
     login,
     logout,
     sync

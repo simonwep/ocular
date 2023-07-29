@@ -13,6 +13,18 @@
   "app": {
     "name": "Ocular"
   },
+  "auth": {
+    "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "errors": {
+      "changePassword": "Current password invalid or new one too unsafe. Make sure it has at least 6 characters.",
+      "login": "Login failed, username and/or password invalid."
+    },
+    "newPassword": "New password",
+    "password": "Password",
+    "signIn": "Sign in",
+    "username": "Username"
+  },
   "budget": {
     "addGroup": "Add Group",
     "append": "Move “{from}” after “{to}”",
