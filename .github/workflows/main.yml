@@ -29,8 +29,8 @@ jobs:
           OAUTH_URI: ${{ secrets.OAUTH_URI }}
           OAUTH_SCOPE: ${{ secrets.OAUTH_SCOPE }}
           OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
-          ACKEE_HOST: ${{ secrets.ACKEE_HOST }}
-          ACKEE_DOMAIN_ID: ${{ secrets.ACKEE_DOMAIN_ID }}
+          OCULAR_ACKEE_HOST: ${{ secrets.OCULAR_ACKEE_HOST }}
+          OCULAR_ACKEE_DOMAIN_ID: ${{ secrets.OCULAR_ACKEE_DOMAIN_ID }}
         run: pnpm run build
 
       - name: Upload artifact

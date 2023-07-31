@@ -7,7 +7,7 @@ import { StorageAuthenticationState, StorageSync } from './types';
 export type Storage = ReturnType<typeof createStorage>;
 
 export const createStorage = () => {
-  const store = createGenesisStore('/api');
+  const store = createGenesisStore(import.meta.env.OCULAR_GENESIS_HOST);
   const authenticated = ref(store.isLoggedIn());
   const syncsActive = ref(0);
 
