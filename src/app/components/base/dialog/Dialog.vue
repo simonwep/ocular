@@ -73,6 +73,7 @@ onMounted(() => {
 .dialog,
 .dialog[open]::backdrop {
   visibility: hidden;
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   opacity: 0;
   transition:

@@ -21,6 +21,11 @@ export default defineConfig({
         defineModel: true
       }
     }),
-    VitePWA({ manifest })
+    VitePWA({
+      manifest,
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,woff2}']
+      }
+    })
   ]
 });

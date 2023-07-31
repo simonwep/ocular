@@ -1,4 +1,5 @@
 .tooltip {
+  -webkit-backdrop-filter: var(--tooltip-backdrop);
   backdrop-filter: var(--tooltip-backdrop);
   padding: 4px 8px;
   font-size: var(--font-size-xs);

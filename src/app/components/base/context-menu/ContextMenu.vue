@@ -134,6 +134,7 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  -webkit-backdrop-filter: var(--context-menu-backdrop);
   backdrop-filter: var(--context-menu-backdrop);
   box-shadow: var(--context-menu-shadow);
   border-radius: var(--border-radius-m);
