@@ -27,8 +27,9 @@ app.mount('#app');
 
 // Print info and register service worker
 const logger = createLogger('app');
-const date = new Date(import.meta.env.APP_BUILD_TIMESTAMP).toLocaleDateString();
-const time = new Date(import.meta.env.APP_BUILD_TIMESTAMP).toLocaleTimeString();
+const date = new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleDateString();
+const time = new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleTimeString();
+
 logger.info(`Ocular build on the ${date} at around ${time}`);
 
 registerSW({

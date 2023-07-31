@@ -28,8 +28,8 @@ defineProps<{
 const { t } = useI18n();
 const { login } = useStorage();
 
-const username = ref(import.meta.env.APP_USERNAME ?? '');
-const password = ref(import.meta.env.APP_PASSWORD ?? '');
+const username = ref(import.meta.env.OCULAR_TEST_USERNAME ?? '');
+const password = ref(import.meta.env.OCULAR_TEST_PASSWORD ?? '');
 const state = ref<'idle' | 'loading' | 'errored'>('idle');
 
 const signIn = async () => {

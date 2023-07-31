@@ -28,7 +28,7 @@ defineProps<{
 const { t } = useI18n();
 const { updatePassword } = useStorage();
 
-const currentPassword = ref(import.meta.env.APP_PASSWORD ?? '');
+const currentPassword = ref(import.meta.env.OCULAR_TEST_PASSWORD ?? '');
 const newPassword = ref('');
 const state = ref<'idle' | 'loading' | 'errored'>('idle');
 

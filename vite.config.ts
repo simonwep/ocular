@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import manifest from './assets/manifest.json';
 
 export default defineConfig({
-  envPrefix: ['APP', 'ACKEE'],
+  envPrefix: ['OCULAR'],
   server: {
     port: 3000,
     proxy: {
@@ -17,7 +17,7 @@ export default defineConfig({
     }
   },
   define: {
-    'import.meta.env.APP_BUILD_TIMESTAMP': Date.now()
+    'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now()
   },
   plugins: [
     tsconfigPaths({ loose: true }),
