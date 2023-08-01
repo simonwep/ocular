@@ -27,7 +27,7 @@
 - 🙈 Privacy mode for when you're in a public place.
 - 🪩 Simple and straight-forward UI.
 
-> Check out the [demo](https://budget.reinisch.io#demo)!
+> Check out the [demo](https://ocular.reinisch.io#demo)!
 
 ### Summary
 
