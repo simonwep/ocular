@@ -1,12 +1,11 @@
 import { inject } from 'vue';
-import { createGoogleDriveStorage } from '@storage/google-drive-storage';
-import { GoogleDriveAuth } from '@storage/google-drive-storage/types';
+import { createGenesisStorage } from '@storage/genesis-storage';
 import { AppStorage } from '@storage/types';
 
 export const STORAGE_KEY = Symbol('GoogleDriveStorage');
 
-export const createStorage = (auth: GoogleDriveAuth): AppStorage => {
-  return createGoogleDriveStorage(auth);
+export const createStorage = (): AppStorage => {
+  return createGenesisStorage();
 };
 
 export const useStorage = (): AppStorage => {

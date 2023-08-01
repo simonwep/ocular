@@ -12,14 +12,7 @@ import { router } from './router';
 import './styles/index.scss';
 import './tracker';
 
-const { OAUTH_URI, OAUTH_CLIENT_ID, OAUTH_SCOPE } = import.meta.env;
-
-const storage = createStorage({
-  authUri: OAUTH_URI as string,
-  clientId: OAUTH_CLIENT_ID as string,
-  scope: OAUTH_SCOPE as string
-});
-
+const storage = createStorage();
 const app = createApp(App);
 
 app.provide(DATA_STORE_KEY, createDataStore(storage));

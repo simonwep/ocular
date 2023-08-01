@@ -8,7 +8,7 @@
     <Button icon="settings-4-line" textual color="dimmed"></Button>
 
     <template #options>
-      <LoadDemoDataButton v-if="state.status === 'idle'" />
+      <LoadDemoDataButton v-if="status === 'idle'" />
       <PrivacyModeButton />
       <ExportButton />
       <ImportButton />
@@ -37,7 +37,7 @@ const props = defineProps<{
   class: ClassNames;
 }>();
 
-const { state } = useStorage();
+const { status } = useStorage();
 const { t } = useI18n();
 const media = useMediaQuery();
 
