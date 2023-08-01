@@ -62,7 +62,7 @@ const pick = () => {
     overflow: hidden;
   }
 
-  &:hover {
+  &:hover:not(:focus) {
     border: 1px dashed var(--input-field-hover-border);
     background: var(--input-field-hover-background);
   }
@@ -70,7 +70,6 @@ const pick = () => {
   &:focus {
     border: 1px dashed var(--input-field-focus-border);
     background: var(--input-field-focus-background);
-    box-shadow: var(--input-field-focus-box-shadow);
   }
 
   &.empty .label {

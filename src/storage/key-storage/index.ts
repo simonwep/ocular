@@ -1,62 +1,47 @@
-import { DeepReadonly, reactive, readonly, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
-interface CachedData {
+interface KeyStoreData {
   key: string;
   expiresAt: number;
-  cachedAt: number;
 }
 
-export interface KeyCache {
-  key: string | undefined;
-  expiresAt: number | undefined;
-
-  register(key: string, expiresAt: number): void;
-}
-
-export const createKeyStorage = (name: string): DeepReadonly<KeyCache> => {
-  const state = reactive<KeyCache>({
-    key: undefined,
-    expiresAt: undefined,
-    register(key: string, expiresAt: number) {
-      state.key = key;
-      state.expiresAt = expiresAt;
-    }
-  });
-
-  let timeout = -1;
-  watch(
-    () => [state.key, state.expiresAt],
-    () => {
-      clearTimeout(timeout);
-
-      if (state.expiresAt !== undefined) {
-        localStorage.setItem(
-          name,
-          JSON.stringify({
-            ...state,
-            cachedAt: Date.now()
-          })
-        );
-
-        timeout = setTimeout(() => {
-          state.key = undefined;
-          localStorage.removeItem(name);
-        }, state.expiresAt) as unknown as number;
-      }
-    }
-  );
-
+export const createKeyStorage = (name: string) => {
+  const store = ref<KeyStoreData | undefined>();
   const cached = localStorage.getItem(name);
-  if (cached) {
-    const data = JSON.parse(cached) as CachedData;
 
-    if (Date.now() - data.cachedAt < data.expiresAt) {
-      state.expiresAt = data.expiresAt - (Date.now() - data.cachedAt);
-      state.key = data.key;
-    } else {
+  if (cached) {
+    const data = JSON.parse(cached) as KeyStoreData;
+
+    if (Date.now() > data.expiresAt) {
+      store.value = undefined;
       localStorage.removeItem(name);
+    } else {
+      store.value = data;
     }
   }
 
-  return readonly(state);
+  let timeout = -1;
+  watch(store, (data) => {
+    clearTimeout(timeout);
+
+    if (data) {
+      localStorage.setItem(name, JSON.stringify(data));
+
+      timeout = setTimeout(() => {
+        store.value = undefined;
+        localStorage.removeItem(name);
+      }, data.expiresAt - Date.now()) as unknown as number;
+    }
+  });
+
+  return {
+    token: computed(() => store.value?.key),
+    unregister() {
+      store.value = undefined;
+      localStorage.removeItem(name);
+    },
+    register(key: string, expiresAt: number) {
+      store.value = { key, expiresAt };
+    }
+  };
 };

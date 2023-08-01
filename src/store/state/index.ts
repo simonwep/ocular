@@ -110,6 +110,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
   storage?.sync<DataState, DataState | DataStateV1>({
     name: 'data',
     state: () => state,
+    clear: () => Object.assign(state, migrateApplicationState()),
     push: (data) => {
       Object.assign(state, migrateApplicationState(data));
 

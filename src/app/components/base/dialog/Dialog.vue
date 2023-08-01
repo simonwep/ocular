@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, useCssModule, watch } from 'vue';
+import { computed, onMounted, ref, toRef, useCssModule, watch } from 'vue';
 import { useOutOfElementClick } from '@composables';
 import { ClassNames } from '@utils';
 
@@ -36,15 +36,16 @@ const transitionEnd = () => {
 };
 
 watch(
-  () => props.open,
-  (open) => {
-    if (open) {
+  [toRef(props, 'open'), dialog],
+  () => {
+    if (props.open) {
       dialog.value?.showModal();
       requestAnimationFrame(() => (visible.value = true));
     } else {
       visible.value = false;
     }
-  }
+  },
+  { immediate: true }
 );
 
 onMounted(() => {

@@ -80,7 +80,6 @@ const change = (e: Event) => {
 
     &:focus-within {
       background: var(--input-field-focus-background);
-      box-shadow: var(--input-field-focus-box-shadow);
     }
 
     .input {

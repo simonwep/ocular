@@ -19,6 +19,7 @@ export const createSettingsStore = (storage?: AppStorage): Store => {
   storage?.sync<SettingsState>({
     name: 'settings',
     state: () => state,
+    clear: () => Object.assign(state, migrateSettingsState()),
     push: (data) => Object.assign(state, migrateSettingsState(data))
   });
 
