@@ -119,19 +119,19 @@
   --input-field-font-size: var(--font-size-xs);
   --input-field-caret-color: #a6aab7;
   --input-field-border: var(--c-dimmed);
-  --input-field-placeholder: var(--c-dark-pure);
+  --input-field-placeholder: #5d6275;
   --input-field-background: var(--app-background);
 
-  --input-field-hover-border: var(--c-dimmed-hover);
+  --input-field-hover-border: var(--c-primary-hover);
   --input-field-hover-background: var(--input-field-background);
 
   --input-field-focus-border: #0750b1;
   --input-field-focus-background: var(--input-field-background);
-  --input-field-focus-box-shadow: #005ad173;
+  --input-field-focus-box-shadow: 0 0 0 2px #005ad173;
 
   --input-field-max-width: 200px;
 
-  --dialog-background: var(--app-background);
+  --dialog-background: #1f1f2b;
   --dialog-box-shadow: 0 2px 10px #00000080;
 
   --context-menu-item-color: #c1c1cf;

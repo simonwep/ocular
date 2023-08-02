@@ -9,7 +9,6 @@
     @input="change"
     @keydown="keydown"
     @keydown.enter="input?.blur"
-    @paste="paste"
   />
 </template>
 
@@ -53,8 +52,6 @@ const focus = () => {
 };
 
 const change = (e: Event) => updateModelValue((e.target as HTMLInputElement).value);
-
-const paste = (e: ClipboardEvent) => updateModelValue(e.clipboardData?.getData('text/plain').trim());
 
 watch(
   () => modelValue.value,
