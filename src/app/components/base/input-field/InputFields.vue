@@ -23,7 +23,7 @@ defineProps<{
 .fields {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 225px;
   gap: 8px;
   padding-top: 8px;
 
