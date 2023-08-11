@@ -1,24 +1,27 @@
-import { computed, nextTick, ref, watch } from 'vue';
+import { computed, nextTick, readonly, ref, watch } from 'vue';
 import { MigratableState } from 'yuppee';
 import { debounce } from '@utils';
-import { createGenesisStore } from './createGenesisStore';
+import { createGenesisStore, GenesisUser } from './createGenesisStore';
 import { StorageAuthenticationState, StorageSync } from './types';
 
 export type Storage = ReturnType<typeof createStorage>;
 
 export const createStorage = () => {
   const store = createGenesisStore(import.meta.env.OCULAR_GENESIS_HOST);
-  const authenticated = ref(store.isLoggedIn());
+  const authenticatedUser = ref<GenesisUser>();
   const syncsActive = ref(0);
 
-  const login = async (user: string, password: string): Promise<boolean> =>
+  const login = async (user?: string, password?: string): Promise<boolean> =>
     store
-      .login({ user, password })
-      .then(() => (authenticated.value = true))
+      .login(user && password ? { user, password } : undefined)
+      .then((user) => {
+        authenticatedUser.value = user;
+        return true;
+      })
       .catch(() => false);
 
   const logout = () => {
-    authenticated.value = false;
+    authenticatedUser.value = undefined;
   };
 
   const updatePassword = async (currentPassword: string, newPassword: string) =>
@@ -39,9 +42,9 @@ export const createStorage = () => {
     }, 1000);
 
     watch(
-      [authenticated, initialSyncRequired],
-      async ([loggedIn, sync]) => {
-        if (loggedIn && sync) {
+      [authenticatedUser, initialSyncRequired],
+      async ([user, sync]) => {
+        if (user && sync) {
           await store
             .getDataByKey(config.name)
             .then((data) => config.push(data as P))
@@ -55,9 +58,9 @@ export const createStorage = () => {
 
     // push data
     watch(
-      [authenticated, () => JSON.stringify(config.state())],
-      ([loggedIn]) => {
-        if (loggedIn && !initialSyncRequired.value) {
+      [authenticatedUser, () => JSON.stringify(config.state())],
+      ([user]) => {
+        if (user && !initialSyncRequired.value) {
           syncing.value = true;
           void change();
         }
@@ -66,8 +69,8 @@ export const createStorage = () => {
     );
 
     // clear on log out
-    watch([authenticated, syncing, initialSyncRequired], ([loggedIn, syncing, initializing]) => {
-      if (!loggedIn && !syncing && !initializing) {
+    watch([authenticatedUser, syncing, initialSyncRequired], ([user, syncing, initializing]) => {
+      if (!user && !syncing && !initializing) {
         initialSyncRequired.value = true;
         config.clear();
       }
@@ -78,14 +81,14 @@ export const createStorage = () => {
   };
 
   // clear on log out
-  watch([authenticated, syncsActive], ([loggedIn, syncsActive]) => {
-    if (!loggedIn && !syncsActive) {
+  watch([authenticatedUser, syncsActive], ([user, syncsActive]) => {
+    if (!user && !syncsActive) {
       void store.logout();
     }
   });
 
   const status = computed((): StorageAuthenticationState => {
-    if (authenticated.value) {
+    if (authenticatedUser.value) {
       if (syncsActive.value) {
         return 'syncing';
       } else {
@@ -96,7 +99,11 @@ export const createStorage = () => {
     }
   });
 
+  // Check if user is logged in
+  void login();
+
   return {
+    user: readonly(authenticatedUser),
     status,
     updatePassword,
     login,
