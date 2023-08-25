@@ -1,8 +1,8 @@
 <template>
-  <Dialog :open="open" @close="emit('close')">
-    <InputFields :title="t('auth.signIn')" @submit="signIn">
-      <InputField v-model="username" :label="t('auth.username')" type="text" />
-      <InputField v-model="password" :label="t('auth.password')" type="password" />
+  <Dialog :open="open" :title="t('auth.signIn')" @close="emit('close')">
+    <InputFields :submit-label="t('auth.signIn')" @submit="signIn">
+      <TextField v-model="username" :label="t('auth.username')" type="text" />
+      <TextField v-model="password" :label="t('auth.password')" type="password" />
       <Alert v-if="state === 'errored'" :text="t('auth.errors.login')" color="danger" />
     </InputFields>
   </Dialog>
@@ -13,8 +13,8 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Alert from '@components/base/alert/Alert.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
-import InputField from '@components/base/input-field/InputField.vue';
 import InputFields from '@components/base/input-field/InputFields.vue';
+import TextField from '@components/base/input-field/TextField.vue';
 import { useStorage } from '@storage/index';
 
 const emit = defineEmits<{

@@ -1,6 +1,7 @@
 <template>
   <dialog ref="dialog" :class="classes" @transitionend="transitionEnd">
     <div ref="content" :class="[$style.content, contentClass]">
+      <h3 v-if="title" :class="$style.title">{{ title }}</h3>
       <slot />
     </div>
   </dialog>
@@ -17,6 +18,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   open: boolean;
+  title?: string;
   contentClass?: ClassNames;
 }>();
 
@@ -99,5 +101,12 @@ onMounted(() => {
   padding: 10px 13px;
   border-radius: var(--border-radius-l);
   box-shadow: var(--dialog-box-shadow);
+}
+
+.title {
+  text-align: center;
+  font-weight: var(--font-weight-l);
+  font-style: var(--font-size-m);
+  padding-bottom: 8px;
 }
 </style>

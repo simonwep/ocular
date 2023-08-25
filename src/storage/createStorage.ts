@@ -7,9 +7,17 @@ import { StorageAuthenticationState, StorageSync } from './types';
 export type Storage = ReturnType<typeof createStorage>;
 
 export const createStorage = () => {
-  const store = createGenesisStore(import.meta.env.OCULAR_GENESIS_HOST);
-  const authenticatedUser = ref<GenesisUser>();
+  const authenticatedUser = ref<GenesisUser | undefined>();
   const syncsActive = ref(0);
+
+  const logout = () => {
+    authenticatedUser.value = undefined;
+  };
+
+  const store = createGenesisStore({
+    baseUrl: import.meta.env.OCULAR_GENESIS_HOST,
+    onSessionExpired: logout
+  });
 
   const login = async (user?: string, password?: string): Promise<boolean> =>
     store
@@ -18,16 +26,6 @@ export const createStorage = () => {
         authenticatedUser.value = user;
         return true;
       })
-      .catch(() => false);
-
-  const logout = () => {
-    authenticatedUser.value = undefined;
-  };
-
-  const updatePassword = async (currentPassword: string, newPassword: string) =>
-    store
-      .updatePassword({ currentPassword, newPassword })
-      .then(() => true)
       .catch(() => false);
 
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
@@ -89,11 +87,7 @@ export const createStorage = () => {
 
   const status = computed((): StorageAuthenticationState => {
     if (authenticatedUser.value) {
-      if (syncsActive.value) {
-        return 'syncing';
-      } else {
-        return 'authenticated';
-      }
+      return syncsActive.value ? 'syncing' : 'authenticated';
     } else {
       return 'idle';
     }
@@ -105,7 +99,10 @@ export const createStorage = () => {
   return {
     user: readonly(authenticatedUser),
     status,
-    updatePassword,
+    getAllUsers: store.getAllUsers,
+    deleteUser: store.deleteUser,
+    createUser: store.createUser,
+    updatePassword: store.updatePassword,
     login,
     logout,
     sync

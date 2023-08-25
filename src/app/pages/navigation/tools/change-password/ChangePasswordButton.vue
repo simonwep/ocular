@@ -1,6 +1,6 @@
 <template>
-  <ContextMenuButton icon="key-2-line" :text="t('auth.changePassword')" @click="showChangePasswordDialog = true" />
-  <ChangePasswordDialog :open="showChangePasswordDialog" @close="showChangePasswordDialog = false" />
+  <ContextMenuButton icon="key-2-line" :text="t('auth.changePassword')" @click="showCreateUserDialog = true" />
+  <ChangePasswordDialog :open="showChangePasswordDialog" @close="showCreateUserDialog = false" />
 </template>
 
 <script lang="ts" setup>
