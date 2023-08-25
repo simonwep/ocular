@@ -2,6 +2,7 @@
   <button
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
     :class="classes"
+    :disabled="disabled"
     type="button"
     @click="emit('click', $event)"
   >
@@ -33,11 +34,13 @@ const props = withDefaults(
     color?: Color;
     textual?: boolean;
     rounded?: boolean;
+    disabled?: boolean;
   }>(),
   {
     color: 'primary',
     textual: false,
-    rounded: false
+    rounded: false,
+    disabled: false
   }
 );
 
@@ -48,6 +51,7 @@ const classes = computed(() => [
   styles.button,
   {
     [styles.hasIcon]: props.icon,
+    [styles.disabled]: props.disabled,
     [styles.textual]: props.textual,
     [styles.rounded]: props.rounded,
     [styles.iconOnly]: props.icon && !props.text
@@ -103,6 +107,12 @@ const classes = computed(() => [
 
   &.rounded {
     border-radius: 100px;
+  }
+
+  &.disabled,
+  &.disabled:hover {
+    background: var(--c-dimmed);
+    cursor: default;
   }
 }
 

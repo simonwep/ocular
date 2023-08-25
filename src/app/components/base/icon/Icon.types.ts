@@ -32,8 +32,11 @@ export type AppIcon =
   | 'refresh-line'
   | 'save'
   | 'settings-4-line'
+  | 'shield-flash-line'
   | 'shopping-basket-2'
   | 'skip-down-line'
   | 'skip-up-line'
   | 'sun-fill'
-  | 'upload-cloud-2-line';
+  | 'upload-cloud-2-line'
+  | 'user-add-line'
+  | 'user-settings-line';

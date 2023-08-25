@@ -51,6 +51,16 @@
     "yearInThePast": "Year is in the past"
   },
   "navigation": {
+    "admin": {
+      "admin": "Admin",
+      "createUser": "Add user",
+      "errors": {
+        "userCreation": "User already exists or password too insecure."
+      },
+      "password": "Password",
+      "settings": "Admin settings",
+      "username": "Username"
+    },
     "clipboard": {
       "copy": "Copy data from {year}",
       "paste": "Paste data from {from} into {to}"

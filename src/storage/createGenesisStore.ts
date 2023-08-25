@@ -1,5 +1,11 @@
 export interface GenesisUser {
-  user: string;
+  name: string;
+  admin: boolean;
+}
+
+export interface NewGenesisUser {
+  name: string;
+  password: string;
   admin: boolean;
 }
 
@@ -13,78 +19,85 @@ export interface GenesisUpdatePasswordRequest {
   currentPassword: string;
 }
 
-export const createGenesisStore = (baseUrl: string) => {
-  const login = async (request?: GenesisLoginRequest): Promise<GenesisUser> => {
-    const response = await fetch(`${baseUrl}/login`, {
-      method: 'POST',
-      ...(request && {
+export interface GenesisStoreOptions {
+  baseUrl: string;
+  onSessionExpired?: (res: Response) => void;
+}
+
+export const createGenesisStore = (opt: GenesisStoreOptions) => {
+  const assertOk = (res: Response, ignoreUnauthenticated = false) => {
+    if (res.ok) {
+      return res.headers.get('content-type')?.includes('json') ? res.json() : undefined;
+    } else if (res.status === 401 && !ignoreUnauthenticated) {
+      opt.onSessionExpired?.(res);
+    } else {
+      return Promise.reject(res);
+    }
+  };
+
+  const login = async (request?: GenesisLoginRequest): Promise<GenesisUser> =>
+    assertOk(
+      await fetch(`${opt.baseUrl}/login`, {
+        method: 'POST',
+        ...(request && {
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(request)
+        })
+      }),
+      true
+    );
+
+  const logout = async () => assertOk(await fetch(`${opt.baseUrl}/logout`, { method: 'POST' }));
+
+  const updatePassword = async (request: GenesisUpdatePasswordRequest): Promise<void> =>
+    assertOk(
+      await fetch(`${opt.baseUrl}/account/update`, {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(request)
       })
-    });
+    );
 
-    if (response.status === 200) {
-      return response.json();
-    } else if (response.status === 401) {
-      throw new Error('Invalid user or password.');
-    } else {
-      throw new Error('An error occurred during login.');
-    }
-  };
+  const getData = async (): Promise<object> => assertOk(await fetch(`${opt.baseUrl}/data`));
 
-  const logout = async () => {
-    await fetch(`${baseUrl}/logout`, { method: 'POST' });
-  };
+  const getDataByKey = async (key: string): Promise<unknown | undefined> =>
+    assertOk(await fetch(`${opt.baseUrl}/data/${key}`));
 
-  const updatePassword = async (request: GenesisUpdatePasswordRequest): Promise<void> => {
-    const response = await fetch(`${baseUrl}/account/update`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(request)
-    });
+  const setDataByKey = async (key: string, data: unknown): Promise<void> =>
+    assertOk(
+      await fetch(`${opt.baseUrl}/data/${key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+    );
 
-    if (response.status !== 200) {
-      throw new Error('Failed to update password.');
-    }
-  };
+  const deleteDataByKey = async (key: string): Promise<void> =>
+    assertOk(await fetch(`${opt.baseUrl}/data/${key}`, { method: 'DELETE' }));
 
-  const getData = async (): Promise<object> => {
-    const response = await fetch(`${baseUrl}/data`);
+  const getAllUsers = async (): Promise<GenesisUser[]> =>
+    assertOk(await fetch(`${opt.baseUrl}/user`, { method: 'GET' }));
 
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      throw new Error('Failed to retrieve data.');
-    }
-  };
+  const createUser = async (newUser: NewGenesisUser): Promise<void> =>
+    assertOk(
+      await fetch(`${opt.baseUrl}/user`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUser)
+      })
+    );
 
-  const getDataByKey = async (key: string): Promise<unknown | undefined> => {
-    const response = await fetch(`${baseUrl}/data/${key}`);
+  const updateUser = async (username: string, updatedUser: GenesisUser): Promise<void> =>
+    assertOk(
+      await fetch(`${opt.baseUrl}/user/${username}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedUser)
+      })
+    );
 
-    if (response.status === 204) {
-      return undefined;
-    } else if (response.status === 200) {
-      return response.json();
-    } else {
-      throw new Error('Failed to retrieve data by key.');
-    }
-  };
-
-  const setDataByKey = async (key: string, data: unknown): Promise<void> => {
-    const response = await fetch(`${baseUrl}/data/${key}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-
-    if (response.status !== 200) {
-      throw new Error('Failed to store data.');
-    }
-  };
-
-  const deleteDataByKey = async (key: string): Promise<void> => {
-    await fetch(`${baseUrl}/data/${key}`, { method: 'DELETE' });
-  };
+  const deleteUser = async (username: string): Promise<void> =>
+    assertOk(await fetch(`${opt.baseUrl}/user/${username}`, { method: 'DELETE' }));
 
   return {
     login,
@@ -93,6 +106,10 @@ export const createGenesisStore = (baseUrl: string) => {
     getData,
     getDataByKey,
     setDataByKey,
-    deleteDataByKey
+    deleteDataByKey,
+    getAllUsers,
+    createUser,
+    updateUser,
+    deleteUser
   };
 };

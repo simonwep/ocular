@@ -1,8 +1,7 @@
 <template>
   <div :class="$style.fields">
-    <h3 :class="$style.title">{{ title }}</h3>
     <slot />
-    <Button :class="$style.btn" :text="submitLabel ?? title" color="success" @click="emit('submit')" />
+    <Button :class="$style.btn" :text="submitLabel" color="success" @click="emit('submit')" />
   </div>
 </template>
 
@@ -14,8 +13,7 @@ const emit = defineEmits<{
 }>();
 
 defineProps<{
-  title: string;
-  submitLabel?: string;
+  submitLabel: string;
 }>();
 </script>
 
@@ -23,16 +21,9 @@ defineProps<{
 .fields {
   display: flex;
   flex-direction: column;
-  width: 225px;
+  width: 250px;
   gap: 8px;
   padding-top: 8px;
-
-  .title {
-    text-align: center;
-    font-weight: var(--font-weight-l);
-    font-style: var(--font-size-m);
-    padding-bottom: 8px;
-  }
 
   .btn {
     text-align: center;
