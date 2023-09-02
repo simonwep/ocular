@@ -18,7 +18,7 @@
   --c-text-light-accent: #b8bbcc;
   --c-text-light-muted: #d2d2da;
 
-  --c-dimmed: #bec9d4;
+  --c-dimmed: #dfe4e9;
   --c-dimmed-hover: #a2a9b4;
   --c-dimmed-text: var(--c-text-light);
   --c-dimmed-text-hover: var(--c-dimmed-text);
@@ -118,9 +118,9 @@
   --input-field-transition: var(--transition-s);
   --input-field-font-size: var(--font-size-xs);
   --input-field-caret-color: #2d3036;
-  --input-field-border: var(--c-dimmed);
+  --input-field-border: #bec9d4;
   --input-field-placeholder: var(--c-dimmed-pure);
-  --input-field-background: var(--app-background);
+  --input-field-background: #efeff3;
 
   --input-field-hover-border: var(--c-dimmed-hover);
   --input-field-hover-background: var(--input-field-background);

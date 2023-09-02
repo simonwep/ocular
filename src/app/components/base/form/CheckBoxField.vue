@@ -49,6 +49,7 @@ const inputId = uuid();
 .input {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 
 .box {
