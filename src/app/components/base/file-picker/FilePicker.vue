@@ -41,7 +41,7 @@ const pick = () => {
   display: flex;
   align-items: center;
   background: var(--input-field-background);
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: var(--border-radius-m);
   cursor: pointer;
   border: 1px dashed var(--input-field-border);

@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { DefineComponent, ref, shallowRef } from 'vue';
+import { DefineComponent, ref, shallowRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
@@ -38,7 +38,6 @@ const visible = ref(false);
 const { t } = useI18n();
 
 const close = () => {
-  steps.value?.reset();
   visible.value = false;
 };
 
@@ -47,6 +46,8 @@ const next = (component: any) => {
   screen.value = component;
   steps.value?.next();
 };
+
+watch(visible, () => steps.value?.reset());
 </script>
 
 <style lang="scss" module>

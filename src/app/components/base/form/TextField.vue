@@ -91,12 +91,12 @@ const passwordBarColor = computed(() => {
 
 .inputBox {
   background: var(--input-field-background);
+  border: 1px dashed var(--input-field-border);
   border-radius: var(--border-radius-m);
   height: 30px;
-  padding: 0 8px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
-  border: 1px solid transparent;
   transition: all var(--input-field-transition);
 
   .input {
@@ -115,14 +115,13 @@ const passwordBarColor = computed(() => {
   }
 
   &:hover:not(:focus-within) {
+    border: 1px dashed var(--input-field-hover-border);
     background: var(--input-field-hover-background);
-    border: 1px solid var(--input-field-hover-border);
   }
 
   &:focus-within {
+    border: 1px dashed var(--input-field-focus-border);
     background: var(--input-field-focus-background);
-    border: 1px solid var(--input-field-focus-border);
-    box-shadow: var(--input-field-focus-box-shadow);
   }
 }
 
