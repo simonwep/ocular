@@ -17,8 +17,9 @@
     "changePassword": "Change password",
     "currentPassword": "Current password",
     "errors": {
-      "changePassword": "Current password invalid or new one too unsafe. Make sure it has at least 6 characters.",
-      "login": "Login failed, username and/or password invalid."
+      "generic": "Something went wrong, please try again later.",
+      "invalidPassword": "Current password invalid.",
+      "loginFailed": "Login failed, username and/or password invalid."
     },
     "newPassword": "New password",
     "password": "Password",
@@ -55,7 +56,8 @@
       "admin": "Admin",
       "createUser": "Add user",
       "errors": {
-        "userCreation": "User already exists or password too insecure."
+        "conflict": "A user with this name already exists.",
+        "generic": "Something went wrong, please try again later."
       },
       "password": "Password",
       "settings": "Admin settings",

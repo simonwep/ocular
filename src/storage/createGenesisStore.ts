@@ -55,7 +55,8 @@ export const createGenesisStore = (opt: GenesisStoreOptions) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(request)
-      })
+      }),
+      true
     );
 
   const getData = async (): Promise<object> => assertOk(await fetch(`${opt.baseUrl}/data`));

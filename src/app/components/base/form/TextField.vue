@@ -4,10 +4,16 @@
     <div :class="$style.inputBox">
       <input
         :id="inputId"
+        ref="input"
         v-model="modelValue"
+        :minlength="minLength"
+        :maxlength="maxLength"
+        :required="required"
         :class="$style.input"
         :type="type === 'password' ? (showPassword ? 'text' : 'password') : 'text'"
         :placeholder="placeholder"
+        @valid="onValidationChange"
+        @invalid="onValidationChange"
       />
 
       <Button
@@ -17,6 +23,8 @@
         @click="showPassword = !showPassword"
       />
     </div>
+
+    <p v-if="error" :class="$style.error">{{ error }}</p>
 
     <div v-if="showPasswordStrength && type === 'password'" :class="$style.passwordStrength">
       <div :class="$style.bar" />
@@ -34,6 +42,9 @@ const modelValue = defineModel<string>();
 withDefaults(
   defineProps<{
     type?: 'text' | 'password';
+    minLength?: number;
+    maxLength?: number;
+    required?: boolean;
     label: string;
     placeholder?: string;
     showPasswordStrength?: boolean;
@@ -45,10 +56,16 @@ withDefaults(
 );
 
 const showPassword = ref(false);
+const input = ref<HTMLInputElement>();
+const error = ref('');
 const inputId = uuid();
 
 const calculateEntropy = (password?: string) => {
   return password ? Math.log2(new Set(password).size) * password.length : 0;
+};
+
+const onValidationChange = () => {
+  error.value = input.value?.validationMessage ?? '';
 };
 
 const passwordEntropy = computed(() => calculateEntropy(modelValue.value));
@@ -112,6 +129,13 @@ const passwordBarColor = computed(() => {
 .label {
   font-weight: var(--font-weight-l);
   font-size: var(--font-size-xs);
+}
+
+.error {
+  font-size: var(--font-size-xxs);
+  font-weight: var(--font-weight-l);
+  border-radius: var(--border-radius-s);
+  color: var(--c-danger);
 }
 
 .passwordStrength {
