@@ -1,8 +1,8 @@
 <template>
-  <div :class="$style.fields">
+  <form :class="$style.fields" action="#" @submit="submit">
     <slot />
-    <Button :class="$style.btn" :text="submitLabel" color="success" @click="emit('submit')" />
-  </div>
+    <Button :class="$style.btn" :text="submitLabel" color="success" type="submit" />
+  </form>
 </template>
 
 <script lang="ts" setup>
@@ -15,6 +15,11 @@ const emit = defineEmits<{
 defineProps<{
   submitLabel: string;
 }>();
+
+const submit = (e: SubmitEvent) => {
+  emit('submit');
+  e.preventDefault();
+};
 </script>
 
 <style lang="scss" module>

@@ -15,6 +15,7 @@ export type AppIcon =
   | 'donut-chart'
   | 'download-cloud-2-line'
   | 'draggable'
+  | 'error-warning-line'
   | 'eye-close'
   | 'eye-line'
   | 'file-fill'

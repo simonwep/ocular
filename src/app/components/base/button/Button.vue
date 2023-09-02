@@ -3,7 +3,7 @@
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
     :class="classes"
     :disabled="disabled"
-    type="button"
+    :type="type"
     @click="emit('click', $event)"
   >
     <Icon v-if="icon" :class="[$style.icon, iconClass]" :icon="icon" />
@@ -30,6 +30,7 @@ const props = withDefaults(
     icon?: AppIcon;
     text?: string;
     tooltip?: string;
+    type?: string;
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
@@ -38,6 +39,7 @@ const props = withDefaults(
   }>(),
   {
     color: 'primary',
+    type: 'button',
     textual: false,
     rounded: false,
     disabled: false

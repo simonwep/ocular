@@ -1,10 +1,19 @@
 <template>
   <Dialog :title="t('auth.changePassword')" :open="open" @close="emit('close')">
-    <InputFields :submit-label="t('auth.changePassword')" @submit="submit">
-      <TextField v-model="currentPassword" :label="t('auth.currentPassword')" type="password" />
-      <TextField v-model="newPassword" :label="t('auth.newPassword')" type="password" show-password-strength />
-      <Alert v-if="state === 'errored'" :text="t('auth.errors.changePassword')" color="danger" />
-    </InputFields>
+    <Form :submit-label="t('auth.changePassword')" @submit="submit">
+      <TextField v-model="currentPassword" required :label="t('auth.currentPassword')" type="password" />
+      <TextField
+        v-model="newPassword"
+        :min-length="8"
+        :max-length="64"
+        required
+        :label="t('auth.newPassword')"
+        type="password"
+        show-password-strength
+      />
+      <Alert v-if="state === 'invalid-password'" :text="t('auth.errors.invalidPassword')" type="error" />
+      <Alert v-if="state === 'errored'" :text="t('auth.errors.generic')" type="error" />
+    </Form>
   </Dialog>
 </template>
 
@@ -13,8 +22,8 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Alert from '@components/base/alert/Alert.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
-import InputFields from '@components/base/input-field/InputFields.vue';
-import TextField from '@components/base/input-field/TextField.vue';
+import Form from '@components/base/form/Form.vue';
+import TextField from '@components/base/form/TextField.vue';
 import { useStorage } from '@storage/index';
 
 const emit = defineEmits<{
@@ -30,25 +39,25 @@ const { updatePassword } = useStorage();
 
 const currentPassword = ref(import.meta.env.OCULAR_TEST_PASSWORD ?? '');
 const newPassword = ref('');
-const state = ref<'idle' | 'loading' | 'errored'>('idle');
+const state = ref<'idle' | 'loading' | 'invalid-password' | 'errored'>('idle');
 
 const submit = async () => {
   if (state.value !== 'loading') {
-    const ok = await updatePassword({
+    state.value = 'loading';
+
+    updatePassword({
       currentPassword: currentPassword.value,
       newPassword: newPassword.value
     })
-      .then(() => true)
-      .catch(() => false);
-
-    if (ok) {
-      currentPassword.value = '';
-      newPassword.value = '';
-      state.value = 'idle';
-      emit('close');
-    } else {
-      state.value = 'errored';
-    }
+      .then(() => {
+        currentPassword.value = '';
+        newPassword.value = '';
+        state.value = 'idle';
+        emit('close');
+      })
+      .catch((err) => {
+        state.value = err instanceof Response && err.status === 401 ? 'invalid-password' : 'errored';
+      });
   }
 };
 </script>

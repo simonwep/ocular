@@ -17,8 +17,9 @@
     "changePassword": "Passwort ändern",
     "currentPassword": "Aktuelles Passwort",
     "errors": {
-      "changePassword": "Aktuelles Passwort ungültig oder neues Passwort zu unsicher. Stellen Sie sicher, dass es mindestens 6 Zeichen hat.",
-      "login": "Anmeldung fehlgeschlagen, Benutzername und/oder Passwort ungültig."
+      "generic": "Irgendwas ist schiefgelaufen, versuche es später erneut.",
+      "invalidPassword": "Das aktuelle Passwort ist inkorrekt.",
+      "loginFailed": "Nutzername und/oder Passwort inkorrekt."
     },
     "newPassword": "Neues Passwort",
     "password": "Passwort",
@@ -55,7 +56,8 @@
       "admin": "Administrator",
       "createUser": "Benutzer hinzufügen",
       "errors": {
-        "userCreation": "Benutzer existiert bereits oder das Passwort ist zu unsicher."
+        "conflict": "Ein Nutzer mit diesem Namen existiert bereits.",
+        "generic": "Irgendwas ist schiefgelaufen, versuche es später erneut."
       },
       "password": "Passwort",
       "settings": "Admin-Einstellungen",

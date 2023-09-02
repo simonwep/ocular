@@ -9,7 +9,7 @@
 
     <template #options>
       <LoadDemoDataButton v-if="status === 'idle'" />
-      <ChangePasswordButton />
+      <ChangePasswordButton v-if="user" />
       <PrivacyModeButton />
       <ExportButton />
       <ImportButton />
@@ -39,7 +39,7 @@ const props = defineProps<{
   class: ClassNames;
 }>();
 
-const { status } = useStorage();
+const { status, user } = useStorage();
 const { t } = useI18n();
 const media = useMediaQuery();
 
