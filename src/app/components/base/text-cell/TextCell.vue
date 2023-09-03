@@ -41,11 +41,7 @@ const classes = computed(() => [
 
 const focus = () => {
   focused.value = true;
-
-  nextTick(() => {
-    const element = input.value as HTMLInputElement;
-    element.select();
-  });
+  nextTick(() => (input.value as HTMLInputElement).select());
 };
 
 const change = (e: Event) => {

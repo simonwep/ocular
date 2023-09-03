@@ -28,8 +28,8 @@
 import { computed, ref } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
+import { DraggableEvent, ReorderEvent } from './Draggable.types';
 import { store } from './store';
-import { DraggableEvent, ReorderEvent } from './types';
 
 const emit = defineEmits<{
   (e: 'drop', data: ReorderEvent): void;

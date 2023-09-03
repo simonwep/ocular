@@ -14,7 +14,7 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
-import { ContextMenuOption } from '@components/base/context-menu';
+import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { AvailableLocale, availableLocales } from '@i18n/index';
 import { useDataStore } from '@store/state';

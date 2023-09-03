@@ -8,7 +8,7 @@
     @focus="focus"
     @input="change"
     @keydown="keydown"
-    @keydown.enter="input?.blur"
+    @keydown.enter="input?.blur()"
   />
 </template>
 
