@@ -30,7 +30,7 @@ const props = withDefaults(
     icon?: AppIcon;
     text?: string;
     tooltip?: string;
-    type?: string;
+    type?: 'button' | 'reset' | 'submit';
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;

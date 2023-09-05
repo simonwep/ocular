@@ -16,7 +16,7 @@ defineProps<{
   submitLabel: string;
 }>();
 
-const submit = (e: SubmitEvent) => {
+const submit = (e: Event) => {
   emit('submit');
   e.preventDefault();
 };

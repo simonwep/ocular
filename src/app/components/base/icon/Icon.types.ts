@@ -34,6 +34,7 @@ export type AppIcon =
   | 'save'
   | 'settings-4-line'
   | 'shield-flash-line'
+  | 'shield-user-line'
   | 'shopping-basket-2'
   | 'skip-down-line'
   | 'skip-up-line'
