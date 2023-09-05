@@ -59,6 +59,7 @@
         "conflict": "A user with this name already exists.",
         "generic": "Something went wrong, please try again later."
       },
+      "manageUsers": "Manage users",
       "password": "Password",
       "settings": "Admin settings",
       "username": "Username"

@@ -102,6 +102,7 @@ export const createStorage = () => {
     getAllUsers: store.getAllUsers,
     deleteUser: store.deleteUser,
     createUser: store.createUser,
+    updateUser: store.updateUser,
     updatePassword: store.updatePassword,
     login,
     logout,
