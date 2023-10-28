@@ -18,14 +18,14 @@
 
 ### Features
 
-- 🥳 Simple login via google.
-- 🌚 Dark and light theme.
-- 💻 Installable (PWA).
-- ⬆️ Import your data from Google sheet's annual planner.
-- ⬇️ Export your data as a single `.json`-file.
-- 🕰 Track budgets across year.
+- 🦾 Self-hosted.
+- 🕶️ Dark and light theme.
+- 💻 Installable as a PWA.
+- 🔼 Import your data from Google sheet's annual planner.
+- 🛠️ Export your data as a single `.json`-file.
+- 🎇 Track budgets across multiple years.
 - 🙈 Privacy mode for when you're in a public place.
-- 🪩 Simple and straight-forward UI.
+- ⚡️ Simple and straight-forward UI.
 
 > Check out the [demo](https://ocular.reinisch.io#demo)!
 
@@ -34,12 +34,8 @@
 A small budgeting app as an alternative to Google sheet's annual budget planner.
 The goal of the app is **not** to track individual expenses, work with multiple currencies at a time or anything related (if you're looking for something like this, check out [firefly-iii](https://www.firefly-iii.org/)).
 
-This app comes without any backend and all your data is stored in your google-drive account as an app (no worry - you can always export your data in the app).
-**This app does not have access to anything else except its own files**.
-The (latest) version I use is automatically deployed to [ocular.reinisch.io](https://ocular.reinisch.io) - but feel free to [set it up yourself](#development)!
-
-> **Attention:** It's currently **not** possibly to sync the app with your personal gmail account due to the google-cloud app not being verified yet.
-> You can still use it and download / upload your data or [deploy it yourself](#development) (which is even cooler!).
+This app comes with its own backend (by using [genesis](https://github.com/simonwep/genesis)), so the only thing you need to do is to host it somewhere.
+Your data stays on your server and is not shared with anyone else.
 
 ### State of this project
 
@@ -55,30 +51,14 @@ Because of its simplicity the master branch is considered stable and any new fea
 
 #### Development
 
-This app requires [NodeJS LTS](https://nodejs.org/en/) and uses [vite](https://vitejs.dev/) as builder.
-You can build and preview the app using the following commands:
+This app uses [genesis](https://github.com/simonwep/genesis) as generic backend.
+Go to the [genesis](https://github.com/simonwep/genesis) repository and follow the instructions to set it up first.
 
-```sh
-npm run build
-npm run preview
-```
-
-To work on it simply run `npm run dev`.
+To run the frontend make sure you have the latest [NodeJS LTS](https://nodejs.org/en/) installed, as well as [pnpm](https://pnpm.io/).
+You can then start the frontend by running `pnpm run dev` in the root directory.
 
 #### Production
 
-To run this app in production and to add cloud connectivity, you'll need a [Google Cloud App](https://console.cloud.google.com) with
-the `drive.appdata` scope.
+This app is deployed using [docker-compose](https://docs.docker.com/compose/).
+See [ocular-docker](https://github.com/simonwep/ocular-docker) for more information.
 
-After you've set up your app fill copy the [.env.example](.env.example) to `.env` and fill in your credentials.
-
-##### Using docker
-
-This project can be built as a docker-image, that serves the app via nginx.
-You can build and run it via:
-
-```sh
-docker build -t ocular . && docker run -p 8080:80 ocular
-```
-
-Ocular should then be available under [localhost:8080](http://localhost:8080)
