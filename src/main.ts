@@ -10,7 +10,6 @@ import App from './app/App.vue';
 import { i18n } from './i18n';
 import { router } from './router';
 import './styles/index.scss';
-import './tracker';
 
 const storage = createStorage();
 const app = createApp(App);

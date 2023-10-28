@@ -24,7 +24,6 @@
     },
     "dependencies": {
         "@popperjs/core": "2.11.8",
-        "ackee-tracker": "5.1.0",
         "echarts": "5.4.3",
         "li18nt": "5.0.0",
         "papaparse": "5.4.1",
