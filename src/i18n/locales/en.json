@@ -55,11 +55,13 @@
     "admin": {
       "admin": "Admin",
       "createUser": "Add user",
+      "deleteUserConfirmation": "Are you sure you want to delete {name}?",
       "errors": {
         "conflict": "A user with this name already exists.",
         "generic": "Something went wrong, please try again later."
       },
       "manageUsers": "Manage users",
+      "noUsersFound": "No users found...",
       "password": "Password",
       "settings": "Admin settings",
       "username": "Username"

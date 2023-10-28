@@ -55,11 +55,13 @@
     "admin": {
       "admin": "Administrator",
       "createUser": "Benutzer hinzufügen",
+      "deleteUserConfirmation": "Soll der Nutzer {name} wirklich gelöscht werden?",
       "errors": {
         "conflict": "Ein Nutzer mit diesem Namen existiert bereits.",
         "generic": "Irgendwas ist schiefgelaufen, versuche es später erneut."
       },
       "manageUsers": "Nutzer verwalten",
+      "noUsersFound": "Keine Nutzer gefunden...",
       "password": "Passwort",
       "settings": "Admin-Einstellungen",
       "username": "Benutzername"

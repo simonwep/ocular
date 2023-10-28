@@ -1,6 +1,6 @@
 <template>
   <Dialog :title="t('navigation.admin.manageUsers')" :open="open" @close="emit('close')">
-    <ul :class="$style.list">
+    <ul v-if="users.length" :class="$style.list">
       <li v-for="usr of users" :key="usr.name" :class="$style.item">
         <span :class="$style.name">{{ usr.name }}</span>
         <Button
@@ -12,11 +12,12 @@
         <Button color="danger" textual icon="close-circle" @click="removeUser(usr)" />
       </li>
     </ul>
+    <p v-else :class="$style.placeholder">{{ t('navigation.admin.noUsersFound') }}</p>
   </Dialog>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { ref, toRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
@@ -27,7 +28,7 @@ const emit = defineEmits<{
   (e: 'close'): void;
 }>();
 
-defineProps<{
+const props = defineProps<{
   open: boolean;
 }>();
 
@@ -37,20 +38,20 @@ const { user, getAllUsers, updateUser, deleteUser } = useStorage();
 const users = ref<GenesisUser[]>([]);
 
 const toggleAdmin = async (user: GenesisUser, admin: boolean) => {
-  await updateUser(user.name, {
-    ...user,
-    admin
-  });
+  await updateUser(user.name, { ...user, admin });
+  await fetchUsers();
 };
 
 const removeUser = async (user: GenesisUser) => {
-  await deleteUser(user.name);
-  await fetchUsers();
+  if (window.confirm(t('navigation.admin.deleteUserConfirmation', { name: user.name }))) {
+    await deleteUser(user.name);
+    await fetchUsers();
+  }
 };
 
 const fetchUsers = async () => (users.value = await getAllUsers());
 
-watch(user, (user) => user?.admin && void fetchUsers(), { immediate: true });
+watch([user, toRef(props, 'open')], ([user]) => user?.admin && void fetchUsers(), { immediate: true });
 </script>
 
 <style lang="scss" module>
@@ -61,6 +62,9 @@ watch(user, (user) => user?.admin && void fetchUsers(), { immediate: true });
   list-style: none outside none;
   gap: 2px;
   margin: 0;
+  max-height: 225px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .item {
@@ -68,6 +72,8 @@ watch(user, (user) => user?.admin && void fetchUsers(), { immediate: true });
   display: flex;
   align-items: center;
   min-width: 175px;
+  font-weight: var(--font-weight-l);
+  font-size: var(--font-size-s);
 
   .name {
     display: inline-block;
@@ -81,5 +87,12 @@ watch(user, (user) => user?.admin && void fetchUsers(), { immediate: true });
   display: flex;
   padding-top: 6px;
   justify-content: space-between;
+}
+
+.placeholder {
+  text-align: center;
+  font-weight: var(--font-weight-l);
+  font-size: var(--font-size-xs);
+  color: var(--c-dimmed);
 }
 </style>
