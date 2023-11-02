@@ -28,6 +28,7 @@
 - ⚡️ Simple and straight-forward UI.
 
 > Check out the [demo](https://ocular.reinisch.io#demo)!
+> Looking for the legacy google-app based version? Check out the [legacy](https://github.com/simonwep/ocular/tree/legacy) branch.
 
 ### Summary
 
@@ -43,22 +44,20 @@ I consider the current state of it as the MVP for personal use.
 But I'm planning on adding more [features](https://github.com/Simonwep/ocular/issues) - I'm not planning of making it any more in-depth as it already is, planned features may only include adding a way to define goals or general improvements for mobile usage.
 As I already said, if you're looking for an in-depth tool to manage your finances check out [firefly](https://www.firefly-iii.org/)!
 
-### Contributing
-
-If you want to work on this, make sure to out the [contributing guidelines](CONTRIBUTING.md) :)
-Furthermore this project *does not* have releases.
-Because of its simplicity the master branch is considered stable and any new feature will directly be merged into it.
-
-#### Development
+### Development
 
 This app uses [genesis](https://github.com/simonwep/genesis) as generic backend.
 Go to the [genesis](https://github.com/simonwep/genesis) repository and follow the instructions to set it up first.
 
-To run the frontend make sure you have the latest [NodeJS LTS](https://nodejs.org/en/) installed, as well as [pnpm](https://pnpm.io/).
+To run the frontend make sure you have the latest [node LTS](https://nodejs.org/en/) installed, as well as [pnpm](https://pnpm.io/).
 You can then start the frontend by running `pnpm run dev` in the root directory.
 
-#### Production
+### Production
 
 This app is deployed using [docker-compose](https://docs.docker.com/compose/).
-See [ocular-docker](https://github.com/simonwep/ocular-docker) for more information.
+See [ocular-docker](https://github.com/simonwep/ocular-docker) for deployment.
 
+### Contributing
+
+If you want to work on this, make sure to out the [contributing guidelines](CONTRIBUTING.md) :)
+Other than that, follow the steps under [development](#development) to get started.
