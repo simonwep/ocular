@@ -17,7 +17,10 @@ RUN pnpm run build
 FROM busybox:1.36.1-musl
 
 WORKDIR /home/static
+
 COPY --from=build /app/dist /home/static
+
+RUN echo 'E404:index.html' >> /etc/httpd.conf
 
 EXPOSE 80
 
