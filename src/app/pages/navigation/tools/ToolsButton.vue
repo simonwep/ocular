@@ -8,7 +8,8 @@
     <Button icon="settings-4-line" textual color="dimmed"></Button>
 
     <template #options>
-      <LoadDemoDataButton v-if="state.status === 'idle'" />
+      <LoadDemoDataButton v-if="status === 'idle'" />
+      <ChangePasswordButton v-if="user" />
       <PrivacyModeButton />
       <ExportButton />
       <ImportButton />
@@ -26,6 +27,7 @@ import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useMediaQuery } from '@composables';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
+import ChangePasswordButton from './change-password/ChangePasswordButton.vue';
 import CopyButton from './copy-paste/CopyButton.vue';
 import PasteButton from './copy-paste/PasteButton.vue';
 import LoadDemoDataButton from './demo/LoadDemoDataButton.vue';
@@ -37,7 +39,7 @@ const props = defineProps<{
   class: ClassNames;
 }>();
 
-const { state } = useStorage();
+const { status, user } = useStorage();
 const { t } = useI18n();
 const media = useMediaQuery();
 

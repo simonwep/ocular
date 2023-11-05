@@ -19,12 +19,11 @@
         "lint:i18n:fix": "pnpm run lint:i18n --fix",
         "lint": "pnpm run lint:i18n && pnpm run lint:src",
         "lint:fix": "pnpm run lint:i18n:fix && pnpm run lint:src:fix",
-        "test:ci": "pnpm run build && pnpm run lint:fix",
+        "test:ci": "pnpm run lint:fix && pnpm run build",
         "gen:icons": "node scripts/icons.js"
     },
     "dependencies": {
         "@popperjs/core": "2.11.8",
-        "ackee-tracker": "5.1.0",
         "echarts": "5.4.3",
         "li18nt": "5.0.0",
         "papaparse": "5.4.1",

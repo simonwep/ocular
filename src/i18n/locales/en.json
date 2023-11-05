@@ -13,6 +13,19 @@
   "app": {
     "name": "Ocular"
   },
+  "auth": {
+    "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "errors": {
+      "generic": "Something went wrong, please try again later.",
+      "invalidPassword": "Current password invalid.",
+      "loginFailed": "Login failed, username and/or password invalid."
+    },
+    "newPassword": "New password",
+    "password": "Password",
+    "signIn": "Sign in",
+    "username": "Username"
+  },
   "budget": {
     "addGroup": "Add Group",
     "append": "Move “{from}” after “{to}”",
@@ -39,6 +52,20 @@
     "yearInThePast": "Year is in the past"
   },
   "navigation": {
+    "admin": {
+      "admin": "Admin",
+      "createUser": "Add user",
+      "deleteUserConfirmation": "Are you sure you want to delete {name}?",
+      "errors": {
+        "conflict": "A user with this name already exists.",
+        "generic": "Something went wrong, please try again later."
+      },
+      "manageUsers": "Manage users",
+      "noUsersFound": "No users found...",
+      "password": "Password",
+      "settings": "Admin settings",
+      "username": "Username"
+    },
     "clipboard": {
       "copy": "Copy data from {year}",
       "paste": "Paste data from {from} into {to}"

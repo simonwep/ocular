@@ -1,15 +1,15 @@
-### Commit guidelines
+## Commit guidelines
 
 This project *strictly* follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 Check out [their explanation](https://www.conventionalcommits.org/en/v1.0.0/#summary) of how to use it.
 In this project we have the following scopes / types:
 
-#### Scopes
+### Scopes
 
 * `core` - Core code, anything app / user-facing related.
 * `setup` - Anything *only* relevant to the build-process / CI.
 
-#### Types
+### Types
 
 * `feat` - A new feature.
 * `refactor` - A refactoring.

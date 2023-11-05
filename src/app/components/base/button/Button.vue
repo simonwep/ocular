@@ -2,7 +2,8 @@
   <button
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
     :class="classes"
-    type="button"
+    :disabled="disabled"
+    :type="type"
     @click="emit('click', $event)"
   >
     <Icon v-if="icon" :class="[$style.icon, iconClass]" :icon="icon" />
@@ -29,15 +30,19 @@ const props = withDefaults(
     icon?: AppIcon;
     text?: string;
     tooltip?: string;
+    type?: 'button' | 'reset' | 'submit';
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
     rounded?: boolean;
+    disabled?: boolean;
   }>(),
   {
     color: 'primary',
+    type: 'button',
     textual: false,
-    rounded: false
+    rounded: false,
+    disabled: false
   }
 );
 
@@ -48,6 +53,7 @@ const classes = computed(() => [
   styles.button,
   {
     [styles.hasIcon]: props.icon,
+    [styles.disabled]: props.disabled,
     [styles.textual]: props.textual,
     [styles.rounded]: props.rounded,
     [styles.iconOnly]: props.icon && !props.text
@@ -103,6 +109,12 @@ const classes = computed(() => [
 
   &.rounded {
     border-radius: 100px;
+  }
+
+  &.disabled,
+  &.disabled:hover {
+    background: var(--c-dimmed);
+    cursor: default;
   }
 }
 

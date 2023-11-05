@@ -13,6 +13,19 @@
   "app": {
     "name": "Ocular"
   },
+  "auth": {
+    "changePassword": "Passwort ändern",
+    "currentPassword": "Aktuelles Passwort",
+    "errors": {
+      "generic": "Irgendwas ist schiefgelaufen, versuche es später erneut.",
+      "invalidPassword": "Das aktuelle Passwort ist inkorrekt.",
+      "loginFailed": "Nutzername und/oder Passwort inkorrekt."
+    },
+    "newPassword": "Neues Passwort",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "username": "Benutzername"
+  },
   "budget": {
     "addGroup": "Gruppe hinzufügen",
     "append": "„{from}“ nach „{to}“ verschieben",
@@ -39,6 +52,20 @@
     "yearInThePast": "Jahr liegt in der Vergangenheit"
   },
   "navigation": {
+    "admin": {
+      "admin": "Administrator",
+      "createUser": "Benutzer hinzufügen",
+      "deleteUserConfirmation": "Soll der Nutzer {name} wirklich gelöscht werden?",
+      "errors": {
+        "conflict": "Ein Nutzer mit diesem Namen existiert bereits.",
+        "generic": "Irgendwas ist schiefgelaufen, versuche es später erneut."
+      },
+      "manageUsers": "Nutzer verwalten",
+      "noUsersFound": "Keine Nutzer gefunden...",
+      "password": "Passwort",
+      "settings": "Admin-Einstellungen",
+      "username": "Benutzername"
+    },
     "clipboard": {
       "copy": "Daten von {year} kopieren",
       "paste": "Daten von {from} in {to} einfügen"

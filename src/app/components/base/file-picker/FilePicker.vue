@@ -41,7 +41,7 @@ const pick = () => {
   display: flex;
   align-items: center;
   background: var(--input-field-background);
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: var(--border-radius-m);
   cursor: pointer;
   border: 1px dashed var(--input-field-border);
@@ -62,7 +62,7 @@ const pick = () => {
     overflow: hidden;
   }
 
-  &:hover {
+  &:hover:not(:focus) {
     border: 1px dashed var(--input-field-hover-border);
     background: var(--input-field-hover-background);
   }
@@ -70,7 +70,6 @@ const pick = () => {
   &:focus {
     border: 1px dashed var(--input-field-focus-border);
     background: var(--input-field-focus-background);
-    box-shadow: var(--input-field-focus-box-shadow);
   }
 
   &.empty .label {

@@ -22,14 +22,11 @@ declare interface HTMLDialogElement {
 }
 
 interface ImportMetaEnv {
-  readonly OAUTH_URI: string;
-  readonly OAUTH_CLIENT_ID: string;
-  readonly OAUTH_SCOPE: string;
+  readonly OCULAR_TEST_USERNAME?: string;
+  readonly OCULAR_TEST_PASSWORD?: string;
 
-  readonly ACKEE_HOST: string;
-  readonly ACKEE_DOMAIN_ID: string;
-
-  readonly APP_BUILD_TIMESTAMP: string;
+  readonly OCULAR_GENESIS_HOST: string;
+  readonly OCULAR_BUILD_TIMESTAMP: string;
 }
 
 interface ImportMeta {

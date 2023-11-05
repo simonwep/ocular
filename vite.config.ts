@@ -6,12 +6,18 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import manifest from './assets/manifest.json';
 
 export default defineConfig({
-  envPrefix: ['OAUTH', 'ACKEE'],
+  envPrefix: ['OCULAR'],
   server: {
-    port: 3000
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        rewrite: (path) => path.slice(4) // cut off `/api`
+      }
+    }
   },
   define: {
-    'import.meta.env.APP_BUILD_TIMESTAMP': Date.now()
+    'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now()
   },
   plugins: [
     tsconfigPaths({ loose: true }),

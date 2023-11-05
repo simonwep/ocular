@@ -1,13 +1,14 @@
 <template>
   <dialog ref="dialog" :class="classes" @transitionend="transitionEnd">
     <div ref="content" :class="[$style.content, contentClass]">
+      <h3 v-if="title" :class="$style.title">{{ title }}</h3>
       <slot />
     </div>
   </dialog>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, useCssModule, watch } from 'vue';
+import { computed, onMounted, ref, toRef, useCssModule, watch } from 'vue';
 import { useOutOfElementClick } from '@composables';
 import { ClassNames } from '@utils';
 
@@ -17,6 +18,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   open: boolean;
+  title?: string;
   contentClass?: ClassNames;
 }>();
 
@@ -36,15 +38,16 @@ const transitionEnd = () => {
 };
 
 watch(
-  () => props.open,
-  (open) => {
-    if (open) {
+  [toRef(props, 'open'), dialog],
+  () => {
+    if (props.open) {
       dialog.value?.showModal();
       requestAnimationFrame(() => (visible.value = true));
     } else {
       visible.value = false;
     }
-  }
+  },
+  { immediate: true }
 );
 
 onMounted(() => {
@@ -98,5 +101,12 @@ onMounted(() => {
   padding: 10px 13px;
   border-radius: var(--border-radius-l);
   box-shadow: var(--dialog-box-shadow);
+}
+
+.title {
+  text-align: center;
+  font-weight: var(--font-weight-l);
+  font-style: var(--font-size-m);
+  padding-bottom: 8px;
 }
 </style>

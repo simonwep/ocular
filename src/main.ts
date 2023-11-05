@@ -10,16 +10,8 @@ import App from './app/App.vue';
 import { i18n } from './i18n';
 import { router } from './router';
 import './styles/index.scss';
-import './tracker';
 
-const { OAUTH_URI, OAUTH_CLIENT_ID, OAUTH_SCOPE } = import.meta.env;
-
-const storage = createStorage({
-  authUri: OAUTH_URI as string,
-  clientId: OAUTH_CLIENT_ID as string,
-  scope: OAUTH_SCOPE as string
-});
-
+const storage = createStorage();
 const app = createApp(App);
 
 app.provide(DATA_STORE_KEY, createDataStore(storage));
@@ -34,8 +26,9 @@ app.mount('#app');
 
 // Print info and register service worker
 const logger = createLogger('app');
-const date = new Date(import.meta.env.APP_BUILD_TIMESTAMP).toLocaleDateString();
-const time = new Date(import.meta.env.APP_BUILD_TIMESTAMP).toLocaleTimeString();
+const date = new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleDateString();
+const time = new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleTimeString();
+
 logger.info(`Ocular build on the ${date} at around ${time}`);
 
 registerSW({

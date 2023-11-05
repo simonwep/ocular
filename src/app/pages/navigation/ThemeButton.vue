@@ -1,11 +1,5 @@
 <template>
-  <Button
-    :tooltip="t('navigation.theme')"
-    :class="[$style.themeButton, classes]"
-    :icon="icon"
-    textual
-    @click="toggle"
-  />
+  <Button :tooltip="t('navigation.theme')" :class="classes" :icon="icon" textual @click="toggle" />
 </template>
 
 <script lang="ts" setup>
@@ -76,9 +70,3 @@ const toggle = () => {
   });
 };
 </script>
-
-<style lang="scss" module>
-.themeButton {
-  display: flex;
-}
-</style>

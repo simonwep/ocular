@@ -1,7 +1,7 @@
 import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
 import { useStateHistory, useTime } from '@composables';
 import { AvailableLocale, i18n } from '@i18n/index';
-import { AppStorage } from '@storage/types';
+import { Storage } from '@storage/index';
 import { moveInArrays, readFile, remove, uuid } from '@utils';
 import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
@@ -61,7 +61,7 @@ type StoreView = Omit<BudgetYear, 'year'> & {
   years: BudgetYear[];
 };
 
-export const createDataStore = (storage?: AppStorage): Store => {
+export const createDataStore = (storage?: Storage): Store => {
   const activeYear = shallowRef(new Date().getFullYear());
   const clipboard = shallowRef<StoredClipboardData | undefined>();
   const state = reactive<DataState>(migrateApplicationState());
@@ -110,6 +110,7 @@ export const createDataStore = (storage?: AppStorage): Store => {
   storage?.sync<DataState, DataState | DataStateV1>({
     name: 'data',
     state: () => state,
+    clear: () => Object.assign(state, migrateApplicationState()),
     push: (data) => {
       Object.assign(state, migrateApplicationState(data));
 

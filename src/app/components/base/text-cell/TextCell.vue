@@ -63,25 +63,9 @@ const change = (e: Event) => {
   }
 
   &:not(.inline) {
-    background: var(--input-field-background);
     border-radius: var(--border-radius-s);
     font-size: var(--input-field-font-size);
     transition: all var(--input-field-transition);
-
-    &:hover {
-      background: var(--input-field-hover-background);
-    }
-
-    &:not(.empty) {
-      &:hover {
-        background: var(--input-field-hover-background);
-      }
-    }
-
-    &:focus-within {
-      background: var(--input-field-focus-background);
-      box-shadow: var(--input-field-focus-box-shadow);
-    }
 
     .input {
       max-height: 100%;

@@ -1,7 +1,7 @@
 <template>
   <div ref="root" :class="$style.app">
     <LoadingScreen
-      :loading="storage.state.status === 'loading'"
+      :loading="storage.status.value === 'loading'"
       :class="$style.root"
       :import="() => import('./pages/Frame.vue')"
     />
