@@ -16,6 +16,14 @@
      src="https://github.com/Simonwep/ocular/workflows/CI/badge.svg"/></a>
 </p>
 
+### Table of contents
+
+* [Features](#features) - _What does this app do?_
+* [Summary](#summary) - _What is this app?_
+* [Setup](#setup) - _How to set this up?_
+  * [Development](#development) - _How to run this locally?_
+  * [Production](#production) - _How to deploy this?_
+
 ### Features
 
 - 🦾 Self-hosted.
@@ -38,13 +46,13 @@ The goal of the app is **not** to track individual expenses, work with multiple 
 This app comes with its own backend (by using [genesis](https://github.com/simonwep/genesis)), so the only thing you need to do is to host it somewhere.
 Your data stays on your server and is not shared with anyone else.
 
-### State of this project
-
 I consider the current state of it as the MVP for personal use.
 But I'm planning on adding more [features](https://github.com/Simonwep/ocular/issues) - I'm not planning of making it any more in-depth as it already is, planned features may only include adding a way to define goals or general improvements for mobile usage.
 As I already said, if you're looking for an in-depth tool to manage your finances check out [firefly](https://www.firefly-iii.org/)!
 
-### Development
+### Setup
+
+#### Development
 
 This app uses [genesis](https://github.com/simonwep/genesis) as generic backend.
 Go to the [genesis](https://github.com/simonwep/genesis) repository and follow the instructions to set it up first.
@@ -52,7 +60,7 @@ Go to the [genesis](https://github.com/simonwep/genesis) repository and follow t
 To run the frontend make sure you have the latest [node LTS](https://nodejs.org/en/) installed, as well as [pnpm](https://pnpm.io/).
 You can then start the frontend by running `pnpm run dev` in the root directory.
 
-### Production
+#### Production
 
 This app is deployed using [docker-compose](https://docs.docker.com/compose/).
 See [ocular-docker](https://github.com/simonwep/ocular-docker) for deployment.
