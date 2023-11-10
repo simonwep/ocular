@@ -19,6 +19,7 @@ export type AppIcon =
   | 'eye-close'
   | 'eye-line'
   | 'file-fill'
+  | 'github-line'
   | 'global-line'
   | 'google-fill'
   | 'grid-line'

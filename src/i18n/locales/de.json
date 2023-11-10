@@ -23,8 +23,8 @@
     },
     "newPassword": "Neues Passwort",
     "password": "Passwort",
-    "signIn": "Anmelden",
-    "username": "Benutzername"
+    "username": "Benutzername",
+    "welcomeBack": "Willkommen zurück!"
   },
   "budget": {
     "addGroup": "Gruppe hinzufügen",
@@ -77,6 +77,7 @@
       "export": "Daten als JSON-Datei exportieren",
       "fileName": "Jährliches Budget"
     },
+    "githubProject": "Schau dir dieses Projekt auf GitHub an!",
     "import": {
       "google": {
         "expenses": "Ausgaben.csv",
@@ -84,7 +85,7 @@
       },
       "import": "Daten von einer JSON-Datei importieren",
       "ocular": {
-        "pickFile": ".budget-Datei auswählen"
+        "pickFile": ".json-Datei auswählen"
       },
       "start": {
         "google": "Eine Annual-Budget-Datei von Google-Sheets",

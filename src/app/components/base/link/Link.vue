@@ -1,5 +1,15 @@
 <template>
-  <RouterLink v-tooltip="{ text: tooltip, position: tooltipPosition }" :to="to" :class="classes">
+  <a
+    v-if="isExternalLink"
+    v-tooltip="{ text: tooltip, position: tooltipPosition }"
+    :href="to"
+    :class="classes"
+    target="_blank"
+  >
+    <Icon v-if="icon" :class="$style.icon" :icon="icon" />
+    <slot />
+  </a>
+  <RouterLink v-else v-tooltip="{ text: tooltip, position: tooltipPosition }" :to="to" :class="classes">
     <Icon v-if="icon" :class="$style.icon" :icon="icon" />
     <slot />
   </RouterLink>
@@ -31,6 +41,10 @@ const props = withDefaults(
 
 const slots = useSlots();
 const styles = useCssModule();
+const theme = useThemeStyles(() => props.color);
+
+const isExternalLink = computed(() => props.to.startsWith('http'));
+
 const classes = computed(() => [
   props.class,
   styles.link,
@@ -38,8 +52,6 @@ const classes = computed(() => [
     [styles.custom]: props.custom ?? slots.default
   }
 ]);
-
-const theme = useThemeStyles(() => props.color);
 </script>
 
 <style lang="scss" module>

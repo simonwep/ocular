@@ -109,7 +109,7 @@ const reorder = (evt: ReorderEvent) => {
 }
 
 .month {
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-m);
   padding-right: 20px;
   padding-bottom: 5px;

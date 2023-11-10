@@ -27,7 +27,7 @@ const submit = (e: Event) => {
   display: flex;
   flex-direction: column;
   width: 250px;
-  gap: 8px;
+  gap: 12px;
   padding-top: 8px;
 
   .btn {

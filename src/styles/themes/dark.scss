@@ -122,10 +122,10 @@
   --input-field-placeholder: #5d6275;
   --input-field-background: var(--app-background);
 
-  --input-field-hover-border: var(--c-primary-hover);
+  --input-field-hover-border: var(--c-primary-pure);
   --input-field-hover-background: var(--input-field-background);
 
-  --input-field-focus-border: #0750b1;
+  --input-field-focus-border: var(--c-primary-pure);
   --input-field-focus-background: var(--input-field-background);
   --input-field-focus-box-shadow: 0 0 0 2px #005ad173;
 

@@ -33,9 +33,9 @@ const theme = useThemeStyles(() => mapping[props.type][0]);
 .alert {
   display: flex;
   gap: 4px;
-  color: v-bind('theme.color.base');
-  border: 2px dashed v-bind('theme.color.base');
-  padding: 4px 6px;
+  color: v-bind('theme.text.base');
+  background: v-bind('theme.color.base');
+  padding: 8px 10px;
   font-weight: var(--font-weight-l);
   font-size: var(--font-size-xs);
   border-radius: var(--border-radius-m);

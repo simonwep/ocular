@@ -98,7 +98,7 @@ onMounted(() => {
 .content {
   background: var(--dialog-background);
   color: var(--theme-text);
-  padding: 10px 13px;
+  padding: 16px 18px;
   border-radius: var(--border-radius-l);
   box-shadow: var(--dialog-box-shadow);
 }
