@@ -15,22 +15,13 @@
         :to="button.link"
       />
 
-      <template v-if="media !== 'mobile'">
-        <div :class="$style.divider" />
-        <Link
-          :tooltip="t('navigation.githubProject')"
-          color="dimmed"
-          to="https://github.com/simonwep/ocular"
-          icon="github-line"
-        />
-      </template>
-
       <ToolsButton :class="[$style.top, $style.btn]" />
       <AdminButton v-if="user?.admin" :class="$style.btn" />
       <SelectYearButton :class="$style.btn" />
       <template v-if="media !== 'mobile'">
         <ChangeLanguageButton :class="$style.btn" />
         <ChangeCurrencyButton :class="$style.btn" />
+        <InfoButton :class="$style.btn" />
       </template>
       <div :class="$style.divider" />
       <CloudButton :class="$style.btn" />
@@ -46,8 +37,8 @@
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
+import InfoButton from '@app/pages/navigation/info/InfoButton.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
-import Icon from '@components/base/icon/Icon.vue';
 import Link from '@components/base/link/Link.vue';
 import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
 import { useMediaQuery } from '@composables';

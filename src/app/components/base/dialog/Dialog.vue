@@ -107,6 +107,6 @@ onMounted(() => {
   text-align: center;
   font-weight: var(--font-weight-l);
   font-style: var(--font-size-m);
-  padding-bottom: 8px;
+  padding-bottom: 14px;
 }
 </style>

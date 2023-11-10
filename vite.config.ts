@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
@@ -17,7 +18,11 @@ export default defineConfig({
     }
   },
   define: {
-    'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now()
+    'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now(),
+    'import.meta.env.OCULAR_BUILD_SHA': JSON.stringify(execSync('git rev-parse --short HEAD').toString().trim()),
+    'import.meta.env.OCULAR_BUILD_VERSION': JSON.stringify(
+      execSync('git describe --tags --always --abbrev=0').toString().trim()
+    )
   },
   plugins: [
     tsconfigPaths({ loose: true }),

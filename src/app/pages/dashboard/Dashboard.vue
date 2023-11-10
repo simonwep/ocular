@@ -72,4 +72,9 @@ const rotateYear = (dir: -1 | 1) => {
   display: flex;
   grid-gap: 10px;
 }
+
+.version {
+  color: var(--c-text-dark-muted);
+  font-size: var(--font-size-xs);
+}
 </style>

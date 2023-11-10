@@ -28,7 +28,6 @@ const submit = (e: Event) => {
   flex-direction: column;
   width: 250px;
   gap: 12px;
-  padding-top: 8px;
 
   .btn {
     text-align: center;

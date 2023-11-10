@@ -4,6 +4,7 @@
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
     :href="to"
     :class="classes"
+    rel="noopener,noreferrer,nofollow"
     target="_blank"
   >
     <Icon v-if="icon" :class="$style.icon" :icon="icon" />

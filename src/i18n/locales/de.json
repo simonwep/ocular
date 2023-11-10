@@ -11,6 +11,9 @@
     }
   },
   "app": {
+    "about": "Über Ocular",
+    "github": "Schau dir dieses Projekt auf {link} an!",
+    "madeWithLove": "Made with ❤️ by Simon",
     "name": "Ocular"
   },
   "auth": {
