@@ -39,6 +39,7 @@ const { t } = useI18n();
   display: flex;
   flex-direction: column;
   font-size: var(--font-size-s);
+  text-align: center;
   gap: 2px;
 }
 
@@ -51,7 +52,6 @@ const { t } = useI18n();
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-l);
   margin-top: 8px;
-  text-align: center;
 }
 
 .meta {

@@ -31,8 +31,8 @@ interface ImportMetaEnv {
 
   // Build information
   readonly OCULAR_BUILD_TIMESTAMP: number;
-  readonly OCULAR_BUILD_SHA: string;
-  readonly OCULAR_BUILD_VERSION: string;
+  readonly OCULAR_BUILD_VERSION?: string;
+  readonly OCULAR_BUILD_SHA?: string;
 }
 
 interface ImportMeta {

@@ -18,11 +18,7 @@ export default defineConfig({
     }
   },
   define: {
-    'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now(),
-    'import.meta.env.OCULAR_BUILD_SHA': JSON.stringify(execSync('git rev-parse --short HEAD').toString().trim()),
-    'import.meta.env.OCULAR_BUILD_VERSION': JSON.stringify(
-      execSync('git describe --tags --always --abbrev=0').toString().trim()
-    )
+    'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now()
   },
   plugins: [
     tsconfigPaths({ loose: true }),
