@@ -52,6 +52,7 @@
     "remainingBalance": "Verbleibender Saldo bis {year}",
     "summary": "Zusammenfassung",
     "tableOverview": "Tabellenübersicht",
+    "yearEnding": "Das Jahr ist zu Ende...",
     "yearInTheFuture": "Jahr liegt in der Zukunft",
     "yearInThePast": "Jahr liegt in der Vergangenheit"
   },
