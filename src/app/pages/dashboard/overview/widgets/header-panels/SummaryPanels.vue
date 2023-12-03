@@ -23,10 +23,10 @@
         state.activeYear < time.year.value
           ? t('dashboard.yearInThePast')
           : state.activeYear > time.year.value
-          ? t('dashboard.yearInTheFuture')
-          : time.month.value === 11
-          ? t('dashboard.yearEnding')
-          : undefined
+            ? t('dashboard.yearInTheFuture')
+            : time.month.value === 11
+              ? t('dashboard.yearEnding')
+              : undefined
       "
       :values="remainingBalance"
       color="secondary"
