@@ -1,10 +1,10 @@
 <template>
-  <BudgetPane :title="t('dashboard.expenses')" type="expenses" />
+  <BudgetPane :title="t('page.expenses.title')" type="expenses" />
 </template>
 
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
-import BudgetPane from '../shared/pane/BudgetPane.vue';
+import BudgetPane from '../shared/BudgetPane.vue';
 
 const { t } = useI18n();
 </script>

@@ -31,6 +31,7 @@ const props = withDefaults(
     text?: string;
     tooltip?: string;
     type?: 'button' | 'reset' | 'submit';
+    size?: 'm' | 'l';
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
@@ -40,6 +41,7 @@ const props = withDefaults(
   {
     color: 'primary',
     type: 'button',
+    size: 'm',
     textual: false,
     rounded: false,
     disabled: false
@@ -51,6 +53,7 @@ const theme = useThemeStyles(() => props.color);
 const classes = computed(() => [
   props.class,
   styles.button,
+  styles[props.size],
   {
     [styles.hasIcon]: props.icon,
     [styles.disabled]: props.disabled,
@@ -92,6 +95,17 @@ const classes = computed(() => [
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
     line-height: 1em;
+  }
+
+  &.l {
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .text {
+      font-size: var(--font-size-m);
+    }
   }
 
   &:focus {

@@ -9,11 +9,11 @@
         :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
         >{{ month }}</span
       >
-      <span :class="$style.bold">{{ t('budget.total') }}</span>
-      <span :class="$style.bold">{{ t('budget.average') }}</span>
+      <span :class="$style.bold">{{ t('shared.total') }}</span>
+      <span :class="$style.bold">{{ t('shared.average') }}</span>
 
       <!-- Income -->
-      <span :class="[$style.bold, $style.muted]">{{ t('dashboard.income') }}</span>
+      <span :class="[$style.bold, $style.muted]">{{ t('page.income.title') }}</span>
       <span
         v-for="(amount, index) of income"
         :key="index"
@@ -25,7 +25,7 @@
       <span :class="$style.muted">{{ n(average(income), 'currency') }}</span>
 
       <!-- Expenses -->
-      <span :class="[$style.bold, $style.muted]">{{ t('dashboard.expenses') }}</span>
+      <span :class="[$style.bold, $style.muted]">{{ t('page.expenses.title') }}</span>
       <span
         v-for="(amount, index) of expenses"
         :key="index"
@@ -37,7 +37,7 @@
       <span :class="$style.muted">{{ n(average(expenses), 'currency') }}</span>
 
       <!-- Net savings  -->
-      <span :class="[$style.bold, $style.muted]">{{ t('dashboard.netSavings') }}</span>
+      <span :class="[$style.bold, $style.muted]">{{ t('page.dashboard.netSavings') }}</span>
       <span
         v-for="(amount, index) of netSavings"
         :key="index"
@@ -49,7 +49,7 @@
       <span :class="$style.muted">{{ n(average(netSavings), 'currency') }}</span>
 
       <!-- Ending balance  -->
-      <span :class="$style.bold">{{ t('dashboard.endingBalance') }}</span>
+      <span :class="$style.bold">{{ t('page.dashboard.endingBalance') }}</span>
       <span
         v-for="(amount, index) of endingBalance"
         :key="index"

@@ -19,7 +19,7 @@
     <span />
 
     <!-- Sums -->
-    <span :class="$style.sum">{{ t('budget.totals') }}</span>
+    <span :class="$style.sum">{{ t('shared.totals') }}</span>
     <Currency v-for="(sum, index) of totals" :key="index" :value="sum" :class="$style.sum" />
     <span />
     <span />
@@ -32,7 +32,7 @@
 
     <!-- Footer -->
     <span />
-    <Button :class="$style.addGroupBtn" icon="plus" :text="t('budget.addGroup')" @click="addBudgetGroup(type)" />
+    <Button :class="$style.addGroupBtn" icon="plus" :text="t('shared.addGroup')" @click="addBudgetGroup(type)" />
   </div>
 </template>
 
@@ -78,11 +78,11 @@ const buildDraggableText = (store: DraggableEvent) => {
   if (src) {
     if (dst) {
       return store.type === 'before'
-        ? t('budget.prepend', { from: src.name, to: dst.name })
-        : t('budget.append', { from: src.name, to: dst.name });
+        ? t('shared.prepend', { from: src.name, to: dst.name })
+        : t('shared.append', { from: src.name, to: dst.name });
     }
 
-    return t('budget.move', { from: src.name });
+    return t('shared.move', { from: src.name });
   }
 };
 

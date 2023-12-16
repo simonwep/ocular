@@ -1,6 +1,6 @@
 <template>
   <ContextMenu
-    :tooltip="t('navigation.currency')"
+    :tooltip="t('navigation.currency.change')"
     tooltip-position="right"
     :class="classes"
     :options="currencies"

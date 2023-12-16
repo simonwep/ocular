@@ -10,105 +10,117 @@
       "style": "percent"
     }
   },
-  "app": {
-    "about": "About Ocular",
-    "github": "Check this project out on {link}!",
-    "madeWithLove": "Made with ❤️ by Simon",
-    "name": "Ocular"
-  },
-  "auth": {
-    "changePassword": "Change password",
-    "currentPassword": "Current password",
-    "errors": {
-      "generic": "Something went wrong, please try again later.",
-      "invalidPassword": "Current password invalid.",
+  "navigation": {
+    "tools": {
+      "tools": "Tools",
+      "changePassword": {
+        "change": "Change password",
+        "current": "Current password",
+        "new": "New password",
+        "invalid": "Current password invalid.",
+        "unknownError": "Something went wrong, please try again later."
+      },
+      "copyPaste": {
+        "copy": "Copy data from {year}",
+        "paste": "Paste data from {from} into {to}"
+      },
+      "demo": {
+        "loadDemoData": "Load demo data"
+      },
+      "export": {
+        "export": "Export as json file"
+      },
+      "import": {
+        "import": "Import from json file",
+        "what": {
+          "google": "Google-Sheets annual budget file",
+          "ocular": "A previously exported file",
+          "title": "What would you like to import?"
+        },
+        "ocular": {
+          "pickFile": "Select your .json file to import",
+          "import": "Import ocular data"
+        },
+        "google": {
+          "import": "Import google data",
+          "pickFile": "Select your .csv file to import",
+          "expenses": "Expenses.csv",
+          "income": "Income.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Switch to public mode",
+        "enable": "Switch to privacy mode"
+      }
+    },
+    "language": {
+      "switch": "Switch to a different language"
+    },
+    "info": {
+      "about": "About Ocular",
+      "github": "Check this project out on {link}!",
+      "madeWithLove": "Made with ❤️ by Simon",
+      "meta": "{version} / {date} / {sha}"
+    },
+    "currency": {
+      "change": "Change the currency that should be used"
+    },
+    "theme": {
+      "change": "Change color theme"
+    },
+    "year": {
+      "change": "Switch to a different year"
+    },
+    "auth": {
+      "welcomeBack": "Welcome back!",
+      "signIn": "Sign in",
+      "username": "Username",
+      "password": "Password",
       "loginFailed": "Login failed, username and/or password invalid."
     },
-    "newPassword": "New password",
-    "password": "Password",
-    "signIn": "Sign in",
-    "username": "Username",
-    "welcomeBack": "Welcome back!"
+    "admin": {
+      "settings": "Admin settings",
+      "createUser": "Create user",
+      "username": "Username",
+      "password": "Password",
+      "admin": "Admin",
+      "conflict": "A user with this name already exists.",
+      "error": "Something went wrong, please try again later.",
+      "deleteUserConfirmation": "Are you sure you want to delete this user?",
+      "manageUsers": "Manage users",
+      "noUsersFound": "No users found..."
+    }
   },
-  "budget": {
+  "shared": {
     "addGroup": "Add Group",
     "append": "Move “{from}” after “{to}”",
     "average": "Average",
     "move": "Move “{from}”",
     "prepend": "Move “{from}” before “{to}”",
     "total": "Total",
-    "totals": "Totals"
+    "totals": "Totals",
+    "placeholder": "Start by filling out the income / expenses tabs! :)"
   },
-  "dashboard": {
-    "distribution": "Distribution",
-    "endingBalance": "Ending Balance",
-    "expenses": "Expenses",
-    "graph": {
-      "placeholder": "Start by filling out the income / expenses tabs! :)"
+  "page": {
+    "income": {
+      "title": "Income"
     },
-    "header": "Dashboard - Annual Budget for {year}",
-    "income": "Income",
-    "netSavings": "Net Savings",
-    "remainingBalance": "Remaining Balance until {year}",
-    "summary": "Summary",
-    "tableOverview": "Table overview",
-    "yearEnding": "This Year is coming to an end...",
-    "yearInTheFuture": "Year is in the future",
-    "yearInThePast": "Year is in the past"
-  },
-  "navigation": {
-    "admin": {
-      "admin": "Admin",
-      "createUser": "Add user",
-      "deleteUserConfirmation": "Are you sure you want to delete {name}?",
-      "errors": {
-        "conflict": "A user with this name already exists.",
-        "generic": "Something went wrong, please try again later."
-      },
-      "manageUsers": "Manage users",
-      "noUsersFound": "No users found...",
-      "password": "Password",
-      "settings": "Admin settings",
-      "username": "Username"
+    "expenses": {
+      "title": "Expenses"
     },
-    "clipboard": {
-      "copy": "Copy data from {year}",
-      "paste": "Paste data from {from} into {to}"
-    },
-    "currency": "Change the currency that should be used",
-    "disablePrivacyMode": "Switch to public mode",
-    "enablePrivacyMode": "Switch to privacy mode",
-    "export": {
-      "export": "Export as JSON file",
-      "fileName": "Annual Budget"
-    },
-    "githubProject": "Check this project out on GitHub!",
-    "import": {
-      "google": {
-        "expenses": "Expenses.csv",
-        "income": "Income.csv"
-      },
-      "import": "Import from JSON file",
-      "ocular": {
-        "pickFile": "Select your .json file to import"
-      },
-      "start": {
-        "google": "Google-Sheets annual budget file",
-        "ocular": "A previously exported file",
-        "title": "What would you like to import?"
-      }
-    },
-    "language": "Switch to a different language",
-    "loadDemoData": "Load demo data",
-    "menu": {
-      "dashboard": "Dashboard",
+    "dashboard": {
+      "title": "Dashboard",
+      "tables": "Tables",
+      "income": "Income",
       "expenses": "Expenses",
-      "export": "Export",
-      "import": "Import",
-      "income": "Income"
-    },
-    "theme": "Switch theme",
-    "tools": "Tools",
-    "year": "Switch to a different year"
+      "summary": "Summary",
+      "endingBalance": "Ending Balance",
+      "header": "Übersicht - Jährliches Budget für {year}",
+      "remainingBalance": "Remaining Balance until {year}",
+      "netSavings": "Net Savings",
+      "yearInThePast": "Year is in the past",
+      "yearInTheFuture": "Year is in the future",
+      "yearEnding": "This Year is coming to an end..."
+    }
   }
 }

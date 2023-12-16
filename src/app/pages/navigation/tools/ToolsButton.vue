@@ -1,6 +1,6 @@
 <template>
   <ContextMenu
-    :tooltip="t('navigation.tools')"
+    :tooltip="t('navigation.tools.tools')"
     :position="media === 'mobile' ? 'top' : 'right-end'"
     tooltip-position="right"
     :class="classes"
@@ -33,7 +33,7 @@ import PasteButton from './copy-paste/PasteButton.vue';
 import LoadDemoDataButton from './demo/LoadDemoDataButton.vue';
 import ExportButton from './export/ExportButton.vue';
 import ImportButton from './import/ImportButton.vue';
-import PrivacyModeButton from './privacy-mode-button/PrivacyModeButton.vue';
+import PrivacyModeButton from './privacy-mode/PrivacyModeButton.vue';
 
 const props = defineProps<{
   class: ClassNames;

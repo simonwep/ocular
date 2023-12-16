@@ -1,5 +1,5 @@
 <template>
-  <ContextMenuButton :text="t('navigation.loadDemoData')" icon="magic-line" @click="loadDemoData" />
+  <ContextMenuButton :text="t('navigation.tools.demo.loadDemoData')" icon="magic-line" @click="loadDemoData" />
 </template>
 
 <script lang="ts" setup>

@@ -6,6 +6,7 @@
         <slot v-if="$slots.title" name="title" />
         <span v-else>{{ title }}</span>
         <template v-if="amount">
+          <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
           <span> - </span>
           <Currency :value="amount" />
         </template>
@@ -21,8 +22,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import Currency from '@components/base/currency/Currency.vue';
+import { useScrollShadow } from '@composables';
 import { ClassNames } from '@utils';
-import { useScrollShadow } from '../../../composables/useScrollShadow';
 
 const props = defineProps<{
   class?: ClassNames;

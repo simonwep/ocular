@@ -1,6 +1,6 @@
 <template>
   <Button
-    :tooltip="t('app.about')"
+    :tooltip="t('navigation.info.about')"
     :class="classes"
     textual
     color="dimmed"

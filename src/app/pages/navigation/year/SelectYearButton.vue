@@ -1,6 +1,6 @@
 <template>
   <ContextMenu
-    :tooltip="t('navigation.year')"
+    :tooltip="t('navigation.theme.change')"
     tooltip-position="right"
     :position="media === 'mobile' ? 'top' : 'right-end'"
     :options="options"

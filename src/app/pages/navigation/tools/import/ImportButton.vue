@@ -1,14 +1,14 @@
 <template>
-  <ContextMenuButton :text="t('navigation.import.import')" icon="upload-cloud-2-line" @click="visible = true" />
+  <ContextMenuButton :text="t('navigation.tools.import.import')" icon="upload-cloud-2-line" @click="visible = true" />
 
   <Dialog ref="dialog" :open="visible" @close="visible = false">
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
-        <h1 :class="$style.title">{{ t('navigation.import.start.title') }}</h1>
-        <Button icon="file-fill" :text="t('navigation.import.start.ocular')" @click="next(BudgetFileScreen)" />
+        <h1 :class="$style.title">{{ t('navigation.tools.import.what.title') }}</h1>
+        <Button icon="file-fill" :text="t('navigation.tools.import.what.ocular')" @click="next(BudgetFileScreen)" />
         <Button
           icon="google-fill"
-          :text="t('navigation.import.start.google')"
+          :text="t('navigation.tools.import.what.google')"
           @click="next(GoogleAnnualBudgetScreen)"
         />
       </Step>

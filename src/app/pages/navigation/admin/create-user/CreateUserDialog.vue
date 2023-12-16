@@ -19,8 +19,8 @@
       />
       <CheckBoxField v-model="newUser.admin" :label="t('navigation.admin.admin')" />
 
-      <Alert v-if="state === 'errored'" :text="t('navigation.admin.errors.generic')" type="error" />
-      <Alert v-if="state === 'conflict'" :text="t('navigation.admin.errors.conflict')" type="error" />
+      <Alert v-if="state === 'errored'" :text="t('navigation.admin.error')" type="error" />
+      <Alert v-if="state === 'conflict'" :text="t('navigation.admin.conflict')" type="error" />
     </Form>
   </Dialog>
 </template>

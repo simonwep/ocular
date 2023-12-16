@@ -1,12 +1,17 @@
 <template>
-  <Screen :back="back" :class="$style.screen" :title="t('navigation.import.start.ocular')">
+  <Screen :back="back" :class="$style.screen" :title="t('navigation.tools.import.what.ocular')">
     <FilePicker
       v-model="budgetFile"
       :class="$style.input"
-      :placeholder="t('navigation.import.ocular.pickFile')"
+      :placeholder="t('navigation.tools.import.ocular.pickFile')"
       :accept="['.json']"
     />
-    <Button v-if="budgetFile" icon="upload-cloud-2-line" :text="t('navigation.import.import')" @click="load" />
+    <Button
+      v-if="budgetFile"
+      icon="upload-cloud-2-line"
+      :text="t('navigation.tools.import.ocular.import')"
+      @click="load"
+    />
   </Screen>
 </template>
 

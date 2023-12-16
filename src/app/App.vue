@@ -48,8 +48,10 @@ watch(
   }
 );
 
-watchEffect(() => {
-  document.title = ['app.name', ...router.currentRoute.value.matched.map((v) => v.name as string)].map(t).join(' / ');
+watch(router.currentRoute, (route) => {
+  if (route) {
+    document.title = t(`page.${route.name as string}.title`);
+  }
 });
 </script>
 

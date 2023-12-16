@@ -1,7 +1,7 @@
 <template>
   <ContextMenuButton
     :text="
-      t('navigation.clipboard.copy', {
+      t('navigation.tools.copyPaste.copy', {
         year: state.activeYear
       })
     "

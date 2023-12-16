@@ -5,34 +5,17 @@ export const router = createRouter({
   routes: [
     {
       path: '/',
-      strict: true,
-      redirect: '/dashboard'
-    },
-    {
-      path: '/dashboard',
-      name: 'navigation.menu.dashboard',
-      component: () => import('./app/pages/dashboard/Dashboard.vue'),
-      children: [
-        {
-          path: '',
-          name: 'dashboard.distribution',
-          component: () => import('./app/pages/dashboard/overview/Overview.vue')
-        },
-        {
-          path: 'summary',
-          name: 'dashboard.summary',
-          component: () => import('./app/pages/dashboard/summary/Summary.vue')
-        }
-      ]
+      name: 'dashboard',
+      component: () => import('./app/pages/dashboard/Dashboard.vue')
     },
     {
       path: '/income',
-      name: 'navigation.menu.income',
+      name: 'income',
       component: () => import('./app/pages/income/Income.vue')
     },
     {
       path: '/expenses',
-      name: 'navigation.menu.expenses',
+      name: 'expenses',
       component: () => import('./app/pages/expenses/Expenses.vue')
     },
     {

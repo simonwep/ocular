@@ -1,21 +1,21 @@
 <template>
-  <Screen :back="back" :class="$style.screen" :title="t('navigation.import.start.google')">
+  <Screen :back="back" :class="$style.screen" :title="t('navigation.tools.import.google.import')">
     <FilePicker
       v-model="incomeFile"
       :class="$style.input"
-      :placeholder="t('navigation.import.google.income')"
+      :placeholder="t('navigation.tools.import.google.income')"
       :accept="['.csv']"
     />
     <FilePicker
       v-model="expensesFile"
       :class="$style.input"
-      :placeholder="t('navigation.import.google.expenses')"
+      :placeholder="t('navigation.tools.import.google.expenses')"
       :accept="['.csv']"
     />
     <Button
       v-if="expensesFile && incomeFile"
       icon="upload-cloud-2-line"
-      :text="t('navigation.import.import')"
+      :text="t('navigation.tools.import.google.import')"
       @click="load"
     />
   </Screen>

@@ -1,5 +1,9 @@
 <template>
-  <ContextMenuButton icon="key-2-line" :text="t('auth.changePassword')" @click="showChangePasswordDialog = true" />
+  <ContextMenuButton
+    icon="key-2-line"
+    :text="t('navigation.tools.changePassword.change')"
+    @click="showChangePasswordDialog = true"
+  />
   <ChangePasswordDialog :open="showChangePasswordDialog" @close="showChangePasswordDialog = false" />
 </template>
 

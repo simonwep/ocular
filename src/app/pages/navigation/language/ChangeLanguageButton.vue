@@ -1,6 +1,6 @@
 <template>
   <ContextMenu
-    :tooltip="t('navigation.language')"
+    :tooltip="t('navigation.language.switch')"
     tooltip-position="right"
     :class="classes"
     :options="locales"

@@ -4,7 +4,7 @@
       <Icon icon="shopping-basket-2" :class="$style.icon" />
       <Icon icon="hand-coin" :class="$style.icon" />
     </div>
-    <span>{{ t('dashboard.graph.placeholder') }}</span>
+    <span>{{ t('shared.placeholder') }}</span>
   </div>
 </template>
 

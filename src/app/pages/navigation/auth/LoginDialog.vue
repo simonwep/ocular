@@ -1,9 +1,9 @@
 <template>
-  <Dialog :open="open" :title="t('auth.welcomeBack')" @close="emit('close')">
-    <Form :submit-label="t('auth.signIn')" @submit="signIn">
-      <TextField v-model="username" required :label="t('auth.username')" type="text" />
-      <TextField v-model="password" required :label="t('auth.password')" type="password" />
-      <Alert v-if="state === 'errored'" :text="t('auth.errors.loginFailed')" type="error" />
+  <Dialog :open="open" :title="t('navigation.auth.welcomeBack')" @close="emit('close')">
+    <Form :submit-label="t('navigation.auth.signIn')" @submit="signIn">
+      <TextField v-model="username" required :label="t('navigation.auth.username')" type="text" />
+      <TextField v-model="password" required :label="t('navigation.auth.password')" type="password" />
+      <Alert v-if="state === 'errored'" :text="t('navigation.auth.loginFailed')" type="error" />
     </Form>
   </Dialog>
 </template>

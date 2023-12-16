@@ -37,9 +37,9 @@ const data = computed((): LineChartConfig => {
   return {
     labels: months.value,
     series: [
-      { name: t('dashboard.income'), color: 'var(--c-success-light-dimmed)', data: income },
-      { name: t('dashboard.expenses'), color: 'var(--c-danger-light-dimmed)', data: expenses },
-      { name: t('dashboard.endingBalance'), color: 'var(--c-primary-light-dimmed)', data: endingBalance }
+      { name: t('page.dashboard.income'), color: 'var(--c-success-light-dimmed)', data: income },
+      { name: t('page.dashboard.expenses'), color: 'var(--c-danger-light-dimmed)', data: expenses },
+      { name: t('page.dashboard.endingBalance'), color: 'var(--c-primary-light-dimmed)', data: endingBalance }
     ]
   };
 });

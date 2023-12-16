@@ -2,7 +2,7 @@
   <ContextMenuButton
     v-if="clipboard.data.value"
     :text="
-      t('navigation.clipboard.paste', {
+      t('navigation.tools.copyPaste.paste', {
         from: clipboard.data.value?.year,
         to: state.activeYear
       })

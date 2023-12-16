@@ -1,6 +1,6 @@
 <template>
   <ContextMenuButton
-    :text="privacyMode ? t('navigation.disablePrivacyMode') : t('navigation.enablePrivacyMode')"
+    :text="privacyMode ? t('navigation.tools.privacyMode.disable') : t('navigation.tools.privacyMode.enable')"
     :icon="privacyMode ? 'eye-line' : 'eye-close'"
     @click="togglePrivacyMode"
   />

@@ -1,52 +1,58 @@
 {
-    "parser": "vue-eslint-parser",
-    "parserOptions": {
-        "parser": "@typescript-eslint/parser",
-        "extraFileExtensions": [".vue"]
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "extraFileExtensions": [
+      ".vue"
+    ]
+  },
+  "env": {
+    "node": true
+  },
+  "globals": {
+    "defineModel": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@intlify/vue-i18n/recommended",
+    "plugin:vue/vue3-recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true
     },
-    "env": {
-        "node": true
-    },
-    "globals": {
-        "defineModel": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:vue/vue3-recommended",
-        "plugin:prettier/recommended",
-        "plugin:import/recommended",
-        "plugin:import/typescript"
-    ],
-    "settings": {
-        "import/resolver": {
-            "typescript": true,
-            "node": true
-        }
-    },
-    "rules": {
-        "vue/multi-word-component-names": "off",
-        "vue/require-default-prop": "off",
-        "vue/no-v-html": "off",
-        "prettier/prettier": "error",
-        "no-console": "error",
-        "import/order": [
-            "error",
-            {
-                "groups": [
-                    "builtin",
-                    "external",
-                    "internal",
-                    "parent",
-                    "sibling",
-                    "index",
-                    "type",
-                    "object"
-                ],
-                "alphabetize": {
-                    "order": "asc"
-                }
-            }
-        ]
+    "vue-i18n": {
+      "localeDir": "src/i18n/locales/*.json"
     }
+  },
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    "vue/require-default-prop": "off",
+    "vue/no-v-html": "off",
+    "prettier/prettier": "error",
+    "no-console": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "type",
+          "object"
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ]
+  }
 }

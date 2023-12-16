@@ -1,36 +1,36 @@
 <template>
   <div :class="classes" @animationend="animationsDone++">
-    <SummaryPanel :values="income" color="success" to="/income" :title="t('dashboard.income')" />
+    <SummaryPanel :values="income" color="success" to="/income" :title="t('page.dashboard.income')" />
 
     <SummaryPanel
       :sub-title="n(expensePercentage, 'percent')"
       to="/expenses"
       :values="expenses"
       color="warning"
-      :title="t('dashboard.expenses')"
+      :title="t('page.dashboard.expenses')"
     />
 
     <SummaryPanel
       :sub-title="n(endingBalanceTotal ? 1 - expensePercentage : 0, 'percent')"
       :values="endingBalance"
       color="primary"
-      :title="t('dashboard.endingBalance')"
+      :title="t('page.dashboard.endingBalance')"
     />
 
     <SummaryPanel
       :sub-title="n(remainingBalancePercentage, 'percent')"
       :alt="
         state.activeYear < time.year.value
-          ? t('dashboard.yearInThePast')
+          ? t('page.dashboard.yearInThePast')
           : state.activeYear > time.year.value
-            ? t('dashboard.yearInTheFuture')
+            ? t('page.dashboard.yearInTheFuture')
             : time.month.value === 11
-              ? t('dashboard.yearEnding')
+              ? t('page.dashboard.yearEnding')
               : undefined
       "
       :values="remainingBalance"
       color="secondary"
-      :title="t('dashboard.remainingBalance', { year: state.activeYear + 1 })"
+      :title="t('page.dashboard.remainingBalance', { year: state.activeYear + 1 })"
     />
   </div>
 </template>

@@ -20,6 +20,7 @@
       <span :class="$style.text">{{ label }}</span>
     </div>
 
+    <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
     <div ref="element" :class="$style.hidden">hidden</div>
   </div>
 </template>

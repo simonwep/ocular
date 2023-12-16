@@ -1,18 +1,23 @@
 <template>
-  <Dialog :title="t('auth.changePassword')" :open="open" @close="emit('close')">
-    <Form :submit-label="t('auth.changePassword')" @submit="submit">
-      <TextField v-model="currentPassword" required :label="t('auth.currentPassword')" type="password" />
+  <Dialog :title="t('navigation.tools.changePassword.change')" :open="open" @close="emit('close')">
+    <Form :submit-label="t('navigation.tools.changePassword.change')" @submit="submit">
+      <TextField
+        v-model="currentPassword"
+        required
+        :label="t('navigation.tools.changePassword.current')"
+        type="password"
+      />
       <TextField
         v-model="newPassword"
         :min-length="8"
         :max-length="64"
         required
-        :label="t('auth.newPassword')"
+        :label="t('navigation.tools.changePassword.new')"
         type="password"
         show-password-strength
       />
-      <Alert v-if="state === 'invalid-password'" :text="t('auth.errors.invalidPassword')" type="error" />
-      <Alert v-if="state === 'errored'" :text="t('auth.errors.generic')" type="error" />
+      <Alert v-if="state === 'invalid-password'" :text="t('navigation.tools.changePassword.invalid')" type="error" />
+      <Alert v-if="state === 'errored'" :text="t('navigation.tools.changePassword.unknownError')" type="error" />
     </Form>
   </Dialog>
 </template>

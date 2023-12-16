@@ -1,5 +1,5 @@
 <template>
-  <ContextMenuButton :text="t('navigation.export.export')" icon="download-cloud-2-line" @click="save" />
+  <ContextMenuButton :text="t('navigation.tools.export.export')" icon="download-cloud-2-line" @click="save" />
 </template>
 
 <script lang="ts" setup>
@@ -12,6 +12,6 @@ const { serialize } = useDataStore();
 const { t } = useI18n();
 
 const save = () => {
-  saveFile(serialize(), `${t('navigation.export.fileName')}.json`, 'application/json');
+  saveFile(serialize(), 'ocular-data.json', 'application/json');
 };
 </script>

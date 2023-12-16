@@ -6,13 +6,13 @@
 
       <Link
         v-for="button of buttons"
-        :key="button.id"
+        :key="button.name"
         :tooltip="button.tooltip"
         tooltip-position="right"
         :class="$style.btn"
-        :color="router.currentRoute.value.path.startsWith(button.link) ? 'primary' : 'dimmed'"
+        :color="(currentRoute) => (currentRoute ? 'primary' : 'dimmed')"
         :icon="button.icon"
-        :to="button.link"
+        :name="button.name"
       />
 
       <ToolsButton :class="[$style.top, $style.btn]" />
@@ -28,7 +28,9 @@
     </div>
 
     <div ref="panes" :class="$style.panes">
-      <AnimatedRouterView />
+      <RouterView v-slot="{ Component }">
+        <ComponentTransition :is="Component" />
+      </RouterView>
     </div>
   </div>
 </template>
@@ -36,38 +38,35 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
 import InfoButton from '@app/pages/navigation/info/InfoButton.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Link from '@components/base/link/Link.vue';
-import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
+import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables';
 import { useStorage } from '@storage/index';
-import ThemeButton from './navigation/ThemeButton.vue';
 import AdminButton from './navigation/admin/AdminButton.vue';
 import CloudButton from './navigation/auth/CloudButton.vue';
 import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue';
 import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue';
+import ThemeButton from './navigation/theme/ThemeButton.vue';
 import ToolsButton from './navigation/tools/ToolsButton.vue';
 import SelectYearButton from './navigation/year/SelectYearButton.vue';
 
 const menu = ref<HTMLDivElement>();
-const router = useRouter();
 const media = useMediaQuery();
 const { user } = useStorage();
 const { t } = useI18n();
 
 interface FrameButton {
   icon: AppIcon;
-  id: string;
-  link: string;
+  name: string;
   tooltip: string;
 }
 
-const buttons = computed<FrameButton[]>(() => [
-  { icon: 'donut-chart', id: 'dashboard', link: '/dashboard', tooltip: t('navigation.menu.dashboard') },
-  { icon: 'hand-coin', id: 'income', link: '/income', tooltip: t('navigation.menu.income') },
-  { icon: 'shopping-basket-2', id: 'expenses', link: '/expenses', tooltip: t('navigation.menu.expenses') }
+const buttons = computed((): FrameButton[] => [
+  { icon: 'donut-chart', name: 'dashboard', tooltip: t('page.dashboard.title') },
+  { icon: 'hand-coin', name: 'income', tooltip: t('page.income.title') },
+  { icon: 'shopping-basket-2', name: 'expenses', tooltip: t('page.expenses.title') }
 ]);
 </script>
 

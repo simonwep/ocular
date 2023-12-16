@@ -6,7 +6,7 @@
     </template>
     <template #title>
       <span>
-        <i18n-t keypath="dashboard.header">
+        <i18n-t keypath="page.dashboard.header">
           <template #year>
             <TextWheel :values="allYears" :value="state.activeYear" />
           </template>
@@ -15,40 +15,42 @@
     </template>
     <template #header>
       <div :class="$style.viewButtons">
-        <Link
-          :tooltip="t('navigation.menu.dashboard')"
-          tooltip-position="bottom-end"
-          to="/dashboard"
-          :color="router.currentRoute.value.path.endsWith('/dashboard') ? 'primary' : 'dimmed'"
+        <Button
+          textual
+          size="l"
           icon="pi-chart-line"
+          :tooltip="t('page.dashboard.title')"
+          :color="view === Overview ? 'primary' : 'dimmed'"
+          @click="view = Overview"
         />
-        <Link
-          :tooltip="t('dashboard.tableOverview')"
-          tooltip-position="bottom-end"
-          to="/dashboard/summary"
-          :color="router.currentRoute.value.path.endsWith('/dashboard/summary') ? 'primary' : 'dimmed'"
+        <Button
+          textual
+          size="l"
           icon="grid-line"
+          :tooltip="t('page.dashboard.tables')"
+          :color="view === Summary ? 'primary' : 'dimmed'"
+          @click="view = Summary"
         />
       </div>
     </template>
-    <AnimatedRouterView />
+    <ComponentTransition :is="view" />
   </Pane>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
 import Button from '@components/base/button/Button.vue';
-import Link from '@components/base/link/Link.vue';
 import TextWheel from '@components/base/text-wheel/TextWheel.vue';
-import AnimatedRouterView from '@components/misc/animated-router-view/AnimatedRouterView.vue';
+import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useDataStore } from '@store/state';
 import Pane from '../shared/Pane.vue';
+import Overview from './overview/Overview.vue';
+import Summary from './summary/Summary.vue';
 
 const { t } = useI18n();
 const { state, changeYear } = useDataStore();
-const router = useRouter();
+const view = shallowRef(Overview);
 
 const allYears = computed(() => state.years.map((v) => v.year));
 
@@ -70,7 +72,7 @@ const rotateYear = (dir: -1 | 1) => {
 
 .viewButtons {
   display: flex;
-  grid-gap: 10px;
+  grid-gap: 4px;
 }
 
 .version {

@@ -1,16 +1,23 @@
 <template>
-  <Dialog :open="open" :title="t('app.about')" @close="emit('close')">
+  <Dialog :open="open" :title="t('navigation.info.about')" @close="emit('close')">
     <div :class="$style.infoBox">
       <span :class="$style.link">
-        <i18n-t keypath="app.github">
+        <i18n-t keypath="navigation.info.github">
           <template #link>
+            <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
             <Link :custom="false" color="primary" to="https://github.com/simonwep/ocular">Github</Link>
           </template>
         </i18n-t>
       </span>
-      <span :class="$style.love">{{ t('app.madeWithLove') }}</span>
+      <span :class="$style.love">{{ t('navigation.info.madeWithLove') }}</span>
       <span :class="$style.meta">
-        {{ OCULAR_BUILD_VERSION }} / {{ new Date(OCULAR_BUILD_TIMESTAMP).toDateString() }} / {{ OCULAR_BUILD_SHA }}
+        {{
+          t('navigation.info.meta', {
+            version: OCULAR_BUILD_VERSION,
+            date: new Date(OCULAR_BUILD_TIMESTAMP).toDateString(),
+            sha: OCULAR_BUILD_SHA
+          })
+        }}
       </span>
     </div>
   </Dialog>

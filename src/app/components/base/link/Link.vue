@@ -2,7 +2,7 @@
   <a
     v-if="isExternalLink"
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
-    :href="to"
+    :href="href"
     :class="classes"
     rel="noopener,noreferrer,nofollow"
     target="_blank"
@@ -10,7 +10,7 @@
     <Icon v-if="icon" :class="$style.icon" :icon="icon" />
     <slot />
   </a>
-  <RouterLink v-else v-tooltip="{ text: tooltip, position: tooltipPosition }" :to="to" :class="classes">
+  <RouterLink v-else v-tooltip="{ text: tooltip, position: tooltipPosition }" :to="href" :class="classes">
     <Icon v-if="icon" :class="$style.icon" :icon="icon" />
     <slot />
   </RouterLink>
@@ -19,6 +19,7 @@
 <script lang="ts" setup>
 import { Placement } from '@popperjs/core';
 import { computed, useCssModule, useSlots } from 'vue';
+import { useRouter } from 'vue-router';
 import { AppIcon } from '@components/base/icon/Icon.types';
 import Icon from '@components/base/icon/Icon.vue';
 import { Color, useThemeStyles } from '@composables';
@@ -28,23 +29,29 @@ const props = withDefaults(
   defineProps<{
     class?: ClassNames;
     icon?: AppIcon;
-    color?: Color;
+    color?: Color | ((currentRoute: boolean) => Color);
     custom?: boolean;
     tooltip?: string;
     tooltipPosition?: Placement;
-    to: string;
+    name?: string;
+    to?: string;
   }>(),
   {
-    color: 'primary',
     custom: undefined
   }
 );
 
 const slots = useSlots();
 const styles = useCssModule();
-const theme = useThemeStyles(() => props.color);
+const router = useRouter();
+const theme = useThemeStyles(() =>
+  typeof props.color === 'function'
+    ? props.color(router.currentRoute.value.name === props.name)
+    : props.color ?? 'primary'
+);
 
-const isExternalLink = computed(() => props.to.startsWith('http'));
+const href = computed(() => (props.name ? router.resolve({ name: props.name }).href : props.to ?? ''));
+const isExternalLink = computed(() => href.value.startsWith('http'));
 
 const classes = computed(() => [
   props.class,

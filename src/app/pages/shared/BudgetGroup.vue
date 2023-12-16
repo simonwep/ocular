@@ -14,11 +14,11 @@
   </span>
 
   <span :class="$style.top">
-    <span>{{ t('budget.total') }}</span>
+    <span>{{ t('shared.total') }}</span>
   </span>
 
   <span :class="[$style.top, $style.end]">
-    <span>{{ t('budget.average') }}</span>
+    <span>{{ t('shared.average') }}</span>
   </span>
 
   <!-- Budgets -->
@@ -119,11 +119,11 @@ const buildDraggableText = (store: DraggableEvent) => {
       const dstLabel = sameGroup ? dst.name : `${dstGroup.name} » ${dst.name}`;
 
       return store.type === 'before'
-        ? t('budget.prepend', { from: srcLabel, to: dstLabel })
-        : t('budget.append', { from: srcLabel, to: dstLabel });
+        ? t('shared.prepend', { from: srcLabel, to: dstLabel })
+        : t('shared.append', { from: srcLabel, to: dstLabel });
     }
 
-    return t('budget.move', { from: src.name });
+    return t('shared.move', { from: src.name });
   }
 };
 
