@@ -29,7 +29,7 @@
 
     <div ref="panes" :class="$style.panes">
       <RouterView v-slot="{ Component }">
-        <ComponentTransition :is="Component" />
+        <ComponentTransition :is="Component" v-if="Component" />
       </RouterView>
     </div>
   </div>

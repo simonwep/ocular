@@ -2,7 +2,7 @@
   <Dialog :open="open" :title="t('navigation.info.about')" @close="emit('close')">
     <div :class="$style.infoBox">
       <span :class="$style.link">
-        <i18n-t keypath="navigation.info.github">
+        <i18n-t keypath="navigation.info.github" scope="global">
           <template #link>
             <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
             <Link :custom="false" color="primary" to="https://github.com/simonwep/ocular">Github</Link>

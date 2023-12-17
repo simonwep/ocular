@@ -6,7 +6,7 @@
     </template>
     <template #title>
       <span>
-        <i18n-t keypath="page.dashboard.header">
+        <i18n-t keypath="page.dashboard.header" scope="global">
           <template #year>
             <TextWheel :values="allYears" :value="state.activeYear" />
           </template>
