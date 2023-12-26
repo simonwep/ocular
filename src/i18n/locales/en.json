@@ -22,7 +22,8 @@
       },
       "copyPaste": {
         "copy": "Copy data from {year}",
-        "paste": "Paste data from {from} into {to}"
+        "paste": "Paste data from {from} into {to}",
+        "confirm": "Are you sure you want to copy data from {from} into {to}?"
       },
       "demo": {
         "loadDemoData": "Load demo data"
