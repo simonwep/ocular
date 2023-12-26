@@ -72,7 +72,7 @@ export const createDataStore = (storage?: Storage): Store => {
     (v) => Object.assign(state, v)
   );
 
-  window.addEventListener('keypress', (evt: KeyboardEvent) => {
+  document.addEventListener('keydown', (evt: KeyboardEvent) => {
     if (evt.ctrlKey || evt.metaKey) {
       if (evt.code === 'KeyZ') {
         history.undo();
