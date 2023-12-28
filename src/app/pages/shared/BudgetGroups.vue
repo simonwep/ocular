@@ -26,7 +26,13 @@
 
     <!-- Body -->
     <template v-for="group of groups" :key="group.id">
-      <Draggable :id="group.id" :text="buildDraggableText" name="budget-groups" @drop="reorder" />
+      <Draggable
+        :id="group.id"
+        :icon="buildDraggableIcon"
+        :text="buildDraggableText"
+        name="budget-groups"
+        @drop="reorder"
+      />
       <BudgetGroup :group="group" />
     </template>
 
@@ -41,8 +47,10 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import { DraggableEvent, ReorderEvent } from '@components/base/draggable/Draggable.types';
+import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
+import { DraggableStore } from '@components/base/draggable/store';
+import { AppIcon } from '@components/base/icon/Icon.types';
 import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
 import BudgetGroup from './BudgetGroup.vue';
@@ -51,7 +59,7 @@ const props = defineProps<{
   type: 'expenses' | 'income';
 }>();
 
-const { state, moveBudgetGroup, addBudgetGroup, getBudgetGroup, isCurrentMonth } = useDataStore();
+const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup, isCurrentMonth } = useDataStore();
 const { t } = useI18n();
 
 const groups = computed(() => state[props.type]);
@@ -71,7 +79,11 @@ const totals = computed(() => {
   return totals;
 });
 
-const buildDraggableText = (store: DraggableEvent) => {
+const buildDraggableIcon = (store: DraggableStore): AppIcon | undefined => {
+  return store.group === 'budget-group' ? 'skip-down-line' : undefined;
+};
+
+const buildDraggableText = (store: DraggableStore) => {
   const src = store.source ? getBudgetGroup(store.source) : undefined;
   const dst = store.target ? getBudgetGroup(store.target) : undefined;
 
@@ -87,7 +99,11 @@ const buildDraggableText = (store: DraggableEvent) => {
 };
 
 const reorder = (evt: ReorderEvent) => {
-  moveBudgetGroup(evt.source, evt.target, evt.type === 'after');
+  if (evt.group === 'budget-group') {
+    moveBudgetIntoGroup(evt.source, evt.target);
+  } else {
+    moveBudgetGroup(evt.source, evt.target, evt.type === 'after');
+  }
 };
 </script>
 

@@ -39,6 +39,7 @@ interface Store {
   addBudget(group: string): void;
 
   moveBudget(id: string, target: string, after?: boolean): void;
+  moveBudgetIntoGroup(id: string, target: string): void;
   moveBudgetGroup(id: string, target: string, after?: boolean): void;
 
   removeBudgetGroup(id: string): void;
@@ -246,6 +247,17 @@ export const createDataStore = (storage?: Storage): Store => {
     moveBudget(id: string, target: string, after?: boolean) {
       const budgets = groups().map((v) => v.budgets);
       moveInArrays(budgets, id, target, after);
+    },
+
+    moveBudgetIntoGroup(id: string, target: string) {
+      const allGroups = groups();
+      const sourceGroup = allGroups.find((g) => g.budgets.find((v) => v.id === id));
+      const budgetIndex = sourceGroup?.budgets.findIndex((v) => v.id === id) ?? -1;
+      const targetGroup = allGroups.find((g) => g.id === target);
+
+      if (targetGroup && sourceGroup && budgetIndex !== -1) {
+        targetGroup.budgets.push(...sourceGroup.budgets.splice(budgetIndex, 1));
+      }
     },
 
     moveBudgetGroup(id: string, target: string, after?: boolean) {

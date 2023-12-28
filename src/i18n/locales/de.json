@@ -97,6 +97,7 @@
     "append": "Verschiebe „{from}“ nach „{to}“",
     "average": "Durchschnitt",
     "move": "Verschiebe „{from}“",
+    "moveInto": "Verschiebe „{from}“ in „{to}“",
     "prepend": "Verschiebe „{from}“ vor „{to}“",
     "total": "Gesamt",
     "totals": "Summen",

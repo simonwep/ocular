@@ -23,7 +23,14 @@
 
   <!-- Budgets -->
   <template v-for="(budget, index) of group.budgets" :key="budget.id + index">
-    <Draggable :id="budget.id" name="budget-group" :text="buildDraggableText" @drop="reorder" />
+    <Draggable
+      :id="budget.id"
+      :target="['budget-group', 'budget-groups']"
+      name="budget-group"
+      :text="buildDraggableText"
+      @drop="reorder"
+    />
+
     <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
 
     <span :class="$style.header">
@@ -68,8 +75,9 @@ import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
-import { ReorderEvent, DraggableEvent } from '@components/base/draggable/Draggable.types';
+import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
+import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
@@ -83,6 +91,7 @@ const {
   moveBudget,
   removeBudgetGroup,
   getBudget,
+  getBudgetGroup,
   addBudget,
   setBudgetName,
   setBudgetGroupName,
@@ -108,9 +117,10 @@ const totals = computed(() => {
 const totalAmount = computed(() => sum(totals.value));
 const averageAmount = computed(() => average(totals.value));
 
-const buildDraggableText = (store: DraggableEvent) => {
+const buildDraggableText = (store: DraggableStore) => {
   const [srcGroup, src] = store.source ? getBudget(store.source) ?? [] : [];
   const [dstGroup, dst] = store.target ? getBudget(store.target) ?? [] : [];
+  const otherDist = store.target ? getBudgetGroup(store.target) : undefined;
 
   if (src && srcGroup) {
     if (dst && dstGroup) {
@@ -121,6 +131,10 @@ const buildDraggableText = (store: DraggableEvent) => {
       return store.type === 'before'
         ? t('shared.prepend', { from: srcLabel, to: dstLabel })
         : t('shared.append', { from: srcLabel, to: dstLabel });
+    }
+
+    if (otherDist) {
+      return t('shared.moveInto', { from: src.name, to: otherDist.name });
     }
 
     return t('shared.move', { from: src.name });

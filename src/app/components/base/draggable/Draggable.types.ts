@@ -7,6 +7,7 @@ export interface DraggableEvent {
 }
 
 export interface ReorderEvent {
+  group: string;
   source: string;
   target: string;
   type: DropOrder;

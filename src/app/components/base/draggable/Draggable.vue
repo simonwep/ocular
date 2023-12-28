@@ -10,7 +10,7 @@
     @drag="drag"
     @dragstart="dragStart"
   >
-    <Button :color="store.group === props.name ? 'primary' : 'dimmed'" :icon="icon" textual />
+    <Button :color="matched && store.source !== id ? 'primary' : 'dimmed'" :icon="icon" textual />
 
     <div
       v-if="store.source === props.id && top && left && label"
@@ -29,15 +29,17 @@
 import { computed, ref } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import { AppIcon } from '@components/base/icon/Icon.types';
-import { DraggableEvent, ReorderEvent } from './Draggable.types';
-import { store } from './store';
+import { ReorderEvent } from './Draggable.types';
+import { DraggableStore, store } from './store';
 
 const emit = defineEmits<{
   (e: 'drop', data: ReorderEvent): void;
 }>();
 
 const props = defineProps<{
-  text: (store: DraggableEvent) => string | undefined;
+  text: (store: DraggableStore) => string | undefined;
+  icon?: (store: DraggableStore) => AppIcon | undefined;
+  target?: string[];
   name: string;
   id: string;
 }>();
@@ -48,19 +50,23 @@ const left = ref(0);
 const top = ref(0);
 
 const active = computed(() => props.id === store.target && store.type);
+const targets = computed(() => props.target ?? [props.name]);
+const matched = computed(() => store.targets?.includes(props.name));
 
-const icon = computed((): AppIcon => {
-  return active.value ? (store.type === 'before' ? 'skip-up-line' : 'skip-down-line') : 'draggable';
-});
+const icon = computed(
+  (): AppIcon =>
+    active.value ? props.icon?.(store) ?? (store.type === 'before' ? 'skip-up-line' : 'skip-down-line') : 'draggable'
+);
 
 const label = computed(() => {
-  return store.target && store.target && store.source ? props.text?.(store as DraggableEvent) : undefined;
+  return store.target && store.target && store.source ? props.text?.(store) : undefined;
 });
 
 const dragStart = (evt: DragEvent) => {
   if (evt.dataTransfer && element.value) {
     store.group = props.name;
     store.source = props.id;
+    store.targets = targets.value;
     evt.dataTransfer.effectAllowed = 'move';
     evt.dataTransfer.setDragImage(element.value, Infinity, Infinity);
     evt.dataTransfer.setData('text/plain', props.name);
@@ -73,7 +79,7 @@ const drag = (evt: DragEvent) => {
 };
 
 const dragOver = (evt: DragEvent) => {
-  if (store.group === props.name) {
+  if (store.group && store.targets?.includes(store.group)) {
     const rect = draggable.value?.getBoundingClientRect();
     evt.preventDefault();
 
@@ -95,13 +101,19 @@ const dragLeave = (evt: DragEvent) => {
 const dragEnd = () => {
   store.type = undefined;
   store.target = undefined;
+  store.targets = undefined;
   store.source = undefined;
   store.group = undefined;
 };
 
 const drop = (evt: DragEvent) => {
-  if (store.target && store.target && store.source) {
-    emit('drop', store as Required<DraggableEvent>);
+  if (store.type && store.target && store.source && store.group) {
+    emit('drop', {
+      group: store.group,
+      source: store.source,
+      target: store.target,
+      type: store.type
+    });
   }
 
   evt.preventDefault();

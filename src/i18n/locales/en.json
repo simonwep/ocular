@@ -97,6 +97,7 @@
     "append": "Move “{from}” after “{to}”",
     "average": "Average",
     "move": "Move “{from}”",
+    "moveInto": "Move “{from}” into “{to}”",
     "prepend": "Move “{from}” before “{to}”",
     "total": "Total",
     "totals": "Totals",
