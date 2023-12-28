@@ -3,6 +3,7 @@
     <button
       v-for="btn of buttons"
       :key="btn.id"
+      type="button"
       :class="[$style.btn, { [$style.active]: btn.id === modelValue }]"
       @click="modelValue = btn.id"
     >

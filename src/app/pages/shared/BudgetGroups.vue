@@ -38,7 +38,13 @@
 
     <!-- Footer -->
     <span />
-    <Button :class="$style.addGroupBtn" icon="plus" :text="t('shared.addGroup')" @click="addBudgetGroup(type)" />
+    <Button
+      :class="$style.addGroupBtn"
+      size="s"
+      icon="plus"
+      :text="t('shared.addGroup')"
+      @click="addBudgetGroup(type)"
+    />
   </div>
 </template>
 

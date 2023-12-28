@@ -63,7 +63,7 @@
 
   <!-- Footer -->
   <span />
-  <Button icon="plus" :class="$style.addBudgetBtn" textual color="success" @click="addBudget(group.id)" />
+  <Button icon="plus" textual color="success" @click="addBudget(group.id)" />
   <span style="grid-column: 3 / 16" />
   <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
   <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />

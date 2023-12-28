@@ -31,7 +31,7 @@ const props = withDefaults(
     text?: string;
     tooltip?: string;
     type?: 'button' | 'reset' | 'submit';
-    size?: 'm' | 'l';
+    size?: 's' | 'm' | 'l';
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
@@ -75,7 +75,7 @@ const classes = computed(() => [
   color: v-bind('theme.text.base');
   border-radius: var(--border-radius-m);
   transition: all var(--transition-s);
-  padding: 10px 10px;
+  padding: 10px;
 
   &.iconOnly {
     padding: 3px;
@@ -95,6 +95,14 @@ const classes = computed(() => [
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
     line-height: 1em;
+  }
+
+  &.s {
+    padding: 6px 8px;
+
+    .text {
+      font-size: var(--font-size-xs);
+    }
   }
 
   &.l {
