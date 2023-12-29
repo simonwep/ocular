@@ -1,29 +1,22 @@
 <template>
-  <div :class="classes">
-    <div
-      ref="reference"
-      v-tooltip="{ text: tooltip, position: tooltipPosition }"
-      :class="$style.reference"
-      @click="toggle"
-    >
-      <slot />
-    </div>
-    <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
-      <ul :class="listClasses">
-        <slot v-if="$slots.options" name="options"></slot>
-        <template v-else-if="options">
-          <ContextMenuButton
-            v-for="option of options"
-            :key="option.id"
-            :pad-icon="hasOptionWithIcon"
-            :text="option.label ?? option.id"
-            :icon="option.icon"
-            :highlight="option.id === highlight"
-            @click="select(option)"
-          />
-        </template>
-      </ul>
-    </div>
+  <div ref="reference" v-tooltip="{ text: tooltip, position: tooltipPosition }" :class="classes" @click="toggle">
+    <slot />
+  </div>
+  <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
+    <ul :class="listClasses">
+      <slot v-if="$slots.options" name="options"></slot>
+      <template v-else-if="options">
+        <ContextMenuButton
+          v-for="option of options"
+          :key="option.id"
+          :pad-icon="hasOptionWithIcon"
+          :text="option.label ?? option.id"
+          :icon="option.icon"
+          :highlight="option.id === highlight"
+          @click="select(option)"
+        />
+      </template>
+    </ul>
   </div>
 </template>
 
@@ -91,7 +84,7 @@ watch(
 );
 
 const hasOptionWithIcon = computed(() => props.options?.some((v) => v.icon));
-const classes = computed(() => [props.class, styles.contextMenu]);
+const classes = computed(() => [props.class, styles.reference]);
 const listClasses = computed(() => [styles.list, { [styles[placement.value]]: placement.value in styles }]);
 
 const select = (option: ContextMenuOption): void => {
@@ -107,13 +100,8 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
 </script>
 
 <style lang="scss" module>
-.contextMenu {
-  display: inline-flex;
-}
-
 .reference {
-  all: unset;
-  display: flex;
+  display: inline-flex;
 }
 
 .popper {
