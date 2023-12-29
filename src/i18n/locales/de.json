@@ -3,11 +3,11 @@
     "currency": {
       "currency": "USD",
       "minimumFractionDigits": 0,
-      "style": "Währung"
+      "style": "currency"
     },
     "percent": {
       "maximumFractionDigits": 0,
-      "style": "Prozent"
+      "style": "percent"
     }
   },
   "navigation": {

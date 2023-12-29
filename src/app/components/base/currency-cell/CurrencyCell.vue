@@ -15,6 +15,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useDataStore } from '@store/state';
 
 const modelValue = defineModel<number | undefined>();
 
@@ -29,11 +30,14 @@ const props = withDefaults(
 
 const input = ref<HTMLInputElement>();
 const focused = ref(false);
+const { state } = useDataStore();
 const { n } = useI18n();
 
-const value = computed(() => {
-  return focused.value || !modelValue.value ? modelValue.value || '' : n(modelValue.value, 'currency');
-});
+const value = computed(() =>
+  focused.value || !modelValue.value
+    ? modelValue.value || ''
+    : n(modelValue.value, { key: 'currency', currency: state.currency })
+);
 
 const updateModelValue = (raw?: string) => {
   const number = Number(raw?.trim() || NaN);
