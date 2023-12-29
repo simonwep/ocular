@@ -99,6 +99,8 @@
     "move": "Move “{from}”",
     "moveInto": "Move “{from}” into “{to}”",
     "prepend": "Move “{from}” before “{to}”",
+    "fillRow": "Fill row",
+    "fillRowToRight": "Fill to right",
     "total": "Total",
     "totals": "Totals",
     "placeholder": "Start by filling out the income / expenses tabs! :)"

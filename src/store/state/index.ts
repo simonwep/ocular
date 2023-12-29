@@ -49,6 +49,8 @@ interface Store {
   setBudgetName(id: string, name: string): void;
   setBudget(id: string, month: number, amount: number): void;
 
+  fillBudget(id: string, amount: number, offset?: number): void;
+
   getBudget(id: string): [BudgetGroup, Budget] | undefined;
   getBudgetGroup(id: string): BudgetGroup | undefined;
 
@@ -215,6 +217,13 @@ export const createDataStore = (storage?: Storage): Store => {
         .flatMap((v) => v.budgets)
         .find((v) => v.id === id);
       group && (group.values[month] = amount);
+    },
+
+    fillBudget(id: string, amount: number, offset = 0) {
+      groups()
+        .flatMap((v) => v.budgets)
+        .find((v) => v.id === id)
+        ?.values.fill(amount, offset);
     },
 
     removeBudget(id: string) {

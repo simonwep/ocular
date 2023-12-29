@@ -108,7 +108,7 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
 
 <style lang="scss" module>
 .contextMenu {
-  display: flex;
+  display: inline-flex;
 }
 
 .reference {

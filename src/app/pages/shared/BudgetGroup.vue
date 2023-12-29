@@ -54,7 +54,15 @@
         }
       ]"
     >
-      <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
+      <CellMenu
+        :actions="[
+          { id: 'fill', label: t('shared.fillRow') },
+          { id: 'fill-to-right', label: t('shared.fillRowToRight') }
+        ]"
+        @action="performAction($event, budget.id, month, budget.values[month])"
+      >
+        <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
+      </CellMenu>
     </span>
 
     <Currency :class="$style.meta" :value="sum(budget.values)" />
@@ -73,6 +81,8 @@
 import { computed, DeepReadonly } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
+import { CellMenuActionId } from '@components/base/cell-menu/CellMenu.types';
+import CellMenu from '@components/base/cell-menu/CellMenu.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
 import { ReorderEvent } from '@components/base/draggable/Draggable.types';
@@ -96,6 +106,7 @@ const {
   setBudgetName,
   setBudgetGroupName,
   setBudget,
+  fillBudget,
   removeBudget,
   isCurrentMonth
 } = useDataStore();
@@ -143,6 +154,15 @@ const buildDraggableText = (store: DraggableStore) => {
 
 const reorder = (evt: ReorderEvent) => {
   moveBudget(evt.source, evt.target, evt.type === 'after');
+};
+
+const performAction = (action: CellMenuActionId, budgetId: string, month: number, value: number) => {
+  switch (action) {
+    case 'fill':
+      return fillBudget(budgetId, value);
+    case 'fill-to-right':
+      return fillBudget(budgetId, value, month);
+  }
 };
 </script>
 

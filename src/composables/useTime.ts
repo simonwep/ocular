@@ -1,6 +1,6 @@
 import { computed, getCurrentScope, onScopeDispose, ref } from 'vue';
 
-const UPDATE_INTERVAL = 1000;
+const UPDATE_INTERVAL = 1_000 * 60;
 
 export const useTime = () => {
   const timestamp = ref(Date.now());

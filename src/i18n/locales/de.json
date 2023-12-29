@@ -99,6 +99,8 @@
     "move": "Verschiebe „{from}“",
     "moveInto": "Verschiebe „{from}“ in „{to}“",
     "prepend": "Verschiebe „{from}“ vor „{to}“",
+    "fillRow": "Zeile ausfüllen",
+    "fillRowToRight": "Nach rechts füllen",
     "total": "Gesamt",
     "totals": "Summen",
     "placeholder": "Beginnen Sie damit, die Registerkarten für Einnahmen/Ausgaben auszufüllen! :)"
