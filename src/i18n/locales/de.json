@@ -22,7 +22,7 @@
       },
       "copyPaste": {
         "copy": "Daten kopieren von {year}",
-        "paste": "Daten einfügen von {from} nach {to}",
+        "paste": "Daten von {from} nach {to} kopieren",
         "confirm": "Sind Sie sicher, dass Sie die Daten von {from} nach {to} kopieren möchten?"
       },
       "demo": {
@@ -34,7 +34,7 @@
       "import": {
         "import": "Aus JSON-Datei importieren",
         "what": {
-          "google": "Google Sheets Jahresbudgetdatei",
+          "google": "Google Sheets Jahresbudget",
           "ocular": "Eine zuvor exportierte Datei",
           "title": "Was möchten Sie importieren?"
         },
@@ -51,26 +51,26 @@
       },
       "privacyMode": {
         "disable": "In den öffentlichen Modus wechseln",
-        "enable": "In den Datenschutzmodus wechseln"
+        "enable": "In den privaten Modus wechseln"
       }
     },
     "language": {
-      "switch": "Zu einer anderen Sprache wechseln"
+      "switch": "Sprache wechseln"
     },
     "info": {
       "about": "Über Ocular",
       "github": "Schauen Sie sich dieses Projekt auf {link} an!",
-      "madeWithLove": "Hergestellt mit ❤️ von Simon",
+      "madeWithLove": "Entwickelt mit ❤️von Simon",
       "meta": "{version} / {date} / {sha}"
     },
     "currency": {
-      "change": "Ändern Sie die zu verwendende Währung"
+      "change": "Währung ändern"
     },
     "theme": {
       "change": "Farbthema ändern"
     },
     "year": {
-      "change": "Wechseln Sie zu einem anderen Jahr"
+      "change": "Jahr wechseln"
     },
     "auth": {
       "welcomeBack": "Willkommen zurück!",
