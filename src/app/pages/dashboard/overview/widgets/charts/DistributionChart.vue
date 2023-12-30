@@ -51,6 +51,10 @@ const data = computed((): SankeyChartConfig => {
   for (const group of state.income) {
     const total = sum(group.budgets.flatMap((v) => v.values));
 
+    if (!total) {
+      continue;
+    }
+
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
@@ -85,6 +89,11 @@ const data = computed((): SankeyChartConfig => {
 
   for (const group of state.expenses) {
     const total = sum(group.budgets.flatMap((v) => v.values));
+
+    if (!total) {
+      continue;
+    }
+
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
