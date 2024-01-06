@@ -16,6 +16,9 @@
      src="https://github.com/Simonwep/ocular/workflows/CI/badge.svg"/></a>
 </p>
 
+> [!TIP]
+> Check out the [demo](https://ocular.reinisch.io#demo) to get a live preview with demo data!
+
 ### Table of contents
 
 * [Features](#features) - _What does this app do?_
@@ -34,9 +37,6 @@
 - 🎇 Track budgets across multiple years.
 - 🙈 Privacy mode for when you're in a public place.
 - ⚡️ Simple and straight-forward UI.
-
-> Check out the [demo](https://ocular.reinisch.io#demo)!
-> Looking for the legacy google-app based version? Check out the [legacy](https://github.com/simonwep/ocular/tree/legacy) branch.
 
 ### Summary
 

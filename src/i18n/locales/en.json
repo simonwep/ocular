@@ -119,7 +119,7 @@
       "expenses": "Expenses",
       "summary": "Summary",
       "endingBalance": "Ending Balance",
-      "header": "Übersicht - Jährliches Budget für {year}",
+      "header": "Annual budget for {year}",
       "remainingBalance": "Remaining Balance until {year}",
       "netSavings": "Net Savings",
       "yearInThePast": "Year is in the past",

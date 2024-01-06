@@ -119,7 +119,7 @@
       "expenses": "Ausgaben",
       "summary": "Zusammenfassung",
       "endingBalance": "Endsaldo",
-      "header": "Übersicht - Jährliches Budget für {year}",
+      "header": "Jährliches Budget für {year}",
       "remainingBalance": "Verbleibendes Guthaben bis {year}",
       "netSavings": "Nettoersparnisse",
       "yearInThePast": "Jahr liegt in der Vergangenheit",
