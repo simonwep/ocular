@@ -1,8 +1,10 @@
 <template>
   <div :class="$style.frame">
     <div ref="menu" :class="$style.buttons">
-      <ThemeButton :class="$style.btn" />
-      <div :class="$style.divider" />
+      <template v-if="media !== 'mobile'">
+        <ThemeButton :class="$style.btn" />
+        <div :class="$style.divider" />
+      </template>
 
       <Link
         v-for="button of buttons"
@@ -15,9 +17,12 @@
         :name="button.name"
       />
 
-      <ToolsButton :class="[$style.top, $style.btn]" />
+      <div v-if="media === 'mobile'" :class="$style.mobileDivider" />
+      <div v-else style="flex-grow: 1" />
+
+      <ToolsButton :class="$style.btn" />
       <AdminButton v-if="user?.admin" :class="$style.btn" />
-      <SelectYearButton :class="$style.btn" />
+      <ChangeYearButton :class="$style.btn" />
       <template v-if="media !== 'mobile'">
         <ChangeLanguageButton :class="$style.btn" />
         <ChangeCurrencyButton :class="$style.btn" />
@@ -50,7 +55,7 @@ import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue
 import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue';
 import ThemeButton from './navigation/theme/ThemeButton.vue';
 import ToolsButton from './navigation/tools/ToolsButton.vue';
-import SelectYearButton from './navigation/year/SelectYearButton.vue';
+import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
 
 const menu = ref<HTMLDivElement>();
 const media = useMediaQuery();
@@ -71,8 +76,8 @@ const buttons = computed((): FrameButton[] => [
 </script>
 
 <style lang="scss" module>
-@use 'sass:math';
 @use 'src/styles/globals';
+@use 'sass:math';
 
 .frame {
   display: flex;
@@ -92,7 +97,7 @@ const buttons = computed((): FrameButton[] => [
   flex-direction: column;
   border-right: 1px solid var(--app-border);
   padding: 15px 10px;
-  grid-gap: 15px;
+  gap: 15px;
 
   .top {
     margin-top: auto;
@@ -102,6 +107,14 @@ const buttons = computed((): FrameButton[] => [
     width: 100%;
     height: 1px;
     background: var(--app-border);
+  }
+
+  .mobileDivider {
+    display: none;
+    width: 1px;
+    background: var(--app-border);
+    height: 100%;
+    margin: 0 -15px;
   }
 
   .btn {
@@ -129,9 +142,14 @@ const buttons = computed((): FrameButton[] => [
     justify-content: space-evenly;
     flex-direction: row-reverse;
     height: auto;
+    padding: 14px 4px;
 
     .divider {
       display: none;
+    }
+
+    .mobileDivider {
+      display: block;
     }
   }
 }

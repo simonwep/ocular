@@ -2,11 +2,10 @@
   <ContextMenu
     :tooltip="t('navigation.currency.change')"
     tooltip-position="right"
-    :class="classes"
     :options="currencies"
     @select="changeCurrency($event.id as AvailableCurrency)"
   >
-    <Button icon="currency-line" textual color="dimmed" />
+    <Button :class="classes" icon="currency-line" textual color="dimmed" />
   </ContextMenu>
 </template>
 

@@ -72,11 +72,17 @@ const rotateYear = (dir: -1 | 1) => {
 
 .viewButtons {
   display: flex;
-  grid-gap: 4px;
+  gap: 4px;
 }
 
 .version {
   color: var(--c-text-dark-muted);
   font-size: var(--font-size-xs);
+}
+
+@include globals.onMobileDevices {
+  .viewButtons {
+    gap: 8px;
+  }
 }
 </style>

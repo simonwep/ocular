@@ -21,7 +21,7 @@
         "unknownError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut."
       },
       "copyPaste": {
-        "copy": "Daten kopieren von {year}",
+        "copy": "Daten von {year} kopieren",
         "paste": "Daten von {from} nach {to} kopieren",
         "confirm": "Sind Sie sicher, dass Sie die Daten von {from} nach {to} kopieren möchten?"
       },
@@ -59,7 +59,7 @@
     },
     "info": {
       "about": "Über Ocular",
-      "github": "Schauen Sie sich dieses Projekt auf {link} an!",
+      "github": "Schauen dir sich dieses Projekt auf {link} an!",
       "madeWithLove": "Entwickelt mit ❤️von Simon",
       "meta": "{version} / {date} / {sha}"
     },
@@ -120,7 +120,7 @@
       "summary": "Zusammenfassung",
       "endingBalance": "Endsaldo",
       "header": "Jährliches Budget für {year}",
-      "remainingBalance": "Verbleibendes Guthaben bis {year}",
+      "remainingBalance": "Verbleibendes Netto bis {year}",
       "netSavings": "Nettoersparnisse",
       "yearInThePast": "Jahr liegt in der Vergangenheit",
       "yearInTheFuture": "Jahr liegt in der Zukunft",

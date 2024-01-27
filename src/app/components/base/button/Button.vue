@@ -65,6 +65,8 @@ const classes = computed(() => [
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .button {
   all: unset;
   justify-self: flex-start;
@@ -88,6 +90,11 @@ const classes = computed(() => [
   .icon {
     width: 16px;
     height: 16px;
+
+    @include globals.onMobileDevices {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   .text {
@@ -109,6 +116,11 @@ const classes = computed(() => [
     .icon {
       width: 20px;
       height: 20px;
+
+      @include globals.onMobileDevices {
+        width: 24px;
+        height: 24px;
+      }
     }
 
     .text {

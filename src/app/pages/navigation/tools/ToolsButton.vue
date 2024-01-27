@@ -3,9 +3,8 @@
     :tooltip="t('navigation.tools.tools')"
     :position="media === 'mobile' ? 'top' : 'right-end'"
     tooltip-position="right"
-    :class="classes"
   >
-    <Button icon="settings-4-line" textual color="dimmed"></Button>
+    <Button :class="classes" icon="settings-4-line" textual color="dimmed"></Button>
 
     <template #options>
       <LoadDemoDataButton v-if="status === 'idle'" />

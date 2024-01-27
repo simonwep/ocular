@@ -66,7 +66,7 @@ const element = computed(() => (props.to ? Link : 'div'));
 .summaryPanel {
   display: flex;
   justify-content: space-between;
-  grid-gap: 2px;
+  gap: 2px;
   padding: 30px;
   width: 100%;
   height: 100%;

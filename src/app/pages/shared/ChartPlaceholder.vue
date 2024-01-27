@@ -30,7 +30,7 @@ const { t } = useI18n();
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-gap: 10px;
+  gap: 10px;
   flex-grow: 1;
 
   &,
@@ -41,7 +41,7 @@ const { t } = useI18n();
   .icons {
     display: grid;
     grid-template-columns: 24px 24px;
-    grid-gap: 10px;
+    gap: 10px;
   }
 }
 </style>

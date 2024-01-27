@@ -51,6 +51,8 @@ const onClick = (evt: MouseEvent) => {
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .item {
   display: flex;
   width: 100%;
@@ -69,6 +71,11 @@ const onClick = (evt: MouseEvent) => {
     background var(--transition-s);
   color: var(--context-menu-item-color);
   position: relative;
+
+  @include globals.onMobileDevices {
+    font-size: var(--font-size-s);
+    padding: 10px 16px;
+  }
 
   .icon {
     width: 12px;

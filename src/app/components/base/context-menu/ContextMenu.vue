@@ -100,6 +100,8 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .reference {
   display: inline-flex;
 }
@@ -136,6 +138,10 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   visibility: hidden;
   opacity: 0;
   transition: all var(--transition-s);
+
+  @include globals.onMobileDevices {
+    max-height: 100%;
+  }
 
   &.top {
     transform: translateY(6px);

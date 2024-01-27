@@ -79,8 +79,13 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   }
 
   .header {
-    padding: 20px 10px 15px;
+    padding: 15px 15px 10px;
     align-items: flex-end;
+
+    .title {
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-xl);
+    }
   }
 
   .content {

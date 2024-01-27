@@ -98,7 +98,7 @@ const remainingBalancePercentage = computed(() => {
   grid-template: 1fr / repeat(var(--panels), 1fr);
   width: 100%;
   height: 150px;
-  grid-gap: 10px;
+  gap: 10px;
 
   @include globals.onMobileDevices {
     grid-template: repeat(var(--panels), 1fr) / 1fr;

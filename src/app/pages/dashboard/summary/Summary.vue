@@ -34,7 +34,7 @@ const expenses = computed(() => totals(state.expenses));
 .summary {
   display: flex;
   flex-direction: column;
-  grid-gap: 20px;
+  gap: 20px;
   flex-grow: 1;
   padding-bottom: 10px;
 }

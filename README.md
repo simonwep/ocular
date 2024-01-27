@@ -7,7 +7,7 @@
 <br/>
 
 <h3 align="center">
-  <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budget more clearly ✨
+  ✨ <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budget more clearly ✨
 </h3>
 
 <p align="center">

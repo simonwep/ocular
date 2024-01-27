@@ -63,14 +63,16 @@ const classes = computed(() => [
 </script>
 
 <style lang="scss" module>
+@use 'src/styles/globals';
+
 .link {
   background: transparent;
   color: v-bind('theme.pure.base');
   transition: all var(--transition-s);
 
   .icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
 
   &.custom {
@@ -84,6 +86,13 @@ const classes = computed(() => [
   .link:not(.custom):hover {
     background: transparent;
     color: v-bind('theme.pure.hover');
+  }
+}
+
+@include globals.onMobileDevices {
+  .link .icon {
+    width: 20px;
+    height: 20px;
   }
 }
 </style>

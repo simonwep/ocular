@@ -60,7 +60,7 @@ const load = async () => {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  grid-gap: 10px;
+  gap: 10px;
 }
 
 .input {

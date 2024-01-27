@@ -54,7 +54,7 @@ watch(visible, () => steps.value?.reset());
 .step {
   display: flex;
   flex-direction: column;
-  grid-gap: 15px;
+  gap: 15px;
 
   .title {
     font-size: var(--font-size-s);

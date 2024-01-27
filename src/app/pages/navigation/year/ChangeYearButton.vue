@@ -7,7 +7,7 @@
     :highlight="state.activeYear"
     @select="changeYear($event.id as number)"
   >
-    <Button icon="calendar-line" textual color="dimmed" />
+    <Button :class="classes" icon="calendar-line" textual color="dimmed" />
   </ContextMenu>
 </template>
 
@@ -19,14 +19,20 @@ import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.typ
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useMediaQuery, useTime } from '@composables';
 import { useDataStore } from '@store/state';
+import { ClassNames } from '@utils';
 
 const PRE_PLANNABLE_YEARS = 1;
+
+const props = defineProps<{
+  class: ClassNames;
+}>();
 
 const { t } = useI18n();
 const { changeYear, state } = useDataStore();
 const media = useMediaQuery();
 const time = useTime();
 
+const classes = computed(() => props.class);
 const options = computed((): ContextMenuOption[] => {
   const yearsStored = state.years.map((v) => v.year);
   const offset = Math.min(...yearsStored);
