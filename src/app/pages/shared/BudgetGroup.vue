@@ -71,7 +71,7 @@
 
   <!-- Footer -->
   <span />
-  <Button icon="plus" textual color="success" @click="addBudget(group.id)" />
+  <Button icon="plus" textual @click="addBudget(group.id)" />
   <span style="grid-column: 3 / 16" />
   <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
   <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
@@ -200,15 +200,15 @@ const performAction = (action: CellMenuActionId, budgetId: string, month: number
   }
 
   &.start {
-    border-top-left-radius: var(--border-radius-m);
-    border-bottom-left-radius: var(--border-radius-m);
+    border-top-left-radius: var(--border-radius-l);
+    border-bottom-left-radius: var(--border-radius-l);
     padding-left: 8px;
     cursor: text;
   }
 
   &.end {
-    border-top-right-radius: var(--border-radius-m);
-    border-bottom-right-radius: var(--border-radius-m);
+    border-top-right-radius: var(--border-radius-l);
+    border-bottom-right-radius: var(--border-radius-l);
     padding-right: 8px;
   }
 }

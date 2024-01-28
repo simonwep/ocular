@@ -23,8 +23,20 @@
   color: var(--theme-text-muted);
 }
 
-.currentMonth {
-  color: var(--c-primary-pure);
+.currentMonth > span {
+  color: var(--c-text-light);
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -3px -8px;
+    border-radius: 100px;
+    background: var(--c-primary);
+    z-index: -1;
+  }
 }
 
 .current {

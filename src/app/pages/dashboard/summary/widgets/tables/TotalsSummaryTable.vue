@@ -1,5 +1,5 @@
 <template>
-  <SummaryTable :title="title">
+  <SummaryTable>
     <div :class="$style.table">
       <!-- Header -->
       <span />
@@ -7,8 +7,9 @@
         v-for="(month, index) of months"
         :key="month"
         :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
-        >{{ month }}</span
       >
+        <span>{{ month }}</span>
+      </span>
       <span :class="$style.bold">{{ t('shared.total') }}</span>
       <span :class="$style.bold">{{ t('shared.average') }}</span>
 
@@ -75,7 +76,6 @@ const props = withDefaults(
   defineProps<{
     income?: number[];
     expenses?: number[];
-    title: string;
   }>(),
   {
     income: () => [],

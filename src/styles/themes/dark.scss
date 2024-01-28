@@ -19,6 +19,7 @@
   --c-text-light-muted: #d2d2da;
 
   --c-dimmed: #708dab;
+  --c-dimmed-light: #1b1d27;
   --c-dimmed-hover: #5d758f;
   --c-dimmed-text: var(--c-text-light);
   --c-dimmed-text-hover: var(--c-dimmed-text);
@@ -114,6 +115,7 @@
   --border-radius-xl: 8px;
   --border-radius-xxl: 16px;
   --border-radius-xxxl: 24px;
+  --border-radius-full: 1000px;
 
   --input-field-transition: var(--transition-s);
   --input-field-font-size: var(--font-size-xs);
@@ -147,9 +149,9 @@
   --grid-background-even-hover: #1b1d26;
   --grid-background-even-active: #2a2d3a;
   --grid-border-color: #131316;
-  --grid-border-radius: var(--border-radius-m);
+  --grid-border-radius: var(--border-radius-l);
 
-  --grid-header-background: #1f2733;
+  --grid-header-background: var(--c-primary);
   --grid-header-text: #dfe2e8;
 
   --tooltip-backdrop: var(--context-menu-backdrop);

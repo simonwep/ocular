@@ -1,7 +1,7 @@
 <template>
   <form :class="$style.fields" action="#" @submit="submit">
     <slot />
-    <Button :class="$style.btn" :text="submitLabel" color="success" type="submit" />
+    <Button :class="$style.btn" :text="submitLabel" type="submit" />
   </form>
 </template>
 

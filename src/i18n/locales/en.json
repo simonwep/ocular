@@ -117,7 +117,6 @@
       "tables": "Tables",
       "income": "Income",
       "expenses": "Expenses",
-      "summary": "Summary",
       "endingBalance": "Ending Balance",
       "header": "Annual budget for {year}",
       "remainingBalance": "Remaining Balance until {year}",

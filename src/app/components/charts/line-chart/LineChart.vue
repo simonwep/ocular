@@ -38,6 +38,7 @@ const options = computed(
       left: '3%',
       right: '4%',
       bottom: '3%',
+      top: '35px',
       containLabel: true
     },
     xAxis: {

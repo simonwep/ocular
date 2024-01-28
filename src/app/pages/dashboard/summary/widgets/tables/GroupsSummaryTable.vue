@@ -8,7 +8,7 @@
         :key="month"
         :class="[$style.bold, { [$style.currentMonth]: isCurrentMonth(index) }]"
       >
-        {{ month }}
+        <span>{{ month }}</span>
       </span>
       <span :class="$style.bold">{{ t('shared.total') }}</span>
       <span :class="$style.bold">{{ t('shared.average') }}</span>

@@ -75,7 +75,7 @@ const classes = computed(() => [
   cursor: pointer;
   background: v-bind('theme.color.base');
   color: v-bind('theme.text.base');
-  border-radius: var(--border-radius-m);
+  border-radius: var(--border-radius-full);
   transition: all var(--transition-s);
   padding: 10px;
 

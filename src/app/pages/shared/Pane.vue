@@ -60,7 +60,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
 
   .title {
     display: flex;
-    align-items: end;
+    align-items: center;
     gap: 8px;
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);

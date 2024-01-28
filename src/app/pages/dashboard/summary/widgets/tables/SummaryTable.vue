@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.summaryTable">
-    <h1 :class="$style.title">{{ title }}</h1>
+    <h1 v-if="title" :class="$style.title">{{ title }}</h1>
 
     <div :class="$style.table">
       <slot />
@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 defineProps<{
-  title: string;
+  title?: string;
 }>();
 </script>
 
@@ -29,8 +29,8 @@ defineProps<{
 }
 
 .table {
-  padding: 10px;
-  border: 2px solid var(--app-border);
+  padding: 8px;
+  background: var(--c-dimmed-light);
   border-radius: var(--border-radius-xxl);
   overflow: auto;
 

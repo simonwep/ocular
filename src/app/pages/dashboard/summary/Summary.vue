@@ -6,7 +6,7 @@
       :import="() => import('./widgets/charts/DevelopmentChart.vue')"
     />
 
-    <TotalsSummaryTable :title="t('page.dashboard.summary')" :income="income" :expenses="expenses" />
+    <TotalsSummaryTable :income="income" :expenses="expenses" />
     <GroupsSummaryTable :title="t('page.dashboard.income')" :groups="state.income" />
     <GroupsSummaryTable :title="t('page.dashboard.expenses')" :groups="state.expenses" />
   </div>

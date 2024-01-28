@@ -59,8 +59,8 @@
     },
     "info": {
       "about": "Über Ocular",
-      "github": "Schauen dir sich dieses Projekt auf {link} an!",
-      "madeWithLove": "Entwickelt mit ❤️von Simon",
+      "github": "Schauen dir dieses Projekt auf {link} an!",
+      "madeWithLove": "Entwickelt mit ❤️ von Simon R.",
       "meta": "{version} / {date} / {sha}"
     },
     "currency": {
@@ -117,7 +117,6 @@
       "tables": "Tabellen",
       "income": "Einnahmen",
       "expenses": "Ausgaben",
-      "summary": "Zusammenfassung",
       "endingBalance": "Endsaldo",
       "header": "Jährliches Budget für {year}",
       "remainingBalance": "Verbleibendes Netto bis {year}",
