@@ -8,7 +8,7 @@ import { AppIcon } from '@components/base/icon/Icon.types';
 import { ClassNames } from '@utils';
 
 const icons = Object.fromEntries(
-  Object.entries(import.meta.glob('/src/icons/*.svg', { eager: true, as: 'raw' })).map((v) => [
+  Object.entries(import.meta.glob('/src/icons/*.svg', { eager: true, query: 'raw', import: 'default' })).map((v) => [
     v[0].replace(/.*\/|\.\w+$/g, ''),
     v[1]
   ])

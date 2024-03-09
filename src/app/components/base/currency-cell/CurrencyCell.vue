@@ -17,7 +17,7 @@ import { computed, nextTick, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useDataStore } from '@store/state';
 
-const modelValue = defineModel<number | undefined>();
+const modelValue = defineModel<number>();
 
 const props = withDefaults(
   defineProps<{

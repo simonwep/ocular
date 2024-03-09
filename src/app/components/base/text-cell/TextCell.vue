@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, ref, useCssModule } from 'vue';
 
-const modelValue = defineModel<string | undefined>();
+const modelValue = defineModel<string>();
 
 const props = withDefaults(
   defineProps<{
