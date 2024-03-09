@@ -72,8 +72,9 @@ const onAction = (id: CellMenuActionId) => {
   list-style: none outside none;
   display: flex;
   align-items: flex-end;
-  background: var(--c-primary);
   border-radius: var(--border-radius-m);
+  box-shadow: var(--cell-menu-shadow);
+  backdrop-filter: var(--cell-menu-backdrop);
   overflow: hidden;
 
   .item {
