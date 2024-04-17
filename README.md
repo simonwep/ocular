@@ -46,11 +46,17 @@ Your data stays on your server and is not shared with anyone else.
 
 ### Development
 
-This app uses [genesis](https://github.com/simonwep/genesis) as generic backend.
-Go to the [genesis](https://github.com/simonwep/genesis) repository and follow the instructions to set it up first.
+1. Make sure you have the latest [node LTS](https://nodejs.org/en/) installed.
+2. Install [pnpm](https://pnpm.io/) via `npm i -g pnpm`.
+3. Clone this repository.
+4. Run `pnpm install` in the root directory.
+5. Copy the `.env.example` to `.env`, you can leave the default values.
+6. Start the backend with `docker run -p 8080:8080 -v "$(pwd)/.data:/app/.data" --env-file .env.genesis ghcr.io/simonwep/genesis:latest`.
+7. Start the frontend with `pnpm run dev`.
+8. Open `http://localhost:3000` in your browser.
 
-To run the frontend make sure you have the latest [node LTS](https://nodejs.org/en/) installed, as well as [pnpm](https://pnpm.io/).
-You can then start the frontend by running `pnpm run dev` in the root directory.
+> [!NOTE]  
+> To modify the backend, head over to [genesis](https://github.com/simonwep/genesis).
 
 ### Production
 
