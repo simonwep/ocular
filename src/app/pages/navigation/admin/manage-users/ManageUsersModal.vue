@@ -6,10 +6,10 @@
         <Button
           :color="usr.admin ? 'success' : 'dimmed'"
           textual
-          icon="shield-user-line"
+          :icon="RiShieldUserLine"
           @click="toggleAdmin(usr, !usr.admin)"
         />
-        <Button color="danger" textual icon="close-circle" @click="removeUser(usr)" />
+        <Button color="danger" textual :icon="RiCloseCircleLine" @click="removeUser(usr)" />
       </li>
     </ul>
     <p v-else :class="$style.placeholder">{{ t('navigation.admin.noUsersFound') }}</p>
@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiCloseCircleLine, RiShieldUserLine } from '@remixicon/vue';
 import { ref, toRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';

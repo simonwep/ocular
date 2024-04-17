@@ -1,13 +1,14 @@
 <template>
   <ContextMenuButton
     :text="t('navigation.admin.manageUsers')"
-    icon="user-settings-line"
+    :icon="RiUserSettingsLine"
     @click="showManageUserModal = !showManageUserModal"
   />
   <ManageUsersModal :open="showManageUserModal" @close="showManageUserModal = false" />
 </template>
 
 <script lang="ts" setup>
+import { RiUserSettingsLine } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';

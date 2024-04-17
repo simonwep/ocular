@@ -8,6 +8,9 @@ dependencies:
   '@popperjs/core':
     specifier: 2.11.8
     version: 2.11.8
+  '@remixicon/vue':
+    specifier: 4.2.0
+    version: 4.2.0(vue@3.4.21)
   echarts:
     specifier: 5.5.0
     version: 5.5.0
@@ -1737,6 +1740,14 @@ packages:
 
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
+
+  /@remixicon/vue@4.2.0(vue@3.4.21):
+    resolution: {integrity: sha512-dFtPQPi45sZ4X3Jl2ZNxEE5j2dAmo8vfHA1wvjUCwybQnyAGKSBVQlqZqP0wKzrtBbVqRXK0tgQx+Fw8GZ45qg==}
+    peerDependencies:
+      vue: '>= 3'
+    dependencies:
+      vue: 3.4.21(typescript@5.3.3)
     dev: false
 
   /@rollup/plugin-babel@5.3.1(@babel/core@7.22.5)(rollup@2.79.1):

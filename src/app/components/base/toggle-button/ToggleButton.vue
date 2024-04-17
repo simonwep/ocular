@@ -7,14 +7,13 @@
       :class="[$style.btn, { [$style.active]: btn.id === modelValue }]"
       @click="modelValue = btn.id"
     >
-      <Icon :class="$style.icon" :icon="btn.icon" />
+      <component :is="btn.icon" :class="$style.icon" />
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import Icon from '@components/base/icon/Icon.vue';
 import { Selectable, SelectableId } from '@components/base/toggle-button/ToggleButton.types';
 import { ClassNames } from '@utils';
 

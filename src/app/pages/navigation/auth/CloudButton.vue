@@ -4,13 +4,14 @@
 </template>
 
 <script lang="ts" setup>
+import { RiCloudLine, RiCloudOffLine, RiRefreshLine } from '@remixicon/vue';
 import { computed, ref } from 'vue';
 import Button from '@components/base/button/Button.vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
 import { Color } from '@composables';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
 import LoginDialog from './LoginDialog.vue';
+import type { Component } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -21,15 +22,15 @@ const showLoginDialog = ref(false);
 
 const classes = computed(() => props.class);
 
-const icon = computed((): AppIcon => {
+const icon = computed((): Component => {
   switch (status.value) {
     case 'syncing':
-      return 'refresh-line';
+      return RiRefreshLine;
     case 'idle':
-      return 'cloud-off-line';
+      return RiCloudOffLine;
   }
 
-  return 'cloud-line';
+  return RiCloudLine;
 });
 
 const color = computed((): Color => {

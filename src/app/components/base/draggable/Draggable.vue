@@ -26,11 +26,12 @@
 </template>
 
 <script lang="ts" setup>
+import { RiDraggable, RiSkipDownLine, RiSkipUpLine } from '@remixicon/vue';
 import { computed, ref } from 'vue';
 import Button from '@components/base/button/Button.vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
 import { ReorderEvent } from './Draggable.types';
 import { DraggableStore, store } from './store';
+import type { Component } from 'vue';
 
 const emit = defineEmits<{
   (e: 'drop', data: ReorderEvent): void;
@@ -38,7 +39,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   text: (store: DraggableStore) => string | undefined;
-  icon?: (store: DraggableStore) => AppIcon | undefined;
+  icon?: (store: DraggableStore) => Component | undefined;
   target?: string[];
   name: string;
   id: string;
@@ -54,8 +55,8 @@ const targets = computed(() => props.target ?? [props.name]);
 const matched = computed(() => store.targets?.includes(props.name));
 
 const icon = computed(
-  (): AppIcon =>
-    active.value ? props.icon?.(store) ?? (store.type === 'before' ? 'skip-up-line' : 'skip-down-line') : 'draggable'
+  (): Component =>
+    active.value ? props.icon?.(store) ?? (store.type === 'before' ? RiSkipUpLine : RiSkipDownLine) : RiDraggable
 );
 
 const label = computed(() => {

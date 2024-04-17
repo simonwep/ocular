@@ -1,17 +1,17 @@
 <template>
   <div :class="[$style.placeholder, classes]">
     <div :class="$style.icons">
-      <Icon icon="shopping-basket-2" :class="$style.icon" />
-      <Icon icon="hand-coin" :class="$style.icon" />
+      <RiShoppingBasket2Line :class="$style.icon" />
+      <RiHandCoinLine :class="$style.icon" />
     </div>
     <span>{{ t('shared.placeholder') }}</span>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { RiHandCoinLine, RiShoppingBasket2Line } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import Icon from '@components/base/icon/Icon.vue';
 import { ClassNames } from '@utils';
 
 const props = defineProps<{

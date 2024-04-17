@@ -5,11 +5,12 @@
     :options="locales"
     @select="changeLocale($event.id as AvailableLocale)"
   >
-    <Button :class="classes" icon="global-line" textual color="dimmed" />
+    <Button :class="classes" :icon="RiGlobalLine" textual color="dimmed" />
   </ContextMenu>
 </template>
 
 <script lang="ts" setup>
+import { RiCheckLine, RiGlobalLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
@@ -33,7 +34,7 @@ const locales = computed<ContextMenuOption[]>(() => {
 
   return availableLocales.map((value) => ({
     id: value,
-    icon: state.locale === value ? 'check' : undefined,
+    icon: state.locale === value ? RiCheckLine : undefined,
     label: displayNames.of(value)
   }));
 });

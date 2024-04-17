@@ -5,7 +5,7 @@
     tooltip-position="right"
     :class="classes"
   >
-    <Button icon="shield-flash-line" textual color="dimmed" />
+    <Button :icon="RiShieldFlashLine" textual color="dimmed" />
 
     <template #options>
       <CreateUserButton />
@@ -15,6 +15,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiShieldFlashLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';

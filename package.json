@@ -15,11 +15,11 @@
         "preview": "vite preview",
         "lint": "eslint '{scripts,src}/**/*.{js,ts,vue}' --no-error-on-unmatched-pattern",
         "lint:fix": "pnpm run lint --fix",
-        "test:ci": "pnpm run lint:fix && pnpm run build",
-        "gen:icons": "node scripts/icons.js"
+        "test:ci": "pnpm run lint:fix && pnpm run build"
     },
     "dependencies": {
         "@popperjs/core": "2.11.8",
+        "@remixicon/vue": "4.2.0",
         "echarts": "5.5.0",
         "papaparse": "5.4.1",
         "vue": "3.4.21",

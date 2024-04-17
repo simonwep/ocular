@@ -1,8 +1,9 @@
 <template>
-  <ContextMenuButton :text="t('navigation.tools.demo.loadDemoData')" icon="magic-line" @click="loadDemoData" />
+  <ContextMenuButton :text="t('navigation.tools.demo.loadDemoData')" :icon="RiMagicLine" @click="loadDemoData" />
 </template>
 
 <script lang="ts" setup>
+import { RiMagicLine } from '@remixicon/vue';
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';

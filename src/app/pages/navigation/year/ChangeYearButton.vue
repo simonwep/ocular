@@ -7,11 +7,12 @@
     :highlight="state.activeYear"
     @select="changeYear($event.id as number)"
   >
-    <Button :class="classes" icon="calendar-line" textual color="dimmed" />
+    <Button :class="classes" :icon="RiCalendarLine" textual color="dimmed" />
   </ContextMenu>
 </template>
 
 <script lang="ts" setup>
+import { RiCalendarCheckLine, RiCalendarLine, RiCalendarTodoLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
@@ -41,7 +42,7 @@ const options = computed((): ContextMenuOption[] => {
   for (let year = offset; year <= time.year.value + PRE_PLANNABLE_YEARS; year++) {
     list.push({
       id: year,
-      icon: state.activeYear === year ? 'calendar-check-line' : 'calendar-todo-line'
+      icon: state.activeYear === year ? RiCalendarCheckLine : RiCalendarTodoLine
     });
   }
 

@@ -8,7 +8,7 @@
     />
     <Button
       v-if="budgetFile"
-      icon="upload-cloud-2-line"
+      :icon="RiUploadCloud2Line"
       :text="t('navigation.tools.import.ocular.import')"
       @click="load"
     />
@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiUploadCloud2Line } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';

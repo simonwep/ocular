@@ -1,4 +1,4 @@
-import { AppIcon } from '@components/base/icon/Icon.types';
+import type { Component } from 'vue';
 
 export const ContextMenuStoreKey = Symbol('ContextMenuStore');
 
@@ -10,6 +10,6 @@ export type ContextMenuOptionId = number | string;
 
 export interface ContextMenuOption {
   id: ContextMenuOptionId;
-  icon?: AppIcon;
+  icon?: Component;
   label?: string;
 }

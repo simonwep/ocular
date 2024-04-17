@@ -1,8 +1,8 @@
 <template>
   <Pane :class="$style.dashboard">
     <template v-if="state.years.length > 1" #beforeTitle>
-      <Button icon="arrow-left-s-line" rounded @click="rotateYear(-1)" />
-      <Button icon="arrow-right-s-line" rounded @click="rotateYear(1)" />
+      <Button :icon="RiArrowLeftSLine" rounded @click="rotateYear(-1)" />
+      <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
     </template>
     <template #title>
       <span>
@@ -18,7 +18,7 @@
         <Button
           textual
           size="l"
-          icon="pi-chart-line"
+          :icon="RiPieChartLine"
           :tooltip="t('page.dashboard.title')"
           :color="view === Overview ? 'primary' : 'dimmed'"
           @click="view = Overview"
@@ -26,7 +26,7 @@
         <Button
           textual
           size="l"
-          icon="grid-line"
+          :icon="RiGridLine"
           :tooltip="t('page.dashboard.tables')"
           :color="view === Summary ? 'primary' : 'dimmed'"
           @click="view = Summary"
@@ -38,6 +38,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiArrowLeftSLine, RiArrowRightSLine, RiGridLine, RiPieChartLine } from '@remixicon/vue';
 import { computed, shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';

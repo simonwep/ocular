@@ -1,11 +1,11 @@
 <template>
   <div ref="root" :style="$style.wrapper">
     <component :is="element" :to="to" :class="[$style.summaryPanel, classes]">
-      <Icon v-if="to" :class="$style.editIcon" icon="pencil-fill" />
+      <RiPencilFill v-if="to" :class="$style.editIcon" />
 
       <div :class="$style.header">
         <div v-if="alt" :class="$style.placeholder">
-          <Icon :class="$style.icon" icon="calendar-2-line" />
+          <RiCalendar2Line :class="$style.icon" />
           <span :class="$style.text">{{ alt }}</span>
         </div>
 
@@ -22,9 +22,9 @@
 </template>
 
 <script lang="ts" setup>
+import { RiCalendar2Line, RiPencilFill } from '@remixicon/vue';
 import { computed } from 'vue';
 import Currency from '@components/base/currency/Currency.vue';
-import Icon from '@components/base/icon/Icon.vue';
 import Link from '@components/base/link/Link.vue';
 import { useSquircle } from '@composables';
 import { ClassNames } from '@utils';

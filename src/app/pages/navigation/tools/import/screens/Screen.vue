@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.screen">
     <h1 v-if="title" :class="$style.title">
-      <Button v-if="back" color="dark" icon="arrow-left-s-line" textual @click="back" />
+      <Button v-if="back" color="dark" :icon="RiArrowLeftSLine" textual @click="back" />
       <span>{{ title }}</span>
     </h1>
     <div :class="classes">
@@ -11,6 +11,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiArrowLeftSLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import { ClassNames } from '@utils';

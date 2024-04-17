@@ -1,6 +1,6 @@
 <template>
   <ContextMenuButton
-    icon="key-2-line"
+    :icon="RiKey2Line"
     :text="t('navigation.tools.changePassword.change')"
     @click="showChangePasswordDialog = true"
   />
@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiKey2Line } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';

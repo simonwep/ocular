@@ -1,17 +1,17 @@
 <template>
   <p :class="[$style.alert, classes]">
-    <Icon :class="$style.icon" :icon="mapping[type][1]" />
+    <component :is="mapping[type][1]" :class="$style.icon" />
     <span>{{ text }}</span>
   </p>
 </template>
 
 <script lang="ts" setup>
+import { RiCheckLine, RiErrorWarningLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { AlertType } from '@components/base/alert/Alert.types';
-import { AppIcon } from '@components/base/icon/Icon.types';
-import Icon from '@components/base/icon/Icon.vue';
 import { Color, useThemeStyles } from '@composables';
 import { ClassNames } from '@utils';
+import type { Component } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -19,10 +19,10 @@ const props = defineProps<{
   type: AlertType;
 }>();
 
-const mapping: Record<AlertType, [Color, AppIcon]> = {
-  error: ['danger', 'error-warning-line'],
-  success: ['success', 'check'],
-  warning: ['warning', 'error-warning-line']
+const mapping: Record<AlertType, [Color, Component]> = {
+  error: ['danger', RiErrorWarningLine],
+  success: ['success', RiCheckLine],
+  warning: ['warning', RiErrorWarningLine]
 };
 
 const classes = computed(() => props.class);

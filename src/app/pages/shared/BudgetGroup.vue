@@ -1,6 +1,6 @@
 <template>
   <!-- Header -->
-  <Button color="dimmed" icon="close-circle" textual @click="removeBudgetGroup(group.id)" />
+  <Button color="dimmed" :icon="RiCloseCircleLine" textual @click="removeBudgetGroup(group.id)" />
 
   <TextCell
     :class="[$style.top, $style.start]"
@@ -31,7 +31,7 @@
       @drop="reorder"
     />
 
-    <Button color="dimmed" icon="close-circle" textual @click="removeBudget(budget.id)" />
+    <Button color="dimmed" :icon="RiCloseCircleLine" textual @click="removeBudget(budget.id)" />
 
     <span :class="$style.header">
       <TextCell :model-value="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
@@ -71,13 +71,14 @@
 
   <!-- Footer -->
   <span />
-  <Button icon="plus" textual @click="addBudget(group.id)" />
+  <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id)" />
   <span style="grid-column: 3 / 16" />
   <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
   <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
 </template>
 
 <script lang="ts" setup>
+import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
 import { computed, DeepReadonly } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';

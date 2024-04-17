@@ -2,12 +2,13 @@
   <ContextMenuButton
     v-if="clipboard.data.value"
     :text="t('navigation.tools.copyPaste.paste', { from, to })"
-    icon="clipboard-line"
+    :icon="RiClipboardLine"
     @click="paste"
   />
 </template>
 
 <script lang="ts" setup>
+import { RiClipboardLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';

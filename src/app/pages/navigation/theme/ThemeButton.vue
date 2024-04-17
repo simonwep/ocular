@@ -3,13 +3,14 @@
 </template>
 
 <script lang="ts" setup>
+import { RiMoonFill, RiSunFill } from '@remixicon/vue';
 import { computed, getCurrentInstance } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
 import { useAppElement } from '@composables';
 import { useSettingsStore } from '@store/settings';
 import { ClassNames } from '@utils';
+import type { Component } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -20,7 +21,7 @@ const { t } = useI18n();
 const app = useAppElement();
 let switchActive = false;
 
-const icon = computed((): AppIcon => (state.appearance.theme === 'light' ? 'sun-fill' : 'moon-fill'));
+const icon = computed((): Component => (state.appearance.theme === 'light' ? RiSunFill : RiMoonFill));
 const classes = computed(() => props.class);
 const instance = getCurrentInstance();
 

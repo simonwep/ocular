@@ -5,11 +5,12 @@
     :options="currencies"
     @select="changeCurrency($event.id as AvailableCurrency)"
   >
-    <Button :class="classes" icon="currency-line" textual color="dimmed" />
+    <Button :class="classes" :icon="RiCurrencyLine" textual color="dimmed" />
   </ContextMenu>
 </template>
 
 <script lang="ts" setup>
+import { RiCheckLine, RiCurrencyLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
@@ -43,7 +44,7 @@ const classes = computed(() => props.class);
 const currencies = computed<ContextMenuOption[]>(() =>
   availableCurrencies.map((value) => ({
     id: value,
-    icon: state.currency === value ? 'check' : undefined,
+    icon: state.currency === value ? RiCheckLine : undefined,
     label: `${formatNumber(locale.value, value, 'name')} (${formatNumber(locale.value, value)})`
   }))
 );

@@ -1,13 +1,13 @@
 <template>
-  <ContextMenuButton :text="t('navigation.tools.import.import')" icon="upload-cloud-2-line" @click="visible = true" />
+  <ContextMenuButton :text="t('navigation.tools.import.import')" :icon="RiUploadCloud2Line" @click="visible = true" />
 
   <Dialog ref="dialog" :open="visible" @close="visible = false">
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
         <h1 :class="$style.title">{{ t('navigation.tools.import.what.title') }}</h1>
-        <Button icon="file-fill" :text="t('navigation.tools.import.what.ocular')" @click="next(BudgetFileScreen)" />
+        <Button :icon="RiFileFill" :text="t('navigation.tools.import.what.ocular')" @click="next(BudgetFileScreen)" />
         <Button
-          icon="google-fill"
+          :icon="RiGoogleFill"
           :text="t('navigation.tools.import.what.google')"
           @click="next(GoogleAnnualBudgetScreen)"
         />
@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiFileFill, RiGoogleFill, RiUploadCloud2Line } from '@remixicon/vue';
 import { DefineComponent, ref, shallowRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';

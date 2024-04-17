@@ -7,11 +7,11 @@
     rel="noopener,noreferrer,nofollow"
     target="_blank"
   >
-    <Icon v-if="icon" :class="$style.icon" :icon="icon" />
+    <component :is="icon" v-if="icon" :class="$style.icon" />
     <slot />
   </a>
   <RouterLink v-else v-tooltip="{ text: tooltip, position: tooltipPosition }" :to="href" :class="classes">
-    <Icon v-if="icon" :class="$style.icon" :icon="icon" />
+    <component :is="icon" v-if="icon" :class="$style.icon" />
     <slot />
   </RouterLink>
 </template>
@@ -20,15 +20,14 @@
 import { Placement } from '@popperjs/core';
 import { computed, useCssModule, useSlots } from 'vue';
 import { useRouter } from 'vue-router';
-import { AppIcon } from '@components/base/icon/Icon.types';
-import Icon from '@components/base/icon/Icon.vue';
 import { Color, useThemeStyles } from '@composables';
 import { ClassNames } from '@utils';
+import type { Component } from 'vue';
 
 const props = withDefaults(
   defineProps<{
     class?: ClassNames;
-    icon?: AppIcon;
+    icon?: Component;
     color?: Color | ((currentRoute: boolean) => Color);
     custom?: boolean;
     tooltip?: string;
@@ -71,8 +70,8 @@ const classes = computed(() => [
   transition: all var(--transition-s);
 
   .icon {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 
   &.custom {

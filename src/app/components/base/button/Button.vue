@@ -6,7 +6,7 @@
     :type="type"
     @click="emit('click', $event)"
   >
-    <Icon v-if="icon" :class="[$style.icon, iconClass]" :icon="icon" />
+    <component :is="icon" v-if="icon" :class="[$style.icon, iconClass]" />
     <span v-if="text" :class="$style.text">{{ text }}</span>
   </button>
 </template>
@@ -14,10 +14,9 @@
 <script lang="ts" setup>
 import { Placement } from '@popperjs/core';
 import { computed, useCssModule } from 'vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
-import Icon from '@components/base/icon/Icon.vue';
 import { Color, useThemeStyles } from '@composables';
 import { ClassNames } from '@utils';
+import type { Component } from 'vue';
 
 const emit = defineEmits<{
   (e: 'click', v: MouseEvent): void;
@@ -27,7 +26,7 @@ const props = withDefaults(
   defineProps<{
     class?: ClassNames;
     iconClass?: ClassNames;
-    icon?: AppIcon;
+    icon?: Component;
     text?: string;
     tooltip?: string;
     type?: 'button' | 'reset' | 'submit';

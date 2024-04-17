@@ -5,14 +5,14 @@
     <div :class="$style.wrapper">
       <input :id="inputId" v-model="modelValue" :class="$style.input" type="checkbox" />
       <div :class="$style.box">
-        <Icon icon="check" :class="$style.icon" />
+        <RiCheckLine :class="$style.icon" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Icon from '@components/base/icon/Icon.vue';
+import { RiCheckLine } from '@remixicon/vue';
 import { uuid } from '@utils';
 
 const modelValue = defineModel<boolean>();

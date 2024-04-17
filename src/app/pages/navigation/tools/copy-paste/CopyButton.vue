@@ -5,12 +5,13 @@
         year: state.activeYear
       })
     "
-    icon="clipboard-line"
+    :icon="RiClipboardLine"
     @click="clipboard.copy"
   />
 </template>
 
 <script lang="ts" setup>
+import { RiClipboardLine } from '@remixicon/vue';
 import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import { useDataStore } from '@store/state';

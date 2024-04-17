@@ -33,6 +33,7 @@
     </div>
 
     <div ref="panes" :class="$style.panes">
+      <!-- eslint-disable vue/no-template-shadow -->
       <RouterView v-slot="{ Component }">
         <ComponentTransition :is="Component" v-if="Component" />
       </RouterView>
@@ -41,10 +42,10 @@
 </template>
 
 <script lang="ts" setup>
+import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import InfoButton from '@app/pages/navigation/info/InfoButton.vue';
-import { AppIcon } from '@components/base/icon/Icon.types';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables';
@@ -56,6 +57,7 @@ import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue
 import ThemeButton from './navigation/theme/ThemeButton.vue';
 import ToolsButton from './navigation/tools/ToolsButton.vue';
 import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
+import type { Component } from 'vue';
 
 const menu = ref<HTMLDivElement>();
 const media = useMediaQuery();
@@ -63,15 +65,15 @@ const { user } = useStorage();
 const { t } = useI18n();
 
 interface FrameButton {
-  icon: AppIcon;
+  icon: Component;
   name: string;
   tooltip: string;
 }
 
 const buttons = computed((): FrameButton[] => [
-  { icon: 'donut-chart', name: 'dashboard', tooltip: t('page.dashboard.title') },
-  { icon: 'hand-coin', name: 'income', tooltip: t('page.income.title') },
-  { icon: 'shopping-basket-2', name: 'expenses', tooltip: t('page.expenses.title') }
+  { icon: RiDonutChartLine, name: 'dashboard', tooltip: t('page.dashboard.title') },
+  { icon: RiHandCoinLine, name: 'income', tooltip: t('page.income.title') },
+  { icon: RiShoppingBagLine, name: 'expenses', tooltip: t('page.expenses.title') }
 ]);
 </script>
 

@@ -19,7 +19,7 @@
       <Button
         v-if="type === 'password'"
         textual
-        :icon="showPassword ? 'eye-close' : 'eye-line'"
+        :icon="showPassword ? RiEyeCloseLine : RiEyeLine"
         @click="showPassword = !showPassword"
       />
     </div>
@@ -33,6 +33,7 @@
 </template>
 
 <script lang="ts" setup>
+import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { computed, ref } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import { uuid } from '@utils';

@@ -1,7 +1,7 @@
 <template>
   <li :class="$style.item">
     <button :class="classes" @click="onClick">
-      <Icon v-if="icon" :icon="icon" :class="$style.icon"></Icon>
+      <component :is="icon" v-if="icon" :class="$style.icon"></component>
       <span>{{ text }}</span>
     </button>
   </li>
@@ -10,9 +10,8 @@
 <script lang="ts" setup>
 import { computed, inject, useCssModule } from 'vue';
 import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
-import { AppIcon } from '@components/base/icon/Icon.types';
-import Icon from '@components/base/icon/Icon.vue';
 import { ClassNames } from '@utils';
+import type { Component } from 'vue';
 
 const emit = defineEmits<{
   (e: 'click', evt: MouseEvent): void;
@@ -22,7 +21,7 @@ const props = withDefaults(
   defineProps<{
     class?: ClassNames;
     text: string | number;
-    icon?: AppIcon;
+    icon?: Component;
     padIcon?: boolean;
     highlight?: boolean;
   }>(),
