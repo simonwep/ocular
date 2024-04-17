@@ -18,11 +18,11 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const classes = computed(() => props.class);
 const months = useMonthNames();
 const { state } = useDataStore();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
+const classes = computed(() => props.class);
 const isEmpty = computed(() => {
   const totalIncome = sum(totals(state.income));
   const totalExpenses = sum(totals(state.expenses));
@@ -33,9 +33,15 @@ const data = computed((): LineChartConfig => {
   const income = totals(state.income);
   const expenses = totals(state.expenses);
   const endingBalance = aggregate(subtract(income, expenses));
+  const formatter = new Intl.NumberFormat(locale.value, {
+    style: 'currency',
+    currency: state.currency,
+    maximumFractionDigits: 0
+  });
 
   return {
     labels: months.value,
+    valueFormatter: (value) => formatter.format(value),
     series: [
       { name: t('page.dashboard.income'), color: 'var(--c-success-light-dimmed)', data: income },
       { name: t('page.dashboard.expenses'), color: 'var(--c-danger-light-dimmed)', data: expenses },

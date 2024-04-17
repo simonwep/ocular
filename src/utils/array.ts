@@ -14,6 +14,24 @@ export const aggregate = (values: readonly number[]) => values.map((_, index) =>
 
 export const arrayify = <T>(value: T | T[]): T[] => (Array.isArray(value) ? value : [value]);
 
+export const rollingAverage = (values: readonly number[], windowSize: number): number[] => {
+  let sum = 0;
+  const result = [];
+
+  for (let i = 0; i < windowSize - 1; i++) {
+    sum += values[i];
+    result.push(sum / (i + 1));
+  }
+
+  for (let i = windowSize - 1; i < values.length; i++) {
+    sum += values[i];
+    sum -= i >= windowSize ? values[i - windowSize] : 0;
+    result.push(sum / windowSize);
+  }
+
+  return result;
+};
+
 interface OnlyId {
   id: string;
 }

@@ -116,14 +116,23 @@
       "title": "Dashboard",
       "tables": "Tables",
       "income": "Income",
+      "incomeTrend": "Income Trend",
+      "allTime": "All time overview",
+      "allTimeFromTo": "All time from {from} to {to}",
       "expenses": "Expenses",
+      "expensesTrend": "Expenses Trend",
       "endingBalance": "Ending Balance",
       "header": "Annual budget for {year}",
       "remainingBalance": "Remaining Balance until {year}",
       "netSavings": "Net Savings",
       "yearInThePast": "Year is in the past",
       "yearInTheFuture": "Year is in the future",
-      "yearEnding": "This Year is coming to an end..."
+      "yearEnding": "This Year is coming to an end...",
+      "yoyIncomeGrowth": "YoY Income Growth",
+      "yoyExpenseGrowth": "YoY Expense Growth",
+      "allTimeIncome": "All Time Income",
+      "allTimeExpenses": "All Time Expenses",
+      "allTimeSavings": "All Time Savings"
     }
   }
 }

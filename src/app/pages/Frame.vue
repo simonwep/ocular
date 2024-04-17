@@ -23,11 +23,13 @@
       <ToolsButton :class="$style.btn" />
       <AdminButton v-if="user?.admin" :class="$style.btn" />
       <ChangeYearButton :class="$style.btn" />
+
       <template v-if="media !== 'mobile'">
         <ChangeLanguageButton :class="$style.btn" />
         <ChangeCurrencyButton :class="$style.btn" />
         <InfoButton :class="$style.btn" />
       </template>
+
       <div :class="$style.divider" />
       <CloudButton :class="$style.btn" />
     </div>

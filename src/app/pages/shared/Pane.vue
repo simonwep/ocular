@@ -2,7 +2,6 @@
   <div :class="$style.pane">
     <div ref="header" :class="$style.header">
       <h1 :class="$style.title">
-        <slot name="beforeTitle" />
         <slot v-if="$slots.title" name="title" />
         <span v-else>{{ title }}</span>
         <template v-if="amount">

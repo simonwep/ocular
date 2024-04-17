@@ -116,14 +116,23 @@
       "title": "Dashboard",
       "tables": "Tabellen",
       "income": "Einnahmen",
+      "incomeTrend": "Einnahmen-Trend",
       "expenses": "Ausgaben",
+      "expensesTrend": "Ausgaben-Trend",
+      "allTime": "Allzeit Übersicht",
+      "allTimeFromTo": "Allzeit Übersicht von {from} bis {to}",
       "endingBalance": "Endsaldo",
       "header": "Jährliches Budget für {year}",
       "remainingBalance": "Verbleibendes Netto bis {year}",
       "netSavings": "Nettoersparnisse",
       "yearInThePast": "Jahr liegt in der Vergangenheit",
       "yearInTheFuture": "Jahr liegt in der Zukunft",
-      "yearEnding": "Dieses Jahr neigt sich dem Ende zu..."
+      "yearEnding": "Dieses Jahr neigt sich dem Ende zu...",
+      "yoyIncomeGrowth": "Jährliches Einkommenswachstum",
+      "yoyExpenseGrowth": "Jährliches Ausgabenwachstum",
+      "allTimeIncome": "Allzeit Einnahmen",
+      "allTimeExpenses": "Allzeit Ausgaben",
+      "allTimeSavings": "Allzeit Ersparnisse"
     }
   }
 }

@@ -109,6 +109,13 @@
   --chart-generic-saturation: 55%;
   --chart-generic-lightness: 82%;
 
+  --chart-tooltip-background-color: var(--app-background);
+  --chart-tooltip-border-color: var(--app-border);
+  --chart-tooltip-color: var(--theme-text);
+  --chart-tooltip-cross-color: var(--c-primary);
+  --chart-tooltip-axis-label-color: var(--c-primary-text);
+  --chart-tooltip-axis-label-background: var(--c-primary);
+
   --border-radius-s: 2px;
   --border-radius-m: 4px;
   --border-radius-l: 6px;

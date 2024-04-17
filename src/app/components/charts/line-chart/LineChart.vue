@@ -3,9 +3,8 @@
 </template>
 
 <script lang="ts" setup>
-import { GridComponentOption, LegendComponentOption, LineSeriesOption } from 'echarts';
-import { LineChart } from 'echarts/charts';
-import { GridComponent, LegendComponent } from 'echarts/components';
+import { GridComponentOption, LegendComponentOption, LineSeriesOption, TooltipComponentOption } from 'echarts';
+import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
@@ -13,9 +12,11 @@ import EChart from '@components/charts/echart/EChart.vue';
 import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
 import { ClassNames } from '@utils';
 
-echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent]);
+echarts.use([SVGRenderer, LegendComponent, GridComponent, TooltipComponent]);
 
-type EChartsOption = echarts.ComposeOption<LineSeriesOption | GridComponentOption | LegendComponentOption>;
+type EChartsOption = echarts.ComposeOption<
+  LineSeriesOption | TooltipComponentOption | GridComponentOption | LegendComponentOption
+>;
 
 const props = defineProps<{
   class?: ClassNames;
@@ -53,7 +54,10 @@ const options = computed(
       type: 'value',
       axisTick: { lineStyle: { color: 'var(--chart-line-color)' } },
       axisLine: { lineStyle: { color: 'var(--chart-line-color)' } },
-      axisLabel: { color: 'var(--chart-label)' },
+      axisLabel: {
+        color: 'var(--chart-label)',
+        formatter: props.data.valueFormatter
+      },
       splitLine: { lineStyle: { color: 'var(--chart-line-color)' } }
     },
     series: props.data.series.map((v) => ({
@@ -71,5 +75,11 @@ const options = computed(
 .stackedLineChart {
   width: 100%;
   height: 100%;
+}
+
+.chartTooltip {
+  font-family: var(--font-family);
+  color: var(--c-primary-text);
+  background: var(--c-primary);
 }
 </style>
