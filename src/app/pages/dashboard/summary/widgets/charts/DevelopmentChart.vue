@@ -7,12 +7,12 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ChartPlaceholder from '@app/pages/shared/ChartPlaceholder.vue';
-import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
-import LineChart from '@components/charts/line-chart/LineChart.vue';
 import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
+import { LineChartConfig } from './line-chart/LineChart.types';
+import LineChart from './line-chart/LineChart.vue';
 
 const props = defineProps<{
   class?: ClassNames;

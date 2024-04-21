@@ -9,8 +9,8 @@ import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
 import EChart from '@components/charts/echart/EChart.vue';
-import { SankeyChartConfig } from '@components/charts/sankey-chart/SankeyChart.types';
 import { ClassNames } from '@utils';
+import { SankeyChartConfig } from './SankeyChart.types';
 
 echarts.use([SankeyChart, SVGRenderer]);
 

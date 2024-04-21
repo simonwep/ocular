@@ -9,11 +9,11 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import MiniChart from '@components/charts/mini-chart/MiniChart.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import BudgetGroups from './BudgetGroups.vue';
 import Pane from './Pane.vue';
+import MiniChart from './mini-chart/MiniChart.vue';
 
 const props = defineProps<{
   title: string;

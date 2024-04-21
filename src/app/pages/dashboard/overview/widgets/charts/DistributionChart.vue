@@ -7,15 +7,11 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import ChartPlaceholder from '@app/pages/shared/ChartPlaceholder.vue';
-import {
-  SankeyChartConfig,
-  SankeyChartLabel,
-  SankeyChartLink
-} from '@components/charts/sankey-chart/SankeyChart.types';
-import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum, uuid } from '@utils';
+import { SankeyChartConfig, SankeyChartLabel, SankeyChartLink } from './sankey-chart/SankeyChart.types';
+import SankeyChart from './sankey-chart/SankeyChart.vue';
 
 const props = defineProps<{
   class?: ClassNames;

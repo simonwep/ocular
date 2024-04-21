@@ -5,10 +5,10 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { StackedLineChartConfig } from '@components/charts/stacked-line-chart/StackedLineChart.types';
-import StackedLineChart from '@components/charts/stacked-line-chart/StackedLineChart.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
+import { StackedLineChartConfig } from './stacked-line-chart/StackedLineChart.types';
+import StackedLineChart from './stacked-line-chart/StackedLineChart.vue';
 
 const { t, locale } = useI18n();
 const { state } = useDataStore();
