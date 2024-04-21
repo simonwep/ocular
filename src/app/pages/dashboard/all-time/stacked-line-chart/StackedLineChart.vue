@@ -37,10 +37,10 @@ const options = computed(
       itemStyle: { opacity: 0 }
     },
     grid: {
-      left: '3%',
-      right: '4%',
+      left: 0,
+      right: '5px',
       bottom: '3%',
-      top: '35px',
+      top: '30px',
       containLabel: true
     },
     tooltip: {

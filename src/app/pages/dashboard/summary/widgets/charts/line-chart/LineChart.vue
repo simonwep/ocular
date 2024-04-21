@@ -36,10 +36,10 @@ const options = computed(
       itemStyle: { opacity: 0 }
     },
     grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      top: '35px',
+      left: 0,
+      right: '3%',
+      bottom: 0,
+      top: '30px',
       containLabel: true
     },
     xAxis: {
