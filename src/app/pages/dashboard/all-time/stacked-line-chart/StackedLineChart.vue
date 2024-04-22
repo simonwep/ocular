@@ -93,17 +93,13 @@ const options = computed(
       },
       splitLine: { lineStyle: { color: 'var(--chart-line-color)' } }
     },
-    series: props.data.series.flatMap((s, seriesIndex, series) => {
+    series: props.data.series.flatMap((s) => {
       const areaGraph: EChartsOption['series'] = {
         name: s.name,
         type: 'line',
-        data: s.data.map(
-          (d, index) =>
-            d - (seriesIndex ? series.slice(0, seriesIndex).reduce((acc, curr) => acc + curr.data[index], 0) : 0)
-        ),
+        data: s.data,
         color: s.color,
         silent: true,
-        stack: 'Total',
         areaStyle: {
           color: s.color,
           opacity: 0.15

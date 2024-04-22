@@ -48,41 +48,48 @@ const cards = computed((): Card[] => {
   const lastYear = state.years.at(-2);
   const currentYear = state.years.at(-1);
 
-  if (!lastYear || !currentYear) {
-    return [];
-  }
-
-  const lastYearIncome = sum(totals(lastYear.income));
-  const lastYearExpenses = sum(totals(lastYear.expenses));
-  const currentYearIncome = sum(totals(currentYear.income));
-  const currentYearExpenses = sum(totals(currentYear.expenses));
+  const lastYearIncome = lastYear?.income ? sum(totals(lastYear.income)) : 0;
+  const lastYearExpenses = lastYear?.expenses ? sum(totals(lastYear.expenses)) : 0;
+  const currentYearIncome = currentYear?.income ? sum(totals(currentYear.income)) : 0;
+  const currentYearExpenses = currentYear?.expenses ? sum(totals(currentYear.expenses)) : 0;
   const allTimeIncome = sum(totals(state.years.flatMap((v) => v.income)));
   const allTimeExpenses = sum(totals(state.years.flatMap((v) => v.expenses)));
 
   return [
     {
       title: t('page.dashboard.yoyIncomeGrowth'),
-      text: percent.format((currentYearIncome - lastYearIncome) / lastYearIncome),
-      icon: currentYearIncome > lastYearIncome ? RiArrowUpDoubleLine : RiArrowDownDoubleLine,
+      text: lastYearIncome ? percent.format((currentYearIncome - lastYearIncome) / lastYearIncome) : '—',
+      icon: lastYearIncome
+        ? currentYearIncome > lastYearIncome
+          ? RiArrowUpDoubleLine
+          : RiArrowDownDoubleLine
+        : undefined,
       iconClass: currentYearIncome > lastYearIncome ? styles.iconSuccess : styles.iconDanger
     },
     {
       title: t('page.dashboard.yoyExpenseGrowth'),
-      text: percent.format((lastYearExpenses - currentYearExpenses) / currentYearExpenses),
-      icon: lastYearExpenses > currentYearExpenses ? RiArrowUpDoubleLine : RiArrowDownDoubleLine,
+      text: currentYearExpenses ? percent.format((lastYearExpenses - currentYearExpenses) / currentYearExpenses) : '—',
+      icon: currentYearExpenses
+        ? lastYearExpenses > currentYearExpenses
+          ? RiArrowUpDoubleLine
+          : RiArrowDownDoubleLine
+        : undefined,
       iconClass: lastYearExpenses > currentYearExpenses ? styles.iconDanger : styles.iconSuccess
     },
     {
       title: t('page.dashboard.allTimeIncome'),
-      value: allTimeIncome
+      value: allTimeIncome,
+      text: allTimeIncome ? undefined : '—'
     },
     {
       title: t('page.dashboard.allTimeExpenses'),
-      value: allTimeExpenses
+      value: allTimeExpenses,
+      text: allTimeExpenses ? undefined : '—'
     },
     {
       title: t('page.dashboard.allTimeSavings'),
-      value: allTimeIncome - allTimeExpenses
+      value: allTimeIncome - allTimeExpenses,
+      text: allTimeIncome && allTimeExpenses ? undefined : '—'
     }
   ];
 });

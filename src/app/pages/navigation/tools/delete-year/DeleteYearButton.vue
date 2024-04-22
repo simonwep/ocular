@@ -17,7 +17,7 @@ const { state, shiftYears } = useDataStore();
 const { t } = useI18n();
 
 const deleteCurrentYear = () => {
-  if (window.confirm(t('navigation.tools.deleteYear.confirm'))) {
+  if (window.confirm(t('navigation.tools.deleteYear.confirm', { year: state.activeYear }))) {
     shiftYears();
   }
 };

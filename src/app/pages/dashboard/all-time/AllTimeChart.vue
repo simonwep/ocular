@@ -30,16 +30,16 @@ const data = computed((): StackedLineChartConfig => {
     }),
     series: [
       {
-        name: t('page.dashboard.expenses'),
-        trendName: t('page.dashboard.expensesTrend'),
-        data: state.years.flatMap((v) => totals(v.expenses)),
-        color: 'var(--c-danger-light-dimmed)'
-      },
-      {
         name: t('page.dashboard.income'),
         trendName: t('page.dashboard.incomeTrend'),
         data: state.years.flatMap((v) => totals(v.income)),
         color: 'var(--c-success-light-dimmed)'
+      },
+      {
+        name: t('page.dashboard.expenses'),
+        trendName: t('page.dashboard.expensesTrend'),
+        data: state.years.flatMap((v) => totals(v.expenses)),
+        color: 'var(--c-danger-light-dimmed)'
       }
     ]
   };
