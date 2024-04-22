@@ -5,7 +5,8 @@
         <h2 :title="card.title" :class="$style.title">{{ card.title }}</h2>
         <div :class="$style.content">
           <component :is="card.icon" v-if="card.icon" :class="card.iconClass" />
-          <span :class="$style.value">{{ card.value }}</span>
+          <span v-if="card.text" :class="$style.value">{{ card.text }}</span>
+          <Currency v-if="card.value" :value="card.value" :class="$style.value" />
         </div>
       </div>
     </div>
@@ -19,6 +20,7 @@
 import { RiArrowDownDoubleLine, RiArrowUpDoubleLine } from '@remixicon/vue';
 import { computed, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
+import Currency from '@components/base/currency/Currency.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum } from '@utils';
@@ -27,7 +29,8 @@ import type { Component } from 'vue';
 
 interface Card {
   title: string;
-  value: string;
+  text?: string;
+  value?: number;
   icon?: Component;
   iconClass?: ClassNames;
 }
@@ -40,12 +43,6 @@ const cards = computed((): Card[] => {
   const percent = new Intl.NumberFormat(locale.value, {
     style: 'percent',
     maximumFractionDigits: 2
-  });
-
-  const currency = new Intl.NumberFormat(locale.value, {
-    style: 'currency',
-    currency: state.currency,
-    maximumFractionDigits: 0
   });
 
   const lastYear = state.years.at(-2);
@@ -65,27 +62,27 @@ const cards = computed((): Card[] => {
   return [
     {
       title: t('page.dashboard.yoyIncomeGrowth'),
-      value: percent.format((currentYearIncome - lastYearIncome) / lastYearIncome),
+      text: percent.format((currentYearIncome - lastYearIncome) / lastYearIncome),
       icon: currentYearIncome > lastYearIncome ? RiArrowUpDoubleLine : RiArrowDownDoubleLine,
       iconClass: currentYearIncome > lastYearIncome ? styles.iconSuccess : styles.iconDanger
     },
     {
       title: t('page.dashboard.yoyExpenseGrowth'),
-      value: percent.format((lastYearExpenses - currentYearExpenses) / currentYearExpenses),
+      text: percent.format((lastYearExpenses - currentYearExpenses) / currentYearExpenses),
       icon: lastYearExpenses > currentYearExpenses ? RiArrowUpDoubleLine : RiArrowDownDoubleLine,
       iconClass: lastYearExpenses > currentYearExpenses ? styles.iconDanger : styles.iconSuccess
     },
     {
       title: t('page.dashboard.allTimeIncome'),
-      value: currency.format(allTimeIncome)
+      value: allTimeIncome
     },
     {
       title: t('page.dashboard.allTimeExpenses'),
-      value: currency.format(allTimeExpenses)
+      value: allTimeExpenses
     },
     {
       title: t('page.dashboard.allTimeSavings'),
-      value: currency.format(allTimeIncome - allTimeExpenses)
+      value: allTimeIncome - allTimeExpenses
     }
   ];
 });
