@@ -31,7 +31,6 @@
 - 🙈 Privacy mode for when you're in a public place.
 - ⚡️ Simple, fast and straight-forward UI.
 - 🫂 User management and authentication.
-- 🗣️ Internationalized, comes with german and english - more to come.
 - ...and more to come!
 
 ## Summary

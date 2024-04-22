@@ -4,7 +4,7 @@
     :position="media === 'mobile' ? 'top' : 'right-end'"
     tooltip-position="right"
   >
-    <Button :class="classes" :icon="RiSettings4Line" textual color="dimmed"></Button>
+    <Button :class="classes" :icon="RiToolsLine" textual color="dimmed"></Button>
 
     <template #options>
       <LoadDemoDataButton v-if="status === 'idle'" />
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { RiSettings4Line } from '@remixicon/vue';
+import { RiToolsLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';

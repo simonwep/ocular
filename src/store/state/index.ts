@@ -29,6 +29,7 @@ interface Store {
 
   serialize(): string;
   deserialize(file: File): Promise<void>;
+  deserialize(file: DataState): Promise<void>;
 
   changeYear(year: number): void;
   changeLocale(locale: AvailableLocale): void;
@@ -168,12 +169,16 @@ export const createDataStore = (storage?: Storage): Store => {
       return JSON.stringify(state);
     },
 
-    deserialize(file: File): Promise<void> {
-      return readFile(file)
-        .then(JSON.parse)
-        .then((content: DataStates) => {
-          Object.assign(state, migrateApplicationState(content));
-        });
+    async deserialize(data: File | DataState) {
+      if (data instanceof File) {
+        await readFile(data)
+          .then(JSON.parse)
+          .then((content: DataStates) => {
+            Object.assign(state, migrateApplicationState(content));
+          });
+      } else {
+        Object.assign(state, migrateApplicationState(data));
+      }
     },
 
     changeYear(year: number) {
