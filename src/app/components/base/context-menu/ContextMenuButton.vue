@@ -22,12 +22,14 @@ const props = withDefaults(
     class?: ClassNames;
     text: string | number;
     icon?: Component;
+    muted?: boolean;
     padIcon?: boolean;
     highlight?: boolean;
   }>(),
   {
     highlight: false,
-    padIcon: false
+    padIcon: false,
+    muted: false
   }
 );
 
@@ -38,6 +40,7 @@ const classes = computed(() => [
   props.class,
   styles.btn,
   {
+    [styles.muted]: props.muted,
     [styles.highlight]: props.highlight,
     [styles.padIcon]: props.padIcon && !props.icon
   }
@@ -84,6 +87,10 @@ const onClick = (evt: MouseEvent) => {
 
   &.padIcon {
     padding-left: calc(12px + 20px);
+  }
+
+  &.muted {
+    color: var(--context-menu-item-color-muted);
   }
 
   &:hover,

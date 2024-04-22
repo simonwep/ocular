@@ -12,6 +12,7 @@
           :pad-icon="hasOptionWithIcon"
           :text="option.label ?? option.id"
           :icon="option.icon"
+          :muted="option.muted"
           :highlight="option.id === highlight"
           @click="select(option)"
         />

@@ -28,6 +28,10 @@
       "demo": {
         "loadDemoData": "Load demo data"
       },
+      "deleteYear": {
+        "delete": "Remove {year}",
+        "confirm": "Are you sure you want to remove {year}?"
+      },
       "export": {
         "export": "Export as json file"
       },

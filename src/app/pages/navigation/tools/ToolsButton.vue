@@ -14,6 +14,7 @@
       <ImportButton />
       <CopyButton />
       <PasteButton />
+      <DeleteYearButton />
     </template>
   </ContextMenu>
 </template>
@@ -30,9 +31,10 @@ import { ClassNames } from '@utils';
 import ChangePasswordButton from './change-password/ChangePasswordButton.vue';
 import CopyButton from './copy-paste/CopyButton.vue';
 import PasteButton from './copy-paste/PasteButton.vue';
-import LoadDemoDataButton from './demo/LoadDemoDataButton.vue';
+import DeleteYearButton from './delete-year/DeleteYearButton.vue';
 import ExportButton from './export/ExportButton.vue';
 import ImportButton from './import/ImportButton.vue';
+import LoadDemoDataButton from './load-demo-data/LoadDemoDataButton.vue';
 import PrivacyModeButton from './privacy-mode/PrivacyModeButton.vue';
 
 const props = defineProps<{

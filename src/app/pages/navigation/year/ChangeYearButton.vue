@@ -36,12 +36,13 @@ const time = useTime();
 const classes = computed(() => props.class);
 const options = computed((): ContextMenuOption[] => {
   const yearsStored = state.years.map((v) => v.year);
-  const offset = Math.min(...yearsStored);
+  const firstYear = Math.min(...yearsStored);
   const list: ContextMenuOption[] = [];
 
-  for (let year = offset; year <= time.year.value + PRE_PLANNABLE_YEARS; year++) {
+  for (let year = firstYear - 1; year <= time.year.value + PRE_PLANNABLE_YEARS; year++) {
     list.push({
       id: year,
+      muted: year === firstYear - 1,
       icon: state.activeYear === year ? RiCalendarCheckLine : RiCalendarTodoLine
     });
   }

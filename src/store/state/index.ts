@@ -31,6 +31,7 @@ interface Store {
   deserialize(file: File): Promise<void>;
   deserialize(file: DataState): Promise<void>;
 
+  shiftYears(): void;
   changeYear(year: number): void;
   changeLocale(locale: AvailableLocale): void;
   changeCurrency(currency: AvailableCurrency): void;
@@ -178,6 +179,16 @@ export const createDataStore = (storage?: Storage): Store => {
           });
       } else {
         Object.assign(state, migrateApplicationState(data));
+      }
+    },
+
+    shiftYears() {
+      if (state.years.length > 1) {
+        const item = state.years.shift();
+
+        if (item?.year === activeYear.value) {
+          activeYear.value = state.years.at(0)?.year as number;
+        }
       }
     },
 
