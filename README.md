@@ -50,7 +50,7 @@ Your data stays on your server and is not shared with anyone else.
 3. Clone this repository.
 4. Run `pnpm install` in the root directory.
 5. Copy the `.env.example` to `.env`, you can leave the default values.
-6. Start the backend with `docker run -p 8080:8080 -v "$(pwd)/.data:/app/.data" --env-file .env.genesis ghcr.io/simonwep/genesis:latest`.
+6. Start the backend with `pnpm run genesis`.
 7. Start the frontend with `pnpm run dev`.
 8. Open `http://localhost:3000` in your browser.
 

@@ -15,7 +15,8 @@
     "preview": "vite preview",
     "lint": "eslint '{scripts,src}/**/*.{js,ts,vue}' --no-error-on-unmatched-pattern",
     "lint:fix": "pnpm run lint --fix",
-    "test:ci": "pnpm run lint:fix && pnpm run build"
+    "test:ci": "pnpm run lint:fix && pnpm run build",
+    "genesis": "docker run -p 8080:8080 -v \"$(pwd)/.data:/app/.data\" --env-file .env.genesis ghcr.io/simonwep/genesis:latest"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
