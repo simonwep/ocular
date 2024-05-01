@@ -136,7 +136,9 @@
       "yoyExpenseGrowth": "Jährliches Ausgabenwachstum",
       "allTimeIncome": "Allzeit Einnahmen",
       "allTimeExpenses": "Allzeit Ausgaben",
-      "allTimeSavings": "Allzeit Ersparnisse"
+      "allTimeSavings": "Allzeit Ersparnisse",
+      "downloadAsPNG": "Als PNG herunterladen",
+      "downloadAsSVG": "Als SVG herunterladen"
     }
   }
 }

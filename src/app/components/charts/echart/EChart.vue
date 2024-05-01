@@ -4,9 +4,12 @@
 
 <script lang="ts" setup>
 import * as echarts from 'echarts/core';
+import { EChartsType } from 'echarts/core';
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 import { useResizeObserver } from '@composables';
 import { ClassNames } from '@utils';
+import { getCssVariables } from '../../../../utils/cssVariables';
+import { svgToPNG } from '../../../../utils/svgToPNG';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const props = defineProps<{
@@ -17,10 +20,32 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const root = ref<HTMLDivElement>();
 const rootSize = useResizeObserver(root);
-const chart = shallowRef();
+const chart = shallowRef<EChartsType>();
 
 const update = () => chart.value?.setOption(props.options);
 const resize = () => chart.value?.resize();
+
+const assertSvg = () => {
+  if (!root.value || !chart.value) {
+    throw new Error('No SVG string to convert to PNG');
+  }
+
+  // Inject raw css values
+  const cssVariables = getCssVariables(root.value);
+  const svgString = chart.value.renderToSVGString();
+  const variableRegex = /var\((--.*?)\)/g;
+  let serialized = svgString;
+
+  for (const [name, key] of svgString.matchAll(variableRegex)) {
+    const value = cssVariables.get(key)?.replace(/"/g, "'");
+
+    if (value) {
+      serialized = serialized.replace(name, value);
+    }
+  }
+
+  return serialized;
+};
 
 watch(props, update);
 watch(chart, update);
@@ -33,5 +58,10 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('resize', resize);
+});
+
+defineExpose({
+  toSVG: (): Blob => new Blob([assertSvg()], { type: 'image/svg+xml;charset=utf-8' }),
+  toPNG: (): Promise<Blob> => svgToPNG(assertSvg(), 3)
 });
 </script>

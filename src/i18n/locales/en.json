@@ -136,7 +136,9 @@
       "yoyExpenseGrowth": "YoY Expense Growth",
       "allTimeIncome": "All Time Income",
       "allTimeExpenses": "All Time Expenses",
-      "allTimeSavings": "All Time Savings"
+      "allTimeSavings": "All Time Savings",
+      "downloadAsPNG": "Download as PNG",
+      "downloadAsSVG": "Download as SVG"
     }
   }
 }
