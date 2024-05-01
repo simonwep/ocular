@@ -45,8 +45,9 @@ const cards = computed((): Card[] => {
     maximumFractionDigits: 2
   });
 
-  const lastYear = state.years.at(-2);
-  const currentYear = state.years.at(-1);
+  const year = new Date().getFullYear();
+  const lastYear = state.years.find((v) => v.year === year - 1);
+  const currentYear = state.years.find((v) => v.year === year);
 
   const lastYearIncome = lastYear?.income ? sum(totals(lastYear.income)) : 0;
   const lastYearExpenses = lastYear?.expenses ? sum(totals(lastYear.expenses)) : 0;
