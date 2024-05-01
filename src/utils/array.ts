@@ -6,6 +6,14 @@ export const add = (...arrays: readonly number[][]) => {
   return sum;
 };
 
+export const remove = <T>(t: T[], v: T | ((v: T) => boolean)): void => {
+  const index = typeof v === 'function' ? t.findIndex((tv) => (v as (v: T) => boolean)(tv)) : t.indexOf(v);
+
+  if (index !== -1) {
+    t.splice(index, 1);
+  }
+};
+
 export const sum = (values: readonly number[]) => values.reduce((a, b) => a + b, 0);
 
 export const average = (values: readonly number[]) => sum(values) / values.length;
