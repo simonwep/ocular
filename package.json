@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "author": "Simon Reinisch <trash@reinisch.io>",
-  "packageManager": "pnpm@8.0.0",
+  "packageManager": "pnpm@9.0.6",
   "engines": {
     "node": "^20"
   },
