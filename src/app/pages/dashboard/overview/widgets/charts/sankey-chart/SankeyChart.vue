@@ -3,9 +3,11 @@
     <EChart ref="chart" :class="[$style.sankeyChart, classes]" :options="options" />
 
     <ContextMenu v-if="chart" position="top-end" :class="$style.downloadMenu">
-      <button type="button" :class="$style.downloadBtn">
-        <RiDownloadCloud2Line size="18" />
-      </button>
+      <template #default="{ toggle }">
+        <button type="button" :class="$style.downloadBtn" @click="toggle">
+          <RiDownloadCloud2Line size="18" />
+        </button>
+      </template>
 
       <template #options>
         <ContextMenuButton :icon="RiLandscapeLine" :text="t('page.dashboard.downloadAsPNG')" @click="downloadPNG" />

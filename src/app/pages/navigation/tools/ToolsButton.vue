@@ -4,7 +4,9 @@
     :position="media === 'mobile' ? 'top' : 'right-end'"
     tooltip-position="right"
   >
-    <Button :class="classes" :icon="RiToolsLine" textual color="dimmed"></Button>
+    <template #default="{ toggle }">
+      <Button :class="classes" :icon="RiToolsLine" textual color="dimmed" @click="toggle"></Button>
+    </template>
 
     <template #options>
       <LoadDemoDataButton v-if="status === 'idle'" />

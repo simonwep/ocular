@@ -5,7 +5,9 @@
     :options="currencies"
     @select="changeCurrency($event.id as AvailableCurrency)"
   >
-    <Button :class="classes" :icon="RiCurrencyLine" textual color="dimmed" />
+    <template #default="{ toggle }">
+      <Button :class="classes" :icon="RiCurrencyLine" textual color="dimmed" @click="toggle" />
+    </template>
   </ContextMenu>
 </template>
 

@@ -7,7 +7,9 @@
     :highlight="state.activeYear"
     @select="changeYear($event.id as number)"
   >
-    <Button :class="classes" :icon="RiCalendarLine" textual color="dimmed" />
+    <template #default="{ toggle }">
+      <Button :class="classes" :icon="RiCalendarLine" textual color="dimmed" @click="toggle" />
+    </template>
   </ContextMenu>
 </template>
 

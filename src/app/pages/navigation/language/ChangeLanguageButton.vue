@@ -5,7 +5,9 @@
     :options="locales"
     @select="changeLocale($event.id as AvailableLocale)"
   >
-    <Button :class="classes" :icon="RiGlobalLine" textual color="dimmed" />
+    <template #default="{ toggle }">
+      <Button :class="classes" :icon="RiGlobalLine" textual color="dimmed" @click="toggle" />
+    </template>
   </ContextMenu>
 </template>
 

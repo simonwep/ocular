@@ -5,7 +5,9 @@
     tooltip-position="right"
     :class="classes"
   >
-    <Button :icon="RiShieldFlashLine" textual color="dimmed" />
+    <template #default="{ toggle }">
+      <Button :icon="RiShieldFlashLine" textual color="dimmed" @click="toggle" />
+    </template>
 
     <template #options>
       <CreateUserButton />

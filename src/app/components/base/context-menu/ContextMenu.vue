@@ -1,7 +1,6 @@
 <template>
-  <!-- TODO: Forward click to slot -->
-  <div ref="reference" v-tooltip="{ text: tooltip, position: tooltipPosition }" :class="classes" @click="toggle">
-    <slot />
+  <div ref="reference" v-tooltip="{ text: tooltip, position: tooltipPosition }" :class="classes">
+    <slot :toggle="toggle" />
   </div>
   <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
     <ul :class="listClasses">
