@@ -1,0 +1,144 @@
+{
+  "_numberFormats": {
+    "currency": {
+      "currency": "USD",
+      "minimumFractionDigits": 0,
+      "style": "currency"
+    },
+    "percent": {
+      "maximumFractionDigits": 0,
+      "style": "percent"
+    }
+  },
+  "navigation": {
+    "tools": {
+      "tools": "Ferramentas",
+      "changePassword": {
+        "change": "Mudar a senha",
+        "current": "Senha atual",
+        "new": "Nova senha",
+        "invalid": "Senha atual inválida.",
+        "unknownError": "Houve um erro, por favor tente novamente mais tarde."
+      },
+      "copyPaste": {
+        "copy": "Copie os dados de {year}",
+        "paste": "Copie os dados de {from} into {to}",
+        "confirm": "Você tem certeza de que quer copiar os dados de {from} para {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Carregar exemplo"
+      },
+      "deleteYear": {
+        "delete": "Remover {year}",
+        "confirm": "Você tem certeza de que quer remover {year}?"
+      },
+      "export": {
+        "export": "Exportar para arquivo json"
+      },
+      "import": {
+        "import": "Importar de arquivo json",
+        "what": {
+          "google": "Arquivo de finança anual do Google Sheets",
+          "ocular": "Um arquivo exportado anteriormente",
+          "title": "O que você gostaria de importar?"
+        },
+        "ocular": {
+          "pickFile": "Selecione o seu arquivo .json para importar",
+          "import": "Importar dados do Ocular"
+        },
+        "google": {
+          "import": "Importar dados do Google Sheets",
+          "pickFile": "Selecione o seu arquivo .csv para importar",
+          "expenses": "Expenses.csv",
+          "income": "Income.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Mudar para o modo público",
+        "enable": "Mudar para o modo privado"
+      }
+    },
+    "language": {
+      "switch": "Alterar o idioma"
+    },
+    "info": {
+      "about": "Sobre o Ocular",
+      "github": "Confira este projeto no {link}!",
+      "madeWithLove": "Feito com ❤️ pelo Simon",
+      "meta": "{version} / {date} / {sha}"
+    },
+    "currency": {
+      "change": "Altere a moeda a ser usada"
+    },
+    "theme": {
+      "change": "Altere a cor do tema"
+    },
+    "year": {
+      "change": "Mude para outro ano"
+    },
+    "auth": {
+      "welcomeBack": "Olá de novo!",
+      "signIn": "Logar",
+      "username": "Usuário",
+      "password": "Senha",
+      "loginFailed": "Falha ao logar, usuário e/ou senha inválidos."
+    },
+    "admin": {
+      "settings": "Configurações de Administrador",
+      "createUser": "Criar usuário",
+      "username": "Usuário",
+      "password": "Senha",
+      "admin": "Admin",
+      "conflict": "Um usuário com este nome já existe.",
+      "error": "Algo deu errado, tente novamente mais tarde.",
+      "deleteUserConfirmation": "Você tem certeza de que quer deletar este usuário?",
+      "manageUsers": "Manage users",
+      "noUsersFound": "Nenhum usuário encontrado..."
+    }
+  },
+  "shared": {
+    "addGroup": "Adicionar Grupo",
+    "append": "Mover \"{from}\" para depois de \"{to}\"",
+    "average": "Média",
+    "move": "Mover \"{from}\"",
+    "moveInto": "Mover \"{from}\" para \"{to}\"",
+    "prepend": "Mover \"{from}\" para antes de \"{to}\"",
+    "fillRow": "Completar esta linha",
+    "fillRowToRight": "Completar para a direita",
+    "total": "Total",
+    "totals": "Totais",
+    "placeholder": "Comece preenchendo as abas de Receita / Despesas! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Receita"
+    },
+    "expenses": {
+      "title": "Despesas"
+    },
+    "dashboard": {
+      "title": "Painel",
+      "tables": "Tabelas",
+      "income": "Receita",
+      "incomeTrend": "Tendência de Receita",
+      "allTime": "Visão geral dos anos",
+      "allTimeFromTo": "Visão geral de {from} até {to}",
+      "expenses": "Despesas",
+      "expensesTrend": "Tendência de Despesas",
+      "endingBalance": "Balanço Final",
+      "header": "Orçamento anual para {year}",
+      "remainingBalance": "Balanço restante para {year}",
+      "netSavings": "Receita líquida",
+      "yearInThePast": "Ano anterior",
+      "yearInTheFuture": "Ano seguinte",
+      "yearEnding": "Esse ano está chegando ao fim...",
+      "yoyIncomeGrowth": "Aumento da Receita ao Ano",
+      "yoyExpenseGrowth": "Aumento de Despesas ao Ano",
+      "allTimeIncome": "Receita pelos Anos",
+      "allTimeExpenses": "Despesas pelos Anos",
+      "allTimeSavings": "Economias pelos Anos",
+      "downloadAsPNG": "Baixar como PNG",
+      "downloadAsSVG": "Baixar como SVG"
+    }
+  }
+}
