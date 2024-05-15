@@ -7,7 +7,7 @@ export type MessageSchema = typeof en;
 const browserLocale = navigator.language.slice(0, 2).toLowerCase();
 const messages: Record<string, MessageSchema> = { en, de } as const;
 
-export const availableLocales = ['en', 'de'];
+export const availableLocales = Object.keys(messages);
 export const initialLocale = availableLocales.includes(browserLocale) ? browserLocale : 'en';
 
 export type AvailableLocale = keyof typeof messages;

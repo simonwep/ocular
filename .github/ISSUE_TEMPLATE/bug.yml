@@ -1,0 +1,52 @@
+name: Bug Report
+description: Report a bug in Ocular
+body:
+  - type: checkboxes
+    attributes:
+      label: I've found a bug and checked that ...
+      description: Make sure that your request fulfills all of the following requirements. If one requirement cannot be satisfied, explain in detail why.
+      options:
+        - label: ...there are no open or closed issues that are related to my problem
+        - label: ...it's definitely a bug and not a feature request
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please provide a brief description of the bug in 1-2 sentences.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Environment
+      description: Please provide information about your environment.
+      placeholder: |
+        - Browser: [e.g. Chrome, Safari]
+        - OS: [e.g. Windows, macOS]
+        - Version: [e.g. 22]
+        - Ocular version: [e.g. 1.4]
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected behaviour
+      description: Please describe precisely what you'd expect to happen. Be specific.
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Please describe the steps to reproduce the bug.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Additional info
+      description: Please provide any additional information that seem useful.

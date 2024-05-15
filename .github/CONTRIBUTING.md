@@ -16,3 +16,11 @@ In this project we have the following scopes / types:
 * `fix` - A bug fix.
 * `docs` - Documentation only.
 * `improve` - Nothing changed, only improved (such as performance improvements).
+
+
+## Adding support for a new language
+
+To add support for a new language, you need to do the following:
+
+1. Add a new file under `src/i18n/locales` with the language code as the filename (e.g. `en.json`). 
+2. Import the file from step 1. in `src/i18n/index.ts` and add it to `messages`.

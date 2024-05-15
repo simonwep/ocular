@@ -1,0 +1,40 @@
+name: Feature Request
+description: Request a feature or enhancement in Ocular
+body:
+  - type: checkboxes
+    attributes:
+      label: Support guidelines
+      description: Please make sure that your request fulfills all of the following requirements. If you still want to proceed, explain in detail why.
+      options:
+        - label: My request extends the functionality of Ocular in a meaningful way.
+          required: true
+        - label: I've used [the search](https://github.com/firefly-iii/firefly-iii/issues?q=is%3Aissue) and this has not been requested before.
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please describe your feature request
+      placeholder: |
+        - I would like Ocular to do (thing).
+        - What if you would add feature (feature here)?
+        - Ocular doesn't do (thing).
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Solution
+      description: Describe what your feature would add to Ocular.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: What are alternatives?
+      description: Please describe what alternatives currently exist.
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request here.
