@@ -3,9 +3,50 @@ import { AvailableLocale } from '@i18n/index';
 
 export type BudgetValues = number[];
 
-export const availableCurrencies = ['gbp', 'eur', 'usd'];
+export const availableCurrencies = [
+  'USD',
+  'EUR',
+  'JPY',
+  'GBP',
+  'AUD',
+  'CAD',
+  'CHF',
+  'CNY',
+  'SEK',
+  'NZD',
+  'MXN',
+  'SGD',
+  'HKD',
+  'NOK',
+  'KRW',
+  'TRY',
+  'INR',
+  'RUB',
+  'BRL',
+  'ZAR'
+];
 
-export type AvailableCurrency = 'gbp' | 'eur' | 'usd';
+export type AvailableCurrency =
+  | 'USD'
+  | 'EUR'
+  | 'JPY'
+  | 'GBP'
+  | 'AUD'
+  | 'CAD'
+  | 'CHF'
+  | 'CNY'
+  | 'SEK'
+  | 'NZD'
+  | 'MXN'
+  | 'SGD'
+  | 'HKD'
+  | 'NOK'
+  | 'KRW'
+  | 'TRY'
+  | 'INR'
+  | 'RUB'
+  | 'BRL'
+  | 'ZAR';
 
 export interface Budget {
   id: string;
