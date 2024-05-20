@@ -1,15 +1,4 @@
 {
-  "_numberFormats" : {
-    "currency" : {
-      "currency" : "USD",
-      "minimumFractionDigits" : 0,
-      "style": "currency"
-    },
-    "percent": {
-      "maximumFractionDigits": 0,
-      "style": "percent"
-    }
-  },
   "navigation" : {
     "admin" : {
       "admin" : "Yönetici",
