@@ -1,4 +1,4 @@
-import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
+import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch, watchEffect } from 'vue';
 import { useStateHistory, useTime } from '@composables';
 import { AvailableLocale, i18n } from '@i18n/index';
 import { Storage } from '@storage/index';
@@ -94,18 +94,16 @@ export const createDataStore = (storage?: Storage): Store => {
     return [...currentYear.expenses, ...currentYear.income];
   };
 
-  watch(
-    () => state.currency,
-    (currency) => {
-      for (const locale of i18n.global.availableLocales) {
-        const formats = i18n.global.getNumberFormat(locale);
-        i18n.global.setNumberFormat(locale, {
-          ...formats,
-          currency: { ...formats.currency, currency }
-        });
-      }
+  watchEffect(() => {
+    for (const locale of i18n.global.availableLocales) {
+      const formats = i18n.global.getNumberFormat(locale);
+
+      i18n.global.setNumberFormat(locale, {
+        ...formats,
+        currency: { ...formats.currency, currency: state.currency }
+      });
     }
-  );
+  });
 
   watch(
     () => state.locale,
