@@ -5,7 +5,7 @@
   <div v-if="visible" ref="popper" :class="$style.popper" @focusout="focused--" @focusin="focused++">
     <ul :class="$style.list">
       <li v-for="action of actions" :key="action.id" :class="$style.item">
-        <button :class="$style.btn" type="button" @click="onAction(action.id)">
+        <button :class="$style.btn" tabindex="0" type="button" @click="onAction(action.id)">
           {{ action.label }}
         </button>
       </li>
@@ -75,6 +75,7 @@ const onAction = (id: CellMenuActionId) => {
   border-radius: var(--border-radius-m);
   box-shadow: var(--cell-menu-shadow);
   backdrop-filter: var(--cell-menu-backdrop);
+  -webkit-backdrop-filter: var(--cell-menu-backdrop);
   overflow: hidden;
 
   .item {
