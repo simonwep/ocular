@@ -1,3 +1,4 @@
+import { watchEffect } from 'vue';
 import { createI18n, IntlNumberFormat } from 'vue-i18n';
 import de from './locales/de.json';
 import en from './locales/en.json';
@@ -32,4 +33,9 @@ export const i18n = createI18n({
   locale: initialLocale,
   messages: messages as any,
   numberFormats: Object.fromEntries(availableLocales.map((locale) => [locale, numberFormats]))
+});
+
+// Synchronize the i18n locale with the browser locale
+watchEffect(() => {
+  document.documentElement.lang = i18n.global.locale.value;
 });
