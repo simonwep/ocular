@@ -1,4 +1,3 @@
-import { execSync } from 'child_process';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';

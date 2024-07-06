@@ -29,7 +29,7 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const { changeCurrency, state } = useDataStore();
 
-const formatNumber = (locale: string, currency: string, currencyDisplay?: string) => {
+const formatNumber = (locale: string, currency: string, currencyDisplay?: Intl.NumberFormatOptionsCurrencyDisplay) => {
   const symbol = new Intl.NumberFormat(locale, {
     style: 'currency',
     currencyDisplay,
