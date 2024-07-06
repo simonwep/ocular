@@ -6,6 +6,7 @@
         :id="inputId"
         ref="input"
         v-model="modelValue"
+        :name="name"
         :minlength="minLength"
         :maxlength="maxLength"
         :required="required"
@@ -43,6 +44,7 @@ const modelValue = defineModel<string>();
 withDefaults(
   defineProps<{
     type?: 'text' | 'password';
+    name?: string;
     minLength?: number;
     maxLength?: number;
     required?: boolean;

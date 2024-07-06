@@ -41,7 +41,7 @@ watch(
   [toRef(props, 'open'), dialog],
   () => {
     if (props.open) {
-      dialog.value?.showModal();
+      dialog.value?.show();
       requestAnimationFrame(() => (visible.value = true));
     } else {
       visible.value = false;
