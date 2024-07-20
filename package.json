@@ -48,7 +48,7 @@
     "sass": "1.77.6",
     "typescript": "5.5.3",
     "vite": "5.3.3",
-    "vite-plugin-optimize-css-modules": "1.0.6",
+    "vite-plugin-optimize-css-modules": "1.1.0",
     "vite-plugin-pwa": "0.20.0",
     "vite-tsconfig-paths": "4.3.2",
     "vue-tsc": "2.0.26",

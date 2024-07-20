@@ -59,7 +59,7 @@ Your data stays on your server and is not shared with anyone else.
 
 ### Production
 
-This app is deployed using [docker-compose](https://docs.docker.com/compose/).
+This app can be deployed using [docker-compose](https://docs.docker.com/compose/).
 See [ocular-docker](https://github.com/simonwep/ocular-docker) for deployment.
 
 ### Contributing
