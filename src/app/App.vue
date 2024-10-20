@@ -23,7 +23,7 @@ const router = useRouter();
 const storage = useStorage();
 const media = useMediaQuery();
 const app = useAppElement();
-const root = useSquircle(computed(() => (media.value === 'minimized' ? 0 : 0.035)));
+const root = useSquircle(computed(() => (['minimized', 'mobile'].includes(media.value) ? 0 : 0.035)));
 
 watchEffect(() => {
   app.classList.add(state.appearance.theme);

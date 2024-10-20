@@ -6,7 +6,11 @@ export const useSquircle = (size: MaybeRef<number>) => {
   let observer: ResizeObserver;
 
   watchEffect(() => {
-    if (!resizeEntry.value || !el.value) return;
+    if (!resizeEntry.value || !el.value || !unref(size)) {
+      el.value?.style.removeProperty('clip-path');
+      return;
+    }
+
     const { width, height } = resizeEntry.value.contentRect;
     const min = Math.min(width, height) * unref(size);
     const d = `path('${[
