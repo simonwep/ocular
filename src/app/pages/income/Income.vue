@@ -1,10 +1,12 @@
 <template>
-  <BudgetPane :title="t('page.income.title')" type="income" />
+  <BudgetPane type="income">
+    <template #title>
+      <YearToggle key-path="page.income.incomeFor" />
+    </template>
+  </BudgetPane>
 </template>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
+import YearToggle from '@app/pages/shared/YearToggle.vue';
 import BudgetPane from '../shared/BudgetPane.vue';
-
-const { t } = useI18n();
 </script>

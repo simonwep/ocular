@@ -100,10 +100,12 @@
   },
   "page": {
     "income": {
-      "title": "Receita"
+      "title": "Receita",
+      "incomeFor": "Receita para {year}"
     },
     "expenses": {
-      "title": "Despesas"
+      "title": "Despesas",
+      "expensesFor": "Despesas para {year}"
     },
     "dashboard": {
       "title": "Painel",
@@ -115,7 +117,7 @@
       "expenses": "Despesas",
       "expensesTrend": "Tendência de Despesas",
       "endingBalance": "Balanço Final",
-      "header": "Orçamento anual para {year}",
+      "budgetFor": "Orçamento anual para {year}",
       "remainingBalance": "Balanço restante para {year}",
       "netSavings": "Receita líquida",
       "yearInThePast": "Ano anterior",

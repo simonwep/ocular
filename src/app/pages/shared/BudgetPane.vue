@@ -1,5 +1,8 @@
 <template>
   <Pane :amount="amount" :title="title">
+    <template v-if="$slots.title" #title>
+      <slot name="title" />
+    </template>
     <template #header>
       <MiniChart :class="$style.miniChart" :values="total" />
     </template>
@@ -16,7 +19,7 @@ import Pane from './Pane.vue';
 import MiniChart from './mini-chart/MiniChart.vue';
 
 const props = defineProps<{
-  title: string;
+  title?: string;
   type: 'expenses' | 'income';
 }>();
 

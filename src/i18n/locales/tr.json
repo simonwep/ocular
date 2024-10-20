@@ -99,6 +99,14 @@
     "totals" : "Toplamlar"
   },
   "page" : {
+    "income" : {
+      "title" : "Gelir",
+      "incomeFor": "{year} için Gelir"
+    },
+    "expenses" : {
+      "title" : "Harcamalar",
+      "expensesFor": "{year} için Harcamalar"
+    },
     "dashboard" : {
       "allTime" : "Tüm zamanlara genel bakış",
       "allTimeExpenses" : "Tüm Zamanların Giderleri",
@@ -110,7 +118,7 @@
       "endingBalance" : "Bitiş Bakiyesi",
       "expenses" : "Harcamalar",
       "expensesTrend" : "Gider Eğilimi",
-      "header" : "{year} için yıllık bütçe",
+      "budgetFor" : "{year} için yıllık bütçe",
       "income" : "Gelir",
       "incomeTrend" : "Gelir Eğilimi",
       "netSavings" : "Net Tasarruflar",
@@ -122,12 +130,6 @@
       "yearInThePast" : "Yıl geçmişte",
       "yoyExpenseGrowth" : "Yıllık Gider Artışı",
       "yoyIncomeGrowth" : "Yıllık Gelir Artışı"
-    },
-    "expenses" : {
-      "title" : "Harcamalar"
-    },
-    "income" : {
-      "title" : "Gelir"
     }
   }
 }

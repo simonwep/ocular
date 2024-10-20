@@ -100,10 +100,12 @@
   },
   "page": {
     "income": {
-      "title": "Einnahmen"
+      "title": "Einnahmen",
+      "incomeFor": "Einnahmen für {year}"
     },
     "expenses": {
-      "title": "Ausgaben"
+      "title": "Ausgaben",
+      "expensesFor": "Ausgaben für {year}"
     },
     "dashboard": {
       "title": "Dashboard",
@@ -115,7 +117,7 @@
       "allTime": "Allzeit Übersicht",
       "allTimeFromTo": "Allzeit Übersicht von {from} bis {to}",
       "endingBalance": "Endsaldo",
-      "header": "Jährliches Budget für {year}",
+      "budgetFor": "Jährliches Budget für {year}",
       "remainingBalance": "Verbleibendes Netto bis {year}",
       "netSavings": "Nettoersparnisse",
       "yearInThePast": "Jahr liegt in der Vergangenheit",

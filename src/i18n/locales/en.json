@@ -100,10 +100,12 @@
   },
   "page": {
     "income": {
-      "title": "Income"
+      "title": "Income",
+      "incomeFor": "Income for {year}"
     },
     "expenses": {
-      "title": "Expenses"
+      "title": "Expenses",
+      "expensesFor": "Expenses for {year}"
     },
     "dashboard": {
       "title": "Dashboard",
@@ -115,7 +117,7 @@
       "expenses": "Expenses",
       "expensesTrend": "Expenses Trend",
       "endingBalance": "Ending Balance",
-      "header": "Annual budget for {year}",
+      "budgetFor": "Annual budget for {year}",
       "remainingBalance": "Remaining Balance until {year}",
       "netSavings": "Net Savings",
       "yearInThePast": "Year is in the past",

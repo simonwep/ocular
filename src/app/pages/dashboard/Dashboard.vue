@@ -8,15 +8,7 @@
         </span>
       </template>
       <template v-else>
-        <template v-if="state.years.length > 1">
-          <Button :icon="RiArrowLeftSLine" rounded @click="rotateYear(-1)" />
-          <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
-        </template>
-        <i18n-t tag="span" keypath="page.dashboard.header" scope="global">
-          <template #year>
-            <TextWheel :values="allYears" :value="state.activeYear" />
-          </template>
-        </i18n-t>
+        <YearToggle key-path="page.dashboard.budgetFor" />
       </template>
     </template>
     <template #header>
@@ -53,18 +45,11 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  RiArrowLeftSLine,
-  RiArrowRightSLine,
-  RiCalendar2Line,
-  RiDashboardLine,
-  RiEarthLine,
-  RiTableLine
-} from '@remixicon/vue';
-import { computed, shallowRef } from 'vue';
+import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
+import { shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
+import YearToggle from '@app/pages/shared/YearToggle.vue';
 import Button from '@components/base/button/Button.vue';
-import TextWheel from '@components/base/text-wheel/TextWheel.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useDataStore } from '@store/state';
 import Pane from '../shared/Pane.vue';
@@ -74,18 +59,8 @@ import Summary from './summary/Summary.vue';
 import type { Component } from 'vue';
 
 const { t } = useI18n();
-const { state, changeYear } = useDataStore();
+const { state } = useDataStore();
 const view = shallowRef<Component>(Overview);
-
-const allYears = computed(() => state.years.map((v) => v.year));
-
-const rotateYear = (dir: -1 | 1) => {
-  const possibleYears = allYears.value;
-  const currentIndex = possibleYears.indexOf(state.activeYear);
-  const newIndex = (currentIndex + dir + possibleYears.length) % possibleYears.length;
-  const newYear = possibleYears[newIndex];
-  changeYear(newYear);
-};
 </script>
 
 <style lang="scss" module>
