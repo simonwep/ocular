@@ -6,7 +6,7 @@
     <template #header>
       <MiniChart :class="$style.miniChart" :values="total" />
     </template>
-    <BudgetGroups :type="type" />
+    <BudgetGroups :key="state.activeYear" :type="type" />
   </Pane>
 </template>
 
