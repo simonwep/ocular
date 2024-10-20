@@ -48,11 +48,11 @@
 import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
 import { shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
-import YearToggle from '@app/pages/shared/YearToggle.vue';
 import Button from '@components/base/button/Button.vue';
+import Pane from '@components/feature/Pane.vue';
+import YearToggle from '@components/feature/YearToggle.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useDataStore } from '@store/state';
-import Pane from '../shared/Pane.vue';
 import AllTime from './all-time/AllTime.vue';
 import Overview from './overview/Overview.vue';
 import Summary from './summary/Summary.vue';

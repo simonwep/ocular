@@ -47,7 +47,6 @@
 import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import InfoButton from '@app/pages/navigation/info/InfoButton.vue';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables';
@@ -55,6 +54,7 @@ import { useStorage } from '@storage/index';
 import AdminButton from './navigation/admin/AdminButton.vue';
 import CloudButton from './navigation/auth/CloudButton.vue';
 import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue';
+import InfoButton from './navigation/info/InfoButton.vue';
 import ChangeLanguageButton from './navigation/language/ChangeLanguageButton.vue';
 import ThemeButton from './navigation/theme/ThemeButton.vue';
 import ToolsButton from './navigation/tools/ToolsButton.vue';

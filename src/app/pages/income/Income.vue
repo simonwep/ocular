@@ -7,6 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import YearToggle from '@app/pages/shared/YearToggle.vue';
-import BudgetPane from '../shared/BudgetPane.vue';
+import BudgetPane from '@components/feature/BudgetPane.vue';
+import YearToggle from '@components/feature/YearToggle.vue';
 </script>

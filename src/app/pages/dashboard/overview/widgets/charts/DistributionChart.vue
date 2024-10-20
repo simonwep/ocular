@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import ChartPlaceholder from '@app/pages/shared/ChartPlaceholder.vue';
+import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum, uuid } from '@utils';
