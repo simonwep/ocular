@@ -5,9 +5,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "author": "Simon Reinisch <trash@reinisch.io>",
-  "packageManager": "pnpm@9.0.6",
+  "packageManager": "pnpm@9.11.0",
   "engines": {
-    "node": "^20"
+    "node": "^22"
   },
   "scripts": {
     "dev": "vite --host",
