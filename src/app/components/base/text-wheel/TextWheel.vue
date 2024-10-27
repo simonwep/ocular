@@ -2,20 +2,24 @@
   <span :class="$style.container">
     <span :class="$style.placeholder">{{ value }}</span>
     <span :class="$style.textWheel">
-      <span v-for="v of values" :key="v" :class="$style.value">{{ v }}</span>
+      <span v-for="v of values" :key="v" :class="[$style.value, { [$style.transition]: mounted }]">{{ v }}</span>
     </span>
   </span>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const props = defineProps<{
   values: (string | number)[];
   value: string | number;
 }>();
 
+const mounted = ref(false);
+
 const offset = computed(() => props.values.indexOf(props.value));
+
+onMounted(() => (mounted.value = true));
 </script>
 
 <style lang="scss" module>
@@ -37,7 +41,10 @@ const offset = computed(() => props.values.indexOf(props.value));
 }
 
 .value {
-  transition: transform var(--transition-s);
   transform: translateY(calc(v-bind(offset) * -100%));
+
+  &.transition {
+    transition: transform var(--transition-s);
+  }
 }
 </style>
