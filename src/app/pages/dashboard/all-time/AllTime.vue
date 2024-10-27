@@ -59,18 +59,14 @@ const cards = computed((): Card[] => {
   return [
     {
       title: t('page.dashboard.yoyIncomeGrowth'),
-      text: lastYearIncome ? percent.format((currentYearIncome - lastYearIncome) / lastYearIncome) : '—',
-      icon: lastYearIncome
-        ? currentYearIncome > lastYearIncome
-          ? RiArrowUpDoubleLine
-          : RiArrowDownDoubleLine
-        : undefined,
+      text: lastYear ? percent.format((currentYearIncome - lastYearIncome) / lastYearIncome) : '—',
+      icon: lastYear ? (currentYearIncome > lastYearIncome ? RiArrowUpDoubleLine : RiArrowDownDoubleLine) : undefined,
       iconClass: currentYearIncome > lastYearIncome ? styles.iconSuccess : styles.iconDanger
     },
     {
       title: t('page.dashboard.yoyExpenseGrowth'),
-      text: currentYearExpenses ? percent.format((lastYearExpenses - currentYearExpenses) / currentYearExpenses) : '—',
-      icon: currentYearExpenses
+      text: lastYear ? percent.format((lastYearExpenses - currentYearExpenses) / currentYearExpenses) : '—',
+      icon: lastYear
         ? lastYearExpenses > currentYearExpenses
           ? RiArrowUpDoubleLine
           : RiArrowDownDoubleLine

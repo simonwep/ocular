@@ -142,9 +142,7 @@ const reorder = (evt: ReorderEvent) => {
   }
 
   > span {
-    position: absolute;
     display: inline-block;
-    margin-top: -20px;
 
     @include globals.onMobileDevices {
       position: static;

@@ -20,6 +20,13 @@ const loadDemoData = async () => {
   loading.value = true;
 
   const { default: data } = await import('./DemoData.json');
+
+  // Adjust years to match the current year
+  const year = new Date().getFullYear();
+  for (let i = 0; i < data.years.length; i++) {
+    data.years[i].year = year - 1 + i;
+  }
+
   await deserialize(data as DataStateV3);
 
   loading.value = false;
