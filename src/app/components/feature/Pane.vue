@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
 import Currency from '@components/base/currency/Currency.vue';
 import { useScrollShadow } from '@composables';
 import { ClassNames } from '@utils';
+import { computed, ref } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -37,7 +37,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .pane {
   display: flex;

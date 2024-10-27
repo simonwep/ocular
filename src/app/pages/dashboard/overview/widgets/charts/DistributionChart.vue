@@ -4,12 +4,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum, uuid } from '@utils';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { SankeyChartConfig, SankeyChartLabel, SankeyChartLink } from './sankey-chart/SankeyChart.types';
 import SankeyChart from './sankey-chart/SankeyChart.vue';
 
@@ -128,7 +128,7 @@ const data = computed((): SankeyChartConfig => {
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .distributionChart {
   height: 100%;

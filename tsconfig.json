@@ -1,62 +1,7 @@
 {
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
-  "compilerOptions": {
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "baseUrl": ".",
-    "types": [
-      "vite-plugin-pwa/client"
-    ],
-    "paths": {
-      "@composables": [
-        "./src/composables/index.ts"
-      ],
-      "@directives": [
-        "./src/directives/index.ts"
-      ],
-      "@components/*": [
-        "./src/app/components/*"
-      ],
-      "@app/*": [
-        "./src/app/*"
-      ],
-      "@i18n/*": [
-        "./src/i18n/*"
-      ],
-      "@storage/*": [
-        "./src/storage/*"
-      ],
-      "@static/*": [
-        "./src/static/*"
-      ],
-      "@utils": [
-        "./src/utils/index.ts"
-      ],
-      "@store/*": [
-        "./src/store/*"
-      ]
-    }
+  "include": [],
+  "references": [{ "path": "./tsconfig.node.json" }, {
+    "path": "./tsconfig.app.json"
   }
+  ]
 }

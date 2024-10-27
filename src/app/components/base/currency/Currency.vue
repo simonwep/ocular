@@ -9,10 +9,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { ClassNames } from '@utils';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   value?: number;

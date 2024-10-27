@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, provide, reactive, Ref, ref } from 'vue';
 import { ClassNames, remove } from '@utils';
+import { computed, provide, reactive, Ref, ref } from 'vue';
 import { ONBOARDING_STORE, OnboardingStore, StepsExposed } from './Steps.types';
 
 const emit = defineEmits<{

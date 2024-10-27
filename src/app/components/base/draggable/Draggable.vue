@@ -26,9 +26,9 @@
 </template>
 
 <script lang="ts" setup>
+import Button from '@components/base/button/Button.vue';
 import { RiDraggable, RiSkipDownLine, RiSkipUpLine } from '@remixicon/vue';
 import { computed, ref } from 'vue';
-import Button from '@components/base/button/Button.vue';
 import { ReorderEvent } from './Draggable.types';
 import { DraggableStore, store } from './store';
 import type { Component } from 'vue';
@@ -56,7 +56,7 @@ const matched = computed(() => store.targets?.includes(props.name));
 
 const icon = computed(
   (): Component =>
-    active.value ? props.icon?.(store) ?? (store.type === 'before' ? RiSkipUpLine : RiSkipDownLine) : RiDraggable
+    active.value ? (props.icon?.(store) ?? (store.type === 'before' ? RiSkipUpLine : RiSkipDownLine)) : RiDraggable
 );
 
 const label = computed(() => {

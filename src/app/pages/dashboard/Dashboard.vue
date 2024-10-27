@@ -45,14 +45,14 @@
 </template>
 
 <script lang="ts" setup>
-import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
-import { shallowRef } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import Pane from '@components/feature/Pane.vue';
 import YearToggle from '@components/feature/YearToggle.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
+import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
+import { shallowRef } from 'vue';
+import { useI18n } from 'vue-i18n';
 import AllTime from './all-time/AllTime.vue';
 import Overview from './overview/Overview.vue';
 import Summary from './summary/Summary.vue';
@@ -64,7 +64,7 @@ const view = shallowRef<Component>(Overview);
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .dashboard {
   flex-grow: 1;

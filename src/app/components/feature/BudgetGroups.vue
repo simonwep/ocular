@@ -49,16 +49,16 @@
 </template>
 
 <script lang="ts" setup>
-import { RiAddCircleLine, RiSkipDownLine } from '@remixicon/vue';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import { useMonthNames } from '@composables';
+import { RiAddCircleLine, RiSkipDownLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import BudgetGroup from './BudgetGroup.vue';
 import type { Component } from 'vue';
 
@@ -115,7 +115,7 @@ const reorder = (evt: ReorderEvent) => {
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .budgetGroups {
   display: grid;

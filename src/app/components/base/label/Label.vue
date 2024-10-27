@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { ClassNames, uuid } from '@utils';
+import { computed } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;

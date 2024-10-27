@@ -24,9 +24,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Link from '@components/base/link/Link.vue';
+import { useI18n } from 'vue-i18n';
 
 const { OCULAR_BUILD_SHA, OCULAR_BUILD_TIMESTAMP, OCULAR_BUILD_VERSION } = import.meta.env;
 

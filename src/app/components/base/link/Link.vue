@@ -17,11 +17,11 @@
 </template>
 
 <script lang="ts" setup>
+import { Color, useThemeStyles } from '@composables';
 import { Placement } from '@popperjs/core';
+import { ClassNames } from '@utils';
 import { computed, useCssModule, useSlots } from 'vue';
 import { useRouter } from 'vue-router';
-import { Color, useThemeStyles } from '@composables';
-import { ClassNames } from '@utils';
 import type { Component } from 'vue';
 
 const props = withDefaults(
@@ -46,10 +46,10 @@ const router = useRouter();
 const theme = useThemeStyles(() =>
   typeof props.color === 'function'
     ? props.color(router.currentRoute.value.name === props.name)
-    : props.color ?? 'primary'
+    : (props.color ?? 'primary')
 );
 
-const href = computed(() => (props.name ? router.resolve({ name: props.name }).href : props.to ?? ''));
+const href = computed(() => (props.name ? router.resolve({ name: props.name }).href : (props.to ?? '')));
 const isExternalLink = computed(() => href.value.startsWith('http'));
 
 const classes = computed(() => [
@@ -62,7 +62,7 @@ const classes = computed(() => [
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .link {
   background: transparent;

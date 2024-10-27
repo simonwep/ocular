@@ -1,8 +1,8 @@
-import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch, watchEffect } from 'vue';
 import { useStateHistory, useTime } from '@composables';
 import { AvailableLocale, i18n } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { moveInArrays, readFile, remove, uuid } from '@utils';
+import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch, watchEffect } from 'vue';
 import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYear } from './utils';
@@ -119,7 +119,7 @@ export const createDataStore = (storage?: Storage): Store => {
 
       activeYear.value = state.years.some((v) => v.year === time.year.value)
         ? time.year.value
-        : state.years.at(-1)?.year ?? time.year.value;
+        : (state.years.at(-1)?.year ?? time.year.value);
     }
   });
 
@@ -216,21 +216,30 @@ export const createDataStore = (storage?: Storage): Store => {
 
     setBudgetGroupName(id: string, name: string) {
       const group = groups().find((v) => v.id === id);
-      group && (group.name = name);
+
+      if (group) {
+        group.name = name;
+      }
     },
 
     setBudgetName(id: string, name: string) {
       const group = groups()
         .flatMap((v) => v.budgets)
         .find((v) => v.id === id);
-      group && (group.name = name);
+
+      if (group) {
+        group.name = name;
+      }
     },
 
     setBudget(id: string, month: number, amount: number) {
       const group = groups()
         .flatMap((v) => v.budgets)
         .find((v) => v.id === id);
-      group && (group.values[month] = amount);
+
+      if (group) {
+        group.values[month] = amount;
+      }
     },
 
     fillBudget(id: string, amount: number, offset = 0) {

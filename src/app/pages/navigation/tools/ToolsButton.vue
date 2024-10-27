@@ -22,14 +22,14 @@
 </template>
 
 <script lang="ts" setup>
-import { RiToolsLine } from '@remixicon/vue';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useMediaQuery } from '@composables';
+import { RiToolsLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import ChangePasswordButton from './change-password/ChangePasswordButton.vue';
 import CopyButton from './copy-paste/CopyButton.vue';
 import PasteButton from './copy-paste/PasteButton.vue';

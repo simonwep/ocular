@@ -13,8 +13,13 @@ export const selectFile = <M extends boolean, R = M extends true ? File[] : File
   input.type = 'file';
   input.style.display = 'none';
 
-  accept && (input.accept = accept);
-  multiple && (input.multiple = multiple);
+  if (accept) {
+    input.accept = accept;
+  }
+
+  if (multiple) {
+    input.multiple = true;
+  }
 
   return new Promise((resolve, reject) => {
     input.onchange = () => {

@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts" setup>
-import { RiDeleteBin5Line } from '@remixicon/vue';
-import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
+import { RiDeleteBin5Line } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
+import { useI18n } from 'vue-i18n';
 
 const { state, shiftYears } = useDataStore();
 const { t } = useI18n();

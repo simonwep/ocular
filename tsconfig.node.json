@@ -1,11 +1,26 @@
 {
-  "include": [
-    "vite.config.ts",
-    "./utils/*.ts"
-  ],
+  "include": ["vite.config.ts", "eslint.config.mjs"],
   "compilerOptions": {
-    "composite": true,
-    "module": "esnext",
-    "moduleResolution": "node"
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Vue */
+    "types": ["vite/client", "vite-plugin-pwa/client"],
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
   }
 }

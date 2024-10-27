@@ -1,0 +1,40 @@
+{
+  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    /* Convenience */
+    "baseUrl": ".",
+    "paths": {
+      "@composables": ["./src/composables/index.ts"],
+      "@directives": ["./src/directives/index.ts"],
+      "@components/*": ["./src/app/components/*"],
+      "@app/*": ["./src/app/*"],
+      "@i18n/*": ["./src/i18n/*"],
+      "@storage/*": ["./src/storage/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@static/*": ["./src/static/*"],
+      "@utils": ["./src/utils/index.ts"],
+      "@store/*": ["./src/store/*"]
+    }
+  }
+}

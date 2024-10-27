@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, useCssModule } from 'vue';
 import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
 import { ClassNames } from '@utils';
+import { computed, inject, useCssModule } from 'vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
@@ -53,7 +53,7 @@ const onClick = (evt: MouseEvent) => {
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .item {
   display: flex;

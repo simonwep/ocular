@@ -1,6 +1,6 @@
+import { debounce } from '@utils';
 import { computed, nextTick, readonly, ref, watch } from 'vue';
 import { MigratableState } from 'yuppee';
-import { debounce } from '@utils';
 import { createGenesisStore, GenesisUser } from './createGenesisStore';
 import { StorageAuthenticationState, StorageSync } from './types';
 

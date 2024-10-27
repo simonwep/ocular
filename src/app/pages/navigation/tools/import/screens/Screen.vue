@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts" setup>
-import { RiArrowLeftSLine } from '@remixicon/vue';
-import { computed } from 'vue';
 import Button from '@components/base/button/Button.vue';
+import { RiArrowLeftSLine } from '@remixicon/vue';
 import { ClassNames } from '@utils';
+import { computed } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;

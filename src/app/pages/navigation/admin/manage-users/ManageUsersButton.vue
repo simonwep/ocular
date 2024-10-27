@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts" setup>
+import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import { RiUserSettingsLine } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import ManageUsersModal from './ManageUsersModal.vue';
 
 const { t } = useI18n();

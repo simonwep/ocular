@@ -1,5 +1,5 @@
-import { DeepReadonly, inject, reactive, readonly } from 'vue';
 import { Storage } from '@storage/index';
+import { DeepReadonly, inject, reactive, readonly } from 'vue';
 import { migrateSettingsState } from './migrator';
 import { Mode, SettingsState, Theme } from './types';
 

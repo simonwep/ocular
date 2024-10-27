@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts" setup>
-import { RiCheckLine, RiErrorWarningLine } from '@remixicon/vue';
-import { computed } from 'vue';
 import { AlertType } from '@components/base/alert/Alert.types';
 import { Color, useThemeStyles } from '@composables';
+import { RiCheckLine, RiErrorWarningLine } from '@remixicon/vue';
 import { ClassNames } from '@utils';
+import { computed } from 'vue';
 import type { Component } from 'vue';
 
 const props = defineProps<{

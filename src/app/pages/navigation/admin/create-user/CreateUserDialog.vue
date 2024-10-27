@@ -26,8 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Alert from '@components/base/alert/Alert.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import CheckBoxField from '@components/base/form/CheckBoxField.vue';
@@ -35,6 +33,8 @@ import Form from '@components/base/form/Form.vue';
 import TextField from '@components/base/form/TextField.vue';
 import { NewGenesisUser } from '@storage/createGenesisStore';
 import { useStorage } from '@storage/index';
+import { reactive, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
   (e: 'close'): void;

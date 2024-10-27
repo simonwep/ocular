@@ -1,5 +1,5 @@
-import { MigratableState } from 'yuppee';
 import { AvailableLocale } from '@i18n/index';
+import { MigratableState } from 'yuppee';
 
 export type BudgetValues = number[];
 

@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts" setup>
+import Button from '@components/base/button/Button.vue';
 import { RiInformationLine } from '@remixicon/vue';
+import { ClassNames } from '@utils';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import Button from '@components/base/button/Button.vue';
-import { ClassNames } from '@utils';
 import InfoDialog from './InfoDialog.vue';
 
 const props = defineProps<{

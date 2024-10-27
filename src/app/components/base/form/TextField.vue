@@ -34,10 +34,10 @@
 </template>
 
 <script lang="ts" setup>
-import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
-import { computed, ref } from 'vue';
 import Button from '@components/base/button/Button.vue';
+import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { uuid } from '@utils';
+import { computed, ref } from 'vue';
 
 const modelValue = defineModel<string>();
 

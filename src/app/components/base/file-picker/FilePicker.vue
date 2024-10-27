@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, useCssModule } from 'vue';
 import { ClassNames, selectFile } from '@utils';
+import { computed, useCssModule } from 'vue';
 
 const modelValue = defineModel<File | undefined>();
 

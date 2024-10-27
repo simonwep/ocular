@@ -1,6 +1,6 @@
+import { useMediaQuery } from '@composables';
 import { createPopper, Instance, Placement } from '@popperjs/core';
 import { Directive, Ref, ref, unref } from 'vue';
-import { useMediaQuery } from '@composables';
 import styles from './vTooltip.module.scss';
 
 interface TooltipConfig {

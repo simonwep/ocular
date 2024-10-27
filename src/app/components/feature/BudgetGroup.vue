@@ -78,9 +78,6 @@
 </template>
 
 <script lang="ts" setup>
-import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
-import { computed, DeepReadonly } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import { CellMenuActionId } from '@components/base/cell-menu/CellMenu.types';
 import CellMenu from '@components/base/cell-menu/CellMenu.vue';
@@ -90,9 +87,12 @@ import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
+import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils';
+import { computed, DeepReadonly } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
@@ -130,8 +130,8 @@ const totalAmount = computed(() => sum(totals.value));
 const averageAmount = computed(() => average(totals.value));
 
 const buildDraggableText = (store: DraggableStore) => {
-  const [srcGroup, src] = store.source ? getBudget(store.source) ?? [] : [];
-  const [dstGroup, dst] = store.target ? getBudget(store.target) ?? [] : [];
+  const [srcGroup, src] = store.source ? (getBudget(store.source) ?? []) : [];
+  const [dstGroup, dst] = store.target ? (getBudget(store.target) ?? []) : [];
   const otherDist = store.target ? getBudgetGroup(store.target) : undefined;
 
   if (src && srcGroup) {

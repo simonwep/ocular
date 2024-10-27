@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts" setup>
+import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import { RiUserAddLine } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import CreateUserDialog from './CreateUserDialog.vue';
 
 const { t } = useI18n();

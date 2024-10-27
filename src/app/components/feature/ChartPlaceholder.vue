@@ -10,9 +10,9 @@
 
 <script lang="ts" setup>
 import { RiHandCoinLine, RiShoppingBasket2Line } from '@remixicon/vue';
+import { ClassNames } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { ClassNames } from '@utils';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -23,7 +23,7 @@ const { t } = useI18n();
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .placeholder {
   display: flex;

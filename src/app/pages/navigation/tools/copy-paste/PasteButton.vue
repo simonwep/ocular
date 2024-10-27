@@ -8,11 +8,11 @@
 </template>
 
 <script lang="ts" setup>
+import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import { RiClipboardLine } from '@remixicon/vue';
+import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
-import { useDataStore } from '@store/state';
 
 const { clipboard, state } = useDataStore();
 const { t } = useI18n();

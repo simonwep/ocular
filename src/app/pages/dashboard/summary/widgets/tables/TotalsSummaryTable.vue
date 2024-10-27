@@ -65,11 +65,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useMonthNames } from '@composables';
 import { useDataStore } from '@store/state';
 import { aggregate, average, subtract, sum } from '@utils';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import SummaryTable from './SummaryTable.vue';
 
 const props = withDefaults(

@@ -18,7 +18,7 @@ const media = useMediaQuery();
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .overview {
   display: grid;

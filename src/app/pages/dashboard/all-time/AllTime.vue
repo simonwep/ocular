@@ -17,13 +17,13 @@
 </template>
 
 <script lang="ts" setup>
-import { RiArrowDownDoubleLine, RiArrowUpDoubleLine } from '@remixicon/vue';
-import { computed, useCssModule } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Currency from '@components/base/currency/Currency.vue';
+import { RiArrowDownDoubleLine, RiArrowUpDoubleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum } from '@utils';
+import { computed, useCssModule } from 'vue';
+import { useI18n } from 'vue-i18n';
 import AllTimeChart from './AllTimeChart.vue';
 import type { Component } from 'vue';
 

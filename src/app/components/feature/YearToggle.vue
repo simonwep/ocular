@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts" setup>
-import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/vue';
-import { computed } from 'vue';
 import Button from '@components/base/button/Button.vue';
 import TextWheel from '@components/base/text-wheel/TextWheel.vue';
+import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
+import { computed } from 'vue';
 
 defineProps<{
   keyPath: string;

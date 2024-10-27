@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts" setup>
-import { Placement } from '@popperjs/core';
-import { computed, useCssModule } from 'vue';
 import { Color, useThemeStyles } from '@composables';
+import { Placement } from '@popperjs/core';
 import { ClassNames } from '@utils';
+import { computed, useCssModule } from 'vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
@@ -64,7 +64,7 @@ const classes = computed(() => [
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .button {
   all: unset;

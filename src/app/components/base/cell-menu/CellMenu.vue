@@ -14,9 +14,9 @@
 </template>
 
 <script lang="ts" setup>
+import { CellMenuAction, CellMenuActionId } from '@components/base/cell-menu/CellMenu.types';
 import { createPopper, Instance } from '@popperjs/core';
 import { ref, watch } from 'vue';
-import { CellMenuAction, CellMenuActionId } from '@components/base/cell-menu/CellMenu.types';
 
 const emit = defineEmits<{
   (e: 'action', name: CellMenuActionId): void;

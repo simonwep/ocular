@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts" setup>
-import { RiClipboardLine } from '@remixicon/vue';
-import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
+import { RiClipboardLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
+import { useI18n } from 'vue-i18n';
 
 const { clipboard, state } = useDataStore();
 const { t } = useI18n();

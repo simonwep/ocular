@@ -3,7 +3,6 @@ dist
 .git
 .github
 .gitignore
-.eslintrc
-.prettierrc
+.eslint.config.mjs
 .data
 *.md

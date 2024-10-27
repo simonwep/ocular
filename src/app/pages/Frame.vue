@@ -44,13 +44,13 @@
 </template>
 
 <script lang="ts" setup>
-import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
-import { computed, ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables';
+import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
+import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import AdminButton from './navigation/admin/AdminButton.vue';
 import CloudButton from './navigation/auth/CloudButton.vue';
 import ChangeCurrencyButton from './navigation/currency/ChangeCurrencyButton.vue';
@@ -80,7 +80,7 @@ const buttons = computed((): FrameButton[] => [
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 @use 'sass:math';
 
 .frame {

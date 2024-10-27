@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, shallowRef, watchEffect } from 'vue';
 import { ClassNames } from '@utils';
+import { computed, shallowRef, watchEffect } from 'vue';
 
 const props = withDefaults(
   defineProps<{

@@ -1,5 +1,5 @@
-import { onMounted, onUnmounted, Ref } from 'vue';
 import { arrayify } from '@utils';
+import { onMounted, onUnmounted, Ref } from 'vue';
 
 export const useOutOfElementClick = (
   valid: Ref<HTMLElement | undefined>[] | Ref<HTMLElement | undefined>,

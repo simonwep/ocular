@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, toRef, useCssModule, watch } from 'vue';
 import { useOutOfElementClick } from '@composables';
 import { ClassNames } from '@utils';
+import { computed, onMounted, ref, toRef, useCssModule, watch } from 'vue';
 
 const emit = defineEmits<{
   (e: 'close'): void;

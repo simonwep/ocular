@@ -8,7 +8,10 @@ export const useMutationObserver = (el: Ref<HTMLElement | undefined>): Ref<Mutat
 
   watch(el, (value) => {
     observer.disconnect();
-    value && observer.observe(value, { subtree: true, childList: true });
+
+    if (value) {
+      observer.observe(value, { subtree: true, childList: true });
+    }
   });
 
   return rect;

@@ -3,11 +3,11 @@
 </template>
 
 <script lang="ts" setup>
-import * as echarts from 'echarts/core';
-import { EChartsType } from 'echarts/core';
-import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 import { useResizeObserver } from '@composables';
 import { ClassNames, getCssVariables, svgToPNG } from '@utils';
+import { EChartsType } from 'echarts';
+import { init } from 'echarts/core';
+import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const props = defineProps<{
@@ -51,7 +51,7 @@ watch(rootSize, resize);
 
 onMounted(() => {
   window.addEventListener('resize', resize);
-  chart.value = echarts.init(root.value as HTMLDivElement);
+  chart.value = init(root.value as HTMLDivElement);
 });
 
 onUnmounted(() => {

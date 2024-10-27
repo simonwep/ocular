@@ -3,14 +3,14 @@
 </template>
 
 <script lang="ts" setup>
+import EChart from '@components/charts/echart/EChart.vue';
+import { ClassNames, rollingAverage } from '@utils';
 import { GridComponentOption, LegendComponentOption, LineSeriesOption, TooltipComponentOption } from 'echarts';
 import { LineChart } from 'echarts/charts';
 import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
-import EChart from '@components/charts/echart/EChart.vue';
-import { ClassNames, rollingAverage } from '@utils';
 import { StackedLineChartConfig } from './StackedLineChart.types';
 
 echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent, TooltipComponent]);
@@ -26,7 +26,6 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const options = computed(
   (): EChartsOption => ({
     animation: false,

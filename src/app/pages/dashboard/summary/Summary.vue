@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useMediaQuery } from '../../../../composables/useMediaQuery';
 import GroupsSummaryTable from './widgets/tables/GroupsSummaryTable.vue';
 import TotalsSummaryTable from './widgets/tables/TotalsSummaryTable.vue';

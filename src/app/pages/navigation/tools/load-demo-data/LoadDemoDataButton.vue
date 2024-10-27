@@ -3,12 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-import { RiMagicLine } from '@remixicon/vue';
-import { onMounted, ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
+import { RiMagicLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { DataStateV3 } from '@store/state/types';
+import { onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const { deserialize } = useDataStore();
 const { t } = useI18n();

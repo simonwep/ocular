@@ -22,12 +22,12 @@
 </template>
 
 <script lang="ts" setup>
-import { RiCalendar2Line, RiPencilFill } from '@remixicon/vue';
-import { computed } from 'vue';
 import Currency from '@components/base/currency/Currency.vue';
 import Link from '@components/base/link/Link.vue';
 import { useSquircle } from '@composables';
+import { RiCalendar2Line, RiPencilFill } from '@remixicon/vue';
 import { ClassNames } from '@utils';
+import { computed } from 'vue';
 import SummaryPanelChart from './SummaryPanelChart.vue';
 
 const props = defineProps<{
@@ -55,7 +55,7 @@ const element = computed(() => (props.to ? Link : 'div'));
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .wrapper {
   display: flex;

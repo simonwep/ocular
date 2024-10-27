@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useDataStore } from '@store/state';
 import { computed, nextTick, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useDataStore } from '@store/state';
 
 const modelValue = defineModel<number>();
 

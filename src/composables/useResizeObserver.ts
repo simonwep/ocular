@@ -9,7 +9,10 @@ export const useResizeObserver = (el: Ref<HTMLElement | undefined>): Ref<DOMRect
 
   watch(el, (value) => {
     observer.disconnect();
-    value && observer.observe(value);
+
+    if (value) {
+      observer.observe(value);
+    }
   });
 
   return rect;

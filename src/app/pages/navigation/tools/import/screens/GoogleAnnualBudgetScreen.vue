@@ -22,14 +22,14 @@
 </template>
 
 <script lang="ts" setup>
-import { RiUploadCloud2Line } from '@remixicon/vue';
-import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 import Button from '@components/base/button/Button.vue';
 import FilePicker from '@components/base/file-picker/FilePicker.vue';
+import { RiUploadCloud2Line } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { convertGoogleAnnualBudgetCSVToBudgetGroups } from '@store/state/parser/googleAnnualBudgetSheet';
 import { readFile } from '@utils';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Screen from './Screen.vue';
 
 const emit = defineEmits<{

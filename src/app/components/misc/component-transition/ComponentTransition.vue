@@ -12,8 +12,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  is: Object;
+  is: object;
 }>();
 </script>
 

@@ -22,8 +22,6 @@
 </template>
 
 <script lang="ts" setup>
-import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
-import { computed, provide, ref, useCssModule, watch } from 'vue';
 import {
   ContextMenuOption,
   ContextMenuOptionId,
@@ -31,7 +29,9 @@ import {
   ContextMenuStoreKey
 } from '@components/base/context-menu/ContextMenu.types';
 import { useOutOfElementClick } from '@composables';
+import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
 import { ClassNames } from '@utils';
+import { computed, provide, ref, useCssModule, watch } from 'vue';
 import ContextMenuButton from './ContextMenuButton.vue';
 
 const emit = defineEmits<{
@@ -101,7 +101,7 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
 </script>
 
 <style lang="scss" module>
-@use 'src/styles/globals';
+@use '@styles/globals.scss';
 
 .reference {
   display: inline-flex;
