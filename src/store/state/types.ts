@@ -12,6 +12,7 @@ export const availableCurrencies = [
   'CAD',
   'CHF',
   'CNY',
+  'DKK',
   'SEK',
   'NZD',
   'MXN',
@@ -35,6 +36,7 @@ export type AvailableCurrency =
   | 'CAD'
   | 'CHF'
   | 'CNY'
+  | 'DKK'
   | 'SEK'
   | 'NZD'
   | 'MXN'
