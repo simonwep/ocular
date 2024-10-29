@@ -23,15 +23,16 @@
 
 - 🦾 Self-hosted. [Deploy](https://github.com/simonwep/ocular-docker) it via docker-compose in seconds.
 - 🕶️ Beautiful light and dark theme.
-- 💻 Installable as a PWA.
+- 💻 Installable as a PWA and ready for mobile.
 - 🔼 Import your data from Google sheet's annual planner.
 - 🛠️ Export your data as a single `.json`-file.
 - ✨ Dashboard with sankey diagram and a detailed view.
 - 🎇 Track budgets across multiple years.
 - 🙈 Privacy mode for when you're in a public place.
-- ⚡️ Simple, fast and straight-forward UI.
+- ⚡️ Simple, fast, and straight-forward UI.
 - 🫂 User management and authentication.
-- ...and more to come!
+- 🌐 Multi-language and currency support.
+- ...and much more!
 
 ## Summary
 
@@ -41,28 +42,14 @@ Its goal is **not** to track individual expenses, work with multiple currencies 
 This app comes with its own backend (by using [genesis](https://github.com/simonwep/genesis)), so the only thing you need to do is to host it somewhere.
 Your data stays on your server and is not shared with anyone else.
 
-## Setup
-
-### Development
-
-1. Make sure you have the latest [node LTS](https://nodejs.org/en/) installed.
-2. Install [pnpm](https://pnpm.io/) via `npm i -g pnpm`.
-3. Clone this repository.
-4. Run `pnpm install` in the root directory.
-5. Copy the `.env.example` to `.env`, you can leave the default values.
-6. Start the backend with `pnpm run genesis`.
-7. Start the frontend with `pnpm run dev`.
-8. Open `http://localhost:3000` in your browser.
-
-> [!NOTE]  
-> To modify the backend, head over to [genesis](https://github.com/simonwep/genesis).
+## Getting started
 
 ### Production
 
-This app can be deployed using [docker-compose](https://docs.docker.com/compose/).
+Best deploy this app via [docker-compose](https://docs.docker.com/compose/).
 See [ocular-docker](https://github.com/simonwep/ocular-docker) for deployment.
+Don't worry, it'll only take a few minutes to set everything up.
 
-### Contributing
+### Local development
 
-If you want to work on this, make sure to out the [contributing guidelines](CONTRIBUTING.md) :)
-Other than that, follow the steps under [development](#development) to get started.
+If you want to work on this, make sure to out the [contributing guidelines](.github/CONTRIBUTING.md) :)

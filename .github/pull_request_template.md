@@ -9,4 +9,5 @@
 - [ ] I have searched for a similar pull request.
 - [ ] The feature/bug-fix is tested carefully.
 - [ ] All irrelevant commits are squashed. (e.g. no `chore: fix eslint` commits).
+- [ ] The branch is up to date with the base branch.
 
