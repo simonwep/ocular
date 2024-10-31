@@ -1,0 +1,135 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "Nástroje",
+      "changePassword": {
+        "change": "Změnit heslo",
+        "current": "Aktuální heslo",
+        "new": "Nové heslo",
+        "invalid": "Aktuální heslo je neplatné",
+        "unknownError": "Něco se pokazilo, zkuste to, prosím, znovu později."
+      },
+      "copyPaste": {
+        "copy": "Zkopírovat data z {year}",
+        "paste": "Vložit data z {from} do {to}",
+        "confirm": "Jste si jisti, že chcete kopírovat data z {from} do {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Načíst ukázková data"
+      },
+      "deleteYear": {
+        "delete": "Odstranit {year}",
+        "confirm": "Jste si jisti, že chcete odstranit {year}?"
+      },
+      "export": {
+        "export": "Exportovat jako .json soubor"
+      },
+      "import": {
+        "import": "Import ze .json souboru",
+        "what": {
+          "google": "Soubor ročního rozpočtu v Google tabulkách",
+          "ocular": "Dříve exportovaný soubor",
+          "title": "Co chcete importovat?"
+        },
+        "ocular": {
+          "pickFile": "Vyberte .json soubor, který chcete importovat",
+          "import": "Import ocular data"
+        },
+        "google": {
+          "import": "Import google data",
+          "pickFile": "Vyberte .csv soubor, který chcete importovat",
+          "expenses": "Výdaje.csv (Expenses.csv)",
+          "income": "Příjmy.csv (Income.csv)"
+        }
+      },
+      "privacyMode": {
+        "disable": "Přepnout do veřejného režimu",
+        "enable": "Přepnout do soukromého režimu"
+      }
+    },
+    "language": {
+      "switch": "Zvolit jiný jazyk"
+    },
+    "info": {
+      "about": "Co je Ocular",
+      "github": "Podívejte se na tento projekt {link}!",
+      "madeWithLove": "Uděláno s ❤️ Simonem",
+      "meta": "{version} / {date} / {sha}"
+    },
+    "currency": {
+      "change": "Zvolte měnu, která má být použita"
+    },
+    "theme": {
+      "change": "Změna barevného režimu"
+    },
+    "year": {
+      "change": "Přepnout na jiný rok"
+    },
+    "auth": {
+      "welcomeBack": "Vítejte zpět",
+      "signIn": "Přihlašte se",
+      "username": "Uživatelské jméno",
+      "password": "Heslo",
+      "loginFailed": "Přihlášení se nezdařilo. Uživatelské jméno a/nebo heslo je neplatné."
+    },
+    "admin": {
+      "settings": "Nastavení správce",
+      "createUser": "Vytvořit uživatele",
+      "username": "Uživatelské jméno",
+      "password": "Heslo",
+      "admin": "Správce",
+      "conflict": "Uživatel s tímto jménem již existuje",
+      "error": "Něco se pokazilo, zkuste to, prosím, znovu později.",
+      "deleteUserConfirmation": "Opravdu chcete tohoto uživatele smazat?",
+      "manageUsers": "Spravovat uživatele",
+      "noUsersFound": "Nebyli nalezeni žádní uživatelé..."
+    }
+  },
+  "shared": {
+    "addGroup": "Přidat skupinu",
+    "append": "Pohyb “{from}” po “{to}”",
+    "average": "Průměrně",
+    "move": "Pohyb “{from}”",
+    "moveInto": "Pohyb “{from}” do “{to}”",
+    "prepend": "Pohyb “{from}” před “{to}”",
+    "fillRow": "Vyplnit řádek",
+    "fillRowToRight": "Vyplnit doprava",
+    "total": "Součet",
+    "totals": "Součty",
+    "placeholder": "Začněte vyplňováním tabulky záložek příjmů / výdajů! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Příjmy",
+      "incomeFor": "Příjmy za {year}"
+    },
+    "expenses": {
+      "title": "Výdaje",
+      "expensesFor": "Výdaje za {year}"
+    },
+    "dashboard": {
+      "title": "Panel",
+      "tables": "Tabulky",
+      "income": "Příjmy",
+      "incomeTrend": "Předpoklad příjmů",
+      "allTime": "Přehled všech dob",
+      "allTimeFromTo": "Po celou dobu od {from} do {to}",
+      "expenses": "Výdaje",
+      "expensesTrend": "Předpoklad výdajů",
+      "endingBalance": "Konečný Zůstatek",
+      "budgetFor": "Ročná rozpočet pro rok {year}",
+      "remainingBalance": "Zbývající Zůstatek do roku {year}",
+      "netSavings": "Čisté Úspory",
+      "yearInThePast": "Předchozí rok",
+      "yearInTheFuture": "Příští rok",
+      "yearEnding": "Letošní rok se chýlí ke konci...",
+      "yoyIncomeGrowth": "Meziroční růst Příjmů",
+      "yoyExpenseGrowth": "Meziroční růst Výdajů",
+      "allTimeIncome": "Celkový Příjmy",
+      "allTimeExpenses": "Celkový Výdaje",
+      "allTimeSavings": "Celkový Úspory",
+      "downloadAsPNG": "Stáhnout jako PNG",
+      "downloadAsSVG": "Stáhnout jako SVG"
+    }
+  }
+}

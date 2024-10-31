@@ -8,6 +8,7 @@ export const availableCurrencies = [
   'EUR',
   'JPY',
   'GBP',
+  'CZK',
   'AUD',
   'CAD',
   'CHF',
@@ -32,6 +33,7 @@ export type AvailableCurrency =
   | 'EUR'
   | 'JPY'
   | 'GBP'
+  | 'CZK'
   | 'AUD'
   | 'CAD'
   | 'CHF'

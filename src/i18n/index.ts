@@ -4,11 +4,12 @@ import de from './locales/de.json';
 import en from './locales/en.json';
 import br from './locales/pt-br.json';
 import tr from './locales/tr.json';
+import cz from './locales/cz.json';
 
 export type MessageSchema = typeof en;
 
 const browserLocale = navigator.language.slice(0, 2).toLowerCase();
-const messages: Record<string, MessageSchema> = { en, de, br, tr } as const;
+const messages: Record<string, MessageSchema> = { en, de, br, tr, cz } as const;
 
 export const availableLocales = Object.keys(messages);
 export const initialLocale = availableLocales.includes(browserLocale) ? browserLocale : 'en';
