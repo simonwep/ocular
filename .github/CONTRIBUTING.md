@@ -27,9 +27,8 @@ After you've installed the required software, follow these steps:
 1. Clone this repository via `git clone https://github.com/simonwep/ocular`.
 2. Run `pnpm install` in the root directory.
 3. Copy the `.env.example` to `.env`, you can leave the default values.
-4. Start the backend with `pnpm run genesis`.
-5. Start the frontend with `pnpm run dev`.
-6. Open `http://localhost:3000` in your browser.
+4. Start both the back- and frontend with `pnpm dev`.
+5. Open `http://localhost:3000` in your browser.
 
 You're now ready to start developing 🚀
 
