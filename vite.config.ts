@@ -3,6 +3,8 @@ import { defineConfig } from 'vite';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { minifyJsonPlugin } from './plugins/vite-plugin-minify-json/minifyJsonPlugin.ts';
+import { minifyHtmlPlugin } from './plugins/vite-plugin-minify-html/minifyHtmlPlugin.ts';
 
 export default defineConfig({
   envPrefix: ['OCULAR'],
@@ -36,6 +38,8 @@ export default defineConfig({
   plugins: [
     tsconfigPaths({ loose: true }),
     optimizeCssModules(),
+    minifyJsonPlugin(),
+    minifyHtmlPlugin(),
     vue({
       script: {
         defineModel: true
