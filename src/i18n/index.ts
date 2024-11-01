@@ -1,20 +1,22 @@
-import { watchEffect } from 'vue';
 import { createI18n, IntlNumberFormat } from 'vue-i18n';
-import de from './locales/de.json';
-import en from './locales/en.json';
-import br from './locales/pt-br.json';
-import tr from './locales/tr.json';
-import cz from './locales/cz.json';
+import type en from './locales/en.json';
+
+const imports: Record<string, () => Promise<{ default: string }>> = {
+  cze: () => import('./locales/cze.json?raw'),
+  en: () => import('./locales/en.json?raw'),
+  de: () => import('./locales/de.json?raw'),
+  tr: () => import('./locales/tr.json?raw'),
+  'pt-br': () => import('./locales/pt-br.json?raw')
+} as const;
 
 export type MessageSchema = typeof en;
 
 const browserLocale = navigator.language.slice(0, 2).toLowerCase();
-const messages: Record<string, MessageSchema> = { en, de, br, tr, cz } as const;
 
-export const availableLocales = Object.keys(messages);
+export const availableLocales = Object.keys(imports);
 export const initialLocale = availableLocales.includes(browserLocale) ? browserLocale : 'en';
 
-export type AvailableLocale = keyof typeof messages;
+export type AvailableLocale = keyof typeof imports;
 
 const numberFormats: IntlNumberFormat = {
   currency: {
@@ -27,16 +29,19 @@ const numberFormats: IntlNumberFormat = {
   }
 };
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export const i18n = createI18n({
   legacy: false,
-  fallbackLocale: 'en',
-  locale: initialLocale,
-  messages: messages as any,
-  numberFormats: Object.fromEntries(availableLocales.map((locale) => [locale, numberFormats]))
+  locale: initialLocale
 });
 
-// Synchronize the i18n locale with the browser locale
-watchEffect(() => {
-  document.documentElement.lang = i18n.global.locale.value;
-});
+export const changeLocale = async (locale: AvailableLocale, currency?: Intl.NumberFormatOptions) => {
+  const messages = JSON.parse((await imports[locale]()).default);
+  const numberFormat: IntlNumberFormat = { ...numberFormats, currency: { ...numberFormats.currency, ...currency } };
+
+  document.documentElement.lang = locale;
+  i18n.global.setLocaleMessage(locale, messages);
+  i18n.global.setNumberFormat(locale, numberFormat);
+  i18n.global.locale.value = locale;
+};
+
+await changeLocale(browserLocale);

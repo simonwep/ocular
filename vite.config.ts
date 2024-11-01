@@ -30,6 +30,9 @@ export default defineConfig({
       '@styles': '/src/styles'
     }
   },
+  build: {
+    target: 'ES2022'
+  },
   plugins: [
     tsconfigPaths({ loose: true }),
     optimizeCssModules(),
