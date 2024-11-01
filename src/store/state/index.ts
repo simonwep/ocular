@@ -1,8 +1,8 @@
 import { useStateHistory, useTime } from '@composables';
-import { AvailableLocale, changeLocale, i18n } from '@i18n/index';
+import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { moveInArrays, readFile, remove, uuid } from '@utils';
-import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch, watchEffect } from 'vue';
+import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
 import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYear } from './utils';
@@ -95,8 +95,9 @@ export const createDataStore = (storage?: Storage): Store => {
   };
 
   watch(
-    () => [state.locale, state.currency],
-    ([locale, currency]) => changeLocale(locale, { currency })
+    () => [state.locale, state.currency] as [AvailableLocale, AvailableCurrency],
+    ([locale, currency]) => changeLocale(locale, { currency }),
+    { immediate: true }
   );
 
   storage?.sync<DataState, DataState | DataStateV1>({

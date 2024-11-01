@@ -1,22 +1,20 @@
 import { createI18n, IntlNumberFormat } from 'vue-i18n';
-import type en from './locales/en.json';
+import cze from './locales/cze.json?url';
+import de from './locales/de.json?url';
+import en from './locales/en.json?url';
+import ptbr from './locales/pt-br.json?url';
+import tr from './locales/tr.json?url';
 
-const imports: Record<string, () => Promise<{ default: string }>> = {
-  cze: () => import('./locales/cze.json?raw'),
-  en: () => import('./locales/en.json?raw'),
-  de: () => import('./locales/de.json?raw'),
-  tr: () => import('./locales/tr.json?raw'),
-  'pt-br': () => import('./locales/pt-br.json?raw')
-} as const;
+const localeUrls = { de, en, tr, 'pt-br': ptbr, cze };
 
-export type MessageSchema = typeof en;
+export const availableLocales = Object.keys(localeUrls);
 
-const browserLocale = navigator.language.slice(0, 2).toLowerCase();
+export const initialLocale =
+  (navigator.languages
+    .flatMap((v) => [v, ...v.split('-')])
+    .find((locale) => availableLocales.includes(locale)) as AvailableLocale) ?? 'en';
 
-export const availableLocales = Object.keys(imports);
-export const initialLocale = availableLocales.includes(browserLocale) ? browserLocale : 'en';
-
-export type AvailableLocale = keyof typeof imports;
+export type AvailableLocale = keyof typeof localeUrls;
 
 const numberFormats: IntlNumberFormat = {
   currency: {
@@ -29,14 +27,14 @@ const numberFormats: IntlNumberFormat = {
   }
 };
 
-export const i18n = createI18n({
-  legacy: false,
-  locale: initialLocale
-});
+export const i18n = createI18n({ legacy: false });
 
 export const changeLocale = async (locale: AvailableLocale, currency?: Intl.NumberFormatOptions) => {
-  const messages = JSON.parse((await imports[locale]()).default);
-  const numberFormat: IntlNumberFormat = { ...numberFormats, currency: { ...numberFormats.currency, ...currency } };
+  const messages = await fetch(localeUrls[locale]).then((res) => res.json());
+  const numberFormat: IntlNumberFormat = {
+    ...numberFormats,
+    currency: { ...numberFormats.currency, ...currency }
+  };
 
   document.documentElement.lang = locale;
   i18n.global.setLocaleMessage(locale, messages);
@@ -44,4 +42,4 @@ export const changeLocale = async (locale: AvailableLocale, currency?: Intl.Numb
   i18n.global.locale.value = locale;
 };
 
-await changeLocale(browserLocale);
+await changeLocale(initialLocale);
