@@ -9,7 +9,14 @@
     <span
       v-for="(month, index) of months"
       :key="month"
-      :class="[$style.month, { [$style.current]: isCurrentMonth(index) }]"
+      :class="[
+        $style.month,
+        {
+          [$style.current]: isCurrentMonth(index),
+          [$style.start]: index === 0,
+          [$style.end]: index === 11
+        }
+      ]"
     >
       <span>{{ month }}</span>
     </span>
@@ -137,6 +144,12 @@ const reorder = (evt: ReorderEvent) => {
   padding-right: 20px;
   padding-bottom: 5px;
 
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+  background: var(--app-background);
+  border: 2px var(--app-background);
+
   &.current {
     font-weight: var(--font-weight-l);
   }
@@ -148,6 +161,16 @@ const reorder = (evt: ReorderEvent) => {
       position: static;
       margin-top: 0;
     }
+  }
+
+  &.start {
+    border-bottom-left-radius: var(--border-radius-l);
+    padding-left: 8px;
+  }
+
+  &.end {
+    border-bottom-right-radius: var(--border-radius-l);
+    padding-right: 8px;
   }
 }
 
