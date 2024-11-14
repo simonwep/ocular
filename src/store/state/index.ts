@@ -5,7 +5,7 @@ import { moveInArrays, readFile, remove, uuid } from '@utils';
 import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
 import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
-import { generateBudgetYear } from './utils';
+import { generateBudgetYearFromCurrent } from './utils';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -181,11 +181,10 @@ export const createDataStore = (storage?: Storage): Store => {
     },
 
     changeYear(year: number) {
-      let data = state.years.find((v) => v.year === year);
+      const data = state.years.find((v) => v.year === year);
 
       if (!data) {
-        data = generateBudgetYear(year);
-        state.years.push(data);
+        state.years.push(generateBudgetYearFromCurrent(year, getCurrentYear()));
         state.years.sort((a, b) => a.year - b.year);
       }
 
