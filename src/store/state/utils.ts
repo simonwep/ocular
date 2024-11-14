@@ -18,3 +18,17 @@ export const generateBudgetYear = (year: number): BudgetYear => ({
   income: [generateBudgetGroup('General', ['Other'])],
   expenses: [generateBudgetGroup('General', ['Other'])]
 });
+
+export const generateBudgetYearFromCurrent = (year: number, current: BudgetYear): BudgetYear => {
+  const clearValues = (value: BudgetGroup): BudgetGroup => ({
+    id: uuid(),
+    name: value.name,
+    budgets: value.budgets.map((budget) => generateBudget(budget.name))
+  });
+
+  return {
+    year,
+    income: current.income.map(clearValues),
+    expenses: current.expenses.map(clearValues)
+  };
+};
