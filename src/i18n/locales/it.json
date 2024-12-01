@@ -1,0 +1,135 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "Strumenti",
+      "changePassword": {
+        "change": "Cambia password",
+        "current": "Password corrente",
+        "new": "Nuova password",
+        "invalid": "Password non valida.",
+        "unknownError": "Qualcosa è andato storto, riprova più tardi."
+      },
+      "copyPaste": {
+        "copy": "Copia i dati da {year}",
+        "paste": "Incolla i dati da {from} in {to}",
+        "confirm": "Sei sicuro di voler copiare i dati da {from} dentro {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Carica dati Demo"
+      },
+      "deleteYear": {
+        "delete": "Elimina {year}",
+        "confirm": "Sei sicuro di volerli eliminare {year}?"
+      },
+      "export": {
+        "export": "Esporta come file json"
+      },
+      "import": {
+        "import": "Importa da file json",
+        "what": {
+          "google": "Google-Sheets annual budget file",
+          "ocular": "Un file precedentemente esportato",
+          "title": "Cosa vorresti importare?"
+        },
+        "ocular": {
+          "pickFile": "Seleziona il tuo file .json da importare",
+          "import": "Importa i dati ocular"
+        },
+        "google": {
+          "import": "Importa i dati da google",
+          "pickFile": "Seleziona il tuo file .csv da importare",
+          "expenses": "Spese.csv",
+          "income": "Entrate.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Passare alla modalità pubblica",
+        "enable": "Passare alla modalità privacy"
+      }
+    },
+    "language": {
+      "switch": "Cambia lingua"
+    },
+    "info": {
+      "about": "About Ocular",
+      "github": "Check this project out on {link}!",
+      "madeWithLove": "Made with ❤️ by Simon",
+      "meta": "{version} / {date} / {sha}"
+    },
+    "currency": {
+      "change": "Modificare la valuta da utilizzare"
+    },
+    "theme": {
+      "change": "Cambiare il tema"
+    },
+    "year": {
+      "change": "Passare a un anno diverso"
+    },
+    "auth": {
+      "welcomeBack": "Ben tornato!",
+      "signIn": "Accedi",
+      "username": "Username",
+      "password": "Password",
+      "loginFailed": "Accesso fallito, username e/o password errati."
+    },
+    "admin": {
+      "settings": "Impostazioni dell'amministratore",
+      "createUser": "Crea utente",
+      "username": "Username",
+      "password": "Password",
+      "admin": "Admin",
+      "conflict": "Esiste già un utente con questo nome.",
+      "error": "Qualcosa è andato storto, riprova più tardi.",
+      "deleteUserConfirmation": "Sei sicuro di voler eliminare questo utente?",
+      "manageUsers": "Gestisci utenti",
+      "noUsersFound": "Nessun utente trovato..."
+    }
+  },
+  "shared": {
+    "addGroup": "Aggiungi Gruppo",
+    "append": "Sposta “{from}” verso “{to}”",
+    "average": "Media",
+    "move": "Sposta “{from}”",
+    "moveInto": "Sposta “{from}” in “{to}”",
+    "prepend": "Move “{from}” prima di “{to}”",
+    "fillRow": "Completa la riga",
+    "fillRowToRight": "Completa a destra",
+    "total": "Totale",
+    "totals": "Totali",
+    "placeholder": "Iniziate a compilare le schede delle entrate e delle uscite! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Entrate",
+      "incomeFor": "Reddito per {year}"
+    },
+    "expenses": {
+      "title": "Spese",
+      "expensesFor": "Spese del {year}"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "tables": "Tabelle",
+      "income": "Entrate",
+      "incomeTrend": "Tendenza del reddito",
+      "allTime": "Panoramica generale",
+      "allTimeFromTo": "Panoramica generale da {from} a {to}",
+      "expenses": "Spese",
+      "expensesTrend": "Tendenza delle Spese",
+      "endingBalance": "Saldo finale",
+      "budgetFor": "Budget annuale del {year}",
+      "remainingBalance": "Saldo residuo fino al {anno}",
+      "netSavings": "Risparmio Netto",
+      "yearInThePast": "Anno passato",
+      "yearInTheFuture": "Anno prossimo",
+      "yearEnding": "Quest'anno finirà ...",
+      "yoyIncomeGrowth": "YoY Crescita del reddito",
+      "yoyExpenseGrowth": "YoY Crescita delle Spese",
+      "allTimeIncome": "Reddito Totale",
+      "allTimeExpenses": "Spese Totali",
+      "allTimeSavings": "Risparmio Totale",
+      "downloadAsPNG": "Download come PNG",
+      "downloadAsSVG": "Download come SVG"
+    }
+  }
+}
