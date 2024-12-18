@@ -53,6 +53,8 @@
           [$style.brc]: index === group.budgets.length - 1 && month === 11
         }
       ]"
+      @focusin="focused = budget.id"
+      @focusout="focused = undefined"
     >
       <CellMenu
         :actions="[
@@ -91,7 +93,7 @@ import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils';
-import { computed, DeepReadonly } from 'vue';
+import { computed, DeepReadonly, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
@@ -113,6 +115,7 @@ const {
 } = useDataStore();
 
 const { t } = useI18n();
+const focused = ref<string>();
 
 const totals = computed(() => {
   const totals: number[] = new Array(12).fill(0);
@@ -215,11 +218,13 @@ const performAction = (action: CellMenuActionId, budgetId: string, month: number
 }
 
 .currencyCell {
+  display: flex;
+  align-items: center;
   background: var(--grid-background-odd);
   height: 100%;
   border-right: 1px solid var(--grid-border-color);
   border-bottom: 1px solid var(--grid-border-color);
-  transition: all var(--input-field-transition);
+  transition: background-color var(--input-field-transition);
   box-shadow: inset 0 0 0 1px transparent;
 
   &.firstRow {
@@ -232,6 +237,11 @@ const performAction = (action: CellMenuActionId, budgetId: string, month: number
 
   &.currentMonth {
     background: var(--grid-background-odd-active);
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px var(--c-primary) inset;
+    border-radius: 1px;
   }
 
   &.even {
