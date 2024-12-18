@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM node:20-alpine AS build
+FROM --platform=$BUILDPLATFORM node:22-alpine AS build
 
 ARG OCULAR_GENESIS_HOST
 ARG OCULAR_BUILD_VERSION
@@ -19,7 +19,7 @@ RUN pnpm install --frozen-lockfile
 COPY . /app
 RUN pnpm run build
 
-FROM busybox:1.36.1-musl
+FROM busybox:1.37.0-musl
 
 WORKDIR /home/static
 
