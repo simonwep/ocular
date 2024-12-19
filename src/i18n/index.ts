@@ -5,8 +5,9 @@ import en from './locales/en.json?url';
 import ptbr from './locales/pt-br.json?url';
 import tr from './locales/tr.json?url';
 import it from './locales/it.json?url';
+import hu from './locales/hu.json?url';
 
-const localeUrls = { de, en, tr, it, 'pt-br': ptbr, cze };
+const localeUrls = { de, en, tr, it, 'pt-br': ptbr, cze, hu };
 
 export const availableLocales = Object.keys(localeUrls);
 
