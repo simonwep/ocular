@@ -1,0 +1,135 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "Eszközök",
+      "changePassword": {
+        "change": "Jelszó módosítása",
+        "current": "Jelenlegi jelszó",
+        "new": "Új jelszó",
+        "invalid": "Jelenlegi jelszó érvénytelen.",
+        "unknownError": "Valami rosszul sült el, kérjük, próbálja meg később újra."
+      },
+      "copyPaste": {
+        "copy": "Adatok másolása innen: {year}",
+        "paste": "Adatok beillesztése innen: {from}, ide: {to}",
+        "confirm": "Biztos, hogy az adatokat másolni akarja innen: {from}, ide: {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Demo adatok betöltése"
+      },
+      "deleteYear": {
+        "delete": "{year} év eltávolítása",
+        "confirm": "Biztos, hogy el akarja távolítani {year} évet?"
+      },
+      "export": {
+        "export": "Exportálás json fájlként"
+      },
+      "import": {
+        "import": "Importálás json fájlból",
+        "what": {
+          "google": "Google-Sheets éves költségvetési fájl",
+          "ocular": "Egy korábban exportált fájl",
+          "title": "Mit szeretne importálni?"
+        },
+        "ocular": {
+          "pickFile": "Válassza ki az importálandó .json fájlt",
+          "import": "Ocular adatok importálása"
+        },
+        "google": {
+          "import": "Google adatok importálása",
+          "pickFile": "Válassza ki az importálandó .csv fájlt",
+          "expenses": "Kiadás.csv",
+          "income": "Bevétel.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Váltás nyilvános módra",
+        "enable": "Váltás privát módra"
+      }
+    },
+    "language": {
+      "switch": "Váltás másik nyelvre"
+    },
+    "info": {
+      "about": "Az Ocular névjegye",
+      "github": "Projekt megtekintése {link}-on!",
+      "madeWithLove": "Made with ❤️ by Simon",
+      "meta": "{version} / {date} / {sha}"
+    },
+    "currency": {
+      "change": "Használni kívánt pénznem kiválasztása"
+    },
+    "theme": {
+      "change": "Színmód kiválasztása"
+    },
+    "year": {
+      "change": "Váltás egy másik évre"
+    },
+    "auth": {
+      "welcomeBack": "Köszöntjük az oldalon!",
+      "signIn": "Bejelentkezés",
+      "username": "Felhasználónév",
+      "password": "Jelszó",
+      "loginFailed": "A bejelentkezés sikertelen, a felhasználónév és/vagy a jelszó helytelen."
+    },
+    "admin": {
+      "settings": "Admin beállítások",
+      "createUser": "Felhasználó létrehozása",
+      "username": "Felhasználónév",
+      "password": "Jelszó",
+      "admin": "Admin",
+      "conflict": "Már létezik ilyen nevű felhasználó.",
+      "error": "Valami rosszul sült el, kérjük, próbálja meg később újra.",
+      "deleteUserConfirmation": "Biztos, hogy törölni szeretné ezt a felhasználót?",
+      "manageUsers": "Felhasználók kezelése",
+      "noUsersFound": "Felhasználó nem található..."
+    }
+  },
+  "shared": {
+    "addGroup": "Csoport hozzáadása",
+    "append": "“from” áthelyezése “to” után",
+    "average": "Átlagos",
+    "move": "“from” áthelyezése",
+    "moveInto": "“from” áthelyezése ide: “to”",
+    "prepend": "“from” áthelyezése “to” elé",
+    "fillRow": "Sor kitöltése",
+    "fillRowToRight": "Kitöltés jobbra",
+    "total": "Összesen",
+    "totals": "Összesen",
+    "placeholder": "Kezdd a bevételek/kiadások lap kitöltésével! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Bevételek",
+      "incomeFor": "{year} év bevételei"
+    },
+    "expenses": {
+      "title": "Kiadások",
+      "expensesFor": "{year} kiadásai"
+    },
+    "dashboard": {
+      "title": "Műszerfal",
+      "tables": "Táblák",
+      "income": "Bevételek",
+      "incomeTrend": "Bevétel alakulása",
+      "allTime": "Teljes időszak áttekintése",
+      "allTimeFromTo": "Teljes időszak ettől: {from}, eddig: {to}",
+      "expenses": "Kiadások",
+      "expensesTrend": "Kiadás alakulása",
+      "endingBalance": "Záróegyenleg",
+      "budgetFor": "Költségvetés {year} évre",
+      "remainingBalance": "Maradék egyenleg {year}-ig",
+      "netSavings": "Nettó megtakarítás",
+      "yearInThePast": "Az év a múltban van",
+      "yearInTheFuture": "Az év a jövőben van",
+      "yearEnding": "Ez az év a végéhez közeledik...",
+      "yoyIncomeGrowth": "Éves bevételnövekedés",
+      "yoyExpenseGrowth": "Éves kiadásnövekedés",
+      "allTimeIncome": "Teljes időszak bevételei",
+      "allTimeExpenses": "Teljes időszak kiadásai",
+      "allTimeSavings": "Teljes időszak megtakarításai",
+      "downloadAsPNG": "Letöltés PNG formátumban",
+      "downloadAsSVG": "Letöltés SVG-ként"
+    }
+  }
+}
