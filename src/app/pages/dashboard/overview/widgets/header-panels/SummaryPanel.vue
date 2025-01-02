@@ -16,7 +16,12 @@
         </template>
       </div>
 
-      <SummaryPanelChart v-if="Array.isArray(values)" :class="$style.chart" :color="chartColor" :values="values" />
+      <SummaryPanelChart
+        v-if="Array.isArray(values)"
+        :class="$style.chart"
+        :color="theme.light.dimmed"
+        :values="values"
+      />
     </component>
   </div>
 </template>
@@ -24,7 +29,7 @@
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
 import Link from '@components/base/link/Link.vue';
-import { useSquircle } from '@composables';
+import { Color, useSquircle, useThemeStyles } from '@composables';
 import { RiCalendar2Line, RiPencilFill } from '@remixicon/vue';
 import { ClassNames } from '@utils';
 import { computed } from 'vue';
@@ -36,21 +41,18 @@ const props = defineProps<{
   subTitle?: string;
   to?: string;
   alt?: string;
-  color: string;
+  color: Color;
   values: number[] | number;
 }>();
 
 const classes = computed(() => props.class);
+const theme = useThemeStyles(() => props.color);
 const root = useSquircle(0.25);
 
 const endingValue = computed(() =>
   Array.isArray(props.values) ? props.values[props.values.length - 1] : props.values
 );
 
-const shadow = computed(() => `var(--c-${props.color}-shadow)`);
-const textColor = computed(() => `var(--c-${props.color}-text-accent)`);
-const backgroundColor = computed(() => `var(--c-${props.color}-light)`);
-const chartColor = computed(() => `var(--c-${props.color}-light-dimmed)`);
 const element = computed(() => (props.to ? Link : 'div'));
 </script>
 
@@ -70,17 +72,18 @@ const element = computed(() => (props.to ? Link : 'div'));
   width: 100%;
   height: 100%;
   position: relative;
-  background: v-bind('backgroundColor');
+  background: v-bind('theme.light.base');
 
   .editIcon {
     position: absolute;
     width: 16px;
     height: 16px;
-    top: 18px;
-    right: 18px;
+    top: 12px;
+    right: 12px;
     opacity: 0;
     transform: translateX(5px);
     transition: all var(--transition-m);
+    fill: v-bind('theme.text.accent');
   }
 
   &:hover .editIcon {
@@ -92,7 +95,7 @@ const element = computed(() => (props.to ? Link : 'div'));
 .header {
   display: flex;
   flex-direction: column;
-  color: v-bind(textColor);
+  color: v-bind('theme.text.accent');
   width: 100%;
 
   .head {
@@ -108,7 +111,7 @@ const element = computed(() => (props.to ? Link : 'div'));
   .subTitle {
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-xxl);
-    color: v-bind('chartColor');
+    color: v-bind('theme.light.dimmed');
   }
 
   .placeholder {
@@ -137,7 +140,7 @@ const element = computed(() => (props.to ? Link : 'div'));
 
 @include globals.onMobileDevices {
   .summaryPanel {
-    box-shadow: 0 2px 2px v-bind('shadow');
+    box-shadow: 0 2px 2px v-bind('theme.focus');
   }
 
   .header .title {
