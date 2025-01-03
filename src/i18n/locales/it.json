@@ -129,7 +129,9 @@
       "allTimeExpenses": "Spese Totali",
       "allTimeSavings": "Risparmio Totale",
       "downloadAsPNG": "Download come PNG",
-      "downloadAsSVG": "Download come SVG"
+      "downloadAsSVG": "Download come SVG",
+      "jumpToIncome": "Vai al reddito per {year}",
+      "jumpToExpenses": "Vai alle spese per {year}"
     }
   }
 }

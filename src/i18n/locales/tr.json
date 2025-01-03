@@ -129,7 +129,9 @@
       "yearInTheFuture" : "Yıl gelecekte",
       "yearInThePast" : "Yıl geçmişte",
       "yoyExpenseGrowth" : "Yıllık Gider Artışı",
-      "yoyIncomeGrowth" : "Yıllık Gelir Artışı"
+      "yoyIncomeGrowth" : "Yıllık Gelir Artışı",
+      "jumpToIncome" : "{year} gelirlerine atla",
+      "jumpToExpenses" : "{year} harcamalarına atla"
     }
   }
 }

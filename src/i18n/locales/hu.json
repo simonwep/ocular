@@ -129,7 +129,9 @@
       "allTimeExpenses": "Teljes időszak kiadásai",
       "allTimeSavings": "Teljes időszak megtakarításai",
       "downloadAsPNG": "Letöltés PNG formátumban",
-      "downloadAsSVG": "Letöltés SVG-ként"
+      "downloadAsSVG": "Letöltés SVG-ként",
+      "jumpToIncome": "Ugrás a {year} évi bevételekhez",
+      "jumpToExpenses": "Ugrás a {year} évi kiadásokhoz"
     }
   }
 }

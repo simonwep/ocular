@@ -129,7 +129,9 @@
       "allTimeExpenses": "Allzeit Ausgaben",
       "allTimeSavings": "Allzeit Ersparnisse",
       "downloadAsPNG": "Als PNG herunterladen",
-      "downloadAsSVG": "Als SVG herunterladen"
+      "downloadAsSVG": "Als SVG herunterladen",
+      "jumpToIncome": "Springe zu den Einnahmen für {year}",
+      "jumpToExpenses": "Springe zu den Ausgaben für {year}"
     }
   }
 }

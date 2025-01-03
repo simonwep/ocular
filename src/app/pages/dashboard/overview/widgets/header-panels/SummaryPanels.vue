@@ -1,10 +1,17 @@
 <template>
   <div :class="classes" @animationend="animationsDone++">
-    <SummaryPanel :values="income" color="success" to="/income" :title="t('page.dashboard.income')" />
+    <SummaryPanel
+      :values="income"
+      color="success"
+      to="/income"
+      :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
+      :title="t('page.dashboard.income')"
+    />
 
     <SummaryPanel
       :sub-title="n(expensePercentage, 'percent')"
       to="/expenses"
+      :tooltip="t('page.dashboard.jumpToExpenses', { year: state.activeYear })"
       :values="expenses"
       color="warning"
       :title="t('page.dashboard.expenses')"

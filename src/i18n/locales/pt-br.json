@@ -129,7 +129,9 @@
       "allTimeExpenses": "Despesas pelos Anos",
       "allTimeSavings": "Economias pelos Anos",
       "downloadAsPNG": "Baixar como PNG",
-      "downloadAsSVG": "Baixar como SVG"
+      "downloadAsSVG": "Baixar como SVG",
+      "jumpToIncome": "Pular para a Receita de {year}",
+      "jumpToExpenses": "Pular para as Despesas de {year}"
     }
   }
 }

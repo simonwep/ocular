@@ -129,7 +129,9 @@
       "allTimeExpenses": "Celkový Výdaje",
       "allTimeSavings": "Celkový Úspory",
       "downloadAsPNG": "Stáhnout jako PNG",
-      "downloadAsSVG": "Stáhnout jako SVG"
+      "downloadAsSVG": "Stáhnout jako SVG",
+      "jumpToIncome": "Přejít na příjmy za {year}",
+      "jumpToExpenses": "Přejít na výdaje za {year}"
     }
   }
 }

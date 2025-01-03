@@ -1,28 +1,32 @@
 <template>
-  <div ref="root" :style="$style.wrapper">
-    <component :is="element" :to="to" :class="[$style.summaryPanel, classes]">
-      <RiPencilFill v-if="to" :class="$style.editIcon" />
+  <div
+    ref="wrapper"
+    v-tooltip="tooltip ? { position: 'bottom', text: tooltip } : undefined"
+    :class="[$style.wrapper, { [$style.clickable]: !!to }]"
+  >
+    <div ref="container" :class="$style.container">
+      <component :is="element" :to="to" :class="[$style.summaryPanel, classes]">
+        <div :class="$style.header">
+          <div v-if="alt" :class="$style.placeholder">
+            <RiCalendar2Line :class="$style.icon" />
+            <span :class="$style.text">{{ alt }}</span>
+          </div>
 
-      <div :class="$style.header">
-        <div v-if="alt" :class="$style.placeholder">
-          <RiCalendar2Line :class="$style.icon" />
-          <span :class="$style.text">{{ alt }}</span>
+          <template v-else>
+            <h2 :class="$style.head">{{ title }}</h2>
+            <Currency :class="$style.title" :value="endingValue" />
+            <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
+          </template>
         </div>
 
-        <template v-else>
-          <h2 :class="$style.head">{{ title }}</h2>
-          <Currency :class="$style.title" :value="endingValue" />
-          <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
-        </template>
-      </div>
-
-      <SummaryPanelChart
-        v-if="Array.isArray(values)"
-        :class="$style.chart"
-        :color="theme.light.dimmed"
-        :values="values"
-      />
-    </component>
+        <SummaryPanelChart
+          v-if="Array.isArray(values)"
+          :class="$style.chart"
+          :color="theme.light.dimmed"
+          :values="values"
+        />
+      </component>
+    </div>
   </div>
 </template>
 
@@ -30,7 +34,7 @@
 import Currency from '@components/base/currency/Currency.vue';
 import Link from '@components/base/link/Link.vue';
 import { Color, useSquircle, useThemeStyles } from '@composables';
-import { RiCalendar2Line, RiPencilFill } from '@remixicon/vue';
+import { RiCalendar2Line } from '@remixicon/vue';
 import { ClassNames } from '@utils';
 import { computed } from 'vue';
 import SummaryPanelChart from './SummaryPanelChart.vue';
@@ -39,6 +43,7 @@ const props = defineProps<{
   class?: ClassNames;
   title: string;
   subTitle?: string;
+  tooltip?: string;
   to?: string;
   alt?: string;
   color: Color;
@@ -47,7 +52,8 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const theme = useThemeStyles(() => props.color);
-const root = useSquircle(0.25);
+const wrapper = useSquircle(0.25);
+const container = useSquircle(0.25);
 
 const endingValue = computed(() =>
   Array.isArray(props.values) ? props.values[props.values.length - 1] : props.values
@@ -61,8 +67,22 @@ const element = computed(() => (props.to ? Link : 'div'));
 
 .wrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
+  background: v-bind('theme.light.base');
+  transition: background var(--transition-m);
+
+  &.clickable:hover {
+    background: v-bind('theme.light.dimmed');
+  }
+}
+
+.container {
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  background: v-bind('theme.light.base');
 }
 
 .summaryPanel {
@@ -73,23 +93,6 @@ const element = computed(() => (props.to ? Link : 'div'));
   height: 100%;
   position: relative;
   background: v-bind('theme.light.base');
-
-  .editIcon {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    top: 12px;
-    right: 12px;
-    opacity: 0;
-    transform: translateX(5px);
-    transition: all var(--transition-m);
-    fill: v-bind('theme.text.accent');
-  }
-
-  &:hover .editIcon {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 .header {
@@ -100,7 +103,7 @@ const element = computed(() => (props.to ? Link : 'div'));
 
   .head {
     font-weight: var(--font-weight-xl);
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-m);
   }
 
   .title {
