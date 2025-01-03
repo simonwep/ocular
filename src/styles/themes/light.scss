@@ -153,12 +153,12 @@
   --cell-menu-backdrop: blur(3px) brightness(0.15);
   --cell-menu-shadow: 0 1px 2px #46434d;
 
-  --grid-background-odd: #f0f2f3;
-  --grid-background-odd-hover: #e6e9eb;
-  --grid-background-odd-active: #ededed;
-  --grid-background-even: #fff;
-  --grid-background-even-hover: #f5f5f7;
-  --grid-background-even-active: #fafafa;
+  --grid-background-odd: #fff;
+  --grid-background-odd-hover: #f5f5f7;
+  --grid-background-odd-active: #fafafa;
+  --grid-background-even: #f0f2f3;
+  --grid-background-even-hover: #e6e9eb;
+  --grid-background-even-active: #ededed;
   --grid-border-color: #e4e5e6;
   --grid-border-radius: var(--border-radius-l);
 
