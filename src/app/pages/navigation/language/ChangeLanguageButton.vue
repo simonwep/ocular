@@ -15,7 +15,7 @@
 import Button from '@components/base/button/Button.vue';
 import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
-import { AvailableLocale, availableLocales } from '@i18n/index';
+import { AvailableLocale, availableLocales, initialLocale } from '@i18n/index';
 import { RiCheckLine, RiGlobalLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { ClassNames } from '@utils';
@@ -26,13 +26,13 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
 const { changeLocale, state } = useDataStore();
 
 const classes = computed(() => props.class);
 
 const locales = computed<ContextMenuOption[]>(() => {
-  const displayNames = new Intl.DisplayNames(locale.value, { type: 'language' });
+  const displayNames = new Intl.DisplayNames(initialLocale, { type: 'language' });
 
   return availableLocales.map((value) => ({
     id: value,
