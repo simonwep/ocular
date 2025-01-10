@@ -1,8 +1,9 @@
 <template>
-  <template v-if="state.years.length > 1">
+  <span v-if="multiYear" :class="$style.toggle">
     <Button :icon="RiArrowLeftSLine" rounded @click="rotateYear(-1)" />
+    <TextWheelSelect :values="allYears" :value="state.activeYear" @change="changeYear" />
     <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
-  </template>
+  </span>
   <i18n-t tag="span" :keypath="keyPath" scope="global">
     <template #year>
       <TextWheel :values="allYears" :value="state.activeYear" />
@@ -13,6 +14,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import TextWheel from '@components/base/text-wheel/TextWheel.vue';
+import TextWheelSelect from '@components/base/text-wheel-select/TextWheelSelect.vue';
 import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { computed } from 'vue';
@@ -23,6 +25,7 @@ defineProps<{
 
 const { state, changeYear } = useDataStore();
 
+const multiYear = computed(() => state.years.length > 1);
 const allYears = computed(() => state.years.map((v) => v.year));
 
 const rotateYear = (dir: -1 | 1) => {
@@ -33,3 +36,31 @@ const rotateYear = (dir: -1 | 1) => {
   changeYear(newYear);
 };
 </script>
+
+<style lang="scss" module>
+.text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &.multiYear {
+    gap: 6px;
+  }
+}
+
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--c-primary);
+  border-radius: 100px;
+  gap: 5px;
+  filter: drop-shadow(0 0 3px rgba(black, 0.15)); // TODO: What the fuck
+
+  .year {
+    all: unset;
+    font-size: var(--font-size-xs);
+    cursor: pointer;
+  }
+}
+</style>

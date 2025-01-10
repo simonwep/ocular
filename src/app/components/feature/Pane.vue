@@ -56,6 +56,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   background: var(--app-background);
   animation: var(--animation-fade-in-right) var(--transition-s);
   transition: all var(--transition-m);
+  z-index: 1;
 
   .title {
     display: flex;
