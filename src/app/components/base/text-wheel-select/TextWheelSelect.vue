@@ -1,14 +1,14 @@
 <template>
-  <span :class="$style.container">
-    <span :class="$style.placeholder">{{ value }}</span>
-    <span ref="textWheelSelect" :class="[$style.textWheelSelect, { [$style.open]: showList }]">
+  <span ref="container" :class="[$style.container, { [$style.open]: showList }]">
+    <button :class="$style.currentValue" @click="showList = true">{{ value }}</button>
+    <span :class="$style.textWheelSelect">
       <button
         v-for="v of values"
         ref="items"
         :key="v"
         :data-value="v"
         type="button"
-        :class="$style.value"
+        :class="[$style.value, { [$style.current]: value === v }]"
         @click="select(v)"
       >
         {{ v }}
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup generic="T extends string | number">
-import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
+import { computed, nextTick, ref, toRef, useTemplateRef, watch } from 'vue';
 import { useOutOfElementClick } from '@composables';
 
 const emit = defineEmits<{
@@ -31,16 +31,16 @@ const props = defineProps<{
 }>();
 
 const showList = ref(false);
-const textWheelSelect = useTemplateRef('textWheelSelect');
+const container = useTemplateRef('container');
 const items = useTemplateRef('items');
 
 const visibleItemsWhenOpen = computed(() => Math.min(3, props.values.length));
 
-useOutOfElementClick([textWheelSelect, items], () => (showList.value = false));
+useOutOfElementClick([container, items], () => (showList.value = false));
 
 const focusValue = () =>
   items.value
-    .find((el: HTMLButtonElement) => el.dataset.value === String(props.value))
+    ?.find((el: HTMLButtonElement) => el.dataset.value === String(props.value))
     ?.scrollIntoView({ block: 'start' });
 
 const select = (v: T) => {
@@ -52,8 +52,7 @@ const select = (v: T) => {
   }
 };
 
-watch(() => props.value, focusValue);
-watch(showList, () => nextTick(focusValue));
+watch([toRef(props, 'value'), toRef(props, 'values'), items, showList], () => nextTick(focusValue));
 </script>
 
 <style lang="scss" module>
@@ -61,18 +60,37 @@ watch(showList, () => nextTick(focusValue));
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  background: var(--c-primary);
+
+  &.open {
+    .currentValue {
+      visibility: hidden;
+    }
+
+    .textWheelSelect {
+      height: calc(22px * v-bind(visibleItemsWhenOpen));
+      border-bottom-left-radius: var(--border-radius-l);
+      border-bottom-right-radius: var(--border-radius-l);
+      visibility: visible;
+
+      .value {
+        padding: 0 7px;
+      }
+    }
+  }
 }
 
-.placeholder {
-  visibility: hidden;
+.value,
+.currentValue {
+  all: unset;
   font-size: var(--font-size-xs);
+  color: var(--c-text-light);
+  cursor: pointer;
 }
 
 .textWheelSelect {
   overflow: auto;
   height: 22px;
-  border-radius: var(--border-radius-l);
   top: 0;
   background: var(--c-primary);
   position: absolute;
@@ -80,14 +98,7 @@ watch(showList, () => nextTick(focusValue));
   grid-auto-flow: row;
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-  &.open {
-    height: calc(22px * v-bind(visibleItemsWhenOpen));
-
-    .value {
-      padding: 0 7px;
-    }
-  }
+  visibility: hidden;
 }
 
 .textWheelSelect::-webkit-scrollbar {
@@ -95,15 +106,12 @@ watch(showList, () => nextTick(focusValue));
 }
 
 .value {
-  all: unset;
-  cursor: pointer;
   height: 22px;
   padding: 0 3px;
-  font-size: var(--font-size-xs);
-  color: var(--c-text-light);
 
-  &.transition {
-    transition: transform var(--transition-s);
+  &:not(.current) {
+    background: var(--c-primary-light);
+    color: var(--c-text);
   }
 }
 </style>
