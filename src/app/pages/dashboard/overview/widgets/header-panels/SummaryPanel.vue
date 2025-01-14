@@ -72,7 +72,7 @@ const element = computed(() => (props.to ? Link : 'div'));
   width: 100%;
   height: 100%;
   background: v-bind('theme.light.base');
-  transition: background var(--transition-m);
+  transition: background var(--transition-s);
 
   &.clickable:hover {
     background: v-bind('theme.light.dimmed');

@@ -6,6 +6,9 @@
       to="/income"
       :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
+      @pointerenter="emit('hoveredPanel', 'income')"
+      @pointerleave="emit('hoveredPanel')"
+      @pointercancel="emit('hoveredPanel')"
     />
 
     <SummaryPanel
@@ -15,6 +18,9 @@
       :values="expenses"
       color="warning"
       :title="t('page.dashboard.expenses')"
+      @pointerenter="emit('hoveredPanel', 'expenses')"
+      @pointerleave="emit('hoveredPanel')"
+      @pointercancel="emit('hoveredPanel')"
     />
 
     <SummaryPanel
@@ -50,6 +56,11 @@ import { aggregate, ClassNames, subtract, sum } from '@utils';
 import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
 import SummaryPanel from './SummaryPanel.vue';
+import { HoveredPanel } from '@app/pages/dashboard/overview/widgets/header-panels/SummaryPanels.types.ts';
+
+const emit = defineEmits<{
+  hoveredPanel: (panel?: HoveredPanel) => void;
+}>();
 
 const props = defineProps<{
   class?: ClassNames;

@@ -1,7 +1,8 @@
 <template>
   <div :class="$style.overview">
-    <SummaryPanels />
+    <SummaryPanels @hovered-panel="highlight = $event" />
     <AsyncComponent
+      :properties="{ highlight }"
       :show="media !== 'mobile'"
       :class="$style.chart"
       :import="() => import('./widgets/charts/DistributionChart.vue')"
@@ -11,10 +12,12 @@
 
 <script lang="ts" setup>
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
-import { useMediaQuery } from '../../../../composables/useMediaQuery';
+import { useMediaQuery } from '@composables';
 import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';
+import { ref } from 'vue';
 
 const media = useMediaQuery();
+const highlight = ref<string>();
 </script>
 
 <style lang="scss" module>

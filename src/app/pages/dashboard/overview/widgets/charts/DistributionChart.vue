@@ -15,6 +15,7 @@ import SankeyChart from './sankey-chart/SankeyChart.vue';
 
 const props = defineProps<{
   class?: ClassNames;
+  highlight?: 'income' | 'expenses';
 }>();
 
 const classes = computed(() => props.class);
@@ -54,13 +55,15 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 + 60 * (total / totalIncome))
+      color: color(60 + 60 * (total / totalIncome)),
+      muted: props.highlight === 'expenses'
     });
 
     links.push({
       target: income.id,
       source: group.id,
-      value: total
+      value: total,
+      muted: props.highlight === 'expenses'
     });
 
     for (let i = 0; i < group.budgets.length; i++) {
@@ -71,13 +74,15 @@ const data = computed((): SankeyChartConfig => {
         labels.push({
           id: budget.id,
           name: `${budget.name} (${format(total)})`,
-          color: color(60 + 60 * (total / totalIncome))
+          color: color(60 + 60 * (total / totalIncome)),
+          muted: props.highlight === 'expenses'
         });
 
         links.push({
           target: group.id,
           source: budget.id,
-          value: total
+          value: total,
+          muted: props.highlight === 'expenses'
         });
       }
     }
@@ -93,13 +98,15 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 * (1 - total / totalExpenses))
+      color: color(60 * (1 - total / totalExpenses)),
+      muted: props.highlight === 'income'
     });
 
     links.push({
       target: group.id,
       source: income.id,
-      value: total
+      value: total,
+      muted: props.highlight === 'income'
     });
 
     for (let i = 0; i < group.budgets.length; i++) {
@@ -111,13 +118,15 @@ const data = computed((): SankeyChartConfig => {
           id: budget.id,
           name: `${budget.name} (${format(total)})`,
           color: color(60 * (1 - total / totalExpenses)),
-          align: 'left'
+          align: 'left',
+          muted: props.highlight === 'income'
         });
 
         links.push({
           target: budget.id,
           source: group.id,
-          value: total
+          value: total,
+          muted: props.highlight === 'income'
         });
       }
     }

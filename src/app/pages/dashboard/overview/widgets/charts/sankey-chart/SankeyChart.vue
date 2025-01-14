@@ -48,6 +48,7 @@ const classes = computed(() => props.class);
 const options = computed(
   (): EChartsOption => ({
     animation: false,
+    silent: true,
     series: {
       type: 'sankey',
       label: {
@@ -65,20 +66,27 @@ const options = computed(
       nodeWidth: 7,
       left: 0,
       right: 0,
-      links: props.data.links,
+      links: props.data.links.map((v) => ({
+        ...v,
+        animation: true,
+        lineStyle: { opacity: v.muted ? 0.05 : 0.25 }
+      })),
       data: props.data.labels.map((v) => ({
         name: v.name,
         id: v.id,
-        itemStyle: { color: v.color },
+        itemStyle: {
+          color: v.color,
+          opacity: v.muted ? 0.25 : 1
+        },
         label:
           v.align === 'left'
             ? {
                 align: 'right',
+                opacity: v.muted ? 0.65 : 1,
                 padding: [0, 20, 0, 0]
               }
-            : undefined
-      })),
-      silent: true
+            : { opacity: v.muted ? 0.65 : 1 }
+      }))
     }
   })
 );
