@@ -56,14 +56,14 @@ export const createStorage = () => {
 
     // push data
     watch(
-      [authenticatedUser, () => JSON.stringify(config.state())],
+      [authenticatedUser, config.state],
       ([user]) => {
         if (user && !initialSyncRequired.value) {
           syncing.value = true;
           void change();
         }
       },
-      { immediate: true }
+      { immediate: true, deep: true }
     );
 
     // clear on log out

@@ -23,8 +23,7 @@ import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.v
 import EChart from '@components/charts/echart/EChart.vue';
 import { RiDownloadCloud2Line, RiImageLine, RiLandscapeLine } from '@remixicon/vue';
 import { ClassNames, downloadBlob } from '@utils';
-import { SankeySeriesOption } from 'echarts';
-import { SankeyChart } from 'echarts/charts';
+import { SankeyChart, SankeySeriesOption } from 'echarts/charts';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed, ref } from 'vue';

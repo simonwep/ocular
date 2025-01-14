@@ -13,12 +13,6 @@ export const generateBudgetGroup = (name: string, budgets: string[]): BudgetGrou
   budgets: budgets.map(generateBudget)
 });
 
-export const generateBudgetYear = (year: number): BudgetYear => ({
-  year,
-  income: [generateBudgetGroup('General', ['Other'])],
-  expenses: [generateBudgetGroup('General', ['Other'])]
-});
-
 export const generateBudgetYearFromCurrent = (year: number, current: BudgetYear): BudgetYear => {
   const clearValues = (value: BudgetGroup): BudgetGroup => ({
     id: uuid(),
