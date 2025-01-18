@@ -1,0 +1,137 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "Narzędzia",
+      "changePassword": {
+        "change": "Zmień hasło",
+        "current": "Obecne hasło",
+        "new": "Nowe hasło",
+        "invalid": "Obecne hasło jest nieprawidłowe.",
+        "unknownError": "Coś poszło nie tak, spróbuj ponownie później."
+      },
+      "copyPaste": {
+        "copy": "Skopiuj dane z {year}",
+        "paste": "Wklej dane z {from} do {to}",
+        "confirm": "Czy na pewno chcesz skopiować dane z {from} do {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Załaduj dane demo"
+      },
+      "deleteYear": {
+        "delete": "Usuń {year}",
+        "confirm": "Czy na pewno chcesz usunąć {year}?"
+      },
+      "export": {
+        "export": "Eksportuj do pliku json"
+      },
+      "import": {
+        "import": "Importuj z pliku json",
+        "what": {
+          "google": "Plik rocznego budżetu Google Sheets",
+          "ocular": "Uprzednio wyeksportowany plik",
+          "title": "Co chcesz zaimportować?"
+        },
+        "ocular": {
+          "pickFile": "Wybierz plik .json do importu",
+          "import": "Importuj dane ocular"
+        },
+        "google": {
+          "import": "Importuj dane z Google",
+          "pickFile": "Wybierz plik .csv do importu",
+          "expenses": "Wydatki.csv",
+          "income": "Dochody.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Przełącz na tryb publiczny",
+        "enable": "Przełącz na tryb prywatny"
+      }
+    },
+    "language": {
+      "switch": "Zmień język"
+    },
+    "info": {
+      "about": "O Ocular",
+      "github": "Sprawdź ten projekt na {link}!",
+      "madeWithLove": "Stworzone z ❤️ przez Simona",
+      "meta": "{version} / {date} / {sha}"
+    },
+    "currency": {
+      "change": "Zmień walutę używaną w aplikacji"
+    },
+    "theme": {
+      "change": "Zmień kolor motywu"
+    },
+    "year": {
+      "change": "Przełącz na inny rok"
+    },
+    "auth": {
+      "welcomeBack": "Witaj ponownie!",
+      "signIn": "Zaloguj się",
+      "username": "Nazwa użytkownika",
+      "password": "Hasło",
+      "loginFailed": "Logowanie nie powiodło się, nazwa użytkownika i/lub hasło są nieprawidłowe."
+    },
+    "admin": {
+      "settings": "Ustawienia administratora",
+      "createUser": "Utwórz użytkownika",
+      "username": "Nazwa użytkownika",
+      "password": "Hasło",
+      "admin": "Administrator",
+      "conflict": "Użytkownik o tej nazwie już istnieje.",
+      "error": "Coś poszło nie tak, spróbuj ponownie później.",
+      "deleteUserConfirmation": "Czy na pewno chcesz usunąć tego użytkownika?",
+      "manageUsers": "Zarządzaj użytkownikami",
+      "noUsersFound": "Nie znaleziono użytkowników..."
+    }
+  },
+  "shared": {
+    "addGroup": "Dodaj grupę",
+    "append": "Przenieś “{from}” za “{to}”",
+    "average": "Średnia",
+    "move": "Przenieś “{from}”",
+    "moveInto": "Przenieś “{from}” do “{to}”",
+    "prepend": "Przesuń “{from}” przed “{to}”",
+    "fillRow": "Wypełnij wiersz",
+    "fillRowToRight": "Wypełnij w prawo",
+    "total": "Suma",
+    "totals": "Suma całkowita",
+    "placeholder": "Zacznij od uzupełnienia zakładek dochody / wydatki! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Dochody",
+      "incomeFor": "Dochody za {year}"
+    },
+    "expenses": {
+      "title": "Wydatki",
+      "expensesFor": "Wydatki za {year}"
+    },
+    "dashboard": {
+      "title": "Panel",
+      "tables": "Tabele",
+      "income": "Dochody",
+      "incomeTrend": "Trend dochodów",
+      "allTime": "Przegląd całościowy",
+      "allTimeFromTo": "Całość od {from} do {to}",
+      "expenses": "Wydatki",
+      "expensesTrend": "Trend wydatków",
+      "endingBalance": "Stan końcowy",
+      "budgetFor": "Roczny budżet za {year}",
+      "remainingBalance": "Pozostały stan do {year}",
+      "netSavings": "Oszczędności netto",
+      "yearInThePast": "Rok jest w przeszłości",
+      "yearInTheFuture": "Rok jest w przyszłości",
+      "yearEnding": "Rok dobiega końca...",
+      "yoyIncomeGrowth": "Wzrost dochodów rok do roku",
+      "yoyExpenseGrowth": "Wzrost wydatków rok do roku",
+      "allTimeIncome": "Całkowite dochody",
+      "allTimeExpenses": "Całkowite wydatki",
+      "allTimeSavings": "Całkowite oszczędności",
+      "downloadAsPNG": "Pobierz jako PNG",
+      "downloadAsSVG": "Pobierz jako SVG",
+      "jumpToIncome": "Zobacz dochody za {year}",
+      "jumpToExpenses": "Zobacz wydatki za {year}"
+    }
+  }
+}
