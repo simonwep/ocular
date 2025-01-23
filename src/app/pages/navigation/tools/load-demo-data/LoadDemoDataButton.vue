@@ -9,14 +9,16 @@ import { useDataStore } from '@store/state';
 import { DataStateV3 } from '@store/state/types';
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useStorage } from '@storage/index.ts';
 
-const { deserialize, state } = useDataStore();
+const { deserialize } = useDataStore();
+const { status } = useStorage();
 const { t } = useI18n();
 
 const loading = ref(false);
 
 const loadDemoData = async () => {
-  if (loading.value || state.years.length) {
+  if (loading.value || status.value !== 'idle') {
     return;
   }
 
