@@ -4,7 +4,7 @@
     <TextWheelSelect :values="allYears" :value="state.activeYear" @change="changeYear" />
     <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
   </span>
-  <i18n-t tag="span" :keypath="keyPath" scope="global">
+  <i18n-t :class="$style.activeYear" tag="span" :keypath="keyPath" scope="global">
     <template #year>
       <TextWheel :values="allYears" :value="state.activeYear" />
     </template>
@@ -62,5 +62,11 @@ const rotateYear = (dir: -1 | 1) => {
     font-size: var(--font-size-xs);
     cursor: pointer;
   }
+}
+
+.activeYear {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5ch;
 }
 </style>

@@ -24,6 +24,7 @@ onMounted(() => (mounted.value = true));
 
 <style lang="scss" module>
 .container {
+  display: inline-block;
   position: relative;
   overflow: hidden;
   clip-path: inset(0 0 0 0);
