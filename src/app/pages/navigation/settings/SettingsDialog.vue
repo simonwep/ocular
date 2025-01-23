@@ -14,6 +14,13 @@
         :options="currencies"
         @update:model-value="changeCurrency($event as AvailableCurrency)"
       />
+
+      <Select
+        :model-value="settings.general.monthOffset"
+        :label="t('navigation.settings.firstMonthOfYear')"
+        :options="months"
+        @update:model-value="setMonthOffset($event as number)"
+      />
     </div>
   </Dialog>
 </template>
@@ -28,6 +35,8 @@ import { useDataStore } from '@store/state';
 import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types.ts';
 import Select from '@components/base/select/Select.vue';
 import { availableCurrencies, AvailableCurrency } from '@store/state/types.ts';
+import { useSettingsStore } from '@store/settings';
+import { useMonthNames } from '@composables';
 
 const emit = defineEmits<{
   (e: 'close'): void;
@@ -38,7 +47,9 @@ defineProps<{
 }>();
 
 const { t, locale } = useI18n();
+const { setMonthOffset, state: settings } = useSettingsStore();
 const { changeCurrency, changeLocale, state } = useDataStore();
+const monthNames = useMonthNames();
 
 const locales = computed<ContextMenuOption[]>(() => {
   const displayNames = new Intl.DisplayNames(initialLocale, { type: 'language' });
@@ -55,6 +66,14 @@ const currencies = computed<ContextMenuOption[]>(() =>
     id: value,
     icon: state.currency === value ? RiCheckLine : undefined,
     label: `${formatNumber(locale.value, value, 'name')} (${formatNumber(locale.value, value)})`
+  }))
+);
+
+const months = computed<ContextMenuOption[]>(() =>
+  monthNames.value.map((value, index) => ({
+    id: index,
+    label: value,
+    icon: settings.general.monthOffset === index ? RiCheckLine : undefined
   }))
 );
 

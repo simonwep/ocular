@@ -57,6 +57,7 @@ import { average, ClassNames, sum, add } from '@utils';
 import { DeepReadonly, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import SummaryTable from './SummaryTable.vue';
+import { useSettingsStore } from '@store/settings';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -66,7 +67,8 @@ const props = defineProps<{
 
 const { t, n } = useI18n();
 const { isCurrentMonth } = useDataStore();
-const months = useMonthNames();
+const { state: settings } = useSettingsStore();
+const months = useMonthNames('long', () => settings.general.monthOffset);
 
 const flatted = computed(() => flatten(props.groups));
 </script>

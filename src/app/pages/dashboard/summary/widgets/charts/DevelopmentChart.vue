@@ -13,14 +13,16 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { LineChartConfig } from './line-chart/LineChart.types';
 import LineChart from './line-chart/LineChart.vue';
+import { useSettingsStore } from '@store/settings';
 
 const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const months = useMonthNames();
 const { state } = useDataStore();
+const { state: settings } = useSettingsStore();
 const { t, locale } = useI18n();
+const months = useMonthNames('long', () => settings.general.monthOffset);
 
 const classes = computed(() => props.class);
 const isEmpty = computed(() => {

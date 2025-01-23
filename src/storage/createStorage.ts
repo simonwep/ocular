@@ -29,7 +29,7 @@ export const createStorage = () => {
       .catch(() => false);
 
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
-    const initialSyncRequired = ref(true);
+    const initializing = ref(true);
     const syncing = ref(false);
 
     const change = debounce(async () => {
@@ -39,16 +39,17 @@ export const createStorage = () => {
         .catch(() => false);
     }, 1000);
 
+    // initial sync on log in
     watch(
-      [authenticatedUser, initialSyncRequired],
-      async ([user, sync]) => {
-        if (user && sync) {
+      [authenticatedUser, initializing],
+      async ([user, init]) => {
+        if (user && init) {
           await store
             .getDataByKey(config.name)
             .then((data) => config.push(data as P))
             .catch(() => false);
 
-          await nextTick(() => (initialSyncRequired.value = false));
+          await nextTick(() => (initializing.value = false));
         }
       },
       { immediate: true }
@@ -58,7 +59,7 @@ export const createStorage = () => {
     watch(
       [authenticatedUser, config.state],
       ([user]) => {
-        if (user && !initialSyncRequired.value) {
+        if (user && !initializing.value) {
           syncing.value = true;
           void change();
         }
@@ -67,9 +68,9 @@ export const createStorage = () => {
     );
 
     // clear on log out
-    watch([authenticatedUser, syncing, initialSyncRequired], ([user, syncing, initializing]) => {
-      if (!user && !syncing && !initializing) {
-        initialSyncRequired.value = true;
+    watch([authenticatedUser, syncing, initializing], ([user, syncing, init]) => {
+      if (!user && !syncing && !init) {
+        initializing.value = true;
         config.clear();
       }
     });

@@ -82,7 +82,8 @@
     "settings": {
       "settings": "Ustawienia",
       "language": "Język",
-      "currency": "Waluta"
+      "currency": "Waluta",
+      "firstMonthOfYear": "Pierwszy miesiąc roku"
     }
   },
   "shared": {

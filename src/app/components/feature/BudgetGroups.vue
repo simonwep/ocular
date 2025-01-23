@@ -68,16 +68,18 @@ import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BudgetGroup from './BudgetGroup.vue';
 import type { Component } from 'vue';
+import { useSettingsStore } from '@store/settings';
 
 const props = defineProps<{
   type: 'expenses' | 'income';
 }>();
 
 const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup, isCurrentMonth } = useDataStore();
+const { state: settings } = useSettingsStore();
 const { t } = useI18n();
 
 const groups = computed(() => state[props.type]);
-const months = useMonthNames();
+const months = useMonthNames('long', () => settings.general.monthOffset);
 
 const totals = computed(() => {
   const totals = new Array(12).fill(0);
@@ -146,7 +148,7 @@ const reorder = (evt: ReorderEvent) => {
 
   position: sticky;
   position: -webkit-sticky;
-  top: 0px;
+  top: 0;
   background: var(--app-background);
   border: 2px var(--app-background);
 

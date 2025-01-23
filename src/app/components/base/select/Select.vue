@@ -2,7 +2,7 @@
   <div :class="$style.select">
     <label :for="fieldId" :class="$style.label">{{ label }}</label>
 
-    <ContextMenu tooltip-position="bottom" :options="options" position="bottom" @select="modelValue = $event.id">
+    <ContextMenu tooltip-position="bottom" :options="options" position="bottom-start" @select="modelValue = $event.id">
       <template #default="{ toggle }">
         <button :id="fieldId" :class="$style.btn" type="button" @click="toggle">
           {{ currentValue }}
