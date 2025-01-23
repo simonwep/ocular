@@ -10,15 +10,17 @@ import { DataStateV3 } from '@store/state/types';
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { deserialize } = useDataStore();
+const { deserialize, state } = useDataStore();
 const { t } = useI18n();
 
 const loading = ref(false);
 
 const loadDemoData = async () => {
-  if (loading.value) return;
-  loading.value = true;
+  if (loading.value || state.years.length) {
+    return;
+  }
 
+  loading.value = true;
   const { default: data } = await import('./DemoData.json');
 
   // Adjust years to match the current year
@@ -28,7 +30,6 @@ const loadDemoData = async () => {
   }
 
   await deserialize(data as DataStateV3);
-
   loading.value = false;
 };
 
