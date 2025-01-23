@@ -1,4 +1,4 @@
-import { ref, Ref } from 'vue';
+import { readonly, ref } from 'vue';
 
 export type MediaQuery = 'normal' | 'minimized' | 'mobile';
 const query = ref<MediaQuery>('normal');
@@ -7,12 +7,14 @@ const detectSize = () => {
   const el = document.getElementById('app');
 
   if (el) {
-    query.value =
-      (getComputedStyle(el).getPropertyValue('--media-type').replaceAll('"', '').trim() as MediaQuery) || 'normal';
+    const mediaType = getComputedStyle(el).getPropertyValue('--media-type');
+    query.value = (mediaType.replaceAll('"', '').trim() as MediaQuery) || 'normal';
   }
 };
 
 window.addEventListener('resize', detectSize);
-window.addEventListener('load', detectSize);
 
-export const useMediaQuery = (): Ref<MediaQuery> => query;
+export const useMediaQuery = () => {
+  detectSize();
+  return readonly(query);
+};
