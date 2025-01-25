@@ -1,7 +1,7 @@
 <template>
   <span v-if="multiYear" :class="$style.toggle">
     <Button :icon="RiArrowLeftSLine" rounded @click="rotateYear(-1)" />
-    <TextWheelSelect :values="allYears" :value="state.activeYear" @change="changeYear" />
+    <TextWheel :values="allYears" :value="state.activeYear" />
     <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
   </span>
   <i18n-t :class="$style.activeYear" tag="span" :keypath="keyPath" scope="global">
@@ -14,7 +14,6 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import TextWheel from '@components/base/text-wheel/TextWheel.vue';
-import TextWheelSelect from '@components/base/text-wheel-select/TextWheelSelect.vue';
 import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { computed } from 'vue';
@@ -55,7 +54,8 @@ const rotateYear = (dir: -1 | 1) => {
   background: var(--c-primary);
   border-radius: 100px;
   gap: 5px;
-  filter: drop-shadow(0 0 3px rgba(black, 0.15)); // TODO: What the fuck
+  filter: drop-shadow(0 0 3px rgba(black, 0.15));
+  font-size: var(--font-size-xs);
 
   .year {
     all: unset;
