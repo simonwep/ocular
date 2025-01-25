@@ -52,9 +52,10 @@
     },
     "info": {
       "about": "Sobre o Ocular",
-      "github": "Confira este projeto no {link}!",
+      "github": "Confira este projeto no {link}, considere uma {donation} para mantê-lo vivo!",
       "madeWithLove": "Feito com ❤️ pelo Simon",
-      "meta": "{version} / {date} / {sha}"
+      "meta": "{version} / {date} / {sha}",
+      "donation": "doação"
     },
     "currency": {
       "change": "Altere a moeda a ser usada"

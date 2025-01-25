@@ -52,9 +52,10 @@
     },
     "info": {
       "about": "About Ocular",
-      "github": "Check this project out on {link}!",
+      "github": "Check this project out on {link}, consider a {donation} to keep it alive!",
       "madeWithLove": "Made with ❤️ by Simon",
-      "meta": "{version} / {date} / {sha}"
+      "meta": "{version} / {date} / {sha}",
+      "donation": "donation"
     },
     "currency": {
       "change": "Change the currency that should be used"

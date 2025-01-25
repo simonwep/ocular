@@ -1,137 +1,138 @@
 {
-  "navigation" : {
-    "admin" : {
-      "admin" : "Yönetici",
-      "conflict" : "Bu isime sahip kullanıcı zaten var.",
-      "createUser" : "Kullanıcı oluştur",
-      "deleteUserConfirmation" : "Bu kullanıcıyı silmek istediğinize emin misiniz?",
-      "error" : "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.",
-      "manageUsers" : "Kullanıcıları yönet",
-      "noUsersFound" : "Kullanıcı bulunamadı...",
-      "password" : "Parola",
-      "settings" : "Yönetici ayarları",
-      "username" : "Kullanıcı Adı"
+  "navigation": {
+    "admin": {
+      "admin": "Yönetici",
+      "conflict": "Bu isime sahip kullanıcı zaten var.",
+      "createUser": "Kullanıcı oluştur",
+      "deleteUserConfirmation": "Bu kullanıcıyı silmek istediğinize emin misiniz?",
+      "error": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.",
+      "manageUsers": "Kullanıcıları yönet",
+      "noUsersFound": "Kullanıcı bulunamadı...",
+      "password": "Parola",
+      "settings": "Yönetici ayarları",
+      "username": "Kullanıcı Adı"
     },
-    "auth" : {
-      "loginFailed" : "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
-      "password" : "Parola",
-      "signIn" : "Giriş",
-      "username" : "Kullanıcı Adı",
-      "welcomeBack" : "Tekrar hoşgeldin!"
+    "auth": {
+      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
+      "password": "Parola",
+      "signIn": "Giriş",
+      "username": "Kullanıcı Adı",
+      "welcomeBack": "Tekrar hoşgeldin!"
     },
-    "currency" : {
-      "change" : "Kullanılması gereken para birimini değiştir"
+    "currency": {
+      "change": "Kullanılması gereken para birimini değiştir"
     },
-    "info" : {
-      "about" : "Ocular Hakkında",
-      "github" : "Bu projeye {link} bağlantısıyla göz atın.",
-      "madeWithLove" : "Simon tarafından ❤️ ile yapılmıştır.",
-      "meta" : "{version}/{date}/{sha}"
+    "info": {
+      "about": "Ocular Hakkında",
+      "github": "Bu projeye {link} bağlantısıyla göz atın, onu canlı tutmak için bir {donation} düşünün!",
+      "madeWithLove": "Simon tarafından ❤️ ile yapılmıştır",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "bağış"
     },
-    "language" : {
-      "switch" : "Farklı bir dile geç"
+    "language": {
+      "switch": "Farklı bir dile geç"
     },
-    "theme" : {
-      "change" : "Renk temasını değiştir"
+    "theme": {
+      "change": "Renk temasını değiştir"
     },
-    "tools" : {
-      "changePassword" : {
-        "change" : "Parolayı değiştir",
-        "current" : "Mevcut parola",
-        "invalid" : "Mevcut parola geçersiz.",
-        "new" : "Yeni parola",
-        "unknownError" : "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin."
+    "tools": {
+      "changePassword": {
+        "change": "Parolayı değiştir",
+        "current": "Mevcut parola",
+        "invalid": "Mevcut parola geçersiz.",
+        "new": "Yeni parola",
+        "unknownError": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin."
       },
-      "copyPaste" : {
-        "confirm" : "Verileri {from} konumundan {to} konumuna kopyalamak istediğinizden emin misiniz?",
-        "copy" : "{year} konumundan veri kopyala",
-        "paste" : "{from} kaynağından verileri {to} öğesine yapıştırın"
+      "copyPaste": {
+        "confirm": "Verileri {from} konumundan {to} konumuna kopyalamak istediğinizden emin misiniz?",
+        "copy": "{year} konumundan veri kopyala",
+        "paste": "{from} kaynağından verileri {to} öğesine yapıştırın"
       },
-      "deleteYear" : {
-        "confirm" : "{year} yılını kaldırmak istediğinizden emin misiniz?",
-        "delete" : "{year}'ı kaldır"
+      "deleteYear": {
+        "confirm": "{year} yılını kaldırmak istediğinizden emin misiniz?",
+        "delete": "{year}'ı kaldır"
       },
-      "demo" : {
-        "loadDemoData" : "Demo verileri yükle"
+      "demo": {
+        "loadDemoData": "Demo verileri yükle"
       },
-      "export" : {
-        "export" : "Json dosyası olarak dışa aktar"
+      "export": {
+        "export": "Json dosyası olarak dışa aktar"
       },
-      "import" : {
-        "google" : {
-          "expenses" : "Expenses.csv",
-          "import" : "Google verisini içe aktar",
-          "income" : "Income.csv",
-          "pickFile" : "İçe aktarmak için .csv dosyanızı seçin"
+      "import": {
+        "google": {
+          "expenses": "Expenses.csv",
+          "import": "Google verisini içe aktar",
+          "income": "Income.csv",
+          "pickFile": "İçe aktarmak için .csv dosyanızı seçin"
         },
-        "import" : "Json dosyasından içe aktar",
-        "ocular" : {
-          "import" : "Ocular verisini içe aktar",
-          "pickFile" : "İçe aktarmak için .json dosyanızı seçin"
+        "import": "Json dosyasından içe aktar",
+        "ocular": {
+          "import": "Ocular verisini içe aktar",
+          "pickFile": "İçe aktarmak için .json dosyanızı seçin"
         },
-        "what" : {
-          "google" : "Google E-Tablolar yıllık bütçe dosyası",
-          "ocular" : "Daha önce dışa aktarılmış bir dosya",
-          "title" : "Neyi içe aktarmak istersiniz?"
+        "what": {
+          "google": "Google E-Tablolar yıllık bütçe dosyası",
+          "ocular": "Daha önce dışa aktarılmış bir dosya",
+          "title": "Neyi içe aktarmak istersiniz?"
         }
       },
-      "privacyMode" : {
-        "disable" : "Herkese açık moda geç",
-        "enable" : "Gizlilik moduna geç"
+      "privacyMode": {
+        "disable": "Herkese açık moda geç",
+        "enable": "Gizlilik moduna geç"
       },
-      "tools" : "Araçlar"
+      "tools": "Araçlar"
     },
-    "year" : {
-      "change" : "Farklı bir yıla geç"
+    "year": {
+      "change": "Farklı bir yıla geç"
     }
   },
-  "shared" : {
-    "addGroup" : "Grup Ekle",
-    "append" : "“{from}” ifadesini “{to}”dan sonraya taşı",
-    "average" : "Ortalama",
-    "fillRow" : "Satırı doldur",
-    "fillRowToRight" : "Sağa doğru doldur",
-    "move" : "“{from}“'dan taşı",
-    "moveInto" : "“{from}” öğesini “{to}” öğesine taşıyın",
-    "placeholder" : "Gelir/gider sekmelerini doldurarak başlayın! :)",
-    "prepend" : "“{from}” öğesini “{to}” öğesinden önceye taşı",
-    "total" : "Toplam",
-    "totals" : "Toplamlar"
+  "shared": {
+    "addGroup": "Grup Ekle",
+    "append": "“{from}” ifadesini “{to}”dan sonraya taşı",
+    "average": "Ortalama",
+    "fillRow": "Satırı doldur",
+    "fillRowToRight": "Sağa doğru doldur",
+    "move": "“{from}“'dan taşı",
+    "moveInto": "“{from}” öğesini “{to}” öğesine taşıyın",
+    "placeholder": "Gelir/gider sekmelerini doldurarak başlayın! :)",
+    "prepend": "“{from}” öğesini “{to}” öğesinden önceye taşı",
+    "total": "Toplam",
+    "totals": "Toplamlar"
   },
-  "page" : {
-    "income" : {
-      "title" : "Gelir",
+  "page": {
+    "income": {
+      "title": "Gelir",
       "incomeFor": "{year} için Gelir"
     },
-    "expenses" : {
-      "title" : "Harcamalar",
+    "expenses": {
+      "title": "Harcamalar",
       "expensesFor": "{year} için Harcamalar"
     },
-    "dashboard" : {
-      "allTime" : "Tüm zamanlara genel bakış",
-      "allTimeExpenses" : "Tüm Zamanların Giderleri",
-      "allTimeFromTo" : "{from} ile {to} arasındaki tüm zamanlar",
-      "allTimeIncome" : "Tüm Zamanların Gelirleri",
-      "allTimeSavings" : "Tüm Zamanların Tasarrufları",
-      "downloadAsPNG" : "PNG olarak indir",
-      "downloadAsSVG" : "SVG olarak indir",
-      "endingBalance" : "Bitiş Bakiyesi",
-      "expenses" : "Harcamalar",
-      "expensesTrend" : "Gider Eğilimi",
-      "budgetFor" : "{year} için yıllık bütçe",
-      "income" : "Gelir",
-      "incomeTrend" : "Gelir Eğilimi",
-      "netSavings" : "Net Tasarruflar",
-      "remainingBalance" : "{year} tarihine kadar Kalan Bakiye",
-      "tables" : "Tablolar",
-      "title" : "Gösterge Paneli",
-      "yearEnding" : "Bu yıla sona eriyor...",
-      "yearInTheFuture" : "Yıl gelecekte",
-      "yearInThePast" : "Yıl geçmişte",
-      "yoyExpenseGrowth" : "Yıllık Gider Artışı",
-      "yoyIncomeGrowth" : "Yıllık Gelir Artışı",
-      "jumpToIncome" : "{year} gelirlerine atla",
-      "jumpToExpenses" : "{year} harcamalarına atla"
+    "dashboard": {
+      "allTime": "Tüm zamanlara genel bakış",
+      "allTimeExpenses": "Tüm Zamanların Giderleri",
+      "allTimeFromTo": "{from} ile {to} arasındaki tüm zamanlar",
+      "allTimeIncome": "Tüm Zamanların Gelirleri",
+      "allTimeSavings": "Tüm Zamanların Tasarrufları",
+      "downloadAsPNG": "PNG olarak indir",
+      "downloadAsSVG": "SVG olarak indir",
+      "endingBalance": "Bitiş Bakiyesi",
+      "expenses": "Harcamalar",
+      "expensesTrend": "Gider Eğilimi",
+      "budgetFor": "{year} için yıllık bütçe",
+      "income": "Gelir",
+      "incomeTrend": "Gelir Eğilimi",
+      "netSavings": "Net Tasarruflar",
+      "remainingBalance": "{year} tarihine kadar Kalan Bakiye",
+      "tables": "Tablolar",
+      "title": "Gösterge Paneli",
+      "yearEnding": "Bu yıla sona eriyor...",
+      "yearInTheFuture": "Yıl gelecekte",
+      "yearInThePast": "Yıl geçmişte",
+      "yoyExpenseGrowth": "Yıllık Gider Artışı",
+      "yoyIncomeGrowth": "Yıllık Gelir Artışı",
+      "jumpToIncome": "{year} gelirlerine atla",
+      "jumpToExpenses": "{year} harcamalarına atla"
     }
   }
 }

@@ -5,7 +5,13 @@
         <i18n-t keypath="navigation.info.github" scope="global">
           <template #link>
             <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-            <Link :custom="false" color="primary" to="https://github.com/simonwep/ocular">Github</Link>
+            <Link :custom="false" color="primary" to="https://github.com/simonwep/ocular">GitHub</Link>
+          </template>
+          <template #donation>
+            <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
+            <Link :custom="false" color="primary" to="https://github.com/sponsors/simonwep">
+              {{ t('navigation.info.donation') }}
+            </Link>
           </template>
         </i18n-t>
       </span>
@@ -13,9 +19,9 @@
       <span :class="$style.meta">
         {{
           t('navigation.info.meta', {
-            version: OCULAR_BUILD_VERSION,
+            version: OCULAR_BUILD_VERSION ?? 'dev',
             date: new Date(OCULAR_BUILD_TIMESTAMP).toDateString(),
-            sha: OCULAR_BUILD_SHA
+            sha: OCULAR_BUILD_SHA ?? 'uncommitted'
           })
         }}
       </span>
@@ -48,6 +54,7 @@ const { t } = useI18n();
   font-size: var(--font-size-s);
   text-align: center;
   gap: 2px;
+  max-width: 300px;
 }
 
 .link {

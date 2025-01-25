@@ -51,10 +51,11 @@
       "switch": "Cambia lingua"
     },
     "info": {
-      "about": "About Ocular",
-      "github": "Check this project out on {link}!",
-      "madeWithLove": "Made with ❤️ by Simon",
-      "meta": "{version} / {date} / {sha}"
+      "about": "Informazioni su Ocular",
+      "github": "Dai un'occhiata a questo progetto su {link}, considera una {donation} per mantenerlo in vita!",
+      "madeWithLove": "Realizzato con ❤️ da Simon",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "donazione"
     },
     "currency": {
       "change": "Modificare la valuta da utilizzare"

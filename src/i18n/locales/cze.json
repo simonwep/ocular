@@ -52,9 +52,10 @@
     },
     "info": {
       "about": "Co je Ocular",
-      "github": "Podívejte se na tento projekt {link}!",
+      "github": "Podívejte se na tento projekt {link}, zvažte {donation}, aby zůstal naživu!",
       "madeWithLove": "Uděláno s ❤️ Simonem",
-      "meta": "{version} / {date} / {sha}"
+      "meta": "{version} / {date} / {sha}",
+      "donation": "dar"
     },
     "currency": {
       "change": "Zvolte měnu, která má být použita"

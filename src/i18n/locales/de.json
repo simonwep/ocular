@@ -52,9 +52,10 @@
     },
     "info": {
       "about": "Über Ocular",
-      "github": "Schauen dir dieses Projekt auf {link} an!",
-      "madeWithLove": "Entwickelt mit ❤️ von Simon R.",
-      "meta": "{version} / {date} / {sha}"
+      "github": "Schauen dir dieses Projekt auf {link} an, erwäge eine {donation}, um es am Leben zu erhalten!",
+      "madeWithLove": "Entwickelt mit ❤️ von Simon",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "Spende"
     },
     "currency": {
       "change": "Währung ändern"

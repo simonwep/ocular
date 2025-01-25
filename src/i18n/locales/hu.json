@@ -52,9 +52,10 @@
     },
     "info": {
       "about": "Az Ocular névjegye",
-      "github": "Projekt megtekintése {link}-on!",
-      "madeWithLove": "Made with ❤️ by Simon",
-      "meta": "{version} / {date} / {sha}"
+      "github": "Nézze meg ezt a projektet {link}-on, fontolja meg a {donation}-t, hogy életben maradjon!",
+      "madeWithLove": "Készítette: Simon",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "adomány"
     },
     "currency": {
       "change": "Használni kívánt pénznem kiválasztása"
