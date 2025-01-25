@@ -71,6 +71,7 @@ onMounted(() => {
   max-width: 100%;
   max-height: 100%;
   border: none;
+  z-index: 1;
 }
 
 .dialog,

@@ -10,7 +10,9 @@ import { DataStateV3 } from '@store/state/types';
 import { onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useStorage } from '@storage/index.ts';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const { deserialize } = useDataStore();
 const { status } = useStorage();
 const { t } = useI18n();
@@ -21,6 +23,10 @@ const loadDemoData = async () => {
   if (loading.value || status.value !== 'idle') {
     return;
   }
+
+  // Go to dashboard because overriding the placeholder data takes a while due
+  // to the large amount of groups and categories.
+  await router.push('/');
 
   loading.value = true;
   const { default: data } = await import('./DemoData.json');
