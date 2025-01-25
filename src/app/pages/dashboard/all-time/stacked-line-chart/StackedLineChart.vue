@@ -1,5 +1,5 @@
 <template>
-  <EChart :class="[$style.stackedLineChart, classes]" :options="options" />
+  <EChart :key="media" :class="[$style.stackedLineChart, classes]" :options="options" />
 </template>
 
 <script lang="ts" setup>
@@ -18,8 +18,11 @@ import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
 import { StackedLineChartConfig } from './StackedLineChart.types';
+import { useMediaQuery } from '@composables';
 
 echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent, TooltipComponent]);
+
+const media = useMediaQuery();
 
 type EChartsOption = echarts.ComposeOption<
   LineSeriesOption | TooltipComponentOption | GridComponentOption | LegendComponentOption
@@ -39,13 +42,21 @@ const options = computed(
       data: props.data.series.flatMap((v) => [v.name, v.trendName]),
       textStyle: { color: 'var(--chart-label)' },
       lineStyle: { width: 2, cap: 'round' },
-      itemStyle: { opacity: 0 }
+      itemStyle: { opacity: 0 },
+      ...(media.value === 'mobile' && {
+        top: 0,
+        left: 0,
+        right: 0,
+        padding: 0,
+        itemWidth: 10,
+        itemGap: 5
+      })
     },
     grid: {
       left: 0,
       right: '5px',
       bottom: '3%',
-      top: '30px',
+      top: '50px',
       containLabel: true
     },
     tooltip: {

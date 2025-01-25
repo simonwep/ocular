@@ -17,8 +17,7 @@
         :name="button.name"
       />
 
-      <div v-if="media === 'mobile'" :class="$style.mobileDivider" />
-      <div v-else style="flex-grow: 1" />
+      <div v-if="media !== 'mobile'" style="flex-grow: 1" />
 
       <ToolsButton :class="$style.btn" />
       <AdminButton v-if="user?.admin" :class="$style.btn" />
@@ -150,10 +149,6 @@ const buttons = computed((): FrameButton[] => [
 
     .divider {
       display: none;
-    }
-
-    .mobileDivider {
-      display: block;
     }
   }
 }

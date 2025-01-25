@@ -93,6 +93,8 @@ const cards = computed((): Card[] => {
 </script>
 
 <style lang="scss" module>
+@use '@styles/globals.scss';
+
 .allTime {
   display: flex;
   flex-direction: column;
@@ -158,6 +160,17 @@ const cards = computed((): Card[] => {
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-xl);
     color: var(--theme-text);
+  }
+}
+
+@include globals.onMobileDevices {
+  .cards {
+    overflow: auto;
+    padding: 0 0 16px 0;
+
+    .card {
+      min-width: 150px;
+    }
   }
 }
 </style>

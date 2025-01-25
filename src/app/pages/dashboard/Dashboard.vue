@@ -88,6 +88,10 @@ const view = shallowRef<Component>(Overview);
 @include globals.onMobileDevices {
   .viewButtons {
     gap: 8px;
+
+    .divider {
+      display: none;
+    }
   }
 }
 </style>

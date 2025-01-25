@@ -56,6 +56,7 @@ const rotateYear = (dir: -1 | 1) => {
   gap: 5px;
   filter: drop-shadow(0 0 3px rgba(black, 0.15));
   font-size: var(--font-size-xs);
+  color: var(--c-text-light);
 
   .year {
     all: unset;

@@ -141,7 +141,7 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   transition: all var(--transition-s);
 
   @include globals.onMobileDevices {
-    max-height: 100%;
+    max-height: 200px;
   }
 
   &.top {
