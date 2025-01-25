@@ -1,0 +1,136 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "Инструменты",
+      "changePassword": {
+        "change": "Изменить пароль",
+        "current": "Текущий пароль",
+        "new": "Новый пароль",
+        "invalid": "Текущий пароль неверный.",
+        "unknownError": "Что-то пошло не так, попробуйте позже."
+      },
+      "copyPaste": {
+        "copy": "Копировать данные из {year}",
+        "paste": "Вставить данные из {from} в {to}",
+        "confirm": "Вы уверены, что хотите скопировать данные из {from} в {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Загрузить демо-данные"
+      },
+      "deleteYear": {
+        "delete": "Удалить {year}",
+        "confirm": "Вы уверены, что хотите удалить {year}?"
+      },
+      "export": {
+        "export": "Экспортировать как JSON-файл"
+      },
+      "import": {
+        "import": "Импортировать из JSON-файла",
+        "what": {
+          "google": "Файл годового бюджета Google Sheets",
+          "ocular": "Предыдущий экспортированный файл",
+          "title": "Что вы хотите импортировать?"
+        },
+        "ocular": {
+          "pickFile": "Выберите ваш .json файл для импорта",
+          "import": "Импортировать данные Ocular"
+        },
+        "google": {
+          "import": "Импортировать данные Google",
+          "pickFile": "Выберите ваш .csv файл для импорта",
+          "expenses": "Expenses.csv",
+          "income": "Income.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Переключить в публичный режим",
+        "enable": "Переключить в приватный режим"
+      }
+    },
+    "info": {
+      "about": "О проекте Ocular",
+      "github": "Проект на GitHub!",
+      "madeWithLove": "Сделано с ❤️ Симон",
+      "meta": "{version} / {date} / {sha}"
+    },
+    "theme": {
+      "change": "Изменить цветовую тему"
+    },
+    "year": {
+      "change": "Переключить на другой год"
+    },
+    "auth": {
+      "welcomeBack": "Добро пожаловать!",
+      "signIn": "Войти",
+      "username": "Имя пользователя",
+      "password": "Пароль",
+      "loginFailed": "Вход не выполнен, имя пользователя и/или пароль неверные."
+    },
+    "admin": {
+      "settings": "Настройки",
+      "createUser": "Создать пользователя",
+      "username": "Имя пользователя",
+      "password": "Пароль",
+      "admin": "Админ",
+      "conflict": "Пользователь с таким именем уже существует.",
+      "error": "Что-то пошло не так, попробуйте позже.",
+      "deleteUserConfirmation": "Вы уверены, что хотите удалить этого пользователя?",
+      "manageUsers": "Управление пользователями",
+      "noUsersFound": "Пользователи не найдены..."
+    },
+    "settings": {
+      "settings": "Настройки",
+      "language": "Язык",
+      "currency": "Валюта"
+    }
+  },
+  "shared": {
+    "addGroup": "Добавить группу",
+    "append": "Переместить “{from}” после “{to}”",
+    "average": "Среднее",
+    "move": "Переместить “{from}”",
+    "moveInto": "Переместить “{from}” в “{to}”",
+    "prepend": "Переместить “{from}” перед “{to}”",
+    "fillRow": "Заполнить строку",
+    "fillRowToRight": "Заполнить строку вправо",
+    "total": "Итого",
+    "totals": "Итоги",
+    "placeholder": "Начните с заполнения вкладок доходов / расходов! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Доходы",
+      "incomeFor": "Доходы за {year}"
+    },
+    "expenses": {
+      "title": "Расходы",
+      "expensesFor": "Расходы за {year}"
+    },
+    "dashboard": {
+      "title": "Дашборд",
+      "tables": "Таблицы",
+      "income": "Доходы",
+      "incomeTrend": "Тренд доходов",
+      "allTime": "Обзор за все время",
+      "allTimeFromTo": "Обзор за все время с {from} до {to}",
+      "expenses": "Расходы",
+      "expensesTrend": "Тренд расходов",
+      "endingBalance": "Остаток на конец года",
+      "budgetFor": "Годовой бюджет за {year}",
+      "remainingBalance": "Остаток до {year}",
+      "netSavings": "Чистые сбережения",
+      "yearInThePast": "Год в прошлом",
+      "yearInTheFuture": "Год в будущем",
+      "yearEnding": "Этот год заканчивается...",
+      "yoyIncomeGrowth": "Годовой рост доходов",
+      "yoyExpenseGrowth": "Годовой рост расходов",
+      "allTimeIncome": "Доходы за все время",
+      "allTimeExpenses": "Расходы за все время",
+      "allTimeSavings": "Сбережения за все время",
+      "downloadAsPNG": "Скачать как PNG",
+      "downloadAsSVG": "Скачать как SVG",
+      "jumpToIncome": "Перейти к доходам за {year}",
+      "jumpToExpenses": "Перейти к расходам за {year}"
+    }
+  }
+}
