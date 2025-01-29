@@ -1,4 +1,4 @@
-import { useStateHistory, useTime } from '@composables';
+import { useTime } from '@composables';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { moveInArrays, readFile, remove, uuid } from '@utils';
@@ -71,21 +71,6 @@ export const createDataStore = (storage?: Storage): Store => {
   const clipboard = shallowRef<StoredClipboardData | undefined>();
   const state = reactive<DataState>(migrateApplicationState());
   const time = useTime();
-
-  const history = useStateHistory(
-    () => state,
-    (v) => Object.assign(state, v)
-  );
-
-  document.addEventListener('keydown', (evt: KeyboardEvent) => {
-    if (evt.ctrlKey || evt.metaKey) {
-      if (evt.code === 'KeyZ') {
-        history.undo();
-      } else if (evt.code === 'KeyY') {
-        history.redo();
-      }
-    }
-  });
 
   const getCurrentYear = () => state.years.find((v) => v.year === activeYear.value) as BudgetYear;
 
