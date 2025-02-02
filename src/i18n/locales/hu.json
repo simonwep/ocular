@@ -47,18 +47,12 @@
         "enable": "Váltás privát módra"
       }
     },
-    "language": {
-      "switch": "Váltás másik nyelvre"
-    },
     "info": {
       "about": "Az Ocular névjegye",
       "github": "Nézze meg ezt a projektet {link}-on, fontolja meg a {donation}-t, hogy életben maradjon!",
       "madeWithLove": "Készítette: Simon",
       "meta": "{version} / {date} / {sha}",
       "donation": "adomány"
-    },
-    "currency": {
-      "change": "Használni kívánt pénznem kiválasztása"
     },
     "theme": {
       "change": "Színmód kiválasztása"
@@ -84,6 +78,11 @@
       "deleteUserConfirmation": "Biztos, hogy törölni szeretné ezt a felhasználót?",
       "manageUsers": "Felhasználók kezelése",
       "noUsersFound": "Felhasználó nem található..."
+    },
+    "settings": {
+      "settings": "Beállítások",
+      "language": "Nyelv",
+      "currency": "Pénznem"
     }
   },
   "shared": {

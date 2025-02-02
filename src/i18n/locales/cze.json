@@ -47,18 +47,12 @@
         "enable": "Přepnout do soukromého režimu"
       }
     },
-    "language": {
-      "switch": "Zvolit jiný jazyk"
-    },
     "info": {
       "about": "Co je Ocular",
       "github": "Podívejte se na tento projekt {link}, zvažte {donation}, aby zůstal naživu!",
       "madeWithLove": "Uděláno s ❤️ Simonem",
       "meta": "{version} / {date} / {sha}",
       "donation": "dar"
-    },
-    "currency": {
-      "change": "Zvolte měnu, která má být použita"
     },
     "theme": {
       "change": "Změna barevného režimu"
@@ -84,6 +78,11 @@
       "deleteUserConfirmation": "Opravdu chcete tohoto uživatele smazat?",
       "manageUsers": "Spravovat uživatele",
       "noUsersFound": "Nebyli nalezeni žádní uživatelé..."
+    },
+    "settings": {
+      "settings": "Nastavení",
+      "language": "Jazyk",
+      "currency": "Měna"
     }
   },
   "shared": {

@@ -1,40 +1,5 @@
 {
   "navigation": {
-    "admin": {
-      "admin": "Yönetici",
-      "conflict": "Bu isime sahip kullanıcı zaten var.",
-      "createUser": "Kullanıcı oluştur",
-      "deleteUserConfirmation": "Bu kullanıcıyı silmek istediğinize emin misiniz?",
-      "error": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.",
-      "manageUsers": "Kullanıcıları yönet",
-      "noUsersFound": "Kullanıcı bulunamadı...",
-      "password": "Parola",
-      "settings": "Yönetici ayarları",
-      "username": "Kullanıcı Adı"
-    },
-    "auth": {
-      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
-      "password": "Parola",
-      "signIn": "Giriş",
-      "username": "Kullanıcı Adı",
-      "welcomeBack": "Tekrar hoşgeldin!"
-    },
-    "currency": {
-      "change": "Kullanılması gereken para birimini değiştir"
-    },
-    "info": {
-      "about": "Ocular Hakkında",
-      "github": "Bu projeye {link} bağlantısıyla göz atın, onu canlı tutmak için bir {donation} düşünün!",
-      "madeWithLove": "Simon tarafından ❤️ ile yapılmıştır",
-      "meta": "{version} / {date} / {sha}",
-      "donation": "bağış"
-    },
-    "language": {
-      "switch": "Farklı bir dile geç"
-    },
-    "theme": {
-      "change": "Renk temasını değiştir"
-    },
     "tools": {
       "changePassword": {
         "change": "Parolayı değiştir",
@@ -82,8 +47,42 @@
       },
       "tools": "Araçlar"
     },
+    "info": {
+      "about": "Ocular Hakkında",
+      "github": "Bu projeye {link} bağlantısıyla göz atın, onu canlı tutmak için bir {donation} düşünün!",
+      "madeWithLove": "Simon tarafından ❤️ ile yapılmıştır",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "bağış"
+    },
+    "theme": {
+      "change": "Renk temasını değiştir"
+    },
     "year": {
       "change": "Farklı bir yıla geç"
+    },
+    "auth": {
+      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
+      "password": "Parola",
+      "signIn": "Giriş",
+      "username": "Kullanıcı Adı",
+      "welcomeBack": "Tekrar hoşgeldin!"
+    },
+    "admin": {
+      "admin": "Yönetici",
+      "conflict": "Bu isime sahip kullanıcı zaten var.",
+      "createUser": "Kullanıcı oluştur",
+      "deleteUserConfirmation": "Bu kullanıcıyı silmek istediğinize emin misiniz?",
+      "error": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.",
+      "manageUsers": "Kullanıcıları yönet",
+      "noUsersFound": "Kullanıcı bulunamadı...",
+      "password": "Parola",
+      "settings": "Yönetici ayarları",
+      "username": "Kullanıcı Adı"
+    },
+    "settings": {
+      "currency": "Para Birimi",
+      "language": "Dil",
+      "settings": "Ayarlar"
     }
   },
   "shared": {

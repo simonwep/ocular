@@ -47,18 +47,12 @@
         "enable": "Passare alla modalità privacy"
       }
     },
-    "language": {
-      "switch": "Cambia lingua"
-    },
     "info": {
       "about": "Informazioni su Ocular",
       "github": "Dai un'occhiata a questo progetto su {link}, considera una {donation} per mantenerlo in vita!",
       "madeWithLove": "Realizzato con ❤️ da Simon",
       "meta": "{version} / {date} / {sha}",
       "donation": "donazione"
-    },
-    "currency": {
-      "change": "Modificare la valuta da utilizzare"
     },
     "theme": {
       "change": "Cambiare il tema"
@@ -84,6 +78,11 @@
       "deleteUserConfirmation": "Sei sicuro di voler eliminare questo utente?",
       "manageUsers": "Gestisci utenti",
       "noUsersFound": "Nessun utente trovato..."
+    },
+    "settings": {
+      "settings": "Impostazioni",
+      "language": "Lingua",
+      "currency": "Valuta"
     }
   },
   "shared": {

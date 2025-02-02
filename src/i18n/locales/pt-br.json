@@ -47,18 +47,12 @@
         "enable": "Mudar para o modo privado"
       }
     },
-    "language": {
-      "switch": "Alterar o idioma"
-    },
     "info": {
       "about": "Sobre o Ocular",
       "github": "Confira este projeto no {link}, considere uma {donation} para mantê-lo vivo!",
       "madeWithLove": "Feito com ❤️ pelo Simon",
       "meta": "{version} / {date} / {sha}",
       "donation": "doação"
-    },
-    "currency": {
-      "change": "Altere a moeda a ser usada"
     },
     "theme": {
       "change": "Altere a cor do tema"
@@ -84,6 +78,11 @@
       "deleteUserConfirmation": "Você tem certeza de que quer deletar este usuário?",
       "manageUsers": "Manage users",
       "noUsersFound": "Nenhum usuário encontrado..."
+    },
+    "settings": {
+      "settings": "Configurações",
+      "language": "Idioma",
+      "currency": "Moeda"
     }
   },
   "shared": {

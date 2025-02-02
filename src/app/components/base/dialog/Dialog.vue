@@ -1,5 +1,6 @@
 <template>
   <dialog ref="dialog" :class="classes" @transitionend="transitionEnd">
+    <div :class="$style.backdrop" />
     <div ref="content" :class="[$style.content, contentClass]">
       <h3 v-if="title" :class="$style.title">{{ title }}</h3>
       <slot />
@@ -41,10 +42,11 @@ watch(
   [toRef(props, 'open'), dialog],
   () => {
     if (props.open) {
-      dialog.value?.show();
+      dialog.value?.showModal();
       requestAnimationFrame(() => (visible.value = true));
     } else {
       visible.value = false;
+      requestAnimationFrame(() => dialog.value?.close());
     }
   },
   { immediate: true }
@@ -60,6 +62,7 @@ onMounted(() => {
 
 <style lang="scss" module>
 .dialog {
+  visibility: hidden;
   position: fixed;
   inset: 0 0 0 0;
   display: flex;
@@ -74,26 +77,30 @@ onMounted(() => {
   z-index: 1;
 }
 
-.dialog,
-.dialog[open]::backdrop {
-  visibility: hidden;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  opacity: 0;
-  transition:
-    visibility 0s var(--transition-m),
-    opacity var(--transition-m);
+.backdrop {
+  position: absolute;
+  transition: all var(--transition-m);
+  inset: 0 0 0 0;
+  z-index: -1;
 }
 
-.dialog[open].open,
-.dialog[open].open::backdrop {
-  transition-delay: 0s;
-}
-
-.dialog[open].open,
-.dialog[open].open::backdrop {
-  opacity: 1;
+.dialog[open] {
   visibility: visible;
+
+  .content {
+    transition: opacity var(--transition-m);
+  }
+}
+
+.dialog[open].open {
+  .content {
+    opacity: 1;
+  }
+
+  .backdrop {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
 }
 
 .content {
@@ -102,6 +109,7 @@ onMounted(() => {
   padding: 16px 18px;
   border-radius: var(--border-radius-l);
   box-shadow: var(--dialog-box-shadow);
+  opacity: 0;
 }
 
 .title {

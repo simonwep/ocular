@@ -47,18 +47,12 @@
         "enable": "Przełącz na tryb prywatny"
       }
     },
-    "language": {
-      "switch": "Zmień język"
-    },
     "info": {
       "about": "O Ocular",
       "github": "Sprawdź ten projekt na {link}, rozważ {donation}, aby utrzymać go przy życiu!",
       "madeWithLove": "Stworzone z ❤️ przez Simona",
       "meta": "{version} / {date} / {sha}",
       "donation": "darowizna"
-    },
-    "currency": {
-      "change": "Zmień walutę używaną w aplikacji"
     },
     "theme": {
       "change": "Zmień kolor motywu"
@@ -84,6 +78,11 @@
       "deleteUserConfirmation": "Czy na pewno chcesz usunąć tego użytkownika?",
       "manageUsers": "Zarządzaj użytkownikami",
       "noUsersFound": "Nie znaleziono użytkowników..."
+    },
+    "settings": {
+      "settings": "Ustawienia",
+      "language": "Język",
+      "currency": "Waluta"
     }
   },
   "shared": {

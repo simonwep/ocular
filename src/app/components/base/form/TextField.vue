@@ -97,7 +97,7 @@ const passwordBarColor = computed(() => {
   border: 1px solid var(--input-field-border);
   border-radius: var(--border-radius-m);
   height: 30px;
-  padding: 16px 12px;
+  padding: 0 12px;
   display: flex;
   align-items: center;
   transition: all var(--input-field-transition);
