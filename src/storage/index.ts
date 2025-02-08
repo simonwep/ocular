@@ -1,5 +1,5 @@
-import { inject } from 'vue';
 import { Storage } from './createStorage';
+import { inject } from 'vue';
 
 export * from './createStorage';
 

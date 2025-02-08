@@ -49,15 +49,15 @@
 </template>
 
 <script lang="ts" setup>
+import SummaryTable from './SummaryTable.vue';
 import { useMonthNames } from '@composables';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { flatten } from '@store/state/utils/budgets';
 import { average, ClassNames, sum, add } from '@utils';
 import { DeepReadonly, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import SummaryTable from './SummaryTable.vue';
-import { useSettingsStore } from '@store/settings';
 
 const props = defineProps<{
   class?: ClassNames;

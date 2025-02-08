@@ -26,17 +26,17 @@
 </template>
 
 <script lang="ts" setup>
+import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types.ts';
 import Dialog from '@components/base/dialog/Dialog.vue';
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
+import Select from '@components/base/select/Select.vue';
+import { useMonthNames } from '@composables';
 import { AvailableLocale, availableLocales, initialLocale } from '@i18n/index.ts';
 import { RiCheckLine } from '@remixicon/vue';
-import { useDataStore } from '@store/state';
-import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types.ts';
-import Select from '@components/base/select/Select.vue';
-import { availableCurrencies, AvailableCurrency } from '@store/state/types.ts';
 import { useSettingsStore } from '@store/settings';
-import { useMonthNames } from '@composables';
+import { useDataStore } from '@store/state';
+import { availableCurrencies, AvailableCurrency } from '@store/state/types.ts';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
   (e: 'close'): void;

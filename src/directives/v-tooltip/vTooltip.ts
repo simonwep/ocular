@@ -1,7 +1,7 @@
+import styles from './vTooltip.module.scss';
 import { useMediaQuery } from '@composables';
 import { createPopper, Instance, Placement } from '@popperjs/core';
 import { Directive, Ref, ref, unref } from 'vue';
-import styles from './vTooltip.module.scss';
 
 interface TooltipConfig {
   text?: string;

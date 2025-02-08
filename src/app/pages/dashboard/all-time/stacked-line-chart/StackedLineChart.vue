@@ -3,7 +3,9 @@
 </template>
 
 <script lang="ts" setup>
+import { StackedLineChartConfig } from './StackedLineChart.types';
 import EChart from '@components/charts/echart/EChart.vue';
+import { useMediaQuery } from '@composables';
 import { ClassNames, rollingAverage } from '@utils';
 import { LineChart, LineSeriesOption } from 'echarts/charts';
 import {
@@ -17,8 +19,6 @@ import {
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
-import { StackedLineChartConfig } from './StackedLineChart.types';
-import { useMediaQuery } from '@composables';
 
 echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent, TooltipComponent]);
 

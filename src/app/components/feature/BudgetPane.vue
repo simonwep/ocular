@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useDataStore } from '@store/state';
-import { totals } from '@store/state/utils/budgets';
-import { computed } from 'vue';
 import BudgetGroups from './BudgetGroups.vue';
 import Pane from './Pane.vue';
 import MiniChart from './mini-chart/MiniChart.vue';
+import { useDataStore } from '@store/state';
+import { totals } from '@store/state/utils/budgets';
+import { computed } from 'vue';
 
 const props = defineProps<{
   title?: string;

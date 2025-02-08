@@ -1,5 +1,5 @@
-import { reactive } from 'vue';
 import { DropOrder } from './Draggable.types';
+import { reactive } from 'vue';
 
 export interface DraggableStore {
   group?: string;

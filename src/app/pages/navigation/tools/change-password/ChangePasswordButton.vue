@@ -8,11 +8,11 @@
 </template>
 
 <script lang="ts" setup>
+import ChangePasswordDialog from './ChangePasswordDialog.vue';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import { RiKey2Line } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import ChangePasswordDialog from './ChangePasswordDialog.vue';
 
 const { t } = useI18n();
 

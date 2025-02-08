@@ -1,8 +1,8 @@
+import { createGenesisStore, GenesisUser } from './createGenesisStore';
+import { StorageAuthenticationState, StorageSync } from './types';
 import { debounce } from '@utils';
 import { computed, nextTick, readonly, ref, watch } from 'vue';
 import { MigratableState } from 'yuppee';
-import { createGenesisStore, GenesisUser } from './createGenesisStore';
-import { StorageAuthenticationState, StorageSync } from './types';
 
 export type Storage = ReturnType<typeof createStorage>;
 

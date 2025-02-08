@@ -1,7 +1,7 @@
-import { Storage } from '@storage/index';
-import { DeepReadonly, inject, reactive, readonly } from 'vue';
 import { migrateSettingsState } from './migrator';
 import { Mode, SettingsState, Theme } from './types';
+import { Storage } from '@storage/index';
+import { DeepReadonly, inject, reactive, readonly } from 'vue';
 
 export const SETTINGS_STORE_KEY = Symbol('SettingsStore');
 

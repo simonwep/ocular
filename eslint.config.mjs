@@ -10,12 +10,12 @@ import tsParser from '@typescript-eslint/parser';
 export default [
   prettier,
   js.configs.recommended,
+  importX.flatConfigs.recommended,
+  importX.flatConfigs.typescript,
   ...ts.configs.recommended,
   ...vue.configs['flat/recommended'],
   ...vueI18n.configs['flat/recommended'],
   vuePrettier,
-  importX.flatConfigs.recommended,
-  importX.flatConfigs.typescript,
   {
     files: ['**/*.{vue,ts,js,mjs}'],
     languageOptions: {
@@ -35,7 +35,6 @@ export default [
       'vue/multi-word-component-names': 'off',
       'vue/require-default-prop': 'off',
       'vue/no-v-html': 'off',
-      'import-x/no-unresolved': 'off',
       'no-console': 'error',
       'prettier/prettier': [
         'error',
@@ -44,6 +43,16 @@ export default [
           printWidth: 120,
           singleQuote: true,
           trailingComma: 'none'
+        }
+      ],
+      'import-x/no-unresolved': 'off',
+      'import-x/order': [
+        'error',
+        {
+          groups: ['index', 'sibling', 'parent', 'internal', 'external', 'builtin', 'object', 'type'],
+          alphabetize: {
+            order: 'asc'
+          }
         }
       ]
     }

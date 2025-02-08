@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts" setup>
+import ContextMenuButton from './ContextMenuButton.vue';
 import {
   ContextMenuOption,
   ContextMenuOptionId,
@@ -32,7 +33,6 @@ import { useOutOfElementClick } from '@composables';
 import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
 import { ClassNames } from '@utils';
 import { computed, provide, ref, useCssModule, watch } from 'vue';
-import ContextMenuButton from './ContextMenuButton.vue';
 
 const emit = defineEmits<{
   (e: 'select', option: ContextMenuOption): void;

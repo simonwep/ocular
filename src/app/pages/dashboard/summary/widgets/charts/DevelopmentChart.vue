@@ -4,16 +4,16 @@
 </template>
 
 <script lang="ts" setup>
+import { LineChartConfig } from './line-chart/LineChart.types';
+import LineChart from './line-chart/LineChart.vue';
 import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
 import { useMonthNames } from '@composables';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { LineChartConfig } from './line-chart/LineChart.types';
-import LineChart from './line-chart/LineChart.vue';
-import { useSettingsStore } from '@store/settings';
 
 const props = defineProps<{
   class?: ClassNames;
