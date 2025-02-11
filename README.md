@@ -11,9 +11,15 @@
 </h3>
 
 <p align="center">
-  <a href="https://github.com/Simonwep/ocular/actions?query=workflow%3ACI"><img
+  <a href="https://github.com/simonwep/ocular/actions?query=workflow%3ACI"><img
      alt="CI Status"
-     src="https://github.com/Simonwep/ocular/workflows/CI/badge.svg"/></a>
+     src="https://github.com/simonwep/ocular/workflows/CI/badge.svg"/></a>
+  <a href="https://github.com/simonwep/ocular/releases"><img
+     alt="Version"
+     src="https://img.shields.io/github/v/release/simonwep/ocular?label=Version&color=%233e5df3"/></a>
+  <a href="https://github.com/simonwep/ocular/releases"><img
+     alt="Latest Release"
+     src="https://img.shields.io/github/release-date/simonwep/ocular?label=Release&color=%233e5df3"/></a>
 </p>
 
 > [!TIP]
