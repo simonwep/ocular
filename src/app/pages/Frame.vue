@@ -42,6 +42,13 @@
 </template>
 
 <script lang="ts" setup>
+import AdminButton from './navigation/admin/AdminButton.vue';
+import CloudButton from './navigation/auth/CloudButton.vue';
+import InfoButton from './navigation/info/InfoButton.vue';
+import SettingsButton from './navigation/settings/SettingsButton.vue';
+import ThemeButton from './navigation/theme/ThemeButton.vue';
+import ToolsButton from './navigation/tools/ToolsButton.vue';
+import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables';
@@ -49,13 +56,6 @@ import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/
 import { useStorage } from '@storage/index';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import AdminButton from './navigation/admin/AdminButton.vue';
-import CloudButton from './navigation/auth/CloudButton.vue';
-import InfoButton from './navigation/info/InfoButton.vue';
-import ThemeButton from './navigation/theme/ThemeButton.vue';
-import ToolsButton from './navigation/tools/ToolsButton.vue';
-import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
-import SettingsButton from './navigation/settings/SettingsButton.vue';
 import type { Component } from 'vue';
 
 const menu = ref<HTMLDivElement>();

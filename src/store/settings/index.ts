@@ -1,7 +1,7 @@
-import { Storage } from '@storage/index';
-import { DeepReadonly, inject, reactive, readonly } from 'vue';
 import { migrateSettingsState } from './migrator';
 import { Mode, SettingsState, Theme } from './types';
+import { Storage } from '@storage/index';
+import { DeepReadonly, inject, reactive, readonly } from 'vue';
 
 export const SETTINGS_STORE_KEY = Symbol('SettingsStore');
 
@@ -11,6 +11,7 @@ interface Store {
   setMode(mode: Mode): void;
   setTheme(theme: Theme): void;
   setAnimations(enable: boolean): void;
+  setMonthOffset(offset: number): void;
 }
 
 export const createSettingsStore = (storage?: Storage): Store => {
@@ -36,6 +37,10 @@ export const createSettingsStore = (storage?: Storage): Store => {
 
     setAnimations(enable: boolean): void {
       state.appearance.animations = enable;
+    },
+
+    setMonthOffset(offset: number): void {
+      state.general.monthOffset = offset;
     }
   };
 };

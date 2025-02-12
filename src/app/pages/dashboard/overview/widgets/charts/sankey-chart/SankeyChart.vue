@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts" setup>
+import { SankeyChartConfig } from './SankeyChart.types';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import EChart from '@components/charts/echart/EChart.vue';
@@ -28,7 +29,6 @@ import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { SankeyChartConfig } from './SankeyChart.types';
 
 echarts.use([SankeyChart, SVGRenderer]);
 

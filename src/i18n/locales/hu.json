@@ -82,7 +82,8 @@
     "settings": {
       "settings": "Beállítások",
       "language": "Nyelv",
-      "currency": "Pénznem"
+      "currency": "Pénznem",
+      "firstMonthOfYear": "Az év első hónapja"
     }
   },
   "shared": {

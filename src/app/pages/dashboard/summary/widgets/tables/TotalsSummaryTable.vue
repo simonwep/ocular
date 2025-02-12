@@ -65,12 +65,13 @@
 </template>
 
 <script lang="ts" setup>
+import SummaryTable from './SummaryTable.vue';
 import { useMonthNames } from '@composables';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { aggregate, average, subtract, sum } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import SummaryTable from './SummaryTable.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -85,7 +86,8 @@ const props = withDefaults(
 
 const { t, n } = useI18n();
 const { isCurrentMonth } = useDataStore();
-const months = useMonthNames();
+const { state: settings } = useSettingsStore();
+const months = useMonthNames('long', () => settings.general.monthOffset);
 
 const netSavings = computed(() => subtract(props.income, props.expenses));
 const endingBalance = computed(() => aggregate(netSavings.value));

@@ -4,13 +4,13 @@
 </template>
 
 <script lang="ts" setup>
+import LoginDialog from './LoginDialog.vue';
 import Button from '@components/base/button/Button.vue';
 import { Color } from '@composables';
 import { RiCloudLine, RiCloudOffLine, RiRefreshLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
 import { computed, ref } from 'vue';
-import LoginDialog from './LoginDialog.vue';
 import type { Component } from 'vue';
 
 const props = defineProps<{
