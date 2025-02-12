@@ -82,8 +82,7 @@
     "settings": {
       "currency": "Para Birimi",
       "language": "Dil",
-      "settings": "Ayarlar",
-      "firstMonthOfYear": "Yılın ilk ayı"
+      "settings": "Ayarlar"
     }
   },
   "shared": {

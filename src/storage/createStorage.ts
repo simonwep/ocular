@@ -1,8 +1,8 @@
-import { createGenesisStore, GenesisUser } from './createGenesisStore';
-import { StorageAuthenticationState, StorageSync } from './types';
 import { debounce } from '@utils';
 import { computed, nextTick, readonly, ref, watch } from 'vue';
 import { MigratableState } from 'yuppee';
+import { createGenesisStore, GenesisUser } from './createGenesisStore';
+import { StorageAuthenticationState, StorageSync } from './types';
 
 export type Storage = ReturnType<typeof createStorage>;
 
@@ -29,7 +29,7 @@ export const createStorage = () => {
       .catch(() => false);
 
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
-    const initializing = ref(true);
+    const initialSyncRequired = ref(true);
     const syncing = ref(false);
 
     const change = debounce(async () => {
@@ -39,17 +39,16 @@ export const createStorage = () => {
         .catch(() => false);
     }, 1000);
 
-    // initial sync on log in
     watch(
-      [authenticatedUser, initializing],
-      async ([user, init]) => {
-        if (user && init) {
+      [authenticatedUser, initialSyncRequired],
+      async ([user, sync]) => {
+        if (user && sync) {
           await store
             .getDataByKey(config.name)
             .then((data) => config.push(data as P))
             .catch(() => false);
 
-          await nextTick(() => (initializing.value = false));
+          await nextTick(() => (initialSyncRequired.value = false));
         }
       },
       { immediate: true }
@@ -59,7 +58,7 @@ export const createStorage = () => {
     watch(
       [authenticatedUser, config.state],
       ([user]) => {
-        if (user && !initializing.value) {
+        if (user && !initialSyncRequired.value) {
           syncing.value = true;
           void change();
         }
@@ -68,9 +67,9 @@ export const createStorage = () => {
     );
 
     // clear on log out
-    watch([authenticatedUser, syncing, initializing], ([user, syncing, init]) => {
-      if (!user && !syncing && !init) {
-        initializing.value = true;
+    watch([authenticatedUser, syncing, initialSyncRequired], ([user, syncing, initializing]) => {
+      if (!user && !syncing && !initializing) {
+        initialSyncRequired.value = true;
         config.clear();
       }
     });

@@ -82,8 +82,7 @@
     "settings": {
       "settings": "Configurações",
       "language": "Idioma",
-      "currency": "Moeda",
-      "firstMonthOfYear": "Primeiro mês do ano"
+      "currency": "Moeda"
     }
   },
   "shared": {

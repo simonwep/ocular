@@ -4,14 +4,14 @@
 </template>
 
 <script lang="ts" setup>
-import { SankeyChartConfig, SankeyChartLabel, SankeyChartLink } from './sankey-chart/SankeyChart.types';
-import SankeyChart from './sankey-chart/SankeyChart.vue';
 import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { ClassNames, sum, uuid } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { SankeyChartConfig, SankeyChartLabel, SankeyChartLink } from './sankey-chart/SankeyChart.types';
+import SankeyChart from './sankey-chart/SankeyChart.vue';
 
 const props = defineProps<{
   class?: ClassNames;

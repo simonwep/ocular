@@ -49,14 +49,14 @@
 </template>
 
 <script lang="ts" setup>
-import SummaryPanel from './SummaryPanel.vue';
-import { HoveredPanel } from '@app/pages/dashboard/overview/widgets/header-panels/SummaryPanels.types.ts';
 import { useTime } from '@composables';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
 import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
+import SummaryPanel from './SummaryPanel.vue';
+import { HoveredPanel } from '@app/pages/dashboard/overview/widgets/header-panels/SummaryPanels.types.ts';
 
 const emit = defineEmits<{
   hoveredPanel: (panel?: HoveredPanel) => void;

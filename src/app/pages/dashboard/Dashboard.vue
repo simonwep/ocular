@@ -43,9 +43,6 @@
 </template>
 
 <script lang="ts" setup>
-import AllTime from './all-time/AllTime.vue';
-import Overview from './overview/Overview.vue';
-import Summary from './summary/Summary.vue';
 import Button from '@components/base/button/Button.vue';
 import Pane from '@components/feature/Pane.vue';
 import YearToggle from '@components/feature/YearToggle.vue';
@@ -54,6 +51,9 @@ import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@rem
 import { useDataStore } from '@store/state';
 import { shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
+import AllTime from './all-time/AllTime.vue';
+import Overview from './overview/Overview.vue';
+import Summary from './summary/Summary.vue';
 import type { Component } from 'vue';
 
 const { t } = useI18n();

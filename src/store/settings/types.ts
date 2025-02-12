@@ -18,15 +18,4 @@ export interface SettingsStateV2 extends MigratableState<2> {
   };
 }
 
-export interface SettingsStateV3 extends MigratableState<3> {
-  general: {
-    monthOffset: number;
-  };
-  appearance: {
-    mode: Mode;
-    theme: Theme;
-    animations: boolean;
-  };
-}
-
-export type SettingsState = SettingsStateV3;
+export type SettingsState = SettingsStateV2;

@@ -1,6 +1,3 @@
-import App from './app/App.vue';
-import { i18n } from './i18n';
-import { router } from './router';
 import { vTooltip } from '@directives';
 import { createStorage, STORAGE_KEY } from '@storage/index';
 import { createSettingsStore, SETTINGS_STORE_KEY } from '@store/settings';
@@ -8,6 +5,9 @@ import { createDataStore, DATA_STORE_KEY } from '@store/state';
 import { createLogger } from '@utils';
 import { registerSW } from 'virtual:pwa-register';
 import { createApp } from 'vue';
+import App from './app/App.vue';
+import { i18n } from './i18n';
+import { router } from './router';
 import './styles/index.scss';
 
 const storage = createStorage();

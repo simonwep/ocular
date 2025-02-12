@@ -56,7 +56,6 @@
 </template>
 
 <script lang="ts" setup>
-import BudgetGroup from './BudgetGroup.vue';
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import { ReorderEvent } from '@components/base/draggable/Draggable.types';
@@ -64,10 +63,10 @@ import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import { useMonthNames } from '@composables';
 import { RiAddCircleLine, RiSkipDownLine } from '@remixicon/vue';
-import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import BudgetGroup from './BudgetGroup.vue';
 import type { Component } from 'vue';
 
 const props = defineProps<{
@@ -75,11 +74,10 @@ const props = defineProps<{
 }>();
 
 const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup, isCurrentMonth } = useDataStore();
-const { state: settings } = useSettingsStore();
 const { t } = useI18n();
 
 const groups = computed(() => state[props.type]);
-const months = useMonthNames('long', () => settings.general.monthOffset);
+const months = useMonthNames();
 
 const totals = computed(() => {
   const totals = new Array(12).fill(0);
@@ -148,7 +146,7 @@ const reorder = (evt: ReorderEvent) => {
 
   position: sticky;
   position: -webkit-sticky;
-  top: 0;
+  top: 0px;
   background: var(--app-background);
   border: 2px var(--app-background);
 

@@ -1,11 +1,11 @@
-import { migrateApplicationState } from './migrator';
-import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
-import { generateBudgetYearFromCurrent } from './utils';
 import { useTime } from '@composables';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { moveInArrays, readFile, remove, uuid } from '@utils';
 import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
+import { migrateApplicationState } from './migrator';
+import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
+import { generateBudgetYearFromCurrent } from './utils';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -112,7 +112,6 @@ export const createDataStore = (storage?: Storage): Store => {
       get locale() {
         return state.locale;
       },
-      // TODO: Make adjustments here
       get expenses() {
         return getCurrentYear().expenses;
       },

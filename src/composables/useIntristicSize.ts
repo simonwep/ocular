@@ -1,6 +1,6 @@
+import { ref, Ref, watch } from 'vue';
 import { useMutationObserver } from './useMutationObserver';
 import { useResizeObserver } from './useResizeObserver';
-import { ref, Ref, watch } from 'vue';
 
 export const useIntristicSize = (el: Ref<HTMLElement | undefined>): Ref<DOMRect> => {
   const rect = ref<DOMRect>(new DOMRect());

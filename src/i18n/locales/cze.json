@@ -82,8 +82,7 @@
     "settings": {
       "settings": "Nastavení",
       "language": "Jazyk",
-      "currency": "Měna",
-      "firstMonthOfYear": "První měsíc roku"
+      "currency": "Měna"
     }
   },
   "shared": {

@@ -1,11 +1,11 @@
 import { initialLocale } from '@i18n/index';
 import { generateTemplate } from '@store/state/template';
-import { DataStateV1, DataStateV2, DataStateV3 } from '@store/state/types';
+import { DataState, DataStateV1, DataStateV2, DataStateV3 } from '@store/state/types';
 import { createMigration, createMigrator } from 'yuppee';
 
 type Versions = DataStateV1 | DataStateV2 | DataStateV3;
 
-export const migrateApplicationState = createMigrator<DataStateV3, Versions>({
+export const migrateApplicationState = createMigrator<DataState, Versions>({
   init: () => generateTemplate(),
   migrations: [
     createMigration<DataStateV1, DataStateV2>({

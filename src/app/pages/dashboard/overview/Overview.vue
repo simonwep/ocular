@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import { useMediaQuery } from '@composables';
+import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';
 import { ref } from 'vue';
 
 const media = useMediaQuery();

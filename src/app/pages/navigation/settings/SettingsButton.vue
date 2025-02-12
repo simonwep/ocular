@@ -11,11 +11,11 @@
 </template>
 
 <script lang="ts" setup>
-import SettingsDialog from '@app/pages/navigation/settings/SettingsDialog.vue';
 import Button from '@components/base/button/Button.vue';
 import { RiEqualizerLine } from '@remixicon/vue';
 import { ClassNames } from '@utils';
 import { computed, ref } from 'vue';
+import SettingsDialog from '@app/pages/navigation/settings/SettingsDialog.vue';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
