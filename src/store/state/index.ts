@@ -112,7 +112,6 @@ export const createDataStore = (storage?: Storage): Store => {
       get locale() {
         return state.locale;
       },
-      // TODO: Make adjustments here
       get expenses() {
         return getCurrentYear().expenses;
       },

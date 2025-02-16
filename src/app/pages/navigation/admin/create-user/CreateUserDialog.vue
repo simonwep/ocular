@@ -17,7 +17,7 @@
         type="password"
         show-password-strength
       />
-      <CheckBoxField v-model="newUser.admin" :label="t('navigation.admin.admin')" />
+      <CheckBox v-model="newUser.admin" :label="t('navigation.admin.admin')" />
 
       <Alert v-if="state === 'errored'" :text="t('navigation.admin.error')" type="error" />
       <Alert v-if="state === 'conflict'" :text="t('navigation.admin.conflict')" type="error" />
@@ -27,10 +27,10 @@
 
 <script lang="ts" setup>
 import Alert from '@components/base/alert/Alert.vue';
+import CheckBox from '@components/base/check-box/CheckBox.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
-import CheckBoxField from '@components/base/form/CheckBoxField.vue';
 import Form from '@components/base/form/Form.vue';
-import TextField from '@components/base/form/TextField.vue';
+import TextField from '@components/base/text-field/TextField.vue';
 import { NewGenesisUser } from '@storage/createGenesisStore';
 import { useStorage } from '@storage/index';
 import { reactive, ref } from 'vue';
