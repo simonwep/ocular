@@ -33,10 +33,13 @@ const numberFormats: IntlNumberFormat = {
   }
 };
 
-export const i18n = createI18n({ legacy: false });
+export const i18n = createI18n({
+  locale: initialLocale
+});
 
 export const changeLocale = async (locale: AvailableLocale, currency?: Intl.NumberFormatOptions) => {
   const messages = await fetch(localeUrls[locale]).then((res) => res.json());
+
   const numberFormat: IntlNumberFormat = {
     ...numberFormats,
     currency: { ...numberFormats.currency, ...currency }
@@ -45,7 +48,5 @@ export const changeLocale = async (locale: AvailableLocale, currency?: Intl.Numb
   document.documentElement.lang = locale;
   i18n.global.setLocaleMessage(locale, messages);
   i18n.global.setNumberFormat(locale, numberFormat);
-  i18n.global.locale.value = locale;
+  i18n.global.locale = locale;
 };
-
-await changeLocale(initialLocale);

@@ -1,10 +1,10 @@
+import { minifyHtmlPlugin } from './plugins/vite-plugin-minify-html/minifyHtmlPlugin.ts';
+import { minifyJsonPlugin } from './plugins/vite-plugin-minify-json/minifyJsonPlugin.ts';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { minifyJsonPlugin } from './plugins/vite-plugin-minify-json/minifyJsonPlugin.ts';
-import { minifyHtmlPlugin } from './plugins/vite-plugin-minify-html/minifyHtmlPlugin.ts';
 
 export default defineConfig({
   envPrefix: ['OCULAR'],
@@ -98,7 +98,7 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,woff2}']
+        globPatterns: ['**/*.{js,css,html,woff2,json}']
       }
     })
   ]
