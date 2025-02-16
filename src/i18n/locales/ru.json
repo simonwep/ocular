@@ -82,6 +82,11 @@
       "settings": "Настройки",
       "language": "Язык",
       "currency": "Валюта"
+    },
+    "status": {
+      "synchronizationFailedDueToNetworkError": "Синхронизация не удалась из-за сетевой ошибки.",
+      "retryingPleaseWait": "Повторная попытка, пожалуйста, подождите...",
+      "retrySynchronization": "Повторить синхронизацию"
     }
   },
   "shared": {

@@ -1,13 +1,14 @@
 import { createGenesisStore, GenesisUser } from './createGenesisStore';
 import { StorageAuthenticationState, StorageSync } from './types';
 import { debounce } from '@utils';
-import { computed, nextTick, readonly, ref, watch } from 'vue';
+import { computed, nextTick, readonly, ref, shallowReactive, watch } from 'vue';
 import { MigratableState } from 'yuppee';
 
 export type Storage = ReturnType<typeof createStorage>;
 
 export const createStorage = () => {
   const authenticatedUser = ref<GenesisUser | undefined>();
+  const syncsFailed = shallowReactive<Set<() => Promise<void>>>(new Set());
   const syncsActive = ref(0);
 
   const logout = () => {
@@ -22,22 +23,26 @@ export const createStorage = () => {
   const login = async (user?: string, password?: string): Promise<boolean> =>
     store
       .login(user && password ? { user, password } : undefined)
-      .then((user) => {
-        authenticatedUser.value = user;
-        return true;
-      })
+      .then((user) => (authenticatedUser.value = user))
+      .then(() => true)
       .catch(() => false);
 
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
     const initializing = ref(true);
+    const errored = ref(false);
     const syncing = ref(false);
 
-    const change = debounce(async () => {
+    const push = async () => {
+      syncing.value = true;
+
       await store
         .setDataByKey(config.name, config.state())
-        .then(() => (syncing.value = false))
-        .catch(() => false);
-    }, 1000);
+        .then(() => (errored.value = false))
+        .catch(() => (errored.value = true))
+        .finally(() => (syncing.value = false));
+    };
+
+    const change = debounce(push, 1000);
 
     // initial sync on log in
     watch(
@@ -77,6 +82,13 @@ export const createStorage = () => {
 
     // forward syncing status
     watch(syncing, (value) => (syncsActive.value += value ? 1 : -1));
+    watch(errored, (value) => syncsFailed[value ? 'add' : 'delete'](push));
+  };
+
+  const retry = async () => {
+    if (syncsFailed.size) {
+      await Promise.allSettled([...syncsFailed].map((fn) => fn()));
+    }
   };
 
   // clear on log out
@@ -87,7 +99,9 @@ export const createStorage = () => {
   });
 
   const status = computed((): StorageAuthenticationState => {
-    if (authenticatedUser.value) {
+    if (syncsFailed.size) {
+      return syncsActive.value ? 'retrying' : 'error';
+    } else if (authenticatedUser.value) {
       return syncsActive.value ? 'syncing' : 'authenticated';
     } else {
       return 'idle';
@@ -98,13 +112,14 @@ export const createStorage = () => {
   void login();
 
   return {
-    user: readonly(authenticatedUser),
     status,
+    user: readonly(authenticatedUser),
     getAllUsers: store.getAllUsers,
     deleteUser: store.deleteUser,
     createUser: store.createUser,
     updateUser: store.updateUser,
     updatePassword: store.updatePassword,
+    retry,
     login,
     logout,
     sync

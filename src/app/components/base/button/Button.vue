@@ -30,7 +30,7 @@ const props = withDefaults(
     text?: string;
     tooltip?: string;
     type?: 'button' | 'reset' | 'submit';
-    size?: 's' | 'm' | 'l';
+    size?: 'xs' | 's' | 'm' | 'l';
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
@@ -101,6 +101,14 @@ const classes = computed(() => [
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
     line-height: 1em;
+  }
+
+  &.xs {
+    padding: 4px 6px;
+
+    .text {
+      font-size: var(--font-size-xs);
+    }
   }
 
   &.s {

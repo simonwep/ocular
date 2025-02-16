@@ -7,7 +7,7 @@
 import LoginDialog from './LoginDialog.vue';
 import Button from '@components/base/button/Button.vue';
 import { Color } from '@composables';
-import { RiCloudLine, RiCloudOffLine, RiRefreshLine } from '@remixicon/vue';
+import { RiCloudLine, RiCloudOffLine, RiRefreshLine, RiSignalWifiErrorLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
 import { computed, ref } from 'vue';
@@ -25,9 +25,12 @@ const classes = computed(() => props.class);
 const icon = computed((): Component => {
   switch (status.value) {
     case 'syncing':
+    case 'retrying':
       return RiRefreshLine;
     case 'idle':
       return RiCloudOffLine;
+    case 'error':
+      return RiSignalWifiErrorLine;
   }
 
   return RiCloudLine;
@@ -40,6 +43,7 @@ const color = computed((): Color => {
     case 'loading':
       return 'warning';
     case 'idle':
+    case 'error':
       return 'danger';
     case 'syncing':
       return 'primary';

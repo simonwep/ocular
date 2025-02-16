@@ -84,6 +84,11 @@
       "language": "Sprache",
       "currency": "Währung",
       "firstMonthOfYear": "Erster Monat des Jahres"
+    },
+    "status": {
+      "synchronizationFailedDueToNetworkError": "Synchronisierung fehlgeschlagen, bitte überprüfen Sie Ihre Netzwerkverbindung!",
+      "retryingPleaseWait": "Erneuter Versuch, bitte warten...",
+      "retrySynchronization": "Erneut versuchen"
     }
   },
   "shared": {

@@ -84,6 +84,11 @@
       "language": "Jazyk",
       "currency": "Měna",
       "firstMonthOfYear": "První měsíc roku"
+    },
+    "status": {
+      "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",
+      "retryingPleaseWait": "Znovu se pokoušíme, čekejte prosím...",
+      "retrySynchronization": "Znovu synchronizovat"
     }
   },
   "shared": {

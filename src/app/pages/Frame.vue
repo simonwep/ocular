@@ -33,6 +33,8 @@
     </div>
 
     <div ref="panes" :class="$style.panes">
+      <StatusBar />
+
       <!-- eslint-disable vue/no-template-shadow -->
       <RouterView v-slot="{ Component }">
         <ComponentTransition :is="Component" v-if="Component" />
@@ -49,6 +51,7 @@ import SettingsButton from './navigation/settings/SettingsButton.vue';
 import ThemeButton from './navigation/theme/ThemeButton.vue';
 import ToolsButton from './navigation/tools/ToolsButton.vue';
 import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
+import StatusBar from './status-bar/StatusBar.vue';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables';

@@ -84,6 +84,11 @@
       "language": "Dil",
       "settings": "Ayarlar",
       "firstMonthOfYear": "Yılın ilk ayı"
+    },
+    "status": {
+      "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",
+      "retryingPleaseWait": "Tekrar deniyor, lütfen bekleyin...",
+      "retrySynchronization": "Senkronizasyonu yeniden dene"
     }
   },
   "shared": {

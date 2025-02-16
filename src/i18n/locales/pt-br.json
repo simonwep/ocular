@@ -84,6 +84,11 @@
       "language": "Idioma",
       "currency": "Moeda",
       "firstMonthOfYear": "Primeiro mês do ano"
+    },
+    "status": {
+      "synchronizationFailedDueToNetworkError": "Falha de sincronização devido a erro de rede!",
+      "retryingPleaseWait": "Tentando novamente, por favor aguarde...",
+      "retrySynchronization": "Tentar sincronização novamente"
     }
   },
   "shared": {
