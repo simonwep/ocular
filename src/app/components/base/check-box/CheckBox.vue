@@ -5,7 +5,7 @@
     <div :class="$style.wrapper">
       <input :id="inputId" v-model="modelValue" :class="$style.input" type="checkbox" />
       <div :class="$style.box">
-        <RiCheckLine :class="$style.icon" />
+        <RiCheckLine size="16" :class="$style.icon" />
       </div>
     </div>
   </div>
@@ -53,6 +53,9 @@ const inputId = uuid();
 }
 
 .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--input-field-background);
   border-radius: var(--border-radius-m);
 
@@ -64,7 +67,6 @@ const inputId = uuid();
 
 .input {
   position: absolute;
-  height: 30px;
   padding: 0 8px;
   display: flex;
   align-items: center;
