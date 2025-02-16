@@ -17,6 +17,7 @@ import { computed, nextTick, watch, watchEffect } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
+const { status } = useStorage();
 const { state } = useSettingsStore();
 const { t } = useI18n();
 const router = useRouter();
@@ -24,6 +25,8 @@ const storage = useStorage();
 const media = useMediaQuery();
 const app = useAppElement();
 const root = useSquircle(computed(() => (['minimized', 'mobile'].includes(media.value) ? 0 : 0.035)));
+
+const preventDefault = (event: Event) => event.preventDefault();
 
 watchEffect(() => {
   app.classList.add(state.appearance.theme);
@@ -43,10 +46,16 @@ watch(
 
 watch(
   () => state.appearance.animations,
-  (enabled) => {
-    app.classList[enabled ? 'remove' : 'add']('reducedMotion');
-  }
+  (enabled) => app.classList[enabled ? 'remove' : 'add']('reducedMotion')
 );
+
+watch(status, (v) => {
+  if (v === 'authenticated' || v === 'idle') {
+    window.removeEventListener('beforeunload', preventDefault);
+  } else {
+    window.addEventListener('beforeunload', preventDefault);
+  }
+});
 
 watch(router.currentRoute, (route) => {
   if (route) {
