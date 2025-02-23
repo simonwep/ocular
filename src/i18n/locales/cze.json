@@ -83,7 +83,9 @@
       "settings": "Nastavení",
       "language": "Jazyk",
       "currency": "Měna",
-      "firstMonthOfYear": "První měsíc roku"
+      "firstMonthOfYear": "První měsíc roku",
+      "carryOverNetSavings": "Přenést čisté úspory",
+      "carryOverNetSavingsInfo": "Pokud je povoleno, čisté úspory se přenesou do následujícího roku."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",
@@ -137,7 +139,9 @@
       "downloadAsPNG": "Stáhnout jako PNG",
       "downloadAsSVG": "Stáhnout jako SVG",
       "jumpToIncome": "Přejít na příjmy za {year}",
-      "jumpToExpenses": "Přejít na výdaje za {year}"
+      "jumpToExpenses": "Přejít na výdaje za {year}",
+      "lastYear": "Minulý rok",
+      "surplus": "Přebytek"
     }
   }
 }

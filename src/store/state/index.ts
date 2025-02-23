@@ -4,8 +4,9 @@ import { generateBudgetYearFromCurrent } from './utils';
 import { useTime } from '@composables';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
-import { moveInArrays, readFile, remove, uuid } from '@utils';
-import { DeepReadonly, inject, reactive, readonly, ShallowRef, shallowRef, watch } from 'vue';
+import { finalBalance } from '@store/state/utils/budgets.ts';
+import { moveInArrays, readFile, remove, sum, uuid } from '@utils';
+import { inject, reactive, readonly, shallowRef, watch } from 'vue';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -16,57 +17,15 @@ interface StoredClipboardData {
   data: BudgetYear;
 }
 
-interface StoreClipboard {
-  data: DeepReadonly<ShallowRef<StoredClipboardData | undefined>>;
-
-  copy(): void;
-  paste(): void;
-}
-
-interface Store {
-  state: DeepReadonly<StoreView>;
-  clipboard: StoreClipboard;
-
-  serialize(): string;
-  deserialize(file: File): Promise<void>;
-  deserialize(file: DataState): Promise<void>;
-
-  shiftYears(): void;
-  changeYear(year: number): void;
-  changeLocale(locale: AvailableLocale): void;
-  changeCurrency(currency: AvailableCurrency): void;
-
-  setBudgetGroups(target: Group, groups: BudgetGroup[]): void;
-  addBudgetGroup(target: Group): void;
-  addBudget(group: string): void;
-
-  moveBudget(id: string, target: string, after?: boolean): void;
-  moveBudgetIntoGroup(id: string, target: string): void;
-  moveBudgetGroup(id: string, target: string, after?: boolean): void;
-
-  removeBudgetGroup(id: string): void;
-  removeBudget(id: string): void;
-
-  setBudgetGroupName(id: string, name: string): void;
-  setBudgetName(id: string, name: string): void;
-  setBudget(id: string, month: number, amount: number): void;
-
-  fillBudget(id: string, amount: number, offset?: number): void;
-
-  getBudget(id: string): [BudgetGroup, Budget] | undefined;
-  getBudgetGroup(id: string): BudgetGroup | undefined;
-
-  isCurrentMonth(month: number): boolean;
-}
-
 type StoreView = Omit<BudgetYear, 'year'> & {
   activeYear: number;
   currency: AvailableCurrency;
   locale: AvailableLocale;
   years: BudgetYear[];
+  overallBalance: number | undefined;
 };
 
-export const createDataStore = (storage?: Storage): Store => {
+export const createDataStore = (storage?: Storage) => {
   const activeYear = shallowRef(new Date().getFullYear());
   const clipboard = shallowRef<StoredClipboardData | undefined>();
   const state = reactive<DataState>(migrateApplicationState());
@@ -117,6 +76,9 @@ export const createDataStore = (storage?: Storage): Store => {
       },
       get income() {
         return getCurrentYear().income;
+      },
+      get overallBalance() {
+        return sum(state.years.filter((year) => year.year < activeYear.value).map(finalBalance));
       }
     }),
 
@@ -287,6 +249,8 @@ export const createDataStore = (storage?: Storage): Store => {
     }
   };
 };
+
+type Store = ReturnType<typeof createDataStore>;
 
 export const useDataStore = (): Store => {
   return inject<Store>(DATA_STORE_KEY) as Store;

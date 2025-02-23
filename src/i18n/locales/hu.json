@@ -83,7 +83,9 @@
       "settings": "Beállítások",
       "language": "Nyelv",
       "currency": "Pénznem",
-      "firstMonthOfYear": "Az év első hónapja"
+      "firstMonthOfYear": "Az év első hónapja",
+      "carryOverNetSavings": "Nettó megtakarítások átvitele",
+      "carryOverNetSavingsInfo": "Ha a nettó megtakarításokat átvisszük az új évre, akkor az előző év záróegyenlegét az új év első hónapjában a nettó megtakarításokhoz adja hozzá."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "A szinkronizálás hálózati hiba miatt meghiúsult!",
@@ -137,7 +139,9 @@
       "downloadAsPNG": "Letöltés PNG formátumban",
       "downloadAsSVG": "Letöltés SVG-ként",
       "jumpToIncome": "Ugrás a {year} évi bevételekhez",
-      "jumpToExpenses": "Ugrás a {year} évi kiadásokhoz"
+      "jumpToExpenses": "Ugrás a {year} évi kiadásokhoz",
+      "lastYear": "Múlt év",
+      "surplus": "Többlet"
     }
   }
 }

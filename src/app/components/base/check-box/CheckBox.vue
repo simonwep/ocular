@@ -1,12 +1,13 @@
 <template>
   <div :class="$style.field">
-    <label :class="$style.label" :for="inputId">{{ label }}</label>
+    <label :class="$style.label" :for="inputId">
+      <span>{{ label }}</span>
+      <small v-if="subLabel">{{ subLabel }}</small>
+    </label>
 
-    <div :class="$style.wrapper">
+    <div :class="$style.box">
       <input :id="inputId" v-model="modelValue" :class="$style.input" type="checkbox" />
-      <div :class="$style.box">
-        <RiCheckLine size="16" :class="$style.icon" />
-      </div>
+      <RiCheckLine size="16" :class="$style.icon" />
     </div>
   </div>
 </template>
@@ -19,6 +20,7 @@ const modelValue = defineModel<boolean>();
 
 defineProps<{
   label: string;
+  subLabel?: string;
 }>();
 
 const inputId = uuid();
@@ -27,22 +29,23 @@ const inputId = uuid();
 <style lang="scss" module>
 .field {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   gap: 6px;
   font-size: var(--input-field-font-size);
 }
 
 .label {
+  display: flex;
+  flex-direction: column;
   font-weight: var(--font-weight-l);
   font-size: var(--font-size-xs);
   user-select: none;
-}
 
-.wrapper {
-  width: 18px;
-  height: 18px;
-  position: relative;
+  > small {
+    font-size: var(--font-size-xxs);
+    color: var(--c-text-dark-muted);
+  }
 }
 
 .box,
@@ -53,29 +56,36 @@ const inputId = uuid();
 }
 
 .box {
+  width: 18px;
+  height: 18px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--input-field-background);
   border-radius: var(--border-radius-m);
+  border: 2px solid transparent;
 
   .icon {
     opacity: 0;
     color: var(--c-primary);
   }
+
+  &:focus-within {
+    border-color: var(--input-field-hover-border);
+  }
 }
 
 .input {
   position: absolute;
-  padding: 0 8px;
   display: flex;
   align-items: center;
-  border: 1px solid transparent;
   transition: background-color var(--input-field-transition);
   appearance: none;
   z-index: 1;
+  outline: none;
 
-  &:checked ~ .box .icon {
+  &:checked ~ .icon {
     opacity: 1;
   }
 }

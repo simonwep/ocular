@@ -83,7 +83,9 @@
       "currency": "Para Birimi",
       "language": "Dil",
       "settings": "Ayarlar",
-      "firstMonthOfYear": "Yılın ilk ayı"
+      "firstMonthOfYear": "Yılın ilk ayı",
+      "carryOverNetSavings": "Net Tasarrufları Taşı",
+      "carryOverNetSavingsInfo": "Etkinleştirilirse, net tasarruflar bir sonraki yıla taşınır."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",
@@ -137,7 +139,8 @@
       "yoyExpenseGrowth": "Yıllık Gider Artışı",
       "yoyIncomeGrowth": "Yıllık Gelir Artışı",
       "jumpToIncome": "{year} gelirlerine atla",
-      "jumpToExpenses": "{year} harcamalarına atla"
+      "jumpToExpenses": "{year} harcamalarına atla",
+      "surplus": "Artı"
     }
   }
 }

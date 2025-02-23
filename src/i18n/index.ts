@@ -34,6 +34,7 @@ const numberFormats: IntlNumberFormat = {
 };
 
 export const i18n = createI18n({
+  legacy: false,
   locale: initialLocale
 });
 
@@ -48,5 +49,5 @@ export const changeLocale = async (locale: AvailableLocale, currency?: Intl.Numb
   document.documentElement.lang = locale;
   i18n.global.setLocaleMessage(locale, messages);
   i18n.global.setNumberFormat(locale, numberFormat);
-  i18n.global.locale = locale;
+  i18n.global.locale.value = locale;
 };

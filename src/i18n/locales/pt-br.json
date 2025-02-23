@@ -83,7 +83,9 @@
       "settings": "Configurações",
       "language": "Idioma",
       "currency": "Moeda",
-      "firstMonthOfYear": "Primeiro mês do ano"
+      "firstMonthOfYear": "Primeiro mês do ano",
+      "carryOverNetSavings": "Carregar economias líquidas",
+      "carryOverNetSavingsInfo": "Se ativado, o saldo final do ano anterior será adicionado ao saldo inicial do ano atual."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Falha de sincronização devido a erro de rede!",
@@ -137,7 +139,9 @@
       "downloadAsPNG": "Baixar como PNG",
       "downloadAsSVG": "Baixar como SVG",
       "jumpToIncome": "Pular para a Receita de {year}",
-      "jumpToExpenses": "Pular para as Despesas de {year}"
+      "jumpToExpenses": "Pular para as Despesas de {year}",
+      "lastYear": "Ano passado",
+      "surplus": "Superávit"
     }
   }
 }

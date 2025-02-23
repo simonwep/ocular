@@ -7,8 +7,9 @@
 import { SankeyChartConfig, SankeyChartLabel, SankeyChartLink } from './sankey-chart/SankeyChart.types';
 import SankeyChart from './sankey-chart/SankeyChart.vue';
 import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
-import { totals } from '@store/state/utils/budgets';
+import { sumOfBudgetGroups, totals } from '@store/state/utils/budgets';
 import { ClassNames, sum, uuid } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -19,19 +20,24 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
+const { state: settings } = useSettingsStore();
 const { state } = useDataStore();
-const { n } = useI18n();
+const { n, t } = useI18n();
+
+const totalIncome = computed(() => {
+  return settings.general.carryOver
+    ? sumOfBudgetGroups(state.income) + (state.overallBalance ?? 0)
+    : sumOfBudgetGroups(state.income);
+});
+
+const totalExpenses = computed(() => sum(totals(state.expenses)));
 
 const isEmpty = computed(() => {
-  const totalIncome = sum(totals(state.income));
-  const totalExpenses = sum(totals(state.expenses));
-  return !totalIncome || !totalExpenses;
+  return !totalIncome.value || !totalExpenses.value;
 });
 
 const data = computed((): SankeyChartConfig => {
   const format = (v: number) => n(v, 'currency');
-  const totalIncome = sum(totals(state.income));
-  const totalExpenses = sum(totals(state.expenses));
   const labels: SankeyChartLabel[] = [];
   const links: SankeyChartLink[] = [];
 
@@ -39,11 +45,45 @@ const data = computed((): SankeyChartConfig => {
 
   const income = {
     id: uuid(),
-    name: `Income (${format(totalIncome)})`,
+    name: `Income (${format(totalIncome.value)})`,
     color: color(120)
   };
 
   labels.push(income);
+
+  if (settings.general.carryOver && state.overallBalance) {
+    const endingBalance = state.overallBalance;
+    const carryOverSource = uuid();
+    const carryOverTarget = uuid();
+
+    labels.push({
+      id: carryOverSource,
+      name: `${t('page.dashboard.lastYear')} (${format(endingBalance)})`,
+      color: color(60 + 60 * (endingBalance / totalIncome.value)),
+      muted: props.highlight === 'expenses'
+    });
+
+    labels.push({
+      id: carryOverTarget,
+      name: `${t('page.dashboard.surplus')} (${format(endingBalance)})`,
+      color: color(60 + 60 * (endingBalance / totalIncome.value)),
+      muted: props.highlight === 'expenses'
+    });
+
+    links.push({
+      target: carryOverTarget,
+      source: carryOverSource,
+      value: endingBalance,
+      muted: props.highlight === 'expenses'
+    });
+
+    links.push({
+      target: income.id,
+      source: carryOverTarget,
+      value: endingBalance,
+      muted: props.highlight === 'expenses'
+    });
+  }
 
   for (const group of state.income) {
     const total = sum(group.budgets.flatMap((v) => v.values));
@@ -55,7 +95,7 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 + 60 * (total / totalIncome)),
+      color: color(60 + 60 * (total / totalIncome.value)),
       muted: props.highlight === 'expenses'
     });
 
@@ -74,7 +114,7 @@ const data = computed((): SankeyChartConfig => {
         labels.push({
           id: budget.id,
           name: `${budget.name} (${format(total)})`,
-          color: color(60 + 60 * (total / totalIncome)),
+          color: color(60 + 60 * (total / totalIncome.value)),
           muted: props.highlight === 'expenses'
         });
 
@@ -98,7 +138,7 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       name: `${group.name} (${format(total)})`,
-      color: color(60 * (1 - total / totalExpenses)),
+      color: color(60 * (1 - total / totalExpenses.value)),
       muted: props.highlight === 'income'
     });
 
@@ -117,7 +157,7 @@ const data = computed((): SankeyChartConfig => {
         labels.push({
           id: budget.id,
           name: `${budget.name} (${format(total)})`,
-          color: color(60 * (1 - total / totalExpenses)),
+          color: color(60 * (1 - total / totalExpenses.value)),
           align: 'left',
           muted: props.highlight === 'income'
         });

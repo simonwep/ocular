@@ -1,20 +1,11 @@
 import { migrateSettingsState } from './migrator';
 import { Mode, SettingsState, Theme } from './types';
 import { Storage } from '@storage/index';
-import { DeepReadonly, inject, reactive, readonly } from 'vue';
+import { inject, reactive, readonly } from 'vue';
 
 export const SETTINGS_STORE_KEY = Symbol('SettingsStore');
 
-interface Store {
-  state: DeepReadonly<SettingsState>;
-
-  setMode(mode: Mode): void;
-  setTheme(theme: Theme): void;
-  setAnimations(enable: boolean): void;
-  setMonthOffset(offset: number): void;
-}
-
-export const createSettingsStore = (storage?: Storage): Store => {
+export const createSettingsStore = (storage?: Storage) => {
   const state = reactive<SettingsState>(migrateSettingsState());
 
   storage?.sync<SettingsState>({
@@ -41,9 +32,15 @@ export const createSettingsStore = (storage?: Storage): Store => {
 
     setMonthOffset(offset: number): void {
       state.general.monthOffset = offset;
+    },
+
+    setCarryOver(carryOver: boolean): void {
+      state.general.carryOver = carryOver;
     }
   };
 };
+
+type Store = ReturnType<typeof createSettingsStore>;
 
 export const useSettingsStore = (): Store => {
   return inject<Store>(SETTINGS_STORE_KEY) as Store;

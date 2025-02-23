@@ -1,4 +1,5 @@
-import { BudgetGroup } from '../types';
+import { BudgetGroup, BudgetYear } from '../types';
+import { sum } from '@utils';
 import { DeepReadonly } from 'vue';
 
 export const totals = (groups: DeepReadonly<BudgetGroup[]>): number[] => {
@@ -31,4 +32,12 @@ export const flatten = (groups: DeepReadonly<BudgetGroup[]>): FlattedBudgetGroup
 
     return { ...group, totals } as FlattedBudgetGroup;
   });
+};
+
+export const sumOfBudgetGroups = (groups: DeepReadonly<BudgetGroup[]>): number => {
+  return sum(groups.flatMap((v) => v.budgets.flatMap((v) => v.values)));
+};
+
+export const finalBalance = ({ income, expenses }: BudgetYear) => {
+  return sumOfBudgetGroups(income) - sumOfBudgetGroups(expenses);
 };

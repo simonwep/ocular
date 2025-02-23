@@ -2,10 +2,12 @@
   <div :class="classes" @animationend="animationsDone++">
     <SummaryPanel
       :values="income"
+      :value="incomeSum + startingBalance"
       color="success"
       to="/income"
       :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
+      :sub-title="startingBalance ? n(startingBalance, { key: 'currency', currency: state.currency }) : undefined"
       @pointerenter="emit('hoveredPanel', 'income')"
       @pointerleave="emit('hoveredPanel')"
       @pointercancel="emit('hoveredPanel')"
@@ -16,6 +18,7 @@
       to="/expenses"
       :tooltip="t('page.dashboard.jumpToExpenses', { year: state.activeYear })"
       :values="expenses"
+      :value="expenseSum"
       color="warning"
       :title="t('page.dashboard.expenses')"
       @pointerenter="emit('hoveredPanel', 'expenses')"
@@ -24,8 +27,9 @@
     />
 
     <SummaryPanel
-      :sub-title="n(endingBalanceTotal ? 1 - expensePercentage : 0, 'percent')"
+      :sub-title="n(endingBalanceSum ? 1 - expensePercentage : 0, 'percent')"
       :values="endingBalance"
+      :value="endingBalanceSum"
       color="primary"
       :title="t('page.dashboard.endingBalance')"
     />
@@ -41,7 +45,7 @@
               ? t('page.dashboard.yearEnding')
               : undefined
       "
-      :values="remainingBalance"
+      :value="remainingBalance"
       color="secondary"
       :title="t('page.dashboard.remainingBalance', { year: state.activeYear + 1 })"
     />
@@ -52,6 +56,7 @@
 import SummaryPanel from './SummaryPanel.vue';
 import { HoveredPanel } from '@app/pages/dashboard/overview/widgets/header-panels/SummaryPanels.types.ts';
 import { useTime } from '@composables';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { aggregate, ClassNames, subtract, sum } from '@utils';
@@ -66,6 +71,7 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
+const { state: settings } = useSettingsStore();
 const { state } = useDataStore();
 const { t, n } = useI18n();
 const time = useTime();
@@ -81,27 +87,33 @@ const classes = computed(() => [
   }
 ]);
 
+const startingBalance = computed(() => (!settings.general.carryOver ? 0 : (state.overallBalance ?? 0)));
+
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));
 
 const income = computed(() => aggregate(incomeTotals.value));
 const expenses = computed(() => aggregate(expensesTotals.value));
-const endingBalance = computed(() => subtract(income.value, expenses.value));
-const endingBalanceTotal = computed(() => sum(endingBalance.value));
+const endingBalance = computed(() => subtract(incomeTotals.value, expensesTotals.value));
+
+const incomeSum = computed(() => sum(incomeTotals.value));
+const expenseSum = computed(() => sum(expensesTotals.value));
+const endingBalanceSum = computed(() => sum(endingBalance.value) + startingBalance.value);
 
 const expensePercentage = computed(() => {
   const expenses = sum(expensesTotals.value);
-  const income = sum(incomeTotals.value);
+  const income = sum(incomeTotals.value) + startingBalance.value;
   return income ? expenses / income : 0;
 });
 
 const remainingBalance = computed(() => {
   const nextMonth = time.year.value === state.activeYear ? time.month.value + 1 : 0;
-  return sum(subtract(incomeTotals.value.slice(nextMonth), expensesTotals.value.slice(nextMonth)));
+  const netValues = subtract(incomeTotals.value.slice(nextMonth), expensesTotals.value.slice(nextMonth));
+  return sum(netValues);
 });
 
 const remainingBalancePercentage = computed(() => {
-  const endBalance = endingBalance.value[endingBalance.value.length - 1];
+  const endBalance = expenses.value.at(-1) ?? 0;
   return endBalance ? remainingBalance.value / endBalance : 0;
 });
 </script>

@@ -83,7 +83,9 @@
       "settings": "Settings",
       "language": "Language",
       "currency": "Currency",
-      "firstMonthOfYear": "First month of the year"
+      "firstMonthOfYear": "First month of the year",
+      "carryOverNetSavings": "Carry over net savings",
+      "carryOverNetSavingsInfo": "If enabled, the net savings from the previous year will be carried over to the next year."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",
@@ -137,7 +139,9 @@
       "downloadAsPNG": "Download as PNG",
       "downloadAsSVG": "Download as SVG",
       "jumpToIncome": "Jump to income for {year}",
-      "jumpToExpenses": "Jump to expenses for {year}"
+      "jumpToExpenses": "Jump to expenses for {year}",
+      "lastYear": "Last Year",
+      "surplus": "Surplus"
     }
   }
 }

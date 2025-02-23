@@ -64,6 +64,7 @@ const options = computed(
       },
       nodeGap: 10,
       nodeWidth: 7,
+      layoutIterations: 0,
       left: 0,
       right: 0,
       links: props.data.links.map((v) => ({

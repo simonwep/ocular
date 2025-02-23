@@ -1,6 +1,6 @@
 import { computed, MaybeRefOrGetter, toValue } from 'vue';
 
-export type Color = 'primary' | 'success' | 'warning' | 'danger' | 'dimmed' | 'dark';
+export type Color = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dimmed';
 
 export const useThemeStyles = (color: MaybeRefOrGetter<Color>) =>
   computed(() => {

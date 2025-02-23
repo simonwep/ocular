@@ -14,17 +14,12 @@
 
           <template v-else>
             <h2 :class="$style.head">{{ title }}</h2>
-            <Currency :class="$style.title" :value="endingValue" />
+            <Currency :class="$style.title" :value="value" />
             <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
           </template>
         </div>
 
-        <SummaryPanelChart
-          v-if="Array.isArray(values)"
-          :class="$style.chart"
-          :color="theme.light.dimmed"
-          :values="values"
-        />
+        <SummaryPanelChart v-if="values" :class="$style.chart" :color="theme.light.dimmed" :values="values" />
       </component>
     </div>
   </div>
@@ -47,17 +42,14 @@ const props = defineProps<{
   to?: string;
   alt?: string;
   color: Color;
-  values: number[] | number;
+  values?: number[];
+  value: number;
 }>();
 
 const classes = computed(() => props.class);
 const theme = useThemeStyles(() => props.color);
 const wrapper = useSquircle(0.25);
 const container = useSquircle(0.25);
-
-const endingValue = computed(() =>
-  Array.isArray(props.values) ? props.values[props.values.length - 1] : props.values
-);
 
 const element = computed(() => (props.to ? Link : 'div'));
 </script>

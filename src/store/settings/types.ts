@@ -29,4 +29,16 @@ export interface SettingsStateV3 extends MigratableState<3> {
   };
 }
 
-export type SettingsState = SettingsStateV3;
+export interface SettingsStateV4 extends MigratableState<4> {
+  general: {
+    monthOffset: number;
+    carryOver: boolean;
+  };
+  appearance: {
+    mode: Mode;
+    theme: Theme;
+    animations: boolean;
+  };
+}
+
+export type SettingsState = SettingsStateV4;

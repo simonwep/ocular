@@ -83,7 +83,9 @@
       "settings": "Ustawienia",
       "language": "Język",
       "currency": "Waluta",
-      "firstMonthOfYear": "Pierwszy miesiąc roku"
+      "firstMonthOfYear": "Pierwszy miesiąc roku",
+      "carryOverNetSavings": "Przeniesienie oszczędności netto",
+      "carryOverNetSavingsInfo": "Przeniesienie oszczędności netto z poprzedniego roku do bieżącego roku."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronizacja nie powiodła się z powodu błędu sieci!",
@@ -137,7 +139,9 @@
       "downloadAsPNG": "Pobierz jako PNG",
       "downloadAsSVG": "Pobierz jako SVG",
       "jumpToIncome": "Zobacz dochody za {year}",
-      "jumpToExpenses": "Zobacz wydatki za {year}"
+      "jumpToExpenses": "Zobacz wydatki za {year}",
+      "lastYear": "Ostatni rok",
+      "surplus": "Nadwyżka"
     }
   }
 }

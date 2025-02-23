@@ -83,7 +83,9 @@
       "settings": "Einstellungen",
       "language": "Sprache",
       "currency": "Währung",
-      "firstMonthOfYear": "Erster Monat des Jahres"
+      "firstMonthOfYear": "Erster Monat des Jahres",
+      "carryOverNetSavings": "Nettoersparnisse übertragen",
+      "carryOverNetSavingsInfo": "Wenn diese Option aktiviert ist, werden die Nettoersparnisse des Vorjahres in das neue Jahr übertragen."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronisierung fehlgeschlagen, bitte überprüfen Sie Ihre Netzwerkverbindung!",
@@ -137,7 +139,9 @@
       "downloadAsPNG": "Als PNG herunterladen",
       "downloadAsSVG": "Als SVG herunterladen",
       "jumpToIncome": "Springe zu den Einnahmen für {year}",
-      "jumpToExpenses": "Springe zu den Ausgaben für {year}"
+      "jumpToExpenses": "Springe zu den Ausgaben für {year}",
+      "lastYear": "Letztes Jahr",
+      "surplus": "Überschuss"
     }
   }
 }

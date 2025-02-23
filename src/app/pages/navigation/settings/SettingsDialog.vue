@@ -21,11 +21,19 @@
         :options="months"
         @update:model-value="setMonthOffset($event as number)"
       />
+
+      <CheckBox
+        :label="t('navigation.settings.carryOverNetSavings')"
+        :sub-label="t('navigation.settings.carryOverNetSavingsInfo')"
+        :model-value="settings.general.carryOver"
+        @update:model-value="setCarryOver"
+      />
     </div>
   </Dialog>
 </template>
 
 <script lang="ts" setup>
+import CheckBox from '@components/base/check-box/CheckBox.vue';
 import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types.ts';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Select from '@components/base/select/Select.vue';
@@ -47,7 +55,7 @@ defineProps<{
 }>();
 
 const { t, locale } = useI18n();
-const { setMonthOffset, state: settings } = useSettingsStore();
+const { setMonthOffset, setCarryOver, state: settings } = useSettingsStore();
 const { changeCurrency, changeLocale, state } = useDataStore();
 const monthNames = useMonthNames();
 

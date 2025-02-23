@@ -83,7 +83,9 @@
       "settings": "Impostazioni",
       "language": "Lingua",
       "currency": "Valuta",
-      "firstMonthOfYear": "Primo mese dell'anno"
+      "firstMonthOfYear": "Primo mese dell'anno",
+      "carryOverNetSavings": "Portare risparmi netti",
+      "carryOverNetSavingsInfo": "Se attivato, il saldo netto di fine anno verrà trasferito come saldo iniziale per l'anno successivo."
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Sincronizzazione fallita a causa di un errore di rete!",
@@ -137,7 +139,9 @@
       "downloadAsPNG": "Download come PNG",
       "downloadAsSVG": "Download come SVG",
       "jumpToIncome": "Vai al reddito per {year}",
-      "jumpToExpenses": "Vai alle spese per {year}"
+      "jumpToExpenses": "Vai alle spese per {year}",
+      "lastYear": "Anno scorso",
+      "surplus": "Eccedenza"
     }
   }
 }
