@@ -15,11 +15,16 @@ export const convertGoogleAnnualBudgetCSVToBudgetGroups = (csv: string): BudgetG
     const [group, , header, ...values] = rows[i];
 
     if (group) {
-      budgetGroup = { budgets: [], id: uuid(), name: group };
+      budgetGroup = {
+        budgets: [],
+        id: uuid(),
+        name: group.trim()
+      };
+
       groups.push(budgetGroup);
     } else if (header && budgetGroup) {
       const parsed = values
-        .map((v) => v.replace(/[^\d]/g, ''))
+        .map((v) => v.replace(/\D/g, ''))
         .map(Number)
         .slice(0, 12); // Remove total and average
 

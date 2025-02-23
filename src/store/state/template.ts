@@ -1,5 +1,5 @@
 import { DataStateV1 } from './types';
-import { generateBudgetGroup } from './utils';
+import { generateBudgetGroup } from './utils/generators.ts';
 
 export const generateTemplate = (): DataStateV1 => ({
   version: 1,

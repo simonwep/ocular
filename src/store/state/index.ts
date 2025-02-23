@@ -1,6 +1,6 @@
 import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
-import { generateBudgetYearFromCurrent } from './utils';
+import { generateBudgetYearFromCurrent } from './utils/generators.ts';
 import { useTime } from '@composables';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';

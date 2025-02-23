@@ -16,8 +16,10 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint 'src/**/*.{js,ts,vue}' --cache",
-    "lint:fix": "pnpm run lint --fix",
-    "test:ci": "pnpm run lint:fix && pnpm run build"
+    "lint:fix": "pnpm lint --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ci": "pnpm lint:fix && pnpm build && pnpm test"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
@@ -56,6 +58,7 @@
     "vite-plugin-optimize-css-modules": "1.2.0",
     "vite-plugin-pwa": "0.21.1",
     "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.0.6",
     "vue-tsc": "2.2.0",
     "workbox-build": "7.3.0",
     "workbox-window": "7.3.0"

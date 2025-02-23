@@ -1,4 +1,4 @@
-import { Budget, BudgetGroup, BudgetYear } from './types';
+import { Budget, BudgetGroup, BudgetYear } from '../types';
 import { uuid } from '@utils';
 
 export const generateBudget = (name: string): Budget => ({
