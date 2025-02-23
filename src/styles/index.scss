@@ -48,4 +48,8 @@ html, body, #app {
   &.dark ::backdrop {
     @include themes.dark;
   }
+
+  &.reducedMotion {
+    --transitions: 0;
+  }
 }

@@ -85,7 +85,8 @@
       "currency": "Moneda",
       "firstMonthOfYear": "Primer mes del año",
       "carryOverNetSavings": "Llevar ahorros netos",
-      "carryOverNetSavingsInfo": "Si está habilitado, los ahorros netos se llevarán al siguiente año."
+      "carryOverNetSavingsInfo": "Si está habilitado, los ahorros netos se llevarán al siguiente año.",
+      "showAnimationsAndTransitions": "Mostrar animaciones y transiciones"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "¡La sincronización falló debido a un error de red!",

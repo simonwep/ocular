@@ -85,7 +85,8 @@
       "currency": "Valuta",
       "firstMonthOfYear": "Primo mese dell'anno",
       "carryOverNetSavings": "Portare risparmi netti",
-      "carryOverNetSavingsInfo": "Se attivato, il saldo netto di fine anno verrà trasferito come saldo iniziale per l'anno successivo."
+      "carryOverNetSavingsInfo": "Se attivato, il saldo netto di fine anno verrà trasferito come saldo iniziale per l'anno successivo.",
+      "showAnimationsAndTransitions": "Mostra animazioni e transizioni"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Sincronizzazione fallita a causa di un errore di rete!",

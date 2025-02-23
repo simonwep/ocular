@@ -85,7 +85,8 @@
       "currency": "Měna",
       "firstMonthOfYear": "První měsíc roku",
       "carryOverNetSavings": "Přenést čisté úspory",
-      "carryOverNetSavingsInfo": "Pokud je povoleno, čisté úspory se přenesou do následujícího roku."
+      "carryOverNetSavingsInfo": "Pokud je povoleno, čisté úspory se přenesou do následujícího roku.",
+      "showAnimationsAndTransitions": "Zobrazit animace a přechody"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",

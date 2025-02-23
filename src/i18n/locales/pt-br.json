@@ -85,7 +85,8 @@
       "currency": "Moeda",
       "firstMonthOfYear": "Primeiro mês do ano",
       "carryOverNetSavings": "Carregar economias líquidas",
-      "carryOverNetSavingsInfo": "Se ativado, o saldo final do ano anterior será adicionado ao saldo inicial do ano atual."
+      "carryOverNetSavingsInfo": "Se ativado, o saldo final do ano anterior será adicionado ao saldo inicial do ano atual.",
+      "showAnimationsAndTransitions": "Mostrar animações e transições"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Falha de sincronização devido a erro de rede!",

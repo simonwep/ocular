@@ -23,6 +23,12 @@
       />
 
       <CheckBox
+        :label="t('navigation.settings.showAnimationsAndTransitions')"
+        :model-value="settings.appearance.animations"
+        @update:model-value="setAnimations"
+      />
+
+      <CheckBox
         :label="t('navigation.settings.carryOverNetSavings')"
         :sub-label="t('navigation.settings.carryOverNetSavingsInfo')"
         :model-value="settings.general.carryOver"
@@ -55,7 +61,7 @@ defineProps<{
 }>();
 
 const { t, locale } = useI18n();
-const { setMonthOffset, setCarryOver, state: settings } = useSettingsStore();
+const { setMonthOffset, setCarryOver, setAnimations, state: settings } = useSettingsStore();
 const { changeCurrency, changeLocale, state } = useDataStore();
 const monthNames = useMonthNames();
 

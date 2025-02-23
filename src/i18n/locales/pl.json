@@ -85,7 +85,8 @@
       "currency": "Waluta",
       "firstMonthOfYear": "Pierwszy miesiąc roku",
       "carryOverNetSavings": "Przeniesienie oszczędności netto",
-      "carryOverNetSavingsInfo": "Przeniesienie oszczędności netto z poprzedniego roku do bieżącego roku."
+      "carryOverNetSavingsInfo": "Przeniesienie oszczędności netto z poprzedniego roku do bieżącego roku.",
+      "showAnimationsAndTransitions": "Pokaż animacje i przejścia"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronizacja nie powiodła się z powodu błędu sieci!",

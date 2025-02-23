@@ -98,11 +98,10 @@
   --font-size-xl: 20px;
   --font-size-xxl: 24px;
 
-  --transitions: 1;
-  --transition-s: calc(var(--transitions) * 0.125s);
-  --transition-m: calc(var(--transitions) * 0.25s);
-  --transition-xl: calc(var(--transitions) * 0.75s);
-  --transition-xxl: calc(var(--transitions) * 1.5s);
+  --transition-s: calc(var(--transitions, 1) * 0.125s);
+  --transition-m: calc(var(--transitions, 1) * 0.25s);
+  --transition-xl: calc(var(--transitions, 1) * 0.75s);
+  --transition-xxl: calc(var(--transitions, 1) * 1.5s);
 
   --chart-line-color: #d7dfe4;
   --chart-label: var(--theme-text);

@@ -85,7 +85,8 @@
       "currency": "Währung",
       "firstMonthOfYear": "Erster Monat des Jahres",
       "carryOverNetSavings": "Nettoersparnisse übertragen",
-      "carryOverNetSavingsInfo": "Wenn diese Option aktiviert ist, werden die Nettoersparnisse des Vorjahres in das neue Jahr übertragen."
+      "carryOverNetSavingsInfo": "Wenn diese Option aktiviert ist, werden die Nettoersparnisse des Vorjahres in das neue Jahr übertragen.",
+      "showAnimationsAndTransitions": "Animationen und Übergänge anzeigen"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronisierung fehlgeschlagen, bitte überprüfen Sie Ihre Netzwerkverbindung!",

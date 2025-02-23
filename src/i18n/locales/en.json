@@ -85,7 +85,8 @@
       "currency": "Currency",
       "firstMonthOfYear": "First month of the year",
       "carryOverNetSavings": "Carry over net savings",
-      "carryOverNetSavingsInfo": "If enabled, the net savings from the previous year will be carried over to the next year."
+      "carryOverNetSavingsInfo": "If enabled, the net savings from the previous year will be carried over to the next year.",
+      "showAnimationsAndTransitions": "Show animations and transitions"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",

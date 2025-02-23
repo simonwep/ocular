@@ -85,7 +85,8 @@
       "settings": "Ayarlar",
       "firstMonthOfYear": "Yılın ilk ayı",
       "carryOverNetSavings": "Net Tasarrufları Taşı",
-      "carryOverNetSavingsInfo": "Etkinleştirilirse, net tasarruflar bir sonraki yıla taşınır."
+      "carryOverNetSavingsInfo": "Etkinleştirilirse, net tasarruflar bir sonraki yıla taşınır.",
+      "showAnimationsAndTransitions": "Animasyonları ve geçişleri göster"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",

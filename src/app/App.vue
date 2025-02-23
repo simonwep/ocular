@@ -13,7 +13,7 @@ import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
 import { useAppElement, useMediaQuery, useSquircle } from '@composables';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
-import { computed, nextTick, watch, watchEffect } from 'vue';
+import { computed, nextTick, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
@@ -28,25 +28,29 @@ const root = useSquircle(computed(() => (['minimized', 'mobile'].includes(media.
 
 const preventDefault = (event: Event) => event.preventDefault();
 
-watchEffect(() => {
-  app.classList.add(state.appearance.theme);
-
-  nextTick(() => {
-    const appColor = getComputedStyle(app).getPropertyValue('--app-background').trim();
-    document
-      .querySelectorAll('[data-meta="theme-color"]')
-      .forEach((el) => ((el as HTMLMetaElement).content = appColor));
-  });
-});
-
 watch(
   () => state.appearance.theme,
-  (_, oldTheme) => app.classList.remove(oldTheme)
+  (newTheme, oldTheme) => {
+    app.classList.add(newTheme);
+
+    if (oldTheme) {
+      app.classList.remove(oldTheme);
+    }
+
+    nextTick(() => {
+      const appColor = getComputedStyle(app).getPropertyValue('--app-background').trim();
+      document
+        .querySelectorAll('[data-meta="theme-color"]')
+        .forEach((el) => ((el as HTMLMetaElement).content = appColor));
+    });
+  },
+  { immediate: true }
 );
 
 watch(
   () => state.appearance.animations,
-  (enabled) => app.classList[enabled ? 'remove' : 'add']('reducedMotion')
+  (enabled) => app.classList[enabled ? 'remove' : 'add']('reducedMotion'),
+  { immediate: true }
 );
 
 watch(status, (v) => {

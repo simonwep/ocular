@@ -38,6 +38,8 @@ const inputId = uuid();
 .label {
   display: flex;
   flex-direction: column;
+  justify-items: flex-start;
+  flex-grow: 1;
   font-weight: var(--font-weight-l);
   font-size: var(--font-size-xs);
   user-select: none;
