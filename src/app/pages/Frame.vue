@@ -10,7 +10,7 @@
         v-for="button of buttons"
         :key="button.name"
         :tooltip="button.tooltip"
-        tooltip-position="right"
+        tooltipPosition="right"
         :class="$style.btn"
         :color="(currentRoute) => (currentRoute ? 'primary' : 'dimmed')"
         :icon="button.icon"

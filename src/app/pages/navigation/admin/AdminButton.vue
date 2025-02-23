@@ -2,7 +2,7 @@
   <ContextMenu
     :tooltip="t('navigation.admin.settings')"
     :position="media === 'mobile' ? 'top' : 'right-end'"
-    tooltip-position="right"
+    tooltipPosition="right"
     :class="classes"
   >
     <template #default="{ toggle }">

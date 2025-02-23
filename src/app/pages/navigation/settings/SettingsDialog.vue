@@ -2,21 +2,21 @@
   <Dialog :open="open" :title="t('navigation.settings.settings')" @close="emit('close')">
     <div :class="$style.settingsDialog">
       <Select
-        :model-value="state.locale"
+        :modelValue="state.locale"
         :label="t('navigation.settings.language')"
         :options="locales"
         @update:model-value="changeLocale($event as AvailableLocale)"
       />
 
       <Select
-        :model-value="state.currency"
+        :modelValue="state.currency"
         :label="t('navigation.settings.currency')"
         :options="currencies"
         @update:model-value="changeCurrency($event as AvailableCurrency)"
       />
 
       <Select
-        :model-value="settings.general.monthOffset"
+        :modelValue="settings.general.monthOffset"
         :label="t('navigation.settings.firstMonthOfYear')"
         :options="months"
         @update:model-value="setMonthOffset($event as number)"
@@ -24,14 +24,14 @@
 
       <CheckBox
         :label="t('navigation.settings.showAnimationsAndTransitions')"
-        :model-value="settings.appearance.animations"
+        :modelValue="settings.appearance.animations"
         @update:model-value="setAnimations"
       />
 
       <CheckBox
         :label="t('navigation.settings.carryOverNetSavings')"
-        :sub-label="t('navigation.settings.carryOverNetSavingsInfo')"
-        :model-value="settings.general.carryOver"
+        :subLabel="t('navigation.settings.carryOverNetSavingsInfo')"
+        :modelValue="settings.general.carryOver"
         @update:model-value="setCarryOver"
       />
     </div>

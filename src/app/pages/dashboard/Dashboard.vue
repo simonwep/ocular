@@ -7,7 +7,7 @@
           {{ t('page.dashboard.allTimeFromTo', { from: state.years[0].year, to: state.years.at(-1)?.year }) }}
         </span>
       </template>
-      <YearToggle v-else key-path="page.dashboard.budgetFor" />
+      <YearToggle v-else keyPath="page.dashboard.budgetFor" />
     </template>
     <template #header>
       <div :class="$style.viewButtons">

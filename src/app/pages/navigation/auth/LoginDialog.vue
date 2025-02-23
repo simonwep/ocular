@@ -1,6 +1,6 @@
 <template>
   <Dialog :open="open" :title="t('navigation.auth.welcomeBack')" @close="emit('close')">
-    <Form :submit-label="t('navigation.auth.signIn')" @submit="signIn">
+    <Form :submitLabel="t('navigation.auth.signIn')" @submit="signIn">
       <TextField v-model="username" required :label="t('navigation.auth.username')" type="text" name="username" />
       <TextField v-model="password" required :label="t('navigation.auth.password')" type="password" name="password" />
       <Alert v-if="state === 'errored'" :text="t('navigation.auth.loginFailed')" type="error" />

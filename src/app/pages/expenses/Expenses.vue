@@ -1,7 +1,7 @@
 <template>
   <BudgetPane type="expenses">
     <template #title>
-      <YearToggle key-path="page.expenses.expensesFor" />
+      <YearToggle keyPath="page.expenses.expensesFor" />
     </template>
   </BudgetPane>
 </template>

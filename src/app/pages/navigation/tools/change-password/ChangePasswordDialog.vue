@@ -1,6 +1,6 @@
 <template>
   <Dialog :title="t('navigation.tools.changePassword.change')" :open="open" @close="emit('close')">
-    <Form :submit-label="t('navigation.tools.changePassword.change')" @submit="submit">
+    <Form :submitLabel="t('navigation.tools.changePassword.change')" @submit="submit">
       <TextField
         v-model="currentPassword"
         required
@@ -9,12 +9,12 @@
       />
       <TextField
         v-model="newPassword"
-        :min-length="8"
-        :max-length="64"
+        :minLength="8"
+        :maxLength="64"
         required
         :label="t('navigation.tools.changePassword.new')"
         type="password"
-        show-password-strength
+        showPasswordStrength
       />
       <Alert v-if="state === 'invalid-password'" :text="t('navigation.tools.changePassword.invalid')" type="error" />
       <Alert v-if="state === 'errored'" :text="t('navigation.tools.changePassword.unknownError')" type="error" />

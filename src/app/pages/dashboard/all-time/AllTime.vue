@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.allTime">
     <div :class="$style.cards">
-      <div v-for="card in cards" :key="card.title" :class="$style.card">
+      <div v-for="card of cards" :key="card.title" :class="$style.card">
         <h2 :title="card.title" :class="$style.title">{{ card.title }}</h2>
         <div :class="$style.content">
           <component :is="card.icon" v-if="card.icon" :class="card.iconClass" />

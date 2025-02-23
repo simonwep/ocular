@@ -1,21 +1,21 @@
 <template>
   <Dialog :title="t('navigation.admin.createUser')" :open="open" @close="emit('close')">
-    <Form :submit-label="t('navigation.admin.createUser')" @submit="submit">
+    <Form :submitLabel="t('navigation.admin.createUser')" @submit="submit">
       <TextField
         v-model="newUser.name"
-        :min-length="3"
-        :max-length="32"
+        :minLength="3"
+        :maxLength="32"
         required
         :label="t('navigation.admin.username')"
       />
       <TextField
         v-model="newUser.password"
         required
-        :min-length="8"
-        :max-length="64"
+        :minLength="8"
+        :maxLength="64"
         :label="t('navigation.admin.password')"
         type="password"
-        show-password-strength
+        showPasswordStrength
       />
       <CheckBox v-model="newUser.admin" :label="t('navigation.admin.admin')" />
 

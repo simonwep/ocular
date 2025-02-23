@@ -1,7 +1,7 @@
 <template>
   <ContextMenu
     :tooltip="t('navigation.year.change')"
-    tooltip-position="right"
+    tooltipPosition="right"
     :position="media === 'mobile' ? 'top' : 'right-end'"
     :options="options"
     :highlight="state.activeYear"

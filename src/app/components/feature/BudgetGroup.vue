@@ -4,7 +4,7 @@
 
   <TextCell
     :class="[$style.top, $style.start]"
-    :model-value="group.name"
+    :modelValue="group.name"
     inline
     @update:model-value="setBudgetGroupName(group.id, $event)"
   />
@@ -34,7 +34,7 @@
     <Button color="dimmed" :icon="RiCloseCircleLine" textual @click="removeBudget(budget.id)" />
 
     <span :class="$style.header">
-      <TextCell :model-value="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
+      <TextCell :modelValue="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
     </span>
 
     <span
@@ -63,7 +63,7 @@
         ]"
         @action="performAction($event, budget.id, month, budget.values[month])"
       >
-        <CurrencyCell :model-value="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
+        <CurrencyCell :modelValue="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
       </CellMenu>
     </span>
 

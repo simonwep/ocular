@@ -7,14 +7,14 @@
       to="/income"
       :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
-      :sub-title="startingBalance ? n(startingBalance, { key: 'currency', currency: state.currency }) : undefined"
+      :subTitle="startingBalance ? n(startingBalance, { key: 'currency', currency: state.currency }) : undefined"
       @pointerenter="emit('hoveredPanel', 'income')"
       @pointerleave="emit('hoveredPanel')"
       @pointercancel="emit('hoveredPanel')"
     />
 
     <SummaryPanel
-      :sub-title="n(expensePercentage, 'percent')"
+      :subTitle="n(expensePercentage, 'percent')"
       to="/expenses"
       :tooltip="t('page.dashboard.jumpToExpenses', { year: state.activeYear })"
       :values="expenses"
@@ -27,7 +27,7 @@
     />
 
     <SummaryPanel
-      :sub-title="n(endingBalanceSum ? 1 - expensePercentage : 0, 'percent')"
+      :subTitle="n(endingBalanceSum ? 1 - expensePercentage : 0, 'percent')"
       :values="endingBalance"
       :value="endingBalanceSum"
       color="primary"
@@ -35,7 +35,7 @@
     />
 
     <SummaryPanel
-      :sub-title="n(remainingBalancePercentage, 'percent')"
+      :subTitle="n(remainingBalancePercentage, 'percent')"
       :alt="
         state.activeYear < time.year.value
           ? t('page.dashboard.yearInThePast')

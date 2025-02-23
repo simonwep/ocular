@@ -4,12 +4,12 @@
   </div>
   <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
     <ul :class="listClasses">
-      <slot v-if="$slots.options" name="options"></slot>
+      <slot v-if="$slots.options" name="options" />
       <template v-else-if="options">
         <ContextMenuButton
           v-for="option of options"
           :key="option.id"
-          :pad-icon="hasOptionWithIcon"
+          :padIcon="hasOptionWithIcon"
           :text="option.label ?? option.id"
           :icon="option.icon"
           :muted="option.muted"

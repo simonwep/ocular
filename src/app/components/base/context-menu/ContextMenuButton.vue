@@ -1,7 +1,7 @@
 <template>
   <li :class="$style.item">
     <button :class="classes" @click="onClick">
-      <component :is="icon" v-if="icon" :class="$style.icon"></component>
+      <component :is="icon" v-if="icon" :class="$style.icon" />
       <span>{{ text }}</span>
     </button>
   </li>

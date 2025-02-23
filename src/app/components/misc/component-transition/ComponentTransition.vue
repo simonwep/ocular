@@ -1,9 +1,9 @@
 <template>
   <Transition
-    :enter-active-class="$style.transitionTarget"
-    :enter-from-class="$style.transitionOrigin"
-    :leave-active-class="$style.transitionTarget"
-    :leave-to-class="$style.transitionOrigin"
+    :enterActiveClass="$style.transitionTarget"
+    :enterFromClass="$style.transitionOrigin"
+    :leaveActiveClass="$style.transitionTarget"
+    :leaveToClass="$style.transitionOrigin"
     mode="out-in"
   >
     <component :is="is" />

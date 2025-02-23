@@ -26,7 +26,7 @@ export const migrateApplicationState = createMigrator<DataStateV3, Versions>({
       to: 3,
       migrate: (from) => ({
         locale: initialLocale,
-        currency: 'GBP',
+        currency: 'EUR',
         years: from.years
       })
     })

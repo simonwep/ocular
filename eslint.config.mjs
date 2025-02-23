@@ -36,10 +36,30 @@ export default [
       'prefer-arrow-functions': preferArrowFunctions
     },
     rules: {
+      'no-console': 'error',
+      'vue/attribute-hyphenation': ['error', 'never'],
       'vue/multi-word-component-names': 'off',
       'vue/require-default-prop': 'off',
       'vue/no-v-html': 'off',
-      'no-console': 'error',
+      'vue/html-self-closing': [
+        'error',
+        {
+          html: {
+            void: 'always',
+            normal: 'always',
+            component: 'always'
+          },
+          svg: 'always',
+          math: 'always'
+        }
+      ],
+      'vue/no-useless-mustaches': [
+        'error',
+        {
+          ignoreIncludesComment: false,
+          ignoreStringEscape: false
+        }
+      ],
       'prettier/prettier': [
         'error',
         {
