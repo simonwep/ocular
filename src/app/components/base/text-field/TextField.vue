@@ -63,9 +63,7 @@ const input = ref<HTMLInputElement>();
 const error = ref('');
 const inputId = uuid();
 
-const calculateEntropy = (password?: string) => {
-  return password ? Math.log2(new Set(password).size) * password.length : 0;
-};
+const calculateEntropy = (password?: string) => (password ? Math.log2(new Set(password).size) * password.length : 0);
 
 const onValidationChange = () => {
   error.value = input.value?.validationMessage ?? '';

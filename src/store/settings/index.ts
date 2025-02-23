@@ -18,23 +18,23 @@ export const createSettingsStore = (storage?: Storage) => {
   return {
     state: readonly(state),
 
-    setTheme(theme: Theme): void {
+    setTheme: (theme: Theme): void => {
       state.appearance.theme = theme;
     },
 
-    setMode(mode: Mode): void {
+    setMode: (mode: Mode): void => {
       state.appearance.mode = mode;
     },
 
-    setAnimations(enable: boolean): void {
+    setAnimations: (enable: boolean): void => {
       state.appearance.animations = enable;
     },
 
-    setMonthOffset(offset: number): void {
+    setMonthOffset: (offset: number): void => {
       state.general.monthOffset = offset;
     },
 
-    setCarryOver(carryOver: boolean): void {
+    setCarryOver: (carryOver: boolean): void => {
       state.general.carryOver = carryOver;
     }
   };
@@ -42,6 +42,4 @@ export const createSettingsStore = (storage?: Storage) => {
 
 type Store = ReturnType<typeof createSettingsStore>;
 
-export const useSettingsStore = (): Store => {
-  return inject<Store>(SETTINGS_STORE_KEY) as Store;
-};
+export const useSettingsStore = (): Store => inject<Store>(SETTINGS_STORE_KEY) as Store;

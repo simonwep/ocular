@@ -59,9 +59,7 @@ const icon = computed(
     active.value ? (props.icon?.(store) ?? (store.type === 'before' ? RiSkipUpLine : RiSkipDownLine)) : RiDraggable
 );
 
-const label = computed(() => {
-  return store.target && store.target && store.source ? props.text?.(store) : undefined;
-});
+const label = computed(() => (store.target && store.target && store.source ? props.text?.(store) : undefined));
 
 const dragStart = (evt: DragEvent) => {
   if (evt.dataTransfer && element.value) {

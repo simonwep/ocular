@@ -95,9 +95,8 @@ const totals = computed(() => {
   return totals;
 });
 
-const buildDraggableIcon = (store: DraggableStore): Component | undefined => {
-  return store.group === 'budget-group' ? RiSkipDownLine : undefined;
-};
+const buildDraggableIcon = (store: DraggableStore): Component | undefined =>
+  store.group === 'budget-group' ? RiSkipDownLine : undefined;
 
 const buildDraggableText = (store: DraggableStore) => {
   const src = store.source ? getBudgetGroup(store.source) : undefined;

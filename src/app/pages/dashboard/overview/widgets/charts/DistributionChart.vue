@@ -24,17 +24,15 @@ const { state: settings } = useSettingsStore();
 const { state } = useDataStore();
 const { n, t } = useI18n();
 
-const totalIncome = computed(() => {
-  return settings.general.carryOver
+const totalIncome = computed(() =>
+  settings.general.carryOver
     ? sumOfBudgetGroups(state.income) + (state.overallBalance ?? 0)
-    : sumOfBudgetGroups(state.income);
-});
+    : sumOfBudgetGroups(state.income)
+);
 
 const totalExpenses = computed(() => sum(totals(state.expenses)));
 
-const isEmpty = computed(() => {
-  return !totalIncome.value || !totalExpenses.value;
-});
+const isEmpty = computed(() => !totalIncome.value || !totalExpenses.value);
 
 const data = computed((): SankeyChartConfig => {
   const format = (v: number) => n(v, 'currency');

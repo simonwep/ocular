@@ -1,11 +1,12 @@
 import js from '@eslint/js';
 import vueI18n from '@intlify/eslint-plugin-vue-i18n';
+import tsParser from '@typescript-eslint/parser';
 import vuePrettier from '@vue/eslint-config-prettier';
+import importX from 'eslint-plugin-import-x';
+import preferArrowFunctions from 'eslint-plugin-prefer-arrow-functions';
 import prettier from 'eslint-plugin-prettier/recommended';
 import vue from 'eslint-plugin-vue';
 import ts from 'typescript-eslint';
-import importX from 'eslint-plugin-import-x';
-import tsParser from '@typescript-eslint/parser';
 
 export default [
   prettier,
@@ -31,6 +32,9 @@ export default [
         localeDir: 'src/i18n/locales/*.json'
       }
     },
+    plugins: {
+      'prefer-arrow-functions': preferArrowFunctions
+    },
     rules: {
       'vue/multi-word-component-names': 'off',
       'vue/require-default-prop': 'off',
@@ -53,6 +57,16 @@ export default [
           alphabetize: {
             order: 'asc'
           }
+        }
+      ],
+      'prefer-arrow-functions/prefer-arrow-functions': [
+        'error',
+        {
+          allowNamedFunctions: false,
+          classPropertiesAllowed: false,
+          disallowPrototype: false,
+          returnStyle: 'implicit',
+          singleReturnOnly: false
         }
       ]
     }

@@ -19,7 +19,7 @@ const resolveConfig = (value: undefined | string | TooltipConfig): TooltipConfig
   typeof value === 'string' || !value ? { text: value } : value;
 
 export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig> = {
-  mounted(el, { modifiers, value }) {
+  mounted: (el, { modifiers, value }) => {
     const { text, position } = resolveConfig(value);
     const media = useMediaQuery(); // doesn't need to be in a scope
 
@@ -67,7 +67,7 @@ export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig
     el.addEventListener('pointerenter', show);
     poppers.set(el, { element, popper });
   },
-  updated(el, { modifiers, value }) {
+  updated: (el, { modifiers, value }) => {
     const { text, position } = resolveConfig(value);
     const tooltip = poppers.get(el);
 
@@ -78,7 +78,7 @@ export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig
       });
     }
   },
-  unmounted(el) {
+  unmounted: (el) => {
     const tooltip = poppers.get(el);
 
     if (tooltip) {
