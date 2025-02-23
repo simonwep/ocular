@@ -2,6 +2,7 @@
   <button
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
     :class="classes"
+    :data-testid="testId"
     :disabled="disabled"
     :type="type"
     @click="emit('click', $event)"
@@ -36,6 +37,7 @@ const props = withDefaults(
     textual?: boolean;
     rounded?: boolean;
     disabled?: boolean;
+    testId?: string;
   }>(),
   {
     color: 'primary',

@@ -7,7 +7,7 @@
         <template v-if="amount">
           <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
           <span> - </span>
-          <Currency :value="amount" />
+          <Currency :testId="`${testId}-amount`" :value="amount" />
         </template>
       </h1>
       <slot name="header" />
@@ -28,6 +28,7 @@ const props = defineProps<{
   class?: ClassNames;
   title?: string;
   amount?: number;
+  testId?: string;
 }>();
 
 const header = ref<HTMLDivElement>();

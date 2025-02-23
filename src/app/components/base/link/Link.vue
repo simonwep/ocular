@@ -10,7 +10,13 @@
     <component :is="icon" v-if="icon" :class="$style.icon" />
     <slot />
   </a>
-  <RouterLink v-else v-tooltip="{ text: tooltip, position: tooltipPosition }" :to="href" :class="classes">
+  <RouterLink
+    v-else
+    v-tooltip="{ text: tooltip, position: tooltipPosition }"
+    :data-testid="testId ? `${testId}-${name}` : undefined"
+    :to="href"
+    :class="classes"
+  >
     <component :is="icon" v-if="icon" :class="$style.icon" />
     <slot />
   </RouterLink>
@@ -34,6 +40,7 @@ const props = withDefaults(
     tooltipPosition?: Placement;
     name?: string;
     to?: string;
+    testId?: string;
   }>(),
   {
     custom: undefined

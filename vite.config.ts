@@ -1,10 +1,10 @@
 import { minifyHtmlPlugin } from './plugins/vite-plugin-minify-html/minifyHtmlPlugin.ts';
 import { minifyJsonPlugin } from './plugins/vite-plugin-minify-json/minifyJsonPlugin.ts';
 import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   envPrefix: ['OCULAR'],
@@ -16,6 +16,9 @@ export default defineConfig({
         rewrite: (path) => path.slice(4) // cut off `/api`
       }
     }
+  },
+  preview: {
+    port: 3000
   },
   define: {
     'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now()
@@ -101,5 +104,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,woff2,json}']
       }
     })
-  ]
+  ],
+  test: {
+    include: ['./src/**/*.spec.ts']
+  }
 });

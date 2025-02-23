@@ -11,6 +11,7 @@
         :key="button.name"
         :tooltip="button.tooltip"
         tooltipPosition="right"
+        testId="navigation"
         :class="$style.btn"
         :color="(currentRoute) => (currentRoute ? 'primary' : 'dimmed')"
         :icon="button.icon"

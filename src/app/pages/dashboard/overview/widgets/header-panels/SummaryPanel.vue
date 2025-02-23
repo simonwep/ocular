@@ -14,8 +14,8 @@
 
           <template v-else>
             <h2 :class="$style.head">{{ title }}</h2>
-            <Currency :class="$style.title" :value="value" />
-            <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
+            <Currency :class="$style.title" :testId="`${testId}-value`" :value="value" />
+            <span v-if="subTitle" :data-testid="`${testId}-sub`" :class="$style.subTitle">{{ subTitle }}</span>
           </template>
         </div>
 
@@ -44,6 +44,7 @@ const props = defineProps<{
   color: Color;
   values?: number[];
   value: number;
+  testId?: string;
 }>();
 
 const classes = computed(() => props.class);

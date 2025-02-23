@@ -5,6 +5,7 @@
       :value="incomeSum + startingBalance"
       color="success"
       to="/income"
+      testId="income"
       :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
       :subTitle="startingBalance ? n(startingBalance, { key: 'currency', currency: state.currency }) : undefined"
@@ -16,6 +17,7 @@
     <SummaryPanel
       :subTitle="n(expensePercentage, 'percent')"
       to="/expenses"
+      testId="expenses"
       :tooltip="t('page.dashboard.jumpToExpenses', { year: state.activeYear })"
       :values="expenses"
       :value="expenseSum"
@@ -31,6 +33,7 @@
       :values="endingBalance"
       :value="endingBalanceSum"
       color="primary"
+      testId="ending-balance"
       :title="t('page.dashboard.endingBalance')"
     />
 
@@ -47,6 +50,7 @@
       "
       :value="remainingBalance"
       color="secondary"
+      testId="remaining-balance"
       :title="t('page.dashboard.remainingBalance', { year: state.activeYear + 1 })"
     />
   </div>

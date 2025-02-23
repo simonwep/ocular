@@ -4,6 +4,7 @@
     :class="$style.currencyCell"
     :type="focused ? 'number' : 'text'"
     :value="value"
+    :data-testid="testId"
     @blur="focused = false"
     @focus="focus"
     @input="change"
@@ -22,6 +23,7 @@ const modelValue = defineModel<number>();
 const props = withDefaults(
   defineProps<{
     max?: number;
+    testId?: string;
   }>(),
   {
     max: Number.MAX_SAFE_INTEGER
