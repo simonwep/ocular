@@ -1,5 +1,5 @@
 <template>
-  <Pane :amount="amount" :title="title">
+  <Pane :testId="type" :amount="amount" :title="title">
     <template v-if="$slots.title" #title>
       <slot name="title" />
     </template>

@@ -2,9 +2,15 @@
   <div :class="$style.select">
     <label :for="fieldId" :class="$style.label">{{ label }}</label>
 
-    <ContextMenu tooltipPosition="bottom" :options="options" position="bottom-start" @select="modelValue = $event.id">
+    <ContextMenu
+      :testId="testId"
+      tooltipPosition="bottom"
+      :options="options"
+      position="bottom-start"
+      @select="modelValue = $event.id"
+    >
       <template #default="{ toggle }">
-        <button :id="fieldId" :class="$style.btn" type="button" @click="toggle">
+        <button :id="fieldId" :data-testid="testId" :class="$style.btn" type="button" @click="toggle">
           {{ currentValue }}
         </button>
       </template>
@@ -23,6 +29,7 @@ const modelValue = defineModel<ContextMenuOptionId>();
 const props = defineProps<{
   label: string;
   options?: ContextMenuOption[];
+  testId?: string;
 }>();
 
 const fieldId = uuid();

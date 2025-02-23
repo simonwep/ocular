@@ -3,6 +3,7 @@
     <div :class="$style.settingsDialog">
       <Select
         :modelValue="state.locale"
+        testId="change-locale"
         :label="t('navigation.settings.language')"
         :options="locales"
         @update:model-value="changeLocale($event as AvailableLocale)"
@@ -10,6 +11,7 @@
 
       <Select
         :modelValue="state.currency"
+        testId="change-currency"
         :label="t('navigation.settings.currency')"
         :options="currencies"
         @update:model-value="changeCurrency($event as AvailableCurrency)"
@@ -17,6 +19,7 @@
 
       <Select
         :modelValue="settings.general.monthOffset"
+        testId="change-month-offset"
         :label="t('navigation.settings.firstMonthOfYear')"
         :options="months"
         @update:model-value="setMonthOffset($event as number)"
@@ -32,6 +35,7 @@
         :label="t('navigation.settings.carryOverNetSavings')"
         :subLabel="t('navigation.settings.carryOverNetSavingsInfo')"
         :modelValue="settings.general.carryOver"
+        testId="carry-over-net-savings"
         @update:model-value="setCarryOver"
       />
     </div>

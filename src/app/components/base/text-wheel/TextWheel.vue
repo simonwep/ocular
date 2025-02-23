@@ -1,6 +1,6 @@
 <template>
   <span :class="$style.container">
-    <span :class="$style.placeholder">{{ value }}</span>
+    <span :data-testid="testId" :class="$style.placeholder">{{ value }}</span>
     <span :class="$style.textWheel">
       <span v-for="v of values" :key="v" :class="[$style.value, { [$style.transition]: mounted }]">{{ v }}</span>
     </span>
@@ -13,6 +13,7 @@ import { computed, onMounted, ref } from 'vue';
 const props = defineProps<{
   values: (string | number)[];
   value: string | number;
+  testId?: string;
 }>();
 
 const mounted = ref(false);

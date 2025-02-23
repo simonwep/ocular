@@ -1,9 +1,13 @@
 <template>
-  <span v-if="settingsState.appearance.mode === 'privacy'" :class="[$style.container, props.class]">
+  <span
+    v-if="settingsState.appearance.mode === 'privacy'"
+    :data-testid="testId"
+    :class="[$style.container, props.class]"
+  >
     {{ n(value ?? 0, { key: 'currency', currency: dataState.currency }) }}
     <span :class="$style.overlay" />
   </span>
-  <span v-else :class="props.class">
+  <span v-else :data-testid="testId" :class="props.class">
     {{ n(value ?? 0, { key: 'currency', currency: dataState.currency }) }}
   </span>
 </template>
@@ -18,6 +22,7 @@ const props = defineProps<{
   value?: number;
   locale?: string;
   class?: ClassNames;
+  testId?: string;
 }>();
 
 const { n } = useI18n();

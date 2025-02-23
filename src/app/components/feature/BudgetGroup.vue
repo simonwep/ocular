@@ -10,7 +10,7 @@
   />
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
-    <Currency :value="total" />
+    <Currency :value="total" :testId="`${testId}-month-${index}-total`" />
   </span>
 
   <span :class="$style.top">
@@ -63,12 +63,16 @@
         ]"
         @action="performAction($event, budget.id, month, budget.values[month])"
       >
-        <CurrencyCell :modelValue="budget.values[month]" @update:model-value="setBudget(budget.id, month, $event)" />
+        <CurrencyCell
+          :testId="`${testId}-budget-${index}-${month}`"
+          :modelValue="budget.values[month]"
+          @update:model-value="setBudget(budget.id, month, $event)"
+        />
       </CellMenu>
     </span>
 
-    <Currency :class="$style.meta" :value="sum(budget.values)" />
-    <Currency :class="$style.meta" :value="average(budget.values)" />
+    <Currency :testId="`${testId}-budget-${index}-total`" :class="$style.meta" :value="sum(budget.values)" />
+    <Currency :testId="`${testId}-budget-${index}-average`" :class="$style.meta" :value="average(budget.values)" />
   </template>
 
   <!-- Footer -->
@@ -98,6 +102,7 @@ import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
+  testId: string;
 }>();
 
 const {

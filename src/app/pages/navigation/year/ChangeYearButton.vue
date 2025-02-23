@@ -4,11 +4,12 @@
     tooltipPosition="right"
     :position="media === 'mobile' ? 'top' : 'right-end'"
     :options="options"
+    testId="change-year"
     :highlight="state.activeYear"
     @select="changeYear($event.id as number)"
   >
     <template #default="{ toggle }">
-      <Button :class="classes" :icon="RiCalendarLine" textual color="dimmed" @click="toggle" />
+      <Button testId="change-year" :class="classes" :icon="RiCalendarLine" textual color="dimmed" @click="toggle" />
     </template>
   </ContextMenu>
 </template>

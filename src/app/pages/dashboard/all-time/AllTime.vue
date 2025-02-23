@@ -5,8 +5,8 @@
         <h2 :title="card.title" :class="$style.title">{{ card.title }}</h2>
         <div :class="$style.content">
           <component :is="card.icon" v-if="card.icon" :class="card.iconClass" />
-          <span v-if="card.text" :class="$style.value">{{ card.text }}</span>
-          <Currency v-if="card.value" :value="card.value" :class="$style.value" />
+          <span v-if="card.text" :data-testid="card.testId" :class="$style.value">{{ card.text }}</span>
+          <Currency v-if="card.value" :testId="card.testId" :value="card.value" :class="$style.value" />
         </div>
       </div>
     </div>
@@ -33,6 +33,7 @@ interface Card {
   value?: number;
   icon?: Component;
   iconClass?: ClassNames;
+  testId?: string;
 }
 
 const { t, locale } = useI18n();
@@ -61,7 +62,8 @@ const cards = computed((): Card[] => {
       title: t('page.dashboard.yoyIncomeGrowth'),
       text: lastYear ? percent.format((currentYearIncome - lastYearIncome) / lastYearIncome) : '—',
       icon: lastYear ? (currentYearIncome > lastYearIncome ? RiArrowUpDoubleLine : RiArrowDownDoubleLine) : undefined,
-      iconClass: currentYearIncome > lastYearIncome ? styles.iconSuccess : styles.iconDanger
+      iconClass: currentYearIncome > lastYearIncome ? styles.iconSuccess : styles.iconDanger,
+      testId: 'yoy-income-growth'
     },
     {
       title: t('page.dashboard.yoyExpenseGrowth'),
@@ -71,22 +73,26 @@ const cards = computed((): Card[] => {
           ? RiArrowUpDoubleLine
           : RiArrowDownDoubleLine
         : undefined,
-      iconClass: lastYearExpenses > currentYearExpenses ? styles.iconDanger : styles.iconSuccess
+      iconClass: lastYearExpenses > currentYearExpenses ? styles.iconDanger : styles.iconSuccess,
+      testId: 'yoy-expense-growth'
     },
     {
       title: t('page.dashboard.allTimeIncome'),
       value: allTimeIncome,
-      text: allTimeIncome ? undefined : '—'
+      text: allTimeIncome ? undefined : '—',
+      testId: 'all-time-income'
     },
     {
       title: t('page.dashboard.allTimeExpenses'),
       value: allTimeExpenses,
-      text: allTimeExpenses ? undefined : '—'
+      text: allTimeExpenses ? undefined : '—',
+      testId: 'all-time-expenses'
     },
     {
       title: t('page.dashboard.allTimeSavings'),
       value: allTimeIncome - allTimeExpenses,
-      text: allTimeIncome && allTimeExpenses ? undefined : '—'
+      text: allTimeIncome && allTimeExpenses ? undefined : '—',
+      testId: 'all-time-savings'
     }
   ];
 });

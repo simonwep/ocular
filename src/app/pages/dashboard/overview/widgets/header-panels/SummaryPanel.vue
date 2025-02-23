@@ -14,8 +14,11 @@
 
           <template v-else>
             <h2 :class="$style.head">{{ title }}</h2>
-            <Currency :class="$style.title" :value="value" />
-            <span v-if="subTitle" :class="$style.subTitle">{{ subTitle }}</span>
+            <Currency :class="$style.title" :testId="`${testId}-value`" :value="value" />
+            <span v-if="subTitle || $slots.subTitle" :data-testid="`${testId}-sub`" :class="$style.subTitle">
+              <span>{{ subTitle }}</span>
+              <slot name="subTitle" />
+            </span>
           </template>
         </div>
 
@@ -44,6 +47,7 @@ const props = defineProps<{
   color: Color;
   values?: number[];
   value: number;
+  testId?: string;
 }>();
 
 const classes = computed(() => props.class);
@@ -104,6 +108,9 @@ const element = computed(() => (props.to ? Link : 'div'));
   }
 
   .subTitle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-xxl);
     color: v-bind('theme.light.dimmed');

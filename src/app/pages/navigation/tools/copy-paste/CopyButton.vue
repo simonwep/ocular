@@ -5,6 +5,7 @@
         year: state.activeYear
       })
     "
+    testId="copy-data"
     :icon="RiClipboardLine"
     @click="clipboard.copy"
   />

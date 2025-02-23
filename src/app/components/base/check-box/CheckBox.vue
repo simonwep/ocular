@@ -6,7 +6,7 @@
     </label>
 
     <div :class="$style.box">
-      <input :id="inputId" v-model="modelValue" :class="$style.input" type="checkbox" />
+      <input :id="inputId" v-model="modelValue" :data-testid="testId" :class="$style.input" type="checkbox" />
       <RiCheckLine size="16" :class="$style.icon" />
     </div>
   </div>
@@ -21,6 +21,7 @@ const modelValue = defineModel<boolean>();
 defineProps<{
   label: string;
   subLabel?: string;
+  testId?: string;
 }>();
 
 const inputId = uuid();

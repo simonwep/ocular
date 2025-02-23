@@ -5,4 +5,7 @@ dist
 .gitignore
 .eslint.config.mjs
 .data
+tests
+test-results
 *.md
+*.spec.ts

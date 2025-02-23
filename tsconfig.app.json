@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "test/**/*.ts"],
   "compilerOptions": {
     "target": "ES2022",
     "useDefineForClassFields": true,

@@ -9,6 +9,7 @@
         <ContextMenuButton
           v-for="option of options"
           :key="option.id"
+          :testId="`${testId}-${option.id}`"
           :padIcon="hasOptionWithIcon"
           :text="option.label ?? option.id"
           :icon="option.icon"
@@ -46,6 +47,7 @@ const props = withDefaults(
     position?: Placement;
     options?: ContextMenuOption[];
     highlight?: ContextMenuOptionId;
+    testId?: string;
   }>(),
   {
     position: 'right-end'

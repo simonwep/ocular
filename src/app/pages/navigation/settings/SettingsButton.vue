@@ -4,6 +4,7 @@
     :class="classes"
     textual
     color="dimmed"
+    testId="settings"
     :icon="RiSettings4Line"
     @click="showSettingsDialog = true"
   />

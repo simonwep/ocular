@@ -15,6 +15,7 @@
           textual
           size="l"
           :icon="RiDashboardLine"
+          testId="view-overview"
           :tooltip="t('page.dashboard.title')"
           :color="view === Overview ? 'primary' : 'dimmed'"
           @click="view = Overview"
@@ -22,6 +23,7 @@
         <Button
           textual
           size="l"
+          testId="view-summary"
           :icon="RiTableLine"
           :tooltip="t('page.dashboard.tables')"
           :color="view === Summary ? 'primary' : 'dimmed'"
@@ -30,6 +32,7 @@
         <span :class="$style.divider" />
         <Button
           textual
+          testId="view-all-time"
           size="l"
           :icon="RiEarthLine"
           :tooltip="t('page.dashboard.allTime')"

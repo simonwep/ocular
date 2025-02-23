@@ -1,5 +1,10 @@
 <template>
-  <ContextMenuButton :text="t('navigation.tools.demo.loadDemoData')" :icon="RiMagicLine" @click="loadDemoData" />
+  <ContextMenuButton
+    testId="load-demo-data"
+    :text="t('navigation.tools.demo.loadDemoData')"
+    :icon="RiMagicLine"
+    @click="loadDemoData"
+  />
 </template>
 
 <script lang="ts" setup>

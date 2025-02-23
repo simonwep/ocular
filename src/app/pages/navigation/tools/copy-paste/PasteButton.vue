@@ -3,6 +3,7 @@
     v-if="clipboard.data.value"
     :text="t('navigation.tools.copyPaste.paste', { from, to })"
     :icon="RiClipboardLine"
+    testId="paste-data"
     @click="paste"
   />
 </template>

@@ -19,7 +19,9 @@
     "lint:fix": "pnpm lint --fix",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ci": "pnpm lint:fix && pnpm build && pnpm test"
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:ci": "pnpm lint:fix && pnpm build && pnpm test && pnpm test:e2e"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@eslint/js": "9.20.0",
     "@intlify/eslint-plugin-vue-i18n": "^3.2.0",
+    "@playwright/test": "1.50.1",
     "@types/ackee-tracker": "5.0.4",
     "@types/html-minifier-terser": "7.0.2",
     "@types/node": "22.13.1",
@@ -42,6 +45,7 @@
     "@vitejs/plugin-vue": "5.2.1",
     "@vue/eslint-config-prettier": "10.2.0",
     "@vue/eslint-config-typescript": "14.3.0",
+    "dotenv": "16.4.7",
     "eslint": "9.20.0",
     "eslint-config-prettier": "10.0.1",
     "eslint-import-resolver-typescript": "3.7.0",

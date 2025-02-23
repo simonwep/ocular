@@ -4,9 +4,9 @@
     <TextWheel :values="allYears" :value="state.activeYear" />
     <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
   </span>
-  <i18n-t :class="$style.activeYear" tag="span" :keypath="keyPath" scope="global">
+  <i18n-t data-testid="current-year-text" :class="$style.activeYear" tag="span" :keypath="keyPath" scope="global">
     <template #year>
-      <TextWheel :values="allYears" :value="state.activeYear" />
+      <TextWheel testId="current-year" :values="allYears" :value="state.activeYear" />
     </template>
   </i18n-t>
 </template>

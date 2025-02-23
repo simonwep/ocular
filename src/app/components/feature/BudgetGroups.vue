@@ -9,6 +9,7 @@
     <span
       v-for="(month, index) of months"
       :key="month"
+      :data-testid="`month-${index}-name`"
       :class="[
         $style.month,
         {
@@ -27,12 +28,18 @@
 
     <!-- Sums -->
     <span :class="$style.sum">{{ t('shared.totals') }}</span>
-    <Currency v-for="(sum, index) of totals" :key="index" :value="sum" :class="$style.sum" />
+    <Currency
+      v-for="(sum, index) of totals"
+      :key="index"
+      :testId="`month-${index}-total`"
+      :value="sum"
+      :class="$style.sum"
+    />
     <span />
     <span />
 
     <!-- Body -->
-    <template v-for="group of groups" :key="group.id">
+    <template v-for="(group, index) of groups" :key="group.id">
       <Draggable
         :id="group.id"
         :icon="buildDraggableIcon"
@@ -40,7 +47,7 @@
         name="budget-groups"
         @drop="reorder"
       />
-      <BudgetGroup :group="group" />
+      <BudgetGroup :group="group" :testId="`group-${index}`" />
     </template>
 
     <!-- Footer -->

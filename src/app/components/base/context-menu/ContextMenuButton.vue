@@ -1,6 +1,6 @@
 <template>
   <li :class="$style.item">
-    <button :class="classes" @click="onClick">
+    <button :data-testid="testId" type="button" :class="classes" @click="onClick">
       <component :is="icon" v-if="icon" :class="$style.icon" />
       <span>{{ text }}</span>
     </button>
@@ -25,6 +25,7 @@ const props = withDefaults(
     muted?: boolean;
     padIcon?: boolean;
     highlight?: boolean;
+    testId?: string;
   }>(),
   {
     highlight: false,
