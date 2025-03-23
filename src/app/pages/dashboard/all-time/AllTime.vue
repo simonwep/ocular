@@ -110,6 +110,8 @@ const cards = computed((): Card[] => {
 }
 
 .chart {
+  display: grid;
+  place-items: center;
   flex: 1;
 }
 

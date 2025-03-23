@@ -1,17 +1,25 @@
 <template>
-  <StackedLineChart :data="data" />
+  <ChartPlaceholder v-if="isEmpty" />
+  <StackedLineChart v-else :data="data" />
 </template>
 
 <script lang="ts" setup>
 import { StackedLineChartConfig } from './stacked-line-chart/StackedLineChart.types';
 import StackedLineChart from './stacked-line-chart/StackedLineChart.vue';
+import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
+import { sum } from '@utils';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t, locale } = useI18n();
 const { state } = useDataStore();
+
+const allIncomes = computed(() => state.years.flatMap((v) => totals(v.income)));
+const allExpenses = computed(() => state.years.flatMap((v) => totals(v.expenses)));
+
+const isEmpty = computed(() => !sum(allIncomes.value) && !sum(allExpenses.value));
 
 const data = computed((): StackedLineChartConfig => {
   const totalMonths = state.years.length * 12;
@@ -32,13 +40,13 @@ const data = computed((): StackedLineChartConfig => {
       {
         name: t('page.dashboard.income'),
         trendName: t('page.dashboard.incomeTrend'),
-        data: state.years.flatMap((v) => totals(v.income)),
+        data: allIncomes.value,
         color: 'var(--c-success-light-dimmed)'
       },
       {
         name: t('page.dashboard.expenses'),
         trendName: t('page.dashboard.expensesTrend'),
-        data: state.years.flatMap((v) => totals(v.expenses)),
+        data: allExpenses.value,
         color: 'var(--c-danger-light-dimmed)'
       }
     ]
