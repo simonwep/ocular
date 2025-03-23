@@ -1,0 +1,148 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "Outils",
+      "changePassword": {
+        "change": "Changer le mot de passe",
+        "current": "Mot de passe actuel",
+        "new": "Nouveau mot de passe",
+        "invalid": "Mot de passe actuel invalide.",
+        "unknownError": "Quelque chose s'est mal passé, veuillez réessayer plus tard."
+      },
+      "copyPaste": {
+        "copy": "Copier les données de {year}",
+        "paste": "Coller les données de {from} dans {to}",
+        "confirm": "Êtes-vous sûr de vouloir copier les données de {from} dans {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Charger les données de démonstration"
+      },
+      "deleteYear": {
+        "delete": "Supprimer {year}",
+        "confirm": "Êtes-vous sûr de vouloir supprimer {year}?"
+      },
+      "export": {
+        "export": "Exporter en fichier json"
+      },
+      "import": {
+        "import": "Importer depuis un fichier json",
+        "what": {
+          "google": "Fichier budgétaire annuel Google-Sheets",
+          "ocular": "Un fichier précédemment exporté",
+          "title": "Que souhaitez-vous importer?"
+        },
+        "ocular": {
+          "pickFile": "Sélectionnez votre fichier .json à importer",
+          "import": "Importer les données ocular"
+        },
+        "google": {
+          "import": "Importer les données google",
+          "pickFile": "Sélectionnez votre fichier .csv à importer",
+          "expenses": "Expenses.csv",
+          "income": "Income.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Passer en mode public",
+        "enable": "Passer en mode privé"
+      }
+    },
+    "info": {
+      "about": "À propos d'Ocular",
+      "github": "Découvrez ce projet sur {link}, envisagez un {donation} pour le maintenir en vie!",
+      "madeWithLove": "Créé avec ❤️ par Simon",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "don"
+    },
+    "theme": {
+      "change": "Changer le thème de couleur"
+    },
+    "year": {
+      "change": "Passer à une autre année"
+    },
+    "auth": {
+      "welcomeBack": "Content de vous revoir!",
+      "signIn": "Se connecter",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "loginFailed": "Échec de la connexion, nom d'utilisateur et/ou mot de passe invalide."
+    },
+    "admin": {
+      "settings": "Paramètres administrateur",
+      "createUser": "Créer un utilisateur",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "admin": "Administrateur",
+      "conflict": "Un utilisateur avec ce nom existe déjà.",
+      "error": "Quelque chose s'est mal passé, veuillez réessayer plus tard.",
+      "deleteUserConfirmation": "Êtes-vous sûr de vouloir supprimer cet utilisateur?",
+      "manageUsers": "Gérer les utilisateurs",
+      "noUsersFound": "Aucun utilisateur trouvé..."
+    },
+    "settings": {
+      "settings": "Paramètres",
+      "language": "Langue",
+      "currency": "Devise",
+      "firstMonthOfYear": "Premier mois de l'année",
+      "carryOverNetSavings": "Reporter les économies nettes",
+      "carryOverNetSavingsInfo": "Si activé, les économies nettes de l'année précédente seront reportées à l'année suivante.",
+      "showAnimationsAndTransitions": "Afficher les animations et transitions"
+    },
+    "status": {
+      "synchronizationFailedDueToNetworkError": "La synchronisation a échoué en raison d'une erreur réseau!",
+      "retryingPleaseWait": "Nouvelle tentative, veuillez patienter...",
+      "retrySynchronization": "Réessayer la synchronisation"
+    }
+  },
+  "shared": {
+    "addGroup": "Ajouter un groupe",
+    "append": "Déplacer “{from}” après “{to}”",
+    "average": "Moyenne",
+    "move": "Déplacer “{from}”",
+    "moveInto": "Déplacer “{from}” dans “{to}”",
+    "prepend": "Déplacer “{from}” avant “{to}”",
+    "fillRow": "Remplir la ligne",
+    "fillRowToRight": "Remplir vers la droite",
+    "total": "Total",
+    "totals": "Totaux",
+    "placeholder": "Commencez par remplir les onglets revenus / dépenses! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Revenu",
+      "incomeFor": "Revenu pour {year}"
+    },
+    "expenses": {
+      "title": "Dépenses",
+      "expensesFor": "Dépenses pour {year}"
+    },
+    "dashboard": {
+      "title": "Tableau de bord",
+      "tables": "Tableaux",
+      "income": "Revenu",
+      "incomeTrend": "Tendance des revenus",
+      "allTime": "Aperçu de tous les temps",
+      "allTimeFromTo": "Tous les temps de {from} à {to}",
+      "expenses": "Dépenses",
+      "expensesTrend": "Tendance des dépenses",
+      "endingBalance": "Solde final",
+      "budgetFor": "Budget annuel pour {year}",
+      "remainingBalance": "Solde restant jusqu'à {year}",
+      "netSavings": "Économies nettes",
+      "yearInThePast": "L'année est dans le passé",
+      "yearInTheFuture": "L'année est dans le futur",
+      "yearEnding": "Cette année touche à sa fin...",
+      "yoyIncomeGrowth": "Croissance des revenus d'une année sur l'autre",
+      "yoyExpenseGrowth": "Croissance des dépenses d'une année sur l'autre",
+      "allTimeIncome": "Revenu total",
+      "allTimeExpenses": "Dépenses totales",
+      "allTimeSavings": "Économies totales",
+      "downloadAsPNG": "Télécharger en PNG",
+      "downloadAsSVG": "Télécharger en SVG",
+      "jumpToIncome": "Aller au revenu pour {year}",
+      "jumpToExpenses": "Aller aux dépenses pour {year}",
+      "lastYear": "L'année dernière",
+      "surplus": "Excédent"
+    }
+  }
+}
