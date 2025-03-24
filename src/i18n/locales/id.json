@@ -1,0 +1,148 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "Alat",
+      "changePassword": {
+        "change": "Ubah kata sandi",
+        "current": "Kata sandi saat ini",
+        "new": "Kata sandi baru",
+        "invalid": "kata sandi baru tidak valid.",
+        "unknownError": "Terjadi kesalahan. Mohon coba lagi nanti."
+      },
+      "copyPaste": {
+        "copy": "Salin data dari tahun {year}",
+        "paste": "Tempel data dari {from} ke {to}",
+        "confirm": "Apakah yakin untuk menyalin data dari {from} ke {to}?"
+      },
+      "demo": {
+        "loadDemoData": "Muat data demo"
+      },
+      "deleteYear": {
+        "delete": "Hapus {year}",
+        "confirm": "Apakah yakin menghapus {year}?"
+      },
+      "export": {
+        "export": "Ekspor sebagai berkas json"
+      },
+      "import": {
+        "import": "Impor dari berkas json",
+        "what": {
+          "google": "Google-Sheets berkas anggaran tahunan",
+          "ocular": "Berkas yang di ekspor sebelumnya",
+          "title": "Apa yang ingin anda impor?"
+        },
+        "ocular": {
+          "pickFile": "Pilih berkas .json untuk di impor",
+          "import": "Impor data ocular"
+        },
+        "google": {
+          "import": "Impor data google",
+          "pickFile": "Pilih berkas .csv untuk di impor",
+          "expenses": "Pengeluaran.csv",
+          "income": "Pemasukan.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "Beralih ke mode publik",
+        "enable": "Beralih ke mode privat"
+      }
+    },
+    "info": {
+      "about": "Tentang Ocular",
+      "github": "Cek proyek ini di {link}, pertimbangkan donasi {donation} untuk mendukung!",
+      "madeWithLove": "Dibuat dengan ❤️ oleh Simon",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "donasi"
+    },
+    "theme": {
+      "change": "Ubah warna tema"
+    },
+    "year": {
+      "change": "Beralih ke tahun lain"
+    },
+    "auth": {
+      "welcomeBack": "Selamat datang kembalik!",
+      "signIn": "Masuk",
+      "username": "Nama pengguna",
+      "password": "Kata sandi",
+      "loginFailed": "Gagal masuk, nama pengguna dan/atau kata sandi tidak valid"
+    },
+    "admin": {
+      "settings": "Pengaturan admin",
+      "createUser": "Buat pengguna baru",
+      "username": "Nama pengguna",
+      "password": "Kata sandi",
+      "admin": "Admin",
+      "conflict": "Pengguna dengan nama tersebut sudah ada.",
+      "error": "Terjadi kesalahan. Mohon coba lagi nanti.",
+      "deleteUserConfirmation": "Apakah yakin menghapus pengguna ini?",
+      "manageUsers": "Kelola pengguna",
+      "noUsersFound": "Tidak ada pengguna ditemukan..."
+    },
+    "settings": {
+      "settings": "Pengaturan",
+      "language": "Bahasa",
+      "currency": "Mata uang",
+      "firstMonthOfYear": "Bulan pertama dalam tahun",
+      "carryOverNetSavings": "Pertahankan saldo tabungan bersih",
+      "carryOverNetSavingsInfo": "Jika diaktifkan, saldo tabungan bersih dari tahun sebelumnya akan dibawa ke tahun berikutnya",
+      "showAnimationsAndTransitions": "Tampilkan animasi dan transisi"
+    },
+    "status": {
+      "synchronizationFailedDueToNetworkError": "Sinkronisasi gagal karena masalah jaringan!",
+      "retryingPleaseWait": "Mencoba kembali, mohon tunggu...",
+      "retrySynchronization": "Coba kembali sinkronisasi"
+    }
+  },
+  "shared": {
+    "addGroup": "Tambah grup",
+    "append": "Pindahkan “{from}” setelah “{to}”",
+    "average": "Rata-rata",
+    "move": "Pindahkan “{from}”",
+    "moveInto": "Pindahkan “{from}” ke “{to}”",
+    "prepend": "Pindahkan “{from}” sebelum “{to}”",
+    "fillRow": "Isi seluruh baris",
+    "fillRowToRight": "Isi baris kanan",
+    "total": "Total",
+    "totals": "Total",
+    "placeholder": "Mulailah dengan mengisi tab pemasukan/pengeluaran! :)"
+  },
+  "page": {
+    "income": {
+      "title": "Pemasukan",
+      "incomeFor": "Pemasukan tahun {year}"
+    },
+    "expenses": {
+      "title": "Pengeluaran",
+      "expensesFor": "Pengeluaran tahun {year}"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "tables": "Tabel",
+      "income": "Pemasukan",
+      "incomeTrend": "Tren pemasukan",
+      "allTime": "Tinjauan keseluruhan",
+      "allTimeFromTo": "Tinjauan dari {from} sampai {to}",
+      "expenses": "Pemasukan",
+      "expensesTrend": "Tren pemasukan",
+      "endingBalance": "Saldo akhir",
+      "budgetFor": "Anggaran tahunan {year}",
+      "remainingBalance": "Sisa saldo hingga {year}",
+      "netSavings": "Tabungan bersih",
+      "yearInThePast": "Tahun sudah berlalu",
+      "yearInTheFuture": "Tahun mendatang",
+      "yearEnding": "Tahun ini akan segera berakhir...",
+      "yoyIncomeGrowth": "Pertumbuhan pemasukan tahunan",
+      "yoyExpenseGrowth": "Pertumbuhan pengeluaran tahunan",
+      "allTimeIncome": "Pemasukan keseluruhan",
+      "allTimeExpenses": "Pengeluaran keseluruhan",
+      "allTimeSavings": "Tabungan keseluruhan",
+      "downloadAsPNG": "Unduh sebagai PNG",
+      "downloadAsSVG": "Unduh sebagai SVG",
+      "jumpToIncome": "Loncat ke pemasukan untuk {year}",
+      "jumpToExpenses": "Loncat ke pengeluaran untuk {year}",
+      "lastYear": "Tahun lalu",
+      "surplus": "Surplus"
+    }
+  }
+}
