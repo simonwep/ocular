@@ -142,7 +142,8 @@
       "jumpToIncome": "Ugrás a {year} évi bevételekhez",
       "jumpToExpenses": "Ugrás a {year} évi kiadásokhoz",
       "lastYear": "Múlt év",
-      "surplus": "Többlet"
+      "surplus": "Többlet",
+      "deficit": "Hiány"
     }
   }
 }

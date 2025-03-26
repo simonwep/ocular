@@ -49,9 +49,10 @@
     },
     "info": {
       "about": "О проекте Ocular",
-      "github": "Проект на GitHub!",
+      "github": "Проект на GitHub, рассмотрите возможность пожертвования, чтобы поддержать его!",
       "madeWithLove": "Сделано с ❤️ Симон",
-      "meta": "{version} / {date} / {sha}"
+      "meta": "{version} / {date} / {sha}",
+      "donation": "пожертвование"
     },
     "theme": {
       "change": "Изменить цветовую тему"
@@ -81,7 +82,11 @@
     "settings": {
       "settings": "Настройки",
       "language": "Язык",
-      "currency": "Валюта"
+      "currency": "Валюта",
+      "firstMonthOfYear": "Первый месяц года",
+      "carryOverNetSavings": "Перенос чистых сбережений",
+      "carryOverNetSavingsInfo": "Если включено, чистые сбережения с предыдущего года будут перенесены на следующий год.",
+      "showAnimationsAndTransitions": "Показывать анимации и переходы"
     },
     "status": {
       "synchronizationFailedDueToNetworkError": "Синхронизация не удалась из-за сетевой ошибки.",
@@ -135,7 +140,10 @@
       "downloadAsPNG": "Скачать как PNG",
       "downloadAsSVG": "Скачать как SVG",
       "jumpToIncome": "Перейти к доходам за {year}",
-      "jumpToExpenses": "Перейти к расходам за {year}"
+      "jumpToExpenses": "Перейти к расходам за {year}",
+      "lastYear": "Прошлый год",
+      "surplus": "Профицит",
+      "deficit": "Дефицит"
     }
   }
 }

@@ -142,7 +142,8 @@
       "jumpToIncome": "Loncat ke pemasukan untuk {year}",
       "jumpToExpenses": "Loncat ke pengeluaran untuk {year}",
       "lastYear": "Tahun lalu",
-      "surplus": "Surplus"
+      "surplus": "Surplus",
+      "deficit": "Defisit"
     }
   }
 }

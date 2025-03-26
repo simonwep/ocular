@@ -142,7 +142,8 @@
       "jumpToIncome": "Ir a ingresos de {year}",
       "jumpToExpenses": "Ir a gastos de {year}",
       "lastYear": "Año pasado",
-      "surplus": "Superávit"
+      "surplus": "Superávit",
+      "deficit": "Déficit"
     }
   }
 }

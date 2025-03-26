@@ -36,6 +36,8 @@ const isEmpty = computed(() => !totalIncome.value || !totalExpenses.value);
 
 const data = computed((): SankeyChartConfig => {
   const format = (v: number) => n(v, 'currency');
+
+  const endingBalance = state.overallBalance ?? 0;
   const labels: SankeyChartLabel[] = [];
   const links: SankeyChartLink[] = [];
 
@@ -49,8 +51,7 @@ const data = computed((): SankeyChartConfig => {
 
   labels.push(income);
 
-  if (settings.general.carryOver && state.overallBalance) {
-    const endingBalance = state.overallBalance;
+  if (settings.general.carryOver && endingBalance > 0) {
     const carryOverSource = uuid();
     const carryOverTarget = uuid();
 
@@ -168,6 +169,40 @@ const data = computed((): SankeyChartConfig => {
         });
       }
     }
+  }
+
+  if (settings.general.carryOver && endingBalance < 0) {
+    const deficitSource = uuid();
+    const deficitTarget = uuid();
+
+    labels.push({
+      id: deficitSource,
+      name: `${t('page.dashboard.lastYear')} (${format(endingBalance)})`,
+      color: color(60 + 60 * (-endingBalance / totalIncome.value)),
+      muted: props.highlight === 'income'
+    });
+
+    labels.push({
+      id: deficitTarget,
+      name: `${t('page.dashboard.deficit')} (${format(endingBalance)})`,
+      color: color(60 + 60 * (-endingBalance / totalIncome.value)),
+      muted: props.highlight === 'income',
+      align: 'left'
+    });
+
+    links.push({
+      target: deficitSource,
+      source: income.id,
+      value: -endingBalance,
+      muted: props.highlight === 'income'
+    });
+
+    links.push({
+      target: deficitTarget,
+      source: deficitSource,
+      value: -endingBalance,
+      muted: props.highlight === 'income'
+    });
   }
 
   return { labels, links };

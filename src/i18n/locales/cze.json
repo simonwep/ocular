@@ -142,7 +142,8 @@
       "jumpToIncome": "Přejít na příjmy za {year}",
       "jumpToExpenses": "Přejít na výdaje za {year}",
       "lastYear": "Minulý rok",
-      "surplus": "Přebytek"
+      "surplus": "Přebytek",
+      "deficit": "Deficit"
     }
   }
 }

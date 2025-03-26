@@ -142,7 +142,8 @@
       "jumpToIncome": "Springe zu den Einnahmen für {year}",
       "jumpToExpenses": "Springe zu den Ausgaben für {year}",
       "lastYear": "Letztes Jahr",
-      "surplus": "Überschuss"
+      "surplus": "Überschuss",
+      "deficit": "Defizit"
     }
   }
 }

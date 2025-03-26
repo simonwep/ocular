@@ -142,7 +142,8 @@
       "jumpToIncome": "Zobacz dochody za {year}",
       "jumpToExpenses": "Zobacz wydatki za {year}",
       "lastYear": "Ostatni rok",
-      "surplus": "Nadwyżka"
+      "surplus": "Nadwyżka",
+      "deficit": "Deficyt"
     }
   }
 }

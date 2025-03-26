@@ -142,7 +142,8 @@
       "jumpToIncome": "Vai al reddito per {year}",
       "jumpToExpenses": "Vai alle spese per {year}",
       "lastYear": "Anno scorso",
-      "surplus": "Eccedenza"
+      "surplus": "Eccedenza",
+      "deficit": "Deficit"
     }
   }
 }

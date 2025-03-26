@@ -1,51 +1,51 @@
 {
   "navigation": {
     "tools": {
+      "tools": "Araçlar",
       "changePassword": {
         "change": "Parolayı değiştir",
         "current": "Mevcut parola",
-        "invalid": "Mevcut parola geçersiz.",
         "new": "Yeni parola",
+        "invalid": "Mevcut parola geçersiz.",
         "unknownError": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin."
       },
       "copyPaste": {
-        "confirm": "Verileri {from} konumundan {to} konumuna kopyalamak istediğinizden emin misiniz?",
         "copy": "{year} konumundan veri kopyala",
-        "paste": "{from} kaynağından verileri {to} öğesine yapıştırın"
-      },
-      "deleteYear": {
-        "confirm": "{year} yılını kaldırmak istediğinizden emin misiniz?",
-        "delete": "{year}'ı kaldır"
+        "paste": "{from} kaynağından verileri {to} öğesine yapıştırın",
+        "confirm": "Verileri {from} konumundan {to} konumuna kopyalamak istediğinizden emin misiniz?"
       },
       "demo": {
         "loadDemoData": "Demo verileri yükle"
+      },
+      "deleteYear": {
+        "delete": "{year}'ı kaldır",
+        "confirm": "{year} yılını kaldırmak istediğinizden emin misiniz?"
       },
       "export": {
         "export": "Json dosyası olarak dışa aktar"
       },
       "import": {
-        "google": {
-          "expenses": "Expenses.csv",
-          "import": "Google verisini içe aktar",
-          "income": "Income.csv",
-          "pickFile": "İçe aktarmak için .csv dosyanızı seçin"
-        },
         "import": "Json dosyasından içe aktar",
-        "ocular": {
-          "import": "Ocular verisini içe aktar",
-          "pickFile": "İçe aktarmak için .json dosyanızı seçin"
-        },
         "what": {
           "google": "Google E-Tablolar yıllık bütçe dosyası",
           "ocular": "Daha önce dışa aktarılmış bir dosya",
           "title": "Neyi içe aktarmak istersiniz?"
+        },
+        "ocular": {
+          "pickFile": "İçe aktarmak için .json dosyanızı seçin",
+          "import": "Ocular verisini içe aktar"
+        },
+        "google": {
+          "import": "Google verisini içe aktar",
+          "pickFile": "İçe aktarmak için .csv dosyanızı seçin",
+          "expenses": "Expenses.csv",
+          "income": "Income.csv"
         }
       },
       "privacyMode": {
         "disable": "Herkese açık moda geç",
         "enable": "Gizlilik moduna geç"
-      },
-      "tools": "Araçlar"
+      }
     },
     "info": {
       "about": "Ocular Hakkında",
@@ -61,28 +61,28 @@
       "change": "Farklı bir yıla geç"
     },
     "auth": {
-      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
-      "password": "Parola",
+      "welcomeBack": "Tekrar hoşgeldin!",
       "signIn": "Giriş",
       "username": "Kullanıcı Adı",
-      "welcomeBack": "Tekrar hoşgeldin!"
+      "password": "Parola",
+      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz."
     },
     "admin": {
+      "settings": "Yönetici ayarları",
+      "createUser": "Kullanıcı oluştur",
+      "username": "Kullanıcı Adı",
+      "password": "Parola",
       "admin": "Yönetici",
       "conflict": "Bu isime sahip kullanıcı zaten var.",
-      "createUser": "Kullanıcı oluştur",
-      "deleteUserConfirmation": "Bu kullanıcıyı silmek istediğinize emin misiniz?",
       "error": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin.",
+      "deleteUserConfirmation": "Bu kullanıcıyı silmek istediğinize emin misiniz?",
       "manageUsers": "Kullanıcıları yönet",
-      "noUsersFound": "Kullanıcı bulunamadı...",
-      "password": "Parola",
-      "settings": "Yönetici ayarları",
-      "username": "Kullanıcı Adı"
+      "noUsersFound": "Kullanıcı bulunamadı..."
     },
     "settings": {
-      "currency": "Para Birimi",
-      "language": "Dil",
       "settings": "Ayarlar",
+      "language": "Dil",
+      "currency": "Para Birimi",
       "firstMonthOfYear": "Yılın ilk ayı",
       "carryOverNetSavings": "Net Tasarrufları Taşı",
       "carryOverNetSavingsInfo": "Etkinleştirilirse, net tasarruflar bir sonraki yıla taşınır.",
@@ -98,14 +98,14 @@
     "addGroup": "Grup Ekle",
     "append": "“{from}” ifadesini “{to}”dan sonraya taşı",
     "average": "Ortalama",
-    "fillRow": "Satırı doldur",
-    "fillRowToRight": "Sağa doğru doldur",
     "move": "“{from}“'dan taşı",
     "moveInto": "“{from}” öğesini “{to}” öğesine taşıyın",
-    "placeholder": "Gelir/gider sekmelerini doldurarak başlayın! :)",
     "prepend": "“{from}” öğesini “{to}” öğesinden önceye taşı",
+    "fillRow": "Satırı doldur",
+    "fillRowToRight": "Sağa doğru doldur",
     "total": "Toplam",
-    "totals": "Toplamlar"
+    "totals": "Toplamlar",
+    "placeholder": "Gelir/gider sekmelerini doldurarak başlayın! :)"
   },
   "page": {
     "income": {
@@ -117,31 +117,33 @@
       "expensesFor": "{year} için Harcamalar"
     },
     "dashboard": {
+      "title": "Gösterge Paneli",
+      "tables": "Tablolar",
+      "income": "Gelir",
+      "incomeTrend": "Gelir Eğilimi",
       "allTime": "Tüm zamanlara genel bakış",
-      "allTimeExpenses": "Tüm Zamanların Giderleri",
       "allTimeFromTo": "{from} ile {to} arasındaki tüm zamanlar",
+      "expenses": "Harcamalar",
+      "expensesTrend": "Gider Eğilimi",
+      "endingBalance": "Bitiş Bakiyesi",
+      "budgetFor": "{year} için yıllık bütçe",
+      "remainingBalance": "{year} tarihine kadar Kalan Bakiye",
+      "netSavings": "Net Tasarruflar",
+      "yearInThePast": "Yıl geçmişte",
+      "yearInTheFuture": "Yıl gelecekte",
+      "yearEnding": "Bu yıla sona eriyor...",
+      "yoyIncomeGrowth": "Yıllık Gelir Artışı",
+      "yoyExpenseGrowth": "Yıllık Gider Artışı",
       "allTimeIncome": "Tüm Zamanların Gelirleri",
+      "allTimeExpenses": "Tüm Zamanların Giderleri",
       "allTimeSavings": "Tüm Zamanların Tasarrufları",
       "downloadAsPNG": "PNG olarak indir",
       "downloadAsSVG": "SVG olarak indir",
-      "endingBalance": "Bitiş Bakiyesi",
-      "expenses": "Harcamalar",
-      "expensesTrend": "Gider Eğilimi",
-      "budgetFor": "{year} için yıllık bütçe",
-      "income": "Gelir",
-      "incomeTrend": "Gelir Eğilimi",
-      "netSavings": "Net Tasarruflar",
-      "remainingBalance": "{year} tarihine kadar Kalan Bakiye",
-      "tables": "Tablolar",
-      "title": "Gösterge Paneli",
-      "yearEnding": "Bu yıla sona eriyor...",
-      "yearInTheFuture": "Yıl gelecekte",
-      "yearInThePast": "Yıl geçmişte",
-      "yoyExpenseGrowth": "Yıllık Gider Artışı",
-      "yoyIncomeGrowth": "Yıllık Gelir Artışı",
       "jumpToIncome": "{year} gelirlerine atla",
       "jumpToExpenses": "{year} harcamalarına atla",
-      "surplus": "Artı"
+      "lastYear": "Geçen Yıl",
+      "surplus": "Artı",
+      "deficit": "Eksi"
     }
   }
 }
