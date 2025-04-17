@@ -1,7 +1,7 @@
 <template>
   <div ref="root" :class="$style.app">
     <LoadingScreen
-      :loading="storage.status.value === 'loading'"
+      :loading="storage.status.value === 'loading' || !appConfig"
       :class="$style.root"
       :import="() => import('./pages/Frame.vue')"
     />
@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
-import { useAppElement, useMediaQuery, useSquircle } from '@composables';
+import { useAppConfig, useAppElement, useMediaQuery, useSquircle } from '@composables';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
 import { computed, nextTick, watch } from 'vue';
@@ -25,6 +25,7 @@ const storage = useStorage();
 const media = useMediaQuery();
 const app = useAppElement();
 const root = useSquircle(computed(() => (['minimized', 'mobile'].includes(media.value) ? 0 : 0.035)));
+const appConfig = useAppConfig();
 
 const preventDefault = (event: Event) => event.preventDefault();
 

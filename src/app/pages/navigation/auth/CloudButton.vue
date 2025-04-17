@@ -1,23 +1,25 @@
 <template>
   <Button :class="classes" textual :color="color" :icon="icon" @click="auth" />
-  <LoginDialog :open="showLoginDialog" @close="showLoginDialog = false" />
+  <LoginDialog :lockDialog="!appConfig?.demo && !user" :open="showLoginDialog" @close="showLoginDialog = false" />
 </template>
 
 <script lang="ts" setup>
 import LoginDialog from './LoginDialog.vue';
 import Button from '@components/base/button/Button.vue';
-import { Color } from '@composables';
+import { Color, useAppConfig } from '@composables';
 import { RiCloudLine, RiCloudOffLine, RiRefreshLine, RiSignalWifiErrorLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import type { Component } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const { status, logout } = useStorage();
+const { status, logout, user } = useStorage();
+const appConfig = useAppConfig();
+
 const showLoginDialog = ref(false);
 
 const classes = computed(() => props.class);
@@ -59,4 +61,14 @@ const auth = () => {
     logout();
   }
 };
+
+watch(
+  [appConfig, user],
+  ([config, usr]) => {
+    if (!config?.demo) {
+      showLoginDialog.value = !usr;
+    }
+  },
+  { immediate: true }
+);
 </script>

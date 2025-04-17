@@ -24,11 +24,14 @@ FROM busybox:1.37.0-musl
 WORKDIR /home/static
 
 COPY --from=build /app/dist /home/static
+COPY docker/entrypoint.sh /entrypoint.sh
 
+RUN chmod +x /entrypoint.sh
 RUN echo 'E404:index.html' >> /etc/httpd.conf
 
 EXPOSE 80
 
 HEALTHCHECK CMD wget --no-verbose --tries=1 --spider http://localhost/index.html || exit 1
 
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["busybox", "httpd", "-v", "-f"]

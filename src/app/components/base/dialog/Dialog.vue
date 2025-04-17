@@ -1,17 +1,25 @@
 <template>
-  <dialog ref="dialog" :class="classes" @transitionend="transitionEnd">
-    <div :class="$style.backdrop" />
-    <div ref="content" :class="[$style.content, contentClass]">
-      <h3 v-if="title" :class="$style.title">{{ title }}</h3>
-      <slot />
-    </div>
-  </dialog>
+  <Teleport to="#app">
+    <dialog
+      ref="dialog"
+      :class="classes"
+      @keydown="onKeyDown"
+      @close="lock ? (visible = true) : undefined"
+      @transitionend="transitionEnd"
+    >
+      <div :class="$style.backdrop" />
+      <div ref="content" :class="[$style.content, contentClass]">
+        <h3 v-if="title" :class="$style.title">{{ title }}</h3>
+        <slot />
+      </div>
+    </dialog>
+  </Teleport>
 </template>
 
 <script lang="ts" setup>
 import { useOutOfElementClick } from '@composables';
 import { ClassNames } from '@utils';
-import { computed, onMounted, ref, toRef, useCssModule, watch } from 'vue';
+import { computed, ref, toRef, useCssModule, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{
   (e: 'close'): void;
@@ -19,22 +27,33 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   open: boolean;
+  lock?: boolean;
   title?: string;
   contentClass?: ClassNames;
 }>();
 
 const content = ref<HTMLDivElement>();
-const dialog = ref<HTMLDialogElement>();
+const dialog = useTemplateRef('dialog');
 const visible = ref(false);
 
 const styles = useCssModule();
 const classes = computed(() => [styles.dialog, { [styles.open]: props.open }]);
 
-useOutOfElementClick(content, () => visible.value && emit('close'));
+useOutOfElementClick(content, () => {
+  if (visible.value && !props.lock) {
+    emit('close');
+  }
+});
 
 const transitionEnd = () => {
   if (!props.open) {
     dialog.value?.close();
+  }
+};
+
+const onKeyDown = (evt: KeyboardEvent) => {
+  if (evt.key === 'Escape' && props.lock) {
+    evt.preventDefault();
   }
 };
 
@@ -51,13 +70,6 @@ watch(
   },
   { immediate: true }
 );
-
-onMounted(() => {
-  if (dialog.value) {
-    dialog.value.remove();
-    document.getElementById('app')?.append(dialog.value);
-  }
-});
 </script>
 
 <style lang="scss" module>

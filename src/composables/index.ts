@@ -1,3 +1,4 @@
+export * from './useAppConfig.ts';
 export * from './useAppElement';
 export * from './useIntristicSize';
 export * from './useMediaQuery';

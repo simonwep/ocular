@@ -1,5 +1,5 @@
 <template>
-  <Dialog :open="open" :title="t('navigation.auth.welcomeBack')" @close="emit('close')">
+  <Dialog :open="open" :lock="lockDialog" :title="t('navigation.auth.welcomeBack')" @close="emit('close')">
     <Form :submitLabel="t('navigation.auth.signIn')" @submit="signIn">
       <TextField v-model="username" required :label="t('navigation.auth.username')" type="text" name="username" />
       <TextField v-model="password" required :label="t('navigation.auth.password')" type="password" name="password" />
@@ -23,6 +23,7 @@ const emit = defineEmits<{
 
 defineProps<{
   open: boolean;
+  lockDialog?: boolean;
 }>();
 
 const { t } = useI18n();
