@@ -23,11 +23,16 @@
     </span>
     <span />
     <span />
-    <span />
-    <span />
 
     <!-- Sums -->
-    <span :class="$style.sum">{{ t('shared.totals') }}</span>
+    <span />
+    <Button
+      :color="allowDelete ? 'danger' : 'success'"
+      :icon="allowDelete ? RiLockUnlockLine : RiLockLine"
+      textual
+      @click="allowDelete = !allowDelete"
+    />
+    <span :class="[$style.sum, $style.totals]">{{ t('shared.totals') }}</span>
     <Currency
       v-for="(sum, index) of totals"
       :key="index"
@@ -47,7 +52,7 @@
         name="budget-groups"
         @drop="reorder"
       />
-      <BudgetGroup :group="group" :testId="`group-${index}`" />
+      <BudgetGroup :allowDelete="allowDelete" :group="group" :testId="`group-${index}`" />
     </template>
 
     <!-- Footer -->
@@ -70,10 +75,10 @@ import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import { useMonthNames } from '@composables';
-import { RiAddCircleLine, RiSkipDownLine } from '@remixicon/vue';
+import { RiAddCircleLine, RiLockLine, RiLockUnlockLine, RiSkipDownLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
 
@@ -81,12 +86,14 @@ const props = defineProps<{
   type: 'expenses' | 'income';
 }>();
 
+const months = useMonthNames('long', () => settings.general.monthOffset);
 const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup, isCurrentMonth } = useDataStore();
 const { state: settings } = useSettingsStore();
 const { t } = useI18n();
 
+const allowDelete = ref(false);
+
 const groups = computed(() => state[props.type]);
-const months = useMonthNames('long', () => settings.general.monthOffset);
 
 const totals = computed(() => {
   const totals = new Array(12).fill(0);
@@ -143,7 +150,10 @@ const reorder = (evt: ReorderEvent) => {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-l);
   padding-right: 10px;
-  margin-bottom: 4px;
+
+  &.totals {
+    margin-left: 5px;
+  }
 }
 
 .month {

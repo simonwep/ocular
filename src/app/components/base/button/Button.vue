@@ -141,6 +141,14 @@ const classes = computed(() => [
     box-shadow: 0 0 0 2px v-bind('theme.focus');
   }
 
+  &.rounded {
+    border-radius: 100px;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
   &.textual {
     background: transparent;
     color: v-bind('theme.pure.base');
@@ -148,16 +156,19 @@ const classes = computed(() => [
     &:focus {
       box-shadow: none;
     }
+
+    &.disabled,
+    &.disabled:hover {
+      color: v-bind('theme.pure.hover');
+    }
   }
 
-  &.rounded {
-    border-radius: 100px;
-  }
-
-  &.disabled,
-  &.disabled:hover {
-    background: var(--c-dimmed);
-    cursor: default;
+  &:not(.textual) {
+    &.disabled,
+    &.disabled:hover {
+      background: var(--c-dimmed);
+      cursor: default;
+    }
   }
 }
 

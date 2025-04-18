@@ -1,6 +1,12 @@
 <template>
   <!-- Header -->
-  <Button color="dimmed" :icon="RiCloseCircleLine" textual @click="removeBudgetGroup(group.id)" />
+  <Button
+    color="dimmed"
+    :disabled="!allowDelete"
+    :icon="RiCloseCircleLine"
+    textual
+    @click="removeBudgetGroup(group.id)"
+  />
 
   <TextCell
     :class="[$style.top, $style.start]"
@@ -31,7 +37,13 @@
       @drop="reorder"
     />
 
-    <Button color="dimmed" :icon="RiCloseCircleLine" textual @click="removeBudget(budget.id)" />
+    <Button
+      color="dimmed"
+      :disabled="!allowDelete"
+      :icon="RiCloseCircleLine"
+      textual
+      @click="removeBudget(budget.id)"
+    />
 
     <span :class="$style.header">
       <TextCell :modelValue="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
@@ -103,6 +115,7 @@ import { useI18n } from 'vue-i18n';
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
   testId: string;
+  allowDelete: boolean;
 }>();
 
 const {
