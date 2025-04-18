@@ -91,7 +91,8 @@
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",
       "retryingPleaseWait": "Retrying, please wait...",
-      "retrySynchronization": "Retry synchronization"
+      "retrySynchronization": "Retry synchronization",
+      "demoVersionInfo": "This is a demo version that does not save any data. To save your data, you need to log in."
     }
   },
   "shared": {

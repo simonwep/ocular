@@ -91,7 +91,8 @@
     "status": {
       "synchronizationFailedDueToNetworkError": "Synchronisierung fehlgeschlagen, bitte überprüfen Sie Ihre Netzwerkverbindung!",
       "retryingPleaseWait": "Erneuter Versuch, bitte warten...",
-      "retrySynchronization": "Erneut versuchen"
+      "retrySynchronization": "Erneut versuchen",
+      "demoVersionInfo": "Dies ist eine Demo-Version, die keine Daten speichert. Um Ihre Daten zu speichern, müssen Sie sich anmelden."
     }
   },
   "shared": {

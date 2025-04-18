@@ -91,7 +91,8 @@
     "status": {
       "synchronizationFailedDueToNetworkError": "Sinkronisasi gagal karena masalah jaringan!",
       "retryingPleaseWait": "Mencoba kembali, mohon tunggu...",
-      "retrySynchronization": "Coba kembali sinkronisasi"
+      "retrySynchronization": "Coba kembali sinkronisasi",
+      "demoVersionInfo": "Ini adalah versi demo yang tidak menyimpan data apa pun. Untuk menyimpan data Anda, Anda perlu masuk."
     }
   },
   "shared": {

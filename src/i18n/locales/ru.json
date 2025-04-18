@@ -91,7 +91,8 @@
     "status": {
       "synchronizationFailedDueToNetworkError": "Синхронизация не удалась из-за сетевой ошибки.",
       "retryingPleaseWait": "Повторная попытка, пожалуйста, подождите...",
-      "retrySynchronization": "Повторить синхронизацию"
+      "retrySynchronization": "Повторить синхронизацию",
+      "demoVersionInfo": "Это демонстрационная версия, которая не сохраняет данные. Чтобы сохранить свои данные, вам нужно войти в систему."
     }
   },
   "shared": {
