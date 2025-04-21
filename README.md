@@ -4,26 +4,16 @@
   <img src="https://github.com/simonwep/ocular/assets/30767528/2cbd76cd-adfb-4183-a69a-15784c4dccb6" alt="Logo" height="150">
 </h3>
 
-<br/>
 
 <h3 align="center">
   ✨ <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budgets more clearly ✨
 </h3>
 
-<p align="center">
-  <a href="https://github.com/simonwep/ocular/actions?query=workflow%3ACI"><img
-     alt="CI Status"
-     src="https://github.com/simonwep/ocular/workflows/CI/badge.svg"/></a>
-  <a href="https://github.com/simonwep/ocular/releases"><img
-     alt="Version"
-     src="https://img.shields.io/github/v/release/simonwep/ocular?label=Version&color=%233e5df3"/></a>
-  <a href="https://github.com/simonwep/ocular/releases"><img
-     alt="Latest Release"
-     src="https://img.shields.io/github/release-date/simonwep/ocular?label=Release&color=%233e5df3"/></a>
-</p>
-
-> [!TIP]
-> Check out the [demo](https://ocular.reinisch.io#demo) to get a live preview with demo data!
+<h6 align="center">
+  <a href="https://ocular.reinisch.io#demo">Demo</a> /
+  <a href="https://simonwep.github.io/ocular/pages/quickstart.html">Quickstart</a> /
+  <a href="https://simonwep.github.io/ocular/pages/examples.html">Deploy</a>
+</h6>
 
 ## Features
 
@@ -40,22 +30,10 @@
 - 🌐 Multi-language and currency support.
 - ...and much more!
 
-## Summary
+### Getting started
 
-Ocular is a small budgeting app as an alternative to Google sheet's annual budget planner.
-Its goal is **not** to track individual expenses, work with multiple currencies at a time or anything related (if you're looking for something like this, check out [firefly-iii](https://www.firefly-iii.org/)).
+Head over to [the documentation](https://simonwep.github.io/ocular) to get started 🚀
 
-This app comes with its own backend (by using [genesis](https://github.com/simonwep/genesis)), so the only thing you need to do is to host it somewhere.
-Your data stays on your server and is not shared with anyone else.
+### You want to contribute?
 
-## Getting started
-
-### Production
-
-Best deploy this app via [docker-compose](https://docs.docker.com/compose/).
-See [ocular-docker](https://github.com/simonwep/ocular-docker) for deployment.
-Don't worry, it'll only take a few minutes to set everything up.
-
-### Local development
-
-If you want to work on this, make sure to out the [contributing guidelines](.github/CONTRIBUTING.md) :)
+That's awesome! Check out the [contribution guidelines](./.github/CONTRIBUTING.md) to get started :)

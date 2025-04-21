@@ -2,6 +2,15 @@ name: CI
 
 on: ["push", "pull_request"]
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -41,6 +50,9 @@ jobs:
       - name: Build app
         run: pnpm build
 
+      - name: Build docs
+        run: pnpm docs:build
+
       - name: Run unit tests
         run: pnpm test
 
@@ -50,12 +62,45 @@ jobs:
       - name: Run e2e tests
         run: pnpm test:e2e
 
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+      - name: Upload docs build
+        uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          name: docs-build
+          path: docs/.vitepress/dist
+          retention-days: 1
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
         with:
           name: test-results
           path: test-results/
-          retention-days: 30
+          retention-days: 7
+
+  publish_docs:
+    if: github.ref == 'refs/heads/main'
+    name: Publish docs
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download docs build
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-build
+          path: docs-build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs-build
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
   publish_release:
     if: startsWith(github.event.ref, 'refs/tags/v')

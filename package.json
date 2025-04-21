@@ -21,7 +21,10 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:ci": "pnpm lint:fix && pnpm build && pnpm test && pnpm test:e2e"
+    "test:ci": "pnpm lint:fix && pnpm build && pnpm test && pnpm test:e2e",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
@@ -62,6 +65,7 @@
     "vite-plugin-optimize-css-modules": "1.2.0",
     "vite-plugin-pwa": "0.21.1",
     "vite-tsconfig-paths": "5.1.4",
+    "vitepress": "1.6.3",
     "vitest": "3.0.6",
     "vue-tsc": "2.2.0",
     "workbox-build": "7.3.0",
