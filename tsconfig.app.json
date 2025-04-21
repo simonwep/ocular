@@ -22,18 +22,21 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
+    /* Vue */
+    "types": ["vite/client", "vite-plugin-pwa/client"],
+
     /* Convenience */
     "baseUrl": ".",
     "paths": {
-      "@composables": ["./src/composables/index.ts"],
-      "@directives": ["./src/directives/index.ts"],
+      "@composables/*": ["./src/composables/*"],
+      "@directives/*": ["./src/directives/*"],
       "@components/*": ["./src/app/components/*"],
       "@app/*": ["./src/app/*"],
       "@i18n/*": ["./src/i18n/*"],
       "@storage/*": ["./src/storage/*"],
       "@styles/*": ["./src/styles/*"],
       "@static/*": ["./src/static/*"],
-      "@utils": ["./src/utils/index.ts"],
+      "@utils/*": ["./src/utils/*"],
       "@store/*": ["./src/store/*"]
     }
   }

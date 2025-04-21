@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { RiArrowLeftSLine } from '@remixicon/vue';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 
 const props = defineProps<{

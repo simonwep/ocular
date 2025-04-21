@@ -1,11 +1,13 @@
 import { migrateApplicationState } from './migrator';
 import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYearFromCurrent } from './utils/generators.ts';
-import { useTime } from '@composables';
+import { useTime } from '@composables/useTime.ts';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { finalBalance } from '@store/state/utils/budgets.ts';
-import { moveInArrays, readFile, remove, sum, uuid } from '@utils';
+import { moveInArrays, remove, sum } from '@utils/array.ts';
+import { readFile } from '@utils/readFile.ts';
+import { uuid } from '@utils/uuid.ts';
 import { inject, reactive, readonly, shallowRef, watch } from 'vue';
 
 export const DATA_STORE_KEY = Symbol('DataStore');

@@ -7,9 +7,10 @@
 import { StackedLineChartConfig } from './stacked-line-chart/StackedLineChart.types';
 import StackedLineChart from './stacked-line-chart/StackedLineChart.vue';
 import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
-import { sum } from '@utils';
+import { sum } from '@utils/array.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

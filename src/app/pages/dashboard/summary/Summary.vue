@@ -16,7 +16,7 @@
 import GroupsSummaryTable from './widgets/tables/GroupsSummaryTable.vue';
 import TotalsSummaryTable from './widgets/tables/TotalsSummaryTable.vue';
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
-import { useMediaQuery } from '@composables';
+import { useMediaQuery } from '@composables/useMediaQuery.ts';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { computed } from 'vue';

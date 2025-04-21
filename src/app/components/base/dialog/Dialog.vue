@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useOutOfElementClick } from '@composables';
-import { ClassNames } from '@utils';
+import { useOutOfElementClick } from '@composables/useOutOfElementClick.ts';
+import { ClassNames } from '@utils/types.ts';
 import { computed, ref, toRef, useCssModule, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{

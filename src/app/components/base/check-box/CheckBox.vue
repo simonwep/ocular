@@ -14,7 +14,7 @@
 
 <script lang="ts" setup>
 import { RiCheckLine } from '@remixicon/vue';
-import { uuid } from '@utils';
+import { uuid } from '@utils/uuid.ts';
 
 const modelValue = defineModel<boolean>();
 

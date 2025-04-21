@@ -6,10 +6,11 @@
 <script lang="ts" setup>
 import LoginDialog from './LoginDialog.vue';
 import Button from '@components/base/button/Button.vue';
-import { Color, useAppConfig } from '@composables';
+import { useAppConfig } from '@composables/useAppConfig.ts';
+import { Color } from '@composables/useThemeStyles.ts';
 import { RiCloudLine, RiCloudOffLine, RiRefreshLine, RiSignalWifiErrorLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed, ref, watch } from 'vue';
 import type { Component } from 'vue';
 

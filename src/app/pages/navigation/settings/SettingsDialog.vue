@@ -47,7 +47,7 @@ import CheckBox from '@components/base/check-box/CheckBox.vue';
 import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types.ts';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Select from '@components/base/select/Select.vue';
-import { useMonthNames } from '@composables';
+import { useMonthNames } from '@composables/useMonthNames.ts';
 import { AvailableLocale, availableLocales, initialLocale } from '@i18n/index.ts';
 import { RiCheckLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';

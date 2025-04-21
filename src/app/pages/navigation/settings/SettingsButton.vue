@@ -15,7 +15,7 @@
 import SettingsDialog from '@app/pages/navigation/settings/SettingsDialog.vue';
 import Button from '@components/base/button/Button.vue';
 import { RiSettings4Line } from '@remixicon/vue';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 

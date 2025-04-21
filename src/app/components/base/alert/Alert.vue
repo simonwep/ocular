@@ -7,9 +7,9 @@
 
 <script lang="ts" setup>
 import { AlertType } from '@components/base/alert/Alert.types';
-import { Color, useThemeStyles } from '@composables';
+import { Color, useThemeStyles } from '@composables/useThemeStyles.ts';
 import { RiCheckLine, RiErrorWarningLine } from '@remixicon/vue';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 import type { Component } from 'vue';
 

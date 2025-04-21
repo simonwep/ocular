@@ -1,5 +1,5 @@
 import { Budget, BudgetGroup, BudgetYear } from '../types';
-import { uuid } from '@utils';
+import { uuid } from '@utils/uuid.ts';
 
 export const generateBudget = (name: string): Budget => ({
   name,

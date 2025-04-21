@@ -5,8 +5,9 @@
 <script lang="ts" setup>
 import { StackedLineChartConfig } from './StackedLineChart.types';
 import EChart from '@components/charts/echart/EChart.vue';
-import { useMediaQuery } from '@composables';
-import { ClassNames, rollingAverage } from '@utils';
+import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { rollingAverage } from '@utils/array.ts';
+import { ClassNames } from '@utils/types.ts';
 import { LineChart, LineSeriesOption } from 'echarts/charts';
 import {
   GridComponent,

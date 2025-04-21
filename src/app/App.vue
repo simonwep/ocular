@@ -10,7 +10,10 @@
 
 <script lang="ts" setup>
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
-import { useAppConfig, useAppElement, useMediaQuery, useSquircle } from '@composables';
+import { useAppConfig } from '@composables/useAppConfig.ts';
+import { useAppElement } from '@composables/useAppElement.ts';
+import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useSquircle } from '@composables/useSquircle.ts';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
 import { computed, nextTick, watch } from 'vue';

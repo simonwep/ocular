@@ -30,9 +30,9 @@ import {
   ContextMenuStore,
   ContextMenuStoreKey
 } from '@components/base/context-menu/ContextMenu.types';
-import { useOutOfElementClick } from '@composables';
+import { useOutOfElementClick } from '@composables/useOutOfElementClick.ts';
 import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed, provide, ref, useCssModule, watch } from 'vue';
 
 const emit = defineEmits<{

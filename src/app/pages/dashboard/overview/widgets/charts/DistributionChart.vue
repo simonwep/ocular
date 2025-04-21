@@ -10,7 +10,9 @@ import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { sumOfBudgetGroups, totals } from '@store/state/utils/budgets';
-import { ClassNames, sum, uuid } from '@utils';
+import { sum } from '@utils/array.ts';
+import { ClassNames } from '@utils/types.ts';
+import { uuid } from '@utils/uuid.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

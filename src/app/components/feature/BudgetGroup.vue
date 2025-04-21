@@ -105,11 +105,11 @@ import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
-import { useStateUtils } from '@composables';
+import { useStateUtils } from '@composables/useStateUtils.ts';
 import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
-import { average, sum } from '@utils';
+import { average, sum } from '@utils/array.ts';
 import { computed, DeepReadonly, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 

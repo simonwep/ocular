@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{

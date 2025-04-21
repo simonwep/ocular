@@ -6,7 +6,7 @@
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import { RiDownloadCloud2Line } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
-import { downloadFile } from '@utils';
+import { downloadFile } from '@utils/downloadFile.ts';
 import { useI18n } from 'vue-i18n';
 
 const { serialize } = useDataStore();

@@ -6,7 +6,8 @@
 
 <script lang="ts" setup>
 import { ONBOARDING_STORE, OnboardingStore, StepsExposed } from './Steps.types';
-import { ClassNames, remove } from '@utils';
+import { remove } from '@utils/array.ts';
+import { ClassNames } from '@utils/types.ts';
 import { computed, provide, reactive, Ref, ref } from 'vue';
 
 const emit = defineEmits<{

@@ -55,7 +55,7 @@ import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
 import StatusBar from './status-bar/StatusBar.vue';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
-import { useMediaQuery } from '@composables';
+import { useMediaQuery } from '@composables/useMediaQuery.ts';
 import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { computed, ref } from 'vue';

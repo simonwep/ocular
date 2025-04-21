@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed, onMounted, shallowRef } from 'vue';
 
 const props = withDefaults(

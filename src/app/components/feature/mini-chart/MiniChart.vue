@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import EChart from '@components/charts/echart/EChart.vue';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { LineChart, LineSeriesOption } from 'echarts/charts';
 import { GridComponentOption, GridComponent } from 'echarts/components';
 import * as echarts from 'echarts/core';

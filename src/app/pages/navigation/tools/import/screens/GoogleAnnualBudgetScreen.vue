@@ -28,7 +28,7 @@ import FilePicker from '@components/base/file-picker/FilePicker.vue';
 import { RiUploadCloud2Line } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { convertGoogleAnnualBudgetCSVToBudgetGroups } from '@store/state/parser/googleAnnualBudgetSheet';
-import { readFile } from '@utils';
+import { readFile } from '@utils/readFile.ts';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 

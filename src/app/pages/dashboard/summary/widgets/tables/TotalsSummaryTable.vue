@@ -66,9 +66,10 @@
 
 <script lang="ts" setup>
 import SummaryTable from './SummaryTable.vue';
-import { useMonthNames, useStateUtils } from '@composables';
+import { useMonthNames } from '@composables/useMonthNames.ts';
+import { useStateUtils } from '@composables/useStateUtils.ts';
 import { useSettingsStore } from '@store/settings';
-import { aggregate, average, subtract, sum } from '@utils';
+import { aggregate, average, subtract, sum } from '@utils/array.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

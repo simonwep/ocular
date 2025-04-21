@@ -32,9 +32,10 @@
 import SummaryPanelChart from './SummaryPanelChart.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import Link from '@components/base/link/Link.vue';
-import { Color, useSquircle, useThemeStyles } from '@composables';
+import { useSquircle } from '@composables/useSquircle.ts';
+import { Color, useThemeStyles } from '@composables/useThemeStyles.ts';
 import { RiCalendar2Line } from '@remixicon/vue';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 
 const props = defineProps<{

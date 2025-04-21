@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import { ContextMenuStore, ContextMenuStoreKey } from '@components/base/context-menu/ContextMenu.types';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed, inject, useCssModule } from 'vue';
 import type { Component } from 'vue';
 

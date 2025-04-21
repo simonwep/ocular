@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 import { RiHandCoinLine, RiShoppingBasket2Line } from '@remixicon/vue';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

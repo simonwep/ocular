@@ -4,10 +4,10 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { useAppElement } from '@composables';
+import { useAppElement } from '@composables/useAppElement.ts';
 import { RiMoonFill, RiSunFill } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
-import { ClassNames } from '@utils';
+import { ClassNames } from '@utils/types.ts';
 import { computed, getCurrentInstance } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';

@@ -3,8 +3,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useResizeObserver } from '@composables';
-import { ClassNames, getCssVariables, svgToPNG } from '@utils';
+import { useResizeObserver } from '@composables/useResizeObserver.ts';
+import { getCssVariables } from '@utils/cssVariables.ts';
+import { svgToPNG } from '@utils/svgToPNG.ts';
+import { ClassNames } from '@utils/types.ts';
 import { EChartsType, init } from 'echarts/core';
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 

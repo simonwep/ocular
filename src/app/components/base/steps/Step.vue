@@ -6,8 +6,8 @@
 
 <script lang="ts" setup>
 import { ONBOARDING_STORE, OnboardingStore } from './Steps.types';
-import { useIntristicSize } from '@composables';
-import { ClassNames } from '@utils';
+import { useIntristicSize } from '@composables/useIntristicSize.ts';
+import { ClassNames } from '@utils/types.ts';
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
