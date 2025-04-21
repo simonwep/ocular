@@ -74,7 +74,7 @@ import Currency from '@components/base/currency/Currency.vue';
 import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
-import { useMonthNames } from '@composables';
+import { useMonthNames, useStateUtils } from '@composables';
 import { RiAddCircleLine, RiLockLine, RiLockUnlockLine, RiSkipDownLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
@@ -87,7 +87,8 @@ const props = defineProps<{
 }>();
 
 const months = useMonthNames('long', () => settings.general.monthOffset);
-const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup, isCurrentMonth } = useDataStore();
+const { isCurrentMonth } = useStateUtils();
+const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup } = useDataStore();
 const { state: settings } = useSettingsStore();
 const { t } = useI18n();
 
@@ -168,8 +169,20 @@ const reorder = (evt: ReorderEvent) => {
   background: var(--app-background);
   border: 2px var(--app-background);
 
-  &.current {
-    font-weight: var(--font-weight-l);
+  &.current > span {
+    color: var(--c-text-light);
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -3px -8px;
+      border-radius: 100px;
+      background: var(--c-primary);
+      z-index: -1;
+    }
   }
 
   > span {

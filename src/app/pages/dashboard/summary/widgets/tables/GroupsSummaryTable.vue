@@ -50,9 +50,8 @@
 
 <script lang="ts" setup>
 import SummaryTable from './SummaryTable.vue';
-import { useMonthNames } from '@composables';
+import { useMonthNames, useStateUtils } from '@composables';
 import { useSettingsStore } from '@store/settings';
-import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { flatten } from '@store/state/utils/budgets';
 import { average, ClassNames, sum, add } from '@utils';
@@ -66,7 +65,7 @@ const props = defineProps<{
 }>();
 
 const { t, n } = useI18n();
-const { isCurrentMonth } = useDataStore();
+const { isCurrentMonth } = useStateUtils();
 const { state: settings } = useSettingsStore();
 const months = useMonthNames('long', () => settings.general.monthOffset);
 

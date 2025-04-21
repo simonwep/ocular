@@ -13,7 +13,7 @@
           </div>
 
           <template v-else>
-            <h2 :class="$style.head">{{ title }}</h2>
+            <h2 :data-testid="`${testId}-title`" :class="$style.head">{{ title }}</h2>
             <Currency :class="$style.title" :testId="`${testId}-value`" :value="value" />
             <span v-if="subTitle || $slots.subTitle" :data-testid="`${testId}-sub`" :class="$style.subTitle">
               <span>{{ subTitle }}</span>

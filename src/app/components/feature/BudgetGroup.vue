@@ -105,6 +105,7 @@ import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
+import { useStateUtils } from '@composables';
 import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
@@ -128,10 +129,10 @@ const {
   setBudgetGroupName,
   setBudget,
   fillBudget,
-  removeBudget,
-  isCurrentMonth
+  removeBudget
 } = useDataStore();
 
+const { isCurrentMonth } = useStateUtils();
 const { t } = useI18n();
 const focused = ref<string>();
 

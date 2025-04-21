@@ -1,12 +1,12 @@
 <template>
   <span v-if="multiYear" :class="$style.toggle">
     <Button :icon="RiArrowLeftSLine" rounded @click="rotateYear(-1)" />
-    <TextWheel :values="allYears" :value="state.activeYear" />
+    <TextWheel :values="values" :value="value" />
     <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
   </span>
   <i18n-t data-testid="current-year-text" :class="$style.activeYear" tag="span" :keypath="keyPath" scope="global">
     <template #year>
-      <TextWheel testId="current-year" :values="allYears" :value="state.activeYear" />
+      <TextWheel testId="current-year" :values="values" :value="value" />
     </template>
   </i18n-t>
 </template>
@@ -15,6 +15,7 @@
 import Button from '@components/base/button/Button.vue';
 import TextWheel from '@components/base/text-wheel/TextWheel.vue';
 import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/vue';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 
@@ -23,15 +24,25 @@ defineProps<{
 }>();
 
 const { state, changeYear } = useDataStore();
+const { state: settings } = useSettingsStore();
 
 const multiYear = computed(() => state.years.length > 1);
 const allYears = computed(() => state.years.map((v) => v.year));
+
+const value = computed(() =>
+  settings.general.monthOffset ? `${state.activeYear} - ${state.activeYear + 1}` : state.activeYear
+);
+
+const values = computed(() =>
+  settings.general.monthOffset ? allYears.value.map((v) => `${v} - ${v + 1}`) : allYears.value
+);
 
 const rotateYear = (dir: -1 | 1) => {
   const possibleYears = allYears.value;
   const currentIndex = possibleYears.indexOf(state.activeYear);
   const newIndex = (currentIndex + dir + possibleYears.length) % possibleYears.length;
   const newYear = possibleYears[newIndex];
+
   changeYear(newYear);
 };
 </script>

@@ -56,14 +56,14 @@
       :value="remainingBalance"
       color="secondary"
       testId="remaining-balance"
-      :title="t('page.dashboard.remainingBalance', { year: state.activeYear + 1 })"
+      :title="t('page.dashboard.remainingBalance', { year: startOfNextYear })"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
 import SummaryPanel from './SummaryPanel.vue';
-import { useTime } from '@composables';
+import { useMonthNames, useTime } from '@composables';
 import { RiAddCircleFill, RiIndeterminateCircleFill } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
@@ -80,6 +80,7 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
+const monthNames = useMonthNames('long');
 const { state: settings } = useSettingsStore();
 const { state } = useDataStore();
 const { t, n } = useI18n();
@@ -95,6 +96,12 @@ const classes = computed(() => [
     [styles.unAnimated]: animationsDone.value >= 3
   }
 ]);
+
+const startOfNextYear = computed(() =>
+  settings.general.monthOffset
+    ? `${monthNames.value[settings.general.monthOffset]} ${state.activeYear + 1}`
+    : state.activeYear + 1
+);
 
 const startingBalance = computed(() => (!settings.general.carryOver ? 0 : (state.overallBalance ?? 0)));
 

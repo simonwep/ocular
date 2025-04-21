@@ -24,16 +24,31 @@ test('Change the currency and apply correct locale format', async ({ page }) => 
   await expect(page.getByTestId('income-value')).toHaveText('0 $');
 });
 
-test('Change the starting month', async ({ page }) => {
+test('Change the starting month and show correct labels', async ({ page }) => {
+  const currentYear = new Date().getFullYear();
+
   await page.goto('/income');
   await expect(page.getByTestId('month-0-name')).toHaveText('January');
+  await expect(page.getByTestId('current-year')).toContainText(String(currentYear));
   await expect(page.getByTestId('month-11-name')).toHaveText('December');
 
   await page.getByTestId('settings').click();
   await page.getByTestId('change-month-offset').click();
   await page.getByTestId('change-month-offset-2').click();
+  await expect(page.getByTestId('current-year')).toContainText(`${currentYear} - ${currentYear + 1}`);
   await expect(page.getByTestId('month-0-name')).toHaveText('March');
   await expect(page.getByTestId('month-11-name')).toHaveText('February');
+
+  await page.keyboard.press('Escape');
+  await page.getByTestId('navigation-dashboard').click();
+  await expect(page.getByTestId('remaining-balance-title')).toHaveText(
+    `Remaining Balance until March ${currentYear + 1}`
+  );
+
+  await page.getByTestId('settings').click();
+  await page.getByTestId('change-month-offset').click();
+  await page.getByTestId('change-month-offset-0').click();
+  await expect(page.getByTestId('remaining-balance-title')).toHaveText(`Remaining Balance until ${currentYear + 1}`);
 });
 
 test('Carry over net-savings to next year', async ({ page }) => {

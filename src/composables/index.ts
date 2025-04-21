@@ -1,4 +1,4 @@
-export * from './useAppConfig.ts';
+export * from './useAppConfig';
 export * from './useAppElement';
 export * from './useIntristicSize';
 export * from './useMediaQuery';
@@ -10,3 +10,4 @@ export * from './useScrollShadow';
 export * from './useSquircle';
 export * from './useThemeStyles';
 export * from './useTime';
+export * from './useStateUtils';

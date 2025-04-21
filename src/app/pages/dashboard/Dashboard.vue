@@ -4,7 +4,12 @@
       <template v-if="view === AllTime">
         <RiCalendar2Line size="18" />
         <span>
-          {{ t('page.dashboard.allTimeFromTo', { from: state.years[0].year, to: state.years.at(-1)?.year }) }}
+          {{
+            t('page.dashboard.allTimeFromTo', {
+              from: state.years[0].year,
+              to: settings.general.monthOffset ? state.years.at(-1)!.year + 1 : state.years.at(-1)!.year
+            })
+          }}
         </span>
       </template>
       <YearToggle v-else keyPath="page.dashboard.budgetFor" />
@@ -54,6 +59,7 @@ import Pane from '@components/feature/Pane.vue';
 import YearToggle from '@components/feature/YearToggle.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -61,6 +67,7 @@ import type { Component } from 'vue';
 
 const { t } = useI18n();
 const { state } = useDataStore();
+const { state: settings } = useSettingsStore();
 const view = shallowRef<Component>(Overview);
 </script>
 

@@ -238,9 +238,7 @@ export const createDataStore = (storage?: Storage) => {
       }
     },
 
-    getBudgetGroup: (id: string) => groups().find((v) => v.id === id),
-
-    isCurrentMonth: (month: number): boolean => activeYear.value === time.year.value && month === time.month.value
+    getBudgetGroup: (id: string) => groups().find((v) => v.id === id)
   };
 };
 

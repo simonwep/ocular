@@ -15,6 +15,7 @@ import { useI18n } from 'vue-i18n';
 
 const { t, locale } = useI18n();
 const { state } = useDataStore();
+const { state: settings } = useSettingsStore();
 
 const allIncomes = computed(() => state.years.flatMap((v) => totals(v.income)));
 const allExpenses = computed(() => state.years.flatMap((v) => totals(v.expenses)));
@@ -33,7 +34,7 @@ const data = computed((): StackedLineChartConfig => {
     valueFormatter: (value) => formatter.format(value),
     labels: Array.from({ length: totalMonths }, (_, i) => {
       const year = Math.floor(i / 12) + state.years[0].year;
-      const month = (i % 12) + 1;
+      const month = ((i + settings.general.monthOffset) % 12) + 1;
       return `${year}-${month.toString().padStart(2, '0')}`;
     }),
     series: [
