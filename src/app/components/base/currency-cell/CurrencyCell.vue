@@ -1,8 +1,8 @@
 <template>
   <input
     ref="input"
-    :class="$style.currencyCell"
-    :type="focused ? 'number' : 'text'"
+    :class="[$style.currencyCell, { [$style.invalid]: invalid }]"
+    type="text"
     :value="value"
     :data-testid="testId"
     @blur="focused = false"
@@ -15,6 +15,7 @@
 
 <script lang="ts" setup>
 import { useDataStore } from '@store/state';
+import { evalMathExpression } from '@utils/evalMathExpression.ts';
 import { computed, nextTick, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -32,19 +33,18 @@ const props = withDefaults(
 
 const input = ref<HTMLInputElement>();
 const focused = ref(false);
+const innerValue = ref<string>();
+const invalid = ref(false);
 const { state } = useDataStore();
-const { n } = useI18n();
+const { locale, n } = useI18n();
 
 const value = computed(() =>
-  focused.value || !modelValue.value
-    ? modelValue.value || ''
-    : n(modelValue.value, { key: 'currency', currency: state.currency })
+  invalid.value
+    ? innerValue.value
+    : focused.value || !modelValue.value
+      ? modelValue.value || ''
+      : n(modelValue.value, { key: 'currency', currency: state.currency })
 );
-
-const updateModelValue = (raw?: string) => {
-  const number = Number(raw?.trim() || NaN);
-  modelValue.value = !Number.isNaN(number) ? number : 0;
-};
 
 const keydown = (e: KeyboardEvent) => {
   if (e.key === '-') {
@@ -57,16 +57,28 @@ const focus = () => {
   nextTick(() => (input.value as HTMLInputElement).select());
 };
 
-const change = (e: Event) => updateModelValue((e.target as HTMLInputElement).value);
+const change = (e: Event) => {
+  innerValue.value = (e.target as HTMLInputElement).value || undefined;
+};
 
-watch(
-  () => modelValue.value,
-  (value, oldValue) => {
-    if ((value ?? 0) > props.max && oldValue !== undefined) {
-      modelValue.value = oldValue;
+watch(modelValue, (value, oldValue) => {
+  if ((value ?? 0) > props.max && oldValue !== undefined) {
+    modelValue.value = oldValue;
+  }
+});
+
+watch(focused, () => {
+  if (!focused.value) {
+    try {
+      modelValue.value = innerValue.value ? evalMathExpression(innerValue.value, locale.value) : undefined;
+      invalid.value = false;
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      invalid.value = true;
     }
   }
-);
+});
 </script>
 
 <style lang="scss" module>
@@ -85,6 +97,11 @@ watch(
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  &:not(:focus).invalid {
+    color: var(--c-danger-pure);
+    text-decoration: underline dashed;
   }
 }
 </style>

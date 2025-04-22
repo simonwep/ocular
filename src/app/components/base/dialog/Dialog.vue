@@ -4,7 +4,7 @@
       ref="dialog"
       :class="classes"
       @keydown="onKeyDown"
-      @close="lock ? (visible = true) : undefined"
+      @close="lock ? (visible = true) : emit('close')"
       @transitionend="transitionEnd"
     >
       <div :class="$style.backdrop" />
