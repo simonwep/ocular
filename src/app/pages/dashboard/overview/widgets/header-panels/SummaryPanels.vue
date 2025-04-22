@@ -69,7 +69,7 @@ import { RiAddCircleFill, RiIndeterminateCircleFill } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
-import { aggregate, subtract, sum } from '@utils/array.ts';
+import { aggregate, subtract, sum } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';

@@ -55,7 +55,7 @@ import { useStateUtils } from '@composables/useStateUtils.ts';
 import { useSettingsStore } from '@store/settings';
 import { BudgetGroup } from '@store/state/types';
 import { flatten } from '@store/state/utils/budgets';
-import { average, sum, add } from '@utils/array.ts';
+import { average, sum, add } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
 import { DeepReadonly, computed } from 'vue';
 import { useI18n } from 'vue-i18n';

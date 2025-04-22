@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import { useDataStore } from '@store/state';
-import { evalMathExpression } from '@utils/evalMathExpression.ts';
+import { evalMathExpression } from '@utils/eval-math-expression/evalMathExpression.ts';
 import { computed, nextTick, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 

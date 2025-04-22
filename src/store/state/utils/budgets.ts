@@ -1,5 +1,5 @@
 import { BudgetGroup, BudgetYear } from '../types';
-import { sum } from '@utils/array.ts';
+import { sum } from '@utils/array/array.ts';
 import { DeepReadonly } from 'vue';
 
 export const totals = (groups: DeepReadonly<BudgetGroup[]>): number[] => {

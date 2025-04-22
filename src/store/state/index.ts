@@ -5,7 +5,7 @@ import { useTime } from '@composables/useTime.ts';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { finalBalance } from '@store/state/utils/budgets.ts';
-import { moveInArrays, remove, sum } from '@utils/array.ts';
+import { moveInArrays, remove, sum } from '@utils/array/array.ts';
 import { readFile } from '@utils/readFile.ts';
 import { uuid } from '@utils/uuid.ts';
 import { inject, reactive, readonly, shallowRef, watch } from 'vue';

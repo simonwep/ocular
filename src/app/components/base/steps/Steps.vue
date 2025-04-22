@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import { ONBOARDING_STORE, OnboardingStore, StepsExposed } from './Steps.types';
-import { remove } from '@utils/array.ts';
+import { remove } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed, provide, reactive, Ref, ref } from 'vue';
 

@@ -1,4 +1,4 @@
-import { arrayify } from '@utils/array.ts';
+import { arrayify } from '@utils/array/array.ts';
 import { onMounted, onUnmounted, Ref } from 'vue';
 
 export const useOutOfElementClick = (

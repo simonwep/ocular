@@ -11,7 +11,7 @@ import { useMonthNames } from '@composables/useMonthNames.ts';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
-import { aggregate, subtract, sum } from '@utils/array.ts';
+import { aggregate, subtract, sum } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';

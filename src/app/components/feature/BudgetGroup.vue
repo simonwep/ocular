@@ -109,7 +109,7 @@ import { useStateUtils } from '@composables/useStateUtils.ts';
 import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
-import { average, sum } from '@utils/array.ts';
+import { average, sum } from '@utils/array/array.ts';
 import { computed, DeepReadonly, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
