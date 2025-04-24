@@ -6,13 +6,13 @@
 
 
 <h3 align="center">
-  ✨ <a href="https://budget.reinisch.io">Ocular</a> - Helps you see your budgets more clearly ✨
+  ✨ <a href="https://simonwep.github.io/ocular">Ocular</a> - Helps you see your budgets more clearly ✨
 </h3>
 
 <h6 align="center">
   <a href="https://ocular.reinisch.io#demo">Demo</a> /
-  <a href="https://simonwep.github.io/ocular/pages/quickstart.html">Quickstart</a> /
-  <a href="https://simonwep.github.io/ocular/pages/examples.html">Deploy</a>
+  <a href="https://simonwep.github.io/ocular/pages/quickstart">Quickstart</a> /
+  <a href="https://simonwep.github.io/ocular/pages/deploy">Deploy</a>
 </h6>
 
 ## Features
