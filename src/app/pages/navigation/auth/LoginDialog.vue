@@ -1,6 +1,12 @@
 <template>
-  <Dialog :open="open" :lock="lockDialog" :title="t('navigation.auth.welcomeBack')" @close="emit('close')">
-    <Form :submitLabel="t('navigation.auth.signIn')" @submit="signIn">
+  <Dialog
+    :native="false"
+    :open="open"
+    :lock="lockDialog"
+    :title="t('navigation.auth.welcomeBack')"
+    @close="emit('close')"
+  >
+    <Form :submitIcon="RiLoginCircleLine" :submitLabel="t('navigation.auth.signIn')" @submit="signIn">
       <TextField v-model="username" required :label="t('navigation.auth.username')" type="text" name="username" />
       <TextField v-model="password" required :label="t('navigation.auth.password')" type="password" name="password" />
       <Alert v-if="state === 'errored'" :text="t('navigation.auth.loginFailed')" type="error" />
@@ -13,6 +19,7 @@ import Alert from '@components/base/alert/Alert.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Form from '@components/base/form/Form.vue';
 import TextField from '@components/base/text-field/TextField.vue';
+import { RiLoginCircleLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';

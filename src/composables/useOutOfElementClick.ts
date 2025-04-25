@@ -7,12 +7,12 @@ export const useOutOfElementClick = (
 ) => {
   const els = arrayify(valid);
 
-  const click = (evt: MouseEvent) => {
-    if (evt.isTrusted && els.every((el) => !el.value || !evt.composedPath().includes(el.value))) {
+  const click = (evt: PointerEvent) => {
+    if (evt.isTrusted && els.length && els.every((el) => !el.value || !evt.composedPath().includes(el.value))) {
       cb(evt);
     }
   };
 
-  onMounted(() => window.addEventListener('click', click));
-  onUnmounted(() => window.removeEventListener('click', click));
+  onMounted(() => window.addEventListener('pointerup', click));
+  onUnmounted(() => window.removeEventListener('pointerup', click));
 };

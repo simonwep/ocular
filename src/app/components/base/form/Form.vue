@@ -1,12 +1,13 @@
 <template>
   <form :class="$style.fields" action="#" @submit="submit">
     <slot />
-    <Button :class="$style.btn" :text="submitLabel" type="submit" />
+    <Button :icon="submitIcon" :class="$style.btn" :text="submitLabel" type="submit" />
   </form>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
+import type { Component } from 'vue';
 
 const emit = defineEmits<{
   (e: 'submit'): void;
@@ -14,6 +15,7 @@ const emit = defineEmits<{
 
 defineProps<{
   submitLabel: string;
+  submitIcon?: Component;
 }>();
 
 const submit = (e: Event) => {

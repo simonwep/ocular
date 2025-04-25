@@ -1,80 +1,78 @@
 <template>
   <Teleport to="#app">
-    <dialog
-      ref="dialog"
-      :class="classes"
-      @keydown="onKeyDown"
-      @close="lock ? (visible = true) : emit('close')"
-      @transitionend="transitionEnd"
-    >
-      <div :class="$style.backdrop" />
-      <div ref="content" :class="[$style.content, contentClass]">
-        <h3 v-if="title" :class="$style.title">{{ title }}</h3>
-        <slot />
-      </div>
-    </dialog>
+    <Transition :enterFromClass="$style.hidden" :leaveToClass="$style.hidden">
+      <component
+        :is="native ? 'dialog' : 'div'"
+        v-if="open"
+        ref="dialog"
+        :class="$style.dialog"
+        @keydown="onKeyDown"
+        @close="!lock && emit('close')"
+      >
+        <div :class="$style.backdrop" />
+        <div ref="content" :class="[$style.content, contentClass]">
+          <h3 v-if="title" :class="$style.title">{{ title }}</h3>
+          <slot />
+        </div>
+      </component>
+    </Transition>
   </Teleport>
 </template>
 
 <script lang="ts" setup>
 import { useOutOfElementClick } from '@composables/useOutOfElementClick.ts';
 import { ClassNames } from '@utils/types.ts';
-import { computed, ref, toRef, useCssModule, useTemplateRef, watch } from 'vue';
+import { onMounted, onUnmounted, ref, toRef, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{
   (e: 'close'): void;
 }>();
 
-const props = defineProps<{
-  open: boolean;
-  lock?: boolean;
-  title?: string;
-  contentClass?: ClassNames;
-}>();
+const props = withDefaults(
+  defineProps<{
+    open: boolean;
+    native?: boolean;
+    lock?: boolean;
+    title?: string;
+    contentClass?: ClassNames;
+  }>(),
+  {
+    // Password managers for example don't work with native dialogs
+    native: true
+  }
+);
 
 const content = ref<HTMLDivElement>();
 const dialog = useTemplateRef('dialog');
-const visible = ref(false);
-
-const styles = useCssModule();
-const classes = computed(() => [styles.dialog, { [styles.open]: props.open }]);
 
 useOutOfElementClick(content, () => {
-  if (visible.value && !props.lock) {
+  if (props.open && !props.lock) {
     emit('close');
   }
 });
 
-const transitionEnd = () => {
-  if (!props.open) {
-    dialog.value?.close();
-  }
-};
-
 const onKeyDown = (evt: KeyboardEvent) => {
-  if (evt.key === 'Escape' && props.lock) {
-    evt.preventDefault();
+  if (evt.key === 'Escape') {
+    if (props.lock) {
+      evt.preventDefault();
+    } else {
+      emit('close');
+    }
   }
 };
 
-watch(
-  [toRef(props, 'open'), dialog],
-  () => {
-    if (props.open) {
-      dialog.value?.showModal();
-      requestAnimationFrame(() => (visible.value = true));
-    } else {
-      visible.value = false;
-      requestAnimationFrame(() => dialog.value?.close());
-    }
-  },
-  { immediate: true }
-);
+watch([toRef(props, 'open'), dialog], ([open, dialog]) => {
+  if (open && dialog instanceof HTMLDialogElement) {
+    dialog?.showModal();
+  }
+});
+
+onMounted(() => window.addEventListener('keydown', onKeyDown));
+onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
 </script>
 
 <style lang="scss" module>
 .dialog {
-  visibility: hidden;
   position: fixed;
   inset: 0 0 0 0;
   display: flex;
@@ -92,36 +90,30 @@ watch(
 .backdrop {
   position: absolute;
   transition: all var(--transition-m);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   inset: 0 0 0 0;
   z-index: -1;
 }
 
-.dialog[open] {
-  visibility: visible;
-
+.hidden {
   .content {
-    transition: opacity var(--transition-m);
-  }
-}
-
-.dialog[open].open {
-  .content {
-    opacity: 1;
+    opacity: 0;
   }
 
   .backdrop {
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 }
 
 .content {
+  transition: opacity var(--transition-m);
   background: var(--dialog-background);
   color: var(--theme-text);
   padding: 16px 18px;
   border-radius: var(--border-radius-l);
   box-shadow: var(--dialog-box-shadow);
-  opacity: 0;
 }
 
 .title {

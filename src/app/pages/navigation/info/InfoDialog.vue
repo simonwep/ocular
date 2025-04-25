@@ -1,7 +1,7 @@
 <template>
   <Dialog :open="open" :title="t('navigation.info.about')" @close="emit('close')">
     <div :class="$style.infoBox">
-      <span :class="$style.link">
+      <span>
         <i18n-t keypath="navigation.info.github" scope="global">
           <template #link>
             <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
@@ -53,19 +53,14 @@ const { t } = useI18n();
   flex-direction: column;
   font-size: var(--font-size-s);
   text-align: center;
-  gap: 2px;
   max-width: 300px;
-}
-
-.link {
-  margin-top: 8px;
+  gap: 8px;
 }
 
 .love {
   display: inline-block;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-l);
-  margin-top: 8px;
 }
 
 .meta {

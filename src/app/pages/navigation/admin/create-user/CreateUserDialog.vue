@@ -1,6 +1,6 @@
 <template>
   <Dialog :title="t('navigation.admin.createUser')" :open="open" @close="emit('close')">
-    <Form :submitLabel="t('navigation.admin.createUser')" @submit="submit">
+    <Form :submitIcon="RiUserAddLine" :submitLabel="t('navigation.admin.createUser')" @submit="submit">
       <TextField
         v-model="newUser.name"
         :minLength="3"
@@ -31,6 +31,7 @@ import CheckBox from '@components/base/check-box/CheckBox.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Form from '@components/base/form/Form.vue';
 import TextField from '@components/base/text-field/TextField.vue';
+import { RiUserAddLine } from '@remixicon/vue';
 import { NewGenesisUser } from '@storage/createGenesisStore';
 import { useStorage } from '@storage/index';
 import { reactive, ref } from 'vue';
