@@ -1,13 +1,13 @@
-import { Plugin } from 'vite';
 import { minify } from 'html-minifier-terser';
+import { Plugin } from 'vite';
 
 export const minifyHtmlPlugin = (): Plugin => ({
   name: 'vite-plugin-minify',
   apply: 'build',
   transformIndexHtml: {
     order: 'post',
-    handler(html) {
-      return minify(html, {
+    handler: (html) =>
+      minify(html, {
         removeComments: true,
         collapseWhitespace: true,
         collapseBooleanAttributes: true,
@@ -16,7 +16,6 @@ export const minifyHtmlPlugin = (): Plugin => ({
         minifyCSS: true,
         minifyJS: true,
         minifyURLs: true
-      });
-    }
+      })
   }
 });

@@ -1,14 +1,16 @@
+/* eslint-disable import-x/default, import-x/no-named-as-default-member */
 import js from '@eslint/js';
 import vueI18n from '@intlify/eslint-plugin-vue-i18n';
 import tsParser from '@typescript-eslint/parser';
 import vuePrettier from '@vue/eslint-config-prettier';
+import { defineConfig } from 'eslint/config';
 import importX from 'eslint-plugin-import-x';
 import preferArrowFunctions from 'eslint-plugin-prefer-arrow-functions';
 import prettier from 'eslint-plugin-prettier/recommended';
 import vue from 'eslint-plugin-vue';
 import ts from 'typescript-eslint';
 
-export default [
+export default defineConfig([
   prettier,
   js.configs.recommended,
   importX.flatConfigs.recommended,
@@ -18,7 +20,10 @@ export default [
   ...vueI18n.configs['flat/recommended'],
   vuePrettier,
   {
-    files: ['**/*.{vue,ts,js,mjs}'],
+    ignores: ['.data', 'test-results', 'dist', 'node_modules/', 'docs/.vitepress/{dist,cache}']
+  },
+  {
+    files: ['**/*.{vue,ts,mts,js,mjs}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -91,4 +96,4 @@ export default [
       ]
     }
   }
-];
+]);

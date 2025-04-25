@@ -4,7 +4,7 @@ export const minifyJsonPlugin = (): Plugin => ({
   name: 'vite-plugin-minify-json',
   apply: 'build',
   enforce: 'pre',
-  async generateBundle(_, bundle) {
+  generateBundle: async (_, bundle) => {
     for (const fileName of Object.keys(bundle)) {
       if (fileName.endsWith('.json')) {
         const asset = bundle[fileName];
