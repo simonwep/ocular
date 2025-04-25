@@ -5,11 +5,22 @@
       <RiHandCoinLine :class="$style.icon" />
     </div>
     <span>{{ t('shared.placeholder') }}</span>
+
+    <Button
+      v-if="appConfig?.demo"
+      :icon="RiMagicFill"
+      size="xs"
+      :text="t('navigation.tools.demo.loadDemoData')"
+      @click="loadDemoData"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { RiHandCoinLine, RiShoppingBasket2Line } from '@remixicon/vue';
+import Button from '@components/base/button/Button.vue';
+import { useDemoData } from '@composables/demo-data/useDemoData.ts';
+import { useAppConfig } from '@composables/useAppConfig.ts';
+import { RiHandCoinLine, RiMagicFill, RiShoppingBasket2Line } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -18,8 +29,11 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const classes = computed(() => props.class);
 const { t } = useI18n();
+const { loadDemoData } = useDemoData();
+const appConfig = useAppConfig();
+
+const classes = computed(() => props.class);
 </script>
 
 <style lang="scss" module>
@@ -30,7 +44,7 @@ const { t } = useI18n();
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 14px;
   flex-grow: 1;
 
   &,

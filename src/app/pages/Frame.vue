@@ -91,6 +91,8 @@ const buttons = computed((): FrameButton[] => [
 }
 
 .panes {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   height: 100%;
   width: 100%;

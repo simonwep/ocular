@@ -10,6 +10,7 @@
 
 <script lang="ts" setup>
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
+import { useDemoData } from '@composables/demo-data/useDemoData.ts';
 import { useAppConfig } from '@composables/useAppConfig.ts';
 import { useAppElement } from '@composables/useAppElement.ts';
 import { useMediaQuery } from '@composables/useMediaQuery.ts';
@@ -22,6 +23,7 @@ import { useRouter } from 'vue-router';
 
 const { status } = useStorage();
 const { state } = useSettingsStore();
+const { loadDemoData } = useDemoData();
 const { t } = useI18n();
 const router = useRouter();
 const storage = useStorage();
@@ -68,6 +70,12 @@ watch(status, (v) => {
 watch(router.currentRoute, (route) => {
   if (route) {
     document.title = t(`page.${route.name as string}.title`);
+  }
+});
+
+watch(appConfig, (config) => {
+  if (config?.demo && location.hash === '#demo') {
+    loadDemoData();
   }
 });
 </script>
