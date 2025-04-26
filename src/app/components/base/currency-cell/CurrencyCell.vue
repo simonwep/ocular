@@ -70,7 +70,7 @@ watch(modelValue, (value, oldValue) => {
 watch(focused, () => {
   if (!focused.value) {
     try {
-      modelValue.value = innerValue.value ? evalMathExpression(innerValue.value, locale.value) : undefined;
+      modelValue.value = innerValue.value ? evalMathExpression(innerValue.value, locale.value) : 0;
       invalid.value = false;
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
