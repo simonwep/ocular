@@ -1,6 +1,7 @@
 <template>
   <Dialog
     :native="false"
+    :closeOnBackgroundClick="false"
     :open="open"
     :lock="lockDialog"
     :title="t('navigation.auth.welcomeBack')"

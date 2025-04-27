@@ -12,6 +12,14 @@
         <div :class="$style.backdrop" />
         <div ref="content" :class="[$style.content, contentClass]">
           <h3 v-if="title" :class="$style.title">{{ title }}</h3>
+          <Button
+            v-if="!lock"
+            :class="$style.closeBtn"
+            textual
+            color="dimmed"
+            :icon="RiCloseCircleFill"
+            @click="emit('close')"
+          />
           <slot />
         </div>
       </component>
@@ -20,7 +28,9 @@
 </template>
 
 <script lang="ts" setup>
+import Button from '@components/base/button/Button.vue';
 import { useOutOfElementClick } from '@composables/useOutOfElementClick.ts';
+import { RiCloseCircleFill } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
 import { onMounted, onUnmounted, ref, toRef, useTemplateRef, watch } from 'vue';
 
@@ -35,10 +45,12 @@ const props = withDefaults(
     lock?: boolean;
     title?: string;
     contentClass?: ClassNames;
+    closeOnBackgroundClick?: boolean;
   }>(),
   {
     // Password managers for example don't work with native dialogs
-    native: true
+    native: true,
+    closeOnBackgroundClick: true
   }
 );
 
@@ -46,7 +58,7 @@ const content = ref<HTMLDivElement>();
 const dialog = useTemplateRef('dialog');
 
 useOutOfElementClick(content, () => {
-  if (props.open && !props.lock) {
+  if (props.closeOnBackgroundClick && props.open && !props.lock) {
     emit('close');
   }
 });
@@ -108,6 +120,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
 }
 
 .content {
+  position: relative;
   transition: opacity var(--transition-m);
   background: var(--dialog-background);
   color: var(--theme-text);
@@ -121,5 +134,10 @@ onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
   font-weight: var(--font-weight-l);
   font-style: var(--font-size-m);
   padding-bottom: 14px;
+}
+
+.closeBtn {
+  position: absolute;
+  inset: 4px 4px auto auto;
 }
 </style>

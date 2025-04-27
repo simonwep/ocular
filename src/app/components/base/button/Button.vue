@@ -52,7 +52,6 @@ const props = withDefaults(
 const styles = useCssModule();
 const theme = useThemeStyles(() => props.color);
 const classes = computed(() => [
-  props.class,
   styles.button,
   styles[props.size],
   {
@@ -61,7 +60,8 @@ const classes = computed(() => [
     [styles.textual]: props.textual,
     [styles.rounded]: props.rounded,
     [styles.iconOnly]: props.icon && !props.text
-  }
+  },
+  props.class
 ]);
 </script>
 
