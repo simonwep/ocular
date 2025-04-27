@@ -1,4 +1,7 @@
+import { assertNoErrors } from './utils/assertNoErrors.ts';
 import { expect, test } from '@playwright/test';
+
+test.beforeEach(({ page }) => assertNoErrors(page));
 
 test('Navigate and show correct page title', async ({ page }) => {
   await page.goto('/');

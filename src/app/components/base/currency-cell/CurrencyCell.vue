@@ -67,16 +67,28 @@ watch(modelValue, (value, oldValue) => {
   }
 });
 
-watch(focused, () => {
-  if (!focused.value) {
-    try {
-      modelValue.value = innerValue.value ? evalMathExpression(innerValue.value, locale.value) : 0;
-      invalid.value = false;
+watch(focused, (value) => {
+  if (value) return;
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_) {
-      invalid.value = true;
+  const trimmed = innerValue.value?.trim();
+  if (!trimmed) {
+    modelValue.value = 0;
+    invalid.value = false;
+
+    if (input.value) {
+      input.value.value = '';
     }
+
+    return;
+  }
+
+  try {
+    modelValue.value = innerValue.value ? evalMathExpression(innerValue.value, locale.value) : 0;
+    invalid.value = false;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) {
+    invalid.value = true;
   }
 });
 </script>

@@ -1,4 +1,7 @@
+import { assertNoErrors } from './utils/assertNoErrors.ts';
 import { test, expect } from '@playwright/test';
+
+test.beforeEach(({ page }) => assertNoErrors(page));
 
 test('Show correct budget group totals and averages', async ({ page }) => {
   await page.goto('/income');
@@ -28,7 +31,7 @@ test('Show correct budget group totals and averages', async ({ page }) => {
   await expect(page.getByTestId('group-0-budget-0-average')).toContainText('€125');
 });
 
-test('Evaluate expressions correctly', async ({ page }) => {
+test('Evaluate expressions correctly without erors', async ({ page }) => {
   await page.goto('/income');
 
   // Simple expressions
@@ -58,6 +61,14 @@ test('Evaluate expressions correctly', async ({ page }) => {
   await page.getByTestId('group-0-budget-0-0').fill('1000 + 2000 *');
   await page.getByTestId('group-0-budget-0-0').blur();
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('1000 + 2000 *');
+
+  await page.getByTestId('group-0-budget-0-0').fill('');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('');
+
+  await page.getByTestId('group-0-budget-0-0').fill('   ');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('');
 });
 
 test('Localizes numbers and parse them correctly', async ({ page }) => {

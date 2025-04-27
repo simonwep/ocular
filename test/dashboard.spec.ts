@@ -1,4 +1,7 @@
+import { assertNoErrors } from './utils/assertNoErrors.ts';
 import { expect, test } from '@playwright/test';
+
+test.beforeEach(({ page }) => assertNoErrors(page));
 
 test('Show correct dashboard values based on incomes and expenses', async ({ page }) => {
   await page.goto('/income');
@@ -17,8 +20,6 @@ test('Show correct dashboard values based on incomes and expenses', async ({ pag
   await expect(page.getByTestId('expenses-sub')).toContainText('33%');
   await expect(page.getByTestId('ending-balance-value')).toContainText('€800');
 });
-
-// TODO: Placeholder for all-time overview
 
 test('Show correct all time values based on the demo data', async ({ page }) => {
   await page.goto('/#demo');
