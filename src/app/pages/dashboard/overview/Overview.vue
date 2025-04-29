@@ -28,6 +28,7 @@ const highlight = ref<string>();
   grid-template: auto 1fr / 1fr;
   overflow: hidden;
   height: 100%;
+  gap: 10px;
 
   @include globals.onMobileDevices {
     grid-template: 1fr / 1fr;

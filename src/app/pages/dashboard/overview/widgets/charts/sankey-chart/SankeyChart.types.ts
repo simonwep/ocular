@@ -1,19 +1,22 @@
-export interface SankeyChartLink {
+export type SankeyChartLink = {
+  id: string;
   source: string;
   target: string;
   value: number;
   muted?: boolean;
-}
+};
 
-export interface SankeyChartLabel {
+export type SankeyChartType = 'absolute' | 'percentage';
+
+export type SankeyChartLabel = {
   id: string;
-  name: string;
+  formatter: (v: number, type: SankeyChartType) => string;
   color: string;
   muted?: boolean;
   align?: 'left' | 'right';
-}
+};
 
-export interface SankeyChartConfig {
+export type SankeyChartConfig = {
   labels: SankeyChartLabel[];
   links: SankeyChartLink[];
-}
+};

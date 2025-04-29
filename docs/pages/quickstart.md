@@ -35,9 +35,10 @@ Notable features of Ocular:
 - All-time overview of your budgets including analytics.
 - Privacy mode for when you're in a public place.
 - Track budgets across multiple years.
-- User management and authentication.
+- User management and authentication via app and cli.
 - Customizable, financial year, start at any month.
 - Carry over budgets to the next year.
+- Inline expression evaluation.
 - ...and much more!
 
 ## Repositories
