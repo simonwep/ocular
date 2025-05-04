@@ -1,8 +1,8 @@
 <template>
   <span v-if="multiYear" :class="$style.toggle">
-    <Button :icon="RiArrowLeftSLine" rounded @click="rotateYear(-1)" />
+    <Button :class="$style.btn" :icon="RiArrowLeftSLine" rounded @click="rotateYear(-1)" />
     <TextWheel :values="values" :value="value" />
-    <Button :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
+    <Button :class="$style.btn" :icon="RiArrowRightSLine" rounded @click="rotateYear(1)" />
   </span>
   <i18n-t data-testid="current-year-text" :class="$style.activeYear" tag="span" :keypath="keyPath" scope="global">
     <template #year>
@@ -65,6 +65,7 @@ const rotateYear = (dir: -1 | 1) => {
   background: var(--c-primary);
   border-radius: 100px;
   gap: 5px;
+  height: 100%;
   filter: drop-shadow(0 0 3px rgba(black, 0.15));
   font-size: var(--font-size-xs);
   color: var(--c-text-light);
@@ -73,6 +74,12 @@ const rotateYear = (dir: -1 | 1) => {
     all: unset;
     font-size: var(--font-size-xs);
     cursor: pointer;
+  }
+
+  .btn {
+    padding: 0;
+    height: 100%;
+    width: 26px;
   }
 }
 

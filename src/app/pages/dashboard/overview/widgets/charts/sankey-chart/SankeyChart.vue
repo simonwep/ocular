@@ -2,7 +2,7 @@
   <div :class="$style.container">
     <EChart ref="chart" :class="[$style.sankeyChart, classes]" :options="options" />
     <div :class="$style.controls">
-      <Switch v-model="showPercentages" :iconOn="RiPercentFill" :iconOff="RiNumber9" />
+      <Switch v-model="showPercentages" :class="$style.switch" :iconOn="RiPercentFill" :iconOff="RiNumber9" />
       <ContextMenu v-if="chart" position="top-end">
         <template #default="{ toggle }">
           <button type="button" :class="$style.downloadBtn" @click="toggle">
@@ -131,8 +131,10 @@ const downloadSVG = () => {
 .controls {
   display: flex;
   justify-content: flex-end;
+  flex-shrink: 0;
   gap: 10px;
-  padding: 10px 0;
+  height: 26px;
+  margin: 10px 0;
 }
 
 .downloadBtn {
@@ -140,8 +142,8 @@ const downloadSVG = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: 100px;
   background: var(--c-primary);
   color: var(--c-primary-text);
@@ -152,5 +154,10 @@ const downloadSVG = () => {
     background: var(--c-primary-hover);
     color: var(--c-primary-text-hover);
   }
+}
+
+.switch {
+  height: 100%;
+  width: 50px;
 }
 </style>
