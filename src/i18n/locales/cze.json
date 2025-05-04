@@ -93,6 +93,9 @@
       "retryingPleaseWait": "Znovu se pokoušíme, čekejte prosím...",
       "retrySynchronization": "Znovu synchronizovat",
       "demoVersionInfo": "Toto je demo verze, která neukládá žádná data. Chcete-li uložit svá data, musíte se přihlásit."
+    },
+    "update": {
+      "updateApp": "Aktualizovat aplikaci"
     }
   },
   "shared": {

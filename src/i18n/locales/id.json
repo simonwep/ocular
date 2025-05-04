@@ -93,6 +93,9 @@
       "retryingPleaseWait": "Mencoba kembali, mohon tunggu...",
       "retrySynchronization": "Coba kembali sinkronisasi",
       "demoVersionInfo": "Ini adalah versi demo yang tidak menyimpan data apa pun. Untuk menyimpan data Anda, Anda perlu masuk."
+    },
+    "update": {
+      "updateApp": "Perbarui aplikasi"
     }
   },
   "shared": {

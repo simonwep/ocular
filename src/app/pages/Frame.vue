@@ -30,6 +30,7 @@
       </template>
 
       <div :class="$style.divider" />
+      <UpdateAppButton v-if="media !== 'mobile'" :class="$style.btn" />
       <CloudButton :class="$style.btn" />
     </div>
 
@@ -53,6 +54,7 @@ import ThemeButton from './navigation/theme/ThemeButton.vue';
 import ToolsButton from './navigation/tools/ToolsButton.vue';
 import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
 import StatusBar from './status-bar/StatusBar.vue';
+import UpdateAppButton from '@app/pages/navigation/update/UpdateAppButton.vue';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables/useMediaQuery.ts';

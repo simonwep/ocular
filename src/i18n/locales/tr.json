@@ -93,6 +93,9 @@
       "retryingPleaseWait": "Tekrar deniyor, lütfen bekleyin...",
       "retrySynchronization": "Senkronizasyonu yeniden dene",
       "demoVersionInfo": "Bu, hiçbir veri kaydetmeyen bir demo sürümüdür. Verilerinizi kaydetmek için giriş yapmanız gerekir."
+    },
+    "update": {
+      "updateApp": "Güncelleme uygulaması"
     }
   },
   "shared": {

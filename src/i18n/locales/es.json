@@ -93,6 +93,9 @@
       "retryingPleaseWait": "Reintentando, por favor espera...",
       "retrySynchronization": "Reintentar sincronización",
       "demoVersionInfo": "Esta es una versión de demostración que no guarda ningún dato. Para guardar tus datos, necesitas iniciar sesión."
+    },
+    "update": {
+      "updateApp": "Actualizar aplicación"
     }
   },
   "shared": {

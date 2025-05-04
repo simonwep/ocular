@@ -93,6 +93,9 @@
       "retryingPleaseWait": "Ponawiam, proszę czekać...",
       "retrySynchronization": "Ponów synchronizację",
       "demoVersionInfo": "To jest wersja demonstracyjna, która nie zapisuje żadnych danych. Aby zapisać swoje dane, musisz się zalogować."
+    },
+    "update": {
+      "updateApp": "Zaktualizuj aplikację"
     }
   },
   "shared": {

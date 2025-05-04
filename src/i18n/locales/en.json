@@ -93,6 +93,9 @@
       "retryingPleaseWait": "Retrying, please wait...",
       "retrySynchronization": "Retry synchronization",
       "demoVersionInfo": "This is a demo version that does not save any data. To save your data, you need to log in."
+    },
+    "update": {
+      "updateApp": "Update app"
     }
   },
   "shared": {

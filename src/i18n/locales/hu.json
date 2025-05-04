@@ -93,6 +93,9 @@
       "retryingPleaseWait": "Újra próbálkozás, kérjük várjon...",
       "retrySynchronization": "Szinkronizálás újra",
       "demoVersionInfo": "Ez egy demó verzió, amely nem ment adatokat. Az adatok mentéséhez be kell jelentkeznie."
+    },
+    "update": {
+      "updateApp": "Gyakorlatilag frissítve"
     }
   },
   "shared": {
