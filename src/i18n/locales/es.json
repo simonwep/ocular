@@ -92,7 +92,8 @@
       "synchronizationFailedDueToNetworkError": "¡La sincronización falló debido a un error de red!",
       "retryingPleaseWait": "Reintentando, por favor espera...",
       "retrySynchronization": "Reintentar sincronización",
-      "demoVersionInfo": "Esta es una versión de demostración que no guarda ningún dato. Para guardar tus datos, necesitas iniciar sesión."
+      "demoVersionInfo": "Esta es una versión de demostración que no guarda ningún dato. Para guardar tus datos, necesitas iniciar sesión.",
+      "newVersionAvailable": "¡Una nueva versión está disponible!"
     },
     "update": {
       "updateApp": "Actualizar aplicación"

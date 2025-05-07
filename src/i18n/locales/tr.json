@@ -92,7 +92,8 @@
       "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",
       "retryingPleaseWait": "Tekrar deniyor, lütfen bekleyin...",
       "retrySynchronization": "Senkronizasyonu yeniden dene",
-      "demoVersionInfo": "Bu, hiçbir veri kaydetmeyen bir demo sürümüdür. Verilerinizi kaydetmek için giriş yapmanız gerekir."
+      "demoVersionInfo": "Bu, hiçbir veri kaydetmeyen bir demo sürümüdür. Verilerinizi kaydetmek için giriş yapmanız gerekir.",
+      "newVersionAvailable": "Yeni bir sürüm mevcut!"
     },
     "update": {
       "updateApp": "Güncelleme uygulaması"

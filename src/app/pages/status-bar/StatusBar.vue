@@ -11,12 +11,13 @@
 import { useAppConfig } from '@composables/useAppConfig.ts';
 import { useStorage } from '@storage/index.ts';
 import { ClassNames } from '@utils/types.ts';
+import { useRegisterSW } from 'virtual:pwa-register/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 type Status = {
   title: string;
-  color: 'danger' | 'warning';
+  color: 'danger' | 'warning' | 'success';
   button?: string;
   action?: () => unknown;
 };
@@ -27,6 +28,7 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const { status: storageStatus, retry: retrySync, user } = useStorage();
+const { needRefresh, updateServiceWorker } = useRegisterSW();
 const appConfig = useAppConfig();
 
 const classes = computed(() => props.class);
@@ -46,6 +48,15 @@ const status = computed((): Status | undefined => {
         title: t('navigation.status.retryingPleaseWait')
       };
     }
+  }
+
+  if (needRefresh.value) {
+    return {
+      color: 'success',
+      title: t('navigation.status.newVersionAvailable'),
+      button: t('navigation.update.updateApp'),
+      action: () => updateServiceWorker(true)
+    };
   }
 
   if (appConfig.value?.demo && !user.value) {
@@ -86,6 +97,17 @@ const status = computed((): Status | undefined => {
       var(--c-warning) 10px,
       var(--c-warning-hover) 10px,
       var(--c-warning-hover) 20px
+    );
+  }
+
+  &.success {
+    color: var(--c-success-text);
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--c-success),
+      var(--c-success) 10px,
+      var(--c-success-hover) 10px,
+      var(--c-success-hover) 20px
     );
   }
 }

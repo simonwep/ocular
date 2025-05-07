@@ -92,7 +92,8 @@
       "synchronizationFailedDueToNetworkError": "A szinkronizálás hálózati hiba miatt meghiúsult!",
       "retryingPleaseWait": "Újra próbálkozás, kérjük várjon...",
       "retrySynchronization": "Szinkronizálás újra",
-      "demoVersionInfo": "Ez egy demó verzió, amely nem ment adatokat. Az adatok mentéséhez be kell jelentkeznie."
+      "demoVersionInfo": "Ez egy demó verzió, amely nem ment adatokat. Az adatok mentéséhez be kell jelentkeznie.",
+      "newVersionAvailable": "A legújabb verzió elérhető!"
     },
     "update": {
       "updateApp": "Gyakorlatilag frissítve"

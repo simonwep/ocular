@@ -92,7 +92,8 @@
       "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",
       "retryingPleaseWait": "Znovu se pokoušíme, čekejte prosím...",
       "retrySynchronization": "Znovu synchronizovat",
-      "demoVersionInfo": "Toto je demo verze, která neukládá žádná data. Chcete-li uložit svá data, musíte se přihlásit."
+      "demoVersionInfo": "Toto je demo verze, která neukládá žádná data. Chcete-li uložit svá data, musíte se přihlásit.",
+      "newVersionAvailable": "Nová verze je k dispozici!"
     },
     "update": {
       "updateApp": "Aktualizovat aplikaci"

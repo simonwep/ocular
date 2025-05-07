@@ -92,7 +92,8 @@
       "synchronizationFailedDueToNetworkError": "Synchronizacja nie powiodła się z powodu błędu sieci!",
       "retryingPleaseWait": "Ponawiam, proszę czekać...",
       "retrySynchronization": "Ponów synchronizację",
-      "demoVersionInfo": "To jest wersja demonstracyjna, która nie zapisuje żadnych danych. Aby zapisać swoje dane, musisz się zalogować."
+      "demoVersionInfo": "To jest wersja demonstracyjna, która nie zapisuje żadnych danych. Aby zapisać swoje dane, musisz się zalogować.",
+      "newVersionAvailable": "Nowa wersja jest dostępna!"
     },
     "update": {
       "updateApp": "Zaktualizuj aplikację"
