@@ -20,6 +20,7 @@ interface StoredClipboardData {
 }
 
 type StoreView = Omit<BudgetYear, 'year'> & {
+  clipboard: StoredClipboardData | undefined;
   activeYear: number;
   currency: AvailableCurrency;
   locale: AvailableLocale;
@@ -61,6 +62,9 @@ export const createDataStore = (storage?: Storage) => {
 
   return {
     state: readonly<StoreView>({
+      get clipboard() {
+        return clipboard.value;
+      },
       get activeYear() {
         return activeYear.value;
       },
@@ -84,25 +88,6 @@ export const createDataStore = (storage?: Storage) => {
       }
     }),
 
-    clipboard: {
-      data: readonly(clipboard),
-      copy: () => {
-        clipboard.value = {
-          year: activeYear.value,
-          data: JSON.parse(JSON.stringify(getCurrentYear()))
-        };
-      },
-      paste: () => {
-        if (clipboard.value) {
-          const {
-            data: { expenses, income }
-          } = clipboard.value;
-          Object.assign(getCurrentYear(), { income, expenses });
-          clipboard.value = undefined;
-        }
-      }
-    },
-
     serialize: (): string => JSON.stringify(state),
 
     deserialize: async (data: File | DataState) => {
@@ -114,6 +99,23 @@ export const createDataStore = (storage?: Storage) => {
           });
       } else {
         Object.assign(state, migrateApplicationState(data));
+      }
+    },
+
+    copyYear: () => {
+      clipboard.value = {
+        year: activeYear.value,
+        data: JSON.parse(JSON.stringify(getCurrentYear()))
+      };
+    },
+
+    pasteYear: () => {
+      if (clipboard.value) {
+        const {
+          data: { expenses, income }
+        } = clipboard.value;
+        Object.assign(getCurrentYear(), { income, expenses });
+        clipboard.value = undefined;
       }
     },
 

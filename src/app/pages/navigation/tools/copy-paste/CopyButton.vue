@@ -7,7 +7,7 @@
     "
     testId="copy-data"
     :icon="RiClipboardLine"
-    @click="clipboard.copy"
+    @click="copyYear"
   />
 </template>
 
@@ -17,6 +17,6 @@ import { RiClipboardLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { useI18n } from 'vue-i18n';
 
-const { clipboard, state } = useDataStore();
+const { copyYear, state } = useDataStore();
 const { t } = useI18n();
 </script>

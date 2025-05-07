@@ -1,6 +1,6 @@
 <template>
   <ContextMenuButton
-    v-if="clipboard.data.value"
+    v-if="state.clipboard && state.clipboard.year !== state.activeYear"
     :text="t('navigation.tools.copyPaste.paste', { from, to })"
     :icon="RiClipboardLine"
     testId="paste-data"
@@ -15,15 +15,15 @@ import { useDataStore } from '@store/state';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { clipboard, state } = useDataStore();
+const { pasteYear, state } = useDataStore();
 const { t } = useI18n();
 
-const from = computed(() => clipboard.data.value?.year);
+const from = computed(() => state.clipboard?.year);
 const to = computed(() => state.activeYear);
 
 const paste = () => {
   if (window.confirm(t('navigation.tools.copyPaste.confirm', { from: from.value, to: to.value }))) {
-    clipboard.paste();
+    pasteYear();
   }
 };
 </script>
