@@ -14,6 +14,7 @@ export const availableCurrencies = [
   'CHF',
   'CNY',
   'DKK',
+  'ILS',
   'SEK',
   'NZD',
   'MXN',
@@ -30,35 +31,9 @@ export const availableCurrencies = [
   'PLN',
   'CRC',
   'IDR'
-];
+] as const;
 
-export type AvailableCurrency =
-  | 'USD'
-  | 'EUR'
-  | 'JPY'
-  | 'GBP'
-  | 'CZK'
-  | 'AUD'
-  | 'CAD'
-  | 'CHF'
-  | 'CNY'
-  | 'DKK'
-  | 'SEK'
-  | 'NZD'
-  | 'MXN'
-  | 'SGD'
-  | 'HKD'
-  | 'NOK'
-  | 'KRW'
-  | 'TRY'
-  | 'INR'
-  | 'RUB'
-  | 'BRL'
-  | 'ZAR'
-  | 'HUF'
-  | 'PLN'
-  | 'CRC'
-  | 'IDR';
+export type AvailableCurrency = (typeof availableCurrencies)[number];
 
 export interface Budget {
   id: string;
