@@ -56,7 +56,7 @@ To add support for a new language, you need to do the following:
 
 To add support for a new currency, you need to do the following:
 
-1. Add your currency code to [src/store/state/types.ts](../src/store/state/types.ts) to both `availableCurrencies` and `AvailableCurrency`.
+1. Add your currency code to [src/store/state/types.ts](../src/store/state/types.ts) to the `availableCurrencies` array.
 
 ## Adding a new feature
 
