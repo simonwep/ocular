@@ -31,7 +31,7 @@ test('Show correct budget group totals and averages', async ({ page }) => {
   await expect(page.getByTestId('group-0-budget-0-average')).toContainText('€125');
 });
 
-test('Evaluate expressions correctly without erors', async ({ page }) => {
+test('Evaluate expressions correctly without errors', async ({ page }) => {
   await page.goto('/income');
 
   // Simple expressions

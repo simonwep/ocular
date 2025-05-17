@@ -12,6 +12,16 @@ test('Load demo data', async ({ page }) => {
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
 });
 
+test('Keep value in cells if unchanged', async ({ page }) => {
+  await page.goto('/#demo');
+  await page.getByTestId('navigation-income').click();
+  const value = await page.getByTestId('group-0-budget-0-0').inputValue();
+
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue(value);
+});
+
 test('Copy data from one year to another', async ({ page }) => {
   await page.goto('/#demo');
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');

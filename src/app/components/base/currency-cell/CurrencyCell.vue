@@ -68,7 +68,10 @@ watch(modelValue, (value, oldValue) => {
 });
 
 watch(focused, (value) => {
-  if (value) return;
+  if (value) {
+    innerValue.value ??= modelValue.value ? String(modelValue.value) : undefined;
+    return;
+  }
 
   const trimmed = innerValue.value?.trim();
   if (!trimmed) {
