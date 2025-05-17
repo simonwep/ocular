@@ -10,7 +10,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 ENV OCULAR_BUILD_VERSION=${OCULAR_BUILD_VERSION}
 ENV OCULAR_BUILD_SHA=${OCULAR_BUILD_SHA}
 
-RUN npx pnpm install --global pnpm@9
+RUN npx pnpm install --global pnpm@10.11.0
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml /app/
