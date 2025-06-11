@@ -1,8 +1,8 @@
 import { Ref } from 'vue';
 
-export const ONBOARDING_STORE = Symbol('OnboardingStore');
+export const STEPS_STORE = Symbol('Steps Store');
 
-export interface OnboardingStore {
+export interface StepsStore {
   register(size: Ref<DOMRect>): void;
   unregister(size: Ref<DOMRect>): void;
 }

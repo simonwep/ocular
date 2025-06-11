@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ONBOARDING_STORE, OnboardingStore, StepsExposed } from './Steps.types';
+import { STEPS_STORE, StepsStore, StepsExposed } from './Steps.types';
 import { remove } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed, provide, reactive, Ref, ref } from 'vue';
@@ -26,7 +26,7 @@ const screenIndex = ref(0);
 const screen = computed(() => sizes[screenIndex.value]?.value ?? new DOMRect());
 const offset = computed(() => sizes.slice(0, screenIndex.value).reduce((a, b) => a + b.value.width, 0));
 
-provide<OnboardingStore>(ONBOARDING_STORE, {
+provide<StepsStore>(STEPS_STORE, {
   register: (size) => sizes.push(size),
   unregister: (size) => remove(sizes, size)
 });

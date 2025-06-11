@@ -29,10 +29,10 @@ import Step from '@components/base/steps/Step.vue';
 import { StepsExposed } from '@components/base/steps/Steps.types';
 import Steps from '@components/base/steps/Steps.vue';
 import { RiFileFill, RiGoogleFill, RiUploadCloud2Line } from '@remixicon/vue';
-import { DefineComponent, ref, shallowRef, watch } from 'vue';
+import { ref, shallowRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const screen = shallowRef<DefineComponent>();
+const screen = shallowRef<InstanceType<typeof Steps>>();
 const steps = shallowRef<StepsExposed>();
 const visible = ref(false);
 
