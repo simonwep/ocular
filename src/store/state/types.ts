@@ -18,6 +18,8 @@ export const availableCurrencies = [
   'SEK',
   'NZD',
   'MXN',
+  'CLP',
+  'UYU',
   'SGD',
   'HKD',
   'NOK',
