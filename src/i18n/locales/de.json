@@ -22,22 +22,30 @@
         "confirm": "Sind Sie sicher, dass Sie das Jahr {year} löschen möchten?"
       },
       "export": {
-        "export": "Als JSON-Datei exportieren"
+        "export": "Daten exportieren"
       },
       "import": {
-        "import": "Aus JSON-Datei importieren",
-        "what": {
-          "google": "Google Sheets Jahresbudget",
-          "ocular": "Eine zuvor exportierte Datei",
+        "import": "Daten importieren",
+        "source": {
+          "google": "Eine Google-Sheets Jahresbudget-Datei",
+          "ocular": "Eine zuvor exportierte Datei von Ocular",
+          "thirdParty": "Von Dritten bereitgestellte Daten",
           "title": "Was möchten Sie importieren?"
         },
         "ocular": {
-          "pickFile": "Wählen Sie Ihre .json-Datei zum Importieren aus",
-          "import": "Ocular-Daten importieren"
+          "import": "Ocular-Daten importieren",
+          "pickFile": "Wählen Sie Ihre .json-Datei zum Importieren aus"
         },
         "google": {
           "import": "Google-Daten importieren",
           "pickFile": "Wählen Sie Ihre .csv-Datei zum Importieren aus",
+          "expenses": "Ausgaben.csv",
+          "income": "Einnahmen.csv"
+        },
+        "thirdParty": {
+          "import": "Daten von Dritten importieren",
+          "downloadTemplate": "Vorlage für Einnahmen/Ausgaben herunterladen",
+          "instructions": "Laden Sie die Vorlage herunter, sie gilt für Einnahmen und Ausgaben. Füllen Sie die Vorlage zweimal aus und wählen Sie dann die beiden Dateien aus, um sie zu importieren.",
           "expenses": "Ausgaben.csv",
           "income": "Einnahmen.csv"
         }

@@ -4,12 +4,17 @@
   <Dialog ref="dialog" :open="visible" @close="visible = false">
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
-        <h1 :class="$style.title">{{ t('navigation.tools.import.what.title') }}</h1>
-        <Button :icon="RiFileFill" :text="t('navigation.tools.import.what.ocular')" @click="next(BudgetFileScreen)" />
+        <h1 :class="$style.title">{{ t('navigation.tools.import.source.title') }}</h1>
+        <Button :icon="RiFileFill" :text="t('navigation.tools.import.source.ocular')" @click="next(BudgetFileScreen)" />
         <Button
           :icon="RiGoogleFill"
-          :text="t('navigation.tools.import.what.google')"
+          :text="t('navigation.tools.import.source.google')"
           @click="next(GoogleAnnualBudgetScreen)"
+        />
+        <Button
+          :icon="RiDatabase2Fill"
+          :text="t('navigation.tools.import.source.thirdParty')"
+          @click="next(ThirdPartyScreen)"
         />
       </Step>
       <Step>
@@ -22,13 +27,14 @@
 <script lang="ts" setup>
 import BudgetFileScreen from './screens/BudgetFileScreen.vue';
 import GoogleAnnualBudgetScreen from './screens/GoogleAnnualBudgetScreen.vue';
+import ThirdPartyScreen from './screens/ThirdPartyScreen.vue';
 import Button from '@components/base/button/Button.vue';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Step from '@components/base/steps/Step.vue';
 import { StepsExposed } from '@components/base/steps/Steps.types';
 import Steps from '@components/base/steps/Steps.vue';
-import { RiFileFill, RiGoogleFill, RiUploadCloud2Line } from '@remixicon/vue';
+import { RiDatabase2Fill, RiFileFill, RiGoogleFill, RiUploadCloud2Line } from '@remixicon/vue';
 import { ref, shallowRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 

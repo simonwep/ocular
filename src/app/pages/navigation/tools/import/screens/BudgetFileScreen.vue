@@ -1,5 +1,5 @@
 <template>
-  <Screen :back="back" :class="$style.screen" :title="t('navigation.tools.import.what.ocular')">
+  <Screen :back="back" :title="t('navigation.tools.import.what.ocular')">
     <FilePicker
       v-model="budgetFile"
       :class="$style.input"
@@ -45,13 +45,6 @@ const load = async () => {
 </script>
 
 <style lang="scss" module>
-.screen {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-}
-
 .input {
   width: 250px;
 }

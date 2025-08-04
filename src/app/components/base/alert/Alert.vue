@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 import { AlertType } from '@components/base/alert/Alert.types';
 import { Color, useThemeStyles } from '@composables/useThemeStyles.ts';
-import { RiCheckLine, RiErrorWarningLine } from '@remixicon/vue';
+import { RiCheckLine, RiErrorWarningLine, RiInformationLine } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 import type { Component } from 'vue';
@@ -20,6 +20,7 @@ const props = defineProps<{
 }>();
 
 const mapping: Record<AlertType, [Color, Component]> = {
+  info: ['primary', RiInformationLine],
   error: ['danger', RiErrorWarningLine],
   success: ['success', RiCheckLine],
   warning: ['warning', RiErrorWarningLine]
@@ -39,6 +40,7 @@ const theme = useThemeStyles(() => mapping[props.type][0]);
   font-weight: var(--font-weight-l);
   font-size: var(--font-size-xs);
   border-radius: var(--border-radius-m);
+  align-items: center;
 
   .icon {
     width: 17px;

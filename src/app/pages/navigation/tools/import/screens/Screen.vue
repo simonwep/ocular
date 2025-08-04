@@ -1,10 +1,10 @@
 <template>
   <div :class="$style.screen">
     <h1 v-if="title" :class="$style.title">
-      <Button v-if="back" color="dark" :icon="RiArrowLeftSLine" textual @click="back" />
+      <Button v-if="back" color="dimmed" :icon="RiArrowLeftSLine" textual @click="back" />
       <span>{{ title }}</span>
     </h1>
-    <div :class="classes">
+    <div :class="[classes, $style.content]">
       <slot />
     </div>
   </div>
@@ -31,11 +31,19 @@ const classes = computed(() => props.class);
   flex-direction: column;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
 .title {
   display: flex;
   align-items: center;
   font-size: var(--font-size-s);
   font-weight: var(--font-weight-m);
   margin-bottom: 10px;
+  gap: 5px;
 }
 </style>

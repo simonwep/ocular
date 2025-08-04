@@ -1,5 +1,5 @@
 <template>
-  <Screen :back="back" :class="$style.screen" :title="t('navigation.tools.import.google.import')">
+  <Screen :back="back" :title="t('navigation.tools.import.google.import')">
     <FilePicker
       v-model="incomeFile"
       :class="$style.input"
@@ -57,13 +57,6 @@ const load = async () => {
 </script>
 
 <style lang="scss" module>
-.screen {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-}
-
 .input {
   width: 250px;
 }
