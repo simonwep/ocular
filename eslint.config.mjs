@@ -42,6 +42,7 @@ export default defineConfig([
     },
     rules: {
       'no-console': 'error',
+      'vue/no-template-shadow': 'error',
       'vue/attribute-hyphenation': ['error', 'never'],
       'vue/multi-word-component-names': 'off',
       'vue/require-default-prop': 'off',

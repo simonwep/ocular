@@ -94,6 +94,8 @@ watch(focused, (value) => {
     invalid.value = true;
   }
 });
+
+defineExpose({ input });
 </script>
 
 <style lang="scss" module>

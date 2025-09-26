@@ -76,6 +76,7 @@
         @action="performAction($event, budget.id, month, budget.values[month])"
       >
         <CurrencyCell
+          :ref="onRefCallback"
           :testId="`${testId}-budget-${index}-${month}`"
           :modelValue="budget.values[month]"
           @update:model-value="setBudget(budget.id, month, $event)"
@@ -105,6 +106,7 @@ import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
+import { useOrderedTemplateRefs } from '@composables/useOrderedTemplateRefs.ts';
 import { useStateUtils } from '@composables/useStateUtils.ts';
 import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
@@ -134,6 +136,7 @@ const {
 
 const { isCurrentMonth } = useStateUtils();
 const { t } = useI18n();
+const { onRefCallback, value: currencyCells } = useOrderedTemplateRefs<InstanceType<typeof CurrencyCell>>();
 const focused = ref<string>();
 
 const totals = computed(() => {
@@ -187,6 +190,10 @@ const performAction = (action: CellMenuActionId, budgetId: string, month: number
       return fillBudget(budgetId, value, month);
   }
 };
+
+defineExpose({
+  currencyCells: computed(() => currencyCells.map((v) => v.input).filter((v) => !!v) as HTMLInputElement[])
+});
 </script>
 
 <style lang="scss" module>

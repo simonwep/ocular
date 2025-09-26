@@ -34,10 +34,10 @@
     />
     <span :class="[$style.sum, $style.totals]">{{ t('shared.totals') }}</span>
     <Currency
-      v-for="(sum, index) of totals"
+      v-for="(value, index) of totals"
       :key="index"
       :testId="`month-${index}-total`"
-      :value="sum"
+      :value="value"
       :class="$style.sum"
     />
     <span />
@@ -52,7 +52,7 @@
         name="budget-groups"
         @drop="reorder"
       />
-      <BudgetGroup :allowDelete="allowDelete" :group="group" :testId="`group-${index}`" />
+      <BudgetGroup :ref="onRefCallback" :allowDelete="allowDelete" :group="group" :testId="`group-${index}`" />
     </template>
 
     <!-- Footer -->
@@ -74,11 +74,14 @@ import Currency from '@components/base/currency/Currency.vue';
 import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
+import { useKeyboardNavigation } from '@composables/useKeyboardNavigation.ts';
 import { useMonthNames } from '@composables/useMonthNames.ts';
+import { useOrderedTemplateRefs } from '@composables/useOrderedTemplateRefs.ts';
 import { useStateUtils } from '@composables/useStateUtils.ts';
 import { RiAddCircleLine, RiLockLine, RiLockUnlockLine, RiSkipDownLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
+import { sum } from '@utils/array/array.ts';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
@@ -88,14 +91,20 @@ const props = defineProps<{
 }>();
 
 const months = useMonthNames('long', () => settings.general.monthOffset);
+const { onRefCallback, value: budgetGroups } = useOrderedTemplateRefs<InstanceType<typeof BudgetGroup>>();
 const { isCurrentMonth } = useStateUtils();
 const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup } = useDataStore();
 const { state: settings } = useSettingsStore();
 const { t } = useI18n();
 
 const allowDelete = ref(false);
-
 const groups = computed(() => state[props.type]);
+
+useKeyboardNavigation(() => ({
+  inputs: budgetGroups.flatMap((v) => v.currencyCells),
+  rows: sum(groups.value.map((v) => v.budgets.length)),
+  cols: 12
+}));
 
 const totals = computed(() => {
   const totals = new Array(12).fill(0);
