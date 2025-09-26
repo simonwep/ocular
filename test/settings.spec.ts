@@ -54,6 +54,25 @@ test('Change the starting month and show correct labels', async ({ page }) => {
   await expect(page.getByTestId('remaining-balance-title')).toHaveText(`Remaining Balance until ${currentYear + 1}`);
 });
 
+test('Show correct ending balance when using a monthly offset', async ({ page }) => {
+  await page.clock.setFixedTime(new Date('2025-09-26T18:13:50.628Z'));
+  await page.goto('/#demo');
+
+  await expect(page.getByTestId('remaining-balance-value')).toHaveText('€9,253');
+  await expect(page.getByTestId('remaining-balance-sub')).toHaveText('22%');
+
+  await page.getByTestId('settings').click();
+  await page.getByTestId('change-month-offset').click();
+  await page.getByTestId('change-month-offset-2').click();
+  await expect(page.getByTestId('remaining-balance-value')).toHaveText('€17,605');
+  await expect(page.getByTestId('remaining-balance-sub')).toHaveText('42%');
+
+  await page.getByTestId('change-month-offset').click();
+  await page.getByTestId('change-month-offset-4').click();
+  await expect(page.getByTestId('remaining-balance-value')).toHaveText('€23,612');
+  await expect(page.getByTestId('remaining-balance-sub')).toHaveText('56%');
+});
+
 test('Carry over net-savings to next year', async ({ page }) => {
   const currentYear = new Date().getFullYear();
 

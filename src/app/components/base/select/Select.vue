@@ -6,6 +6,7 @@
       :testId="testId"
       tooltipPosition="bottom"
       :options="options"
+      :offset="[0, 4]"
       position="bottom-start"
       @select="modelValue = $event.id"
     >

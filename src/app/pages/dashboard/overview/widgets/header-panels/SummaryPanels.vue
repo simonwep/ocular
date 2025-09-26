@@ -49,7 +49,7 @@
           ? t('page.dashboard.yearInThePast')
           : state.activeYear > time.year.value
             ? t('page.dashboard.yearInTheFuture')
-            : time.month.value === 11
+            : time.month.value === settings.general.monthOffset
               ? t('page.dashboard.yearEnding')
               : undefined
       "
@@ -125,15 +125,15 @@ const expensePercentage = computed(() => {
 });
 
 const remainingBalance = computed(() => {
-  const nextMonth = time.year.value === state.activeYear ? time.month.value + 1 : 0;
-  const netValues = subtract(incomeTotals.value.slice(nextMonth), expensesTotals.value.slice(nextMonth));
-  return sum(netValues);
+  const monthOffset = time.year.value === state.activeYear ? time.month.value - settings.general.monthOffset + 1 : 0;
+  const nextMonth = monthOffset % 12;
+
+  return sum(subtract(incomeTotals.value.slice(nextMonth), expensesTotals.value.slice(nextMonth)));
 });
 
-const remainingBalancePercentage = computed(() => {
-  const endBalance = expenses.value.at(-1) ?? 0;
-  return endBalance ? remainingBalance.value / endBalance : 0;
-});
+const remainingBalancePercentage = computed(() =>
+  endingBalanceSum.value ? remainingBalance.value / endingBalanceSum.value : 0
+);
 </script>
 
 <style lang="scss" module>

@@ -48,9 +48,11 @@ const props = withDefaults(
     options?: ContextMenuOption[];
     highlight?: ContextMenuOptionId;
     testId?: string;
+    offset?: [number, number];
   }>(),
   {
-    position: 'right-end'
+    position: 'right-end',
+    offset: () => [10, 10]
   }
 );
 
@@ -69,7 +71,7 @@ watch([visible, reference, popper], () => {
     instance = createPopper(reference.value, popper.value, {
       placement: props.position,
       modifiers: [
-        { name: 'offset', options: { offset: [10, 10] } },
+        { name: 'offset', options: { offset: props.offset } },
         {
           name: 'positionTracker',
           enabled: true,
