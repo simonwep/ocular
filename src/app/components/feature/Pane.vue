@@ -71,7 +71,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
 .content {
   overflow: auto;
   flex-grow: 1;
-  padding: 3px 10px 0;
+  padding: 0 10px 0;
 }
 
 @include globals.onMobileDevices {
@@ -90,7 +90,7 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   }
 
   .content {
-    padding: 10px;
+    padding: 0;
   }
 }
 </style>

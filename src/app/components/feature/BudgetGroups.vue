@@ -172,27 +172,21 @@ const reorder = (evt: ReorderEvent) => {
   font-weight: var(--font-weight-m);
   padding-right: 20px;
   padding-bottom: 5px;
-
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   background: var(--app-background);
   border: 2px var(--app-background);
+  z-index: 1;
 
   &.current > span {
     color: var(--c-text-light);
     display: inline-block;
     position: relative;
     z-index: 0;
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: -3px -8px;
-      border-radius: 100px;
-      background: var(--c-primary);
-      z-index: -1;
-    }
+    text-decoration: underline;
+    text-decoration-color: var(--c-primary);
+    text-decoration-thickness: 2px;
   }
 
   > span {
