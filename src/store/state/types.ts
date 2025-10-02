@@ -32,7 +32,9 @@ export const availableCurrencies = [
   'HUF',
   'PLN',
   'CRC',
-  'IDR'
+  'IDR',
+  'RON',
+  'MDL',
 ] as const;
 
 export type AvailableCurrency = (typeof availableCurrencies)[number];
