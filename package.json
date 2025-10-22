@@ -24,7 +24,8 @@
     "test:ci": "pnpm lint:fix && pnpm build && pnpm test && pnpm test:e2e",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
@@ -57,6 +58,7 @@
     "eslint-plugin-prettier": "5.4.0",
     "eslint-plugin-vue": "10.1.0",
     "html-minifier-terser": "7.2.0",
+    "husky": "9.1.7",
     "prettier": "3.5.3",
     "sass": "1.89.0",
     "typescript": "5.8.3",

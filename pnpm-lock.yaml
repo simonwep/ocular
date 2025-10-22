@@ -93,6 +93,9 @@ importers:
       html-minifier-terser:
         specifier: 7.2.0
         version: 7.2.0
+      husky:
+        specifier: 9.1.7
+        version: 9.1.7
       prettier:
         specifier: 3.5.3
         version: 3.5.3
@@ -2495,6 +2498,11 @@ packages:
 
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
@@ -6325,6 +6333,8 @@ snapshots:
       terser: 5.39.2
 
   html-void-elements@3.0.0: {}
+
+  husky@9.1.7: {}
 
   idb@7.1.1: {}
 
