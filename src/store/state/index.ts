@@ -1,5 +1,5 @@
 import { migrateApplicationState } from './migrator';
-import { AvailableCurrency, Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
+import { Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
 import { generateBudgetYearFromCurrent } from './utils/generators.ts';
 import { useTime } from '@composables/useTime.ts';
 import { AvailableLocale, changeLocale } from '@i18n/index';
@@ -22,7 +22,7 @@ interface StoredClipboardData {
 type StoreView = Omit<BudgetYear, 'year'> & {
   clipboard: StoredClipboardData | undefined;
   activeYear: number;
-  currency: AvailableCurrency;
+  currency: string;
   locale: AvailableLocale;
   years: BudgetYear[];
   overallBalance: number | undefined;
@@ -42,7 +42,7 @@ export const createDataStore = (storage?: Storage) => {
   };
 
   watch(
-    () => [state.locale, state.currency] as [AvailableLocale, AvailableCurrency],
+    () => [state.locale, state.currency] as [AvailableLocale, string],
     ([locale, currency]) => changeLocale(locale, { currency }),
     { immediate: true }
   );
@@ -144,7 +144,7 @@ export const createDataStore = (storage?: Storage) => {
       state.locale = locale;
     },
 
-    changeCurrency: (currency: AvailableCurrency) => {
+    changeCurrency: (currency: string) => {
       state.currency = currency;
     },
 

@@ -14,7 +14,8 @@
         testId="change-currency"
         :label="t('navigation.settings.currency')"
         :options="currencies"
-        @update:model-value="changeCurrency($event as AvailableCurrency)"
+        searchable
+        @update:model-value="changeCurrency($event)"
       />
 
       <Select
@@ -47,12 +48,12 @@ import CheckBox from '@components/base/check-box/CheckBox.vue';
 import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types.ts';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Select from '@components/base/select/Select.vue';
+import { useAvailableCurrencyCodes } from '@composables/available-currency-codes/useAvailableCurrencyCodes.ts';
 import { useMonthNames } from '@composables/useMonthNames.ts';
 import { AvailableLocale, availableLocales, initialLocale } from '@i18n/index.ts';
 import { RiCheckLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
-import { availableCurrencies, AvailableCurrency } from '@store/state/types.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -67,6 +68,7 @@ defineProps<{
 const { t, locale } = useI18n();
 const { setMonthOffset, setCarryOver, setAnimations, state: settings } = useSettingsStore();
 const { changeCurrency, changeLocale, state } = useDataStore();
+const currencyCodes = useAvailableCurrencyCodes(() => [state.currency]);
 const monthNames = useMonthNames();
 
 const locales = computed<ContextMenuOption[]>(() => {
@@ -80,10 +82,10 @@ const locales = computed<ContextMenuOption[]>(() => {
 });
 
 const currencies = computed<ContextMenuOption[]>(() =>
-  availableCurrencies.map((value) => ({
+  currencyCodes.value.map((value) => ({
     id: value,
     icon: state.currency === value ? RiCheckLine : undefined,
-    label: `${formatNumber(locale.value, value, 'name')} (${formatNumber(locale.value, value)})`
+    label: `${formatNumber(locale.value, value, 'name')} ${value} (${formatNumber(locale.value, value)})`
   }))
 );
 

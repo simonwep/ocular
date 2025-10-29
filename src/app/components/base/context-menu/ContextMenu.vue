@@ -3,22 +3,26 @@
     <slot :toggle="toggle" />
   </div>
   <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
-    <ul :class="listClasses">
-      <slot v-if="$slots.options" name="options" />
-      <template v-else-if="options">
-        <ContextMenuButton
-          v-for="option of options"
-          :key="option.id"
-          :testId="`${testId}-${option.id}`"
-          :padIcon="hasOptionWithIcon"
-          :text="option.label ?? option.id"
-          :icon="option.icon"
-          :muted="option.muted"
-          :highlight="option.id === highlight"
-          @click="select(option)"
-        />
-      </template>
-    </ul>
+    <div :class="listClasses">
+      <slot name="header" />
+
+      <ul :class="$style.options">
+        <slot v-if="$slots.options" name="options" />
+        <template v-else-if="options">
+          <ContextMenuButton
+            v-for="option of options"
+            :key="option.id"
+            :testId="`${testId}-${option.id}`"
+            :padIcon="hasOptionWithIcon"
+            :text="option.label ?? option.id"
+            :icon="option.icon"
+            :muted="option.muted"
+            :highlight="option.id === highlight"
+            @click="select(option)"
+          />
+        </template>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -36,7 +40,9 @@ import { ClassNames } from '@utils/types.ts';
 import { computed, provide, ref, useCssModule, watch } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'select', option: ContextMenuOption): void;
+  select: [option: ContextMenuOption];
+  open: [];
+  close: [];
 }>();
 
 const props = withDefaults(
@@ -99,6 +105,8 @@ const select = (option: ContextMenuOption): void => {
 
 const toggle = () => requestAnimationFrame(() => (visible.value = !visible.value));
 
+watch(visible, (value) => (value ? emit('open') : emit('close')));
+
 provide<ContextMenuStore>(ContextMenuStoreKey, {
   close: () => requestAnimationFrame(() => (visible.value = false))
 });
@@ -129,17 +137,13 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
 }
 
 .list {
-  list-style: none outside none;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   -webkit-backdrop-filter: var(--context-menu-backdrop);
   backdrop-filter: var(--context-menu-backdrop);
   box-shadow: var(--context-menu-shadow);
   border-radius: var(--border-radius-m);
   padding: 6px 0;
-  max-height: 130px;
-  overflow: auto;
   visibility: hidden;
   opacity: 0;
   transition: all var(--transition-s);
@@ -163,5 +167,14 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   &.right {
     transform: translateX(-6px);
   }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  list-style: none outside none;
+  max-height: 130px;
+  overflow: auto;
 }
 </style>

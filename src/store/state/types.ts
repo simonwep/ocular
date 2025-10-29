@@ -3,42 +3,6 @@ import { MigratableState } from 'yuppee';
 
 export type BudgetValues = number[];
 
-export const availableCurrencies = [
-  'USD',
-  'EUR',
-  'JPY',
-  'GBP',
-  'CZK',
-  'AUD',
-  'CAD',
-  'CHF',
-  'CNY',
-  'DKK',
-  'ILS',
-  'SEK',
-  'NZD',
-  'MXN',
-  'CLP',
-  'UYU',
-  'SGD',
-  'HKD',
-  'NOK',
-  'KRW',
-  'TRY',
-  'INR',
-  'RUB',
-  'BRL',
-  'ZAR',
-  'HUF',
-  'PLN',
-  'CRC',
-  'IDR',
-  'RON',
-  'MDL'
-] as const;
-
-export type AvailableCurrency = (typeof availableCurrencies)[number];
-
 export interface Budget {
   id: string;
   name: string;
@@ -69,7 +33,7 @@ export interface DataStateV2 extends MigratableState<2> {
 export interface DataStateV3 extends MigratableState<3> {
   years: BudgetYear[];
   locale: AvailableLocale;
-  currency: AvailableCurrency;
+  currency: string;
 }
 
 // Latest structure
