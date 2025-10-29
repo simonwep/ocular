@@ -15,6 +15,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   OCULAR_GENESIS_HOST: /api
+  HUSKY: 0
 
 jobs:
   build:
