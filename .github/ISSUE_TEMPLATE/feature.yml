@@ -1,5 +1,6 @@
 name: Feature Request
 description: Request a feature or enhancement in Ocular
+labels: feature
 body:
   - type: checkboxes
     attributes:

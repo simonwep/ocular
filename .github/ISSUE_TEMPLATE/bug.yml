@@ -1,5 +1,6 @@
 name: Bug Report
 description: Report a bug in Ocular
+labels: bug
 body:
   - type: checkboxes
     attributes:
