@@ -104,3 +104,25 @@ test('Localizes numbers and parse them correctly', async ({ page }) => {
   await page.getByTestId('group-0-budget-0-0').blur();
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('3 €');
 });
+
+test('Keep numbers correctly localized between languages', async ({ page }) => {
+  await page.goto('/income');
+
+  await page.getByTestId('settings').click();
+  await page.getByTestId('change-locale').click();
+  await page.getByTestId('change-locale-de').click();
+  await page.keyboard.press('Escape');
+
+  await page.getByTestId('group-0-budget-0-0').fill('1,5 * 30.000');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('45.000 €');
+
+  await page.getByTestId('settings').click();
+  await page.getByTestId('change-locale').click();
+  await page.getByTestId('change-locale-en').click();
+  await page.keyboard.press('Escape');
+
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('€45,000');
+});

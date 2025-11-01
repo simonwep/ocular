@@ -65,6 +65,8 @@ watch(modelValue, (value, oldValue) => {
   if ((value ?? 0) > props.max && oldValue !== undefined) {
     modelValue.value = oldValue;
   }
+
+  innerValue.value = value ? String(value) : undefined;
 });
 
 watch(focused, (value) => {
