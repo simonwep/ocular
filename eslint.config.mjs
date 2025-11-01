@@ -4,7 +4,7 @@ import vueI18n from '@intlify/eslint-plugin-vue-i18n';
 import tsParser from '@typescript-eslint/parser';
 import vuePrettier from '@vue/eslint-config-prettier';
 import { defineConfig } from 'eslint/config';
-import importX from 'eslint-plugin-import-x';
+import { importX } from 'eslint-plugin-import-x';
 import preferArrowFunctions from 'eslint-plugin-prefer-arrow-functions';
 import prettier from 'eslint-plugin-prettier/recommended';
 import vue from 'eslint-plugin-vue';
