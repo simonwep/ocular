@@ -36,6 +36,10 @@ export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavig
   };
 
   const onKeyDown = (event: KeyboardEvent, index: number, options: UseKeyboardNavigationOptions) => {
+    if (!event.shiftKey && !event.metaKey && !event.ctrlKey) {
+      return;
+    }
+
     const newIndex = resolveNextIndex(index, event.key, options.cols, options.rows);
 
     if (newIndex !== index) {
