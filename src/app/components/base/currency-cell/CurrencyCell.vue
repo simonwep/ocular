@@ -54,7 +54,7 @@ const keydown = (e: KeyboardEvent) => {
 
 const focus = () => {
   focused.value = true;
-  nextTick(() => (input.value as HTMLInputElement).select());
+  nextTick(() => input.value?.select());
 };
 
 const change = (e: Event) => {

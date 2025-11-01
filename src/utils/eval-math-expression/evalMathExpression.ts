@@ -8,14 +8,14 @@ export const evalMathExpression = (expression: string, locale = 'en'): number =>
   return evaluatePostfix(postfix);
 };
 
-type Separators = { decimal: string; group: string };
+type Separators = { decimal?: string; group?: string };
 
 const localeSeparators = (locale: string): Separators => {
   const parts = new Intl.NumberFormat(locale).formatToParts(1000.5);
 
   return {
-    decimal: parts.find((part) => part.type === 'decimal')?.value ?? '.',
-    group: parts.find((part) => part.type === 'group')?.value ?? ','
+    decimal: parts.find((part) => part.type === 'decimal')?.value,
+    group: parts.find((part) => part.type === 'group')?.value
   };
 };
 
@@ -25,7 +25,7 @@ type Token = {
 };
 
 const tokenize = (expression: string, separators: Separators): Token[] => {
-  const numberRegex = new RegExp(`[0-9${separators.decimal + separators.group}]`);
+  const numberRegex = new RegExp(`[0-9${(separators.decimal ?? '') + (separators.group ?? '')}]`);
   const tokens: Token[] = [];
   let i = 0;
 

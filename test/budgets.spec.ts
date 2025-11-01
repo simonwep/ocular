@@ -93,4 +93,14 @@ test('Localizes numbers and parse them correctly', async ({ page }) => {
   await page.getByTestId('group-0-budget-0-0').fill('1,5 * 30.000');
   await page.getByTestId('group-0-budget-0-0').blur();
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('45.000 €');
+
+  // Test for italian
+  await page.getByTestId('settings').click();
+  await page.getByTestId('change-locale').click();
+  await page.getByTestId('change-locale-it').click();
+  await page.keyboard.press('Escape');
+
+  await page.getByTestId('group-0-budget-0-0').fill('1,5 + 1,5');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('3 €');
 });
