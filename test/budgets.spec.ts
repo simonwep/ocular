@@ -113,9 +113,19 @@ test('Keep numbers correctly localized between languages', async ({ page }) => {
   await page.getByTestId('change-locale-de').click();
   await page.keyboard.press('Escape');
 
-  await page.getByTestId('group-0-budget-0-0').fill('1,5 * 30.000');
+  await page.getByTestId('group-0-budget-0-0').fill('1,,,,5');
   await page.getByTestId('group-0-budget-0-0').blur();
-  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('45.000 €');
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('1,,,,5');
+
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('1,,,,5');
+
+  await page.getByTestId('group-0-budget-0-0').fill('1,5 + 30');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('31,5 €');
+
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('31,5');
 
   await page.getByTestId('settings').click();
   await page.getByTestId('change-locale').click();
@@ -123,6 +133,8 @@ test('Keep numbers correctly localized between languages', async ({ page }) => {
   await page.keyboard.press('Escape');
 
   await page.getByTestId('group-0-budget-0-0').focus();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('31.5');
+
   await page.getByTestId('group-0-budget-0-0').blur();
-  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('€45,000');
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('€31.5');
 });

@@ -39,11 +39,11 @@ const { state } = useDataStore();
 const { locale, n } = useI18n();
 
 const value = computed(() =>
-  invalid.value
+  invalid.value || focused.value
     ? innerValue.value
-    : focused.value || !modelValue.value
-      ? modelValue.value || ''
-      : n(modelValue.value, { key: 'currency', currency: state.currency })
+    : modelValue.value
+      ? n(modelValue.value, { key: 'currency', currency: state.currency })
+      : innerValue.value
 );
 
 const keydown = (e: KeyboardEvent) => {
@@ -64,26 +64,24 @@ const change = (e: Event) => {
 watch(modelValue, (value, oldValue) => {
   if ((value ?? 0) > props.max && oldValue !== undefined) {
     modelValue.value = oldValue;
+    invalid.value = false; // Revert value to modelValue on next focus
   }
-
-  innerValue.value = value ? String(value) : undefined;
 });
 
 watch(focused, (value) => {
   if (value) {
-    innerValue.value ??= modelValue.value ? String(modelValue.value) : undefined;
+    // Preserve invalid value to allow user to correct it
+    if (!invalid.value) {
+      innerValue.value = modelValue.value ? n(modelValue.value) : undefined;
+    }
+
     return;
   }
 
-  const trimmed = innerValue.value?.trim();
-  if (!trimmed) {
+  innerValue.value = innerValue.value?.trim() || undefined;
+  if (!innerValue.value) {
     modelValue.value = 0;
     invalid.value = false;
-
-    if (input.value) {
-      input.value.value = '';
-    }
-
     return;
   }
 
