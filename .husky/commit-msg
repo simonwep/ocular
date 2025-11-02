@@ -1,5 +1,5 @@
 message="$(cat $1)"
-regex="^(fix|feat|chore|docs): [a-z].*$"
+regex="^(fix|feat|chore|refactor|docs): [a-z].*$"
 
 if ! [[ $message =~ $regex ]]; then
   echo "Commit message does not follow Conventional Commits format: <type>: <lowercase message>"

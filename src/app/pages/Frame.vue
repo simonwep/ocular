@@ -15,7 +15,7 @@
         :class="$style.btn"
         :color="(currentRoute) => (currentRoute ? 'primary' : 'dimmed')"
         :icon="button.icon"
-        :name="button.name"
+        :to="button.name"
       />
 
       <div v-if="media !== 'mobile'" style="flex-grow: 1" />

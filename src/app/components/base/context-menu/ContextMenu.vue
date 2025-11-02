@@ -123,7 +123,7 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   display: flex;
   position: absolute;
   pointer-events: none;
-  z-index: 1;
+  z-index: var(--context-menu-z-index);
 
   &.visible {
     pointer-events: all;

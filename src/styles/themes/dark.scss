@@ -148,6 +148,7 @@
   --context-menu-item-background-hover: #00000080;
   --context-menu-backdrop: blur(4px) brightness(0.25);
   --context-menu-shadow: 0 1px 5px #0c0b0e;
+  --context-menu-z-index: 2;
 
   --cell-menu-backdrop: blur(3px) brightness(0.3);
   --cell-menu-shadow: 0 1px 5px #0c0b0e;
@@ -166,4 +167,5 @@
 
   --tooltip-backdrop: var(--context-menu-backdrop);
   --tooltip-shadow: 0 1px 2px #141416;
+  --tooltip-z-index: 1;
 }
