@@ -9,6 +9,7 @@ interface TooltipConfig {
 }
 
 interface Tooltip {
+  destroy: () => void;
   element: HTMLElement;
   popper: Ref<Instance | undefined>;
 }
@@ -61,11 +62,22 @@ export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig
       });
     };
 
+    const destroy = () => {
+      element.remove();
+      popper.value?.destroy();
+
+      el.removeEventListener('pointerleave', hide);
+      el.removeEventListener('pointerdown', hide);
+      el.removeEventListener('pointerup', hide);
+      el.removeEventListener('pointerenter', show);
+    };
+
     el.addEventListener('pointerleave', hide);
     el.addEventListener('pointerdown', hide);
     el.addEventListener('pointerup', hide);
     el.addEventListener('pointerenter', show);
-    poppers.set(el, { element, popper });
+
+    poppers.set(el, { destroy, element, popper });
   },
   updated: (el, { modifiers, value }) => {
     const { text, position } = resolveConfig(value);
@@ -79,11 +91,6 @@ export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig
     }
   },
   unmounted: (el) => {
-    const tooltip = poppers.get(el);
-
-    if (tooltip) {
-      tooltip.element.remove();
-      tooltip.popper.value?.destroy();
-    }
+    poppers.get(el)?.destroy();
   }
 };
