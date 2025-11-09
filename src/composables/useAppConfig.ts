@@ -10,7 +10,7 @@ const defaultConfig: AppConfig = {
 
 const config = shallowRef<AppConfig>();
 
-fetch('app-config.json')
+fetch(`${import.meta.env.BASE_URL}app-config.json`)
   .then((res) => res.json())
   .catch(() => defaultConfig)
   .then((data) => (config.value = { ...defaultConfig, ...data }));

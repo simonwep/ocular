@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Live Demo ✨
-      link: https://ocular.reinisch.io#demo
+      link: https://simonwep.github.io/ocular/demo#demo
     - theme: alt
       text: Getting started
       link: pages/quickstart

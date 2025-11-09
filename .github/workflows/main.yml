@@ -63,6 +63,21 @@ jobs:
       - name: Run e2e tests
         run: pnpm test:e2e
 
+      - name: Build demo app
+        run: pnpm build
+        env:
+          OCULAR_BUILD_VERSION: nightly
+          OCULAR_BUILD_SHA: ${{ github.sha }}
+          OCULAR_BASE_URL: /ocular/demo/
+
+      - name: Upload app build
+        uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          name: app-build
+          path: dist
+          retention-days: 1
+
       - name: Upload docs build
         uses: actions/upload-artifact@v4
         if: github.ref == 'refs/heads/main'
@@ -84,6 +99,12 @@ jobs:
     name: Publish docs
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Download docs build
         uses: actions/download-artifact@v4
@@ -91,13 +112,23 @@ jobs:
           name: docs-build
           path: docs-build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Download app build
+        uses: actions/download-artifact@v4
+        with:
+          name: app-build
+          path: app-build
+
+      - name: Prepare static files
+        run: |
+          mkdir -p pages/demo
+          mv docs-build/* pages/
+          mv app-build/* pages/demo
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs-build
+          name: github-pages
+          path: pages
 
       - name: Deploy to GitHub Pages
         id: deployment
