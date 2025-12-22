@@ -29,6 +29,7 @@ test('Change the currency and apply correct locale format', async ({ page }) => 
 
 test('Change the starting month and show correct labels', async ({ page }) => {
   const currentYear = new Date().getFullYear();
+  await page.clock.setFixedTime(new Date(`${currentYear}-03-15`));
 
   await page.goto('/income');
   await expect(page.getByTestId('month-0-name')).toHaveText('January');

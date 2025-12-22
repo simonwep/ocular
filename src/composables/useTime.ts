@@ -1,11 +1,10 @@
-import { computed, getCurrentScope, onScopeDispose, ref } from 'vue';
+import { computed, getCurrentScope, onScopeDispose, shallowRef } from 'vue';
 
-const UPDATE_INTERVAL = 1_000 * 60;
+const UPDATE_INTERVAL = 100; // Update every 100 milliseconds
 
 export const useTime = () => {
-  const timestamp = ref(Date.now());
-  const interval = setInterval(() => (timestamp.value = Date.now()), UPDATE_INTERVAL);
-  const date = computed(() => new Date(timestamp.value));
+  const date = shallowRef(new Date());
+  const interval = setInterval(() => (date.value = new Date()), UPDATE_INTERVAL);
 
   if (getCurrentScope()) {
     onScopeDispose(() => clearInterval(interval));

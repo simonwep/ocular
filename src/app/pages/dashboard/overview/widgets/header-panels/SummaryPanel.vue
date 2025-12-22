@@ -9,7 +9,7 @@
         <div :class="$style.header">
           <div v-if="alt" :class="$style.placeholder">
             <RiCalendar2Line :class="$style.icon" />
-            <span :class="$style.text">{{ alt }}</span>
+            <span :data-testid="`${testId}-alt`" :class="$style.text">{{ alt }}</span>
           </div>
 
           <template v-else>

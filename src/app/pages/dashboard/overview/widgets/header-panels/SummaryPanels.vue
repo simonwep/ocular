@@ -45,11 +45,11 @@
     <SummaryPanel
       :subTitle="n(remainingBalancePercentage, 'percent')"
       :alt="
-        state.activeYear < time.year.value
+        currentMonthIndex < startOfCycle
           ? t('page.dashboard.yearInThePast')
-          : state.activeYear > time.year.value
+          : currentMonthIndex > endOfCycle
             ? t('page.dashboard.yearInTheFuture')
-            : time.month.value === settings.general.monthOffset
+            : currentMonthIndex + 1 === endOfCycle
               ? t('page.dashboard.yearEnding')
               : undefined
       "
@@ -90,6 +90,10 @@ const time = useTime();
 
 const animationsDone = ref(0);
 const styles = useCssModule();
+
+const currentMonthIndex = computed(() => time.year.value * 12 + time.month.value);
+const startOfCycle = computed(() => time.year.value * 12 + settings.general.monthOffset);
+const endOfCycle = computed(() => startOfCycle.value + 12);
 
 const classes = computed(() => [
   props.class,
