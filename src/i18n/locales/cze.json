@@ -15,7 +15,63 @@
         "confirm": "Jste si jisti, že chcete kopírovat data z {from} do {to}?"
       },
       "demo": {
-        "loadDemoData": "Načíst ukázková data"
+        "loadDemoData": "Načíst ukázková data",
+        "data": {
+          "expenses": {
+            "children": "Děti",
+            "debt": "Dluh",
+            "education": "Vzdělání",
+            "entertainment": "Zábava",
+            "everyday": "Každodenní",
+            "gifts": "Dárky",
+            "healthMedical": "Zdraví / Lékařství",
+            "home": "Domov",
+            "insurance": "Pojištění",
+            "transportation": "Doprava",
+            "travel": "Cestování",
+            "utilities": "Služby"
+          },
+          "budgets": {
+            "activities": "Aktivity",
+            "medical": "Lékařské",
+            "childcare": "Péče o děti",
+            "school": "Škola",
+            "other": "Ostatní",
+            "studentLoans": "Studentské půjčky",
+            "musicLessons": "Hudební lekce",
+            "concertsShows": "Koncerty/představení",
+            "music": "Hudba",
+            "theatrePlays": "Divadlo/hry",
+            "groceries": "Potraviny",
+            "restaurants": "Restaurace",
+            "personalSupplies": "Osobní potřeby",
+            "subscriptions": "Předplatné",
+            "gifts": "Dárky",
+            "donationsCharity": "Dary (charita)",
+            "doctorsDentalVision": "Lékaři/zubaři/oči",
+            "rentMortgage": "Nájem/hypotéka",
+            "propertyTaxes": "Daň z nemovitosti",
+            "car": "Auto",
+            "health": "Zdraví",
+            "fuel": "Palivo",
+            "supplies": "Potřeby",
+            "airfare": "Letenky",
+            "hotels": "Hotely",
+            "phone": "Telefon",
+            "internet": "Internet",
+            "electricity": "Elektřina",
+            "gas": "Plyn",
+            "water": "Voda"
+          },
+          "income": {
+            "wages": "Mzdy",
+            "paySlip": "Výplatní páska",
+            "bonus": "Bonus",
+            "other": "Ostatní",
+            "interestIncome": "Úrokový příjem",
+            "dividends": "Dividendy"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Odstranit {year}",

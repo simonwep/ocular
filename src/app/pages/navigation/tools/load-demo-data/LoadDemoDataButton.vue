@@ -9,8 +9,8 @@
 
 <script lang="ts" setup>
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
-import { useDemoData } from '@composables/demo-data/useDemoData.ts';
 import { RiMagicLine } from '@remixicon/vue';
+import { useDemoData } from '@store/state/demo-data/useDemoData.ts';
 import { useI18n } from 'vue-i18n';
 
 const { loadDemoData } = useDemoData();

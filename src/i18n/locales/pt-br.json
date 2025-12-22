@@ -15,7 +15,63 @@
         "confirm": "Você tem certeza de que quer copiar os dados de {from} para {to}?"
       },
       "demo": {
-        "loadDemoData": "Carregar exemplo"
+        "loadDemoData": "Carregar exemplo",
+        "data": {
+          "expenses": {
+            "children": "Crianças",
+            "debt": "Dívida",
+            "education": "Educação",
+            "entertainment": "Entretenimento",
+            "everyday": "Cotidiano",
+            "gifts": "Presentes",
+            "healthMedical": "Saúde / Médico",
+            "home": "Casa",
+            "insurance": "Seguro",
+            "transportation": "Transporte",
+            "travel": "Viagem",
+            "utilities": "Utilidades"
+          },
+          "budgets": {
+            "activities": "Atividades",
+            "medical": "Médico",
+            "childcare": "Cuidado infantil",
+            "school": "Escola",
+            "other": "Outro",
+            "studentLoans": "Empréstimos estudantis",
+            "musicLessons": "Aulas de música",
+            "concertsShows": "Concertos/shows",
+            "music": "Música",
+            "theatrePlays": "Teatro/peças",
+            "groceries": "Mercado",
+            "restaurants": "Restaurantes",
+            "personalSupplies": "Suprimentos pessoais",
+            "subscriptions": "Assinaturas",
+            "gifts": "Presentes",
+            "donationsCharity": "Doações (caridade)",
+            "doctorsDentalVision": "Médicos/dentista/visão",
+            "rentMortgage": "Aluguel/hipoteca",
+            "propertyTaxes": "Impostos sobre propriedade",
+            "car": "Carro",
+            "health": "Saúde",
+            "fuel": "Combustível",
+            "supplies": "Suprimentos",
+            "airfare": "Passagens aéreas",
+            "hotels": "Hotéis",
+            "phone": "Telefone",
+            "internet": "Internet",
+            "electricity": "Eletricidade",
+            "gas": "Gás",
+            "water": "Água"
+          },
+          "income": {
+            "wages": "Salários",
+            "paySlip": "Holerite",
+            "bonus": "Bônus",
+            "other": "Outro",
+            "interestIncome": "Rendimento de juros",
+            "dividends": "Dividendos"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Remover {year}",

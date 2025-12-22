@@ -15,7 +15,63 @@
         "confirm": "Вы уверены, что хотите скопировать данные из {from} в {to}?"
       },
       "demo": {
-        "loadDemoData": "Загрузить демо-данные"
+        "loadDemoData": "Загрузить демо-данные",
+        "data": {
+          "expenses": {
+            "children": "Дети",
+            "debt": "Долг",
+            "education": "Образование",
+            "entertainment": "Развлечения",
+            "everyday": "Повседневные",
+            "gifts": "Подарки",
+            "healthMedical": "Здоровье / Медицина",
+            "home": "Дом",
+            "insurance": "Страхование",
+            "transportation": "Транспорт",
+            "travel": "Путешествия",
+            "utilities": "Коммунальные услуги"
+          },
+          "budgets": {
+            "activities": "Деятельность",
+            "medical": "Медицинские",
+            "childcare": "Уход за детьми",
+            "school": "Школа",
+            "other": "Другое",
+            "studentLoans": "Студенческие кредиты",
+            "musicLessons": "Уроки музыки",
+            "concertsShows": "Концерты/шоу",
+            "music": "Музыка",
+            "theatrePlays": "Театр/пьесы",
+            "groceries": "Продукты",
+            "restaurants": "Рестораны",
+            "personalSupplies": "Личные принадлежности",
+            "subscriptions": "Подписки",
+            "gifts": "Подарки",
+            "donationsCharity": "Пожертвования (благотворительность)",
+            "doctorsDentalVision": "Врачи/стоматологи/офтальмологи",
+            "rentMortgage": "Аренда/ипотека",
+            "propertyTaxes": "Налог на имущество",
+            "car": "Автомобиль",
+            "health": "Здоровье",
+            "fuel": "Топливо",
+            "supplies": "Принадлежности",
+            "airfare": "Авиабилеты",
+            "hotels": "Отели",
+            "phone": "Телефон",
+            "internet": "Интернет",
+            "electricity": "Электричество",
+            "gas": "Газ",
+            "water": "Вода"
+          },
+          "income": {
+            "wages": "Заработная плата",
+            "paySlip": "Платёжная ведомость",
+            "bonus": "Бонус",
+            "other": "Другое",
+            "interestIncome": "Процентный доход",
+            "dividends": "Дивиденды"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Удалить {year}",

@@ -12,6 +12,25 @@ test('Load demo data', async ({ page }) => {
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
 });
 
+test.describe('Load demo data in different languages', () => {
+  const tests = [
+    { locale: 'en-US', wages: 'Wages' },
+    { locale: 'de-DE', wages: 'Gehälter' },
+    { locale: 'fr-FR', wages: 'Salaires' }
+  ];
+
+  for (const data of tests) {
+    test(`Load demo data in ${data.locale}`, async ({ browser }) => {
+      const context = await browser.newContext({ locale: data.locale });
+      const page = await context.newPage();
+
+      await page.goto('/#demo');
+      await page.getByTestId('view-summary').click();
+      await expect(page.getByTestId('income-group-0')).toHaveText(data.wages);
+    });
+  }
+});
+
 test('Keep value in cells if unchanged', async ({ page }) => {
   await page.goto('/#demo');
   await page.getByTestId('navigation-income').click();

@@ -15,7 +15,63 @@
         "confirm": "Sind Sie sicher, dass Sie die Daten von {from} nach {to} kopieren möchten?"
       },
       "demo": {
-        "loadDemoData": "Demo-Daten laden"
+        "loadDemoData": "Demo-Daten laden",
+        "data": {
+          "expenses": {
+            "children": "Kinder",
+            "debt": "Schulden",
+            "education": "Bildung",
+            "entertainment": "Unterhaltung",
+            "everyday": "Alltag",
+            "gifts": "Geschenke",
+            "healthMedical": "Gesundheit / Medizin",
+            "home": "Zuhause",
+            "insurance": "Versicherung",
+            "transportation": "Transport",
+            "travel": "Reisen",
+            "utilities": "Nebenkosten"
+          },
+          "budgets": {
+            "activities": "Aktivitäten",
+            "medical": "Medizinisch",
+            "childcare": "Kinderbetreuung",
+            "school": "Schule",
+            "other": "Sonstiges",
+            "studentLoans": "Studentendarlehen",
+            "musicLessons": "Musikunterricht",
+            "concertsShows": "Konzerte/Shows",
+            "music": "Musik",
+            "theatrePlays": "Theater/Stücke",
+            "groceries": "Lebensmittel",
+            "restaurants": "Restaurants",
+            "personalSupplies": "Persönliche Artikel",
+            "subscriptions": "Abonnements",
+            "gifts": "Geschenke",
+            "donationsCharity": "Spenden (Wohltätigkeit)",
+            "doctorsDentalVision": "Ärzte/Zahnärzte/Augen",
+            "rentMortgage": "Miete/Hypothek",
+            "propertyTaxes": "Grundsteuer",
+            "car": "Auto",
+            "health": "Gesundheit",
+            "fuel": "Kraftstoff",
+            "supplies": "Bedarf",
+            "airfare": "Flugtickets",
+            "hotels": "Hotels",
+            "phone": "Telefon",
+            "internet": "Internet",
+            "electricity": "Strom",
+            "gas": "Gas",
+            "water": "Wasser"
+          },
+          "income": {
+            "wages": "Gehälter",
+            "paySlip": "Gehaltsabrechnung",
+            "bonus": "Bonus",
+            "other": "Sonstiges",
+            "interestIncome": "Zinserträge",
+            "dividends": "Dividenden"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Jahr {year} entfernen",

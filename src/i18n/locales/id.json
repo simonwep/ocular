@@ -15,7 +15,63 @@
         "confirm": "Apakah yakin untuk menyalin data dari {from} ke {to}?"
       },
       "demo": {
-        "loadDemoData": "Muat data demo"
+        "loadDemoData": "Muat data demo",
+        "data": {
+          "expenses": {
+            "children": "Anak-anak",
+            "debt": "Utang",
+            "education": "Pendidikan",
+            "entertainment": "Hiburan",
+            "everyday": "Sehari-hari",
+            "gifts": "Hadiah",
+            "healthMedical": "Kesehatan / Medis",
+            "home": "Rumah",
+            "insurance": "Asuransi",
+            "transportation": "Transportasi",
+            "travel": "Perjalanan",
+            "utilities": "Utilitas"
+          },
+          "budgets": {
+            "activities": "Aktivitas",
+            "medical": "Medis",
+            "childcare": "Pengasuhan anak",
+            "school": "Sekolah",
+            "other": "Lainnya",
+            "studentLoans": "Pinjaman mahasiswa",
+            "musicLessons": "Les musik",
+            "concertsShows": "Konser/pertunjukan",
+            "music": "Musik",
+            "theatrePlays": "Teater/pertunjukan",
+            "groceries": "Belanja harian",
+            "restaurants": "Restoran",
+            "personalSupplies": "Perlengkapan pribadi",
+            "subscriptions": "Langganan",
+            "gifts": "Hadiah",
+            "donationsCharity": "Donasi (amal)",
+            "doctorsDentalVision": "Dokter/gigi/mata",
+            "rentMortgage": "Sewa/hipotek",
+            "propertyTaxes": "Pajak properti",
+            "car": "Mobil",
+            "health": "Kesehatan",
+            "fuel": "Bahan bakar",
+            "supplies": "Perlengkapan",
+            "airfare": "Tiket pesawat",
+            "hotels": "Hotel",
+            "phone": "Telepon",
+            "internet": "Internet",
+            "electricity": "Listrik",
+            "gas": "Gas",
+            "water": "Air"
+          },
+          "income": {
+            "wages": "Upah",
+            "paySlip": "Slip gaji",
+            "bonus": "Bonus",
+            "other": "Lainnya",
+            "interestIncome": "Pendapatan bunga",
+            "dividends": "Dividen"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Hapus {year}",

@@ -15,7 +15,63 @@
         "confirm": "Biztos, hogy az adatokat másolni akarja innen: {from}, ide: {to}?"
       },
       "demo": {
-        "loadDemoData": "Demo adatok betöltése"
+        "loadDemoData": "Demo adatok betöltése",
+        "data": {
+          "expenses": {
+            "children": "Gyermekek",
+            "debt": "Adósság",
+            "education": "Oktatás",
+            "entertainment": "Szórakozás",
+            "everyday": "Mindennapi",
+            "gifts": "Ajándékok",
+            "healthMedical": "Egészség / Orvosi",
+            "home": "Otthon",
+            "insurance": "Biztosítás",
+            "transportation": "Közlekedés",
+            "travel": "Utazás",
+            "utilities": "Közüzemi szolgáltatások"
+          },
+          "budgets": {
+            "activities": "Tevékenységek",
+            "medical": "Orvosi",
+            "childcare": "Gyermekgondozás",
+            "school": "Iskola",
+            "other": "Egyéb",
+            "studentLoans": "Diákhitelek",
+            "musicLessons": "Zeneórák",
+            "concertsShows": "Koncertek/elõadások",
+            "music": "Zene",
+            "theatrePlays": "Színház/darabok",
+            "groceries": "Élelmiszer",
+            "restaurants": "Étterem",
+            "personalSupplies": "Személyes felszerelés",
+            "subscriptions": "Előfizetések",
+            "gifts": "Ajándékok",
+            "donationsCharity": "Adományok (jótékonyság)",
+            "doctorsDentalVision": "Orvosok/fogorvos/szemészet",
+            "rentMortgage": "Bérleti díj/jelzálog",
+            "propertyTaxes": "Ingatlanadó",
+            "car": "Autó",
+            "health": "Egészség",
+            "fuel": "Üzemanyag",
+            "supplies": "Felszerelés",
+            "airfare": "Repülőjegy",
+            "hotels": "Szállodák",
+            "phone": "Telefon",
+            "internet": "Internet",
+            "electricity": "Villany",
+            "gas": "Gáz",
+            "water": "Víz"
+          },
+          "income": {
+            "wages": "Bérek",
+            "paySlip": "Fizetési jegyzék",
+            "bonus": "Bónusz",
+            "other": "Egyéb",
+            "interestIncome": "Kamatbevétel",
+            "dividends": "Osztalék"
+          }
+        }
       },
       "deleteYear": {
         "delete": "{year} év eltávolítása",

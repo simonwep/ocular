@@ -10,13 +10,13 @@
 
 <script lang="ts" setup>
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
-import { useDemoData } from '@composables/demo-data/useDemoData.ts';
 import { useAppConfig } from '@composables/useAppConfig.ts';
 import { useAppElement } from '@composables/useAppElement.ts';
 import { useMediaQuery } from '@composables/useMediaQuery.ts';
 import { useSquircle } from '@composables/useSquircle.ts';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
+import { useDemoData } from '@store/state/demo-data/useDemoData.ts';
 import { computed, nextTick, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';

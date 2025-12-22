@@ -15,7 +15,63 @@
         "confirm": "Êtes-vous sûr de vouloir copier les données de {from} dans {to}?"
       },
       "demo": {
-        "loadDemoData": "Charger les données de démonstration"
+        "loadDemoData": "Charger les données de démonstration",
+        "data": {
+          "expenses": {
+            "children": "Enfants",
+            "debt": "Dette",
+            "education": "Éducation",
+            "entertainment": "Divertissement",
+            "everyday": "Quotidien",
+            "gifts": "Cadeaux",
+            "healthMedical": "Santé / Médical",
+            "home": "Maison",
+            "insurance": "Assurance",
+            "transportation": "Transport",
+            "travel": "Voyage",
+            "utilities": "Services publics"
+          },
+          "budgets": {
+            "activities": "Activités",
+            "medical": "Médical",
+            "childcare": "Garde d'enfants",
+            "school": "École",
+            "other": "Autre",
+            "studentLoans": "Prêts étudiants",
+            "musicLessons": "Leçons de musique",
+            "concertsShows": "Concerts/spectacles",
+            "music": "Musique",
+            "theatrePlays": "Théâtre/pièces",
+            "groceries": "Épicerie",
+            "restaurants": "Restaurants",
+            "personalSupplies": "Fournitures personnelles",
+            "subscriptions": "Abonnements",
+            "gifts": "Cadeaux",
+            "donationsCharity": "Dons (charité)",
+            "doctorsDentalVision": "Médecins/dentistes/vision",
+            "rentMortgage": "Loyer/hypothèque",
+            "propertyTaxes": "Taxes foncières",
+            "car": "Voiture",
+            "health": "Santé",
+            "fuel": "Carburant",
+            "supplies": "Fournitures",
+            "airfare": "Billets d'avion",
+            "hotels": "Hôtels",
+            "phone": "Téléphone",
+            "internet": "Internet",
+            "electricity": "Électricité",
+            "gas": "Gaz",
+            "water": "Eau"
+          },
+          "income": {
+            "wages": "Salaires",
+            "paySlip": "Fiche de paie",
+            "bonus": "Prime",
+            "other": "Autre",
+            "interestIncome": "Revenus d'intérêts",
+            "dividends": "Dividendes"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Supprimer {year}",

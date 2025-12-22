@@ -15,7 +15,63 @@
         "confirm": "Sei sicuro di voler copiare i dati da {from} dentro {to}?"
       },
       "demo": {
-        "loadDemoData": "Carica dati Demo"
+        "loadDemoData": "Carica dati Demo",
+        "data": {
+          "expenses": {
+            "children": "Bambini",
+            "debt": "Debito",
+            "education": "Istruzione",
+            "entertainment": "Intrattenimento",
+            "everyday": "Quotidiano",
+            "gifts": "Regali",
+            "healthMedical": "Salute / Medico",
+            "home": "Casa",
+            "insurance": "Assicurazione",
+            "transportation": "Trasporti",
+            "travel": "Viaggio",
+            "utilities": "Utenze"
+          },
+          "budgets": {
+            "activities": "Attività",
+            "medical": "Medico",
+            "childcare": "Cura dei bambini",
+            "school": "Scuola",
+            "other": "Altro",
+            "studentLoans": "Prestiti studenteschi",
+            "musicLessons": "Lezioni di musica",
+            "concertsShows": "Concerti/spettacoli",
+            "music": "Musica",
+            "theatrePlays": "Teatro/spettacoli",
+            "groceries": "Spesa",
+            "restaurants": "Ristoranti",
+            "personalSupplies": "Forniture personali",
+            "subscriptions": "Abbonamenti",
+            "gifts": "Regali",
+            "donationsCharity": "Donazioni (carità)",
+            "doctorsDentalVision": "Medici/dentisti/oculisti",
+            "rentMortgage": "Affitto/mutuo",
+            "propertyTaxes": "Tasse sulla proprietà",
+            "car": "Auto",
+            "health": "Salute",
+            "fuel": "Carburante",
+            "supplies": "Forniture",
+            "airfare": "Biglietti aerei",
+            "hotels": "Hotel",
+            "phone": "Telefono",
+            "internet": "Internet",
+            "electricity": "Elettricità",
+            "gas": "Gas",
+            "water": "Acqua"
+          },
+          "income": {
+            "wages": "Salari",
+            "paySlip": "Busta paga",
+            "bonus": "Bonus",
+            "other": "Altro",
+            "interestIncome": "Interessi attivi",
+            "dividends": "Dividendi"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Elimina {year}",

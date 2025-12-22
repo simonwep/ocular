@@ -15,7 +15,63 @@
         "confirm": "Are you sure you want to copy data from {from} into {to}?"
       },
       "demo": {
-        "loadDemoData": "Load demo data"
+        "loadDemoData": "Load demo data",
+        "data": {
+          "expenses": {
+            "children": "Children",
+            "debt": "Debt",
+            "education": "Education",
+            "entertainment": "Entertainment",
+            "everyday": "Everyday",
+            "gifts": "Gifts",
+            "healthMedical": "Health / Medical",
+            "home": "Home",
+            "insurance": "Insurance",
+            "transportation": "Transportation",
+            "travel": "Travel",
+            "utilities": "Utilities"
+          },
+          "budgets": {
+            "activities": "Activities",
+            "medical": "Medical",
+            "childcare": "Childcare",
+            "school": "School",
+            "other": "Other",
+            "studentLoans": "Student loans",
+            "musicLessons": "Music lessons",
+            "concertsShows": "Concerts/shows",
+            "music": "Music",
+            "theatrePlays": "Theatre/plays",
+            "groceries": "Groceries",
+            "restaurants": "Restaurants",
+            "personalSupplies": "Personal supplies",
+            "subscriptions": "Subscriptions",
+            "gifts": "Gifts",
+            "donationsCharity": "Donations (charity)",
+            "doctorsDentalVision": "Doctors/dental/vision",
+            "rentMortgage": "Rent/mortgage",
+            "propertyTaxes": "Property taxes",
+            "car": "Car",
+            "health": "Health",
+            "fuel": "Fuel",
+            "supplies": "Supplies",
+            "airfare": "Airfare",
+            "hotels": "Hotels",
+            "phone": "Phone",
+            "internet": "Internet",
+            "electricity": "Electricity",
+            "gas": "Gas",
+            "water": "Water"
+          },
+          "income": {
+            "wages": "Wages",
+            "paySlip": "Pay slip",
+            "bonus": "Bonus",
+            "other": "Other",
+            "interestIncome": "Interest income",
+            "dividends": "Dividends"
+          }
+        }
       },
       "deleteYear": {
         "delete": "Remove {year}",

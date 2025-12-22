@@ -7,8 +7,8 @@
     />
 
     <TotalsSummaryTable :income="income" :expenses="expenses" />
-    <GroupsSummaryTable :title="t('page.dashboard.income')" :groups="state.income" />
-    <GroupsSummaryTable :title="t('page.dashboard.expenses')" :groups="state.expenses" />
+    <GroupsSummaryTable testId="income" :title="t('page.dashboard.income')" :groups="state.income" />
+    <GroupsSummaryTable testId="expenses" :title="t('page.dashboard.expenses')" :groups="state.expenses" />
   </div>
 </template>
 

@@ -15,7 +15,7 @@
 
       <!-- Groups -->
       <template v-for="(group, groupIndex) of flatted" :key="group.id">
-        <span :class="$style.bold">{{ group.name }}</span>
+        <span :data-testid="`${testId}-group-${groupIndex}`" :class="$style.bold">{{ group.name }}</span>
         <span
           v-for="(amount, index) of group.totals"
           :key="index"
@@ -63,6 +63,7 @@ import { useI18n } from 'vue-i18n';
 const props = defineProps<{
   class?: ClassNames;
   groups: DeepReadonly<BudgetGroup[]>;
+  testId: string;
   title: string;
 }>();
 
