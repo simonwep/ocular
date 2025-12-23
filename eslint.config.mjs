@@ -72,7 +72,8 @@ export default defineConfig([
           jsonRecursiveSort: true,
           printWidth: 120,
           singleQuote: true,
-          trailingComma: 'none'
+          trailingComma: 'none',
+          endOfLine: 'lf'
         }
       ],
       'import-x/no-unresolved': 'off',
