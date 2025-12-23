@@ -149,7 +149,8 @@
       "retryingPleaseWait": "Erneuter Versuch, bitte warten...",
       "retrySynchronization": "Erneut versuchen",
       "demoVersionInfo": "Dies ist eine Demo-Version, die keine Daten speichert. Um Ihre Daten zu speichern, müssen Sie sich anmelden.",
-      "newVersionAvailable": "Neue Version verfügbar!"
+      "newVersionAvailable": "Neue Version verfügbar!",
+      "dismiss": "Schließen"
     },
     "update": {
       "updateApp": "App aktualisieren"

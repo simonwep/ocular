@@ -12,7 +12,7 @@ import { useAppConfig } from '@composables/useAppConfig.ts';
 import { useStorage } from '@storage/index.ts';
 import { ClassNames } from '@utils/types.ts';
 import { useRegisterSW } from 'virtual:pwa-register/vue';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 type Status = {
@@ -30,6 +30,8 @@ const { t } = useI18n();
 const { status: storageStatus, retry: retrySync, user } = useStorage();
 const { needRefresh, updateServiceWorker } = useRegisterSW();
 const appConfig = useAppConfig();
+
+const demoDismissed = ref(false);
 
 const classes = computed(() => props.class);
 
@@ -59,10 +61,12 @@ const status = computed((): Status | undefined => {
     };
   }
 
-  if (appConfig.value?.demo && !user.value) {
+  if (appConfig.value?.demo && !user.value && !demoDismissed.value) {
     return {
       color: 'warning',
-      title: t('navigation.status.demoVersionInfo')
+      title: t('navigation.status.demoVersionInfo'),
+      button: t('navigation.status.dismiss'),
+      action: () => (demoDismissed.value = true)
     };
   }
 
@@ -72,11 +76,10 @@ const status = computed((): Status | undefined => {
 
 <style lang="scss" module>
 .statusBar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 24px;
+  text-align: center;
+  padding: 4px;
   gap: 4px;
+  text-shadow: 0 1px 1px rgba(black, 0.5);
 
   &.danger {
     color: var(--c-danger-text);
@@ -116,10 +119,12 @@ const status = computed((): Status | undefined => {
   all: unset;
   text-decoration: underline;
   cursor: pointer;
+  margin-left: 4px;
 }
 
 .title,
 .button {
+  display: inline;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-l);
 }

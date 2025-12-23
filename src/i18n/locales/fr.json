@@ -149,7 +149,8 @@
       "retryingPleaseWait": "Nouvelle tentative, veuillez patienter...",
       "retrySynchronization": "Réessayer la synchronisation",
       "demoVersionInfo": "Ceci est une version de démonstration qui ne sauvegarde aucune donnée. Pour sauvegarder vos données, vous devez vous connecter.",
-      "newVersionAvailable": "Une nouvelle version est disponible!"
+      "newVersionAvailable": "Une nouvelle version est disponible!",
+      "dismiss": "Fermer"
     },
     "update": {
       "updateApp": "Mettre à jour l'application"

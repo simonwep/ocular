@@ -108,6 +108,10 @@ const cards = computed((): Card[] => {
   width: 100%;
   height: 100%;
   overflow: hidden;
+
+  @include globals.onMobileDevices {
+    padding: 0 6px;
+  }
 }
 
 .chart {

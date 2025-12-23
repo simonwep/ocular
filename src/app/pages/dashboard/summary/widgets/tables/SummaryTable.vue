@@ -15,8 +15,14 @@ defineProps<{
 </script>
 
 <style lang="scss" module>
+@use '@styles/globals.scss';
+
 .summaryTable {
   min-width: 100%;
+
+  @include globals.onMobileDevices {
+    padding: 0 6px;
+  }
 }
 
 .title {

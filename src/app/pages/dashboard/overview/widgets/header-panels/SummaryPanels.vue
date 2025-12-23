@@ -154,6 +154,7 @@ const remainingBalancePercentage = computed(() =>
   @include globals.onMobileDevices {
     grid-template: repeat(var(--panels), 1fr) / 1fr;
     height: auto;
+    padding: 0 6px 6px;
   }
 
   > * {
@@ -162,9 +163,9 @@ const remainingBalancePercentage = computed(() =>
   }
 
   &.unAnimated > * {
+    transform: none;
     animation: none;
     opacity: 1;
-    transform: none;
   }
 
   @for $i from 1 through 4 {
