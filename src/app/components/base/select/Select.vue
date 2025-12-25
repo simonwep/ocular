@@ -4,6 +4,7 @@
 
     <ContextMenu
       :testId="testId"
+      :placeholder="placeholder"
       tooltipPosition="bottom"
       :options="availableOptions"
       :offset="[0, 4]"
@@ -35,6 +36,7 @@ const props = defineProps<{
   label: string;
   options?: ContextMenuOption[];
   testId?: string;
+  placeholder?: string;
   searchable?: boolean;
 }>();
 

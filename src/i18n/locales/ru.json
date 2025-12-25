@@ -10,9 +10,15 @@
         "unknownError": "Что-то пошло не так, попробуйте позже."
       },
       "copyPaste": {
-        "copy": "Копировать данные из {year}",
-        "paste": "Вставить данные из {from} в {to}",
-        "confirm": "Вы уверены, что хотите скопировать данные из {from} в {to}?"
+        "copyPasteData": "Копировать / Вставить данные",
+        "copyPasteDataFromOneYearToAnother": "Копировать/вставить данные из одного года в другой",
+        "fromYear": "Из года",
+        "copyTheseGroupsFromIncome": "Скопировать эти группы из доходов",
+        "andTheseGroupsFromExpenses": "И эти группы из расходов",
+        "nothingToAddAnymore": "Больше нечего добавлять...",
+        "toYear": "В год",
+        "includeValues": "Включить значения",
+        "transferData": "Перенести данные"
       },
       "demo": {
         "loadDemoData": "Загрузить демо-данные",

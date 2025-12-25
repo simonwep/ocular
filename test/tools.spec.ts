@@ -42,27 +42,64 @@ test('Keep value in cells if unchanged', async ({ page }) => {
 });
 
 test('Copy data from one year to another', async ({ page }) => {
+  const currentYear = new Date().getFullYear();
+
   await page.goto('/#demo');
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
-
-  const currentYear = new Date().getFullYear();
-  await page.getByTestId('change-year').click();
-  await page.getByTestId(`change-year-${currentYear + 1}`).click();
-  await expect(page.getByTestId('current-year')).toHaveText(String(currentYear + 1));
-  await expect(page.getByTestId('income-value')).toHaveText('€0');
-
-  await page.getByTestId('change-year').click();
-  await page.getByTestId(`change-year-${currentYear}`).click();
   await expect(page.getByTestId('current-year')).toHaveText(String(currentYear));
 
-  page.on('dialog', (dialog) => dialog.accept());
+  await page.getByTestId('tools-menu').click();
+  await page.getByTestId('copy-paste-data').click();
+  await page.getByTestId('target-year').click();
+  await page.getByTestId(`target-year-${currentYear + 1}`).click();
+  await page.getByTestId('transfer-data').click();
+  await expect(page.getByTestId('transfer-data')).toBeHidden();
+  await expect(page.getByTestId('income-value')).toHaveText('€108,600');
+  await expect(page.getByTestId('current-year')).toHaveText(String(currentYear + 1));
+});
+
+test('Copy data from one year to another without values', async ({ page }) => {
+  const currentYear = new Date().getFullYear();
+
+  await page.goto('/#demo');
+  await expect(page.getByTestId('income-value')).toHaveText('€108,600');
+  await expect(page.getByTestId('current-year')).toHaveText(String(currentYear));
 
   await page.getByTestId('tools-menu').click();
-  await page.getByTestId('copy-data').click();
-  await page.getByTestId('change-year').click();
-  await page.getByTestId(`change-year-${currentYear + 1}`).click();
-  await page.getByTestId('tools-menu').click();
-  await page.getByTestId('paste-data').click();
+  await page.getByTestId('copy-paste-data').click();
+  await page.getByTestId('target-year').click();
+  await page.getByTestId(`target-year-${currentYear + 1}`).click();
+  await page.getByTestId('include-values').uncheck();
+  await page.getByTestId('transfer-data').click();
+  await expect(page.getByTestId('transfer-data')).toBeHidden();
+  await expect(page.getByTestId('income-value')).toHaveText('€0');
   await expect(page.getByTestId('current-year')).toHaveText(String(currentYear + 1));
+});
+
+test('Copy partial data from one year to another', async ({ page }) => {
+  const currentYear = new Date().getFullYear();
+
+  await page.goto('/#demo');
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
+  await expect(page.getByTestId('current-year')).toHaveText(String(currentYear));
+
+  await page.getByTestId('tools-menu').click();
+  await page.getByTestId('copy-paste-data').click();
+  await page.getByTestId('target-year').click();
+  await page.getByTestId(`target-year-${currentYear + 1}`).click();
+  await page.getByTestId('remove-Other').click();
+  await page.getByTestId('remove-Home').click();
+  await page.getByTestId('remove-Travel').click();
+  await page.getByTestId('transfer-data').click();
+  await expect(page.getByTestId('transfer-data')).toBeHidden();
+  await expect(page.getByTestId('income-value')).toHaveText('€99,000');
+  await expect(page.getByTestId('current-year')).toHaveText(String(currentYear + 1));
+
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('group-0-name')).toBeVisible();
+  await expect(page.getByTestId('group-1-name')).toBeHidden();
+
+  await page.getByTestId('navigation-expenses').click();
+  await expect(page.getByTestId('group-7-name')).toHaveValue('Insurance');
+  await expect(page.getByTestId('group-10-name')).toBeHidden();
 });

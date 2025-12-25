@@ -11,6 +11,7 @@
   <TextCell
     :class="[$style.top, $style.start]"
     :modelValue="group.name"
+    :testId="`${testId}-name`"
     inline
     @update:model-value="setBudgetGroupName(group.id, $event)"
   />
@@ -46,7 +47,11 @@
     />
 
     <span :class="$style.header">
-      <TextCell :modelValue="budget.name" @update:model-value="setBudgetName(budget.id, $event)" />
+      <TextCell
+        :testId="`${testId}-budget-${index}-name`"
+        :modelValue="budget.name"
+        @update:model-value="setBudgetName(budget.id, $event)"
+      />
     </span>
 
     <span

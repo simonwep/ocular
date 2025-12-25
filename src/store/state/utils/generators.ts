@@ -1,28 +1,43 @@
 import { Budget, BudgetGroup, BudgetYear } from '../types';
 import { uuid } from '@utils/uuid.ts';
+import { DeepReadonly } from 'vue';
 
-export const generateBudget = (name: string): Budget => ({
+export const generateBudget = (name: string, values = new Array(12).fill(0)): Budget => ({
   name,
-  id: uuid(),
-  values: new Array(12).fill(0)
+  values,
+  id: uuid()
 });
 
 export const generateBudgetGroup = (name: string, budgets: string[]): BudgetGroup => ({
   name,
   id: uuid(),
-  budgets: budgets.map(generateBudget)
+  budgets: budgets.map((name) => generateBudget(name))
 });
 
-export const generateBudgetYearFromCurrent = (year: number, current: BudgetYear): BudgetYear => {
-  const clearValues = (value: BudgetGroup): BudgetGroup => ({
+export type GenerateBudgetYearOptions = {
+  year: number;
+  source: DeepReadonly<BudgetYear>;
+  includeValues?: boolean;
+  incomeGroups?: string[];
+  expenseGroups?: string[];
+};
+
+export const generateBudgetYear = (options: GenerateBudgetYearOptions): BudgetYear => {
+  const clearValues = (value: DeepReadonly<BudgetGroup>): BudgetGroup => ({
     id: uuid(),
     name: value.name,
-    budgets: value.budgets.map((budget) => generateBudget(budget.name))
+    budgets: value.budgets.map((budget) =>
+      options.includeValues ? generateBudget(budget.name, [...budget.values]) : generateBudget(budget.name)
+    )
   });
 
   return {
-    year,
-    income: current.income.map(clearValues),
-    expenses: current.expenses.map(clearValues)
+    year: options.year,
+    income: options.source.income
+      .filter((v) => !options.incomeGroups || options.incomeGroups.includes(v.id))
+      .map(clearValues),
+    expenses: options.source.expenses
+      .filter((v) => !options.expenseGroups || options.expenseGroups.includes(v.id))
+      .map(clearValues)
   };
 };

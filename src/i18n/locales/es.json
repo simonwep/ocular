@@ -10,9 +10,15 @@
         "unknownError": "Algo salió mal, por favor inténtalo de nuevo más tarde."
       },
       "copyPaste": {
-        "copy": "Copiar datos de {year}",
-        "paste": "Pegar datos de {from} en {to}",
-        "confirm": "¿Copiar datos de {from} en {to}?"
+        "copyPasteData": "Copiar / Pegar datos",
+        "copyPasteDataFromOneYearToAnother": "Copiar/pegar datos de un año a otro",
+        "fromYear": "Desde el año",
+        "copyTheseGroupsFromIncome": "Copiar estos grupos de ingresos",
+        "andTheseGroupsFromExpenses": "Y estos grupos de gastos",
+        "nothingToAddAnymore": "No hay nada más para agregar...",
+        "toYear": "Al año",
+        "includeValues": "Incluir valores",
+        "transferData": "Transferir datos"
       },
       "demo": {
         "loadDemoData": "Cargar datos de demostración",

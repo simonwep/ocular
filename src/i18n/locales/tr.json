@@ -10,9 +10,15 @@
         "unknownError": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin."
       },
       "copyPaste": {
-        "copy": "{year} konumundan veri kopyala",
-        "paste": "{from} kaynağından verileri {to} öğesine yapıştırın",
-        "confirm": "Verileri {from} konumundan {to} konumuna kopyalamak istediğinizden emin misiniz?"
+        "copyPasteData": "Kopyala / Yapıştır Verileri",
+        "copyPasteDataFromOneYearToAnother": "Bir yıldan diğerine verileri kopyala/yapıştır",
+        "fromYear": "Kaynak yıl",
+        "copyTheseGroupsFromIncome": "Bu grupları gelirlerden kopyala",
+        "andTheseGroupsFromExpenses": "Ve bu grupları giderlerden kopyala",
+        "nothingToAddAnymore": "Artık eklenecek bir şey yok...",
+        "toYear": "Hedef yıl",
+        "includeValues": "Değerleri dahil et",
+        "transferData": "Verileri aktar"
       },
       "demo": {
         "loadDemoData": "Demo verileri yükle",

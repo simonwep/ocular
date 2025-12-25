@@ -10,9 +10,15 @@
         "unknownError": "Něco se pokazilo, zkuste to, prosím, znovu později."
       },
       "copyPaste": {
-        "copy": "Zkopírovat data z {year}",
-        "paste": "Vložit data z {from} do {to}",
-        "confirm": "Jste si jisti, že chcete kopírovat data z {from} do {to}?"
+        "copyPasteData": "Kopírovat / vložit data",
+        "copyPasteDataFromOneYearToAnother": "Kopírovat/vložit data z jednoho roku do druhého",
+        "fromYear": "Z roku",
+        "copyTheseGroupsFromIncome": "Kopírovat tyto skupiny z příjmů",
+        "andTheseGroupsFromExpenses": "A tyto skupiny z výdajů",
+        "nothingToAddAnymore": "Už není co přidávat...",
+        "toYear": "Do roku",
+        "includeValues": "Zahrnout hodnoty",
+        "transferData": "Přenést data"
       },
       "demo": {
         "loadDemoData": "Načíst ukázková data",

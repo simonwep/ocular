@@ -10,9 +10,15 @@
         "unknownError": "Valami rosszul sült el, kérjük, próbálja meg később újra."
       },
       "copyPaste": {
-        "copy": "Adatok másolása innen: {year}",
-        "paste": "Adatok beillesztése innen: {from}, ide: {to}",
-        "confirm": "Biztos, hogy az adatokat másolni akarja innen: {from}, ide: {to}?"
+        "copyPasteData": "Adatok másolása / beillesztése",
+        "copyPasteDataFromOneYearToAnother": "Adatok másolása egyik évről a másikra",
+        "fromYear": "Forrásév",
+        "copyTheseGroupsFromIncome": "Másold ezeket a csoportokat a bevételekből",
+        "andTheseGroupsFromExpenses": "És ezeket a csoportokat a kiadásokból",
+        "nothingToAddAnymore": "Nincs már mit hozzáadni...",
+        "toYear": "Célév",
+        "includeValues": "Értékek bevonása",
+        "transferData": "Adatok áthelyezése"
       },
       "demo": {
         "loadDemoData": "Demo adatok betöltése",

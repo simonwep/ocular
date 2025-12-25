@@ -10,9 +10,15 @@
         "unknownError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut."
       },
       "copyPaste": {
-        "copy": "Daten von {year} kopieren",
-        "paste": "Daten von {from} nach {to} kopieren",
-        "confirm": "Sind Sie sicher, dass Sie die Daten von {from} nach {to} kopieren möchten?"
+        "copyPasteData": "Kopieren / Einfügen von Daten",
+        "copyPasteDataFromOneYearToAnother": "Daten von einem Jahr in ein anderes kopieren/einfügen",
+        "fromYear": "Von Jahr",
+        "copyTheseGroupsFromIncome": "Kopiere diese Gruppen aus den Einnahmen",
+        "andTheseGroupsFromExpenses": "Und diese Gruppen aus den Ausgaben",
+        "nothingToAddAnymore": "Nichts mehr hinzuzufügen...",
+        "toYear": "Bis Jahr",
+        "includeValues": "Werte einschließen",
+        "transferData": "Daten übertragen"
       },
       "demo": {
         "loadDemoData": "Demo-Daten laden",

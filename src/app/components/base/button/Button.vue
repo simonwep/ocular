@@ -167,7 +167,6 @@ const classes = computed(() => [
     &.disabled,
     &.disabled:hover {
       background: var(--c-dimmed);
-      cursor: default;
     }
   }
 }

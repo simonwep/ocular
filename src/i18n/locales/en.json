@@ -10,9 +10,15 @@
         "unknownError": "Something went wrong, please try again later."
       },
       "copyPaste": {
-        "copy": "Copy data from {year}",
-        "paste": "Paste data from {from} into {to}",
-        "confirm": "Are you sure you want to copy data from {from} into {to}?"
+        "copyPasteData": "Copy / Paste Data",
+        "copyPasteDataFromOneYearToAnother": "Copy / paste data from one year to another",
+        "fromYear": "From year",
+        "copyTheseGroupsFromIncome": "Copy these groups from income",
+        "andTheseGroupsFromExpenses": "And these groups from expenses",
+        "nothingToAddAnymore": "Nothing to add anymore...",
+        "toYear": "To year",
+        "includeValues": "Include values",
+        "transferData": "Transfer data"
       },
       "demo": {
         "loadDemoData": "Load demo data",

@@ -6,7 +6,7 @@
     <div :class="listClasses">
       <slot name="header" />
 
-      <ul :class="$style.options">
+      <ul v-if="options?.length || $slots.options" :class="$style.options">
         <slot v-if="$slots.options" name="options" />
         <template v-else-if="options">
           <ContextMenuButton
@@ -22,6 +22,10 @@
           />
         </template>
       </ul>
+
+      <span v-else-if="placeholder" :class="$style.placeholder">
+        {{ placeholder }}
+      </span>
     </div>
   </div>
 </template>
@@ -55,6 +59,7 @@ const props = withDefaults(
     highlight?: ContextMenuOptionId;
     testId?: string;
     offset?: [number, number];
+    placeholder?: string;
   }>(),
   {
     position: 'right-end',
@@ -176,5 +181,13 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   list-style: none outside none;
   max-height: 130px;
   overflow: auto;
+}
+
+.placeholder {
+  display: inline-block;
+  padding: 0 8px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-m);
+  color: var(--c-primary-text-accent);
 }
 </style>

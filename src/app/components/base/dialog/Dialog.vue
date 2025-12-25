@@ -134,6 +134,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
   font-weight: var(--font-weight-l);
   font-style: var(--font-size-m);
   padding-bottom: 14px;
+  padding-right: 14px;
 }
 
 .closeBtn {

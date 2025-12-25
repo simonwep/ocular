@@ -1,6 +1,6 @@
 import { migrateApplicationState } from './migrator';
-import { Budget, BudgetGroup, BudgetYear, DataState, DataStates, DataStateV1 } from './types';
-import { generateBudgetYearFromCurrent } from './utils/generators.ts';
+import { Budget, BudgetGroup, BudgetYear, DataState, DataStates } from './types';
+import { generateBudgetYear } from './utils/generators.ts';
 import { useTime } from '@composables/useTime.ts';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
@@ -47,7 +47,7 @@ export const createDataStore = (storage?: Storage) => {
     { immediate: true }
   );
 
-  storage?.sync<DataState, DataState | DataStateV1>({
+  storage?.sync<DataState, DataStates>({
     name: 'data',
     state: () => state,
     clear: () => Object.assign(state, migrateApplicationState()),
@@ -102,23 +102,6 @@ export const createDataStore = (storage?: Storage) => {
       }
     },
 
-    copyYear: () => {
-      clipboard.value = {
-        year: activeYear.value,
-        data: JSON.parse(JSON.stringify(getCurrentYear()))
-      };
-    },
-
-    pasteYear: () => {
-      if (clipboard.value) {
-        const {
-          data: { expenses, income }
-        } = clipboard.value;
-        Object.assign(getCurrentYear(), { income, expenses });
-        clipboard.value = undefined;
-      }
-    },
-
     shiftYears: () => {
       if (state.years.length > 1) {
         const item = state.years.shift();
@@ -133,11 +116,23 @@ export const createDataStore = (storage?: Storage) => {
       const data = state.years.find((v) => v.year === year);
 
       if (!data) {
-        state.years.push(generateBudgetYearFromCurrent(year, getCurrentYear()));
+        state.years.push(generateBudgetYear({ year, source: getCurrentYear() }));
         state.years.sort((a, b) => a.year - b.year);
       }
 
       activeYear.value = year;
+    },
+
+    upsertYear: (data: BudgetYear) => {
+      const source = state.years.find((v) => v.year === data.year);
+
+      if (!source) {
+        state.years.push(data);
+        state.years.sort((a, b) => a.year - b.year);
+      } else {
+        source.income = data.income;
+        source.expenses = data.expenses;
+      }
     },
 
     changeLocale: (locale: AvailableLocale) => {

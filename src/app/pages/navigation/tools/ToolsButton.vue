@@ -14,8 +14,7 @@
       <PrivacyModeButton />
       <ExportButton />
       <ImportButton />
-      <CopyButton />
-      <PasteButton />
+      <CopyPasteButton />
       <DeleteYearButton />
     </template>
   </ContextMenu>
@@ -23,8 +22,7 @@
 
 <script lang="ts" setup>
 import ChangePasswordButton from './change-password/ChangePasswordButton.vue';
-import CopyButton from './copy-paste/CopyButton.vue';
-import PasteButton from './copy-paste/PasteButton.vue';
+import CopyPasteButton from './copy-paste/CopyPasteButton.vue';
 import DeleteYearButton from './delete-year/DeleteYearButton.vue';
 import ExportButton from './export/ExportButton.vue';
 import ImportButton from './import/ImportButton.vue';

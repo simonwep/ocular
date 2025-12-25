@@ -10,9 +10,15 @@
         "unknownError": "Terjadi kesalahan. Mohon coba lagi nanti."
       },
       "copyPaste": {
-        "copy": "Salin data dari tahun {year}",
-        "paste": "Tempel data dari {from} ke {to}",
-        "confirm": "Apakah yakin untuk menyalin data dari {from} ke {to}?"
+        "copyPasteData": "Salin / Tempel Data",
+        "copyPasteDataFromOneYearToAnother": "Salin/tempel data dari satu tahun ke tahun lain",
+        "fromYear": "Dari tahun",
+        "copyTheseGroupsFromIncome": "Salin kelompok-kelompok ini dari pemasukan",
+        "andTheseGroupsFromExpenses": "Dan kelompok-kelompok ini dari pengeluaran",
+        "nothingToAddAnymore": "Tidak ada yang bisa ditambahkan lagi...",
+        "toYear": "Ke tahun",
+        "includeValues": "Sertakan nilai",
+        "transferData": "Pindahkan data"
       },
       "demo": {
         "loadDemoData": "Muat data demo",

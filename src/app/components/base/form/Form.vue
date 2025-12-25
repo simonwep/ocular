@@ -1,7 +1,14 @@
 <template>
   <form :class="$style.fields" action="#" @submit="submit">
     <slot />
-    <Button :icon="submitIcon" :class="$style.btn" :text="submitLabel" type="submit" />
+    <Button
+      :testId="submitTestId"
+      :disabled="disabled"
+      :icon="submitIcon"
+      :class="$style.btn"
+      :text="submitLabel"
+      type="submit"
+    />
   </form>
 </template>
 
@@ -16,6 +23,8 @@ const emit = defineEmits<{
 defineProps<{
   submitLabel: string;
   submitIcon?: Component;
+  submitTestId?: string;
+  disabled?: boolean;
 }>();
 
 const submit = (e: Event) => {
@@ -28,7 +37,6 @@ const submit = (e: Event) => {
 .fields {
   display: flex;
   flex-direction: column;
-  width: 250px;
   gap: 12px;
 
   .btn {
