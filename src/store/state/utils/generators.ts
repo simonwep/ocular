@@ -16,7 +16,7 @@ export const generateBudgetGroup = (name: string, budgets: string[]): BudgetGrou
 
 export type GenerateBudgetYearOptions = {
   year: number;
-  source: DeepReadonly<BudgetYear>;
+  source?: DeepReadonly<BudgetYear>;
   includeValues?: boolean;
   incomeGroups?: string[];
   expenseGroups?: string[];
@@ -33,11 +33,13 @@ export const generateBudgetYear = (options: GenerateBudgetYearOptions): BudgetYe
 
   return {
     year: options.year,
-    income: options.source.income
-      .filter((v) => !options.incomeGroups || options.incomeGroups.includes(v.id))
-      .map(clearValues),
-    expenses: options.source.expenses
-      .filter((v) => !options.expenseGroups || options.expenseGroups.includes(v.id))
-      .map(clearValues)
+    income:
+      options.source?.income
+        .filter((v) => !options.incomeGroups || options.incomeGroups.includes(v.id))
+        .map(clearValues) ?? [],
+    expenses:
+      options.source?.expenses
+        .filter((v) => !options.expenseGroups || options.expenseGroups.includes(v.id))
+        .map(clearValues) ?? []
   };
 };

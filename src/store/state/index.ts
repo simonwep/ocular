@@ -94,12 +94,16 @@ export const createDataStore = (storage?: Storage) => {
       if (data instanceof File) {
         await readFile(data)
           .then(JSON.parse)
-          .then((content: DataStates) => {
-            Object.assign(state, migrateApplicationState(content));
-          });
+          .then((content: DataStates) => Object.assign(state, migrateApplicationState(content)));
       } else {
         Object.assign(state, migrateApplicationState(data));
       }
+
+      if (!state.years.length) {
+        state.years.push(generateBudgetYear({ year: time.year.value }));
+      }
+
+      activeYear.value = state.years.at(-1)!.year;
     },
 
     shiftYears: () => {
