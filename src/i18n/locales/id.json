@@ -22,6 +22,7 @@
       },
       "demo": {
         "loadDemoData": "Muat data demo",
+        "overwriteExistingData": "Sudah ada data. Apakah Anda ingin menimpanya?",
         "data": {
           "expenses": {
             "children": "Anak-anak",

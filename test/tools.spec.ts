@@ -12,6 +12,20 @@ test('Load demo data', async ({ page }) => {
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
 });
 
+test('Ask for loading demo data if there is already data', async ({ page }) => {
+  await page.goto('/');
+  await page.getByTestId('change-year').click();
+  await page.getByTestId(`change-year-${new Date().getFullYear() + 1}`).click();
+  await page.getByTestId('navigation-income').click();
+  await page.getByTestId('group-0-budget-0-0').fill('100');
+  await page.getByTestId('navigation-dashboard').click();
+  await expect(page.getByTestId('load-demo-data-placeholder')).toBeVisible();
+
+  page.on('dialog', (dialog) => dialog.dismiss());
+  await page.getByTestId('load-demo-data-placeholder').click();
+  await expect(page.getByTestId('income-value')).toHaveText('€100');
+});
+
 test.describe('Load demo data in different languages', () => {
   const tests = [
     { locale: 'en-US', wages: 'Wages' },

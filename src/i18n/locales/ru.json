@@ -22,6 +22,7 @@
       },
       "demo": {
         "loadDemoData": "Загрузить демо-данные",
+        "overwriteExistingData": "Данные уже существуют. Хотите перезаписать их?",
         "data": {
           "expenses": {
             "children": "Дети",

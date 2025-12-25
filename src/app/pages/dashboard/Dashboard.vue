@@ -68,6 +68,7 @@ import type { Component } from 'vue';
 const { t } = useI18n();
 const { state } = useDataStore();
 const { state: settings } = useSettingsStore();
+
 const view = shallowRef<Component>(Overview);
 </script>
 

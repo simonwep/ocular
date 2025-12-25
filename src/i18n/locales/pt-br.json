@@ -22,6 +22,7 @@
       },
       "demo": {
         "loadDemoData": "Carregar exemplo",
+        "overwriteExistingData": "Já existem dados. Deseja sobrescrevê-los?",
         "data": {
           "expenses": {
             "children": "Crianças",

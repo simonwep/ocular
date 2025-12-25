@@ -4,10 +4,12 @@
       <RiShoppingBasket2Line :class="$style.icon" />
       <RiHandCoinLine :class="$style.icon" />
     </div>
+
     <span>{{ t('shared.placeholder') }}</span>
 
     <Button
       v-if="appConfig?.demo"
+      testId="load-demo-data-placeholder"
       :icon="RiMagicFill"
       size="xs"
       :text="t('navigation.tools.demo.loadDemoData')"

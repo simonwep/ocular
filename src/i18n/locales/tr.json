@@ -22,6 +22,7 @@
       },
       "demo": {
         "loadDemoData": "Demo verileri yükle",
+        "overwriteExistingData": "Zaten veriler mevcut. Üzerine yazmak istiyor musunuz?",
         "data": {
           "expenses": {
             "children": "Çocuklar",
