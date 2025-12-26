@@ -44,7 +44,7 @@ export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig
     };
 
     const show = () => {
-      if (!element.textContent || media.value === 'mobile') {
+      if (!element.textContent || media.value === 'mobile' || navigator.webdriver) {
         return;
       }
 
