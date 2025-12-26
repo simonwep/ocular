@@ -1,7 +1,7 @@
 <template>
   <template v-if="show">
     <component v-bind="properties" :is="component" v-if="component" :class="classes" />
-    <div v-else :class="[$style.placeholder, classes]">
+    <div v-else-if="!hideLoader" :class="[$style.placeholder, classes]">
       <span />
     </div>
   </template>
@@ -15,6 +15,7 @@ const props = withDefaults(
   defineProps<{
     class?: ClassNames;
     show?: boolean;
+    hideLoader?: boolean;
     properties?: Record<string, unknown>;
     import: () => Promise<{ default: unknown }>;
   }>(),

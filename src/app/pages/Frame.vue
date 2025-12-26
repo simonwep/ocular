@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.frame">
+  <div ref="frame" :class="$style.frame">
     <div ref="menu" :class="$style.buttons">
       <template v-if="media !== 'mobile'">
         <ThemeButton :class="$style.btn" />
@@ -58,6 +58,7 @@ import UpdateAppButton from '@app/pages/navigation/update/UpdateAppButton.vue';
 import Link from '@components/base/link/Link.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useSquircle } from '@composables/useSquircle.ts';
 import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { computed, ref } from 'vue';
@@ -66,6 +67,7 @@ import type { Component } from 'vue';
 
 const menu = ref<HTMLDivElement>();
 const media = useMediaQuery();
+const frame = useSquircle(() => (['minimized', 'mobile'].includes(media.value) ? 0 : 0.035));
 const { user } = useStorage();
 const { t } = useI18n();
 
@@ -90,6 +92,7 @@ const buttons = computed((): FrameButton[] => [
   display: flex;
   height: 100%;
   width: 100%;
+  background: var(--app-background);
 }
 
 .panes {

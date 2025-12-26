@@ -1,6 +1,6 @@
-import { ref, MaybeRef, unref, watchEffect } from 'vue';
+import { ref, unref, watchEffect, MaybeRefOrGetter, toValue } from 'vue';
 
-export const useSquircle = (size: MaybeRef<number>) => {
+export const useSquircle = (size: MaybeRefOrGetter<number>) => {
   const el = ref<HTMLElement | undefined>();
   const resizeEntry = ref<ResizeObserverEntry>();
   let observer: ResizeObserver;
@@ -12,7 +12,7 @@ export const useSquircle = (size: MaybeRef<number>) => {
     }
 
     const { width, height } = resizeEntry.value.contentRect;
-    const min = Math.min(width, height) * unref(size);
+    const min = Math.min(width, height) * toValue(size);
     const d = `path('${[
       `M 0,${min}`,
       `C 0,0 0,0 ${min},0`,
