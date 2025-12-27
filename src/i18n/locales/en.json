@@ -214,5 +214,10 @@
       "surplus": "Surplus",
       "deficit": "Deficit"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "No budget groups to hide. | One budget group hidden. | {count} budget groups hidden."
+    }
   }
 }

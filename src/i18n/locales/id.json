@@ -214,5 +214,10 @@
       "surplus": "Surplus",
       "deficit": "Defisit"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Tidak ada grup anggaran untuk disembunyikan. | Satu grup anggaran disembunyikan. | {count} grup anggaran disembunyikan."
+    }
   }
 }

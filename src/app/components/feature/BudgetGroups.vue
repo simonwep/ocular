@@ -29,6 +29,7 @@
     <Button
       :color="allowDelete ? 'danger' : 'success'"
       :icon="allowDelete ? RiLockUnlockLine : RiLockLine"
+      testId="toggle-allow-delete"
       textual
       @click="allowDelete = !allowDelete"
     />
@@ -58,6 +59,7 @@
     <!-- Footer -->
     <span />
     <Button
+      testId="add-budget-group"
       :class="$style.addGroupBtn"
       size="s"
       :icon="RiAddCircleLine"

@@ -2,19 +2,30 @@
   <!-- Header -->
   <Button
     color="dimmed"
+    :testId="`${testId}-delete`"
     :disabled="!allowDelete"
     :icon="RiCloseCircleLine"
     textual
     @click="removeBudgetGroup(group.id)"
   />
 
-  <TextCell
-    :class="[$style.top, $style.start]"
-    :modelValue="group.name"
-    :testId="`${testId}-name`"
-    inline
-    @update:model-value="setBudgetGroupName(group.id, $event)"
-  />
+  <span :class="[$style.groupName, $style.top, $style.start]">
+    <TextCell
+      :modelValue="group.name"
+      :testId="`${testId}-name`"
+      inline
+      @update:model-value="setBudgetGroupName(group.id, $event)"
+    />
+    <button
+      :data-testid="`${testId}-collapse`"
+      :class="$style.toggle"
+      type="button"
+      @click="toggleBudgetGroupCollapse(group.id)"
+    >
+      <RiEyeLine v-if="group.collapsed" size="15" />
+      <RiEyeCloseLine v-else size="15" />
+    </button>
+  </span>
 
   <span v-for="(total, index) of totals" :key="index" :class="$style.top">
     <Currency :value="total" :testId="`${testId}-month-${index}-total`" />
@@ -28,15 +39,21 @@
     <span>{{ t('shared.average') }}</span>
   </span>
 
-  <!-- Budgets -->
-  <BudgetGroupBudgets ref="budgetGroupBudgets" :budgets="group.budgets" :testId="testId" :allowDelete="allowDelete" />
+  <template v-if="!group.collapsed">
+    <!-- Budgets -->
+    <BudgetGroupBudgets ref="budgetGroupBudgets" :budgets="group.budgets" :testId="testId" :allowDelete="allowDelete" />
 
-  <!-- Footer -->
-  <span />
-  <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id)" />
-  <span style="grid-column: 3 / 16" />
-  <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
-  <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
+    <!-- Footer -->
+    <span />
+    <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id)" />
+    <span style="grid-column: 3 / 16" />
+    <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
+    <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
+  </template>
+
+  <span v-else :data-testid="`${testId}-placeholder`" :class="$style.collapsedPlaceholder">
+    {{ t('feature.budgetGroup.budgetGroupsHidden', group.budgets.length) }}
+  </span>
 </template>
 
 <script lang="ts" setup>
@@ -44,7 +61,7 @@ import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import TextCell from '@components/base/text-cell/TextCell.vue';
 import BudgetGroupBudgets from '@components/feature/BudgetGroupBudgets.vue';
-import { RiAddCircleLine, RiCloseCircleLine } from '@remixicon/vue';
+import { RiAddCircleLine, RiCloseCircleLine, RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
@@ -57,7 +74,7 @@ const props = defineProps<{
   allowDelete: boolean;
 }>();
 
-const { removeBudgetGroup, addBudget, setBudgetGroupName } = useDataStore();
+const { removeBudgetGroup, toggleBudgetGroupCollapse, addBudget, setBudgetGroupName } = useDataStore();
 const { t } = useI18n();
 const budgetGroupBudgets = useTemplateRef('budgetGroupBudgets');
 
@@ -82,12 +99,6 @@ defineExpose({
 </script>
 
 <style lang="scss" module>
-.header {
-  font-style: italic;
-  font-size: var(--input-field-font-size);
-  font-weight: var(--font-weight-m);
-}
-
 .meta {
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-m);
@@ -126,57 +137,24 @@ defineExpose({
     border-bottom-right-radius: var(--border-radius-l);
     padding-right: 8px;
   }
-}
 
-.currencyCell {
-  display: flex;
-  align-items: center;
-  background: var(--grid-background-odd);
-  height: 100%;
-  border-right: 1px solid var(--grid-border-color);
-  border-bottom: 1px solid var(--grid-border-color);
-  transition: background-color var(--input-field-transition);
-  box-shadow: inset 0 0 0 1px transparent;
+  &.groupName {
+    display: flex;
+    margin-left: 3px;
 
-  &.firstRow {
-    border-top: 1px solid var(--grid-border-color);
-  }
-
-  &.firstColumn {
-    border-left: 1px solid var(--grid-border-color);
-  }
-
-  &.currentMonth {
-    background: var(--grid-background-odd-active);
-  }
-
-  &:focus-within {
-    box-shadow: 0 0 0 2px var(--c-primary) inset;
-    border-radius: 1px;
-  }
-
-  &.even {
-    background: var(--grid-background-even);
-
-    &.currentMonth {
-      background: var(--grid-background-even-active);
+    .toggle {
+      all: unset;
+      display: flex;
+      cursor: pointer;
     }
   }
+}
 
-  &.tlc {
-    border-top-left-radius: var(--grid-border-radius);
-  }
-
-  &.trc {
-    border-top-right-radius: var(--grid-border-radius);
-  }
-
-  &.blc {
-    border-bottom-left-radius: var(--grid-border-radius);
-  }
-
-  &.brc {
-    border-bottom-right-radius: var(--grid-border-radius);
-  }
+.collapsedPlaceholder {
+  font-size: var(--input-field-font-size);
+  color: var(--c-text-dimmed);
+  font-style: italic;
+  grid-column: 1 / -1;
+  text-align: center;
 }
 </style>

@@ -214,5 +214,10 @@
       "surplus": "Eccedenza",
       "deficit": "Deficit"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Nessun gruppo di bilancio da nascondere. | Un gruppo di bilancio nascosto. | {count} gruppi di bilancio nascosti."
+    }
   }
 }

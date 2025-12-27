@@ -214,5 +214,10 @@
       "surplus": "Überschuss",
       "deficit": "Defizit"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Keine Budgetgruppen zum Ausblenden. | Eine Budgetgruppe ausgeblendet. | {count} Budgetgruppen ausgeblendet."
+    }
   }
 }

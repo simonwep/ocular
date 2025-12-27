@@ -195,6 +195,14 @@ export const createDataStore = (storage?: Storage) => {
       remove<BudgetGroup>(getCurrentYear().income, (v) => v.id === id);
     },
 
+    toggleBudgetGroupCollapse: (id: string) => {
+      const group = groups().find((v) => v.id === id);
+
+      if (group) {
+        group.collapsed = !group.collapsed;
+      }
+    },
+
     addBudget: (id: string) => {
       groups()
         .find((v) => v.id === id)

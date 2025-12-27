@@ -214,5 +214,10 @@
       "surplus": "Přebytek",
       "deficit": "Deficit"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Žádné rozpočtové skupiny k skrytí. | Jedna rozpočtová skupina skryta. | {count} rozpočtových skupin skryto."
+    }
   }
 }

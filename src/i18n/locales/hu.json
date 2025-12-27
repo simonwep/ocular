@@ -214,5 +214,10 @@
       "surplus": "Többlet",
       "deficit": "Hiány"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Nincs elrejthető költségvetési csoport. | Egy költségvetési csoport elrejtve. | {count} költségvetési csoport elrejtve."
+    }
   }
 }

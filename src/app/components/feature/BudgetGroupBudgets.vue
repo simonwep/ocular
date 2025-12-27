@@ -11,6 +11,7 @@
     <Button
       color="dimmed"
       :disabled="!allowDelete"
+      :testId="`${testId}-delete-${index}`"
       :icon="RiCloseCircleLine"
       textual
       @click="removeBudget(budget.id)"

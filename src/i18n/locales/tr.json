@@ -214,5 +214,10 @@
       "surplus": "Artı",
       "deficit": "Eksi"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Gizlenecek bütçe grubu yok. | Bir bütçe grubu gizlendi. | {count} bütçe grubu gizlendi."
+    }
   }
 }

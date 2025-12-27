@@ -156,3 +156,21 @@ test('Navigate budgets using the keyboard', async ({ page }) => {
   await page.keyboard.press('ArrowUp');
   await expect(page.getByTestId('group-1-budget-2-11')).toBeFocused();
 });
+
+test('Collapse budget groups', async ({ page }) => {
+  await page.goto('/#demo');
+  await page.getByTestId('navigation-income').click();
+  await page.getByTestId('toggle-allow-delete').click();
+  await page.getByTestId('add-budget-group').click();
+
+  await page.getByTestId('group-1-delete-2').click();
+  await page.getByTestId('group-1-delete-1').click();
+
+  await page.getByTestId('group-0-collapse').click();
+  await page.getByTestId('group-1-collapse').click();
+  await page.getByTestId('group-2-collapse').click();
+
+  await expect(page.getByTestId('group-0-placeholder')).toContainText(/3 budget groups/);
+  await expect(page.getByTestId('group-1-placeholder')).toContainText(/One budget group/);
+  await expect(page.getByTestId('group-2-placeholder')).toContainText(/No budget groups/);
+});

@@ -214,5 +214,10 @@
       "surplus": "Nadwyżka",
       "deficit": "Deficyt"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Brak grup budżetowych do ukrycia. | Jedna grupa budżetowa ukryta. | {count} grup budżetowych ukrytych."
+    }
   }
 }

@@ -13,6 +13,7 @@ export interface BudgetGroup {
   id: string;
   name: string;
   budgets: Budget[];
+  collapsed?: boolean;
 }
 
 export interface BudgetYear {

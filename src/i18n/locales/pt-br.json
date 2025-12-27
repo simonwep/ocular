@@ -214,5 +214,10 @@
       "surplus": "Superávit",
       "deficit": "Déficit"
     }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "Nenhum grupo de orçamento para ocultar. | Um grupo de orçamento oculto. | {count} grupos de orçamento ocultos."
+    }
   }
 }
