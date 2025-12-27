@@ -1,4 +1,3 @@
-import { useStorage } from '@storage/index.ts';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets.ts';
 import { sum } from '@utils/array/array.ts';
@@ -8,16 +7,13 @@ import { useRouter } from 'vue-router';
 
 export const useDemoData = () => {
   const { state, deserialize } = useDataStore();
-  const { status } = useStorage();
   const { t } = useI18n();
   const router = useRouter();
 
   const loading = ref(false);
 
   const loadDemoData = async () => {
-    if (loading.value || status.value !== 'idle') {
-      return;
-    }
+    if (loading.value) return;
 
     const containsData = state.years.some((v) => sum(totals(v.expenses)) || sum(totals(v.income)));
     if (containsData && !confirm(t('navigation.tools.demo.overwriteExistingData'))) {
