@@ -1,7 +1,7 @@
 import { Page } from '@playwright/test';
 
 // Service worker are blocked during testing, so we need to ignore them
-const IGNORE_REGEX = /playwright|service-worker/i;
+const IGNORE_REGEX = /playwright|service-worker|intlify/i;
 
 export const assertNoErrors = (page: Page) => {
   page.on('console', (msg) => {

@@ -5,7 +5,7 @@
     textual
     color="dimmed"
     testId="settings"
-    :icon="RiSettings4Line"
+    :icon="month === 11 ? RiSnowflakeLine : RiSettings4Line"
     @click="showSettingsDialog = true"
   />
   <SettingsDialog :open="showSettingsDialog" @close="showSettingsDialog = false" />
@@ -14,7 +14,8 @@
 <script lang="ts" setup>
 import SettingsDialog from '@app/pages/navigation/settings/SettingsDialog.vue';
 import Button from '@components/base/button/Button.vue';
-import { RiSettings4Line } from '@remixicon/vue';
+import { useTime } from '@composables/useTime.ts';
+import { RiSettings4Line, RiSnowflakeLine } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -24,6 +25,7 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const { month } = useTime();
 const showSettingsDialog = ref(false);
 
 const classes = computed(() => props.class);

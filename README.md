@@ -28,6 +28,7 @@
 - ⚡️ Simple, fast, and straight-forward UI.
 - 🫂 User management and authentication.
 - 🌐 Multi-language and currency support.
+- ⌨️ Keyboard navigation for power users.
 - ...and much more!
 
 ### Getting started

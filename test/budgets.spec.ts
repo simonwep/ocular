@@ -138,3 +138,21 @@ test('Keep numbers correctly localized between languages', async ({ page }) => {
   await page.getByTestId('group-0-budget-0-0').blur();
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('€31.5');
 });
+
+test('Navigate budgets using the keyboard', async ({ page }) => {
+  await page.goto('/#demo');
+  await page.getByTestId('navigation-income').click();
+
+  await page.getByTestId('group-0-budget-1-0').focus();
+  await page.keyboard.down('Shift');
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByTestId('group-0-budget-1-1')).toBeFocused();
+
+  await page.keyboard.press('ArrowLeft');
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.getByTestId('group-0-budget-1-11')).toBeFocused();
+
+  await page.keyboard.press('ArrowUp');
+  await page.keyboard.press('ArrowUp');
+  await expect(page.getByTestId('group-1-budget-2-11')).toBeFocused();
+});
