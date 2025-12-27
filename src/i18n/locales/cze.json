@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Pokud je povoleno, čisté úspory se přenesou do následujícího roku.",
       "showAnimationsAndTransitions": "Zobrazit animace a přechody"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",
-      "retryingPleaseWait": "Znovu se pokoušíme, čekejte prosím...",
-      "retrySynchronization": "Znovu synchronizovat",
-      "demoVersionInfo": "Toto je demo verze, která neukládá žádná data. Chcete-li uložit svá data, musíte se přihlásit.",
-      "newVersionAvailable": "Nová verze je k dispozici!",
-      "dismiss": "Zavřít"
-    },
     "update": {
       "updateApp": "Aktualizovat aplikaci"
     }
-  },
-  "shared": {
-    "addGroup": "Přidat skupinu",
-    "append": "Pohyb “{from}” po “{to}”",
-    "average": "Průměrně",
-    "move": "Pohyb “{from}”",
-    "moveInto": "Pohyb “{from}” do “{to}”",
-    "prepend": "Pohyb “{from}” před “{to}”",
-    "fillRow": "Vyplnit řádek",
-    "fillRowToRight": "Vyplnit doprava",
-    "total": "Součet",
-    "totals": "Součty",
-    "placeholder": "Začněte vyplňováním tabulky záložek příjmů / výdajů! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Žádné rozpočtové skupiny k skrytí. | Jedna rozpočtová skupina skryta. | {count} rozpočtových skupin skryto."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",
+      "retryingPleaseWait": "Znovu se pokoušíme, čekejte prosím...",
+      "retrySynchronization": "Znovu synchronizovat",
+      "demoVersionInfo": "Toto je demo verze, která neukládá žádná data. Chcete-li uložit svá data, musíte se přihlásit.",
+      "newVersionAvailable": "Nová verze je k dispozici!",
+      "dismiss": "Zavřít"
+    },
+    "budgetPane": {
+      "addGroup": "Přidat skupinu",
+      "append": "Pohyb “{from}” po “{to}”",
+      "average": "Průměrně",
+      "move": "Pohyb “{from}”",
+      "moveInto": "Pohyb “{from}” do “{to}”",
+      "prepend": "Pohyb “{from}” před “{to}”",
+      "fillRow": "Vyplnit řádek",
+      "fillRowToRight": "Vyplnit doprava",
+      "total": "Součet",
+      "totals": "Součty"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Začněte vyplňováním tabulky záložek příjmů / výdajů! :)"
     }
   }
 }

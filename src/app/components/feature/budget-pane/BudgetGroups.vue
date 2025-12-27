@@ -33,7 +33,7 @@
       textual
       @click="allowDelete = !allowDelete"
     />
-    <span :class="[$style.sum, $style.totals]">{{ t('shared.totals') }}</span>
+    <span :class="[$style.sum, $style.totals]">{{ t('feature.budgetPane.totals') }}</span>
     <Currency
       v-for="(value, index) of totals"
       :key="index"
@@ -63,7 +63,7 @@
       :class="$style.addGroupBtn"
       size="s"
       :icon="RiAddCircleLine"
-      :text="t('shared.addGroup')"
+      :text="t('feature.budgetPane.addGroup')"
       @click="addBudgetGroup(type)"
     />
   </div>
@@ -132,11 +132,11 @@ const buildDraggableText = (store: DraggableStore) => {
   if (src) {
     if (dst) {
       return store.type === 'before'
-        ? t('shared.prepend', { from: src.name, to: dst.name })
-        : t('shared.append', { from: src.name, to: dst.name });
+        ? t('feature.budgetPane.prepend', { from: src.name, to: dst.name })
+        : t('feature.budgetPane.append', { from: src.name, to: dst.name });
     }
 
-    return t('shared.move', { from: src.name });
+    return t('feature.budgetPane.move', { from: src.name });
   }
 };
 

@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Если включено, чистые сбережения с предыдущего года будут перенесены на следующий год.",
       "showAnimationsAndTransitions": "Показывать анимации и переходы"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Синхронизация не удалась из-за сетевой ошибки.",
-      "retryingPleaseWait": "Повторная попытка, пожалуйста, подождите...",
-      "retrySynchronization": "Повторить синхронизацию",
-      "demoVersionInfo": "Это демонстрационная версия, которая не сохраняет данные. Чтобы сохранить свои данные, вам нужно войти в систему.",
-      "newVersionAvailable": "Доступна новая версия!",
-      "dismiss": "Закрыть"
-    },
     "update": {
       "updateApp": "Обновить приложение"
     }
-  },
-  "shared": {
-    "addGroup": "Добавить группу",
-    "append": "Переместить “{from}” после “{to}”",
-    "average": "Среднее",
-    "move": "Переместить “{from}”",
-    "moveInto": "Переместить “{from}” в “{to}”",
-    "prepend": "Переместить “{from}” перед “{to}”",
-    "fillRow": "Заполнить строку",
-    "fillRowToRight": "Заполнить строку вправо",
-    "total": "Итого",
-    "totals": "Итоги",
-    "placeholder": "Начните с заполнения вкладок доходов / расходов! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Нет групп бюджета для скрытия. | Одна группа бюджета скрыта. | {count} групп бюджета скрыто."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Синхронизация не удалась из-за сетевой ошибки.",
+      "retryingPleaseWait": "Повторная попытка, пожалуйста, подождите...",
+      "retrySynchronization": "Повторить синхронизацию",
+      "demoVersionInfo": "Это демонстрационная версия, которая не сохраняет данные. Чтобы сохранить свои данные, вам нужно войти в систему.",
+      "newVersionAvailable": "Доступна новая версия!",
+      "dismiss": "Закрыть"
+    },
+    "budgetPane": {
+      "addGroup": "Добавить группу",
+      "append": "Переместить “{from}” после “{to}”",
+      "average": "Среднее",
+      "move": "Переместить “{from}”",
+      "moveInto": "Переместить “{from}” в “{to}”",
+      "prepend": "Переместить “{from}” перед “{to}”",
+      "fillRow": "Заполнить строку",
+      "fillRowToRight": "Заполнить строку вправо",
+      "total": "Итого",
+      "totals": "Итоги"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Начните с заполнения вкладок доходов / расходов! :)"
     }
   }
 }

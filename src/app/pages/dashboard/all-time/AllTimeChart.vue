@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 import { StackedLineChartConfig } from './stacked-line-chart/StackedLineChart.types';
 import StackedLineChart from './stacked-line-chart/StackedLineChart.vue';
-import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
+import ChartPlaceholder from '@components/feature/chart-placeholder/ChartPlaceholder.vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';

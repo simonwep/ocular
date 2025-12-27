@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Se ativado, o saldo final do ano anterior será adicionado ao saldo inicial do ano atual.",
       "showAnimationsAndTransitions": "Mostrar animações e transições"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Falha de sincronização devido a erro de rede!",
-      "retryingPleaseWait": "Tentando novamente, por favor aguarde...",
-      "retrySynchronization": "Tentar sincronização novamente",
-      "demoVersionInfo": "Esta é uma versão de demonstração que não salva nenhum dado. Para salvar seus dados, você precisa fazer login.",
-      "newVersionAvailable": "Uma nova versão está disponível!",
-      "dismiss": "Fechar"
-    },
     "update": {
       "updateApp": "Atualizar aplicativo"
     }
-  },
-  "shared": {
-    "addGroup": "Adicionar Grupo",
-    "append": "Mover \"{from}\" para depois de \"{to}\"",
-    "average": "Média",
-    "move": "Mover \"{from}\"",
-    "moveInto": "Mover \"{from}\" para \"{to}\"",
-    "prepend": "Mover \"{from}\" para antes de \"{to}\"",
-    "fillRow": "Completar esta linha",
-    "fillRowToRight": "Completar para a direita",
-    "total": "Total",
-    "totals": "Totais",
-    "placeholder": "Comece preenchendo as abas de Receita / Despesas! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Nenhum grupo de orçamento para ocultar. | Um grupo de orçamento oculto. | {count} grupos de orçamento ocultos."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Falha de sincronização devido a erro de rede!",
+      "retryingPleaseWait": "Tentando novamente, por favor aguarde...",
+      "retrySynchronization": "Tentar sincronização novamente",
+      "demoVersionInfo": "Esta é uma versão de demonstração que não salva nenhum dado. Para salvar seus dados, você precisa fazer login.",
+      "newVersionAvailable": "Uma nova versão está disponível!",
+      "dismiss": "Fechar"
+    },
+    "budgetPane": {
+      "addGroup": "Adicionar Grupo",
+      "append": "Mover \"{from}\" para depois de \"{to}\"",
+      "average": "Média",
+      "move": "Mover \"{from}\"",
+      "moveInto": "Mover \"{from}\" para \"{to}\"",
+      "prepend": "Mover \"{from}\" para antes de \"{to}\"",
+      "fillRow": "Completar esta linha",
+      "fillRowToRight": "Completar para a direita",
+      "total": "Total",
+      "totals": "Totais"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Comece preenchendo as abas de Receita / Despesas! :)"
     }
   }
 }

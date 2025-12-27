@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Etkinleştirilirse, net tasarruflar bir sonraki yıla taşınır.",
       "showAnimationsAndTransitions": "Animasyonları ve geçişleri göster"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",
-      "retryingPleaseWait": "Tekrar deniyor, lütfen bekleyin...",
-      "retrySynchronization": "Senkronizasyonu yeniden dene",
-      "demoVersionInfo": "Bu, hiçbir veri kaydetmeyen bir demo sürümüdür. Verilerinizi kaydetmek için giriş yapmanız gerekir.",
-      "newVersionAvailable": "Yeni bir sürüm mevcut!",
-      "dismiss": "Kapat"
-    },
     "update": {
       "updateApp": "Güncelleme uygulaması"
     }
-  },
-  "shared": {
-    "addGroup": "Grup Ekle",
-    "append": "“{from}” ifadesini “{to}”dan sonraya taşı",
-    "average": "Ortalama",
-    "move": "“{from}“'dan taşı",
-    "moveInto": "“{from}” öğesini “{to}” öğesine taşıyın",
-    "prepend": "“{from}” öğesini “{to}” öğesinden önceye taşı",
-    "fillRow": "Satırı doldur",
-    "fillRowToRight": "Sağa doğru doldur",
-    "total": "Toplam",
-    "totals": "Toplamlar",
-    "placeholder": "Gelir/gider sekmelerini doldurarak başlayın! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Gizlenecek bütçe grubu yok. | Bir bütçe grubu gizlendi. | {count} bütçe grubu gizlendi."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",
+      "retryingPleaseWait": "Tekrar deniyor, lütfen bekleyin...",
+      "retrySynchronization": "Senkronizasyonu yeniden dene",
+      "demoVersionInfo": "Bu, hiçbir veri kaydetmeyen bir demo sürümüdür. Verilerinizi kaydetmek için giriş yapmanız gerekir.",
+      "newVersionAvailable": "Yeni bir sürüm mevcut!",
+      "dismiss": "Kapat"
+    },
+    "budgetPane": {
+      "addGroup": "Grup Ekle",
+      "append": "“{from}” ifadesini “{to}”dan sonraya taşı",
+      "average": "Ortalama",
+      "move": "“{from}“'dan taşı",
+      "moveInto": "“{from}” öğesini “{to}” öğesine taşıyın",
+      "prepend": "“{from}” öğesini “{to}” öğesinden önceye taşı",
+      "fillRow": "Satırı doldur",
+      "fillRowToRight": "Sağa doğru doldur",
+      "total": "Toplam",
+      "totals": "Toplamlar"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Gelir/gider sekmelerini doldurarak başlayın! :)"
     }
   }
 }

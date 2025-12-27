@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "If enabled, the net savings from the previous year will be carried over to the next year.",
       "showAnimationsAndTransitions": "Show animations and transitions"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",
-      "retryingPleaseWait": "Retrying, please wait...",
-      "retrySynchronization": "Retry synchronization",
-      "demoVersionInfo": "This is a demo version that does not save any data. To save your data, you need to log in.",
-      "newVersionAvailable": "A new version is available!",
-      "dismiss": "Dismiss"
-    },
     "update": {
       "updateApp": "Update app"
     }
-  },
-  "shared": {
-    "addGroup": "Add Group",
-    "append": "Move “{from}” after “{to}”",
-    "average": "Average",
-    "move": "Move “{from}”",
-    "moveInto": "Move “{from}” into “{to}”",
-    "prepend": "Move “{from}” before “{to}”",
-    "fillRow": "Fill row",
-    "fillRowToRight": "Fill to right",
-    "total": "Total",
-    "totals": "Totals",
-    "placeholder": "Start by filling out the income / expenses tabs! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "No budget groups to hide. | One budget group hidden. | {count} budget groups hidden."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",
+      "retryingPleaseWait": "Retrying, please wait...",
+      "retrySynchronization": "Retry synchronization",
+      "demoVersionInfo": "This is a demo version that does not save any data. To save your data, you need to log in.",
+      "newVersionAvailable": "A new version is available!",
+      "dismiss": "Dismiss"
+    },
+    "budgetPane": {
+      "addGroup": "Add Group",
+      "append": "Move “{from}” after “{to}”",
+      "average": "Average",
+      "move": "Move “{from}”",
+      "moveInto": "Move “{from}” into “{to}”",
+      "prepend": "Move “{from}” before “{to}”",
+      "fillRow": "Fill row",
+      "fillRowToRight": "Fill to right",
+      "total": "Total",
+      "totals": "Totals"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Start by filling out the income / expenses tabs! :)"
     }
   }
 }

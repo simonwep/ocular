@@ -6,7 +6,7 @@
 <script lang="ts" setup>
 import { LineChartConfig } from './line-chart/LineChart.types';
 import LineChart from './line-chart/LineChart.vue';
-import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
+import ChartPlaceholder from '@components/feature/chart-placeholder/ChartPlaceholder.vue';
 import { useMonthNames } from '@composables/useMonthNames.ts';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';

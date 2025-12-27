@@ -10,8 +10,8 @@
       >
         <span>{{ month }}</span>
       </span>
-      <span :class="$style.bold">{{ t('shared.total') }}</span>
-      <span :class="$style.bold">{{ t('shared.average') }}</span>
+      <span :class="$style.bold">{{ t('feature.budgetPane.total') }}</span>
+      <span :class="$style.bold">{{ t('feature.budgetPane.average') }}</span>
 
       <!-- Income -->
       <span :class="[$style.bold, $style.muted]">{{ t('page.income.title') }}</span>

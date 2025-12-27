@@ -46,8 +46,8 @@
     >
       <CellMenu
         :actions="[
-          { id: 'fill', label: t('shared.fillRow') },
-          { id: 'fill-to-right', label: t('shared.fillRowToRight') }
+          { id: 'fill', label: t('feature.budgetPane.fillRow') },
+          { id: 'fill-to-right', label: t('feature.budgetPane.fillRowToRight') }
         ]"
         @action="performAction($event, budget.id, month, budget.values[month])"
       >
@@ -109,15 +109,15 @@ const buildDraggableText = (store: DraggableStore) => {
       const dstLabel = sameGroup ? dst.name : `${dstGroup.name} » ${dst.name}`;
 
       return store.type === 'before'
-        ? t('shared.prepend', { from: srcLabel, to: dstLabel })
-        : t('shared.append', { from: srcLabel, to: dstLabel });
+        ? t('feature.budgetPane.prepend', { from: srcLabel, to: dstLabel })
+        : t('feature.budgetPane.append', { from: srcLabel, to: dstLabel });
     }
 
     if (otherDist) {
-      return t('shared.moveInto', { from: src.name, to: otherDist.name });
+      return t('feature.budgetPane.moveInto', { from: src.name, to: otherDist.name });
     }
 
-    return t('shared.move', { from: src.name });
+    return t('feature.budgetPane.move', { from: src.name });
   }
 };
 

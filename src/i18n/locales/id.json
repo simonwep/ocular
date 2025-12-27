@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Jika diaktifkan, saldo tabungan bersih dari tahun sebelumnya akan dibawa ke tahun berikutnya",
       "showAnimationsAndTransitions": "Tampilkan animasi dan transisi"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Sinkronisasi gagal karena masalah jaringan!",
-      "retryingPleaseWait": "Mencoba kembali, mohon tunggu...",
-      "retrySynchronization": "Coba kembali sinkronisasi",
-      "demoVersionInfo": "Ini adalah versi demo yang tidak menyimpan data apa pun. Untuk menyimpan data Anda, Anda perlu masuk.",
-      "newVersionAvailable": "Versi baru tersedia!",
-      "dismiss": "Tutup"
-    },
     "update": {
       "updateApp": "Perbarui aplikasi"
     }
-  },
-  "shared": {
-    "addGroup": "Tambah grup",
-    "append": "Pindahkan “{from}” setelah “{to}”",
-    "average": "Rata-rata",
-    "move": "Pindahkan “{from}”",
-    "moveInto": "Pindahkan “{from}” ke “{to}”",
-    "prepend": "Pindahkan “{from}” sebelum “{to}”",
-    "fillRow": "Isi seluruh baris",
-    "fillRowToRight": "Isi baris kanan",
-    "total": "Total",
-    "totals": "Total",
-    "placeholder": "Mulailah dengan mengisi tab pemasukan/pengeluaran! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Tidak ada grup anggaran untuk disembunyikan. | Satu grup anggaran disembunyikan. | {count} grup anggaran disembunyikan."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Sinkronisasi gagal karena masalah jaringan!",
+      "retryingPleaseWait": "Mencoba kembali, mohon tunggu...",
+      "retrySynchronization": "Coba kembali sinkronisasi",
+      "demoVersionInfo": "Ini adalah versi demo yang tidak menyimpan data apa pun. Untuk menyimpan data Anda, Anda perlu masuk.",
+      "newVersionAvailable": "Versi baru tersedia!",
+      "dismiss": "Tutup"
+    },
+    "budgetPane": {
+      "addGroup": "Tambah grup",
+      "append": "Pindahkan “{from}” setelah “{to}”",
+      "average": "Rata-rata",
+      "move": "Pindahkan “{from}”",
+      "moveInto": "Pindahkan “{from}” ke “{to}”",
+      "prepend": "Pindahkan “{from}” sebelum “{to}”",
+      "fillRow": "Isi seluruh baris",
+      "fillRowToRight": "Isi baris kanan",
+      "total": "Total",
+      "totals": "Total"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Mulailah dengan mengisi tab pemasukan/pengeluaran! :)"
     }
   }
 }

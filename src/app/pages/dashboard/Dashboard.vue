@@ -51,12 +51,12 @@
 </template>
 
 <script lang="ts" setup>
-import AllTime from './all-time/AllTime.vue';
-import Overview from './overview/Overview.vue';
-import Summary from './summary/Summary.vue';
+import AllTime from '@app/pages/dashboard/all-time/AllTime.vue';
+import Overview from '@app/pages/dashboard/overview/Overview.vue';
+import Summary from '@app/pages/dashboard/summary/Summary.vue';
 import Button from '@components/base/button/Button.vue';
-import Pane from '@components/feature/Pane.vue';
-import YearToggle from '@components/feature/YearToggle.vue';
+import Pane from '@components/feature/pane/Pane.vue';
+import YearToggle from '@components/feature/year-toggle/YearToggle.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';

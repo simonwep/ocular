@@ -10,8 +10,8 @@
       >
         <span>{{ month }}</span>
       </span>
-      <span :class="$style.bold">{{ t('shared.total') }}</span>
-      <span :class="$style.bold">{{ t('shared.average') }}</span>
+      <span :class="$style.bold">{{ t('feature.budgetPane.total') }}</span>
+      <span :class="$style.bold">{{ t('feature.budgetPane.average') }}</span>
 
       <!-- Groups -->
       <template v-for="(group, groupIndex) of flatted" :key="group.id">
@@ -33,7 +33,7 @@
 
       <!-- Totals -->
       <template v-if="flatted.length > 1">
-        <span :class="$style.bold">{{ t('shared.total') }}</span>
+        <span :class="$style.bold">{{ t('feature.budgetPane.total') }}</span>
         <span v-for="(month, index) of months" :key="month" :class="$style.bold">
           {{ n(sum(flatted.map((v) => v.totals[index])), 'currency') }}
         </span>

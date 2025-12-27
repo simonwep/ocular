@@ -46,16 +46,16 @@
 </template>
 
 <script lang="ts" setup>
-import AdminButton from './navigation/admin/AdminButton.vue';
-import CloudButton from './navigation/auth/CloudButton.vue';
-import InfoButton from './navigation/info/InfoButton.vue';
-import SettingsButton from './navigation/settings/SettingsButton.vue';
-import ThemeButton from './navigation/theme/ThemeButton.vue';
-import ToolsButton from './navigation/tools/ToolsButton.vue';
-import ChangeYearButton from './navigation/year/ChangeYearButton.vue';
-import StatusBar from './status-bar/StatusBar.vue';
+import AdminButton from '@app/pages/navigation/admin/AdminButton.vue';
+import CloudButton from '@app/pages/navigation/auth/CloudButton.vue';
+import InfoButton from '@app/pages/navigation/info/InfoButton.vue';
+import SettingsButton from '@app/pages/navigation/settings/SettingsButton.vue';
+import ThemeButton from '@app/pages/navigation/theme/ThemeButton.vue';
+import ToolsButton from '@app/pages/navigation/tools/ToolsButton.vue';
 import UpdateAppButton from '@app/pages/navigation/update/UpdateAppButton.vue';
+import ChangeYearButton from '@app/pages/navigation/year/ChangeYearButton.vue';
 import Link from '@components/base/link/Link.vue';
+import StatusBar from '@components/feature/status-bar/StatusBar.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useMediaQuery } from '@composables/useMediaQuery.ts';
 import { useSquircle } from '@composables/useSquircle.ts';

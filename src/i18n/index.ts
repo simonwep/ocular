@@ -37,19 +37,22 @@ const numberFormats: IntlNumberFormat = {
 
 export const i18n = createI18n({
   legacy: false,
-  locale: initialLocale
+  locale: initialLocale,
+  messages: {}
 });
 
 export const changeLocale = async (locale: AvailableLocale, currency?: Intl.NumberFormatOptions) => {
-  const messages = await fetch(localeUrls[locale]).then((res) => res.json());
+  if (!(locale in i18n.global.messages.value)) {
+    const messages = await fetch(localeUrls[locale]).then((res) => res.json());
+    const numberFormat: IntlNumberFormat = {
+      ...numberFormats,
+      currency: { ...numberFormats.currency, ...currency }
+    };
 
-  const numberFormat: IntlNumberFormat = {
-    ...numberFormats,
-    currency: { ...numberFormats.currency, ...currency }
-  };
+    i18n.global.setLocaleMessage(locale, messages);
+    i18n.global.setNumberFormat(locale, numberFormat);
+  }
 
   document.documentElement.lang = locale;
-  i18n.global.setLocaleMessage(locale, messages);
-  i18n.global.setNumberFormat(locale, numberFormat);
   i18n.global.locale.value = locale;
 };

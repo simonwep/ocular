@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Przeniesienie oszczędności netto z poprzedniego roku do bieżącego roku.",
       "showAnimationsAndTransitions": "Pokaż animacje i przejścia"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Synchronizacja nie powiodła się z powodu błędu sieci!",
-      "retryingPleaseWait": "Ponawiam, proszę czekać...",
-      "retrySynchronization": "Ponów synchronizację",
-      "demoVersionInfo": "To jest wersja demonstracyjna, która nie zapisuje żadnych danych. Aby zapisać swoje dane, musisz się zalogować.",
-      "newVersionAvailable": "Nowa wersja jest dostępna!",
-      "dismiss": "Zamknij"
-    },
     "update": {
       "updateApp": "Zaktualizuj aplikację"
     }
-  },
-  "shared": {
-    "addGroup": "Dodaj grupę",
-    "append": "Przenieś “{from}” za “{to}”",
-    "average": "Średnia",
-    "move": "Przenieś “{from}”",
-    "moveInto": "Przenieś “{from}” do “{to}”",
-    "prepend": "Przesuń “{from}” przed “{to}”",
-    "fillRow": "Wypełnij wiersz",
-    "fillRowToRight": "Wypełnij w prawo",
-    "total": "Suma",
-    "totals": "Suma całkowita",
-    "placeholder": "Zacznij od uzupełnienia zakładek dochody / wydatki! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Brak grup budżetowych do ukrycia. | Jedna grupa budżetowa ukryta. | {count} grup budżetowych ukrytych."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Synchronizacja nie powiodła się z powodu błędu sieci!",
+      "retryingPleaseWait": "Ponawiam, proszę czekać...",
+      "retrySynchronization": "Ponów synchronizację",
+      "demoVersionInfo": "To jest wersja demonstracyjna, która nie zapisuje żadnych danych. Aby zapisać swoje dane, musisz się zalogować.",
+      "newVersionAvailable": "Nowa wersja jest dostępna!",
+      "dismiss": "Zamknij"
+    },
+    "budgetPane": {
+      "addGroup": "Dodaj grupę",
+      "append": "Przenieś “{from}” za “{to}”",
+      "average": "Średnia",
+      "move": "Przenieś “{from}”",
+      "moveInto": "Przenieś “{from}” do “{to}”",
+      "prepend": "Przesuń “{from}” przed “{to}”",
+      "fillRow": "Wypełnij wiersz",
+      "fillRowToRight": "Wypełnij w prawo",
+      "total": "Suma",
+      "totals": "Suma całkowita"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Zacznij od uzupełnienia zakładek dochody / wydatki! :)"
     }
   }
 }

@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Si activé, les économies nettes de l'année précédente seront reportées à l'année suivante.",
       "showAnimationsAndTransitions": "Afficher les animations et transitions"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "La synchronisation a échoué en raison d'une erreur réseau!",
-      "retryingPleaseWait": "Nouvelle tentative, veuillez patienter...",
-      "retrySynchronization": "Réessayer la synchronisation",
-      "demoVersionInfo": "Ceci est une version de démonstration qui ne sauvegarde aucune donnée. Pour sauvegarder vos données, vous devez vous connecter.",
-      "newVersionAvailable": "Une nouvelle version est disponible!",
-      "dismiss": "Fermer"
-    },
     "update": {
       "updateApp": "Mettre à jour l'application"
     }
-  },
-  "shared": {
-    "addGroup": "Ajouter un groupe",
-    "append": "Déplacer “{from}” après “{to}”",
-    "average": "Moyenne",
-    "move": "Déplacer “{from}”",
-    "moveInto": "Déplacer “{from}” dans “{to}”",
-    "prepend": "Déplacer “{from}” avant “{to}”",
-    "fillRow": "Remplir la ligne",
-    "fillRowToRight": "Remplir vers la droite",
-    "total": "Total",
-    "totals": "Totaux",
-    "placeholder": "Commencez par remplir les onglets revenus / dépenses! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Aucun groupe de budget à masquer. | Un groupe de budget masqué. | {count} groupes de budget masqués."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "La synchronisation a échoué en raison d'une erreur réseau!",
+      "retryingPleaseWait": "Nouvelle tentative, veuillez patienter...",
+      "retrySynchronization": "Réessayer la synchronisation",
+      "demoVersionInfo": "Ceci est une version de démonstration qui ne sauvegarde aucune donnée. Pour sauvegarder vos données, vous devez vous connecter.",
+      "newVersionAvailable": "Une nouvelle version est disponible!",
+      "dismiss": "Fermer"
+    },
+    "budgetPane": {
+      "addGroup": "Ajouter un groupe",
+      "append": "Déplacer “{from}” après “{to}”",
+      "average": "Moyenne",
+      "move": "Déplacer “{from}”",
+      "moveInto": "Déplacer “{from}” dans “{to}”",
+      "prepend": "Déplacer “{from}” avant “{to}”",
+      "fillRow": "Remplir la ligne",
+      "fillRowToRight": "Remplir vers la droite",
+      "total": "Total",
+      "totals": "Totaux"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Commencez par remplir les onglets revenus / dépenses! :)"
     }
   }
 }

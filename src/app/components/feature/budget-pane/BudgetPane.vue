@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import BudgetGroups from './BudgetGroups.vue';
-import Pane from './Pane.vue';
-import MiniChart from './mini-chart/MiniChart.vue';
+import BudgetGroups from '@components/feature/budget-pane/BudgetGroups.vue';
+import MiniChart from '@components/feature/mini-chart/MiniChart.vue';
+import Pane from '@components/feature/pane/Pane.vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { computed } from 'vue';

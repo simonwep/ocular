@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Se attivato, il saldo netto di fine anno verrà trasferito come saldo iniziale per l'anno successivo.",
       "showAnimationsAndTransitions": "Mostra animazioni e transizioni"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "Sincronizzazione fallita a causa di un errore di rete!",
-      "retryingPleaseWait": "Riprova, attendere...",
-      "retrySynchronization": "Riprova la sincronizzazione",
-      "demoVersionInfo": "Questa è una versione demo che non salva alcun dato. Per salvare i tuoi dati, devi accedere.",
-      "newVersionAvailable": "È disponibile una nuova versione!",
-      "dismiss": "Chiudi"
-    },
     "update": {
       "updateApp": "Aggiorna l'app"
     }
-  },
-  "shared": {
-    "addGroup": "Aggiungi Gruppo",
-    "append": "Sposta “{from}” verso “{to}”",
-    "average": "Media",
-    "move": "Sposta “{from}”",
-    "moveInto": "Sposta “{from}” in “{to}”",
-    "prepend": "Move “{from}” prima di “{to}”",
-    "fillRow": "Completa la riga",
-    "fillRowToRight": "Completa a destra",
-    "total": "Totale",
-    "totals": "Totali",
-    "placeholder": "Iniziate a compilare le schede delle entrate e delle uscite! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Nessun gruppo di bilancio da nascondere. | Un gruppo di bilancio nascosto. | {count} gruppi di bilancio nascosti."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "Sincronizzazione fallita a causa di un errore di rete!",
+      "retryingPleaseWait": "Riprova, attendere...",
+      "retrySynchronization": "Riprova la sincronizzazione",
+      "demoVersionInfo": "Questa è una versione demo che non salva alcun dato. Per salvare i tuoi dati, devi accedere.",
+      "newVersionAvailable": "È disponibile una nuova versione!",
+      "dismiss": "Chiudi"
+    },
+    "budgetPane": {
+      "addGroup": "Aggiungi Gruppo",
+      "append": "Sposta “{from}” verso “{to}”",
+      "average": "Media",
+      "move": "Sposta “{from}”",
+      "moveInto": "Sposta “{from}” in “{to}”",
+      "prepend": "Move “{from}” prima di “{to}”",
+      "fillRow": "Completa la riga",
+      "fillRowToRight": "Completa a destra",
+      "total": "Totale",
+      "totals": "Totali"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Iniziate a compilare le schede delle entrate e delle uscite! :)"
     }
   }
 }

@@ -11,7 +11,7 @@ import {
   SankeyChartType
 } from './sankey-chart/SankeyChart.types';
 import SankeyChart from './sankey-chart/SankeyChart.vue';
-import ChartPlaceholder from '@components/feature/ChartPlaceholder.vue';
+import ChartPlaceholder from '@components/feature/chart-placeholder/ChartPlaceholder.vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { sumOfBudgetGroups, totals } from '@store/state/utils/budgets';

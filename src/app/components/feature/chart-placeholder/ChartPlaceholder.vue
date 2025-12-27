@@ -5,7 +5,7 @@
       <RiHandCoinLine :class="$style.icon" />
     </div>
 
-    <span>{{ t('shared.placeholder') }}</span>
+    <span>{{ t('feature.chartPlaceholder.placeholder') }}</span>
 
     <Button
       v-if="appConfig?.demo"

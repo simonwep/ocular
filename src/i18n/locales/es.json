@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Si está habilitado, los ahorros netos se llevarán al siguiente año.",
       "showAnimationsAndTransitions": "Mostrar animaciones y transiciones"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "¡La sincronización falló debido a un error de red!",
-      "retryingPleaseWait": "Reintentando, por favor espera...",
-      "retrySynchronization": "Reintentar sincronización",
-      "demoVersionInfo": "Esta es una versión de demostración que no guarda ningún dato. Para guardar tus datos, necesitas iniciar sesión.",
-      "newVersionAvailable": "¡Una nueva versión está disponible!",
-      "dismiss": "Descartar"
-    },
     "update": {
       "updateApp": "Actualizar aplicación"
     }
-  },
-  "shared": {
-    "addGroup": "Agregar grupo",
-    "append": "Mover “{from}” después de “{to}”",
-    "average": "Promedio",
-    "move": "Mover “{from}”",
-    "moveInto": "Mover “{from}” dentro de “{to}”",
-    "prepend": "Mover “{from}” antes de “{to}”",
-    "fillRow": "Llenar fila",
-    "fillRowToRight": "Llenar hacia la derecha",
-    "total": "Total",
-    "totals": "Totales",
-    "placeholder": "¡Empieza llenando las pestañas de ingresos/gastos! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "No hay grupos de presupuesto para ocultar. | Un grupo de presupuesto oculto. | {count} grupos de presupuesto ocultos."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "¡La sincronización falló debido a un error de red!",
+      "retryingPleaseWait": "Reintentando, por favor espera...",
+      "retrySynchronization": "Reintentar sincronización",
+      "demoVersionInfo": "Esta es una versión de demostración que no guarda ningún dato. Para guardar tus datos, necesitas iniciar sesión.",
+      "newVersionAvailable": "¡Una nueva versión está disponible!",
+      "dismiss": "Descartar"
+    },
+    "budgetPane": {
+      "addGroup": "Agregar grupo",
+      "append": "Mover “{from}” después de “{to}”",
+      "average": "Promedio",
+      "move": "Mover “{from}”",
+      "moveInto": "Mover “{from}” dentro de “{to}”",
+      "prepend": "Mover “{from}” antes de “{to}”",
+      "fillRow": "Llenar fila",
+      "fillRowToRight": "Llenar hacia la derecha",
+      "total": "Total",
+      "totals": "Totales"
+    },
+    "chartPlaceholder": {
+      "placeholder": "¡Empieza llenando las pestañas de ingresos/gastos! :)"
     }
   }
 }

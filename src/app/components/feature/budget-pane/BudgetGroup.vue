@@ -32,11 +32,11 @@
   </span>
 
   <span :class="$style.top">
-    <span>{{ t('shared.total') }}</span>
+    <span>{{ t('feature.budgetPane.total') }}</span>
   </span>
 
   <span :class="[$style.top, $style.end]">
-    <span>{{ t('shared.average') }}</span>
+    <span>{{ t('feature.budgetPane.average') }}</span>
   </span>
 
   <template v-if="!group.collapsed">
@@ -60,7 +60,7 @@
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import TextCell from '@components/base/text-cell/TextCell.vue';
-import BudgetGroupBudgets from '@components/feature/BudgetGroupBudgets.vue';
+import BudgetGroupBudgets from '@components/feature/budget-pane/BudgetGroupBudgets.vue';
 import { RiAddCircleLine, RiCloseCircleLine, RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';

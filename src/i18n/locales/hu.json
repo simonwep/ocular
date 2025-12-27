@@ -151,30 +151,9 @@
       "carryOverNetSavingsInfo": "Ha a nettó megtakarításokat átvisszük az új évre, akkor az előző év záróegyenlegét az új év első hónapjában a nettó megtakarításokhoz adja hozzá.",
       "showAnimationsAndTransitions": "Animációk és átmenetek megjelenítése"
     },
-    "status": {
-      "synchronizationFailedDueToNetworkError": "A szinkronizálás hálózati hiba miatt meghiúsult!",
-      "retryingPleaseWait": "Újra próbálkozás, kérjük várjon...",
-      "retrySynchronization": "Szinkronizálás újra",
-      "demoVersionInfo": "Ez egy demó verzió, amely nem ment adatokat. Az adatok mentéséhez be kell jelentkeznie.",
-      "newVersionAvailable": "A legújabb verzió elérhető!",
-      "dismiss": "Elutasítás"
-    },
     "update": {
       "updateApp": "Gyakorlatilag frissítve"
     }
-  },
-  "shared": {
-    "addGroup": "Csoport hozzáadása",
-    "append": "“from” áthelyezése “to” után",
-    "average": "Átlagos",
-    "move": "“from” áthelyezése",
-    "moveInto": "“from” áthelyezése ide: “to”",
-    "prepend": "“from” áthelyezése “to” elé",
-    "fillRow": "Sor kitöltése",
-    "fillRowToRight": "Kitöltés jobbra",
-    "total": "Összesen",
-    "totals": "Összesen",
-    "placeholder": "Kezdd a bevételek/kiadások lap kitöltésével! :)"
   },
   "page": {
     "income": {
@@ -218,6 +197,29 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Nincs elrejthető költségvetési csoport. | Egy költségvetési csoport elrejtve. | {count} költségvetési csoport elrejtve."
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "A szinkronizálás hálózati hiba miatt meghiúsult!",
+      "retryingPleaseWait": "Újra próbálkozás, kérjük várjon...",
+      "retrySynchronization": "Szinkronizálás újra",
+      "demoVersionInfo": "Ez egy demó verzió, amely nem ment adatokat. Az adatok mentéséhez be kell jelentkeznie.",
+      "newVersionAvailable": "A legújabb verzió elérhető!",
+      "dismiss": "Elutasítás"
+    },
+    "budgetPane": {
+      "addGroup": "Csoport hozzáadása",
+      "append": "“from” áthelyezése “to” után",
+      "average": "Átlagos",
+      "move": "“from” áthelyezése",
+      "moveInto": "“from” áthelyezése ide: “to”",
+      "prepend": "“from” áthelyezése “to” elé",
+      "fillRow": "Sor kitöltése",
+      "fillRowToRight": "Kitöltés jobbra",
+      "total": "Összesen",
+      "totals": "Összesen"
+    },
+    "chartPlaceholder": {
+      "placeholder": "Kezdd a bevételek/kiadások lap kitöltésével! :)"
     }
   }
 }

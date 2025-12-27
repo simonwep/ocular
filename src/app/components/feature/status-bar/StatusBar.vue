@@ -40,14 +40,14 @@ const status = computed((): Status | undefined => {
     case 'error':
       return {
         color: 'danger',
-        title: t('navigation.status.synchronizationFailedDueToNetworkError'),
-        button: t('navigation.status.retrySynchronization'),
+        title: t('feature.statusBar.synchronizationFailedDueToNetworkError'),
+        button: t('feature.statusBar.retrySynchronization'),
         action: retrySync
       };
     case 'retrying': {
       return {
         color: 'danger',
-        title: t('navigation.status.retryingPleaseWait')
+        title: t('feature.statusBar.retryingPleaseWait')
       };
     }
   }
@@ -55,7 +55,7 @@ const status = computed((): Status | undefined => {
   if (needRefresh.value) {
     return {
       color: 'success',
-      title: t('navigation.status.newVersionAvailable'),
+      title: t('feature.statusBar.newVersionAvailable'),
       button: t('navigation.update.updateApp'),
       action: () => updateServiceWorker(true)
     };
@@ -64,8 +64,8 @@ const status = computed((): Status | undefined => {
   if (appConfig.value?.demo && !user.value && !demoDismissed.value) {
     return {
       color: 'warning',
-      title: t('navigation.status.demoVersionInfo'),
-      button: t('navigation.status.dismiss'),
+      title: t('feature.statusBar.demoVersionInfo'),
+      button: t('feature.statusBar.dismiss'),
       action: () => (demoDismissed.value = true)
     };
   }
