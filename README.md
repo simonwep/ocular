@@ -10,7 +10,7 @@
 </h3>
 
 <h6 align="center">
-  <a href="https://ocular.reinisch.io#demo">Demo</a> /
+  <a href="https://simonwep.github.io/ocular/demo">Demo</a> /
   <a href="https://simonwep.github.io/ocular/pages/quickstart">Quickstart</a> /
   <a href="https://simonwep.github.io/ocular/pages/deploy">Deploy</a>
 </h6>
