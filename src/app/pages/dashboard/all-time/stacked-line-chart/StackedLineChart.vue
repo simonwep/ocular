@@ -56,9 +56,8 @@ const options = computed(
     grid: {
       left: 0,
       right: '5px',
-      bottom: '3%',
-      top: '50px',
-      containLabel: true
+      bottom: '70px',
+      top: '50px'
     },
     tooltip: {
       trigger: 'axis',

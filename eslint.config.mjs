@@ -30,6 +30,9 @@ export default defineConfig([
       parserOptions: {
         extraFileExtensions: ['.vue'],
         parser: tsParser
+      },
+      globals: {
+        process: true
       }
     },
     settings: {
