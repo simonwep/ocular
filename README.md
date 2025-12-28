@@ -31,6 +31,14 @@
 - ⌨️ Keyboard navigation for power users.
 - ...and much more!
 
+## Screenshots
+
+<img width="1660" height="1130" alt="dashboard" src="https://github.com/user-attachments/assets/82fa321f-b81c-4fdd-8c71-8b5f0358f909" />
+<img width="1660" height="1130" alt="dashboard-tables" src="https://github.com/user-attachments/assets/0003c64a-e8fd-4830-89fe-7df6b8550600" />
+<img width="1660" height="1130" alt="dashboard-all-time" src="https://github.com/user-attachments/assets/80e1b410-96f3-4d04-b991-87d6ddfabc16" />
+
+<p align="center"><i>...the rest is up for you to <a href="https://simonwep.github.io/ocular/demo">discover</a> ✨</i></p>
+
 ### Getting started
 
 Head over to [the documentation](https://simonwep.github.io/ocular) to get started 🚀

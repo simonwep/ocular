@@ -1,7 +1,8 @@
 import { XMLParser } from 'fast-xml-parser';
-import fs from 'fs/promises';
+import { writeFile } from 'fs/promises';
+import { resolve } from 'path';
 
-const target = '../src/composables/available-currency-codes/currencies.json';
+const target = resolve(process.cwd(), 'src/composables/available-currency-codes/currencies.json');
 const source =
   'https://www.six-group.com/dam/download/financial-information/data-center/iso-currrency/lists/list-one.xml';
 
@@ -10,7 +11,8 @@ const parsed = new XMLParser({ ignoreAttributes: false }).parse(response);
 const list = parsed['ISO_4217']['CcyTbl']['CcyNtry'];
 
 const currencies = new Set(
-  list
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (list as any[])
     .filter((v) => v.Ccy)
     .filter((v) => typeof v.CcyNm === 'string' || !('@_IsFund' in v.CcyNm)) // Filter out funds
     .filter((v) => !v.Ccy.startsWith('X')) // Filter out other funds and precious metals
@@ -22,4 +24,4 @@ const currencies = new Set(
 currencies.delete('XXX');
 
 const sortedList = Array.from(currencies).sort();
-await fs.writeFile(target, JSON.stringify(sortedList) + '\n', 'utf-8');
+await writeFile(target, JSON.stringify(sortedList) + '\n', 'utf-8');
