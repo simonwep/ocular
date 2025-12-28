@@ -202,7 +202,7 @@
       "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",
       "retryingPleaseWait": "Znovu se pokoušíme, čekejte prosím...",
       "retrySynchronization": "Znovu synchronizovat",
-      "demoVersionInfo": "Toto je demo verze, která neukládá žádná data. Chcete-li uložit svá data, musíte se přihlásit.",
+      "noBackendAttached": "Nebyl nakonfigurován backend, aplikace běží v demo režimu. Data nebudou uložena.",
       "newVersionAvailable": "Nová verze je k dispozici!",
       "dismiss": "Zavřít"
     },

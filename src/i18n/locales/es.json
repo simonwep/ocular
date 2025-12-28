@@ -202,7 +202,7 @@
       "synchronizationFailedDueToNetworkError": "¡La sincronización falló debido a un error de red!",
       "retryingPleaseWait": "Reintentando, por favor espera...",
       "retrySynchronization": "Reintentar sincronización",
-      "demoVersionInfo": "Esta es una versión de demostración que no guarda ningún dato. Para guardar tus datos, necesitas iniciar sesión.",
+      "noBackendAttached": "No se ha configurado ningún backend, se está ejecutando en modo demo. Los datos no se guardarán.",
       "newVersionAvailable": "¡Una nueva versión está disponible!",
       "dismiss": "Descartar"
     },

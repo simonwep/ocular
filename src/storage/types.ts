@@ -1,6 +1,6 @@
 import { MigratableState } from 'yuppee';
 
-export type StorageAuthenticationState = 'idle' | 'loading' | 'authenticated' | 'syncing' | 'error' | 'retrying';
+export type StorageAuthenticationState = 'idle' | 'authenticated' | 'syncing' | 'error' | 'retrying';
 
 export interface StorageSync<T extends MigratableState, P extends MigratableState = T> {
   name: string;

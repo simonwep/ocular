@@ -4,6 +4,8 @@ import { debounce } from '@utils/debounce/debounce.ts';
 import { computed, nextTick, readonly, ref, shallowReactive, watch } from 'vue';
 import { MigratableState } from 'yuppee';
 
+const { OCULAR_GENESIS_HOST } = import.meta.env;
+
 export type Storage = ReturnType<typeof createStorage>;
 
 export const createStorage = () => {
@@ -16,7 +18,7 @@ export const createStorage = () => {
   };
 
   const store = createGenesisStore({
-    baseUrl: import.meta.env.OCULAR_GENESIS_HOST,
+    baseUrl: OCULAR_GENESIS_HOST,
     onSessionExpired: logout
   });
 
@@ -109,7 +111,9 @@ export const createStorage = () => {
   });
 
   // Check if user is logged in
-  void login();
+  if (OCULAR_GENESIS_HOST) {
+    void login();
+  }
 
   return {
     status,

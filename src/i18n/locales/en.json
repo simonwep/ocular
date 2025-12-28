@@ -202,7 +202,7 @@
       "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",
       "retryingPleaseWait": "Retrying, please wait...",
       "retrySynchronization": "Retry synchronization",
-      "demoVersionInfo": "This is a demo version that does not save any data. To save your data, you need to log in.",
+      "noBackendAttached": "No backend configured, running in demo mode. Data will not be saved.",
       "newVersionAvailable": "A new version is available!",
       "dismiss": "Dismiss"
     },

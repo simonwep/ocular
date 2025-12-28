@@ -1,6 +1,6 @@
 <template>
   <AsyncComponent
-    v-if="media !== 'minimized' && reducedMotion !== 'reduce' && month === 11"
+    v-if="media === 'normal' && reducedMotion !== 'reduce' && month === 11"
     :class="$style.snowFlakes"
     :properties="{ testId: 'snow-flakes' }"
     hideLoader
@@ -8,27 +8,21 @@
   />
 
   <div :class="$style.container">
-    <LoadingScreen
-      ref="root"
-      :loading="storage.status.value === 'loading' || !appConfig"
-      :class="$style.app"
-      :import="() => import('./pages/Frame.vue')"
-    />
+    <LoadingScreen ref="root" :loading="!timer" :class="$style.app" :import="() => import('./pages/Frame.vue')" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
-import { useAppConfig } from '@composables/useAppConfig.ts';
 import { useAppElement } from '@composables/useAppElement.ts';
 import { useMediaQuery } from '@composables/useMediaQuery.ts';
 import { useTime } from '@composables/useTime.ts';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
 import { useDemoData } from '@store/state/demo-data/useDemoData.ts';
-import { usePreferredReducedMotion } from '@vueuse/core';
-import { nextTick, watch } from 'vue';
+import { usePreferredReducedMotion, useTimeout } from '@vueuse/core';
+import { nextTick, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
@@ -38,11 +32,11 @@ const { loadDemoData } = useDemoData();
 const { t } = useI18n();
 const { month } = useTime();
 const router = useRouter();
-const storage = useStorage();
 const reducedMotion = usePreferredReducedMotion();
 const media = useMediaQuery();
 const app = useAppElement();
-const appConfig = useAppConfig();
+
+const timer = useTimeout(1000);
 
 const preventDefault = (event: Event) => event.preventDefault();
 
@@ -85,8 +79,8 @@ watch(router.currentRoute, (route) => {
   }
 });
 
-watch(appConfig, (config) => {
-  if (config?.demo && location.hash === '#demo') {
+onMounted(() => {
+  if (!import.meta.env.OCULAR_GENESIS_HOST && location.hash === '#demo') {
     loadDemoData();
   }
 });

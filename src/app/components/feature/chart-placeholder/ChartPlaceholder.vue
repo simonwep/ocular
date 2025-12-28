@@ -8,7 +8,7 @@
     <span>{{ t('feature.chartPlaceholder.placeholder') }}</span>
 
     <Button
-      v-if="appConfig?.demo"
+      v-if="!OCULAR_GENESIS_HOST"
       testId="load-demo-data-placeholder"
       :icon="RiMagicFill"
       size="xs"
@@ -20,12 +20,13 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { useAppConfig } from '@composables/useAppConfig.ts';
 import { RiHandCoinLine, RiMagicFill, RiShoppingBasket2Line } from '@remixicon/vue';
 import { useDemoData } from '@store/state/demo-data/useDemoData.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+
+const { OCULAR_GENESIS_HOST } = import.meta.env;
 
 const props = defineProps<{
   class?: ClassNames;
@@ -33,7 +34,6 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const { loadDemoData } = useDemoData();
-const appConfig = useAppConfig();
 
 const classes = computed(() => props.class);
 </script>

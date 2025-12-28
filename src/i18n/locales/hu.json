@@ -202,7 +202,7 @@
       "synchronizationFailedDueToNetworkError": "A szinkronizálás hálózati hiba miatt meghiúsult!",
       "retryingPleaseWait": "Újra próbálkozás, kérjük várjon...",
       "retrySynchronization": "Szinkronizálás újra",
-      "demoVersionInfo": "Ez egy demó verzió, amely nem ment adatokat. Az adatok mentéséhez be kell jelentkeznie.",
+      "noBackendAttached": "Nincs backend konfigurálva, demó módban fut. Az adatok nem lesznek mentve.",
       "newVersionAvailable": "A legújabb verzió elérhető!",
       "dismiss": "Elutasítás"
     },

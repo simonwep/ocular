@@ -1,5 +1,12 @@
 <template>
-  <Button :tooltip="t('navigation.theme.change')" :class="classes" :icon="icon" textual @click="toggle" />
+  <Button
+    testId="toggle-theme"
+    :tooltip="t('navigation.theme.change')"
+    :class="classes"
+    :icon="icon"
+    textual
+    @click="toggle"
+  />
 </template>
 
 <script lang="ts" setup>

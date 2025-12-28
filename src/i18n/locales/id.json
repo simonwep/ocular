@@ -202,7 +202,7 @@
       "synchronizationFailedDueToNetworkError": "Sinkronisasi gagal karena masalah jaringan!",
       "retryingPleaseWait": "Mencoba kembali, mohon tunggu...",
       "retrySynchronization": "Coba kembali sinkronisasi",
-      "demoVersionInfo": "Ini adalah versi demo yang tidak menyimpan data apa pun. Untuk menyimpan data Anda, Anda perlu masuk.",
+      "noBackendAttached": "Tidak ada backend yang dikonfigurasi, berjalan dalam mode demo. Data tidak akan disimpan.",
       "newVersionAvailable": "Versi baru tersedia!",
       "dismiss": "Tutup"
     },

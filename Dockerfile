@@ -33,5 +33,4 @@ EXPOSE 80
 
 HEALTHCHECK CMD wget --no-verbose --tries=1 --spider http://localhost/index.html || exit 1
 
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["busybox", "httpd", "-v", "-f"]

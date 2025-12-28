@@ -8,16 +8,16 @@
 </template>
 
 <script lang="ts" setup>
-import { useAppConfig } from '@composables/useAppConfig.ts';
 import { useStorage } from '@storage/index.ts';
 import { ClassNames } from '@utils/types.ts';
+import { useLocalStorage } from '@vueuse/core';
 import { useRegisterSW } from 'virtual:pwa-register/vue';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 type Status = {
   title: string;
-  color: 'danger' | 'warning' | 'success';
+  color: 'danger' | 'warning' | 'success' | 'primary';
   button?: string;
   action?: () => unknown;
 };
@@ -27,11 +27,10 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const { status: storageStatus, retry: retrySync, user } = useStorage();
+const { status: storageStatus, retry: retrySync } = useStorage();
 const { needRefresh, updateServiceWorker } = useRegisterSW();
-const appConfig = useAppConfig();
 
-const demoDismissed = ref(false);
+const demoDismissed = useLocalStorage('status-bar/demo-version-dismissed', false);
 
 const classes = computed(() => props.class);
 
@@ -61,10 +60,10 @@ const status = computed((): Status | undefined => {
     };
   }
 
-  if (appConfig.value?.demo && !user.value && !demoDismissed.value) {
+  if (!import.meta.env.OCULAR_GENESIS_HOST && !demoDismissed.value) {
     return {
-      color: 'warning',
-      title: t('feature.statusBar.demoVersionInfo'),
+      color: 'primary',
+      title: t('feature.statusBar.noBackendAttached'),
       button: t('feature.statusBar.dismiss'),
       action: () => (demoDismissed.value = true)
     };
@@ -111,6 +110,17 @@ const status = computed((): Status | undefined => {
       var(--c-success) 10px,
       var(--c-success-hover) 10px,
       var(--c-success-hover) 20px
+    );
+  }
+
+  &.primary {
+    color: var(--c-primary-text);
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--c-primary),
+      var(--c-primary) 10px,
+      var(--c-primary-hover) 10px,
+      var(--c-primary-hover) 20px
     );
   }
 }
