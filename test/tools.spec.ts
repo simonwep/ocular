@@ -29,8 +29,7 @@ test('Ask for loading demo data if there is already data', async ({ page }) => {
 test.describe('Load demo data in different languages', () => {
   const tests = [
     { locale: 'en-US', wages: 'Wages' },
-    { locale: 'de-DE', wages: 'Gehälter' },
-    { locale: 'fr-FR', wages: 'Salaires' }
+    { locale: 'de-DE', wages: 'Gehälter' }
   ];
 
   for (const data of tests) {

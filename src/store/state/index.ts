@@ -8,7 +8,8 @@ import { finalBalance } from '@store/state/utils/budgets.ts';
 import { moveInArrays, remove, sum } from '@utils/array/array.ts';
 import { readFile } from '@utils/readFile.ts';
 import { uuid } from '@utils/uuid.ts';
-import { inject, reactive, readonly, shallowRef, watch } from 'vue';
+import { watchImmediate } from '@vueuse/core';
+import { inject, reactive, readonly, shallowRef } from 'vue';
 
 export const DATA_STORE_KEY = Symbol('DataStore');
 
@@ -41,10 +42,9 @@ export const createDataStore = (storage?: Storage) => {
     return [...currentYear.expenses, ...currentYear.income];
   };
 
-  watch(
+  watchImmediate(
     () => [state.locale, state.currency] as [AvailableLocale, string],
-    ([locale, currency]) => changeLocale(locale, { currency }),
-    { immediate: true }
+    ([locale, currency]) => changeLocale(locale, { currency })
   );
 
   storage?.sync<DataState, DataStates>({

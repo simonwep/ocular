@@ -44,15 +44,18 @@ export const i18n = createI18n({
 export const changeLocale = async (locale: AvailableLocale, currency?: Intl.NumberFormatOptions) => {
   if (!(locale in i18n.global.messages.value)) {
     const messages = await fetch(localeUrls[locale]).then((res) => res.json());
-    const numberFormat: IntlNumberFormat = {
-      ...numberFormats,
-      currency: { ...numberFormats.currency, ...currency }
-    };
-
     i18n.global.setLocaleMessage(locale, messages);
-    i18n.global.setNumberFormat(locale, numberFormat);
   }
 
-  document.documentElement.lang = locale;
+  const numberFormat: IntlNumberFormat = {
+    ...numberFormats,
+    currency: { ...numberFormats.currency, ...currency }
+  };
+
+  i18n.global.setNumberFormat(locale, numberFormat);
   i18n.global.locale.value = locale;
+
+  document.documentElement.lang = locale;
 };
+
+await changeLocale(initialLocale);

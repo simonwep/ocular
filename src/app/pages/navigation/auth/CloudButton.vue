@@ -1,6 +1,6 @@
 <template>
   <Button :class="classes" textual :color="icon[0]" :icon="icon[1]" @click="auth" />
-  <LoginDialog :lockDialog="!!OCULAR_GENESIS_HOST" :open="showLoginDialog" @close="showLoginDialog = false" />
+  <LoginDialog :lockDialog="!!OCULAR_GENESIS_HOST && !user" :open="showLoginDialog" @close="showLoginDialog = false" />
 </template>
 
 <script lang="ts" setup>
@@ -10,7 +10,9 @@ import { Color } from '@composables/useThemeStyles.ts';
 import { RiCloudLine, RiCloudOffLine, RiRefreshLine, RiSignalWifiErrorLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils/types.ts';
-import { computed, ref, watch } from 'vue';
+import { watchImmediate } from '@vueuse/core';
+import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import type { Component } from 'vue';
 
 const { OCULAR_GENESIS_HOST } = import.meta.env;
@@ -20,6 +22,7 @@ const props = defineProps<{
 }>();
 
 const { status, logout, user } = useStorage();
+const router = useRouter();
 
 const showLoginDialog = ref(!!OCULAR_GENESIS_HOST);
 
@@ -46,19 +49,20 @@ const icon = computed((): [Color, Component] => {
   return ['danger', RiCloudOffLine];
 });
 
-const auth = () => {
+const auth = async () => {
   if (!OCULAR_GENESIS_HOST) return;
 
   if (status.value === 'idle') {
     showLoginDialog.value = true;
   } else {
     logout();
+    await router.push('/');
   }
 };
 
-watch(user, (value) => {
-  if (!value && OCULAR_GENESIS_HOST) {
-    showLoginDialog.value = true;
+watchImmediate(user, (value) => {
+  if (OCULAR_GENESIS_HOST) {
+    showLoginDialog.value = !value;
   }
 });
 </script>

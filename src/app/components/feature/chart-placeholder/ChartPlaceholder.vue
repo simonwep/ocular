@@ -13,7 +13,7 @@
       :icon="RiMagicFill"
       size="xs"
       :text="t('navigation.tools.demo.loadDemoData')"
-      @click="loadDemoData"
+      @click="loadTemplateData('demo')"
     />
   </div>
 </template>
@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { RiHandCoinLine, RiMagicFill, RiShoppingBasket2Line } from '@remixicon/vue';
-import { useDemoData } from '@store/state/demo-data/useDemoData.ts';
+import { useTemplateData } from '@store/state/template/useTemplateData.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -33,7 +33,7 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const { loadDemoData } = useDemoData();
+const { loadTemplateData } = useTemplateData();
 
 const classes = computed(() => props.class);
 </script>
