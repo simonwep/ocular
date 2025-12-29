@@ -4,9 +4,10 @@ outline: deep
 
 # FAQs
 
-> [!NOTE]
-> Since this setup is fairly new, there might be some issues that are not covered here.
-> If you have a question that is not answered here, feel free to [open a discussion](https://github.com/simonwep/ocular/discussions)!
+> [!TIP]
+> As of v2 the old docker compose deployment is **deprecated**.
+> It's recommended to use the new single-container deployment as described in the [deployment guide](./deploy.md).
+> However, these FAQs may still be relevant for some users.
 
 ## Table of Contents
 

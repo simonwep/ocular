@@ -1,0 +1,12 @@
+:80 {
+  route /api/* {
+    uri strip_prefix /api
+    reverse_proxy localhost:8080
+  }
+
+  route /* {
+    root * /usr/share/caddy
+    try_files {path} /index.html
+    file_server
+  }
+}

@@ -4,61 +4,74 @@ outline: deep
 
 # Deployment
 
-All source code for the deployment can be found under [ocular-docker](https://github.com/simonwep/ocular-docker).
-
-## Quick install
-
-> [!NOTE]
-> This will perform the same steps as described in the [manual setup](#manual-setup) section and ask you questions if needed.
-> You can always [take a look at the script](https://github.com/simonwep/ocular-docker/blob/main/setup.sh) before running it, or perform [these steps manually](#manual-setup).
-
-To install the latest release run the following, it will download and run [this](https://github.com/simonwep/ocular-docker/blob/main/setup.sh) setup script.
-
-```sh
-bash <(curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/simonwep/ocular-docker/refs/heads/main/setup.sh)
-```
-
-## Manual setup
-
-To deploy it via docker compose manually, follow these steps:
-
-1. Download the [latest release](https://github.com/simonwep/ocular-docker/releases/latest) of [ocular-docker](https://github.com/simonwep/ocular-docker) and extract it. Do not clone the repository!
-2. Copy the `.env.example` to `.env`, if your app is only used locally make sure to set `GENESIS_JWT_COOKIE_ALLOW_HTTP` to `true` if you want to use it without https, for example in an isolated network.
-3. Run `./gen-passwords.sh` to generate secrets and an initial admin user with a random, secure password. You can use this admin to create other users.
-4. Run `docker compose up -d`.
-5. Ocular should be accessible under `http://localhost:3030` in your browser 🚀
-
 > [!TIP]
-> It's recommended to only use the admin account to manage users and create separate, non-admin accounts for daily usage.
+> This deployment as well as v2 are still fairly new ✨
+> If you have any questions or something's missing, feel free to [open an issue](https://github.com/simonwep/ocular/issues).
 
-## Updating to a new version
+## Migrating from v1 to v2
 
-> [!NOTE]
-> Usually it's sufficient to just bump the versions inside the `docker-compose.yml` file.
-> However, sometimes new versions come with new `.env`-variables or changes to the config folder.
-> This guide is to be 100%-sure that everything works as expected - but it's not always necessary.
+Migrating from the old ocular docker compose setup to the new v2 single-container setup is fairly straightforward:
 
-To migrate to a newer version, follow these steps:
+1. Stop your existing ocular docker compose setup with `docker compose down`.
+2. Backup your existing `./data` folder **twice**, in case something goes wrong.
+3. Set up a new `.env` with `GENESIS_JWT_SECRET` and `GENESIS_JWT_TOKEN_EXPIRATION`, you can ignore `GENESIS_CREATE_USERS` as you already have users created.
+4. Deploy the new v2 setup as described below.
 
-1. Stop all containers with `docker compose down`.
-2. Backup the `./data` folder and your `.env` file.
-3. Download the [latest release](https://github.com/simonwep/ocular-docker/releases/latest) and extract it.
-4. Copy your old `./data` folder and `.env` to the new directory, compare the `.env.example` with your `.env` and copy default values if needed.
-5. Run `docker compose up -d`.
+## Quickstart
 
-## Admin controls
-
-You can use the [genesis cli](https://github.com/simonwep/genesis?tab=readme-ov-file#cli) to manage users.
-For example, to change a user's password:
+As of v2, ocular can be deployed via a single docker image.
 
 ```sh
-docker run --rm -v "$(pwd)/data:/app/.data" \
-    --env-file .env ghcr.io/simonwep/genesis:latest users update \
-    --password {new password} {username}
+docker run \
+    -p 3030:80 \
+    -v ./data:/data/genesis \
+    -e "GENESIS_JWT_SECRET=$(openssl rand -base64 48)" \
+    -e "GENESIS_JWT_TOKEN_EXPIRATION=60" \
+    -e 'GENESIS_CREATE_USERS=my-admin-username!:my-very-secure-password' \
+    ghcr.io/simonwep/ocular:v2
 ```
 
-Or the see all available commands:
-```sh
-docker run --rm -v "$(pwd)/data:/app/.data" \
-    --env-file .env ghcr.io/simonwep/genesis:latest help
+Ocular should then be accessible under `http://localhost:3030` in your browser 🚀
+You can now log in with the specified user.
+
+All data is saved under `./data`, make sure to backup this folder regularly, as it contains all your budgeting data.
+Who knows what can happen to your container or server ;)
+
+## Compose
+
+You can also use docker compose to deploy ocular, here is a minimal example `docker-compose.yml`:
+
+```yml
+services:
+  ocular:
+    image: ghcr.io/simonwep/ocular:v2
+    restart: unless-stopped
+    volumes:
+      - ./data:/data/genesis
+    ports:
+      - 3030:80
+    environment:
+      - GENESIS_JWT_SECRET
+      - GENESIS_CREATE_USERS
+      - GENESIS_JWT_TOKEN_EXPIRATION
 ```
+
+And a corresponding `.env` file:
+
+```dotenv
+# JWT secret known only to your token generator
+# You can use `openssl rand -base64 48` for this.
+GENESIS_JWT_SECRET=insert-a-very-long-random-string-here
+
+# Use ! as suffix for the username to indicate that this user should be created as an admin.
+# Admins can add, remove and edit users.
+# You can create multiple users by separating them with a comma.
+# Comment this out if you already have users created.
+GENESIS_CREATE_USERS=my-admin-username!:my-very-secure-password
+
+# JWT expiration in minutes
+GENESIS_JWT_TOKEN_EXPIRATION=60
+```
+
+Now run `docker compose up` and ocular should be accessible under `http://localhost:3030` in your browser 🚀
+You can now log in with the specified user.

@@ -13,10 +13,10 @@ hero:
       text: Live Demo ✨
       link: https://simonwep.github.io/ocular/demo#demo
     - theme: alt
-      text: Getting started
+      text: Getting started 📖
       link: pages/quickstart
     - theme: alt
-      text: Deploy
+      text: Deploy (version 2 out!) 🚀
       link: pages/deploy
 
 features:

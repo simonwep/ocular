@@ -70,7 +70,7 @@ export default defineConfig({
     [
       'script',
       {
-        defer: true,
+        defer: 'true',
         src: 'https://numai.reinisch.io/script.js',
         'data-website-id': 'efc379ab-744b-48d9-a1cd-72133f3f36e3'
       }
@@ -101,6 +101,7 @@ export default defineConfig({
         items: [
           { text: 'Quickstart', link: '/pages/quickstart' },
           { text: 'Deployment', link: '/pages/deploy' },
+          { text: 'Deployment (legacy)', link: '/pages/deploy-legacy' },
           { text: 'FAQs', link: '/pages/faq' }
         ]
       },
@@ -113,7 +114,7 @@ export default defineConfig({
           },
           {
             text: 'Live Demo',
-            link: 'https://ocular.reinisch.io#demo'
+            link: 'https://simonwep.github.io/ocular/demo#demo'
           },
           {
             text: 'GitHub',
