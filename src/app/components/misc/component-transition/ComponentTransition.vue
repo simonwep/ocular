@@ -6,13 +6,14 @@
     :leaveToClass="$style.transitionOrigin"
     mode="out-in"
   >
-    <component :is="is" />
+    <component :is="is" v-if="is" />
+    <slot v-else />
   </Transition>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  is: object;
+  is?: object;
 }>();
 </script>
 

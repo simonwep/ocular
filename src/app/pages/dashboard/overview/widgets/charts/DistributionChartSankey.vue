@@ -1,6 +1,5 @@
 <template>
-  <ChartPlaceholder v-if="isEmpty" />
-  <SankeyChart v-else :class="[$style.distributionChart, classes]" :data="data" />
+  <SankeyChart ref="chart" :percentages="percentages" :data="data" />
 </template>
 
 <script lang="ts" setup>
@@ -9,52 +8,42 @@ import {
   SankeyChartLabel,
   SankeyChartLink,
   SankeyChartType
-} from './sankey-chart/SankeyChart.types';
-import SankeyChart from './sankey-chart/SankeyChart.vue';
-import ChartPlaceholder from '@components/feature/chart-placeholder/ChartPlaceholder.vue';
+} from '@components/charts/sankey-chart/SankeyChart.types';
+import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
-import { sumOfBudgetGroups, totals } from '@store/state/utils/budgets';
 import { sum } from '@utils/array/array.ts';
-import { ClassNames } from '@utils/types.ts';
 import { uuid } from '@utils/uuid.ts';
-import { computed } from 'vue';
+import { computed, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
-  class?: ClassNames;
   highlight?: 'income' | 'expenses';
+  percentages?: boolean;
+  totalIncome: number;
+  totalExpenses: number;
 }>();
 
-const classes = computed(() => props.class);
 const { state: settings } = useSettingsStore();
 const { state } = useDataStore();
 const { n, t } = useI18n();
 
-const totalIncome = computed(() =>
-  settings.general.carryOver
-    ? sumOfBudgetGroups(state.income) + (state.overallBalance ?? 0)
-    : sumOfBudgetGroups(state.income)
-);
+const chart = useTemplateRef('chart');
 
-const totalExpenses = computed(() => sum(totals(state.expenses)));
+const color = (hue: number) => `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
 
-const isEmpty = computed(() => !totalIncome.value || !totalExpenses.value);
+const format = (value: number, type: SankeyChartType) =>
+  n(value, {
+    style: type === 'absolute' ? 'currency' : 'percent',
+    currency: state.currency,
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 0
+  });
 
 const data = computed((): SankeyChartConfig => {
-  const format = (value: number, type: SankeyChartType) =>
-    n(value, {
-      style: type === 'absolute' ? 'currency' : 'percent',
-      currency: state.currency,
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 0
-    });
-
   const endingBalance = state.overallBalance ?? 0;
   const labels: SankeyChartLabel[] = [];
   const links: SankeyChartLink[] = [];
-
-  const color = (hue: number) => `hsl(${hue}, var(--chart-generic-saturation), var(--chart-generic-lightness))`;
 
   const income: SankeyChartLabel = {
     id: uuid(),
@@ -72,14 +61,14 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: carryOverSource,
       formatter: (value, type) => `${t('page.dashboard.lastYear')} (${format(value, type)})`,
-      color: color(60 + 60 * (endingBalance / totalIncome.value)),
+      color: color(60 + 60 * (endingBalance / props.totalIncome)),
       muted: props.highlight === 'expenses'
     });
 
     labels.push({
       id: carryOverTarget,
       formatter: (value, type) => `${t('page.dashboard.surplus')} (${format(value, type)})`,
-      color: color(60 + 60 * (endingBalance / totalIncome.value)),
+      color: color(60 + 60 * (endingBalance / props.totalIncome)),
       muted: props.highlight === 'expenses'
     });
 
@@ -110,7 +99,7 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       formatter: (value, type) => `${group.name} (${format(value, type)})`,
-      color: color(60 + 60 * (total / totalIncome.value)),
+      color: color(60 + 60 * (total / props.totalIncome)),
       muted: props.highlight === 'expenses'
     });
 
@@ -130,7 +119,7 @@ const data = computed((): SankeyChartConfig => {
         labels.push({
           id: budget.id,
           formatter: (value, type) => `${budget.name} (${format(value, type)})`,
-          color: color(60 + 60 * (total / totalIncome.value)),
+          color: color(60 + 60 * (total / props.totalIncome)),
           muted: props.highlight === 'expenses'
         });
 
@@ -155,7 +144,7 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: group.id,
       formatter: (value, type) => `${group.name} (${format(value, type)})`,
-      color: color(60 * (1 - total / totalExpenses.value)),
+      color: color(60 * (1 - total / props.totalExpenses)),
       muted: props.highlight === 'income'
     });
 
@@ -175,7 +164,7 @@ const data = computed((): SankeyChartConfig => {
         labels.push({
           id: budget.id,
           formatter: (value, type) => `${budget.name} (${format(value, type)})`,
-          color: color(60 * (1 - total / totalExpenses.value)),
+          color: color(60 * (1 - total / props.totalExpenses)),
           align: 'left',
           muted: props.highlight === 'income'
         });
@@ -198,14 +187,14 @@ const data = computed((): SankeyChartConfig => {
     labels.push({
       id: deficitSource,
       formatter: (value, type) => `${t('page.dashboard.lastYear')} (${format(value, type)})`,
-      color: color(60 + 60 * (-endingBalance / totalIncome.value)),
+      color: color(60 + 60 * (-endingBalance / props.totalIncome)),
       muted: props.highlight === 'income'
     });
 
     labels.push({
       id: deficitTarget,
       formatter: (value, type) => `${t('page.dashboard.deficit')} (${format(value, type)})`,
-      color: color(60 + 60 * (-endingBalance / totalIncome.value)),
+      color: color(60 + 60 * (-endingBalance / props.totalIncome)),
       muted: props.highlight === 'income',
       align: 'left'
     });
@@ -229,13 +218,8 @@ const data = computed((): SankeyChartConfig => {
 
   return { labels, links };
 });
+
+defineExpose({
+  download: (name: string, type: 'png' | 'svg') => chart.value?.download(name, type)
+});
 </script>
-
-<style lang="scss" module>
-@use '@styles/globals.scss';
-
-.distributionChart {
-  height: 100%;
-  width: 100%;
-}
-</style>

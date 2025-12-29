@@ -5,7 +5,7 @@
       :properties="{ highlight }"
       :show="media !== 'mobile'"
       :class="$style.chart"
-      :import="() => import('./widgets/charts/DistributionChart.vue')"
+      :import="() => import('./widgets/charts/DistributionCharts.vue')"
     />
   </div>
 </template>

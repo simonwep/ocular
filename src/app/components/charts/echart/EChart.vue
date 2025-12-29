@@ -1,10 +1,11 @@
 <template>
-  <div ref="root" :class="classes" />
+  <div ref="root" :class="[classes, $style.chart]" />
 </template>
 
 <script lang="ts" setup>
 import { useResizeObserver } from '@composables/useResizeObserver.ts';
 import { getCssVariables } from '@utils/cssVariables.ts';
+import { downloadBlob } from '@utils/downloadFile.ts';
 import { svgToPNG } from '@utils/svgToPNG.ts';
 import { ClassNames } from '@utils/types.ts';
 import { EChartsType, init } from 'echarts/core';
@@ -59,8 +60,19 @@ onUnmounted(() => {
   window.removeEventListener('resize', resize);
 });
 
-defineExpose({
-  toSVG: (): Blob => new Blob([assertSvg()], { type: 'image/svg+xml;charset=utf-8' }),
-  toPNG: (): Promise<Blob> => svgToPNG(assertSvg(), 3)
-});
+const svg = () => new Blob([assertSvg()], { type: 'image/svg+xml;charset=utf-8' });
+const png = () => svgToPNG(assertSvg(), 3);
+
+const download = async (name: string, type: 'png' | 'svg') => {
+  downloadBlob(type === 'png' ? await png() : svg(), `${name}.${type}`);
+};
+
+defineExpose({ download });
 </script>
+
+<style lang="scss" module>
+.chart {
+  width: 100%;
+  height: 100%;
+}
+</style>

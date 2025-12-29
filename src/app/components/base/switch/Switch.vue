@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="$style.switch" @click="modelValue = !modelValue">
+  <button :data-testid="testId" type="button" :class="$style.switch" @click="modelValue = !modelValue">
     <span :class="$style.icons">
       <span :class="$style.icon">
         <component :is="iconOff" />
@@ -28,6 +28,7 @@ const modelValue = defineModel<boolean>();
 defineProps<{
   iconOn: Component;
   iconOff: Component;
+  testId?: string;
 }>();
 </script>
 
