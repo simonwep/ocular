@@ -28,7 +28,7 @@ docker run \
     -e "GENESIS_JWT_SECRET=$(openssl rand -base64 48)" \
     -e "GENESIS_JWT_TOKEN_EXPIRATION=60" \
     -e 'GENESIS_CREATE_USERS=my-admin-username!:my-very-secure-password' \
-    ghcr.io/simonwep/ocular:v2
+    ghcr.io/simonwep/ocular:v2.0
 ```
 
 Ocular should then be accessible under `http://localhost:3030` in your browser 🚀
@@ -44,7 +44,7 @@ You can also use docker compose to deploy ocular, here is a minimal example `doc
 ```yml
 services:
   ocular:
-    image: ghcr.io/simonwep/ocular:v2
+    image: ghcr.io/simonwep/ocular:v2.0
     restart: unless-stopped
     volumes:
       - ./data:/data/genesis
