@@ -10,12 +10,12 @@
         "unknownError": "Qualcosa è andato storto, riprova più tardi."
       },
       "copyPaste": {
-        "copyPasteData": "Copia / Incolla dati",
-        "copyPasteDataFromOneYearToAnother": "Copia/incolla dati da un anno all'altro",
+        "copyPasteData": "Copia e incolla dati",
+        "copyPasteDataFromOneYearToAnother": "Copia e incolla dati da un anno all'altro",
         "fromYear": "Dall'anno",
         "copyTheseGroupsFromIncome": "Copia questi gruppi dalle entrate",
         "andTheseGroupsFromExpenses": "E questi gruppi dalle spese",
-        "nothingToAddAnymore": "Non c'è più niente da aggiungere...",
+        "nothingToAddAnymore": "Non c'è più nulla da aggiungere...",
         "toYear": "All'anno",
         "includeValues": "Includi valori",
         "transferData": "Trasferisci dati"
@@ -26,7 +26,7 @@
       },
       "deleteYear": {
         "delete": "Elimina {year}",
-        "confirm": "Sei sicuro di volerli eliminare {year}?"
+        "confirm": "Sei sicuro di voler eliminare {year}?"
       },
       "export": {
         "export": "Esporta come file json"
@@ -34,7 +34,7 @@
       "import": {
         "import": "Importa da file json",
         "what": {
-          "google": "Google-Sheets annual budget file",
+          "google": "Budget annuale da Fogli Google",
           "ocular": "Un file precedentemente esportato",
           "title": "Cosa vorresti importare?"
         },
@@ -43,15 +43,15 @@
           "import": "Importa i dati ocular"
         },
         "google": {
-          "import": "Importa i dati da google",
+          "import": "Importa i dati da Google",
           "pickFile": "Seleziona il tuo file .csv da importare",
           "expenses": "Spese.csv",
           "income": "Entrate.csv"
         }
       },
       "privacyMode": {
-        "disable": "Passare alla modalità pubblica",
-        "enable": "Passare alla modalità privacy"
+        "disable": "Passa alla modalità pubblica",
+        "enable": "Passa alla modalità privacy"
       }
     },
     "info": {
@@ -62,13 +62,13 @@
       "donation": "donazione"
     },
     "theme": {
-      "change": "Cambiare il tema"
+      "change": "Cambia il tema"
     },
     "year": {
-      "change": "Passare a un anno diverso"
+      "change": "Passa ad un anno diverso"
     },
     "auth": {
-      "welcomeBack": "Ben tornato!",
+      "welcomeBack": "Bentornato!",
       "signIn": "Accedi",
       "username": "Username",
       "password": "Password",
@@ -79,7 +79,7 @@
       "createUser": "Crea utente",
       "username": "Username",
       "password": "Password",
-      "admin": "Admin",
+      "admin": "Amministratore",
       "conflict": "Esiste già un utente con questo nome.",
       "error": "Qualcosa è andato storto, riprova più tardi.",
       "deleteUserConfirmation": "Sei sicuro di voler eliminare questo utente?",
@@ -91,8 +91,8 @@
       "language": "Lingua",
       "currency": "Valuta",
       "firstMonthOfYear": "Primo mese dell'anno",
-      "carryOverNetSavings": "Portare risparmi netti",
-      "carryOverNetSavingsInfo": "Se attivato, il saldo netto di fine anno verrà trasferito come saldo iniziale per l'anno successivo.",
+      "carryOverNetSavings": "Riporta risparmi netti",
+      "carryOverNetSavingsInfo": "Se attivato, il saldo netto di fine anno verrà riportato come saldo iniziale dell'anno successivo.",
       "showAnimationsAndTransitions": "Mostra animazioni e transizioni"
     },
     "update": {
@@ -102,7 +102,7 @@
   "page": {
     "income": {
       "title": "Entrate",
-      "incomeFor": "Reddito per {year}"
+      "incomeFor": "Reddito del {year}"
     },
     "expenses": {
       "title": "Spese",
@@ -112,27 +112,27 @@
       "title": "Dashboard",
       "tables": "Tabelle",
       "income": "Entrate",
-      "incomeTrend": "Tendenza del reddito",
+      "incomeTrend": "Andamento del reddito",
       "allTime": "Panoramica generale",
       "allTimeFromTo": "Panoramica generale da {from} a {to}",
       "expenses": "Spese",
-      "expensesTrend": "Tendenza delle Spese",
+      "expensesTrend": "Andamento delle Spese",
       "endingBalance": "Saldo finale",
       "budgetFor": "Budget annuale del {year}",
       "remainingBalance": "Saldo residuo fino al {anno}",
       "netSavings": "Risparmio Netto",
-      "yearInThePast": "Anno passato",
-      "yearInTheFuture": "Anno prossimo",
+      "yearInThePast": "Anno precedente",
+      "yearInTheFuture": "Anno successivo",
       "yearEnding": "Quest'anno finirà ...",
       "yoyIncomeGrowth": "YoY Crescita del reddito",
-      "yoyExpenseGrowth": "YoY Crescita delle Spese",
+      "yoyExpenseGrowth": "YoY Crescita delle spese",
       "allTimeIncome": "Reddito Totale",
       "allTimeExpenses": "Spese Totali",
       "allTimeSavings": "Risparmio Totale",
       "downloadAsPNG": "Download come PNG",
       "downloadAsSVG": "Download come SVG",
-      "jumpToIncome": "Vai al reddito per {year}",
-      "jumpToExpenses": "Vai alle spese per {year}",
+      "jumpToIncome": "Vai al reddito del {year}",
+      "jumpToExpenses": "Vai alle spese del {year}",
       "lastYear": "Anno scorso",
       "surplus": "Eccedenza",
       "deficit": "Deficit"
@@ -144,7 +144,7 @@
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Sincronizzazione fallita a causa di un errore di rete!",
-      "retryingPleaseWait": "Riprova, attendere...",
+      "retryingPleaseWait": "Riprovando, attendere...",
       "retrySynchronization": "Riprova la sincronizzazione",
       "noBackendAttached": "Nessun backend configurato, esecuzione in modalità demo. I dati non verranno salvati.",
       "newVersionAvailable": "È disponibile una nuova versione!",
@@ -156,43 +156,43 @@
       "average": "Media",
       "move": "Sposta “{from}”",
       "moveInto": "Sposta “{from}” in “{to}”",
-      "prepend": "Move “{from}” prima di “{to}”",
+      "prepend": "Sposta “{from}” prima di “{to}”",
       "fillRow": "Completa la riga",
       "fillRowToRight": "Completa a destra",
       "total": "Totale",
       "totals": "Totali"
     },
     "chartPlaceholder": {
-      "placeholder": "Iniziate a compilare le schede delle entrate e delle uscite! :)"
+      "placeholder": "Inizia a compilare le schede delle entrate e delle uscite! :)"
     },
     "templates": {
       "demo": {
         "expenses": {
-          "children": "Bambini",
-          "debt": "Debito",
+          "children": "Figli",
+          "debt": "Debiti",
           "education": "Istruzione",
           "entertainment": "Intrattenimento",
-          "everyday": "Quotidiano",
+          "everyday": "Spese quotidiane",
           "gifts": "Regali",
-          "healthMedical": "Salute / Medico",
+          "healthMedical": "Salute/Spese mediche",
           "home": "Casa",
           "insurance": "Assicurazione",
           "transportation": "Trasporti",
-          "travel": "Viaggio",
-          "utilities": "Utenze"
+          "travel": "Viaggi",
+          "utilities": "Bollette"
         },
         "budgets": {
           "activities": "Attività",
           "medical": "Medico",
-          "childcare": "Cura dei bambini",
+          "childcare": "Asilo/babysitter",
           "school": "Scuola",
           "other": "Altro",
-          "studentLoans": "Prestiti studenteschi",
+          "studentLoans": "Prestiti per studenti",
           "musicLessons": "Lezioni di musica",
           "concertsShows": "Concerti/spettacoli",
           "music": "Musica",
-          "theatrePlays": "Teatro/spettacoli",
-          "groceries": "Spesa",
+          "theatrePlays": "Cinema/teatro",
+          "groceries": "Supermercato",
           "restaurants": "Ristoranti",
           "personalSupplies": "Forniture personali",
           "subscriptions": "Abbonamenti",
@@ -214,64 +214,64 @@
           "water": "Acqua"
         },
         "income": {
-          "wages": "Salari",
+          "wages": "Salario",
           "paySlip": "Busta paga",
           "bonus": "Bonus",
           "other": "Altro",
-          "interestIncome": "Interessi attivi",
+          "interestIncome": "Entrate per interessi",
           "dividends": "Dividendi"
         }
       },
       "base": {
         "group": {
-          "children": "Bambini",
-          "debt": "Debito",
+          "children": "Figli",
+          "debt": "Debiti",
           "education": "Istruzione",
           "entertainment": "Intrattenimento",
-          "everyday": "Quotidiano",
+          "everyday": "Spese quotidiane",
           "gifts": "Regali",
-          "healthMedical": "Salute / Medico",
+          "healthMedical": "Salute / Spese mediche",
           "home": "Casa",
           "insurance": "Assicurazione",
           "pets": "Animali domestici",
           "technology": "Tecnologia",
           "transportation": "Trasporti",
-          "travel": "Viaggio",
-          "utilities": "Utenze",
+          "travel": "Viaggi",
+          "utilities": "Bollette",
           "other": "Altro",
-          "wages": "Salari"
+          "wages": "Salario"
         },
         "category": {
           "activities": "Attività",
-          "medical": "Medico",
-          "childcare": "Cura dei bambini",
+          "medical": "Spese mediche",
+          "childcare": "Asilo/babysitter",
           "clothing": "Abbigliamento",
           "school": "Scuola",
           "toys": "Giocattoli",
           "other": "Altro",
           "creditCards": "Carte di credito",
-          "studentLoans": "Prestiti studenteschi",
+          "studentLoans": "Prestiti per studenti",
           "otherLoans": "Altri prestiti",
           "taxes": "Tasse",
-          "tuition": "Tasse universitarie",
+          "tuition": "Rette universitarie",
           "books": "Libri",
           "musicLessons": "Lezioni di musica",
           "concertsShows": "Concerti/spettacoli",
-          "games": "Giochi",
+          "games": "Videogiochi",
           "hobbies": "Hobby",
           "films": "Film",
           "music": "Musica",
           "outdoorActivities": "Attività all'aperto",
           "photography": "Fotografia",
           "sport": "Sport",
-          "theatrePlays": "Teatro/spettacoli",
+          "theatrePlays": "Cinema/teatro",
           "tv": "TV",
-          "groceries": "Spesa",
+          "groceries": "Supermercato",
           "restaurants": "Ristoranti",
           "personalSupplies": "Forniture personali",
           "clothes": "Abbigliamento",
           "laundryDryCleaning": "Lavanderia/pulitura a secco",
-          "hairBeauty": "Capelli/bellezza",
+          "hairBeauty": "Barbiere/acconciatore",
           "subscriptions": "Abbonamenti",
           "gifts": "Regali",
           "donationsCharity": "Donazioni (carità)",
@@ -292,7 +292,7 @@
           "homeInsurance": "Assicurazione casa",
           "life": "Assicurazione sulla vita",
           "food": "Cibo",
-          "vetMedical": "Veterinario / medico",
+          "vetMedical": "Veterinario",
           "domainsAndHosting": "Domini e hosting",
           "onlineServices": "Servizi online",
           "hardware": "Hardware",
@@ -315,9 +315,9 @@
           "paySlip": "Busta paga",
           "tips": "Mance",
           "bonus": "Bonus",
-          "commission": "Commissione",
+          "commission": "Commissioni",
           "transferFromSavings": "Trasferimento da risparmi",
-          "interestIncome": "Interessi attivi",
+          "interestIncome": "Entrate per interessi",
           "dividends": "Dividendi",
           "refunds": "Rimborsi"
         }
