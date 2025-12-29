@@ -1,11 +1,12 @@
 <template>
-  <EChart ref="chart" :options="options" />
+  <EChart ref="chart" :classes="classes" :options="options" />
 </template>
 
 <script lang="ts" setup>
 import { StackedBarChartConfig } from './StackedBarChart.types.ts';
 import EChart from '@components/charts/echart/EChart.vue';
 import { sum } from '@utils/array/array.ts';
+import { ClassNames } from '@utils/types.ts';
 import { BarChart, BarSeriesOption } from 'echarts/charts';
 import { GridComponent, GridComponentOption } from 'echarts/components';
 import * as echarts from 'echarts/core';
@@ -19,11 +20,14 @@ echarts.use([GridComponent, BarChart, SVGRenderer]);
 type EChartsOption = echarts.ComposeOption<GridComponentOption | BarSeriesOption>;
 
 const props = defineProps<{
+  class?: ClassNames;
   data: StackedBarChartConfig;
   percentages?: boolean;
 }>();
 
 const chart = useTemplateRef('chart');
+
+const classes = computed(() => props.class);
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const options = computed((): EChartsOption => {

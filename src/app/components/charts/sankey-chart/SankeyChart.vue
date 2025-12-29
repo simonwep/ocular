@@ -1,5 +1,5 @@
 <template>
-  <EChart ref="chart" :options="options" />
+  <EChart ref="chart" :classes="classes" :options="options" />
 </template>
 
 <script lang="ts" setup>
@@ -23,6 +23,8 @@ const props = defineProps<{
 }>();
 
 const chart = useTemplateRef('chart');
+
+const classes = computed(() => props.class);
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const options = computed((): EChartsOption => {

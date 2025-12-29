@@ -57,7 +57,7 @@ const options = computed(
       left: 0,
       right: '5px',
       bottom: '70px',
-      top: '50px'
+      top: '25px'
     },
     tooltip: {
       trigger: 'axis',

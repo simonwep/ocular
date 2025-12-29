@@ -1,5 +1,5 @@
 <template>
-  <EChart :class="[$style.stackedLineChart, classes]" :options="options" />
+  <EChart :class="classes" :options="options" />
 </template>
 
 <script lang="ts" setup>
@@ -39,14 +39,14 @@ const options = computed(
       data: props.data.series.map((v) => v.name),
       textStyle: { color: 'var(--chart-label)' },
       lineStyle: { width: 2, cap: 'round' },
-      itemStyle: { opacity: 0 }
+      itemStyle: { opacity: 0 },
+      bottom: 0
     },
     grid: {
       left: 0,
       right: '3%',
-      bottom: 0,
-      top: '30px',
-      containLabel: true
+      bottom: '55px',
+      top: 0
     },
     xAxis: {
       type: 'category',
@@ -78,11 +78,6 @@ const options = computed(
 </script>
 
 <style lang="scss" module>
-.stackedLineChart {
-  width: 100%;
-  height: 100%;
-}
-
 .chartTooltip {
   font-family: var(--font-family);
   color: var(--c-primary-text);

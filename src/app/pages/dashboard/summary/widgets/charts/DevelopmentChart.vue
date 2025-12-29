@@ -1,11 +1,11 @@
 <template>
   <ChartPlaceholder v-if="isEmpty" :class="classes" />
-  <LineChart v-else :class="classes" :data="data" />
+  <LineChart v-else :class="[classes, $style.chart]" :data="data" />
 </template>
 
 <script lang="ts" setup>
-import { LineChartConfig } from './line-chart/LineChart.types';
-import LineChart from './line-chart/LineChart.vue';
+import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
+import LineChart from '@components/charts/line-chart/LineChart.vue';
 import ChartPlaceholder from '@components/feature/chart-placeholder/ChartPlaceholder.vue';
 import { useMonthNames } from '@composables/useMonthNames.ts';
 import { useSettingsStore } from '@store/settings';
@@ -53,3 +53,9 @@ const data = computed((): LineChartConfig => {
   };
 });
 </script>
+
+<style lang="scss" module>
+.chart {
+  min-height: 300px;
+}
+</style>
