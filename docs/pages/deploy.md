@@ -10,6 +10,9 @@ outline: deep
 
 ## Migrating from v1 to v2
 
+> [!TIP]
+> If you're setting ocular up for the first time, you can skip this section.
+
 Migrating from the old ocular docker compose setup to the new v2 single-container setup is fairly straightforward:
 
 1. Stop your existing ocular docker compose setup with `docker compose down`.
@@ -75,3 +78,15 @@ GENESIS_JWT_TOKEN_EXPIRATION=60
 
 Now run `docker compose up` and ocular should be accessible under `http://localhost:3030` in your browser 🚀
 You can now log in with the specified user.
+
+## Updating to a new version
+
+Since ocular is contained within a single image, updating is fairly straightforward.
+To update ocular to a new version, simply pull the new image and restart the container if you're using docker compose:
+
+```sh
+docker compose pull
+docker compose up -d
+```
+
+Or if you're using docker directly just restart the container after pulling the new image.
