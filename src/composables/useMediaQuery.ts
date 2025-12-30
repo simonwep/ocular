@@ -8,7 +8,7 @@ const detectSize = () => {
 
   if (el) {
     const mediaType = getComputedStyle(el).getPropertyValue('--media-type');
-    query.value = (mediaType.replaceAll('"', '').trim() as MediaQuery) || 'normal';
+    query.value = (mediaType.replaceAll(/["']/g, '').trim() as MediaQuery) || 'normal';
   }
 };
 
