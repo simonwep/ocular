@@ -1,6 +1,7 @@
 <template>
   <Button
     :tooltip="t('navigation.info.about')"
+    testId="navigation-info"
     :class="classes"
     textual
     color="dimmed"

@@ -1,6 +1,6 @@
 <template>
   <Button
-    testId="toggle-theme"
+    testId="navigation-toggle-theme"
     :tooltip="t('navigation.theme.change')"
     :class="classes"
     :icon="icon"

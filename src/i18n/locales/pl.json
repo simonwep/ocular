@@ -72,7 +72,8 @@
       "signIn": "Zaloguj się",
       "username": "Nazwa użytkownika",
       "password": "Hasło",
-      "loginFailed": "Logowanie nie powiodło się, nazwa użytkownika i/lub hasło są nieprawidłowe."
+      "loginFailed": "Logowanie nie powiodło się, nazwa użytkownika i/lub hasło są nieprawidłowe.",
+      "loginNotAvailable": "Logowanie niedostępne, backend nie jest skonfigurowany."
     },
     "admin": {
       "settings": "Ustawienia administratora",

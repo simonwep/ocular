@@ -75,7 +75,7 @@ test('Localizes numbers and parse them correctly', async ({ page }) => {
   await page.goto('/income');
 
   // Test for english
-  await page.getByTestId('settings').click();
+  await page.getByTestId('navigation-settings').click();
   await page.getByTestId('change-locale').click();
   await page.getByTestId('change-locale-en').click();
   await page.keyboard.press('Escape');
@@ -85,7 +85,7 @@ test('Localizes numbers and parse them correctly', async ({ page }) => {
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('€45,000');
 
   // Test for german
-  await page.getByTestId('settings').click();
+  await page.getByTestId('navigation-settings').click();
   await page.getByTestId('change-locale').click();
   await page.getByTestId('change-locale-de').click();
   await page.keyboard.press('Escape');
@@ -95,7 +95,7 @@ test('Localizes numbers and parse them correctly', async ({ page }) => {
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('45.000 €');
 
   // Test for italian
-  await page.getByTestId('settings').click();
+  await page.getByTestId('navigation-settings').click();
   await page.getByTestId('change-locale').click();
   await page.getByTestId('change-locale-it').click();
   await page.keyboard.press('Escape');
@@ -108,7 +108,7 @@ test('Localizes numbers and parse them correctly', async ({ page }) => {
 test('Keep numbers correctly localized between languages', async ({ page }) => {
   await page.goto('/income');
 
-  await page.getByTestId('settings').click();
+  await page.getByTestId('navigation-settings').click();
   await page.getByTestId('change-locale').click();
   await page.getByTestId('change-locale-de').click();
   await page.keyboard.press('Escape');
@@ -127,7 +127,7 @@ test('Keep numbers correctly localized between languages', async ({ page }) => {
   await page.getByTestId('group-0-budget-0-0').focus();
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('31,5');
 
-  await page.getByTestId('settings').click();
+  await page.getByTestId('navigation-settings').click();
   await page.getByTestId('change-locale').click();
   await page.getByTestId('change-locale-en').click();
   await page.keyboard.press('Escape');

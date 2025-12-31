@@ -72,7 +72,8 @@
       "signIn": "Accedi",
       "username": "Username",
       "password": "Password",
-      "loginFailed": "Accesso fallito, username e/o password errati."
+      "loginFailed": "Accesso fallito, username e/o password errati.",
+      "loginNotAvailable": "Accesso non disponibile, il backend non è configurato."
     },
     "admin": {
       "settings": "Impostazioni dell'amministratore",

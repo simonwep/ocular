@@ -44,14 +44,14 @@ test('Show correct remaining balance', async ({ page }) => {
   await expect(page.getByTestId('remaining-balance-alt')).toBeHidden();
   await expect(page.getByTestId('remaining-balance-value')).toHaveText('€2,581');
 
-  await page.getByTestId('settings').click();
+  await page.getByTestId('navigation-settings').click();
   await page.getByTestId('change-month-offset').click();
   await page.getByTestId('change-month-offset-2').click();
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('remaining-balance-alt')).toBeHidden();
   await expect(page.getByTestId('remaining-balance-value')).toHaveText('€9,253');
 
-  await page.getByTestId('settings').click();
+  await page.getByTestId('navigation-settings').click();
   await page.getByTestId('change-month-offset').click();
   await page.getByTestId('change-month-offset-11').click();
   await page.keyboard.press('Escape');
@@ -62,4 +62,28 @@ test('Show correct remaining balance', async ({ page }) => {
   await expect(page.getByTestId('remaining-balance-alt')).toBeHidden();
   await expect(page.getByTestId('remaining-balance-value')).toHaveText('€41,817');
   await expect(page.getByTestId('remaining-balance-sub')).toContainText('100%');
+});
+
+test('Show reduced dashboard for mobile devices', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByTestId('navigation-toggle-theme')).toBeVisible();
+  await expect(page.getByTestId('navigation-dashboard')).toBeVisible();
+  await expect(page.getByTestId('navigation-income')).toBeVisible();
+  await expect(page.getByTestId('navigation-expenses')).toBeVisible();
+  await expect(page.getByTestId('navigation-tools-menu')).toBeVisible();
+  await expect(page.getByTestId('navigation-change-year')).toBeVisible();
+  await expect(page.getByTestId('navigation-settings')).toBeVisible();
+  await expect(page.getByTestId('navigation-info')).toBeVisible();
+  await expect(page.getByTestId('navigation-cloud')).toBeVisible();
+
+  await page.setViewportSize({ width: 430, height: 932 });
+  await expect(page.getByTestId('navigation-toggle-theme')).toBeHidden();
+  await expect(page.getByTestId('navigation-dashboard')).toBeVisible();
+  await expect(page.getByTestId('navigation-income')).toBeVisible();
+  await expect(page.getByTestId('navigation-expenses')).toBeVisible();
+  await expect(page.getByTestId('navigation-tools-menu')).toBeVisible();
+  await expect(page.getByTestId('navigation-change-year')).toBeHidden();
+  await expect(page.getByTestId('navigation-settings')).toBeHidden();
+  await expect(page.getByTestId('navigation-info')).toBeHidden();
+  await expect(page.getByTestId('navigation-cloud')).toBeVisible();
 });

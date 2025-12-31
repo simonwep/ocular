@@ -74,7 +74,6 @@ export const createSnowflakesAnimation = (config: SnowFlakesAnimationConfig) => 
     if (!lastTime) lastTime = now;
 
     const { width, height } = canvas.value;
-    const halfSize = config.snowflakesSize / 2;
     const dt = (now - lastTime) / 1000;
     lastTime = now;
 
@@ -84,7 +83,7 @@ export const createSnowflakesAnimation = (config: SnowFlakesAnimationConfig) => 
       if (!snowflake.createdAt && Math.random() > 0.9) {
         const x = Math.random() * width;
         const y = Math.random() * height;
-        const size = Math.random() * halfSize + halfSize;
+        const size = Math.max(3, Math.random() * config.snowflakesSize);
 
         // Avoid adding snowflakes that are too close to existing ones
         for (const other of snowflakes) {

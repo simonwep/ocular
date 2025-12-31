@@ -7,15 +7,15 @@ test('Load demo data', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByTestId('income-value')).toHaveText('€0');
 
-  await page.getByTestId('tools-menu').click();
+  await page.getByTestId('navigation-tools-menu').click();
   await page.getByTestId('load-demo-data').click();
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
 });
 
 test('Ask for loading demo data if there is already data', async ({ page }) => {
   await page.goto('/');
-  await page.getByTestId('change-year').click();
-  await page.getByTestId(`change-year-${new Date().getFullYear() + 1}`).click();
+  await page.getByTestId('navigation-change-year').click();
+  await page.getByTestId(`navigation-change-year-${new Date().getFullYear() + 1}`).click();
   await page.getByTestId('navigation-income').click();
   await page.getByTestId('group-0-budget-0-0').fill('100');
   await page.getByTestId('navigation-dashboard').click();
@@ -61,7 +61,7 @@ test('Copy data from one year to another', async ({ page }) => {
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
   await expect(page.getByTestId('current-year')).toHaveText(String(currentYear));
 
-  await page.getByTestId('tools-menu').click();
+  await page.getByTestId('navigation-tools-menu').click();
   await page.getByTestId('copy-paste-data').click();
   await page.getByTestId('target-year').click();
   await page.getByTestId(`target-year-${currentYear + 1}`).click();
@@ -78,7 +78,7 @@ test('Copy data from one year to another without values', async ({ page }) => {
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
   await expect(page.getByTestId('current-year')).toHaveText(String(currentYear));
 
-  await page.getByTestId('tools-menu').click();
+  await page.getByTestId('navigation-tools-menu').click();
   await page.getByTestId('copy-paste-data').click();
   await page.getByTestId('target-year').click();
   await page.getByTestId(`target-year-${currentYear + 1}`).click();
@@ -96,7 +96,7 @@ test('Copy partial data from one year to another', async ({ page }) => {
   await expect(page.getByTestId('income-value')).toHaveText('€108,600');
   await expect(page.getByTestId('current-year')).toHaveText(String(currentYear));
 
-  await page.getByTestId('tools-menu').click();
+  await page.getByTestId('navigation-tools-menu').click();
   await page.getByTestId('copy-paste-data').click();
   await page.getByTestId('target-year').click();
   await page.getByTestId(`target-year-${currentYear + 1}`).click();

@@ -72,7 +72,8 @@
       "signIn": "Přihlašte se",
       "username": "Uživatelské jméno",
       "password": "Heslo",
-      "loginFailed": "Přihlášení se nezdařilo. Uživatelské jméno a/nebo heslo je neplatné."
+      "loginFailed": "Přihlášení se nezdařilo. Uživatelské jméno a/nebo heslo je neplatné.",
+      "loginNotAvailable": "Přihlášení není dostupné, backend není nakonfigurován."
     },
     "admin": {
       "settings": "Nastavení správce",

@@ -72,7 +72,8 @@
       "signIn": "Masuk",
       "username": "Nama pengguna",
       "password": "Kata sandi",
-      "loginFailed": "Gagal masuk, nama pengguna dan/atau kata sandi tidak valid"
+      "loginFailed": "Gagal masuk, nama pengguna dan/atau kata sandi tidak valid",
+      "loginNotAvailable": "Login tidak tersedia, backend belum dikonfigurasi."
     },
     "admin": {
       "settings": "Pengaturan admin",

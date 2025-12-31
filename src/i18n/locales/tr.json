@@ -72,7 +72,8 @@
       "signIn": "Giriş",
       "username": "Kullanıcı Adı",
       "password": "Parola",
-      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz."
+      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
+      "loginNotAvailable": "Giriş kullanılamıyor, backend yapılandırılmamış."
     },
     "admin": {
       "settings": "Yönetici ayarları",

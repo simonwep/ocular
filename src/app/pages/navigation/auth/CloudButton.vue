@@ -1,5 +1,14 @@
 <template>
-  <Button :class="classes" textual :color="icon[0]" :icon="icon[1]" @click="auth" />
+  <Button
+    :class="classes"
+    testId="navigation-cloud"
+    textual
+    :disabled="!OCULAR_GENESIS_HOST"
+    :color="icon[0]"
+    :tooltip="OCULAR_GENESIS_HOST ? undefined : t('navigation.auth.loginNotAvailable')"
+    :icon="icon[1]"
+    @click="auth"
+  />
   <LoginDialog :lockDialog="!!OCULAR_GENESIS_HOST && !user" :open="showLoginDialog" @close="showLoginDialog = false" />
 </template>
 
@@ -12,6 +21,7 @@ import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils/types.ts';
 import { watchImmediate } from '@vueuse/core';
 import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import type { Component } from 'vue';
 
@@ -22,6 +32,7 @@ const props = defineProps<{
 }>();
 
 const { status, logout, user } = useStorage();
+const { t } = useI18n();
 const router = useRouter();
 
 const showLoginDialog = ref(!!OCULAR_GENESIS_HOST);
@@ -30,7 +41,7 @@ const classes = computed(() => props.class);
 
 const icon = computed((): [Color, Component] => {
   if (!OCULAR_GENESIS_HOST) {
-    return ['primary', RiCloudOffLine];
+    return ['dimmed', RiCloudOffLine];
   }
 
   switch (status.value) {

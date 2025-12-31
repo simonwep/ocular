@@ -1,15 +1,16 @@
 <template>
   <ContextMenu
+    :class="classes"
     :tooltip="t('navigation.year.change')"
     tooltipPosition="right"
     :position="media === 'mobile' ? 'top' : 'right-end'"
     :options="options"
-    testId="change-year"
+    testId="navigation-change-year"
     :highlight="state.activeYear"
     @select="changeYear($event.id as number)"
   >
     <template #default="{ toggle }">
-      <Button testId="change-year" :class="classes" :icon="RiCalendarLine" textual color="dimmed" @click="toggle" />
+      <Button testId="navigation-change-year" :icon="RiCalendarLine" textual color="dimmed" @click="toggle" />
     </template>
   </ContextMenu>
 </template>

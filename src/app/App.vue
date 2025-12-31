@@ -1,6 +1,6 @@
 <template>
   <AsyncComponent
-    v-if="media === 'normal' && reducedMotion !== 'reduce' && month === 11"
+    v-if="media === 'normal' && settings.appearance.animations && reducedMotion !== 'reduce' && month === 11"
     :class="$style.snowFlakes"
     :properties="{ testId: 'snow-flakes' }"
     hideLoader
@@ -27,7 +27,7 @@ import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
 const { status } = useStorage();
-const { state } = useSettingsStore();
+const { state: settings } = useSettingsStore();
 const { loadTemplateData } = useTemplateData();
 const { t } = useI18n();
 const { month } = useTime();
@@ -39,7 +39,7 @@ const app = useAppElement();
 const preventDefault = (event: Event) => event.preventDefault();
 
 watch(
-  () => state.appearance.theme,
+  () => settings.appearance.theme,
   (newTheme, oldTheme) => {
     app.classList.add(newTheme);
 
@@ -58,7 +58,7 @@ watch(
 );
 
 watch(
-  () => state.appearance.animations,
+  () => settings.appearance.animations,
   (enabled) => app.classList[enabled ? 'remove' : 'add']('reducedMotion'),
   { immediate: true }
 );

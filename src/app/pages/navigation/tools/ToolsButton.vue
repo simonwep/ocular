@@ -1,11 +1,12 @@
 <template>
   <ContextMenu
+    :class="classes"
     :tooltip="t('navigation.tools.tools')"
     :position="media === 'mobile' ? 'top' : 'right-end'"
     tooltipPosition="right"
   >
     <template #default="{ toggle }">
-      <Button testId="tools-menu" :class="classes" :icon="RiToolsLine" textual color="dimmed" @click="toggle" />
+      <Button testId="navigation-tools-menu" :icon="RiToolsLine" textual color="dimmed" @click="toggle" />
     </template>
 
     <template #options>

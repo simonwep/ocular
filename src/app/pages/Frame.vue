@@ -12,7 +12,7 @@
         :tooltip="button.tooltip"
         tooltipPosition="right"
         testId="navigation"
-        :class="$style.btn"
+        :class="[$style.btn, button.class]"
         :color="(currentRoute) => (currentRoute ? 'primary' : 'dimmed')"
         :icon="button.icon"
         :to="button.name"
@@ -20,18 +20,18 @@
 
       <div v-if="media !== 'mobile'" style="flex-grow: 1" />
 
-      <ToolsButton :class="$style.btn" />
-      <AdminButton v-if="user?.admin" :class="$style.btn" />
-      <ChangeYearButton :class="$style.btn" />
+      <ToolsButton :class="[$style.btn, $style.tools]" />
 
       <template v-if="media !== 'mobile'">
+        <AdminButton v-if="user?.admin" :class="$style.btn" />
+        <ChangeYearButton :class="$style.btn" />
         <SettingsButton :class="$style.btn" />
         <InfoButton :class="$style.btn" />
       </template>
 
-      <div :class="$style.divider" />
+      <div v-if="media !== 'mobile'" :class="$style.divider" />
       <UpdateAppButton v-if="media !== 'mobile'" :class="$style.btn" />
-      <CloudButton :class="$style.btn" />
+      <CloudButton :class="[$style.btn, $style.cloud]" />
     </div>
 
     <div ref="panes" :class="$style.panes">
@@ -61,26 +61,30 @@ import { useMediaQuery } from '@composables/useMediaQuery.ts';
 import { useSquircle } from '@composables/useSquircle.ts';
 import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
-import { computed, ref } from 'vue';
+import { ClassNames } from '@utils/types.ts';
+import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
 
-const menu = ref<HTMLDivElement>();
-const media = useMediaQuery();
-const frame = useSquircle(() => (['minimized', 'mobile'].includes(media.value) ? 0 : 0.035));
-const { user } = useStorage();
-const { t } = useI18n();
-
-interface FrameButton {
+type FrameButton = {
   icon: Component;
   name: string;
   tooltip: string;
-}
+  class?: ClassNames;
+};
+
+const media = useMediaQuery();
+const frame = useSquircle(() => (['minimized', 'mobile'].includes(media.value) ? 0 : 0.035));
+const styles = useCssModule();
+const { user } = useStorage();
+const { t } = useI18n();
+
+const menu = ref<HTMLDivElement>();
 
 const buttons = computed((): FrameButton[] => [
-  { icon: RiDonutChartLine, name: 'dashboard', tooltip: t('page.dashboard.title') },
-  { icon: RiHandCoinLine, name: 'income', tooltip: t('page.income.title') },
-  { icon: RiShoppingBagLine, name: 'expenses', tooltip: t('page.expenses.title') }
+  { icon: RiDonutChartLine, name: 'dashboard', tooltip: t('page.dashboard.title'), class: styles.dashboard },
+  { icon: RiHandCoinLine, name: 'income', tooltip: t('page.income.title'), class: styles.income },
+  { icon: RiShoppingBagLine, name: 'expenses', tooltip: t('page.expenses.title'), class: styles.expenses }
 ]);
 </script>
 
@@ -152,12 +156,30 @@ const buttons = computed((): FrameButton[] => [
     align-items: center;
     margin-top: 0;
     justify-content: space-evenly;
-    flex-direction: row-reverse;
+    flex-direction: row;
     height: auto;
     padding: 14px 4px;
 
-    .divider {
-      display: none;
+    .btn {
+      &.cloud {
+        order: 1;
+      }
+
+      &.income {
+        order: 2;
+      }
+
+      &.dashboard {
+        order: 3;
+      }
+
+      &.expenses {
+        order: 4;
+      }
+
+      &.tools {
+        order: 5;
+      }
     }
   }
 }

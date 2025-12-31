@@ -72,7 +72,8 @@
       "signIn": "Iniciar sesión",
       "username": "Usuario",
       "password": "Contraseña",
-      "loginFailed": "Error al iniciar sesión, usuario y/o contraseña inválidos."
+      "loginFailed": "Error al iniciar sesión, usuario y/o contraseña inválidos.",
+      "loginNotAvailable": "Inicio de sesión no disponible, el backend no está configurado."
     },
     "admin": {
       "settings": "Configuraciones de administrador",

@@ -72,7 +72,8 @@
       "signIn": "Anmelden",
       "username": "Benutzername",
       "password": "Passwort",
-      "loginFailed": "Anmeldung fehlgeschlagen, Benutzername und/oder Passwort ungültig."
+      "loginFailed": "Anmeldung fehlgeschlagen, Benutzername und/oder Passwort ungültig.",
+      "loginNotAvailable": "Login nicht verfügbar, Backend nicht konfiguriert."
     },
     "admin": {
       "settings": "Admin-Einstellungen",

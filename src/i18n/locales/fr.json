@@ -72,7 +72,8 @@
       "signIn": "Se connecter",
       "username": "Nom d'utilisateur",
       "password": "Mot de passe",
-      "loginFailed": "Échec de la connexion, nom d'utilisateur et/ou mot de passe invalide."
+      "loginFailed": "Échec de la connexion, nom d'utilisateur et/ou mot de passe invalide.",
+      "loginNotAvailable": "Connexion non disponible, le backend n'est pas configuré."
     },
     "admin": {
       "settings": "Paramètres administrateur",

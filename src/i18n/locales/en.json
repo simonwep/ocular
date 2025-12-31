@@ -72,7 +72,8 @@
       "signIn": "Sign in",
       "username": "Username",
       "password": "Password",
-      "loginFailed": "Login failed, username and/or password invalid."
+      "loginFailed": "Login failed, username and/or password invalid.",
+      "loginNotAvailable": "Login not available, backend not configured."
     },
     "admin": {
       "settings": "Admin settings",

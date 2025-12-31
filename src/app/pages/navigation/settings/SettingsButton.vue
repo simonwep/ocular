@@ -4,7 +4,7 @@
     :class="classes"
     textual
     color="dimmed"
-    testId="settings"
+    testId="navigation-settings"
     :icon="month === 11 ? RiSnowflakeLine : RiSettings4Line"
     @click="showSettingsDialog = true"
   />
