@@ -7,6 +7,7 @@ outline: deep
 > [!TIP]
 > This deployment as well as v2 are still fairly new ✨
 > If you have any questions or something's missing, feel free to [open an issue](https://github.com/simonwep/ocular/issues).
+> For deploying Ocular [Docker](https://docs.docker.com/engine/install/) is required.
 
 ## Migrating from v1 to v2
 
@@ -39,8 +40,6 @@ You can now log in with the specified user.
 
 All data is saved under `./data`, make sure to backup this folder regularly, as it contains all your budgeting data.
 Who knows what can happen to your container or server ;)
-
-## Compose
 
 You can also use docker compose to deploy ocular, here is a minimal example `docker-compose.yml`:
 

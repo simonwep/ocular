@@ -104,14 +104,14 @@ const sourceGroups = computed(() => ({
 }));
 
 const years = computed(() => {
-  const nextYear = time.year.value + 1;
-  const list = state.years.map(({ year }): ContextMenuOption => ({ label: String(year), id: String(year) }));
+  const start = Math.min(...state.years.map((v) => v.year));
+  const options: ContextMenuOption[] = [];
 
-  if (!list.some((y) => y.id === String(nextYear))) {
-    list.push({ label: String(nextYear), id: String(nextYear) });
+  for (let i = start; i <= time.year.value + 1; i++) {
+    options.push({ label: String(i), id: String(i) });
   }
 
-  return list;
+  return options;
 });
 
 const submit = () => {
