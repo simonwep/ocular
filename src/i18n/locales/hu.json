@@ -72,7 +72,8 @@
       "signIn": "Bejelentkezés",
       "username": "Felhasználónév",
       "password": "Jelszó",
-      "loginFailed": "A bejelentkezés sikertelen, a felhasználónév és/vagy a jelszó helytelen."
+      "loginFailed": "A bejelentkezés sikertelen, a felhasználónév és/vagy a jelszó helytelen.",
+      "loginNotAvailable": "A bejelentkezés jelenleg nem elérhető."
     },
     "admin": {
       "settings": "Admin beállítások",
