@@ -36,7 +36,7 @@
         />
         <span :class="$style.divider" />
         <Button
-          v-if="media !== 'mobile'"
+          v-if="appSize !== 'mobile'"
           textual
           testId="view-all-time"
           size="l"
@@ -59,7 +59,7 @@ import Button from '@components/base/button/Button.vue';
 import Pane from '@components/feature/pane/Pane.vue';
 import YearToggle from '@components/feature/year-toggle/YearToggle.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
@@ -70,7 +70,7 @@ import type { Component } from 'vue';
 const { t } = useI18n();
 const { state } = useDataStore();
 const { state: settings } = useSettingsStore();
-const media = useMediaQuery();
+const appSize = useAppSize();
 
 const view = shallowRef<Component>(Overview);
 </script>

@@ -1,5 +1,5 @@
 import styles from './vTooltip.module.scss';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { createPopper, Instance, Placement } from '@popperjs/core';
 import { Directive, Ref, ref, unref } from 'vue';
 
@@ -22,7 +22,7 @@ const resolveConfig = (value: undefined | string | TooltipConfig): TooltipConfig
 export const vTooltip: Directive<HTMLElement, undefined | string | TooltipConfig> = {
   mounted: (el, { modifiers, value }) => {
     const { text, position } = resolveConfig(value);
-    const media = useMediaQuery(); // doesn't need to be in a scope
+    const media = useAppSize(); // doesn't need to be in a scope
 
     const element = document.createElement('span');
     const popper = ref<Instance | undefined>(undefined);

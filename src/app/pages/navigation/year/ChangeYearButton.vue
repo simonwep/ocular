@@ -3,7 +3,7 @@
     :class="classes"
     :tooltip="t('navigation.year.change')"
     tooltipPosition="right"
-    :position="media === 'mobile' ? 'top' : 'right-end'"
+    :position="appSize === 'mobile' ? 'top' : 'right-end'"
     :options="options"
     testId="navigation-change-year"
     :highlight="state.activeYear"
@@ -19,7 +19,7 @@
 import Button from '@components/base/button/Button.vue';
 import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.types';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useTime } from '@composables/useTime.ts';
 import { RiCalendarCheckLine, RiCalendarLine, RiCalendarTodoLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
@@ -35,7 +35,7 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const { changeYear, state } = useDataStore();
-const media = useMediaQuery();
+const appSize = useAppSize();
 const time = useTime();
 
 const classes = computed(() => props.class);

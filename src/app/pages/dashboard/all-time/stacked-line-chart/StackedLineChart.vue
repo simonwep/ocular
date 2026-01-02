@@ -1,11 +1,11 @@
 <template>
-  <EChart :key="media" :class="[$style.stackedLineChart, classes]" :options="options" />
+  <EChart :key="appSize" :class="[$style.stackedLineChart, classes]" :options="options" />
 </template>
 
 <script lang="ts" setup>
 import { StackedLineChartConfig } from './StackedLineChart.types';
 import EChart from '@components/charts/echart/EChart.vue';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { rollingAverage } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
 import { LineChart, LineSeriesOption } from 'echarts/charts';
@@ -23,7 +23,7 @@ import { computed } from 'vue';
 
 echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent, TooltipComponent]);
 
-const media = useMediaQuery();
+const appSize = useAppSize();
 
 type EChartsOption = echarts.ComposeOption<
   LineSeriesOption | TooltipComponentOption | GridComponentOption | LegendComponentOption
@@ -44,7 +44,7 @@ const options = computed(
       textStyle: { color: 'var(--chart-label)' },
       lineStyle: { width: 2, cap: 'round' },
       itemStyle: { opacity: 0 },
-      ...(media.value === 'mobile' && {
+      ...(appSize.value === 'mobile' && {
         top: 0,
         left: 0,
         right: 0,

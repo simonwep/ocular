@@ -2,7 +2,7 @@
   <ContextMenu
     :class="classes"
     :tooltip="t('navigation.tools.tools')"
-    :position="media === 'mobile' ? 'top' : 'right-end'"
+    :position="appSize === 'mobile' ? 'top' : 'right-end'"
     tooltipPosition="right"
   >
     <template #default="{ toggle }">
@@ -31,7 +31,7 @@ import LoadDemoDataButton from './load-demo-data/LoadDemoDataButton.vue';
 import PrivacyModeButton from './privacy-mode/PrivacyModeButton.vue';
 import Button from '@components/base/button/Button.vue';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { RiToolsLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils/types.ts';
@@ -44,7 +44,7 @@ const props = defineProps<{
 
 const { status, user } = useStorage();
 const { t } = useI18n();
-const media = useMediaQuery();
+const appSize = useAppSize();
 
 const classes = computed(() => props.class);
 </script>

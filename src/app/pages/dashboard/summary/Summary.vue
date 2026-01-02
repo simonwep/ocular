@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.summary">
     <AsyncComponent
-      :show="media !== 'mobile'"
+      :show="appSize !== 'mobile'"
       :class="$style.chart"
       :import="() => import('./widgets/charts/DevelopmentChart.vue')"
     />
@@ -16,7 +16,7 @@
 import GroupsSummaryTable from './widgets/tables/GroupsSummaryTable.vue';
 import TotalsSummaryTable from './widgets/tables/TotalsSummaryTable.vue';
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { computed } from 'vue';
@@ -24,7 +24,7 @@ import { useI18n } from 'vue-i18n';
 
 const { state } = useDataStore();
 const { t } = useI18n();
-const media = useMediaQuery();
+const appSize = useAppSize();
 
 const income = computed(() => totals(state.income));
 const expenses = computed(() => totals(state.expenses));

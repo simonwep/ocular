@@ -32,11 +32,11 @@
 import SummaryPanelChart from './SummaryPanelChart.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import Link from '@components/base/link/Link.vue';
-import { useSquircle } from '@composables/useSquircle.ts';
+import { useSquircle } from '@composables/squircle/useSquircle.ts';
 import { Color, useThemeStyles } from '@composables/useThemeStyles.ts';
 import { RiCalendar2Line } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
-import { computed } from 'vue';
+import { computed, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -53,8 +53,11 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 const theme = useThemeStyles(() => props.color);
-const wrapper = useSquircle(0.25);
-const container = useSquircle(0.25);
+const wrapper = useTemplateRef('wrapper');
+const container = useTemplateRef('container');
+
+useSquircle(wrapper, 0.25);
+useSquircle(container, 0.25);
 
 const element = computed(() => (props.to ? Link : 'div'));
 </script>

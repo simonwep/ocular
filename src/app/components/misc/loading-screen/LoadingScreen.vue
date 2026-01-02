@@ -1,6 +1,7 @@
 <template>
   <div v-if="component && !loading" :class="[$style.wrapper, classes]">
     <component :is="component" />
+    <slot />
   </div>
   <div v-else :class="$style.placeholder">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">

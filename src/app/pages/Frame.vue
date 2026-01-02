@@ -1,7 +1,7 @@
 <template>
   <div ref="frame" :class="$style.frame">
     <div ref="menu" :class="$style.buttons">
-      <template v-if="media !== 'mobile'">
+      <template v-if="appSize !== 'mobile'">
         <ThemeButton :class="$style.btn" />
         <div :class="$style.divider" />
       </template>
@@ -18,19 +18,19 @@
         :to="button.name"
       />
 
-      <div v-if="media !== 'mobile'" style="flex-grow: 1" />
+      <div v-if="appSize !== 'mobile'" style="flex-grow: 1" />
 
       <ToolsButton :class="[$style.btn, $style.tools]" />
 
-      <template v-if="media !== 'mobile'">
+      <template v-if="appSize !== 'mobile'">
         <AdminButton v-if="user?.admin" :class="$style.btn" />
         <ChangeYearButton :class="$style.btn" />
         <SettingsButton :class="$style.btn" />
         <InfoButton :class="$style.btn" />
       </template>
 
-      <div v-if="media !== 'mobile'" :class="$style.divider" />
-      <UpdateAppButton v-if="media !== 'mobile'" :class="$style.btn" />
+      <div v-if="appSize !== 'mobile'" :class="$style.divider" />
+      <UpdateAppButton v-if="appSize !== 'mobile'" :class="$style.btn" />
       <CloudButton :class="[$style.btn, $style.cloud]" />
     </div>
 
@@ -57,12 +57,12 @@ import ChangeYearButton from '@app/pages/navigation/year/ChangeYearButton.vue';
 import Link from '@components/base/link/Link.vue';
 import StatusBar from '@components/feature/status-bar/StatusBar.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
-import { useSquircle } from '@composables/useSquircle.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
+import { useSquircle } from '@composables/squircle/useSquircle.ts';
 import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils/types.ts';
-import { computed, ref, useCssModule } from 'vue';
+import { computed, ref, useCssModule, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
 
@@ -73,11 +73,13 @@ type FrameButton = {
   class?: ClassNames;
 };
 
-const media = useMediaQuery();
-const frame = useSquircle(() => (['minimized', 'mobile'].includes(media.value) ? 0 : 0.035));
+const appSize = useAppSize();
+const frame = useTemplateRef('frame');
 const styles = useCssModule();
 const { user } = useStorage();
 const { t } = useI18n();
+
+useSquircle(frame, () => (['minimized', 'mobile'].includes(appSize.value) ? 0 : 0.035));
 
 const menu = ref<HTMLDivElement>();
 

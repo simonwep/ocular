@@ -5,7 +5,7 @@
     textual
     color="dimmed"
     testId="navigation-settings"
-    :icon="[0, 11].includes(month) ? RiSnowflakeLine : RiSettings4Line"
+    :icon="showWinterFeatures ? RiSnowflakeLine : RiSettings4Line"
     @click="showSettingsDialog = true"
   />
   <SettingsDialog :open="showSettingsDialog" @close="showSettingsDialog = false" />
@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 import SettingsDialog from '@app/pages/navigation/settings/SettingsDialog.vue';
 import Button from '@components/base/button/Button.vue';
-import { useTime } from '@composables/useTime.ts';
+import { useShowWinterFeatures } from '@composables/winter-features/useShowWinterFeatures.ts';
 import { RiSettings4Line, RiSnowflakeLine } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
 import { computed, ref } from 'vue';
@@ -25,7 +25,7 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const { month } = useTime();
+const showWinterFeatures = useShowWinterFeatures();
 const showSettingsDialog = ref(false);
 
 const classes = computed(() => props.class);

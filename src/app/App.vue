@@ -1,6 +1,12 @@
 <template>
   <AsyncComponent
-    v-if="media === 'normal' && settings.appearance.animations && reducedMotion !== 'reduce' && [0, 11].includes(month)"
+    v-if="
+      !maximized &&
+      appSize === 'normal' &&
+      reducedMotion !== 'reduce' &&
+      settings.appearance.animations &&
+      showWinterFeatures
+    "
     :class="$style.snowFlakes"
     :properties="{ testId: 'snow-flakes' }"
     hideLoader
@@ -8,20 +14,27 @@
   />
 
   <div :class="$style.container">
-    <LoadingScreen ref="root" :class="$style.app" :import="() => import('./pages/Frame.vue')" />
+    <LoadingScreen
+      ref="root"
+      :class="[$style.app, { [$style.maximized]: maximized && appSize === 'normal' }]"
+      :import="() => import('./pages/Frame.vue')"
+    >
+      <MaximizeButton v-if="appSize === 'normal'" v-model="maximized" :class="$style.expandButton" />
+    </LoadingScreen>
   </div>
 </template>
 
 <script lang="ts" setup>
+import MaximizeButton from '@components/feature/maximize-button/MaximizeButton.vue';
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useAppElement } from '@composables/useAppElement.ts';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
-import { useTime } from '@composables/useTime.ts';
+import { useShowWinterFeatures } from '@composables/winter-features/useShowWinterFeatures.ts';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
 import { useTemplateData } from '@store/state/template/useTemplateData.ts';
-import { usePreferredReducedMotion } from '@vueuse/core';
+import { useLocalStorage, usePreferredReducedMotion } from '@vueuse/core';
 import { nextTick, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
@@ -30,10 +43,11 @@ const { status } = useStorage();
 const { state: settings } = useSettingsStore();
 const { loadTemplateData } = useTemplateData();
 const { t } = useI18n();
-const { month } = useTime();
+const showWinterFeatures = useShowWinterFeatures();
 const router = useRouter();
 const reducedMotion = usePreferredReducedMotion();
-const media = useMediaQuery();
+const maximized = useLocalStorage('app/maximized', false);
+const appSize = useAppSize();
 const app = useAppElement();
 
 const preventDefault = (event: Event) => event.preventDefault();
@@ -100,17 +114,38 @@ onMounted(() => {
 }
 
 .app {
+  position: relative;
   display: flex;
   flex-grow: 1;
   width: 100%;
   height: 100%;
-  max-width: globals.$appMaxWidth;
-  max-height: globals.$appMaxHeight;
+  max-width: var(--app-max-width);
+  max-height: var(--app-max-height);
+
+  &.maximized {
+    max-width: calc(100% - 20px);
+    max-height: calc(100% - 20px);
+
+    .expandButton {
+      transform: rotateY(-180deg) rotateX(180deg);
+    }
+  }
+
+  &:not(.maximized) .expandButton:hover {
+    transform: translate(2px, -2px) scale(1.1);
+  }
 
   @include globals.onAppMinSizeReached {
     max-width: 100%;
     max-height: 100%;
   }
+}
+
+.expandButton {
+  position: absolute;
+  z-index: 1;
+  top: -4px;
+  right: -4px;
 }
 
 .snowFlakes {

@@ -3,7 +3,7 @@
     <SummaryPanels @hovered-panel="highlight = $event" />
     <AsyncComponent
       :properties="{ highlight }"
-      :show="media !== 'mobile'"
+      :show="appSize !== 'mobile'"
       :class="$style.chart"
       :import="() => import('./widgets/charts/DistributionCharts.vue')"
     />
@@ -13,10 +13,10 @@
 <script lang="ts" setup>
 import SummaryPanels from './widgets/header-panels/SummaryPanels.vue';
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
-import { useMediaQuery } from '@composables/useMediaQuery.ts';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { ref } from 'vue';
 
-const media = useMediaQuery();
+const appSize = useAppSize();
 const highlight = ref<string>();
 </script>
 
