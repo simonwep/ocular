@@ -1,6 +1,6 @@
 <template>
   <AsyncComponent
-    v-if="media === 'normal' && settings.appearance.animations && reducedMotion !== 'reduce' && month === 11"
+    v-if="media === 'normal' && settings.appearance.animations && reducedMotion !== 'reduce' && [0, 11].includes(month)"
     :class="$style.snowFlakes"
     :properties="{ testId: 'snow-flakes' }"
     hideLoader

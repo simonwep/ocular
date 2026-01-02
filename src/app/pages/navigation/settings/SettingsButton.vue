@@ -5,7 +5,7 @@
     textual
     color="dimmed"
     testId="navigation-settings"
-    :icon="month === 11 ? RiSnowflakeLine : RiSettings4Line"
+    :icon="[0, 11].includes(month) ? RiSnowflakeLine : RiSettings4Line"
     @click="showSettingsDialog = true"
   />
   <SettingsDialog :open="showSettingsDialog" @close="showSettingsDialog = false" />
