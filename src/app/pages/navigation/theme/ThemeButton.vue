@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { useAppElement } from '@composables/useAppElement.ts';
+import { useAppElement } from '@composables/app-element/useAppElement.ts';
 import { RiMoonFill, RiSunFill } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { ClassNames } from '@utils/types.ts';

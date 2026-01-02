@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useResizeObserver } from '@composables/useResizeObserver.ts';
+import { useResizeObserver } from '@composables/resize-observer/useResizeObserver.ts';
 import { getCssVariables } from '@utils/cssVariables.ts';
 import { downloadBlob } from '@utils/downloadFile.ts';
 import { svgToPNG } from '@utils/svgToPNG.ts';

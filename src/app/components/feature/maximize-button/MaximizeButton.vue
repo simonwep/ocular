@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
-import { useSquircleCorner } from '@composables/squircle/useSquircle.ts';
+import { useSquircleCorner } from '@composables/squircle/useSquircleCorner.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed } from 'vue';
 

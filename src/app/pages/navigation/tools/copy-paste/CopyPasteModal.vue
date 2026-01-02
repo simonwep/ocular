@@ -58,7 +58,7 @@ import Dialog from '@components/base/dialog/Dialog.vue';
 import Form from '@components/base/form/Form.vue';
 import MultiSelect from '@components/base/multi-select/MultiSelect.vue';
 import Select from '@components/base/select/Select.vue';
-import { useTime } from '@composables/useTime.ts';
+import { useTime } from '@composables/time/useTime.ts';
 import { useDataStore } from '@store/state';
 import { generateBudgetYear } from '@store/state/utils/generators.ts';
 import { computed, shallowReactive, watch } from 'vue';

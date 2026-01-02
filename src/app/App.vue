@@ -28,8 +28,8 @@
 import MaximizeButton from '@components/feature/maximize-button/MaximizeButton.vue';
 import AsyncComponent from '@components/misc/async-component/AsyncComponent.vue';
 import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
+import { useAppElement } from '@composables/app-element/useAppElement.ts';
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
-import { useAppElement } from '@composables/useAppElement.ts';
 import { useShowWinterFeatures } from '@composables/winter-features/useShowWinterFeatures.ts';
 import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';

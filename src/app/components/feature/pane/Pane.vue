@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import Currency from '@components/base/currency/Currency.vue';
-import { useScrollShadow } from '@composables/useScrollShadow.ts';
+import { useScrollShadow } from '@composables/scroll-shadow/useScrollShadow.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed, ref } from 'vue';
 

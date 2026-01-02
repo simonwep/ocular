@@ -7,7 +7,7 @@
 import { LineChartConfig } from '@components/charts/line-chart/LineChart.types';
 import LineChart from '@components/charts/line-chart/LineChart.vue';
 import ChartPlaceholder from '@components/feature/chart-placeholder/ChartPlaceholder.vue';
-import { useMonthNames } from '@composables/useMonthNames.ts';
+import { useMonthNames } from '@composables/time/useMonthNames.ts';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';

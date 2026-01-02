@@ -1,4 +1,4 @@
-import { useTime } from '@composables/useTime.ts';
+import { useTime } from '@composables/time/useTime.ts';
 import { computed } from 'vue';
 
 export const useShowWinterFeatures = () => {

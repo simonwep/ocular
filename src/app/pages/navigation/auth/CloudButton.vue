@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 import LoginDialog from './LoginDialog.vue';
 import Button from '@components/base/button/Button.vue';
-import { Color } from '@composables/useThemeStyles.ts';
+import { Color } from '@composables/theme-styles/useThemeStyles.ts';
 import { RiCloudLine, RiCloudOffLine, RiRefreshLine, RiSignalWifiErrorLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils/types.ts';

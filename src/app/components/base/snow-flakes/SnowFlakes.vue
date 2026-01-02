@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { createSnowflakesAnimation, useSvgImageElement } from '@components/base/snow-flakes/SnowFlakes.utils.ts';
-import { useCssVarValue } from '@composables/useCssVarValue.ts';
+import { useCssVarValue } from '@composables/css-var-value/useCssVarValue.ts';
 import { ClassNames } from '@utils/types.ts';
 import { useElementSize } from '@vueuse/core';
 import { computed, onMounted, onUnmounted, useTemplateRef, watch } from 'vue';

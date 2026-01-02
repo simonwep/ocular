@@ -49,7 +49,7 @@ import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.typ
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Select from '@components/base/select/Select.vue';
 import { useAvailableCurrencyCodes } from '@composables/available-currency-codes/useAvailableCurrencyCodes.ts';
-import { useMonthNames } from '@composables/useMonthNames.ts';
+import { useMonthNames } from '@composables/time/useMonthNames.ts';
 import { AvailableLocale, availableLocales, initialLocale } from '@i18n/index.ts';
 import { RiCheckLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';

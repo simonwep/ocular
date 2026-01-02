@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Color, useThemeStyles } from '@composables/useThemeStyles.ts';
+import { Color, useThemeStyles } from '@composables/theme-styles/useThemeStyles.ts';
 import { Placement } from '@popperjs/core';
 import { ClassNames } from '@utils/types.ts';
 import { computed, useCssModule } from 'vue';

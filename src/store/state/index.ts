@@ -1,7 +1,7 @@
 import { migrateApplicationState } from './migrator';
 import { Budget, BudgetGroup, BudgetYear, DataState, DataStates } from './types';
 import { generateBudgetYear } from './utils/generators.ts';
-import { useTime } from '@composables/useTime.ts';
+import { useTime } from '@composables/time/useTime.ts';
 import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { finalBalance } from '@store/state/utils/budgets.ts';

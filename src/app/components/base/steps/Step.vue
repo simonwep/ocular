@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import { STEPS_STORE, StepsStore } from './Steps.types';
-import { useIntristicSize } from '@composables/useIntristicSize.ts';
+import { useIntrinsicSize } from '@composables/intrinsic-size/useIntrinsicSize.ts';
 import { ClassNames } from '@utils/types.ts';
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 
@@ -15,7 +15,7 @@ const props = defineProps<{
 }>();
 
 const root = ref<HTMLDivElement>();
-const intrinsicSize = useIntristicSize(root);
+const intrinsicSize = useIntrinsicSize(root);
 const { register, unregister } = inject<StepsStore>(STEPS_STORE)!;
 
 onMounted(() => register(intrinsicSize));

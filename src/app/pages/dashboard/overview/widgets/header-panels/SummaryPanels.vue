@@ -63,8 +63,8 @@
 
 <script lang="ts" setup>
 import SummaryPanel from './SummaryPanel.vue';
-import { useMonthNames } from '@composables/useMonthNames.ts';
-import { useTime } from '@composables/useTime.ts';
+import { useMonthNames } from '@composables/time/useMonthNames.ts';
+import { useTime } from '@composables/time/useTime.ts';
 import { RiAddCircleFill, RiIndeterminateCircleFill } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
