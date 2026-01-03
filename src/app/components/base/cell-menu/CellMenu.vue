@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { CellMenuAction, CellMenuActionId } from '@components/base/cell-menu/CellMenu.types';
 import { createPopper, Instance } from '@popperjs/core';
-import { ref, watch } from 'vue';
+import { ref, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{
   (e: 'action', name: CellMenuActionId): void;
@@ -26,8 +26,8 @@ defineProps<{
   actions: CellMenuAction[];
 }>();
 
-const reference = ref<HTMLButtonElement>();
-const popper = ref<HTMLDivElement>();
+const reference = useTemplateRef('reference');
+const popper = useTemplateRef('popper');
 const visible = ref(false);
 const focused = ref(0);
 let instance: Instance | undefined;

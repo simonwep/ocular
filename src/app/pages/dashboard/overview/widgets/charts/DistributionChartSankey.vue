@@ -13,7 +13,7 @@ import SankeyChart from '@components/charts/sankey-chart/SankeyChart.vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { sum } from '@utils/array/array.ts';
-import { uuid } from '@utils/uuid.ts';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { computed, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 

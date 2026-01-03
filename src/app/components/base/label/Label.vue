@@ -7,7 +7,7 @@
 
 <script lang="ts" setup>
 import { ClassNames } from '@utils/types.ts';
-import { uuid } from '@utils/uuid.ts';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { computed } from 'vue';
 
 const props = defineProps<{

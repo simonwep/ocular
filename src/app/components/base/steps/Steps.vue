@@ -8,7 +8,7 @@
 import { STEPS_STORE, StepsStore, StepsExposed } from './Steps.types';
 import { remove } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
-import { computed, provide, reactive, Ref, ref } from 'vue';
+import { computed, provide, reactive, Ref, ref, useTemplateRef } from 'vue';
 
 const emit = defineEmits<{
   (e: 'finish'): void;
@@ -18,7 +18,7 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const root = ref<HTMLDivElement>();
+const root = useTemplateRef('root');
 const sizes = reactive<Ref<DOMRect>[]>([]);
 const classes = computed(() => props.class);
 const screenIndex = ref(0);

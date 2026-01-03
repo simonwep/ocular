@@ -1,5 +1,5 @@
 import { generateBudget, generateBudgetGroup, generateBudgetYear } from './generators.ts';
-import { uuid } from '@utils/uuid.ts';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { it, expect } from 'vitest';
 
 it('should generate a budget', () => {

@@ -1,8 +1,8 @@
 import { arrayify } from '@utils/array/array.ts';
-import { onMounted, onUnmounted, Ref } from 'vue';
+import { onMounted, onUnmounted, TemplateRef } from 'vue';
 
 export const useOutOfElementClick = (
-  valid: Ref<HTMLElement | undefined>[] | Ref<HTMLElement | undefined>,
+  valid: TemplateRef<HTMLElement | undefined>[] | TemplateRef<HTMLElement | undefined>,
   cb: (evt: MouseEvent) => void
 ) => {
   const els = arrayify(valid);

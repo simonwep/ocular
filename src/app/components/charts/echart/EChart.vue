@@ -3,13 +3,13 @@
 </template>
 
 <script lang="ts" setup>
+import { getCssVariables } from './EChart.utils.ts';
 import { useResizeObserver } from '@composables/resize-observer/useResizeObserver.ts';
-import { getCssVariables } from '@utils/cssVariables.ts';
-import { downloadBlob } from '@utils/downloadFile.ts';
-import { svgToPNG } from '@utils/svgToPNG.ts';
+import { downloadBlob } from '@utils/download-file/downloadFile.ts';
+import { svgToPNG } from '@utils/svg-to-png/svgToPNG.ts';
 import { ClassNames } from '@utils/types.ts';
 import { EChartsType, init } from 'echarts/core';
-import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
+import { computed, onMounted, onUnmounted, shallowRef, useTemplateRef, watch } from 'vue';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const props = defineProps<{
@@ -18,7 +18,7 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
-const root = ref<HTMLDivElement>();
+const root = useTemplateRef('root');
 const rootSize = useResizeObserver(root);
 const chart = shallowRef<EChartsType>();
 

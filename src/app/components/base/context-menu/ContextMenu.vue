@@ -41,7 +41,7 @@ import {
 import { useOutOfElementClick } from '@composables/out-of-element-click/useOutOfElementClick.ts';
 import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
 import { ClassNames } from '@utils/types.ts';
-import { computed, provide, ref, useCssModule, watch } from 'vue';
+import { computed, provide, ref, useCssModule, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{
   select: [option: ContextMenuOption];
@@ -68,8 +68,8 @@ const props = withDefaults(
 );
 
 const styles = useCssModule();
-const reference = ref<HTMLButtonElement>();
-const popper = ref<HTMLDivElement>();
+const reference = useTemplateRef('reference');
+const popper = useTemplateRef('popper');
 const visible = ref(false);
 const placement = ref<'top' | 'bottom' | 'left' | 'right' | 'auto'>('auto');
 let instance: Instance | undefined;

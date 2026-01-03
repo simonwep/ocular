@@ -6,8 +6,8 @@ import { AvailableLocale, changeLocale } from '@i18n/index';
 import { Storage } from '@storage/index';
 import { finalBalance } from '@store/state/utils/budgets.ts';
 import { moveInArrays, remove, sum } from '@utils/array/array.ts';
-import { readFile } from '@utils/readFile.ts';
-import { uuid } from '@utils/uuid.ts';
+import { readFile } from '@utils/read-file/readFile.ts';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { watchImmediate } from '@vueuse/core';
 import { inject, reactive, readonly, shallowRef } from 'vue';
 

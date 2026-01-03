@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import { ContextMenuOption, ContextMenuOptionId } from '@components/base/context-menu/ContextMenu.types.ts';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
-import { uuid } from '@utils/uuid.ts';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 
 const modelValue = defineModel<ContextMenuOptionId>();

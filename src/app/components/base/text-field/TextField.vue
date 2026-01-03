@@ -36,8 +36,8 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
-import { uuid } from '@utils/uuid.ts';
-import { computed, ref } from 'vue';
+import { uuid } from '@utils/uuid/uuid.ts';
+import { computed, ref, useTemplateRef } from 'vue';
 
 const modelValue = defineModel<string>();
 
@@ -59,7 +59,7 @@ withDefaults(
 );
 
 const showPassword = ref(false);
-const input = ref<HTMLInputElement>();
+const input = useTemplateRef('input');
 const error = ref('');
 const inputId = uuid();
 

@@ -1,5 +1,5 @@
 import { Budget, BudgetGroup, BudgetYear } from '../types';
-import { uuid } from '@utils/uuid.ts';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { DeepReadonly } from 'vue';
 
 export const generateBudget = (name: string, values = new Array(12).fill(0)): Budget => ({

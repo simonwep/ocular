@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, useCssModule } from 'vue';
+import { computed, nextTick, ref, useCssModule, useTemplateRef } from 'vue';
 
 const modelValue = defineModel<string>();
 
@@ -29,7 +29,7 @@ const props = withDefaults(
   }
 );
 
-const input = ref<HTMLInputElement>();
+const input = useTemplateRef('input');
 const styles = useCssModule();
 const focused = ref(false);
 

@@ -22,7 +22,7 @@
 import Currency from '@components/base/currency/Currency.vue';
 import { useScrollShadow } from '@composables/scroll-shadow/useScrollShadow.ts';
 import { ClassNames } from '@utils/types.ts';
-import { computed, ref } from 'vue';
+import { computed, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
@@ -31,9 +31,10 @@ const props = defineProps<{
   testId?: string;
 }>();
 
-const header = ref<HTMLDivElement>();
-const content = ref<HTMLDivElement>();
+const header = useTemplateRef('header');
+const content = useTemplateRef('content');
 const classes = computed(() => props.class);
+
 useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
 </script>
 

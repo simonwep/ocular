@@ -5,7 +5,7 @@ import { vTooltip } from '@directives/v-tooltip/vTooltip';
 import { createStorage, STORAGE_KEY } from '@storage/index';
 import { createSettingsStore, SETTINGS_STORE_KEY } from '@store/settings';
 import { createDataStore, DATA_STORE_KEY } from '@store/state';
-import { createLogger } from '@utils/logger.ts';
+import { createLogger } from '@utils/logger/logger.ts';
 import { registerSW } from 'virtual:pwa-register';
 import { createApp } from 'vue';
 import './styles/index.scss';
@@ -25,10 +25,14 @@ app.mount('#app');
 
 // Print info and register service worker
 const logger = createLogger('app');
-const date = new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleDateString();
-const time = new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleTimeString();
 
-logger.info(`Ocular build on the ${date} at around ${time}`);
+logger.info(`Ocular build on the ${new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleString()}`);
+
+if (!import.meta.env.OCULAR_GENESIS_HOST) {
+  logger.info('No backend configured, running in offline mode');
+}
+
+logger.info("Like what you're seeing? Consider giving it a star on https://github.com/simonwep/ocular!");
 
 registerSW({
   onOfflineReady: () => logger.success('App available offline'),

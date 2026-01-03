@@ -62,7 +62,7 @@ import { useSquircle } from '@composables/squircle/useSquircle.ts';
 import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils/types.ts';
-import { computed, ref, useCssModule, useTemplateRef } from 'vue';
+import { computed, useCssModule, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
 
@@ -81,7 +81,7 @@ const { t } = useI18n();
 
 useSquircle(frame, () => (['minimized', 'mobile'].includes(appSize.value) ? 0 : 0.035));
 
-const menu = ref<HTMLDivElement>();
+const menu = useTemplateRef('menu');
 
 const buttons = computed((): FrameButton[] => [
   { icon: RiDonutChartLine, name: 'dashboard', tooltip: t('page.dashboard.title'), class: styles.dashboard },

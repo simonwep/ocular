@@ -30,7 +30,7 @@ import { ReorderEvent } from './Draggable.types';
 import { DraggableStore, store } from './store';
 import Button from '@components/base/button/Button.vue';
 import { RiDraggable, RiSkipDownLine, RiSkipUpLine } from '@remixicon/vue';
-import { computed, ref } from 'vue';
+import { computed, ref, useTemplateRef } from 'vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
@@ -45,8 +45,8 @@ const props = defineProps<{
   id: string;
 }>();
 
-const draggable = ref<HTMLElement>();
-const element = ref<HTMLElement>();
+const draggable = useTemplateRef('draggable');
+const element = useTemplateRef('element');
 const left = ref(0);
 const top = ref(0);
 

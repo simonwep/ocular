@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { useDataStore } from '@store/state';
 import { evalMathExpression } from '@utils/eval-math-expression/evalMathExpression.ts';
-import { computed, nextTick, ref, watch } from 'vue';
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const modelValue = defineModel<number>();
@@ -31,7 +31,7 @@ const props = withDefaults(
   }
 );
 
-const input = ref<HTMLInputElement>();
+const input = useTemplateRef('input');
 const focused = ref(false);
 const innerValue = ref<string>();
 const invalid = ref(false);

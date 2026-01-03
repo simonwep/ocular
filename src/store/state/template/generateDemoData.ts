@@ -1,5 +1,5 @@
 import { DataState } from '../types';
-import { uuid } from '@utils/uuid.ts';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { useI18n } from 'vue-i18n';
 
 // Module is dynamically loaded so injected composables cannot be used here directly.

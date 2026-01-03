@@ -8,13 +8,13 @@
 import { STEPS_STORE, StepsStore } from './Steps.types';
 import { useIntrinsicSize } from '@composables/intrinsic-size/useIntrinsicSize.ts';
 import { ClassNames } from '@utils/types.ts';
-import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
+import { computed, inject, onMounted, onUnmounted, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const root = ref<HTMLDivElement>();
+const root = useTemplateRef('root');
 const intrinsicSize = useIntrinsicSize(root);
 const { register, unregister } = inject<StepsStore>(STEPS_STORE)!;
 
