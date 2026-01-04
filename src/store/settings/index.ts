@@ -1,11 +1,10 @@
 import { migrateSettingsState } from './migrator';
 import { Mode, SettingsState, Theme } from './types';
-import { Storage } from '@storage/index';
-import { inject, reactive, readonly } from 'vue';
+import { Storage, useStorage } from '@storage/index';
+import { createGlobalState } from '@vueuse/core';
+import { reactive, readonly } from 'vue';
 
-export const SETTINGS_STORE_KEY = Symbol('SettingsStore');
-
-export const createSettingsStore = (storage?: Storage) => {
+const createSettingsStore = (storage?: Storage) => {
   const state = reactive<SettingsState>(migrateSettingsState());
 
   storage?.sync<SettingsState>({
@@ -40,6 +39,4 @@ export const createSettingsStore = (storage?: Storage) => {
   };
 };
 
-type Store = ReturnType<typeof createSettingsStore>;
-
-export const useSettingsStore = (): Store => inject<Store>(SETTINGS_STORE_KEY) as Store;
+export const useSettingsStore = createGlobalState(() => createSettingsStore(useStorage()));

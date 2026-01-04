@@ -3,35 +3,18 @@ import { Budget, BudgetGroup, BudgetYear, DataState, DataStates } from './types'
 import { generateBudgetYear } from './utils/generators.ts';
 import { useTime } from '@composables/time/useTime.ts';
 import { AvailableLocale, changeLocale } from '@i18n/index';
-import { Storage } from '@storage/index';
+import { Storage, useStorage } from '@storage/index';
 import { finalBalance } from '@store/state/utils/budgets.ts';
 import { moveInArrays, remove, sum } from '@utils/array/array.ts';
 import { readFile } from '@utils/read-file/readFile.ts';
 import { uuid } from '@utils/uuid/uuid.ts';
-import { watchImmediate } from '@vueuse/core';
-import { inject, reactive, readonly, shallowRef } from 'vue';
-
-export const DATA_STORE_KEY = Symbol('DataStore');
+import { createGlobalState, watchImmediate } from '@vueuse/core';
+import { reactive, readonly, shallowRef } from 'vue';
 
 type Group = 'expenses' | 'income';
 
-interface StoredClipboardData {
-  year: number;
-  data: BudgetYear;
-}
-
-type StoreView = Omit<BudgetYear, 'year'> & {
-  clipboard: StoredClipboardData | undefined;
-  activeYear: number;
-  currency: string;
-  locale: AvailableLocale;
-  years: BudgetYear[];
-  overallBalance: number | undefined;
-};
-
 export const createDataStore = (storage?: Storage) => {
   const activeYear = shallowRef(new Date().getFullYear());
-  const clipboard = shallowRef<StoredClipboardData | undefined>();
   const state = reactive<DataState>(migrateApplicationState());
   const time = useTime();
 
@@ -61,10 +44,7 @@ export const createDataStore = (storage?: Storage) => {
   });
 
   return {
-    state: readonly<StoreView>({
-      get clipboard() {
-        return clipboard.value;
-      },
+    state: readonly({
       get activeYear() {
         return activeYear.value;
       },
@@ -245,6 +225,4 @@ export const createDataStore = (storage?: Storage) => {
   };
 };
 
-type Store = ReturnType<typeof createDataStore>;
-
-export const useDataStore = (): Store => inject<Store>(DATA_STORE_KEY) as Store;
+export const useDataStore = createGlobalState(() => createDataStore(useStorage()));
