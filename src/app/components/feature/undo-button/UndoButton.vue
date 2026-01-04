@@ -1,11 +1,12 @@
 <template>
   <button
     v-if="state.canUndo"
+    ref="button"
     v-tooltip="t('feature.undoButton.undo')"
     data-testid="undo-button"
     :class="[$style.undoButton, classes]"
     type="button"
-    @click="undoLastAction"
+    @click="undo"
   >
     <RiResetLeftLine />
   </button>
@@ -13,9 +14,11 @@
 
 <script lang="ts" setup>
 import { RiResetLeftLine } from '@remixicon/vue';
+import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { ClassNames } from '@utils/types.ts';
-import { computed } from 'vue';
+import { usePreferredReducedMotion } from '@vueuse/core';
+import { computed, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
@@ -24,8 +27,23 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const { state, undoLastAction } = useDataStore();
+const { state: settings } = useSettingsStore();
+const reducedMotion = usePreferredReducedMotion();
+const button = useTemplateRef('button');
 
 const classes = computed(() => props.class);
+
+const undo = () => {
+  if (reducedMotion.value === 'no-preference' && settings.appearance.animations) {
+    button.value?.animate([{ transform: 'none' }, { transform: 'rotate(-360deg)' }], {
+      duration: 150,
+      iterations: 1,
+      easing: 'ease-in-out'
+    });
+  }
+
+  undoLastAction();
+};
 </script>
 
 <style lang="scss" module>
