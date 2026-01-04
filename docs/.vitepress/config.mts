@@ -101,7 +101,7 @@ export default defineConfig({
         items: [
           { text: 'Quickstart', link: '/pages/quickstart' },
           { text: 'Deployment', link: '/pages/deploy' },
-          { text: 'Deployment (legacy)', link: '/pages/deploy-legacy' },
+          { text: 'Migrating from v1', link: '/pages/migrating' },
           { text: 'FAQs', link: '/pages/faq' }
         ]
       },
