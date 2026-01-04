@@ -325,6 +325,9 @@
           "refunds": "Pengembalian dana"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Batalkan tindakan terakhir"
     }
   }
 }

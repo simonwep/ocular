@@ -325,6 +325,9 @@
           "refunds": "Rimborsi"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Annulla l'ultima azione"
     }
   }
 }

@@ -325,6 +325,9 @@
           "refunds": "Refunds"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Undo last action"
     }
   }
 }

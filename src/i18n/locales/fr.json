@@ -325,6 +325,9 @@
           "refunds": "Remboursements"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Annuler la dernière action"
     }
   }
 }

@@ -6,12 +6,16 @@ export const add = (...arrays: readonly number[][]) => {
   return sum;
 };
 
-export const remove = <T>(t: T[], v: T | ((v: T) => boolean)): void => {
+export const remove = <T>(t: T[], v: T | ((v: T) => boolean)): T | undefined => {
   const index = typeof v === 'function' ? t.findIndex((tv) => (v as (v: T) => boolean)(tv)) : t.indexOf(v);
 
   if (index !== -1) {
-    t.splice(index, 1);
+    return t.splice(index, 1)[0];
   }
+};
+
+export const clear = <T>(array: T[]) => {
+  array.splice(0, array.length);
 };
 
 export const sum = (values: readonly number[]) => values.reduce((a, b) => a + b, 0);
@@ -40,9 +44,7 @@ export const rollingAverage = (values: readonly number[], windowSize: number): n
   return result;
 };
 
-interface OnlyId {
-  id: string;
-}
+type OnlyId = { id: string };
 
 const findItemInLists = <T extends OnlyId>(lists: T[][], id: string): [T[] | undefined, number] => {
   for (const list of lists) {

@@ -325,6 +325,9 @@
           "refunds": "Vrácení peněz"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Vrátit poslední akci"
     }
   }
 }

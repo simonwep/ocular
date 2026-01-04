@@ -325,6 +325,9 @@
           "refunds": "İadeler"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Son işlemi geri al"
     }
   }
 }

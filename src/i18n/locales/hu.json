@@ -325,6 +325,9 @@
           "refunds": "Visszatérítések"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Az utolsó művelet visszavonása"
     }
   }
 }

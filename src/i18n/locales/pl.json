@@ -325,6 +325,9 @@
           "refunds": "Zwroty"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Cofnij ostatnią akcję"
     }
   }
 }

@@ -174,3 +174,72 @@ test('Collapse budget groups', async ({ page }) => {
   await expect(page.getByTestId('group-1-placeholder')).toContainText(/One budget group/);
   await expect(page.getByTestId('group-2-placeholder')).toContainText(/No budget groups/);
 });
+
+test('Undo destructive actions', async ({ page }) => {
+  await page.goto('/#demo');
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('undo-button')).toBeHidden();
+  await expect(page.getByTestId('income-amount')).toHaveText('€108,600');
+
+  await page.getByTestId('toggle-allow-delete').click();
+  await page.getByTestId('group-1-delete').click();
+  await expect(page.getByTestId('group-1-name')).toBeHidden();
+  await expect(page.getByTestId('income-amount')).toHaveText('€99,000');
+
+  await page.getByTestId('group-0-delete-1').click();
+  await expect(page.getByTestId('group-0-budget-1-name')).toHaveValue('Other');
+  await expect(page.getByTestId('group-0-budget-2-name')).toBeHidden();
+  await expect(page.getByTestId('income-amount')).toHaveText('€96,000');
+
+  await page.getByTestId('undo-button').click();
+  await expect(page.getByTestId('group-0-budget-1-name')).toHaveValue('Other');
+  await expect(page.getByTestId('group-0-budget-2-name')).toHaveValue('Bonus');
+  await expect(page.getByTestId('income-amount')).toHaveText('€99,000');
+
+  await page.getByTestId('undo-button').click();
+  await expect(page.getByTestId('group-1-name')).toBeVisible();
+  await expect(page.getByTestId('income-amount')).toHaveText('€108,600');
+  await expect(page.getByTestId('undo-button')).toBeHidden();
+});
+
+test('Block undo after state is modified', async ({ page }) => {
+  await page.goto('/#demo');
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('undo-button')).toBeHidden();
+  await expect(page.getByTestId('income-amount')).toHaveText('€108,600');
+
+  await page.getByTestId('toggle-allow-delete').click();
+  await page.getByTestId('group-1-delete').click();
+  await expect(page.getByTestId('group-1-name')).toBeHidden();
+  await expect(page.getByTestId('income-amount')).toHaveText('€99,000');
+
+  await page.getByTestId('group-0-delete-1').click();
+  await expect(page.getByTestId('undo-button')).toBeVisible();
+
+  await page.getByTestId('group-0-budget-0-6').fill('1000');
+  await page.getByTestId('group-0-budget-0-6').blur();
+  await expect(page.getByTestId('undo-button')).toBeHidden();
+});
+
+test('Undo a copy-paste action', async ({ page }) => {
+  await page.goto('/#demo');
+  await expect(page.getByTestId('ending-balance-value')).toHaveText('€41,817');
+
+  await page.getByTestId('prev-year').click();
+  await expect(page.getByTestId('ending-balance-value')).toHaveText('€43,831');
+
+  await page.getByTestId('navigation-tools-menu').click();
+  await page.getByTestId('copy-paste-data').click();
+  await page.getByTestId('target-year').click();
+  await page.getByTestId(`target-year-${new Date().getFullYear() - 1}`).click();
+  await page.getByTestId('transfer-data').click();
+  await expect(page.getByTestId('transfer-data')).toBeHidden();
+  await expect(page.getByTestId('ending-balance-value')).toHaveText('€41,817');
+
+  await page.getByTestId('undo-button').click();
+  await expect(page.getByTestId('undo-button')).toBeHidden();
+  await expect(page.getByTestId('ending-balance-value')).toHaveText('€43,831');
+
+  await page.getByTestId('next-year').click();
+  await expect(page.getByTestId('ending-balance-value')).toHaveText('€41,817');
+});

@@ -325,6 +325,9 @@
           "refunds": "Rückerstattungen"
         }
       }
+    },
+    "undoButton": {
+      "undo": "Letzte Aktion rückgängig machen"
     }
   }
 }

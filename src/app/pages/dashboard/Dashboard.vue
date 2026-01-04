@@ -12,7 +12,10 @@
           }}
         </span>
       </template>
-      <YearToggle v-else keyPath="page.dashboard.budgetFor" />
+      <template v-else>
+        <UndoButton />
+        <YearToggle keyPath="page.dashboard.budgetFor" />
+      </template>
     </template>
     <template #header>
       <div :class="$style.viewButtons">
@@ -57,6 +60,7 @@ import Overview from '@app/pages/dashboard/overview/Overview.vue';
 import Summary from '@app/pages/dashboard/summary/Summary.vue';
 import Button from '@components/base/button/Button.vue';
 import Pane from '@components/feature/pane/Pane.vue';
+import UndoButton from '@components/feature/undo-button/UndoButton.vue';
 import YearToggle from '@components/feature/year-toggle/YearToggle.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
