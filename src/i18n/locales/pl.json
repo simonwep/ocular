@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Brak grup budżetowych do ukrycia. | Jedna grupa budżetowa ukryta. | {count} grup budżetowych ukrytych."
+      "budgetGroupsHidden": "Brak grup budżetowych do ukrycia. | Jedna grupa budżetowa ukryta. | {count} grup budżetowych ukrytych.",
+      "newCategory": "Nowa kategoria"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Synchronizacja nie powiodła się z powodu błędu sieci!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Dodaj grupę",
+      "newGroup": "Nowa grupa",
       "append": "Przenieś “{from}” za “{to}”",
       "average": "Średnia",
       "move": "Przenieś “{from}”",

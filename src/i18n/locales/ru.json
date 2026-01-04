@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Нет групп бюджета для скрытия. | Одна группа бюджета скрыта. | {count} групп бюджета скрыто."
+      "budgetGroupsHidden": "Нет групп бюджета для скрытия. | Одна группа бюджета скрыта. | {count} групп бюджета скрыто.",
+      "newCategory": "Новая категория"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Синхронизация не удалась из-за сетевой ошибки.",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Добавить группу",
+      "newGroup": "Новая группа",
       "append": "Переместить “{from}” после “{to}”",
       "average": "Среднее",
       "move": "Переместить “{from}”",

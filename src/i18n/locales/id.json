@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Tidak ada grup anggaran untuk disembunyikan. | Satu grup anggaran disembunyikan. | {count} grup anggaran disembunyikan."
+      "budgetGroupsHidden": "Tidak ada grup anggaran untuk disembunyikan. | Satu grup anggaran disembunyikan. | {count} grup anggaran disembunyikan.",
+      "newCategory": "Kategori baru"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Sinkronisasi gagal karena masalah jaringan!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Tambah grup",
+      "newGroup": "Grup baru",
       "append": "Pindahkan “{from}” setelah “{to}”",
       "average": "Rata-rata",
       "move": "Pindahkan “{from}”",

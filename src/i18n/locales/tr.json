@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Gizlenecek bütçe grubu yok. | Bir bütçe grubu gizlendi. | {count} bütçe grubu gizlendi."
+      "budgetGroupsHidden": "Gizlenecek bütçe grubu yok. | Bir bütçe grubu gizlendi. | {count} bütçe grubu gizlendi.",
+      "newCategory": "Yeni kategori"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Grup Ekle",
+      "newGroup": "Yeni grup",
       "append": "“{from}” ifadesini “{to}”dan sonraya taşı",
       "average": "Ortalama",
       "move": "“{from}“'dan taşı",

@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Nenhum grupo de orçamento para ocultar. | Um grupo de orçamento oculto. | {count} grupos de orçamento ocultos."
+      "budgetGroupsHidden": "Nenhum grupo de orçamento para ocultar. | Um grupo de orçamento oculto. | {count} grupos de orçamento ocultos.",
+      "newCategory": "Nova categoria"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Falha de sincronização devido a erro de rede!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Adicionar Grupo",
+      "newGroup": "Novo grupo",
       "append": "Mover \"{from}\" para depois de \"{to}\"",
       "average": "Média",
       "move": "Mover \"{from}\"",

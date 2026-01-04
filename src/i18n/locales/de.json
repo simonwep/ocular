@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Keine Budgetgruppen zum Ausblenden. | Eine Budgetgruppe ausgeblendet. | {count} Budgetgruppen ausgeblendet."
+      "budgetGroupsHidden": "Keine Budgetgruppen zum Ausblenden. | Eine Budgetgruppe ausgeblendet. | {count} Budgetgruppen ausgeblendet.",
+      "newCategory": "Neue Kategorie"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Synchronisierung fehlgeschlagen, bitte überprüfen Sie Ihre Netzwerkverbindung!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Gruppe hinzufügen",
+      "newGroup": "Neue Gruppe",
       "append": "Verschiebe „{from}“ nach „{to}“",
       "average": "Durchschnitt",
       "move": "Verschiebe „{from}“",

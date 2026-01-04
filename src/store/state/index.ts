@@ -203,22 +203,14 @@ export const createDataStore = (storage?: Storage) => {
       }
     },
 
-    addBudget: (id: string) => {
+    addBudget: (id: string, name: string) => {
       groups()
         .find((v) => v.id === id)
-        ?.budgets.push({
-          id: uuid(),
-          name: 'Category',
-          values: new Array(12).fill(0)
-        });
+        ?.budgets.push({ id: uuid(), name, values: new Array(12).fill(0) });
     },
 
-    addBudgetGroup: (target: Group) => {
-      getCurrentYear()[target].push({
-        id: uuid(),
-        name: 'New Group',
-        budgets: []
-      });
+    addBudgetGroup: (target: Group, name: string) => {
+      getCurrentYear()[target].push({ id: uuid(), name, budgets: [] });
     },
 
     moveBudget: (id: string, target: string, after?: boolean) => {

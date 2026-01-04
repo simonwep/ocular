@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "No budget groups to hide. | One budget group hidden. | {count} budget groups hidden."
+      "budgetGroupsHidden": "No budget groups to hide. | One budget group hidden. | {count} budget groups hidden.",
+      "newCategory": "New category"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Add Group",
+      "newGroup": "New group",
       "append": "Move “{from}” after “{to}”",
       "average": "Average",
       "move": "Move “{from}”",

@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Nincs elrejthető költségvetési csoport. | Egy költségvetési csoport elrejtve. | {count} költségvetési csoport elrejtve."
+      "budgetGroupsHidden": "Nincs elrejthető költségvetési csoport. | Egy költségvetési csoport elrejtve. | {count} költségvetési csoport elrejtve.",
+      "newCategory": "Új kategória"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "A szinkronizálás hálózati hiba miatt meghiúsult!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Csoport hozzáadása",
+      "newGroup": "Új csoport",
       "append": "“from” áthelyezése “to” után",
       "average": "Átlagos",
       "move": "“from” áthelyezése",

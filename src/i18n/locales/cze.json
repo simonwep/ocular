@@ -141,7 +141,8 @@
   },
   "feature": {
     "budgetGroup": {
-      "budgetGroupsHidden": "Žádné rozpočtové skupiny k skrytí. | Jedna rozpočtová skupina skryta. | {count} rozpočtových skupin skryto."
+      "budgetGroupsHidden": "Žádné rozpočtové skupiny k skrytí. | Jedna rozpočtová skupina skryta. | {count} rozpočtových skupin skryto.",
+      "newCategory": "Nová kategorie"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Synchronizace selhala kvůli síťové chybě!",
@@ -153,6 +154,7 @@
     },
     "budgetPane": {
       "addGroup": "Přidat skupinu",
+      "newGroup": "Nová skupina",
       "append": "Pohyb “{from}” po “{to}”",
       "average": "Průměrně",
       "move": "Pohyb “{from}”",
