@@ -33,9 +33,9 @@
 
 ## Screenshots
 
-<img width="1660" height="1130" alt="dashboard" src="https://github.com/user-attachments/assets/82fa321f-b81c-4fdd-8c71-8b5f0358f909" />
-<img width="1660" height="1130" alt="dashboard-tables" src="https://github.com/user-attachments/assets/0003c64a-e8fd-4830-89fe-7df6b8550600" />
-<img width="1660" height="1130" alt="dashboard-all-time" src="https://github.com/user-attachments/assets/80e1b410-96f3-4d04-b991-87d6ddfabc16" />
+<img width="1660" height="1130" alt="Dashboard" src="https://github.com/user-attachments/assets/a88477e0-4257-4718-85a1-2c5267aa4a4c" />
+<img width="1660" height="1130" alt="Dashboard Yearly Overview" src="https://github.com/user-attachments/assets/d51a5afb-cb48-45b6-a343-6f371c3f0a9f" />
+<img width="1660" height="1130" alt="All-time Overview" src="https://github.com/user-attachments/assets/163d6236-ed04-4983-9a6b-8d7e4d68ab65" />
 
 <p align="center"><i>...the rest is up for you to <a href="https://simonwep.github.io/ocular/demo">discover</a> ✨</i></p>
 

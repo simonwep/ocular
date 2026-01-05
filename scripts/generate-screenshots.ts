@@ -18,35 +18,15 @@ const url = 'http://localhost:3000/#demo';
 
 const config: Config[] = [
   {
-    name: 'dashboard'
+    name: 'Dashboard'
   },
   {
-    name: 'dashboard-christmas',
-    contextOptions: { reducedMotion: 'no-preference' },
-    beforePageLoad: async (page) => {
-      await page.clock.setFixedTime('2024-12-25');
-      await page.setViewportSize({ width: 1900, height: 1300 });
-    }
-  },
-  {
-    name: 'dashboard-light',
-    contextOptions: { colorScheme: 'light' }
-  },
-  {
-    name: 'dashboard-tables',
+    name: 'Dashboard Yearly Overview',
     beforeScreenshot: (page) => page.getByTestId('view-summary').click()
   },
   {
-    name: 'dashboard-all-time',
+    name: 'All-time Overview',
     beforeScreenshot: (page) => page.getByTestId('view-all-time').click()
-  },
-  {
-    name: 'page-income',
-    beforeScreenshot: (page) => page.getByTestId('navigation-income').click()
-  },
-  {
-    name: 'page-expenses',
-    beforeScreenshot: (page) => page.getByTestId('navigation-expenses').click()
   }
 ];
 
@@ -57,9 +37,11 @@ const browser = await chromium.launch();
 let idx = 0;
 
 const worker = async () => {
-  for (; idx < config.length; idx++) {
-    const options = config[idx];
+  for (;;) {
+    const index = idx++;
+    if (index >= config.length) return;
 
+    const options = config[index];
     const context = await browser.newContext({
       screen: screenSize,
       colorScheme: 'dark',
