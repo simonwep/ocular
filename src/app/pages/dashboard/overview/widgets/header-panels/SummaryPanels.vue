@@ -8,9 +8,9 @@
       testId="income"
       :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
-      @pointerenter="emit('hoveredPanel', 'income')"
-      @pointerleave="emit('hoveredPanel')"
-      @pointercancel="emit('hoveredPanel')"
+      :hoverable="appSize !== 'mobile'"
+      @pointer-enter="emit('hoveredPanel', 'income')"
+      @pointer-leave="emit('hoveredPanel')"
     >
       <template v-if="startingBalance" #subTitle>
         <RiAddCircleFill v-if="startingBalance > 0" size="16px" />
@@ -28,9 +28,9 @@
       :value="expenseSum"
       color="warning"
       :title="t('page.dashboard.expenses')"
-      @pointerenter="emit('hoveredPanel', 'expenses')"
-      @pointerleave="emit('hoveredPanel')"
-      @pointercancel="emit('hoveredPanel')"
+      :hoverable="appSize !== 'mobile'"
+      @pointer-enter="emit('hoveredPanel', 'expenses')"
+      @pointer-leave="emit('hoveredPanel')"
     />
 
     <SummaryPanel
@@ -63,6 +63,7 @@
 
 <script lang="ts" setup>
 import SummaryPanel from './SummaryPanel.vue';
+import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useMonthNames } from '@composables/time/useMonthNames.ts';
 import { useTime } from '@composables/time/useTime.ts';
 import { RiAddCircleFill, RiIndeterminateCircleFill } from '@remixicon/vue';
@@ -75,7 +76,7 @@ import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
-  hoveredPanel: (panel?: 'income' | 'expenses') => void;
+  (e: 'hoveredPanel', panel?: 'income' | 'expenses'): void;
 }>();
 
 const props = defineProps<{
@@ -87,6 +88,7 @@ const { state: settings } = useSettingsStore();
 const { state } = useDataStore();
 const { t, n } = useI18n();
 const time = useTime();
+const appSize = useAppSize();
 
 const animationsDone = ref(0);
 const styles = useCssModule();

@@ -14,6 +14,11 @@ import { sum } from '@utils/array/array.ts';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+const props = defineProps<{
+  highlight?: 'income' | 'expenses';
+  percentages?: boolean;
+}>();
+
 const { t, locale } = useI18n();
 const { state } = useDataStore();
 const { state: settings } = useSettingsStore();
@@ -43,13 +48,15 @@ const data = computed((): StackedLineChartConfig => {
         name: t('page.dashboard.income'),
         trendName: t('page.dashboard.incomeTrend'),
         data: allIncomes.value,
-        color: 'var(--c-success-light-dimmed)'
+        color: 'var(--c-success-light-dimmed)',
+        muted: props.highlight === 'expenses'
       },
       {
         name: t('page.dashboard.expenses'),
         trendName: t('page.dashboard.expensesTrend'),
         data: allExpenses.value,
-        color: 'var(--c-danger-light-dimmed)'
+        color: 'var(--c-danger-light-dimmed)',
+        muted: props.highlight === 'income'
       }
     ]
   };

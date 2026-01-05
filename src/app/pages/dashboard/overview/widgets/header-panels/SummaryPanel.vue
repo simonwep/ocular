@@ -5,7 +5,16 @@
     :class="[$style.wrapper, { [$style.clickable]: !!to }]"
   >
     <div ref="container" :class="$style.container">
-      <component :is="element" :to="to" :class="[$style.summaryPanel, classes]">
+      <component
+        :is="element"
+        :to="to"
+        :class="[$style.summaryPanel, classes]"
+        @pointerenter="emit('pointerEnter', $event)"
+        @pointerleave="emit('pointerLeave', $event)"
+        @pointercancel="emit('pointerLeave', $event)"
+      >
+        <RiFocus2Fill v-if="hoverable" size="14" :class="$style.clickIndicator" />
+
         <div :class="$style.header">
           <div v-if="alt" :class="$style.placeholder">
             <RiCalendar2Line :class="$style.icon" />
@@ -34,9 +43,14 @@ import Currency from '@components/base/currency/Currency.vue';
 import Link from '@components/base/link/Link.vue';
 import { useSquircle } from '@composables/squircle/useSquircle.ts';
 import { Color, useThemeStyles } from '@composables/theme-styles/useThemeStyles.ts';
-import { RiCalendar2Line } from '@remixicon/vue';
+import { RiCalendar2Line, RiFocus2Fill } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
 import { computed, useTemplateRef } from 'vue';
+
+const emit = defineEmits<{
+  (e: 'pointerEnter', evt: PointerEvent): void;
+  (e: 'pointerLeave', evt: PointerEvent): void;
+}>();
 
 const props = defineProps<{
   class?: ClassNames;
@@ -49,6 +63,7 @@ const props = defineProps<{
   values?: number[];
   value: number;
   testId?: string;
+  hoverable?: boolean;
 }>();
 
 const classes = computed(() => props.class);
@@ -93,6 +108,13 @@ const element = computed(() => (props.to ? Link : 'div'));
   height: 100%;
   position: relative;
   background: v-bind('theme.light.base');
+
+  .clickIndicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: v-bind('theme.text.accent');
+  }
 }
 
 .header {

@@ -13,20 +13,22 @@ import {
   GridComponent,
   LegendComponent,
   TooltipComponent,
+  DataZoomComponent,
   TooltipComponentOption,
   GridComponentOption,
-  LegendComponentOption
+  LegendComponentOption,
+  DataZoomComponentOption
 } from 'echarts/components';
 import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
 
-echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent, TooltipComponent]);
+echarts.use([LineChart, SVGRenderer, LegendComponent, GridComponent, TooltipComponent, DataZoomComponent]);
 
 const appSize = useAppSize();
 
 type EChartsOption = echarts.ComposeOption<
-  LineSeriesOption | TooltipComponentOption | GridComponentOption | LegendComponentOption
+  LineSeriesOption | TooltipComponentOption | GridComponentOption | LegendComponentOption | DataZoomComponentOption
 >;
 
 const props = defineProps<{
@@ -59,6 +61,12 @@ const options = computed(
       bottom: '70px',
       top: '25px'
     },
+    dataZoom: [
+      {
+        type: 'inside',
+        throttle: 50
+      }
+    ],
     tooltip: {
       trigger: 'axis',
       transitionDuration: 0,
@@ -118,7 +126,13 @@ const options = computed(
         silent: true,
         areaStyle: {
           color: s.color,
-          opacity: 0.15
+          opacity: s.muted ? 0.05 : 0.25
+        },
+        lineStyle: {
+          opacity: s.muted ? 0.5 : 1
+        },
+        itemStyle: {
+          opacity: s.muted ? 0.5 : 1
         },
         emphasis: {
           disabled: true
@@ -138,7 +152,7 @@ const options = computed(
         lineStyle: {
           width: 1,
           type: 'dashed',
-          opacity: 0.25
+          opacity: s.muted ? 0.1 : 0.25
         }
       };
 

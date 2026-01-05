@@ -1,7 +1,15 @@
 <template>
   <div :class="$style.allTime">
     <div :class="$style.cards">
-      <div v-for="card of cards" :key="card.title" :class="$style.card">
+      <div
+        v-for="card of cards"
+        :key="card.title"
+        :class="[$style.card, { [$style.hoverable]: !!card.onPointerEnter }]"
+        @pointerenter="card.onPointerEnter"
+        @pointerleave="card.onPointerLeave"
+        @pointercancel="card.onPointerLeave"
+      >
+        <RiFocus2Fill v-if="card.onPointerEnter" size="14" :class="$style.clickIndicator" />
         <h2 :title="card.title" :class="$style.title">{{ card.title }}</h2>
         <div :class="$style.content">
           <component :is="card.icon" v-if="card.icon" :class="card.iconClass" />
@@ -11,7 +19,7 @@
       </div>
     </div>
     <div :class="$style.chart">
-      <AllTimeChart />
+      <AllTimeChart :highlight="highlight" />
     </div>
   </div>
 </template>
@@ -19,27 +27,31 @@
 <script lang="ts" setup>
 import AllTimeChart from './AllTimeChart.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import { RiArrowDownDoubleLine, RiArrowUpDoubleLine } from '@remixicon/vue';
+import { RiArrowDownDoubleLine, RiArrowUpDoubleLine, RiFocus2Fill } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { sum } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
-import { computed, useCssModule } from 'vue';
+import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
 
-interface Card {
+type Card = {
   title: string;
   text?: string;
   value?: number;
   icon?: Component;
   iconClass?: ClassNames;
   testId?: string;
-}
+  onPointerEnter?: () => void;
+  onPointerLeave?: () => void;
+};
 
 const { t, locale } = useI18n();
 const { state } = useDataStore();
 const styles = useCssModule();
+
+const highlight = ref<'income' | 'expenses'>();
 
 const cards = computed((): Card[] => {
   const percent = new Intl.NumberFormat(locale.value, {
@@ -81,13 +93,17 @@ const cards = computed((): Card[] => {
       title: t('page.dashboard.allTimeIncome'),
       value: allTimeIncome,
       text: allTimeIncome ? undefined : '—',
-      testId: 'all-time-income'
+      testId: 'all-time-income',
+      onPointerEnter: () => (highlight.value = 'income'),
+      onPointerLeave: () => (highlight.value = undefined)
     },
     {
       title: t('page.dashboard.allTimeExpenses'),
       value: allTimeExpenses,
       text: allTimeExpenses ? undefined : '—',
-      testId: 'all-time-expenses'
+      testId: 'all-time-expenses',
+      onPointerEnter: () => (highlight.value = 'expenses'),
+      onPointerLeave: () => (highlight.value = undefined)
     },
     {
       title: t('page.dashboard.allTimeSavings'),
@@ -129,6 +145,7 @@ const cards = computed((): Card[] => {
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -160,6 +177,14 @@ const cards = computed((): Card[] => {
     }
   }
 
+  .clickIndicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: var(--font-size-l);
+    color: var(--theme-text-dimmed);
+  }
+
   .title {
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-xl);
@@ -173,6 +198,20 @@ const cards = computed((): Card[] => {
     font-size: var(--font-size-l);
     font-weight: var(--font-weight-xl);
     color: var(--theme-text);
+  }
+
+  &.hoverable {
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+
+    &:hover {
+      background: var(--c-primary);
+
+      .title,
+      .value {
+        color: var(--c-primary-text);
+      }
+    }
   }
 }
 

@@ -3,6 +3,7 @@ export interface StackedLineChartSeries {
   trendName: string;
   data: number[];
   color?: string;
+  muted?: boolean;
 }
 
 export interface StackedLineChartConfig {
