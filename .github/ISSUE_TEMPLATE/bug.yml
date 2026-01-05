@@ -24,8 +24,7 @@ body:
       placeholder: |
         - Browser: [e.g. Chrome, Safari]
         - OS: [e.g. Windows, macOS]
-        - Version: [e.g. 22]
-        - Ocular version: [e.g. 1.4]
+        - Ocular version: [e.g. 2.1.0]
     validations:
       required: true
 
