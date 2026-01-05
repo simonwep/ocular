@@ -17,7 +17,7 @@ import Button from '@components/base/button/Button.vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'submit'): void;
+  submit: [];
 }>();
 
 defineProps<{

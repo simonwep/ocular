@@ -35,7 +35,7 @@ import { ClassNames } from '@utils/types.ts';
 import { onMounted, onUnmounted, toRef, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'close'): void;
+  close: [];
 }>();
 
 const props = withDefaults(

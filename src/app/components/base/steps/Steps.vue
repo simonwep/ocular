@@ -11,7 +11,7 @@ import { ClassNames } from '@utils/types.ts';
 import { computed, provide, reactive, Ref, ref, useTemplateRef } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'finish'): void;
+  finish: [];
 }>();
 
 const props = defineProps<{

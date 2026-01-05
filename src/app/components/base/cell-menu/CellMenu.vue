@@ -19,7 +19,7 @@ import { createPopper, Instance } from '@popperjs/core';
 import { ref, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'action', name: CellMenuActionId): void;
+  action: [name: CellMenuActionId];
 }>();
 
 defineProps<{

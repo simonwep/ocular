@@ -37,7 +37,7 @@ import { useI18n } from 'vue-i18n';
 const { OCULAR_BUILD_SHA, OCULAR_BUILD_TIMESTAMP, OCULAR_BUILD_VERSION } = import.meta.env;
 
 const emit = defineEmits<{
-  (e: 'close'): void;
+  close: [];
 }>();
 
 defineProps<{

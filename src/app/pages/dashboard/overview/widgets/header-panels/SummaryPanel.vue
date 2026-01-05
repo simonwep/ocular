@@ -48,8 +48,8 @@ import { ClassNames } from '@utils/types.ts';
 import { computed, useTemplateRef } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'pointerEnter', evt: PointerEvent): void;
-  (e: 'pointerLeave', evt: PointerEvent): void;
+  pointerEnter: [evt: PointerEvent];
+  pointerLeave: [evt: PointerEvent];
 }>();
 
 const props = defineProps<{

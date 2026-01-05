@@ -14,7 +14,7 @@ import { computed, inject, useCssModule } from 'vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'click', evt: MouseEvent): void;
+  click: [evt: MouseEvent];
 }>();
 
 const props = withDefaults(

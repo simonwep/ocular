@@ -76,7 +76,7 @@ import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
-  (e: 'hoveredPanel', panel?: 'income' | 'expenses'): void;
+  hoveredPanel: [panel?: 'income' | 'expenses'];
 }>();
 
 const props = defineProps<{

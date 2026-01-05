@@ -34,7 +34,7 @@ import { computed, ref, useTemplateRef } from 'vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
-  (e: 'drop', data: ReorderEvent): void;
+  drop: [data: ReorderEvent];
 }>();
 
 const props = defineProps<{
