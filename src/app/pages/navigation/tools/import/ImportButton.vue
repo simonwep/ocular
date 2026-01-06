@@ -1,7 +1,7 @@
 <template>
   <ContextMenuButton :text="t('navigation.tools.import.import')" :icon="RiUploadCloud2Line" @click="visible = true" />
 
-  <Dialog ref="dialog" :open="visible" @close="visible = false">
+  <Dialog ref="dialog" :closeOnBackgroundClick="false" :open="visible" @close="visible = false">
     <Steps ref="steps" v-slot="{ previous }" @finish="close">
       <Step :class="$style.step">
         <h1 :class="$style.title">{{ t('navigation.tools.import.what.title') }}</h1>

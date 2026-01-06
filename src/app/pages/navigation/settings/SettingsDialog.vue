@@ -6,7 +6,7 @@
         testId="change-locale"
         :label="t('navigation.settings.language')"
         :options="locales"
-        @update:model-value="changeLocale($event as AvailableLocale)"
+        @update:modelValue="changeLocale($event as AvailableLocale)"
       />
 
       <Select
@@ -15,7 +15,7 @@
         :label="t('navigation.settings.currency')"
         :options="currencies"
         searchable
-        @update:model-value="changeCurrency($event)"
+        @update:modelValue="changeCurrency"
       />
 
       <Select
@@ -23,13 +23,13 @@
         testId="change-month-offset"
         :label="t('navigation.settings.firstMonthOfYear')"
         :options="months"
-        @update:model-value="setMonthOffset($event as number)"
+        @update:modelValue="setMonthOffset"
       />
 
       <CheckBox
         :label="t('navigation.settings.showAnimationsAndTransitions')"
         :modelValue="settings.appearance.animations"
-        @update:model-value="setAnimations"
+        @update:modelValue="setAnimations"
       />
 
       <CheckBox
@@ -37,7 +37,7 @@
         :subLabel="t('navigation.settings.carryOverNetSavingsInfo')"
         :modelValue="settings.general.carryOver"
         testId="carry-over-net-savings"
-        @update:model-value="setCarryOver"
+        @update:modelValue="setCarryOver"
       />
     </div>
   </Dialog>

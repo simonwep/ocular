@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.overview">
-    <SummaryPanels @hovered-panel="highlight = $event" />
+    <SummaryPanels @hoveredPanel="highlight = $event" />
     <AsyncComponent
       :properties="{ highlight }"
       :show="appSize !== 'mobile'"

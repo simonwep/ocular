@@ -48,6 +48,7 @@ export default defineConfig([
       'no-warning-comments': 'error',
       'vue/no-template-shadow': 'error',
       'vue/attribute-hyphenation': ['error', 'never'],
+      'vue/v-on-event-hyphenation': ['error', 'never'],
       'vue/multi-word-component-names': 'off',
       'vue/require-default-prop': 'off',
       'vue/no-v-html': 'off',

@@ -9,8 +9,8 @@
       :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
       :hoverable="appSize !== 'mobile'"
-      @pointer-enter="emit('hoveredPanel', 'income')"
-      @pointer-leave="emit('hoveredPanel')"
+      @pointerEnter="emit('hoveredPanel', 'income')"
+      @pointerLeave="emit('hoveredPanel')"
     >
       <template v-if="startingBalance" #subTitle>
         <RiAddCircleFill v-if="startingBalance > 0" size="16px" />
@@ -29,8 +29,8 @@
       color="warning"
       :title="t('page.dashboard.expenses')"
       :hoverable="appSize !== 'mobile'"
-      @pointer-enter="emit('hoveredPanel', 'expenses')"
-      @pointer-leave="emit('hoveredPanel')"
+      @pointerEnter="emit('hoveredPanel', 'expenses')"
+      @pointerLeave="emit('hoveredPanel')"
     />
 
     <SummaryPanel

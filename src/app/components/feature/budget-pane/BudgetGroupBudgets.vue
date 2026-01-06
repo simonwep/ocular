@@ -21,7 +21,7 @@
       <TextCell
         :testId="`${testId}-budget-${index}-name`"
         :modelValue="budget.name"
-        @update:model-value="setBudgetName(budget.id, $event)"
+        @update:modelValue="setBudgetName(budget.id, $event)"
       />
     </span>
 
@@ -55,7 +55,7 @@
           :ref="onRefCallback"
           :testId="`${testId}-budget-${index}-${month}`"
           :modelValue="budget.values[month]"
-          @update:model-value="setBudget(budget.id, month, $event)"
+          @update:modelValue="setBudget(budget.id, month, $event)"
         />
       </CellMenu>
     </span>

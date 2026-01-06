@@ -14,7 +14,7 @@
       :modelValue="group.name"
       :testId="`${testId}-name`"
       inline
-      @update:model-value="setBudgetGroupName(group.id, $event)"
+      @update:modelValue="setBudgetGroupName(group.id, $event)"
     />
     <button
       :data-testid="`${testId}-collapse`"
