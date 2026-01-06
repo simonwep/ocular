@@ -53,7 +53,14 @@
         name="budget-groups"
         @drop="reorder"
       />
-      <BudgetGroup :ref="onRefCallback" :allowDelete="allowDelete" :group="group" :testId="`group-${index}`" />
+      <BudgetGroup
+        :ref="onRefCallback"
+        :allowDelete="allowDelete"
+        :group="group"
+        :testId="`group-${index}`"
+        @visible="visibleGroups.add(group.id)"
+        @hidden="visibleGroups.delete(group.id)"
+      />
     </template>
 
     <!-- Footer -->
@@ -83,8 +90,7 @@ import { useMonthNames } from '@composables/time/useMonthNames.ts';
 import { RiAddCircleLine, RiLockLine, RiLockUnlockLine, RiSkipDownLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
-import { sum } from '@utils/array/array.ts';
-import { computed, ref } from 'vue';
+import { computed, ref, shallowReactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
 
@@ -99,12 +105,12 @@ const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGr
 const { state: settings } = useSettingsStore();
 const { t } = useI18n();
 
+const visibleGroups = shallowReactive(new Set<string>());
 const allowDelete = ref(false);
 const groups = computed(() => state[props.type]);
 
 useKeyboardNavigation(() => ({
   inputs: budgetGroups.flatMap((v) => v.currencyCells),
-  rows: sum(groups.value.map((v) => v.budgets.length)),
   cols: 12
 }));
 
@@ -182,7 +188,6 @@ const reorder = (evt: ReorderEvent) => {
   z-index: 1;
 
   &.current > span {
-    color: var(--c-text-light);
     display: inline-block;
     position: relative;
     z-index: 0;

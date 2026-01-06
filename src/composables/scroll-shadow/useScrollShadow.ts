@@ -1,26 +1,27 @@
-import { onMounted, Ref } from 'vue';
+import { useEventListener, watchImmediate } from '@vueuse/core';
+import { Ref } from 'vue';
 
 export const useScrollShadow = (
-  el: Ref<HTMLElement | undefined>,
+  element: Ref<HTMLElement | undefined>,
   trigger: Ref<HTMLElement | undefined>,
   shadow: string,
   offset = 5
 ) => {
-  onMounted(() => {
-    const element = el.value as HTMLDivElement;
+  const frame = () => {
+    if (!element.value || !trigger.value) return;
 
-    if (element) {
-      element.style.removeProperty('box-shadow');
+    if (trigger.value.scrollTop > offset) {
+      element.value.style.setProperty('box-shadow', shadow);
+    } else {
+      element.value.style.removeProperty('box-shadow');
     }
+  };
 
-    trigger.value?.addEventListener('scroll', () => {
-      if (element && trigger.value) {
-        if (trigger.value.scrollTop > offset) {
-          element.style.setProperty('box-shadow', shadow);
-        } else {
-          element.style.removeProperty('box-shadow');
-        }
-      }
-    });
+  watchImmediate(element, (el) => {
+    el?.style.removeProperty('box-shadow');
+  });
+
+  useEventListener(trigger, 'scroll', () => {
+    requestAnimationFrame(frame);
   });
 };

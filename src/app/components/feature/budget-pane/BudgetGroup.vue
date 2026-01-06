@@ -9,7 +9,7 @@
     @click="removeBudgetGroup(group.id)"
   />
 
-  <span :class="[$style.groupName, $style.top, $style.start]">
+  <span ref="budgetHeader" :class="[$style.groupName, $style.top, $style.start]">
     <TextCell
       :modelValue="group.name"
       :testId="`${testId}-name`"
@@ -41,10 +41,16 @@
 
   <template v-if="!group.collapsed">
     <!-- Budgets -->
-    <BudgetGroupBudgets ref="budgetGroupBudgets" :budgets="group.budgets" :testId="testId" :allowDelete="allowDelete" />
+    <BudgetGroupBudgets
+      ref="budgetGroupBudgets"
+      :showSkeletons="!budgetGroupBudgetsVisible"
+      :budgets="group.budgets"
+      :testId="testId"
+      :allowDelete="allowDelete"
+    />
 
     <!-- Footer -->
-    <span />
+    <span ref="budgetFooter" />
     <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id, t('feature.budgetGroup.newCategory'))" />
     <span style="grid-column: 3 / 16" />
     <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
@@ -65,8 +71,14 @@ import { RiAddCircleLine, RiCloseCircleLine, RiEyeCloseLine, RiEyeLine } from '@
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
-import { computed, DeepReadonly, useTemplateRef } from 'vue';
+import { useElementVisibility } from '@vueuse/core';
+import { computed, DeepReadonly, useTemplateRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+
+const emit = defineEmits<{
+  visible: [];
+  hidden: [];
+}>();
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
@@ -77,6 +89,13 @@ const props = defineProps<{
 const { removeBudgetGroup, toggleBudgetGroupCollapse, addBudget, setBudgetGroupName } = useDataStore();
 const { t } = useI18n();
 const budgetGroupBudgets = useTemplateRef('budgetGroupBudgets');
+const budgetHeader = useTemplateRef('budgetHeader');
+const budgetFooter = useTemplateRef('budgetFooter');
+
+const budgetHeaderVisible = useElementVisibility(budgetHeader);
+const budgetFooterVisible = useElementVisibility(budgetFooter);
+
+const budgetGroupBudgetsVisible = computed(() => budgetHeaderVisible.value || budgetFooterVisible.value);
 
 const totals = computed(() => {
   const totals: number[] = new Array(12).fill(0);
@@ -92,6 +111,8 @@ const totals = computed(() => {
 
 const totalAmount = computed(() => sum(totals.value));
 const averageAmount = computed(() => average(totals.value));
+
+watch(budgetGroupBudgetsVisible, (value) => (value ? emit('visible') : emit('hidden')));
 
 defineExpose({
   currencyCells: computed(() => (budgetGroupBudgets.value?.currencyCells ?? []) as HTMLInputElement[])

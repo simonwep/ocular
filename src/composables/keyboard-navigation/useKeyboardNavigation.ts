@@ -1,8 +1,7 @@
-import { MaybeRefOrGetter, onScopeDispose, toRef, watch } from 'vue';
+import { computed, MaybeRefOrGetter, onScopeDispose, toRef, watch } from 'vue';
 
 type UseKeyboardNavigationOptions = {
   inputs: HTMLInputElement[];
-  rows: number;
   cols: number;
 };
 
@@ -11,6 +10,20 @@ const arrowEvents = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavigationOptions>) => {
   const rOptions = toRef(options);
   const controllers = new Set<AbortController>();
+
+  const sortedInputs = computed(() =>
+    rOptions.value.inputs.toSorted((a, b) => {
+      const position = a.compareDocumentPosition(b);
+
+      if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
+        return -1;
+      } else if (position & Node.DOCUMENT_POSITION_PRECEDING) {
+        return 1;
+      }
+
+      return 0;
+    })
+  );
 
   const unbindEvents = () => {
     controllers.forEach((controller) => controller.abort());
@@ -23,9 +36,9 @@ export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavig
 
     switch (key) {
       case 'ArrowUp':
-        return currentRow > 0 ? (currentRow - 1) * cols + currentCol : (rows - 1) * cols + currentCol;
+        return currentRow > 0 ? (currentRow - 1) * cols + currentCol : currentIndex;
       case 'ArrowDown':
-        return currentRow < rows - 1 ? (currentRow + 1) * cols + currentCol : currentCol;
+        return currentRow < rows - 1 ? (currentRow + 1) * cols + currentCol : currentIndex;
       case 'ArrowLeft':
         return currentCol > 0 ? currentRow * cols + (currentCol - 1) : currentRow * cols + (cols - 1);
       case 'ArrowRight':
@@ -35,17 +48,18 @@ export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavig
     }
   };
 
-  const onKeyDown = (event: KeyboardEvent, index: number, options: UseKeyboardNavigationOptions) => {
+  const onKeyDown = (event: KeyboardEvent, index: number, cols: number, inputs: HTMLInputElement[]) => {
     if (!event.shiftKey && !event.metaKey && !event.ctrlKey) {
       return;
     }
 
-    const newIndex = resolveNextIndex(index, event.key, options.cols, options.rows);
+    const rows = Math.ceil(inputs.length / cols);
+    const newIndex = resolveNextIndex(index, event.key, cols, rows);
 
     if (newIndex !== index) {
       event.preventDefault();
-      options.inputs[index].blur();
-      options.inputs[newIndex].focus();
+      inputs[index].blur();
+      inputs[newIndex].focus();
     }
   };
 
@@ -60,23 +74,11 @@ export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavig
         'keydown',
         (event) => {
           if (!arrowEvents.includes(event.key)) return;
-
-          const sortedInputs = options.inputs.toSorted((a, b) => {
-            const position = a.compareDocumentPosition(b);
-
-            if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
-              return -1;
-            } else if (position & Node.DOCUMENT_POSITION_PRECEDING) {
-              return 1;
-            }
-
-            return 0;
-          });
-
-          const index = sortedInputs.indexOf(input);
+          const inputs = sortedInputs.value;
+          const index = inputs.indexOf(input);
 
           if (index !== -1) {
-            onKeyDown(event, index, { ...options, inputs: sortedInputs });
+            onKeyDown(event, index, options.cols, inputs);
           }
         },
         { signal: controller.signal }

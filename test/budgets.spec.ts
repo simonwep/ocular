@@ -142,7 +142,6 @@ test('Keep numbers correctly localized between languages', async ({ page }) => {
 test('Navigate budgets using the keyboard', async ({ page }) => {
   await page.goto('/#demo');
   await page.getByTestId('navigation-income').click();
-
   await page.getByTestId('group-0-budget-1-0').focus();
   await page.keyboard.down('Shift');
   await page.keyboard.press('ArrowRight');
@@ -154,6 +153,16 @@ test('Navigate budgets using the keyboard', async ({ page }) => {
 
   await page.keyboard.press('ArrowUp');
   await page.keyboard.press('ArrowUp');
+  await expect(page.getByTestId('group-0-budget-0-11')).toBeFocused();
+
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  await expect(page.getByTestId('group-1-budget-2-11')).toBeFocused();
+
+  await page.keyboard.press('ArrowDown');
   await expect(page.getByTestId('group-1-budget-2-11')).toBeFocused();
 });
 

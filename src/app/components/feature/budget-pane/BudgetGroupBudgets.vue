@@ -25,40 +25,44 @@
       />
     </span>
 
-    <span
-      v-for="(_, month) of budget.values"
-      :key="budget.id + month"
-      :class="[
-        $style.currencyCell,
-        {
-          [$style.even]: index % 2,
-          [$style.firstRow]: index === 0,
-          [$style.firstColumn]: month === 0,
-          [$style.currentMonth]: isCurrentMonth(month),
-          [$style.tlc]: index === 0 && month === 0,
-          [$style.trc]: index === 0 && month === 11,
-          [$style.blc]: index === budgets.length - 1 && month === 0,
-          [$style.brc]: index === budgets.length - 1 && month === 11
-        }
-      ]"
-      @focusin="focused = budget.id"
-      @focusout="focused = undefined"
-    >
-      <CellMenu
-        :actions="[
-          { id: 'fill', label: t('feature.budgetPane.fillRow') },
-          { id: 'fill-to-right', label: t('feature.budgetPane.fillRowToRight') }
+    <span v-if="showSkeletons" :class="$style.skeleton" />
+
+    <template v-else>
+      <span
+        v-for="(_, month) of budget.values"
+        :key="budget.id + month"
+        :class="[
+          $style.currencyCell,
+          {
+            [$style.even]: index % 2,
+            [$style.firstRow]: index === 0,
+            [$style.firstColumn]: month === 0,
+            [$style.currentMonth]: isCurrentMonth(month),
+            [$style.tlc]: index === 0 && month === 0,
+            [$style.trc]: index === 0 && month === 11,
+            [$style.blc]: index === budgets.length - 1 && month === 0,
+            [$style.brc]: index === budgets.length - 1 && month === 11
+          }
         ]"
-        @action="performAction($event, budget.id, month, budget.values[month])"
+        @focusin="focused = budget.id"
+        @focusout="focused = undefined"
       >
-        <CurrencyCell
-          :ref="onRefCallback"
-          :testId="`${testId}-budget-${index}-${month}`"
-          :modelValue="budget.values[month]"
-          @update:modelValue="setBudget(budget.id, month, $event)"
-        />
-      </CellMenu>
-    </span>
+        <CellMenu
+          :actions="[
+            { id: 'fill', label: t('feature.budgetPane.fillRow') },
+            { id: 'fill-to-right', label: t('feature.budgetPane.fillRowToRight') }
+          ]"
+          @action="performAction($event, budget.id, month, budget.values[month])"
+        >
+          <CurrencyCell
+            :ref="onRefCallback"
+            :testId="`${testId}-budget-${index}-${month}`"
+            :modelValue="budget.values[month]"
+            @update:modelValue="setBudget(budget.id, month, $event)"
+          />
+        </CellMenu>
+      </span>
+    </template>
 
     <Currency :testId="`${testId}-budget-${index}-total`" :class="$style.meta" :value="sum(budget.values)" />
     <Currency :testId="`${testId}-budget-${index}-average`" :class="$style.meta" :value="average(budget.values)" />
@@ -87,6 +91,7 @@ import { useI18n } from 'vue-i18n';
 defineProps<{
   budgets: DeepReadonly<Budget[]>;
   testId: string;
+  showSkeletons: boolean;
   allowDelete: boolean;
 }>();
 
@@ -144,6 +149,13 @@ defineExpose({
   font-style: italic;
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-m);
+}
+
+.skeleton {
+  grid-column: 4 / -3;
+  height: 14px;
+  background: var(--grid-background-skeleton);
+  border-radius: var(--border-radius-m);
 }
 
 .meta {
