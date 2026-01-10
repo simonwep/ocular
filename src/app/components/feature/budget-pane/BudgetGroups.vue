@@ -50,6 +50,7 @@
         :id="group.id"
         :icon="buildDraggableIcon"
         :text="buildDraggableText"
+        :testId="`group-${index}-dragger`"
         name="budget-groups"
         @drop="reorder"
       />

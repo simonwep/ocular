@@ -252,3 +252,25 @@ test('Undo a copy-paste action', async ({ page }) => {
   await page.getByTestId('next-year').click();
   await expect(page.getByTestId('ending-balance-value')).toHaveText('€41,817');
 });
+
+test('Drag and drop a budget into another group', async ({ page }) => {
+  await page.goto('/#demo');
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('group-0-total')).toHaveText('€99,000');
+  await expect(page.getByTestId('group-1-total')).toHaveText('€9,600');
+
+  await page.getByTestId('group-0-budget-1-dragger').dragTo(page.getByTestId('group-1-budget-1-dragger'));
+  await expect(page.getByTestId('group-0-total')).toHaveText('€96,000');
+  await expect(page.getByTestId('group-1-total')).toHaveText('€12,600');
+});
+
+test('Re-order a budget group', async ({ page }) => {
+  await page.goto('/#demo');
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('group-0-name')).toHaveValue('Wages');
+  await expect(page.getByTestId('group-1-name')).toHaveValue('Other');
+
+  await page.getByTestId('group-1-dragger').dragTo(page.getByTestId('group-0-dragger'));
+  await expect(page.getByTestId('group-0-name')).toHaveValue('Other');
+  await expect(page.getByTestId('group-1-name')).toHaveValue('Wages');
+});

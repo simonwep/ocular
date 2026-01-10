@@ -2,6 +2,7 @@
   <div
     ref="draggable"
     :class="$style.draggable"
+    :data-testid="testId"
     draggable="true"
     @dragend="dragEnd"
     @dragover="dragOver"
@@ -41,6 +42,7 @@ const props = defineProps<{
   text: (store: DraggableStore) => string | undefined;
   icon?: (store: DraggableStore) => Component | undefined;
   target?: string[];
+  testId?: string;
   name: string;
   id: string;
 }>();

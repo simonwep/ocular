@@ -53,8 +53,8 @@
     <span ref="budgetFooter" />
     <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id, t('feature.budgetGroup.newCategory'))" />
     <span style="grid-column: 3 / 16" />
-    <Currency :class="[$style.meta, $style.bold]" :value="totalAmount" />
-    <Currency :class="[$style.meta, $style.bold]" :value="averageAmount" />
+    <Currency :testId="`${testId}-total`" :class="[$style.meta, $style.bold]" :value="totalAmount" />
+    <Currency :testId="`${testId}-average`" :class="[$style.meta, $style.bold]" :value="averageAmount" />
   </template>
 
   <span v-else :data-testid="`${testId}-placeholder`" :class="$style.collapsedPlaceholder">

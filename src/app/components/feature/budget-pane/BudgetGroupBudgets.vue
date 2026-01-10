@@ -2,6 +2,7 @@
   <template v-for="(budget, index) of budgets" :key="budget.id + index">
     <Draggable
       :id="budget.id"
+      :testId="`${testId}-budget-${index}-dragger`"
       :target="['budget-group', 'budget-groups']"
       name="budget-group"
       :text="buildDraggableText"
