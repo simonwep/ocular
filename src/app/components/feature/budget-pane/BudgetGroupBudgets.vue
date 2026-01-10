@@ -50,10 +50,15 @@
       >
         <CellMenu
           :actions="[
-            { id: 'fill', label: t('feature.budgetPane.fillRow') },
-            { id: 'fill-to-right', label: t('feature.budgetPane.fillRowToRight') }
+            {
+              label: t('feature.budgetPane.fillRow'),
+              handle: () => fillBudget(budget.id, budget.values[month])
+            },
+            {
+              label: t('feature.budgetPane.fillRowToRight'),
+              handle: () => fillBudget(budget.id, budget.values[month], month)
+            }
           ]"
-          @action="performAction($event, budget.id, month, budget.values[month])"
         >
           <CurrencyCell
             :ref="onRefCallback"
@@ -72,7 +77,6 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { CellMenuActionId } from '@components/base/cell-menu/CellMenu.types';
 import CellMenu from '@components/base/cell-menu/CellMenu.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
@@ -129,15 +133,6 @@ const buildDraggableText = (store: DraggableStore) => {
 
 const reorder = (evt: ReorderEvent) => {
   moveBudget(evt.source, evt.target, evt.type === 'after');
-};
-
-const performAction = (action: CellMenuActionId, budgetId: string, month: number, value: number) => {
-  switch (action) {
-    case 'fill':
-      return fillBudget(budgetId, value);
-    case 'fill-to-right':
-      return fillBudget(budgetId, value, month);
-  }
 };
 
 defineExpose({

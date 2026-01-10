@@ -4,8 +4,8 @@
   </div>
   <div v-if="visible" ref="popper" :class="$style.popper" @focusout="focused--" @focusin="focused++">
     <ul :class="$style.list">
-      <li v-for="action of actions" :key="action.id" :class="$style.item">
-        <button :class="$style.btn" tabindex="0" type="button" @click="onAction(action.id)">
+      <li v-for="action of actions" :key="action.label" :class="$style.item">
+        <button :class="$style.btn" tabindex="0" type="button" @click="triggerAction(action)">
           {{ action.label }}
         </button>
       </li>
@@ -14,13 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-import { CellMenuAction, CellMenuActionId } from '@components/base/cell-menu/CellMenu.types';
+import { CellMenuAction } from '@components/base/cell-menu/CellMenu.types';
 import { createPopper, Instance } from '@popperjs/core';
 import { ref, useTemplateRef, watch } from 'vue';
-
-const emit = defineEmits<{
-  action: [name: CellMenuActionId];
-}>();
 
 defineProps<{
   actions: CellMenuAction[];
@@ -49,8 +45,8 @@ watch(focused, (count) => {
   frame = requestAnimationFrame(() => (visible.value = count > 0));
 });
 
-const onAction = (id: CellMenuActionId) => {
-  emit('action', id);
+const triggerAction = (action: CellMenuAction) => {
+  action.handle();
   cancelAnimationFrame(frame);
   visible.value = false;
 };
