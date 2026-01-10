@@ -29,45 +29,16 @@
     <span v-if="showSkeletons" :class="$style.skeleton" />
 
     <template v-else>
-      <span
+      <BudgetGroupBudgetCell
         v-for="(_, month) of budget.values"
         :key="budget.id + month"
-        :class="[
-          $style.currencyCell,
-          {
-            [$style.even]: index % 2,
-            [$style.firstRow]: index === 0,
-            [$style.firstColumn]: month === 0,
-            [$style.currentMonth]: isCurrentMonth(month),
-            [$style.tlc]: index === 0 && month === 0,
-            [$style.trc]: index === 0 && month === 11,
-            [$style.blc]: index === budgets.length - 1 && month === 0,
-            [$style.brc]: index === budgets.length - 1 && month === 11
-          }
-        ]"
-        @focusin="focused = budget.id"
-        @focusout="focused = undefined"
-      >
-        <CellMenu
-          :actions="[
-            {
-              label: t('feature.budgetPane.fillRow'),
-              handle: () => fillBudget(budget.id, budget.values[month])
-            },
-            {
-              label: t('feature.budgetPane.fillRowToRight'),
-              handle: () => fillBudget(budget.id, budget.values[month], month)
-            }
-          ]"
-        >
-          <CurrencyCell
-            :ref="onRefCallback"
-            :testId="`${testId}-budget-${index}-${month}`"
-            :modelValue="budget.values[month]"
-            @update:modelValue="setBudget(budget.id, month, $event)"
-          />
-        </CellMenu>
-      </span>
+        :budgets="budgets"
+        :budget="budget"
+        :index="index"
+        :month="month"
+        :testId="testId"
+        @cellRendered="onRefCallback"
+      />
     </template>
 
     <Currency :testId="`${testId}-budget-${index}-total`" :class="$style.meta" :value="sum(budget.values)" />
@@ -77,20 +48,19 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import CellMenu from '@components/base/cell-menu/CellMenu.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
 import { ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
+import BudgetGroupBudgetCell from '@components/feature/budget-pane/BudgetGroupBudgetCell.vue';
 import { useOrderedTemplateRefs } from '@composables/ordered-template-refs/useOrderedTemplateRefs.ts';
-import { useStateUtils } from '@composables/state-utils/useStateUtils.ts';
 import { RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { Budget } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
-import { computed, DeepReadonly, ref } from 'vue';
+import { computed, DeepReadonly } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 defineProps<{
@@ -100,12 +70,9 @@ defineProps<{
   allowDelete: boolean;
 }>();
 
-const { moveBudget, getBudget, getBudgetGroup, setBudgetName, setBudget, fillBudget, removeBudget } = useDataStore();
-
-const { isCurrentMonth } = useStateUtils();
-const { t } = useI18n();
+const { moveBudget, getBudget, getBudgetGroup, setBudgetName, removeBudget } = useDataStore();
 const { onRefCallback, value: currencyCells } = useOrderedTemplateRefs<InstanceType<typeof CurrencyCell>>();
-const focused = ref<string>();
+const { t } = useI18n();
 
 const buildDraggableText = (store: DraggableStore) => {
   const [srcGroup, src] = store.source ? (getBudget(store.source) ?? []) : [];
@@ -163,58 +130,6 @@ defineExpose({
     position: relative;
     font-weight: var(--font-weight-l);
     text-decoration: underline;
-  }
-}
-
-.currencyCell {
-  display: flex;
-  align-items: center;
-  background: var(--grid-background-odd);
-  height: 100%;
-  border-right: 1px solid var(--grid-border-color);
-  border-bottom: 1px solid var(--grid-border-color);
-  transition: background-color var(--input-field-transition);
-  box-shadow: inset 0 0 0 1px transparent;
-
-  &.firstRow {
-    border-top: 1px solid var(--grid-border-color);
-  }
-
-  &.firstColumn {
-    border-left: 1px solid var(--grid-border-color);
-  }
-
-  &.currentMonth {
-    background: var(--grid-background-odd-active);
-  }
-
-  &:focus-within {
-    box-shadow: 0 0 0 2px var(--c-primary) inset;
-    border-radius: 1px;
-  }
-
-  &.even {
-    background: var(--grid-background-even);
-
-    &.currentMonth {
-      background: var(--grid-background-even-active);
-    }
-  }
-
-  &.tlc {
-    border-top-left-radius: var(--grid-border-radius);
-  }
-
-  &.trc {
-    border-top-right-radius: var(--grid-border-radius);
-  }
-
-  &.blc {
-    border-bottom-left-radius: var(--grid-border-radius);
-  }
-
-  &.brc {
-    border-bottom-right-radius: var(--grid-border-radius);
   }
 }
 </style>

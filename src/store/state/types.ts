@@ -1,12 +1,10 @@
 import { AvailableLocale } from '@i18n/index';
 import { MigratableState } from 'yuppee';
 
-export type BudgetValues = number[];
-
 export interface Budget {
   id: string;
   name: string;
-  values: BudgetValues;
+  values: number[];
 }
 
 export interface BudgetGroup {
