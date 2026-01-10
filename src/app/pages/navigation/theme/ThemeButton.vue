@@ -1,7 +1,8 @@
 <template>
   <Button
+    ref="button"
     testId="navigation-toggle-theme"
-    :tooltip="t('navigation.theme.change')"
+    :tooltip="viewTransition ? undefined : t('navigation.theme.change')"
     :class="classes"
     :icon="icon"
     textual
@@ -11,11 +12,10 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { useAppElement } from '@composables/app-element/useAppElement.ts';
 import { RiMoonFill, RiSunFill } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { ClassNames } from '@utils/types.ts';
-import { computed, getCurrentInstance } from 'vue';
+import { computed, onUnmounted, shallowRef, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
 
@@ -25,56 +25,82 @@ const props = defineProps<{
 
 const { state, setTheme } = useSettingsStore();
 const { t } = useI18n();
-const app = useAppElement();
-let switchActive = false;
 
 const icon = computed((): Component => (state.appearance.theme === 'light' ? RiSunFill : RiMoonFill));
 const classes = computed(() => props.class);
-const instance = getCurrentInstance();
 
-const getTransitionOrigin = () => {
-  const originRect = instance?.vnode.el?.getBoundingClientRect() as DOMRect;
+const instance = useTemplateRef('button');
+const viewTransition = shallowRef<ViewTransition>();
+const styleSheet = shallowRef<HTMLStyleElement>();
+
+const transitionStyle = () => {
+  const originRect = instance.value?.$el?.getBoundingClientRect() as DOMRect;
   const centerX = originRect.left + originRect.width / 2;
   const centerY = originRect.top + originRect.height / 2;
-  return `${centerX}px ${centerY}px`;
+
+  let fromCirclePath = `circle(0% at ${centerX}px ${centerY}px)`;
+  let toCirclePath = `circle(200% at ${centerX}px ${centerY}px)`;
+
+  let oldAnimation = 'none';
+  let newAnimation = 'circle-in 0.75s ease-in-out forwards';
+
+  let oldZIndex = 1;
+  let newZIndex = 2;
+
+  if (state.appearance.theme === 'dark') {
+    [fromCirclePath, toCirclePath] = [toCirclePath, fromCirclePath];
+    [oldAnimation, newAnimation] = [newAnimation, oldAnimation];
+    [oldZIndex, newZIndex] = [newZIndex, oldZIndex];
+  }
+
+  return `
+    @keyframes circle-in {
+      0% { clip-path: ${fromCirclePath}; }
+      100% { clip-path: ${toCirclePath}; }
+    }
+
+    ::view-transition-old(root) {
+      animation: ${oldAnimation};
+      z-index: ${oldZIndex};
+    }
+
+    ::view-transition-new(root) {
+      animation: ${newAnimation};
+      z-index: ${newZIndex};
+    }
+  `;
 };
 
-const toggle = () => {
-  if (switchActive) return;
-  switchActive = true;
+const toggle = async () => {
+  if (viewTransition.value) return;
 
   const oldTheme = state.appearance.theme;
   const wasDark = oldTheme === 'dark';
-  setTheme(wasDark ? 'light' : 'dark');
+  const newTheme = wasDark ? 'light' : 'dark';
 
-  const origin = getTransitionOrigin();
-  const clone = app.cloneNode(true) as HTMLElement;
-  clone.classList.add(oldTheme);
+  // Fallback for browsers that do not support View Transitions API
+  if (!('startViewTransition' in document)) {
+    setTheme(newTheme);
+    return;
+  }
 
-  document.body[wasDark ? 'prepend' : 'append'](clone);
-  const [start, end] = wasDark ? [0, 150] : [150, 0];
-  const target = wasDark ? app : clone;
+  styleSheet.value = document.createElement('style');
+  styleSheet.value.innerText = transitionStyle();
+  document.head.appendChild(styleSheet.value);
 
-  app.style.setProperty('--transitions', '0');
-  clone.style.setProperty('--transitions', '0');
+  viewTransition.value = document.startViewTransition();
+  await viewTransition.value.ready;
 
-  target.style.setProperty('clip-path', `circle(${start}% at ${origin})`);
-  target.style.setProperty('transition', `all 0.75s ease-in-out`);
+  setTheme(newTheme);
+  await viewTransition.value.finished;
 
-  target.addEventListener('transitionend', (e) => {
-    if (e.target === target) {
-      app.style.removeProperty('--transitions');
-      clone.style.removeProperty('--transitions');
-
-      target.style.removeProperty('transition');
-      target.style.removeProperty('clip-path');
-      clone.remove();
-      switchActive = false;
-    }
-  });
-
-  requestAnimationFrame(() => {
-    target.style.setProperty('clip-path', `circle(${end}% at ${origin})`);
-  });
+  styleSheet.value.remove();
+  styleSheet.value = undefined;
+  viewTransition.value = undefined;
 };
+
+onUnmounted(() => {
+  viewTransition.value?.skipTransition();
+  styleSheet.value?.remove();
+});
 </script>
