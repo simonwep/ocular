@@ -5,9 +5,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "author": "Simon Reinisch <contact@reinisch.io>",
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.27.0",
   "engines": {
-    "node": "22"
+    "node": "^24.12.0"
   },
   "scripts": {
     "dev": "pnpm run \"/^dev:.+/\"",

@@ -1,4 +1,4 @@
-name: CI
+name: Main
 
 on: ["push", "pull_request"]
 
@@ -14,6 +14,8 @@ permissions:
 env:
   IMAGE_REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  PNPM_VERSION: 10.27.0
+  NODE_VERSION: 24.12.0
   HUSKY: 0
 
 jobs:
@@ -27,12 +29,12 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10.11.0
+          version: ${{ env.PNPM_VERSION }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -201,6 +203,8 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Extract changes
         id: changelog
