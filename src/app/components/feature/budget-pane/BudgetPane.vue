@@ -1,5 +1,5 @@
 <template>
-  <Pane :testId="type" :amount="amount" :title="title">
+  <Pane :testId="type" :headerClass="$style.header" :amount="amount" :title="title">
     <template v-if="$slots.title" #title>
       <slot name="title" />
     </template>
@@ -33,5 +33,9 @@ const amount = computed(() => total.value.reduce((a, b) => a + b, 0));
   width: 75px;
   height: 100%;
   cursor: default;
+}
+
+.header {
+  padding-bottom: 24px;
 }
 </style>

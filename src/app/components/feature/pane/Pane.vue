@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.pane">
-    <div ref="header" :class="$style.header">
+    <div ref="header" :class="[$style.header, headerClass]">
       <h1 :class="$style.title">
         <slot v-if="$slots.title" name="title" />
         <span v-else>{{ title }}</span>
@@ -26,6 +26,7 @@ import { computed, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
+  headerClass?: ClassNames;
   title?: string;
   amount?: number;
   testId?: string;

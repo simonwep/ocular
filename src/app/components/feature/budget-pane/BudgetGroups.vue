@@ -10,14 +10,7 @@
       v-for="(month, index) of months"
       :key="month"
       :data-testid="`month-${index}-name`"
-      :class="[
-        $style.month,
-        {
-          [$style.current]: isCurrentMonth(index),
-          [$style.start]: index === 0,
-          [$style.end]: index === 11
-        }
-      ]"
+      :class="[$style.month, { [$style.current]: isCurrentMonth(index) }]"
     >
       <span>{{ month }}</span>
     </span>
@@ -39,7 +32,7 @@
       :key="index"
       :testId="`month-${index}-total`"
       :value="value"
-      :class="$style.sum"
+      :class="[$style.sum, $style.totals]"
     />
     <span />
     <span />
@@ -140,41 +133,20 @@ const totals = computed(() => {
 }
 
 .month {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-m);
-  padding-right: 20px;
-  padding-bottom: 5px;
-  position: sticky;
-  top: 0;
-  background: var(--app-background);
-  border: 2px var(--app-background);
-  z-index: 1;
+  margin-left: 5px;
 
   &.current > span {
-    display: inline-block;
-    position: relative;
-    text-decoration: underline;
-    text-decoration-color: var(--c-primary);
-    text-decoration-thickness: 2px;
+    background: var(--c-primary);
+    padding: 1px 6px;
+    border-radius: 100px;
   }
 
   > span {
-    display: inline-block;
-
-    @include globals.onMobileDevices {
-      position: static;
-      margin-top: 0;
-    }
-  }
-
-  &.start {
-    border-bottom-left-radius: var(--border-radius-l);
-    padding-left: 8px;
-  }
-
-  &.end {
-    border-bottom-right-radius: var(--border-radius-l);
-    padding-right: 8px;
+    position: absolute;
+    margin-top: -22px;
+    z-index: 1;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-m);
   }
 }
 
