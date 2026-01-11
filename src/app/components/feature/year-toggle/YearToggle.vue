@@ -14,9 +14,9 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import TextWheel from '@components/base/text-wheel/TextWheel.vue';
-import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
+import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/vue';
 import { computed } from 'vue';
 
 defineProps<{

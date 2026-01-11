@@ -1,4 +1,4 @@
-/* eslint-disable import-x/default, import-x/no-named-as-default-member */
+/* eslint-disable import-x/no-named-as-default-member */
 import js from '@eslint/js';
 import vueI18n from '@intlify/eslint-plugin-vue-i18n';
 import tsParser from '@typescript-eslint/parser';

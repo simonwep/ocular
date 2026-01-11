@@ -21,9 +21,9 @@ import { ContextMenuOption } from '@components/base/context-menu/ContextMenu.typ
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useTime } from '@composables/time/useTime.ts';
-import { RiCalendarCheckLine, RiCalendarLine, RiCalendarTodoLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { ClassNames } from '@utils/types.ts';
+import { RiCalendarCheckLine, RiCalendarLine, RiCalendarTodoLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

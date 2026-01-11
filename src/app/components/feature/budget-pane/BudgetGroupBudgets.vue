@@ -22,7 +22,7 @@
       <TextCell
         :testId="`${testId}-budget-${index}-name`"
         :modelValue="budget.name"
-        @update:modelValue="setBudgetName(budget.id, $event)"
+        @update:modelValue="setBudgetName(budget.id, $event ?? '')"
       />
     </span>
 
@@ -56,10 +56,10 @@ import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
 import BudgetGroupBudgetCell from '@components/feature/budget-pane/BudgetGroupBudgetCell.vue';
 import { useOrderedTemplateRefs } from '@composables/ordered-template-refs/useOrderedTemplateRefs.ts';
-import { RiCloseCircleLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { Budget } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
+import { RiCloseCircleLine } from '@remixicon/vue';
 import { computed, DeepReadonly } from 'vue';
 import { useI18n } from 'vue-i18n';
 

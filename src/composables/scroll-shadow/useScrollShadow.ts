@@ -1,9 +1,9 @@
 import { useEventListener, watchImmediate } from '@vueuse/core';
-import { Ref } from 'vue';
+import { TemplateRef } from 'vue';
 
 export const useScrollShadow = (
-  element: Ref<HTMLElement | undefined>,
-  trigger: Ref<HTMLElement | undefined>,
+  element: TemplateRef<HTMLElement | undefined>,
+  trigger: TemplateRef<HTMLElement | undefined>,
   shadow: string,
   offset = 5
 ) => {

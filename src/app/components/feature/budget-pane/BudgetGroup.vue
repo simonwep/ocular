@@ -14,7 +14,7 @@
       :modelValue="group.name"
       :testId="`${testId}-name`"
       inline
-      @update:modelValue="setBudgetGroupName(group.id, $event)"
+      @update:modelValue="setBudgetGroupName(group.id, $event ?? '')"
     />
     <button
       :data-testid="`${testId}-collapse`"
@@ -67,10 +67,10 @@ import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import TextCell from '@components/base/text-cell/TextCell.vue';
 import BudgetGroupBudgets from '@components/feature/budget-pane/BudgetGroupBudgets.vue';
-import { RiAddCircleLine, RiCloseCircleLine, RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
+import { RiAddCircleLine, RiCloseCircleLine, RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { useElementVisibility } from '@vueuse/core';
 import { computed, DeepReadonly, useTemplateRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';

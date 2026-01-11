@@ -55,6 +55,10 @@ import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.v
 import Switch from '@components/base/switch/Switch.vue';
 import ChartPlaceholder from '@components/feature/chart-placeholder/ChartPlaceholder.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
+import { useSettingsStore } from '@store/settings';
+import { useDataStore } from '@store/state';
+import { sumOfBudgetGroups, totals } from '@store/state/utils/budgets.ts';
+import { sum } from '@utils/array/array.ts';
 import {
   RiBarChartHorizontalLine,
   RiDownload2Line,
@@ -64,10 +68,6 @@ import {
   RiNumber9,
   RiPercentFill
 } from '@remixicon/vue';
-import { useSettingsStore } from '@store/settings';
-import { useDataStore } from '@store/state';
-import { sumOfBudgetGroups, totals } from '@store/state/utils/budgets.ts';
-import { sum } from '@utils/array/array.ts';
 import { useLocalStorage } from '@vueuse/core';
 import { computed, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';

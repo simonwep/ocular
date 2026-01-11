@@ -14,8 +14,8 @@
 
 <script lang="ts" setup>
 import { Color, useThemeStyles } from '@composables/theme-styles/useThemeStyles.ts';
-import { Placement } from '@popperjs/core';
 import { ClassNames } from '@utils/types.ts';
+import { Placement } from '@popperjs/core';
 import { computed, useCssModule } from 'vue';
 import type { Component } from 'vue';
 

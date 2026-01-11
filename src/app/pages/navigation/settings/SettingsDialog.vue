@@ -15,7 +15,7 @@
         :label="t('navigation.settings.currency')"
         :options="currencies"
         searchable
-        @update:modelValue="changeCurrency"
+        @update:modelValue="changeCurrency($event as string)"
       />
 
       <Select
@@ -23,7 +23,7 @@
         testId="change-month-offset"
         :label="t('navigation.settings.firstMonthOfYear')"
         :options="months"
-        @update:modelValue="setMonthOffset"
+        @update:modelValue="setMonthOffset($event as number)"
       />
 
       <CheckBox
@@ -51,9 +51,9 @@ import Select from '@components/base/select/Select.vue';
 import { useAvailableCurrencyCodes } from '@composables/available-currency-codes/useAvailableCurrencyCodes.ts';
 import { useMonthNames } from '@composables/time/useMonthNames.ts';
 import { AvailableLocale, availableLocales, initialLocale } from '@i18n/index.ts';
-import { RiCheckLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
+import { RiCheckLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

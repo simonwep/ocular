@@ -1,6 +1,6 @@
 <template>
   <div ref="frame" :class="$style.frame">
-    <div ref="menu" :class="$style.buttons">
+    <div :class="$style.buttons">
       <template v-if="appSize !== 'mobile'">
         <ThemeButton :class="$style.btn" />
         <div :class="$style.divider" />
@@ -59,9 +59,9 @@ import StatusBar from '@components/feature/status-bar/StatusBar.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useSquircle } from '@composables/squircle/useSquircle.ts';
-import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { useStorage } from '@storage/index';
 import { ClassNames } from '@utils/types.ts';
+import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { computed, useCssModule, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';
@@ -80,8 +80,6 @@ const { user } = useStorage();
 const { t } = useI18n();
 
 useSquircle(frame, () => (['minimized', 'mobile'].includes(appSize.value) ? 0 : 0.035));
-
-const menu = useTemplateRef('menu');
 
 const buttons = computed((): FrameButton[] => [
   { icon: RiDonutChartLine, name: 'dashboard', tooltip: t('page.dashboard.title'), class: styles.dashboard },

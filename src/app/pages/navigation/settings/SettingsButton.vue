@@ -15,8 +15,8 @@
 import SettingsDialog from '@app/pages/navigation/settings/SettingsDialog.vue';
 import Button from '@components/base/button/Button.vue';
 import { useShowWinterFeatures } from '@composables/winter-features/useShowWinterFeatures.ts';
-import { RiSettings4Line, RiSnowflakeLine } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
+import { RiSettings4Line, RiSnowflakeLine } from '@remixicon/vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 

@@ -20,9 +20,9 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { RiHandCoinLine, RiMagicFill, RiShoppingBasket2Line } from '@remixicon/vue';
 import { useTemplateData } from '@store/state/template/useTemplateData.ts';
 import { ClassNames } from '@utils/types.ts';
+import { RiHandCoinLine, RiMagicFill, RiShoppingBasket2Line } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

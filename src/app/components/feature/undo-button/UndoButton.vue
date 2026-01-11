@@ -13,10 +13,10 @@
 </template>
 
 <script lang="ts" setup>
-import { RiResetLeftLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { ClassNames } from '@utils/types.ts';
+import { RiResetLeftLine } from '@remixicon/vue';
 import { usePreferredReducedMotion } from '@vueuse/core';
 import { computed, useTemplateRef } from 'vue';
 import { useI18n } from 'vue-i18n';

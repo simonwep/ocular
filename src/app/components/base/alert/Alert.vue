@@ -8,8 +8,8 @@
 <script lang="ts" setup>
 import { AlertType } from '@components/base/alert/Alert.types';
 import { Color, useThemeStyles } from '@composables/theme-styles/useThemeStyles.ts';
-import { RiCheckLine, RiErrorWarningLine } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
+import { RiCheckLine, RiErrorWarningLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import type { Component } from 'vue';
 

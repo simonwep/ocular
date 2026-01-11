@@ -19,9 +19,9 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
-import { RiCloseCircleLine, RiShieldUserLine } from '@remixicon/vue';
 import { GenesisUser } from '@storage/createGenesisStore';
 import { useStorage } from '@storage/index';
+import { RiCloseCircleLine, RiShieldUserLine } from '@remixicon/vue';
 import { ref, toRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 

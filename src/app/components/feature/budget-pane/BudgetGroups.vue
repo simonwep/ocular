@@ -55,7 +55,7 @@
         @drop="reorder"
       />
       <BudgetGroup
-        :ref="onRefCallback"
+        :ref="(value) => onRefCallback(value as InstanceType<typeof BudgetGroup>)"
         :allowDelete="allowDelete"
         :group="group"
         :testId="`group-${index}`"
@@ -88,9 +88,9 @@ import { useKeyboardNavigation } from '@composables/keyboard-navigation/useKeybo
 import { useOrderedTemplateRefs } from '@composables/ordered-template-refs/useOrderedTemplateRefs.ts';
 import { useStateUtils } from '@composables/state-utils/useStateUtils.ts';
 import { useMonthNames } from '@composables/time/useMonthNames.ts';
-import { RiAddCircleLine, RiLockLine, RiLockUnlockLine, RiSkipDownLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
+import { RiAddCircleLine, RiLockLine, RiLockUnlockLine, RiSkipDownLine } from '@remixicon/vue';
 import { computed, ref, shallowReactive } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';

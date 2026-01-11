@@ -35,8 +35,8 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { uuid } from '@utils/uuid/uuid.ts';
+import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { computed, ref, useTemplateRef } from 'vue';
 
 const modelValue = defineModel<string>();

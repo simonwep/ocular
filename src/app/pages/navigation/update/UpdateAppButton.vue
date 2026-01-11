@@ -12,8 +12,8 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { RiLoopRightLine } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
+import { RiLoopRightLine } from '@remixicon/vue';
 import { useRegisterSW } from 'virtual:pwa-register/vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';

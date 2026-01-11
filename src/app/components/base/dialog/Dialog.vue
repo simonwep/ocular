@@ -30,8 +30,8 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { useOutOfElementClick } from '@composables/out-of-element-click/useOutOfElementClick.ts';
-import { RiCloseCircleFill } from '@remixicon/vue';
 import { ClassNames } from '@utils/types.ts';
+import { RiCloseCircleFill } from '@remixicon/vue';
 import { onMounted, onUnmounted, toRef, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{

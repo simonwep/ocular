@@ -13,10 +13,10 @@
 </template>
 
 <script lang="ts" setup>
-import { RiCheckLine } from '@remixicon/vue';
 import { uuid } from '@utils/uuid/uuid.ts';
+import { RiCheckLine } from '@remixicon/vue';
 
-const modelValue = defineModel<boolean>();
+const modelValue = defineModel<boolean>({ default: false });
 
 defineProps<{
   label: string;

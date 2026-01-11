@@ -9,8 +9,8 @@
 
 <script lang="ts" setup>
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
-import { RiDeleteBin5Line } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
+import { RiDeleteBin5Line } from '@remixicon/vue';
 import { useI18n } from 'vue-i18n';
 
 const { state, shiftYears } = useDataStore();

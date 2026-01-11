@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" :class="[$style.steps, classes]">
+  <div :class="[$style.steps, classes]">
     <slot :next="next" :previous="previous" :reset="reset" />
   </div>
 </template>
@@ -8,7 +8,7 @@
 import { STEPS_STORE, StepsStore, StepsExposed } from './Steps.types';
 import { remove } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
-import { computed, provide, reactive, Ref, ref, useTemplateRef } from 'vue';
+import { computed, provide, reactive, Ref, ref } from 'vue';
 
 const emit = defineEmits<{
   finish: [];
@@ -18,7 +18,6 @@ const props = defineProps<{
   class?: ClassNames;
 }>();
 
-const root = useTemplateRef('root');
 const sizes = reactive<Ref<DOMRect>[]>([]);
 const classes = computed(() => props.class);
 const screenIndex = ref(0);

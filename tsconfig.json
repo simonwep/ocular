@@ -1,7 +1,58 @@
 {
-  "include": [],
-  "references": [
-    {"path": "./tsconfig.node.json"},
-    {"path": "./tsconfig.app.json"}
-  ]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "test/**/*.ts",
+    "scripts/**/*.ts",
+    "vite.config.ts",
+    "eslint.config.mjs"
+  ],
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "forceConsistentCasingInFileNames": true,
+    "libReplacement": false,
+    "noEmit": true,
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+
+    /* Linting */
+    "strict": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    /* Vue */
+    "types": ["vite/client", "vite-plugin-pwa/client"],
+
+    /* Convenience */
+    "baseUrl": ".",
+    "paths": {
+      "@composables/*": ["./src/composables/*"],
+      "@directives/*": ["./src/directives/*"],
+      "@components/*": ["./src/app/components/*"],
+      "@app/*": ["./src/app/*"],
+      "@i18n/*": ["./src/i18n/*"],
+      "@storage/*": ["./src/storage/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@static/*": ["./src/static/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@store/*": ["./src/store/*"]
+    }
+  }
 }

@@ -30,7 +30,7 @@
         :ref="(value) => emit('cellRendered', value as InstanceType<typeof CurrencyCell>)"
         :testId="`${testId}-budget-${index}-${month}`"
         :modelValue="budget.values[month]"
-        @update:modelValue="setBudget(budget.id, month, $event)"
+        @update:modelValue="setBudget(budget.id, month, $event ?? 0)"
       />
     </CellMenu>
   </span>

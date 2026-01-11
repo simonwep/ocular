@@ -27,11 +27,11 @@
 <script lang="ts" setup>
 import AllTimeChart from './AllTimeChart.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import { RiArrowDownDoubleLine, RiArrowUpDoubleLine, RiFocus2Fill } from '@remixicon/vue';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
 import { sum } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
+import { RiArrowDownDoubleLine, RiArrowUpDoubleLine, RiFocus2Fill } from '@remixicon/vue';
 import { computed, ref, useCssModule } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { Component } from 'vue';

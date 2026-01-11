@@ -8,8 +8,8 @@
 
 <script lang="ts" setup>
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
-import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { useSettingsStore } from '@store/settings';
+import { RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
