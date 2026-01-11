@@ -53,7 +53,6 @@ watch(rootSize, resize);
 
 onMounted(() => {
   window.addEventListener('resize', resize);
-  chart.value = init(root.value as HTMLDivElement);
 });
 
 onUnmounted(() => {
@@ -62,6 +61,13 @@ onUnmounted(() => {
 
 const svg = () => new Blob([assertSvg()], { type: 'image/svg+xml;charset=utf-8' });
 const png = () => svgToPNG(assertSvg(), 3);
+
+watch(rootSize, (value) => {
+  if (value.height && value.width) {
+    chart.value?.dispose();
+    chart.value = init(root.value);
+  }
+});
 
 const download = async (name: string, type: 'png' | 'svg') => {
   downloadBlob(type === 'png' ? await png() : svg(), `${name}.${type}`);

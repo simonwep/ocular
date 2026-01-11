@@ -23,6 +23,7 @@ const props = defineProps<{
 const classes = computed(() => props.class);
 const options = computed(
   (): EChartsOption => ({
+    animation: false,
     xAxis: { type: 'category', show: false },
     yAxis: {
       show: false,
