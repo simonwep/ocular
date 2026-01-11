@@ -4,7 +4,7 @@
   </div>
   <div v-if="visible" ref="popper" :class="$style.popper" @focusout="focused--" @focusin="focused++">
     <ul :class="$style.list">
-      <li v-for="action of actions" :key="action.label" :class="$style.item">
+      <li v-for="action of actions()" :key="action.label" :class="$style.item">
         <button :class="$style.btn" tabindex="0" type="button" @click="triggerAction(action)">
           {{ action.label }}
         </button>
@@ -19,7 +19,7 @@ import { createPopper, Instance } from '@popperjs/core';
 import { ref, useTemplateRef, watch } from 'vue';
 
 defineProps<{
-  actions: CellMenuAction[];
+  actions: () => CellMenuAction[];
 }>();
 
 const reference = useTemplateRef('reference');

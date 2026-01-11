@@ -45,24 +45,17 @@
     <span />
 
     <!-- Body -->
-    <template v-for="(group, index) of groups" :key="group.id">
-      <Draggable
-        :id="group.id"
-        :icon="buildDraggableIcon"
-        :text="buildDraggableText"
-        :testId="`group-${index}-dragger`"
-        name="budget-groups"
-        @drop="reorder"
-      />
-      <BudgetGroup
-        :ref="(value) => onRefCallback(value as InstanceType<typeof BudgetGroup>)"
-        :allowDelete="allowDelete"
-        :group="group"
-        :testId="`group-${index}`"
-        @visible="visibleGroups.add(group.id)"
-        @hidden="visibleGroups.delete(group.id)"
-      />
-    </template>
+    <BudgetGroup
+      v-for="(group, index) of groups"
+      :key="group.id"
+      :ref="(value) => onRefCallback(value as InstanceType<typeof BudgetGroup>)"
+      :index="index"
+      :allowDelete="allowDelete"
+      :group="group"
+      :testId="`group-${index}`"
+      @visible="visibleGroups.add(group.id)"
+      @hidden="visibleGroups.delete(group.id)"
+    />
 
     <!-- Footer -->
     <span />
@@ -81,19 +74,15 @@
 import BudgetGroup from './BudgetGroup.vue';
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
-import { ReorderEvent } from '@components/base/draggable/Draggable.types';
-import Draggable from '@components/base/draggable/Draggable.vue';
-import { DraggableStore } from '@components/base/draggable/store';
 import { useKeyboardNavigation } from '@composables/keyboard-navigation/useKeyboardNavigation.ts';
 import { useOrderedTemplateRefs } from '@composables/ordered-template-refs/useOrderedTemplateRefs.ts';
 import { useStateUtils } from '@composables/state-utils/useStateUtils.ts';
 import { useMonthNames } from '@composables/time/useMonthNames.ts';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
-import { RiAddCircleLine, RiLockLine, RiLockUnlockLine, RiSkipDownLine } from '@remixicon/vue';
+import { RiAddCircleLine, RiLockLine, RiLockUnlockLine } from '@remixicon/vue';
 import { computed, ref, shallowReactive } from 'vue';
 import { useI18n } from 'vue-i18n';
-import type { Component } from 'vue';
 
 const props = defineProps<{
   type: 'expenses' | 'income';
@@ -102,7 +91,7 @@ const props = defineProps<{
 const months = useMonthNames('long', () => settings.general.monthOffset);
 const { onRefCallback, value: budgetGroups } = useOrderedTemplateRefs<InstanceType<typeof BudgetGroup>>();
 const { isCurrentMonth } = useStateUtils();
-const { state, moveBudgetGroup, moveBudgetIntoGroup, addBudgetGroup, getBudgetGroup } = useDataStore();
+const { state, addBudgetGroup } = useDataStore();
 const { state: settings } = useSettingsStore();
 const { t } = useI18n();
 
@@ -128,32 +117,6 @@ const totals = computed(() => {
 
   return totals;
 });
-
-const buildDraggableIcon = (store: DraggableStore): Component | undefined =>
-  store.group === 'budget-group' ? RiSkipDownLine : undefined;
-
-const buildDraggableText = (store: DraggableStore) => {
-  const src = store.source ? getBudgetGroup(store.source) : undefined;
-  const dst = store.target ? getBudgetGroup(store.target) : undefined;
-
-  if (src) {
-    if (dst) {
-      return store.type === 'before'
-        ? t('feature.budgetPane.prepend', { from: src.name, to: dst.name })
-        : t('feature.budgetPane.append', { from: src.name, to: dst.name });
-    }
-
-    return t('feature.budgetPane.move', { from: src.name });
-  }
-};
-
-const reorder = (evt: ReorderEvent) => {
-  if (evt.group === 'budget-group') {
-    moveBudgetIntoGroup(evt.source, evt.target);
-  } else {
-    moveBudgetGroup(evt.source, evt.target, evt.type === 'after');
-  }
-};
 </script>
 
 <style lang="scss" module>
@@ -182,7 +145,6 @@ const reorder = (evt: ReorderEvent) => {
   padding-right: 20px;
   padding-bottom: 5px;
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
   background: var(--app-background);
   border: 2px var(--app-background);
@@ -191,7 +153,6 @@ const reorder = (evt: ReorderEvent) => {
   &.current > span {
     display: inline-block;
     position: relative;
-    z-index: 0;
     text-decoration: underline;
     text-decoration-color: var(--c-primary);
     text-decoration-thickness: 2px;

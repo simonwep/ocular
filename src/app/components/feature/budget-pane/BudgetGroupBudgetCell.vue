@@ -15,16 +15,18 @@
     ]"
   >
     <CellMenu
-      :actions="[
-        {
-          label: t('feature.budgetPane.fillRow'),
-          handle: () => fillBudget(budget.id, budget.values[month])
-        },
-        {
-          label: t('feature.budgetPane.fillRowToRight'),
-          handle: () => fillBudget(budget.id, budget.values[month], month)
-        }
-      ]"
+      :actions="
+        () => [
+          {
+            label: t('feature.budgetPane.fillRow'),
+            handle: () => fillBudget(budget.id, budget.values[month])
+          },
+          {
+            label: t('feature.budgetPane.fillRowToRight'),
+            handle: () => fillBudget(budget.id, budget.values[month], month)
+          }
+        ]
+      "
     >
       <CurrencyCell
         :ref="(value) => emit('cellRendered', value as InstanceType<typeof CurrencyCell>)"

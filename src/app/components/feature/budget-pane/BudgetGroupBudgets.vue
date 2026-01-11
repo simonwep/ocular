@@ -26,20 +26,16 @@
       />
     </span>
 
-    <span v-if="showSkeletons" :class="$style.skeleton" />
-
-    <template v-else>
-      <BudgetGroupBudgetCell
-        v-for="(_, month) of budget.values"
-        :key="budget.id + month"
-        :budgets="budgets"
-        :budget="budget"
-        :index="index"
-        :month="month"
-        :testId="testId"
-        @cellRendered="onRefCallback"
-      />
-    </template>
+    <BudgetGroupBudgetCell
+      v-for="(_, month) of budget.values"
+      :key="budget.id + month"
+      :budgets="budgets"
+      :budget="budget"
+      :index="index"
+      :month="month"
+      :testId="testId"
+      @cellRendered="onRefCallback"
+    />
 
     <Currency :testId="`${testId}-budget-${index}-total`" :class="$style.meta" :value="sum(budget.values)" />
     <Currency :testId="`${testId}-budget-${index}-average`" :class="$style.meta" :value="average(budget.values)" />
@@ -66,7 +62,6 @@ import { useI18n } from 'vue-i18n';
 defineProps<{
   budgets: DeepReadonly<Budget[]>;
   testId: string;
-  showSkeletons: boolean;
   allowDelete: boolean;
 }>();
 
@@ -112,13 +107,6 @@ defineExpose({
   font-style: italic;
   font-size: var(--input-field-font-size);
   font-weight: var(--font-weight-m);
-}
-
-.skeleton {
-  grid-column: 4 / -3;
-  height: 14px;
-  background: var(--grid-background-skeleton);
-  border-radius: var(--border-radius-m);
 }
 
 .meta {

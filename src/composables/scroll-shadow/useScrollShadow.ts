@@ -7,13 +7,18 @@ export const useScrollShadow = (
   shadow: string,
   offset = 5
 ) => {
+  let hasShadow = false;
+
   const frame = () => {
     if (!element.value || !trigger.value) return;
+    const scrollTop = trigger.value.scrollTop;
 
-    if (trigger.value.scrollTop > offset) {
-      element.value.style.setProperty('box-shadow', shadow);
-    } else {
+    if (hasShadow && scrollTop < offset) {
       element.value.style.removeProperty('box-shadow');
+      hasShadow = false;
+    } else if (scrollTop > offset) {
+      element.value.style.setProperty('box-shadow', shadow);
+      hasShadow = true;
     }
   };
 

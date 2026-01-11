@@ -1,5 +1,16 @@
 <template>
   <!-- Header -->
+  <span ref="budgetHeader" style="grid-column: 1 / -1" />
+
+  <Draggable
+    :id="group.id"
+    :icon="buildDraggableIcon"
+    :text="buildDraggableText"
+    :testId="`group-${index}-dragger`"
+    name="budget-groups"
+    @drop="reorder"
+  />
+
   <Button
     color="dimmed"
     :testId="`${testId}-delete`"
@@ -9,7 +20,7 @@
     @click="removeBudgetGroup(group.id)"
   />
 
-  <span ref="budgetHeader" :class="[$style.groupName, $style.top, $style.start]">
+  <span :class="[$style.groupName, $style.top, $style.start]">
     <TextCell
       :modelValue="group.name"
       :testId="`${testId}-name`"
@@ -27,8 +38,8 @@
     </button>
   </span>
 
-  <span v-for="(total, index) of totals" :key="index" :class="$style.top">
-    <Currency :value="total" :testId="`${testId}-month-${index}-total`" />
+  <span v-for="(total, idx) of totals" :key="idx" :class="$style.top">
+    <Currency :value="total" :testId="`${testId}-month-${idx}-total`" />
   </span>
 
   <span :class="$style.top">
@@ -39,18 +50,17 @@
     <span>{{ t('feature.budgetPane.average') }}</span>
   </span>
 
-  <template v-if="!group.collapsed">
+  <template v-if="!budgetGroupBudgetsVisible">
+    <!-- Skeletons -->
+    <span v-for="n of group.budgets.length + 1" :key="n" style="grid-column: 1 / -1" :class="$style.skeleton" />
+  </template>
+
+  <template v-else-if="!group.collapsed">
     <!-- Budgets -->
-    <BudgetGroupBudgets
-      ref="budgetGroupBudgets"
-      :showSkeletons="!budgetGroupBudgetsVisible"
-      :budgets="group.budgets"
-      :testId="testId"
-      :allowDelete="allowDelete"
-    />
+    <BudgetGroupBudgets ref="budgetGroupBudgets" :budgets="group.budgets" :testId="testId" :allowDelete="allowDelete" />
 
     <!-- Footer -->
-    <span ref="budgetFooter" />
+    <span />
     <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id, t('feature.budgetGroup.newCategory'))" />
     <span style="grid-column: 3 / 16" />
     <Currency :testId="`${testId}-total`" :class="[$style.meta, $style.bold]" :value="totalAmount" />
@@ -60,19 +70,24 @@
   <span v-else :data-testid="`${testId}-placeholder`" :class="$style.collapsedPlaceholder">
     {{ t('feature.budgetGroup.budgetGroupsHidden', group.budgets.length) }}
   </span>
+
+  <span ref="budgetFooter" style="grid-column: 1 / -1" />
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
+import { ReorderEvent } from '@components/base/draggable/Draggable.types.ts';
+import Draggable from '@components/base/draggable/Draggable.vue';
+import { DraggableStore } from '@components/base/draggable/store.ts';
 import TextCell from '@components/base/text-cell/TextCell.vue';
 import BudgetGroupBudgets from '@components/feature/budget-pane/BudgetGroupBudgets.vue';
 import { useDataStore } from '@store/state';
 import { BudgetGroup } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
-import { RiAddCircleLine, RiCloseCircleLine, RiEyeCloseLine, RiEyeLine } from '@remixicon/vue';
+import { RiAddCircleLine, RiCloseCircleLine, RiEyeCloseLine, RiEyeLine, RiSkipDownLine } from '@remixicon/vue';
 import { useElementVisibility } from '@vueuse/core';
-import { computed, DeepReadonly, useTemplateRef, watch } from 'vue';
+import { type Component, computed, DeepReadonly, useTemplateRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const emit = defineEmits<{
@@ -82,11 +97,21 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   group: DeepReadonly<BudgetGroup>;
+  index: number;
   testId: string;
   allowDelete: boolean;
 }>();
 
-const { removeBudgetGroup, toggleBudgetGroupCollapse, addBudget, setBudgetGroupName } = useDataStore();
+const {
+  removeBudgetGroup,
+  toggleBudgetGroupCollapse,
+  getBudgetGroup,
+  moveBudgetGroup,
+  moveBudgetIntoGroup,
+  addBudget,
+  setBudgetGroupName
+} = useDataStore();
+
 const { t } = useI18n();
 const budgetGroupBudgets = useTemplateRef('budgetGroupBudgets');
 const budgetHeader = useTemplateRef('budgetHeader');
@@ -111,6 +136,32 @@ const totals = computed(() => {
 
 const totalAmount = computed(() => sum(totals.value));
 const averageAmount = computed(() => average(totals.value));
+
+const buildDraggableIcon = (store: DraggableStore): Component | undefined =>
+  store.group === 'budget-group' ? RiSkipDownLine : undefined;
+
+const buildDraggableText = (store: DraggableStore) => {
+  const src = store.source ? getBudgetGroup(store.source) : undefined;
+  const dst = store.target ? getBudgetGroup(store.target) : undefined;
+
+  if (src) {
+    if (dst) {
+      return store.type === 'before'
+        ? t('feature.budgetPane.prepend', { from: src.name, to: dst.name })
+        : t('feature.budgetPane.append', { from: src.name, to: dst.name });
+    }
+
+    return t('feature.budgetPane.move', { from: src.name });
+  }
+};
+
+const reorder = (evt: ReorderEvent) => {
+  if (evt.group === 'budget-group') {
+    moveBudgetIntoGroup(evt.source, evt.target);
+  } else {
+    moveBudgetGroup(evt.source, evt.target, evt.type === 'after');
+  }
+};
 
 watch(budgetGroupBudgetsVisible, (value) => (value ? emit('visible') : emit('hidden')));
 
@@ -177,5 +228,13 @@ defineExpose({
   font-style: italic;
   grid-column: 1 / -1;
   text-align: center;
+}
+
+.skeleton {
+  grid-column: 4 / -3;
+  height: 16px;
+  margin: 3px 0;
+  background: var(--grid-background-skeleton);
+  border-radius: var(--border-radius-m);
 }
 </style>

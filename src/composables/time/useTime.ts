@@ -1,17 +1,13 @@
-import { computed, getCurrentScope, onScopeDispose, shallowRef } from 'vue';
+import { createGlobalState, useTimestamp } from '@vueuse/core';
+import { computed } from 'vue';
 
-const UPDATE_INTERVAL = 100; // Update every 100 milliseconds
+export const useTime = createGlobalState(() => {
+  const timestamp = useTimestamp();
 
-export const useTime = () => {
-  const date = shallowRef(new Date());
-  const interval = setInterval(() => (date.value = new Date()), UPDATE_INTERVAL);
-
-  if (getCurrentScope()) {
-    onScopeDispose(() => clearInterval(interval));
-  }
+  const date = computed(() => new Date(timestamp.value));
 
   return {
     year: computed(() => date.value.getFullYear()),
     month: computed(() => date.value.getMonth())
   };
-};
+});

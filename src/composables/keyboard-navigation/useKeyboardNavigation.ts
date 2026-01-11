@@ -9,7 +9,7 @@ const arrowEvents = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
 export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavigationOptions>) => {
   const rOptions = toRef(options);
-  const controllers = new Set<AbortController>();
+  const controllers = new Map<HTMLInputElement, AbortController>();
 
   const sortedInputs = computed(() =>
     rOptions.value.inputs.toSorted((a, b) => {
@@ -24,11 +24,6 @@ export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavig
       return 0;
     })
   );
-
-  const unbindEvents = () => {
-    controllers.forEach((controller) => controller.abort());
-    controllers.clear();
-  };
 
   const resolveNextIndex = (currentIndex: number, key: string, cols: number, rows: number) => {
     const currentRow = Math.floor(currentIndex / cols);
@@ -64,11 +59,11 @@ export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavig
   };
 
   watch(rOptions, (options) => {
-    unbindEvents();
-
     options.inputs.forEach((input) => {
+      if (controllers.has(input)) return;
+
       const controller = new AbortController();
-      controllers.add(controller);
+      controllers.set(input, controller);
 
       input.addEventListener(
         'keydown',
@@ -84,7 +79,19 @@ export const useKeyboardNavigation = (options: MaybeRefOrGetter<UseKeyboardNavig
         { signal: controller.signal }
       );
     });
+
+    // Unbind previous events
+    for (const [input, controller] of controllers) {
+      if (!options.inputs.includes(input)) {
+        controller.abort();
+        controllers.delete(input);
+      }
+    }
   });
 
-  onScopeDispose(unbindEvents);
+  onScopeDispose(() => {
+    for (const controller of controllers.values()) {
+      controller.abort();
+    }
+  });
 };
