@@ -34,7 +34,10 @@ export const createDataStore = (storage?: Storage) => {
   storage?.sync<DataState, DataStates>({
     name: 'data',
     state: () => state,
-    clear: () => Object.assign(state, migrateApplicationState()),
+    clear: () => {
+      Object.assign(state, migrateApplicationState());
+      currentYear.value = state.years[0].year;
+    },
     push: (data) => {
       Object.assign(state, migrateApplicationState(data));
 
