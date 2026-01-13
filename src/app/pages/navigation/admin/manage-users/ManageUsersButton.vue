@@ -2,6 +2,7 @@
   <ContextMenuButton
     :text="t('navigation.admin.manageUsers')"
     :icon="RiUserSettingsLine"
+    :testId="testId"
     @click="showManageUserModal = !showManageUserModal"
   />
   <ManageUsersModal :open="showManageUserModal" @close="showManageUserModal = false" />
@@ -13,6 +14,10 @@ import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.v
 import { RiUserSettingsLine } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+
+defineProps<{
+  testId?: string;
+}>();
 
 const { t } = useI18n();
 

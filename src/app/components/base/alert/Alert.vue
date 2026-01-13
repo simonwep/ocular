@@ -1,5 +1,5 @@
 <template>
-  <p :class="[$style.alert, classes]">
+  <p :data-testid="props.testId" :class="[$style.alert, classes]">
     <component :is="mapping[type][1]" :class="$style.icon" />
     <span>{{ text }}</span>
   </p>
@@ -15,6 +15,7 @@ import type { Component } from 'vue';
 
 const props = defineProps<{
   class?: ClassNames;
+  testId?: string;
   text: string;
   type: AlertType;
 }>();

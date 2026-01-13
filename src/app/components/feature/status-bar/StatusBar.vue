@@ -1,5 +1,5 @@
 <template>
-  <div v-if="status" :class="[$style.statusBar, $style[status.color], classes]">
+  <div v-if="status" :data-testid="status.testId" :class="[$style.statusBar, $style[status.color], classes]">
     <h1 :class="$style.title">{{ status.title }}</h1>
     <button v-if="status.button && status.action" type="button" :class="$style.button" @click="status.action">
       {{ status.button }}
@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useStorage } from '@storage/index.ts';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { ClassNames } from '@utils/types.ts';
 import { useLocalStorage } from '@vueuse/core';
 import { useRegisterSW } from 'virtual:pwa-register/vue';
@@ -18,6 +18,7 @@ import { useI18n } from 'vue-i18n';
 type Status = {
   title: string;
   color: 'danger' | 'warning' | 'success' | 'primary';
+  testId?: string;
   button?: string;
   action?: () => unknown;
 };
@@ -39,6 +40,7 @@ const status = computed((): Status | undefined => {
     case 'error':
       return {
         color: 'danger',
+        testId: 'status-bar-synchronization-error',
         title: t('feature.statusBar.synchronizationFailedDueToNetworkError'),
         button: t('feature.statusBar.retrySynchronization'),
         action: retrySync
@@ -46,6 +48,7 @@ const status = computed((): Status | undefined => {
     case 'retrying': {
       return {
         color: 'danger',
+        testId: 'status-bar-retrying',
         title: t('feature.statusBar.retryingPleaseWait')
       };
     }

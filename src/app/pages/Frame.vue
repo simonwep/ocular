@@ -59,7 +59,7 @@ import StatusBar from '@components/feature/status-bar/StatusBar.vue';
 import ComponentTransition from '@components/misc/component-transition/ComponentTransition.vue';
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useSquircle } from '@composables/squircle/useSquircle.ts';
-import { useStorage } from '@storage/index';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { ClassNames } from '@utils/types.ts';
 import { RiDonutChartLine, RiHandCoinLine, RiShoppingBagLine } from '@remixicon/vue';
 import { computed, useCssModule, useTemplateRef } from 'vue';

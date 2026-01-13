@@ -1,0 +1,33 @@
+name: 'Wait for Healthcheck'
+description: 'Wait for a service to be healthy by checking its healthcheck endpoint'
+inputs:
+  host:
+    description: 'The host of the backend'
+    required: true
+  endpoint:
+    description: 'The healthcheck endpoint'
+    required: true
+    default: 'health'
+  expected_code:
+    description: 'The expected HTTP status code'
+    default: '200'
+  timeout:
+    description: 'The timeout in seconds'
+    default: '30'
+runs:
+  using: 'composite'
+  steps:
+    - name: Wait for service to be healthy
+      shell: bash
+      run: |
+        counter=0
+        while [ "$(curl -s -o /dev/null -w '%{http_code}' http://${{ inputs.host }}/${{ inputs.endpoint }})" -ne ${{ inputs.expected_code }} ]; do
+          counter=$((counter+1))
+          if [ $counter -ge ${{ inputs.timeout }} ]; then
+            echo "Service failed to start within ${{ inputs.timeout }} seconds."
+            exit 1
+          fi
+          echo "Waiting for service to start..."
+          sleep 1
+        done
+        echo "Service is healthy"

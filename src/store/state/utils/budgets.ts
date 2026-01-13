@@ -36,5 +36,5 @@ export const flatten = (groups: DeepReadonly<BudgetGroup[]>): FlattedBudgetGroup
 export const sumOfBudgetGroups = (groups: DeepReadonly<BudgetGroup[]>): number =>
   sum(groups.flatMap((v) => v.budgets.flatMap((v) => v.values)));
 
-export const finalBalance = ({ income, expenses }: BudgetYear) =>
+export const sumOfBudgetYear = ({ income, expenses }: BudgetYear) =>
   sumOfBudgetGroups(income) - sumOfBudgetGroups(expenses);

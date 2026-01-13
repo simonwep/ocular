@@ -1,15 +1,23 @@
-import { createGenesisStore, GenesisUser } from './createGenesisStore';
-import { StorageAuthenticationState, StorageSync } from './types';
+import { createClient, GenesisUser } from '@store/genesis/genesis.sdk.ts';
 import { debounce } from '@utils/debounce/debounce.ts';
-import { computed, nextTick, readonly, ref, shallowReactive, watch } from 'vue';
+import { computed, nextTick, readonly, ref, shallowReactive, shallowRef, watch } from 'vue';
 import { MigratableState } from 'yuppee';
 
 const { OCULAR_GENESIS_HOST } = import.meta.env;
 
 export type Storage = ReturnType<typeof createStorage>;
 
+export type StorageAuthenticationState = 'idle' | 'authenticated' | 'syncing' | 'error' | 'retrying';
+
+export interface StorageSync<T extends MigratableState, P extends MigratableState = T> {
+  name: string;
+  state(): T;
+  clear(): void;
+  push(data: P): void;
+}
+
 export const createStorage = () => {
-  const authenticatedUser = ref<GenesisUser | undefined>();
+  const authenticatedUser = shallowRef<GenesisUser | undefined>();
   const syncsFailed = shallowReactive<Set<() => Promise<void>>>(new Set());
   const syncsActive = ref(0);
 
@@ -17,7 +25,7 @@ export const createStorage = () => {
     authenticatedUser.value = undefined;
   };
 
-  const store = createGenesisStore({
+  const store = createClient({
     baseUrl: OCULAR_GENESIS_HOST,
     onSessionExpired: logout
   });

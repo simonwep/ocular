@@ -3,7 +3,7 @@ export interface GenesisUser {
   admin: boolean;
 }
 
-export interface NewGenesisUser {
+export interface GenesisNewUser {
   name: string;
   password: string;
   admin: boolean;
@@ -24,49 +24,63 @@ export interface GenesisStoreOptions {
   onSessionExpired?: (res: Response) => void;
 }
 
-export const createGenesisStore = (opt: GenesisStoreOptions) => {
-  const assertOk = (res: Response, ignoreUnauthenticated = false) => {
+export const createClient = (opt: GenesisStoreOptions) => {
+  let sessionToken: string | undefined;
+
+  const request = (url: string, options?: RequestInit) =>
+    fetch(url, {
+      ...options,
+      headers: {
+        ...options?.headers,
+        ...(sessionToken ? { Cookie: sessionToken } : undefined)
+      }
+    });
+
+  const assertOk = async (res: Response, ignoreUnauthenticated = false) => {
     if (res.ok) {
       return res.headers.get('content-type')?.includes('json') ? res.json() : undefined;
     } else if (res.status === 401 && !ignoreUnauthenticated) {
       opt.onSessionExpired?.(res);
-    } else {
-      return Promise.reject(res);
     }
+
+    return Promise.reject(res);
   };
 
-  const login = async (request?: GenesisLoginRequest): Promise<GenesisUser> =>
+  const login = async (body?: GenesisLoginRequest): Promise<GenesisUser> =>
     assertOk(
-      await fetch(`${opt.baseUrl}/login`, {
+      await request(`${opt.baseUrl}/login`, {
         method: 'POST',
-        ...(request && {
+        ...(body && {
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(request)
+          body: JSON.stringify(body)
         })
+      }).then((res) => {
+        sessionToken = res.headers.get('set-cookie') ?? undefined;
+        return res;
       }),
       true
     );
 
-  const logout = async () => assertOk(await fetch(`${opt.baseUrl}/logout`, { method: 'POST' }));
+  const logout = async () => assertOk(await request(`${opt.baseUrl}/logout`, { method: 'POST' }));
 
-  const updatePassword = async (request: GenesisUpdatePasswordRequest): Promise<void> =>
+  const updatePassword = async (body: GenesisUpdatePasswordRequest): Promise<void> =>
     assertOk(
-      await fetch(`${opt.baseUrl}/account/update`, {
+      await request(`${opt.baseUrl}/account/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(request)
+        body: JSON.stringify(body)
       }),
       true
     );
 
-  const getData = async (): Promise<object> => assertOk(await fetch(`${opt.baseUrl}/data`));
+  const getData = async (): Promise<object> => assertOk(await request(`${opt.baseUrl}/data`));
 
   const getDataByKey = async (key: string): Promise<unknown | undefined> =>
-    assertOk(await fetch(`${opt.baseUrl}/data/${key}`));
+    assertOk(await request(`${opt.baseUrl}/data/${key}`));
 
   const setDataByKey = async (key: string, data: unknown): Promise<void> =>
     assertOk(
-      await fetch(`${opt.baseUrl}/data/${key}`, {
+      await request(`${opt.baseUrl}/data/${key}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -74,23 +88,23 @@ export const createGenesisStore = (opt: GenesisStoreOptions) => {
     );
 
   const deleteDataByKey = async (key: string): Promise<void> =>
-    assertOk(await fetch(`${opt.baseUrl}/data/${key}`, { method: 'DELETE' }));
+    assertOk(await request(`${opt.baseUrl}/data/${key}`, { method: 'DELETE' }));
 
   const getAllUsers = async (): Promise<GenesisUser[]> =>
-    assertOk(await fetch(`${opt.baseUrl}/user`, { method: 'GET' }));
+    assertOk(await request(`${opt.baseUrl}/user`, { method: 'GET' }));
 
-  const createUser = async (newUser: NewGenesisUser): Promise<void> =>
+  const createUser = async (body: GenesisNewUser): Promise<void> =>
     assertOk(
-      await fetch(`${opt.baseUrl}/user`, {
+      await request(`${opt.baseUrl}/user`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUser)
+        body: JSON.stringify(body)
       })
     );
 
   const updateUser = async (username: string, updatedUser: GenesisUser): Promise<void> =>
     assertOk(
-      await fetch(`${opt.baseUrl}/user/${username}`, {
+      await request(`${opt.baseUrl}/user/${username}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedUser)
@@ -98,7 +112,7 @@ export const createGenesisStore = (opt: GenesisStoreOptions) => {
     );
 
   const deleteUser = async (username: string): Promise<void> =>
-    assertOk(await fetch(`${opt.baseUrl}/user/${username}`, { method: 'DELETE' }));
+    assertOk(await request(`${opt.baseUrl}/user/${username}`, { method: 'DELETE' }));
 
   return {
     login,

@@ -1,6 +1,6 @@
 import { migrateSettingsState } from './migrator';
 import { Mode, SettingsState, Theme } from './types';
-import { Storage, useStorage } from '@storage/index';
+import { Storage, useStorage } from '@store/storage/useStorage.ts';
 import { createGlobalState } from '@vueuse/core';
 import { reactive, readonly } from 'vue';
 

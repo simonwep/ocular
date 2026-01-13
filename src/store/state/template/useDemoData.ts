@@ -1,24 +1,19 @@
-import { useStorage } from '@storage/index.ts';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets.ts';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { sum } from '@utils/array/array.ts';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const generators = {
-  demo: () => import('./generateDemoData'),
-  template: () => import('./generateTemplateData')
-} as const;
-
-export const useTemplateData = () => {
-  const storage = useStorage();
+export const useDemoData = () => {
+  const { status } = useStorage();
   const { state, deserialize } = useDataStore();
   const { t } = useI18n();
 
   const loading = ref(false);
 
-  const loadTemplateData = async (type: keyof typeof generators) => {
-    if (loading.value || storage.status.value !== 'idle') {
+  const loadDemoData = async () => {
+    if (loading.value || status.value !== 'idle') {
       return;
     }
 
@@ -28,14 +23,14 @@ export const useTemplateData = () => {
     }
 
     loading.value = true;
-    const { generate } = await generators[type]();
+    const { generateDemoData } = await import('./generateDemoData.ts');
 
-    if (storage.status.value === 'idle') {
-      await deserialize(generate(state.currency, state.locale, t));
+    if (status.value === 'idle') {
+      await deserialize(generateDemoData(state.currency, state.locale, t));
     }
 
     loading.value = false;
   };
 
-  return { loadTemplateData };
+  return { loadDemoData };
 };
