@@ -1,6 +1,7 @@
 <template>
   <ContextMenuButton
     :icon="RiUserAddLine"
+    :testId="testId"
     :text="t('navigation.admin.createUser')"
     @click="showCreateUserDialog = true"
   />
@@ -13,6 +14,10 @@ import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.v
 import { RiUserAddLine } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+
+defineProps<{
+  testId?: string;
+}>();
 
 const { t } = useI18n();
 

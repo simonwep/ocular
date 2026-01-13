@@ -8,32 +8,32 @@
     <span>{{ t('feature.chartPlaceholder.placeholder') }}</span>
 
     <Button
-      v-if="!OCULAR_GENESIS_HOST"
+      v-if="!OCULAR_GENESIS_HOST || OCULAR_HYBRID_MODE"
       testId="load-demo-data-placeholder"
       :icon="RiMagicFill"
       size="xs"
       :text="t('navigation.tools.demo.loadDemoData')"
-      @click="loadTemplateData('demo')"
+      @click="loadDemoData"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import { useTemplateData } from '@store/state/template/useTemplateData.ts';
+import { useDemoData } from '@store/state/template/useDemoData.ts';
 import { ClassNames } from '@utils/types.ts';
 import { RiHandCoinLine, RiMagicFill, RiShoppingBasket2Line } from '@remixicon/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const { OCULAR_GENESIS_HOST } = import.meta.env;
+const { OCULAR_GENESIS_HOST, OCULAR_HYBRID_MODE } = import.meta.env;
 
 const props = defineProps<{
   class?: ClassNames;
 }>();
 
 const { t } = useI18n();
-const { loadTemplateData } = useTemplateData();
+const { loadDemoData } = useDemoData();
 
 const classes = computed(() => props.class);
 </script>

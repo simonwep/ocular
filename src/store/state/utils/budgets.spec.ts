@@ -1,4 +1,4 @@
-import { totals, flatten, sumOfBudgetGroups, finalBalance } from './budgets';
+import { totals, flatten, sumOfBudgetGroups, sumOfBudgetYear } from './budgets';
 import { BudgetGroup, BudgetYear } from '../types';
 import { it, expect } from 'vitest';
 
@@ -52,5 +52,5 @@ it('calculate final balance', () => {
     ]
   };
 
-  expect(finalBalance(budgetYear)).toBe(3300);
+  expect(sumOfBudgetYear(budgetYear)).toBe(3300);
 });

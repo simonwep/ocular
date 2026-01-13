@@ -1,6 +1,7 @@
 import { minifyHtmlPlugin } from './plugins/vite-plugin-minify-html/minifyHtmlPlugin.ts';
 import { minifyJsonPlugin } from './plugins/vite-plugin-minify-json/minifyJsonPlugin.ts';
 import vue from '@vitejs/plugin-vue';
+import { ProxyOptions } from 'vite';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -8,21 +9,18 @@ import { defineConfig } from 'vitest/config';
 
 const base = process.env.OCULAR_BASE_URL ?? '/';
 
+const proxy: Record<string, ProxyOptions> = {
+  '/api': {
+    target: 'http://localhost:8080',
+    rewrite: (path) => path.slice(4) // cut off `/api`
+  }
+};
+
 export default defineConfig({
   base,
   envPrefix: ['OCULAR'],
-  server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        rewrite: (path) => path.slice(4) // cut off `/api`
-      }
-    }
-  },
-  preview: {
-    port: 3000
-  },
+  server: { port: 3000, proxy },
+  preview: { port: 3000, proxy },
   define: {
     'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now()
   },

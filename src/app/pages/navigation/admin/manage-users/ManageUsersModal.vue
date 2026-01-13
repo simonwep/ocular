@@ -3,13 +3,23 @@
     <ul v-if="users.length" :class="$style.list">
       <li v-for="usr of users" :key="usr.name" :class="$style.item">
         <span :class="$style.name">{{ usr.name }}</span>
-        <Button
-          :color="usr.admin ? 'success' : 'dimmed'"
-          textual
-          :icon="RiShieldUserLine"
-          @click="toggleAdmin(usr, !usr.admin)"
-        />
-        <Button color="danger" textual :icon="RiCloseCircleLine" @click="removeUser(usr)" />
+
+        <div :class="$style.actions">
+          <Button
+            :color="usr.admin ? 'success' : 'dimmed'"
+            :testId="`toggle-admin-${usr.name}`"
+            textual
+            :icon="RiShieldUserLine"
+            @click="toggleAdmin(usr, !usr.admin)"
+          />
+          <Button
+            color="danger"
+            :testId="`remove-${usr.name}`"
+            textual
+            :icon="RiCloseCircleLine"
+            @click="removeUser(usr)"
+          />
+        </div>
       </li>
     </ul>
     <p v-else :class="$style.placeholder">{{ t('navigation.admin.noUsersFound') }}</p>
@@ -19,8 +29,8 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
-import { GenesisUser } from '@storage/createGenesisStore';
-import { useStorage } from '@storage/index';
+import { GenesisUser } from '@store/genesis/genesis.sdk.ts';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { RiCloseCircleLine, RiShieldUserLine } from '@remixicon/vue';
 import { ref, toRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -78,16 +88,17 @@ watch([user, toRef(props, 'open')], ([user]) => user?.admin && void fetchUsers()
 
   .name {
     display: inline-block;
-    margin-right: auto;
     cursor: default;
+    margin-right: 4px;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
 .actions {
-  width: 100%;
   display: flex;
-  padding-top: 6px;
-  justify-content: space-between;
+  margin-left: auto;
 }
 
 .placeholder {

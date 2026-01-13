@@ -27,7 +27,7 @@ import Alert from '@components/base/alert/Alert.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Form from '@components/base/form/Form.vue';
 import TextField from '@components/base/text-field/TextField.vue';
-import { useStorage } from '@storage/index';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 

@@ -31,17 +31,19 @@ import LoadingScreen from '@components/misc/loading-screen/LoadingScreen.vue';
 import { useAppElement } from '@composables/app-element/useAppElement.ts';
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useShowWinterFeatures } from '@composables/winter-features/useShowWinterFeatures.ts';
-import { useStorage } from '@storage/index';
 import { useSettingsStore } from '@store/settings';
-import { useTemplateData } from '@store/state/template/useTemplateData.ts';
+import { useDemoData } from '@store/state/template/useDemoData.ts';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { useLocalStorage, usePreferredReducedMotion } from '@vueuse/core';
 import { nextTick, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
+const { OCULAR_GENESIS_HOST, OCULAR_HYBRID_MODE } = import.meta.env;
+
 const { status } = useStorage();
 const { state: settings } = useSettingsStore();
-const { loadTemplateData } = useTemplateData();
+const { loadDemoData } = useDemoData();
 const { t } = useI18n();
 const showWinterFeatures = useShowWinterFeatures();
 const router = useRouter();
@@ -92,10 +94,8 @@ watch(router.currentRoute, (route) => {
 });
 
 onMounted(() => {
-  if (!import.meta.env.OCULAR_GENESIS_HOST && location.hash === '#demo') {
-    loadTemplateData('demo');
-  } else {
-    loadTemplateData('template');
+  if ((!OCULAR_GENESIS_HOST || OCULAR_HYBRID_MODE) && location.hash === '#demo') {
+    loadDemoData();
   }
 });
 </script>

@@ -5,6 +5,7 @@
         v-model="newUser.name"
         :minLength="3"
         :maxLength="32"
+        testId="username"
         required
         :label="t('navigation.admin.username')"
       />
@@ -13,6 +14,7 @@
         required
         :minLength="8"
         :maxLength="64"
+        testId="password"
         :label="t('navigation.admin.password')"
         type="password"
         showPasswordStrength
@@ -31,8 +33,8 @@ import CheckBox from '@components/base/check-box/CheckBox.vue';
 import Dialog from '@components/base/dialog/Dialog.vue';
 import Form from '@components/base/form/Form.vue';
 import TextField from '@components/base/text-field/TextField.vue';
-import { NewGenesisUser } from '@storage/createGenesisStore';
-import { useStorage } from '@storage/index';
+import { GenesisNewUser } from '@store/genesis/genesis.sdk.ts';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { RiUserAddLine } from '@remixicon/vue';
 import { reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -49,7 +51,7 @@ const { t } = useI18n();
 const { createUser } = useStorage();
 
 const state = ref<'idle' | 'loading' | 'conflict' | 'errored'>('idle');
-const newUser = reactive<NewGenesisUser>({
+const newUser = reactive<GenesisNewUser>({
   name: '',
   password: '',
   admin: false

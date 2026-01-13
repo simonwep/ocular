@@ -3,22 +3,28 @@ import { DataState, DataStates } from './types';
 import { generateBudgetYear } from './utils/generators.ts';
 import { useTime } from '@composables/time/useTime.ts';
 import { AvailableLocale, changeLocale } from '@i18n/index';
-import { Storage, useStorage } from '@storage/index';
 import { ActionOptions, UndoFn } from '@store/state/actions/action.types.ts';
 import { budgetActions } from '@store/state/actions/budget.actions.ts';
 import { budgetGroupActions } from '@store/state/actions/budgetGroup.actions.ts';
 import { yearActions } from '@store/state/actions/year.actions.ts';
-import { finalBalance } from '@store/state/utils/budgets.ts';
+import { generateTemplateData } from '@store/state/template/generateTemplateData.ts';
+import { sumOfBudgetYear } from '@store/state/utils/budgets.ts';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { sum } from '@utils/array/array.ts';
 import { readFile } from '@utils/read-file/readFile.ts';
 import { createGlobalState, watchImmediate } from '@vueuse/core';
 import { computed, reactive, readonly, shallowReactive, shallowRef } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-export const createDataStore = (storage?: Storage) => {
+export const useDataStore = createGlobalState(() => {
+  const storage = useStorage();
   const currentYear = shallowRef(new Date().getFullYear());
   const undoFunctions = shallowReactive<UndoFn[]>([]);
-  const state = reactive<DataState>(migrateApplicationState());
   const time = useTime();
+  const { t } = useI18n();
+
+  const base = migrateApplicationState();
+  const state = reactive<DataState>(generateTemplateData(base.currency, base.locale, t));
 
   const budgetYear = computed(() => state.years.find((v) => v.year === currentYear.value)!);
   const budgetGroups = computed(() => [...budgetYear.value.expenses, ...budgetYear.value.income]);
@@ -31,11 +37,11 @@ export const createDataStore = (storage?: Storage) => {
     ([locale, currency]) => changeLocale(locale, { currency })
   );
 
-  storage?.sync<DataState, DataStates>({
+  storage.sync<DataState, DataStates>({
     name: 'data',
     state: () => state,
     clear: () => {
-      Object.assign(state, migrateApplicationState());
+      Object.assign(state, generateTemplateData(state.currency, state.locale, t));
       currentYear.value = state.years[0].year;
     },
     push: (data) => {
@@ -78,7 +84,7 @@ export const createDataStore = (storage?: Storage) => {
         return budgetYear.value.income;
       },
       get overallBalance() {
-        return sum(state.years.filter((year) => year.year < currentYear.value).map(finalBalance));
+        return sum(state.years.filter((year) => year.year < currentYear.value).map(sumOfBudgetYear));
       },
       get canUndo() {
         return undoFunctions.length > 0;
@@ -113,6 +119,4 @@ export const createDataStore = (storage?: Storage) => {
     ...budgetActions(actionOptions),
     ...budgetGroupActions(actionOptions)
   };
-};
-
-export const useDataStore = createGlobalState(() => createDataStore(useStorage()));
+});

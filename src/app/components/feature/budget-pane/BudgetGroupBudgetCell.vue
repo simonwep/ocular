@@ -18,10 +18,12 @@
       :actions="
         () => [
           {
+            id: 'fill-row',
             label: t('feature.budgetPane.fillRow'),
             handle: () => fillBudget(budget.id, budget.values[month])
           },
           {
+            id: 'fill-to-right',
             label: t('feature.budgetPane.fillRowToRight'),
             handle: () => fillBudget(budget.id, budget.values[month], month)
           }

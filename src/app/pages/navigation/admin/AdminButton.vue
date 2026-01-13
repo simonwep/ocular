@@ -6,12 +6,12 @@
     :class="classes"
   >
     <template #default="{ toggle }">
-      <Button :icon="RiShieldFlashLine" textual color="dimmed" @click="toggle" />
+      <Button testId="admin-settings" :icon="RiShieldFlashLine" textual color="dimmed" @click="toggle" />
     </template>
 
     <template #options>
-      <CreateUserButton />
-      <ManageUsersButton v-if="user?.admin" />
+      <CreateUserButton testId="create-user" />
+      <ManageUsersButton v-if="user?.admin" testId="manage-user" />
     </template>
   </ContextMenu>
 </template>
@@ -22,7 +22,7 @@ import ManageUsersButton from './manage-users/ManageUsersButton.vue';
 import Button from '@components/base/button/Button.vue';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import { useAppSize } from '@composables/app-size/useAppSize.ts';
-import { useStorage } from '@storage/index';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { ClassNames } from '@utils/types.ts';
 import { RiShieldFlashLine } from '@remixicon/vue';
 import { computed } from 'vue';

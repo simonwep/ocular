@@ -137,6 +137,7 @@ const totals = computed(() => {
 
   &.current > span {
     background: var(--c-primary);
+    color: var(--c-primary-text);
     padding: 1px 6px;
     border-radius: 100px;
   }

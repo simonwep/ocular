@@ -6,6 +6,7 @@
         :id="inputId"
         ref="input"
         v-model="modelValue"
+        :data-testid="testId"
         :name="name"
         :minlength="minLength"
         :maxlength="maxLength"
@@ -48,6 +49,7 @@ withDefaults(
     minLength?: number;
     maxLength?: number;
     required?: boolean;
+    testId?: string;
     label: string;
     placeholder?: string;
     showPasswordStrength?: boolean;

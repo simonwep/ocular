@@ -7,6 +7,7 @@ interface ImportMetaEnv {
 
   // Backend host
   readonly OCULAR_GENESIS_HOST: string;
+  readonly OCULAR_HYBRID_MODE?: string;
 
   // Build information
   readonly OCULAR_BUILD_TIMESTAMP: number;

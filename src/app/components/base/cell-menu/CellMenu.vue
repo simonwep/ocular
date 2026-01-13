@@ -5,7 +5,13 @@
   <div v-if="visible" ref="popper" :class="$style.popper" @focusout="focused--" @focusin="focused++">
     <ul :class="$style.list">
       <li v-for="action of actions()" :key="action.label" :class="$style.item">
-        <button :class="$style.btn" tabindex="0" type="button" @click="triggerAction(action)">
+        <button
+          :class="$style.btn"
+          :data-testid="action.id ? `cell-menu-action-${action.id}` : undefined"
+          tabindex="0"
+          type="button"
+          @click="triggerAction(action)"
+        >
           {{ action.label }}
         </button>
       </li>

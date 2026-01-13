@@ -4,6 +4,7 @@
     :class="classes"
     :data-testid="testId"
     :disabled="disabled"
+    v-bind="dataAttributes"
     :type="type"
     @click="emit('click', $event)"
   >
@@ -38,6 +39,7 @@ const props = withDefaults(
     rounded?: boolean;
     disabled?: boolean;
     testId?: string;
+    data?: Record<string, string>;
   }>(),
   {
     color: 'primary',
@@ -51,6 +53,11 @@ const props = withDefaults(
 
 const styles = useCssModule();
 const theme = useThemeStyles(() => props.color);
+
+const dataAttributes = computed(() =>
+  props.data ? Object.fromEntries(Object.entries(props.data).map(([key, value]) => [`data-${key}`, value])) : {}
+);
+
 const classes = computed(() => [
   styles.button,
   styles[props.size],
