@@ -37,7 +37,7 @@ jobs:
         run: pnpm lint
 
       - name: Run unit tests
-        run: pnpm test
+        run: pnpm test:unit
 
       - name: Build testing app
         run: pnpm build

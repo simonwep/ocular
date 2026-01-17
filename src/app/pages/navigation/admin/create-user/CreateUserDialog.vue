@@ -19,7 +19,7 @@
         type="password"
         showPasswordStrength
       />
-      <CheckBox v-model="newUser.admin" :label="t('navigation.admin.admin')" />
+      <CheckBox v-model="newUser.admin" testId="admin" :label="t('navigation.admin.admin')" />
 
       <Alert v-if="state === 'errored'" :text="t('navigation.admin.error')" type="error" />
       <Alert v-if="state === 'conflict'" :text="t('navigation.admin.conflict')" type="error" />
