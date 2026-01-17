@@ -13,7 +13,7 @@ outline: deep
 
 ## Quickstart
 
-As of v2, ocular can be deployed via a single docker image.
+Ocular can be deployed via a single docker image.
 
 ```sh
 docker run \
@@ -68,6 +68,10 @@ Now run `docker compose up` and ocular should be accessible under `http://localh
 You can now log in with the specified user.
 
 ## Updating to a new version
+
+> [!TIP]
+> If you're using the `v2` tag, make sure to check for new versions regularly as it always points to the latest `v2.x.x` release.
+
 
 Since ocular is contained within a single image, updating is fairly straightforward.
 To update ocular to a new version, simply pull the new image and restart the container if you're using docker compose:

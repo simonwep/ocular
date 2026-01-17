@@ -10,39 +10,35 @@
 </h3>
 
 <h6 align="center">
-  <a href="https://simonwep.github.io/ocular/demo">Demo</a> /
-  <a href="https://simonwep.github.io/ocular/pages/quickstart">Quickstart</a> /
-  <a href="https://simonwep.github.io/ocular/pages/deploy">Deploy</a>
+  <a href="https://simonwep.github.io/ocular/demo">Show me the demo</a> /
+  <a href="https://simonwep.github.io/ocular/pages/quickstart">Getting started</a> /
+  <a href="https://simonwep.github.io/ocular/pages/deploy">Deploy it!</a>
 </h6>
 
 ## Features
 
-- 🦾 Self-hosted. [Deploy](https://github.com/simonwep/ocular-docker) it via docker-compose in seconds.
-- 🕶️ Beautiful light and dark theme.
-- 💻 Installable as a PWA and ready for mobile.
-- 🔼 Import your data from Google sheet's annual planner.
-- 🛠️ Export your data as a single `.json`-file.
-- ✨ Dashboard with sankey diagram and a detailed view.
-- 🎇 Track budgets across multiple years.
-- 🙈 Privacy mode for when you're in a public place.
-- ⚡️ Simple, fast, and straight-forward UI.
-- 🫂 User management and authentication.
-- 🌐 Multi-language and currency support.
+- 🏠 Self-hosted. [Deploy it](https://simonwep.github.io/ocular/pages/deploy.html) it via docker in seconds.
+- 🎨 Themed, light and dark mode.
+- 🌍 Multi-language and support for all common currencies.
+- 📱 Installable as a Progressive Web App and optimized for mobile devices.
+- 🔁 Import your data from Google sheet's annual planner and export as json.
+- 📊 Dashboard with extensive statistics and charts including a sankey diagram.
 - ⌨️ Keyboard navigation for power users.
+- 📈 All-time overview of your budgets including analytics.
+- 🕶️ Privacy mode for when you're in a public place.
+- 📅 Track budgets across multiple years.
+- 👥 User management and authentication via app and cli.
+- ⚙️ Customizable, financial year, start at any month.
+- 🔄 Carry over budgets to the next year.
+- 🧮 Inline expression evaluation.
+- 🚀 ...and much more! 🚀
 - ...and much more!
 
 ## Screenshots
 
-<img width="1660" height="1130" alt="Dashboard" src="https://github.com/user-attachments/assets/a88477e0-4257-4718-85a1-2c5267aa4a4c" />
-<img width="1660" height="1130" alt="Dashboard Yearly Overview" src="https://github.com/user-attachments/assets/d51a5afb-cb48-45b6-a343-6f371c3f0a9f" />
-<img width="1660" height="1130" alt="All-time Overview" src="https://github.com/user-attachments/assets/163d6236-ed04-4983-9a6b-8d7e4d68ab65" />
+<img width="1660" height="1070" alt="Dashboard" src="https://github.com/user-attachments/assets/ba90874d-8a62-413a-af65-bf6f3d308e84" />
+<img width="1660" height="1070" alt="Dashboard Yearly Overview" src="https://github.com/user-attachments/assets/1be0a27b-a30e-42a3-82ea-f1b217ec163c" />
+<img width="1660" height="1070" alt="All-time Overview" src="https://github.com/user-attachments/assets/f365d526-d261-4274-9c68-816b401927fe" />
+<img width="1660" height="1070" alt="Demo expenses" src="https://github.com/user-attachments/assets/980818a7-0862-4696-8215-feabeea71bf7" />
 
 <p align="center"><i>...the rest is up for you to <a href="https://simonwep.github.io/ocular/demo">discover</a> ✨</i></p>
-
-### Getting started
-
-Head over to [the documentation](https://simonwep.github.io/ocular) to get started 🚀
-
-### You want to contribute?
-
-That's awesome! Check out the [contribution guidelines](./.github/CONTRIBUTING.md) to get started :)

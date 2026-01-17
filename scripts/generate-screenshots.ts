@@ -12,7 +12,7 @@ type Config = {
 };
 
 const concurrency = Math.max(1, Math.floor(cpus().length / 2));
-const screenSize = { width: 1660, height: 1130 };
+const screenSize = { width: 1660, height: 1070 };
 const screenshots = resolve(process.cwd(), 'scripts', 'screenshots');
 const url = 'http://localhost:3000/#demo';
 
@@ -27,6 +27,18 @@ const config: Config[] = [
   {
     name: 'All-time Overview',
     beforeScreenshot: (page) => page.getByTestId('view-all-time').click()
+  },
+  {
+    name: 'Demo expenses',
+    beforeScreenshot: async (page) => {
+      await page.getByTestId('navigation-expenses').click();
+      await page.getByTestId('group-0-collapse').click();
+      await page.getByTestId('group-1-collapse').click();
+      await page.getByTestId('group-2-collapse').click();
+      await page.getByTestId('group-3-collapse').click();
+      await page.getByTestId('group-5-collapse').click();
+      await page.getByTestId('group-4-budget-0-0').focus();
+    }
   }
 ];
 
