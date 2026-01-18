@@ -38,6 +38,7 @@ import {
   ContextMenuStore,
   ContextMenuStoreKey
 } from '@components/base/context-menu/ContextMenu.types';
+import { useBrowserType } from '@composables/browser-type/useBrowserType.ts';
 import { useOutOfElementClick } from '@composables/out-of-element-click/useOutOfElementClick.ts';
 import { ClassNames } from '@utils/types.ts';
 import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
@@ -70,6 +71,7 @@ const props = withDefaults(
 const styles = useCssModule();
 const reference = useTemplateRef('reference');
 const popper = useTemplateRef('popper');
+const browser = useBrowserType();
 const visible = ref(false);
 const placement = ref<'top' | 'bottom' | 'left' | 'right' | 'auto'>('auto');
 let instance: Instance | undefined;
@@ -101,7 +103,11 @@ watch(
 
 const hasOptionWithIcon = computed(() => props.options?.some((v) => v.icon));
 const classes = computed(() => [props.class, styles.reference]);
-const listClasses = computed(() => [styles.list, { [styles[placement.value]]: placement.value in styles }]);
+const listClasses = computed(() => [
+  styles.list,
+  { [styles[placement.value]]: placement.value in styles },
+  { [styles.firefox]: browser === 'Firefox' }
+]);
 
 const select = (option: ContextMenuOption): void => {
   emit('select', option);
@@ -171,6 +177,13 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
 
   &.right {
     transform: translateX(-6px);
+  }
+
+  // Absolute elements become invisible in firefox if backdrop-filter is attacked
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=1781159
+  &.firefox {
+    backdrop-filter: none;
+    background: var(--cell-menu-background);
   }
 }
 
