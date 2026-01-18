@@ -200,3 +200,17 @@ test('Add a new admin and create new users through it', async ({ page }) => {
   await expect(page.getByTestId('admin-settings')).toBeHidden();
   await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
 });
+
+test('Hide demo button if logged in', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByTestId('load-demo-data-placeholder')).toBeVisible();
+
+  await page.getByTestId('navigation-tools-menu').click();
+  await expect(page.getByTestId('load-demo-data')).toBeVisible();
+
+  await createNewUserAndLogin(page);
+  await expect(page.getByTestId('load-demo-data-placeholder')).toBeHidden();
+
+  await page.getByTestId('navigation-tools-menu').click();
+  await expect(page.getByTestId('load-demo-data')).toBeHidden();
+});

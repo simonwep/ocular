@@ -8,7 +8,7 @@
     <span>{{ t('feature.chartPlaceholder.placeholder') }}</span>
 
     <Button
-      v-if="!OCULAR_GENESIS_HOST || OCULAR_HYBRID_MODE"
+      v-if="(!OCULAR_GENESIS_HOST || OCULAR_HYBRID_MODE) && status === 'idle'"
       testId="load-demo-data-placeholder"
       :icon="RiMagicFill"
       size="xs"
@@ -21,6 +21,7 @@
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
 import { useDemoData } from '@store/state/template/useDemoData.ts';
+import { useStorage } from '@store/storage/useStorage.ts';
 import { ClassNames } from '@utils/types.ts';
 import { RiHandCoinLine, RiMagicFill, RiShoppingBasket2Line } from '@remixicon/vue';
 import { computed } from 'vue';
@@ -33,6 +34,7 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const { status } = useStorage();
 const { loadDemoData } = useDemoData();
 
 const classes = computed(() => props.class);
