@@ -7,7 +7,14 @@
     :title="t('navigation.auth.welcomeBack')"
     @close="emit('close')"
   >
-    <Form :submitIcon="RiLoginCircleLine" :submitLabel="t('navigation.auth.signIn')" @submit="signIn">
+    <Form
+      :maxWidth="INSECURE_CONNECTION ? 350 : undefined"
+      :submitIcon="RiLoginCircleLine"
+      :submitLabel="t('navigation.auth.signIn')"
+      @submit="signIn"
+    >
+      <Alert v-if="INSECURE_CONNECTION" :text="t('navigation.auth.loginNotAvailableDueToHttp')" type="warning" />
+
       <TextField
         v-model="username"
         testId="username"
@@ -38,6 +45,8 @@ import { useStorage } from '@store/storage/useStorage.ts';
 import { RiLoginCircleLine } from '@remixicon/vue';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+
+const INSECURE_CONNECTION = window.location.protocol === 'http:' && !import.meta.env.OCULAR_HYBRID_MODE;
 
 const emit = defineEmits<{
   close: [];

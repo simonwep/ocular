@@ -73,7 +73,8 @@
       "username": "Uživatelské jméno",
       "password": "Heslo",
       "loginFailed": "Přihlášení se nezdařilo. Uživatelské jméno a/nebo heslo je neplatné.",
-      "loginNotAvailable": "Přihlášení není dostupné, backend není nakonfigurován."
+      "loginNotAvailable": "Přihlášení není dostupné, backend není nakonfigurován.",
+      "loginNotAvailableDueToHttp": "Přihlášení nemusí fungovat, pokud je stránka načtena přes HTTP. Ujistěte se, že v souboru .env nastavíte GENESIS_JWT_COOKIE_ALLOW_HTTP na true, nebo raději používejte HTTPS pro přístup k aplikaci."
     },
     "admin": {
       "settings": "Nastavení správce",

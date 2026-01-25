@@ -73,7 +73,8 @@
       "username": "Felhasználónév",
       "password": "Jelszó",
       "loginFailed": "A bejelentkezés sikertelen, a felhasználónév és/vagy a jelszó helytelen.",
-      "loginNotAvailable": "A bejelentkezés jelenleg nem elérhető."
+      "loginNotAvailable": "A bejelentkezés jelenleg nem elérhető.",
+      "loginNotAvailableDueToHttp": "A bejelentkezés előfordulhat, hogy nem működik, ha az oldal HTTP-n keresztül érhető el. Győződjön meg róla, hogy a .env fájlban a GENESIS_JWT_COOKIE_ALLOW_HTTP értékét true-ra állítja, vagy még jobb, használjon HTTPS-t az alkalmazás eléréséhez."
     },
     "admin": {
       "settings": "Admin beállítások",

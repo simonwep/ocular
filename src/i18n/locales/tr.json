@@ -73,7 +73,8 @@
       "username": "Kullanıcı Adı",
       "password": "Parola",
       "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
-      "loginNotAvailable": "Giriş kullanılamıyor, backend yapılandırılmamış."
+      "loginNotAvailable": "Giriş kullanılamıyor, backend yapılandırılmamış.",
+      "loginNotAvailableDueToHttp": "Sayfa HTTP üzerinden erişiliyorsa oturum açma çalışmayabilir. .env dosyanızda GENESIS_JWT_COOKIE_ALLOW_HTTP değerini true olarak ayarladığınızdan emin olun veya daha iyisi uygulamaya erişmek için HTTPS kullanın."
     },
     "admin": {
       "settings": "Yönetici ayarları",

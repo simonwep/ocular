@@ -73,7 +73,8 @@
       "username": "Username",
       "password": "Password",
       "loginFailed": "Login failed, username and/or password invalid.",
-      "loginNotAvailable": "Login not available, backend not configured."
+      "loginNotAvailable": "Login not available, backend not configured.",
+      "loginNotAvailableDueToHttp": "Login might not work if the page is accessed via HTTP. Make sure to set GENESIS_JWT_COOKIE_ALLOW_HTTP to true in your .env file or, better yet, use HTTPS to access the application."
     },
     "admin": {
       "settings": "Admin settings",

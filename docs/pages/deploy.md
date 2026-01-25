@@ -67,6 +67,17 @@ GENESIS_CREATE_USERS=my-admin-username!:my-very-secure-password
 Now run `docker compose up` and ocular should be accessible under `http://localhost:3030` in your browser 🚀
 You can now log in with the specified user.
 
+## Using ocular over `http`
+
+> [!DANGER]
+> Using ocular over plain `http` is not recommended for production environments as it transmits your data in plain text.
+> Make sure to use `https` in production environments!
+
+By default, ocular sets the session cookie to `Secure` which means it will only be sent over `https` connections.
+
+If you're using ocular over plain `http`, for example in local, trusted networks, you need to set the environment variable `GENESIS_JWT_COOKIE_ALLOW_HTTP` to `true` to disable this behavior.
+Although it's highly recommended to use `https` in any other environment than local development.
+
 ## Updating to a new version
 
 > [!TIP]

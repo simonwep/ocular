@@ -14,13 +14,14 @@
 
 <script lang="ts" setup>
 import Button from '@components/base/button/Button.vue';
-import type { Component } from 'vue';
+import { Component, computed } from 'vue';
 
 const emit = defineEmits<{
   submit: [];
 }>();
 
-defineProps<{
+const props = defineProps<{
+  maxWidth?: number;
   submitLabel: string;
   submitIcon?: Component;
   submitTestId?: string;
@@ -31,6 +32,8 @@ const submit = (e: Event) => {
   emit('submit');
   e.preventDefault();
 };
+
+const maxWidthValue = computed(() => (props.maxWidth ? `${props.maxWidth}px` : 'auto'));
 </script>
 
 <style lang="scss" module>
@@ -38,6 +41,7 @@ const submit = (e: Event) => {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: v-bind('maxWidthValue');
 
   .btn {
     text-align: center;
