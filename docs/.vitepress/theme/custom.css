@@ -1,0 +1,7 @@
+.VPImage {
+  filter: drop-shadow(0 4px 32px var(--vp-c-brand-3));
+}
+
+.VPFeature {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+}

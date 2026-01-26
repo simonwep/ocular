@@ -92,15 +92,15 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'FAQs', link: '/pages/faq' },
-      { text: 'Quickstart', link: '/pages/quickstart' }
+      { text: 'Quickstart', link: '/pages/quickstart' },
+      { text: 'Deploy', link: '/pages/deploy' }
     ],
     sidebar: [
       {
         text: 'Introduction',
         items: [
           { text: 'Quickstart', link: '/pages/quickstart' },
-          { text: 'Deployment', link: '/pages/deploy' },
+          { text: 'How to Deploy', link: '/pages/deploy' },
           { text: 'Migrating from v1', link: '/pages/migrating' },
           { text: 'FAQs', link: '/pages/faq' }
         ]

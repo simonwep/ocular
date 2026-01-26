@@ -1,7 +1,8 @@
 # Quickstart
 
-> [!NOTE]
-> If you have any questions or something's missing, feel free to [open an issue](https://github.com/simonwep/ocular/issues) 💖
+> [!TIP]
+> If you have any questions or something's missing, feel free to [open an issue](https://github.com/simonwep/ocular/issues) 🐞
+> Want to deploy it? Head over to the [deployment guide](./deploy.md) 🚀
 
 ## Getting started
 

@@ -2,9 +2,9 @@
 outline: deep
 ---
 
-# Deployment
+# How to Deploy
 
-> [!TIP]
+> [!NOTE]
 > This deployment as well as v2 are still fairly new ✨
 > If you have any questions or something's missing, feel free to [open an issue](https://github.com/simonwep/ocular/issues).
 > For deploying Ocular [Docker](https://docs.docker.com/engine/install/) is required.
@@ -13,7 +13,12 @@ outline: deep
 
 ## Quickstart
 
-Ocular can be deployed via a single docker image.
+> [!NOTE]
+> Outside of `localhost` ocular by default requires `https` for secure cookie handling.
+> It's highly recommended to use `https` in production environments.
+> If you know what you're doing, you can also run ocular over plain `http`, see the [using ocular over `http`](#using-ocular-over-http) section for more information.
+
+Ocular can be deployed via a single docker image:
 
 ```sh
 docker run \
@@ -72,6 +77,7 @@ You can now log in with the specified user.
 > [!DANGER]
 > Using ocular over plain `http` is not recommended for production environments as it transmits your data in plain text.
 > Make sure to use `https` in production environments!
+> Tools such as [certbot](https://certbot.eff.org/) can help you to set up `https` for free.
 
 By default, ocular sets the session cookie to `Secure` which means it will only be sent over `https` connections.
 
