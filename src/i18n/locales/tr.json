@@ -72,9 +72,11 @@
       "signIn": "Giriş",
       "username": "Kullanıcı Adı",
       "password": "Parola",
-      "loginFailed": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
       "loginNotAvailable": "Giriş kullanılamıyor, backend yapılandırılmamış.",
-      "loginNotAvailableDueToHttp": "Sayfa HTTP üzerinden erişiliyorsa oturum açma çalışmayabilir. .env dosyanızda GENESIS_JWT_COOKIE_ALLOW_HTTP değerini true olarak ayarladığınızdan emin olun veya daha iyisi uygulamaya erişmek için HTTPS kullanın."
+      "loginNotAvailableDueToHttp": "Sayfa HTTP üzerinden erişiliyorsa oturum açma çalışmayabilir. .env dosyanızda GENESIS_JWT_COOKIE_ALLOW_HTTP değerini true olarak ayarladığınızdan emin olun veya daha iyisi uygulamaya erişmek için HTTPS kullanın.",
+      "incorrectUsernameOrPassword": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
+      "tooManyFailedAttempts": "Çok fazla başarısız giriş denemesi, {duration} sonra tekrar deneyin.",
+      "unknownError": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin. (Hata: {error})"
     },
     "admin": {
       "settings": "Yönetici ayarları",

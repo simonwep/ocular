@@ -72,9 +72,11 @@
       "signIn": "Masuk",
       "username": "Nama pengguna",
       "password": "Kata sandi",
-      "loginFailed": "Gagal masuk, nama pengguna dan/atau kata sandi tidak valid",
       "loginNotAvailable": "Login tidak tersedia, backend belum dikonfigurasi.",
-      "loginNotAvailableDueToHttp": "Login mungkin tidak berfungsi jika halaman diakses melalui HTTP. Pastikan untuk mengatur GENESIS_JWT_COOKIE_ALLOW_HTTP ke true di file .env Anda atau lebih baik gunakan HTTPS untuk mengakses aplikasi."
+      "loginNotAvailableDueToHttp": "Login mungkin tidak berfungsi jika halaman diakses melalui HTTP. Pastikan untuk mengatur GENESIS_JWT_COOKIE_ALLOW_HTTP ke true di file .env Anda atau lebih baik gunakan HTTPS untuk mengakses aplikasi.",
+      "incorrectUsernameOrPassword": "Login gagal, nama pengguna dan/atau kata sandi tidak valid.",
+      "tooManyFailedAttempts": "Terlalu banyak percobaan login yang gagal, coba lagi {duration}.",
+      "unknownError": "Ada yang salah, silakan coba lagi nanti. (Kesalahan: {error})"
     },
     "admin": {
       "settings": "Pengaturan admin",

@@ -1,6 +1,36 @@
-import { createNewUserAndLogin, randomUsername } from './utils/tenant.ts';
+import { createNewUser, createNewUserAndLogin, randomUsername } from './utils/tenant.ts';
 import { expect, test } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
+
+test('Lock out user after too many attempts', async ({ page }) => {
+  const user = await createNewUser();
+
+  await page.goto('/');
+  await page.getByTestId('navigation-cloud').click();
+  await page.getByTestId('username').fill(user.name);
+  await page.getByTestId('password').fill(user.password + 'wrong');
+
+  for (let i = 0; i < 5; i++) {
+    await page.getByTestId('password').press('Enter');
+    await expect(page.getByTestId('login-invalid-credentials')).toBeHidden();
+    await expect(page.getByTestId('login-invalid-credentials')).toBeVisible();
+  }
+
+  await page.getByTestId('password').press('Enter');
+  await expect(page.getByTestId('login-invalid-credentials')).toBeHidden();
+  await expect(page.getByTestId('login-too-many-attempts')).toBeVisible();
+
+  await page.getByTestId('password').press('Enter');
+  await expect(page.getByTestId('login-too-many-attempts')).toBeVisible();
+
+  await page.waitForTimeout(3000);
+  await expect(page.getByTestId('login-too-many-attempts')).toBeHidden();
+
+  await page.getByTestId('password').clear();
+  await page.getByTestId('password').fill(user.password);
+  await page.getByTestId('password').press('Enter');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+});
 
 test('Log in and retain data on log-out', async ({ page }) => {
   const user = await createNewUserAndLogin(page);
@@ -82,7 +112,7 @@ test('Add a new user as admin and remove it', async ({ page }) => {
   await page.getByTestId('username').fill(newUsername);
   await page.getByTestId('password').fill(newPassword);
   await page.getByTestId('password').press('Enter');
-  await expect(page.getByTestId('login-failed')).toBeVisible();
+  await expect(page.getByTestId('login-invalid-credentials')).toBeVisible();
 });
 
 test('Allow retry on network error', async ({ page }) => {

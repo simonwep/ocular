@@ -27,15 +27,23 @@ export const createStorage = () => {
 
   const store = createClient({
     baseUrl: OCULAR_GENESIS_HOST,
-    onSessionExpired: logout
+    middleware: (res) => {
+      if (res.status === 401) {
+        logout();
+      }
+
+      return res;
+    }
   });
 
-  const login = async (user?: string, password?: string): Promise<boolean> =>
-    store
-      .login(user && password ? { user, password } : undefined)
-      .then((user) => (authenticatedUser.value = user))
-      .then(() => true)
-      .catch(() => false);
+  const login = async (user?: string, password?: string) =>
+    store.login(user && password ? { user, password } : undefined).then((res) => {
+      if (res.data) {
+        authenticatedUser.value = res.data;
+      }
+
+      return res;
+    });
 
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
     const initializing = ref(true);
@@ -47,8 +55,7 @@ export const createStorage = () => {
 
       await store
         .setDataByKey(config.name, config.state())
-        .then(() => (errored.value = false))
-        .catch(() => (errored.value = true))
+        .then(({ error }) => (errored.value = !!error))
         .finally(() => (syncing.value = false));
     };
 
@@ -59,10 +66,13 @@ export const createStorage = () => {
       [authenticatedUser, initializing],
       async ([user, init]) => {
         if (user && init) {
-          await store
-            .getDataByKey(config.name)
-            .then((data) => config.push(data as P))
-            .catch(() => false);
+          await store.getDataByKey<P>(config.name).then(({ data, error }) => {
+            if (error) {
+              logout();
+            } else if (data) {
+              config.push(data);
+            }
+          });
 
           await nextTick(() => (initializing.value = false));
         }

@@ -72,9 +72,11 @@
       "signIn": "Se connecter",
       "username": "Nom d'utilisateur",
       "password": "Mot de passe",
-      "loginFailed": "Échec de la connexion, nom d'utilisateur et/ou mot de passe invalide.",
       "loginNotAvailable": "Connexion non disponible, le backend n'est pas configuré.",
-      "loginNotAvailableDueToHttp": "La connexion peut ne pas fonctionner si la page est accessible via HTTP. Assurez-vous de définir GENESIS_JWT_COOKIE_ALLOW_HTTP sur true dans votre fichier .env ou, mieux, utilisez HTTPS pour accéder à l'application."
+      "loginNotAvailableDueToHttp": "La connexion peut ne pas fonctionner si la page est accessible via HTTP. Assurez-vous de définir GENESIS_JWT_COOKIE_ALLOW_HTTP sur true dans votre fichier .env ou, mieux, utilisez HTTPS pour accéder à l'application.",
+      "incorrectUsernameOrPassword": "Échec de la connexion, nom d'utilisateur et/ou mot de passe invalide.",
+      "tooManyFailedAttempts": "Trop de tentatives de connexion échouées, réessayez dans {duration}.",
+      "unknownError": "Une erreur est survenue, veuillez réessayer plus tard. (Erreur : {error})"
     },
     "admin": {
       "settings": "Paramètres administrateur",

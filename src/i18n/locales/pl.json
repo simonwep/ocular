@@ -72,9 +72,11 @@
       "signIn": "Zaloguj się",
       "username": "Nazwa użytkownika",
       "password": "Hasło",
-      "loginFailed": "Logowanie nie powiodło się, nazwa użytkownika i/lub hasło są nieprawidłowe.",
       "loginNotAvailable": "Logowanie niedostępne, backend nie jest skonfigurowany.",
-      "loginNotAvailableDueToHttp": "Logowanie może nie działać, jeśli strona jest dostępna przez HTTP. Upewnij się, że w pliku .env ustawisz GENESIS_JWT_COOKIE_ALLOW_HTTP na true, lub lepiej — użyj HTTPS, aby uzyskać dostęp do aplikacji."
+      "loginNotAvailableDueToHttp": "Logowanie może nie działać, jeśli strona jest dostępna przez HTTP. Upewnij się, że w pliku .env ustawisz GENESIS_JWT_COOKIE_ALLOW_HTTP na true, lub lepiej — użyj HTTPS, aby uzyskać dostęp do aplikacji.",
+      "incorrectUsernameOrPassword": "Logowanie nie powiodło się, nazwa użytkownika i/lub hasło są nieprawidłowe.",
+      "tooManyFailedAttempts": "Zbyt wiele nieudanych prób logowania, spróbuj ponownie za {duration}.",
+      "unknownError": "Coś poszło nie tak, spróbuj ponownie później. (Błąd: {error})"
     },
     "admin": {
       "settings": "Ustawienia administratora",

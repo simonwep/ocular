@@ -1,4 +1,4 @@
-FROM ghcr.io/simonwep/genesis:v1.4.2 AS genesis
+FROM ghcr.io/simonwep/genesis:v1.5.0 AS genesis
 
 FROM --platform=$BUILDPLATFORM node:24-alpine AS frontend
 
@@ -43,6 +43,8 @@ ENV GENESIS_USERNAME_PATTERN='^[\w]{0,32}$'
 ENV GENESIS_KEY_PATTERN='^[\w]{0,32}$'
 ENV GENESIS_DATA_MAX_SIZE='512'
 ENV GENESIS_KEYS_PER_USER='2'
+ENV GENESIS_LOGIN_MAX_ATTEMPTS='5'
+ENV GENESIS_LOGIN_LOCKOUT_DURATIONS='1m,5m,15m,30m,1h'
 
 COPY --from=genesis /app/genesis /usr/local/bin/genesis
 COPY --from=frontend /app/dist /usr/share/caddy

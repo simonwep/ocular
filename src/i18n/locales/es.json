@@ -72,9 +72,11 @@
       "signIn": "Iniciar sesión",
       "username": "Usuario",
       "password": "Contraseña",
-      "loginFailed": "Error al iniciar sesión, usuario y/o contraseña inválidos.",
       "loginNotAvailable": "Inicio de sesión no disponible, el backend no está configurado.",
-      "loginNotAvailableDueToHttp": "El inicio de sesión puede no funcionar si la página se accede mediante HTTP. Asegúrate de establecer GENESIS_JWT_COOKIE_ALLOW_HTTP en true en tu archivo .env o, mejor aún, utiliza HTTPS para acceder a la aplicación."
+      "loginNotAvailableDueToHttp": "El inicio de sesión puede no funcionar si la página se accede mediante HTTP. Asegúrate de establecer GENESIS_JWT_COOKIE_ALLOW_HTTP en true en tu archivo .env o, mejor aún, utiliza HTTPS para acceder a la aplicación.",
+      "incorrectUsernameOrPassword": "Error de inicio de sesión, nombre de usuario y/o contraseña inválidos.",
+      "tooManyFailedAttempts": "Demasiados intentos fallidos de inicio de sesión, inténtalo de nuevo en {duration}.",
+      "unknownError": "Algo salió mal, por favor inténtalo de nuevo más tarde. (Error: {error})"
     },
     "admin": {
       "settings": "Configuraciones de administrador",

@@ -8,6 +8,7 @@ export const useTime = createGlobalState(() => {
 
   return {
     year: computed(() => date.value.getFullYear()),
-    month: computed(() => date.value.getMonth())
+    month: computed(() => date.value.getMonth()),
+    timestamp
   };
 });

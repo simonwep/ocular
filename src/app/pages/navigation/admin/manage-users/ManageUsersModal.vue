@@ -60,9 +60,17 @@ const removeUser = async (user: GenesisUser) => {
   }
 };
 
-const fetchUsers = async () => (users.value = await getAllUsers());
+const fetchUsers = async () => (users.value = (await getAllUsers()).data ?? []);
 
-watch([user, toRef(props, 'open')], ([user]) => user?.admin && void fetchUsers(), { immediate: true });
+watch(
+  [user, toRef(props, 'open')],
+  ([user]) => {
+    if (user?.admin) {
+      fetchUsers();
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="scss" module>
