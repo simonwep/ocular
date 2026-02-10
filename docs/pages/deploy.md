@@ -36,7 +36,9 @@ You can now log in with the specified user.
 All data is saved under `./data`, make sure to backup this folder regularly, as it contains all your budgeting data.
 Who knows what can happen to your container or server ;)
 
-You can also use docker compose to deploy ocular, here is a minimal example `docker-compose.yml`:
+----
+
+You can also use docker compose to deploy ocular, here is a minimal example `compose.yml`:
 
 ```yml
 services:
@@ -48,9 +50,9 @@ services:
     ports:
       - 3030:80
     environment:
+      - GENESIS_JWT_TOKEN_EXPIRATION
       - GENESIS_JWT_SECRET
       - GENESIS_CREATE_USERS
-      - GENESIS_JWT_TOKEN_EXPIRATION
 ```
 
 And a corresponding `.env` file:
@@ -71,6 +73,63 @@ GENESIS_CREATE_USERS=my-admin-username!:my-very-secure-password
 
 Now run `docker compose up` and ocular should be accessible under `http://localhost:3030` in your browser 🚀
 You can now log in with the specified user.
+
+## Using docker secrets
+
+> [!INFO]
+> This feature is / will be available as of ocular `v2.3`
+
+If you want to use docker secrets to manage your secrets, you can do so by creating a secret for each environment variable and then referencing them in your `compose.yml` file.
+
+First, docker needs to be initialized in [swarm mode](https://docs.docker.com/reference/cli/docker/swarm/) to use secrets, you can do this by running the following command:
+
+```sh
+docker swarm init
+```
+
+To move, for example, all three environment variables to secrets, you can use [`docker secret`](https://docs.docker.com/reference/cli/docker/secret/) to create the secrets:
+
+```sh
+echo '60' | docker secret create ocular_jwt_token_expiration -
+echo 'insert-a-very-long-random-string-here' | docker secret create ocular_jwt_secret -
+echo 'my-admin-username!:my-very-secure-password' | docker secret create ocular_create_users -
+```
+
+Then, you can reference these secrets in your `compose.yml` file.
+Every variable can be passed with the suffix `_FILE` to read the value from a file.
+
+```yml
+services:
+  ocular:
+    image: ghcr.io/simonwep/ocular:v2
+    volumes:
+      - ./data:/data/genesis
+    ports:
+      - 3030:80
+    environment:
+      GENESIS_JWT_TOKEN_EXPIRATION_FILE: /run/secrets/ocular_jwt_token_expiration
+      GENESIS_JWT_SECRET_FILE: /run/secrets/ocular_jwt_secret
+      GENESIS_CREATE_USERS_FILE: /run/secrets/ocular_create_users
+    secrets:
+      - ocular_jwt_token_expiration
+      - ocular_jwt_secret
+      - ocular_create_users
+secrets:
+  ocular_jwt_token_expiration:
+    external: true
+  ocular_jwt_secret:
+    external: true
+  ocular_create_users:
+    external: true
+```
+
+To deploy ocular with docker secrets, run the following command:
+
+```sh
+docker stack deploy -c compose.yml ocular
+```
+
+Ocular should then be accessible under `http://localhost:3030` in your browser 🚀
 
 ## Using ocular over `http`
 

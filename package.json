@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "pnpm run \"/^dev:.+/\"",
     "dev:frontend": "vite --host",
-    "dev:backend": "docker run --pull always -p 8080:8080 -v \"./.data:/app/.data\" --env-file .env.genesis ghcr.io/simonwep/genesis:v1.5.0 start",
+    "dev:backend": "docker run --pull always -p 8080:8080 -v \"./.data:/app/.data\" --env-file .env.genesis ghcr.io/simonwep/genesis:v1.6.0 start",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint \"**/*.{js,mjs,ts,mts,vue}\" --cache",

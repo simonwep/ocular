@@ -1,4 +1,4 @@
-FROM ghcr.io/simonwep/genesis:v1.5.0 AS genesis
+FROM ghcr.io/simonwep/genesis:v1.6.0 AS genesis
 
 FROM --platform=$BUILDPLATFORM node:24-alpine AS frontend
 
@@ -27,11 +27,6 @@ RUN pnpm run build
 FROM caddy:2.11-alpine
 
 WORKDIR /
-
-ARG GENESIS_JWT_COOKIE_ALLOW_HTTP
-ARG GENESIS_JWT_TOKEN_EXPIRATION
-ARG GENESIS_JWT_SECRET
-ARG GENESIS_CREATE_USERS
 
 # Fixed environment for genesis
 ENV GENESIS_DB_PATH='/data/genesis'
