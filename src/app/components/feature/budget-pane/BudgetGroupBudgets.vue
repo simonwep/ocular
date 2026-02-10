@@ -1,5 +1,10 @@
 <template>
   <template v-for="(budget, index) of budgets" :key="budget.id + index">
+    <div
+      v-if="dropLine?.id === budget.id && dropLine.position === -1"
+      style="grid-column: 1 / -1; border-bottom: 1px solid var(--c-primary); margin-top: -1px"
+    />
+
     <Draggable
       :id="budget.id"
       :testId="`${testId}-budget-${index}-dragger`"
@@ -7,6 +12,7 @@
       name="budget-group"
       :text="buildDraggableText"
       @drop="reorder"
+      @dragover="(position) => (dropLine = { position, id: budget.id })"
     />
 
     <Button
@@ -39,6 +45,11 @@
 
     <Currency :testId="`${testId}-budget-${index}-total`" :class="$style.meta" :value="sum(budget.values)" />
     <Currency :testId="`${testId}-budget-${index}-average`" :class="$style.meta" :value="average(budget.values)" />
+
+    <div
+      v-if="dropLine?.id === budget.id && dropLine.position === 1"
+      style="grid-column: 1 / -1; border-bottom: 1px solid var(--c-primary)"
+    />
   </template>
 </template>
 
@@ -56,7 +67,7 @@ import { useDataStore } from '@store/state';
 import { Budget } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
 import { RiCloseCircleLine } from '@remixicon/vue';
-import { computed, DeepReadonly } from 'vue';
+import { computed, DeepReadonly, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 defineProps<{
@@ -68,6 +79,11 @@ defineProps<{
 const { moveBudget, getBudget, getBudgetGroup, setBudgetName, removeBudget } = useDataStore();
 const { onRefCallback, value: currencyCells } = useOrderedTemplateRefs<InstanceType<typeof CurrencyCell>>();
 const { t } = useI18n();
+
+const dropLine = ref<{
+  position: 1 | 0 | -1;
+  id: string;
+}>();
 
 const buildDraggableText = (store: DraggableStore) => {
   const [srcGroup, src] = store.source ? (getBudget(store.source) ?? []) : [];

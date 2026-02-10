@@ -31,11 +31,12 @@ import { ReorderEvent } from './Draggable.types';
 import { DraggableStore, store } from './store';
 import Button from '@components/base/button/Button.vue';
 import { RiDraggable, RiSkipDownLine, RiSkipUpLine } from '@remixicon/vue';
-import { computed, ref, useTemplateRef } from 'vue';
+import { computed, ref, useTemplateRef, watch } from 'vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
   drop: [data: ReorderEvent];
+  dragover: [position: 1 | 0 | -1];
 }>();
 
 const props = defineProps<{
@@ -119,6 +120,17 @@ const drop = (evt: DragEvent) => {
 
   evt.preventDefault();
 };
+
+watch(
+  () => store.type,
+  (value) => {
+    if (active.value) {
+      emit('dragover', value && active.value ? (value === 'before' ? -1 : 1) : 0);
+    } else {
+      emit('dragover', 0);
+    }
+  }
+);
 </script>
 
 <style lang="scss" module>
