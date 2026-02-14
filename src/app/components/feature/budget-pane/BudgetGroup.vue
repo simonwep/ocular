@@ -7,6 +7,7 @@
     :icon="buildDraggableIcon"
     :text="buildDraggableText"
     :testId="`group-${index}-dragger`"
+    :target="['budget-groups']"
     name="budget-groups"
     @drop="reorder"
   />

@@ -31,7 +31,6 @@
 - ⚙️ Customizable, financial year, start at any month.
 - 🔄 Carry over budgets to the next year.
 - 🧮 Inline expression evaluation.
-- 🚀 ...and much more! 🚀
 - ...and much more!
 
 ## Screenshots

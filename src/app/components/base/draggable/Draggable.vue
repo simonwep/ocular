@@ -11,7 +11,12 @@
     @drag="drag"
     @dragstart="dragStart"
   >
-    <Button :color="matched && store.source !== id ? 'primary' : 'dimmed'" :icon="icon" textual />
+    <Button
+      :color="matched && store.source !== id ? 'primary' : 'dimmed'"
+      :disabled="!!store.group && !targets.includes(store.group)"
+      :icon="icon"
+      textual
+    />
 
     <div
       v-if="store.source === props.id && top && left && label"
@@ -27,15 +32,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ReorderEvent } from './Draggable.types';
+import { DropOrder, ReorderEvent } from './Draggable.types';
 import { DraggableStore, store } from './store';
 import Button from '@components/base/button/Button.vue';
 import { RiDraggable, RiSkipDownLine, RiSkipUpLine } from '@remixicon/vue';
-import { computed, ref, useTemplateRef } from 'vue';
+import { computed, ref, useTemplateRef, watch } from 'vue';
 import type { Component } from 'vue';
 
 const emit = defineEmits<{
   drop: [data: ReorderEvent];
+  dragover: [data: { target: string; type: DropOrder } | undefined];
 }>();
 
 const props = defineProps<{
@@ -80,7 +86,7 @@ const drag = (evt: DragEvent) => {
 };
 
 const dragOver = (evt: DragEvent) => {
-  if (store.group && store.targets?.includes(store.group)) {
+  if (store.group && targets.value.includes(store.group)) {
     const rect = draggable.value?.getBoundingClientRect();
     evt.preventDefault();
 
@@ -119,6 +125,17 @@ const drop = (evt: DragEvent) => {
 
   evt.preventDefault();
 };
+
+watch(
+  () => [store.type, store.target] as const,
+  ([type, target]) => {
+    if (type && target) {
+      emit('dragover', { target, type });
+    } else {
+      emit('dragover', undefined);
+    }
+  }
+);
 </script>
 
 <style lang="scss" module>

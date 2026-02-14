@@ -1,12 +1,15 @@
 <template>
   <template v-for="(budget, index) of budgets" :key="budget.id + index">
+    <div v-if="dropLine?.target === budget.id && dropLine.type === 'before'" :class="$style.reOrderLine" />
+
     <Draggable
       :id="budget.id"
       :testId="`${testId}-budget-${index}-dragger`"
-      :target="['budget-group', 'budget-groups']"
+      :target="['budget-group']"
       name="budget-group"
       :text="buildDraggableText"
       @drop="reorder"
+      @dragover="(target) => (dropLine = target)"
     />
 
     <Button
@@ -39,6 +42,8 @@
 
     <Currency :testId="`${testId}-budget-${index}-total`" :class="$style.meta" :value="sum(budget.values)" />
     <Currency :testId="`${testId}-budget-${index}-average`" :class="$style.meta" :value="average(budget.values)" />
+
+    <div v-if="dropLine?.target === budget.id && dropLine.type === 'after'" :class="$style.reOrderLine" />
   </template>
 </template>
 
@@ -46,7 +51,7 @@
 import Button from '@components/base/button/Button.vue';
 import Currency from '@components/base/currency/Currency.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
-import { ReorderEvent } from '@components/base/draggable/Draggable.types';
+import { DropOrder, ReorderEvent } from '@components/base/draggable/Draggable.types';
 import Draggable from '@components/base/draggable/Draggable.vue';
 import { DraggableStore } from '@components/base/draggable/store';
 import TextCell from '@components/base/text-cell/TextCell.vue';
@@ -56,7 +61,7 @@ import { useDataStore } from '@store/state';
 import { Budget } from '@store/state/types';
 import { average, sum } from '@utils/array/array.ts';
 import { RiCloseCircleLine } from '@remixicon/vue';
-import { computed, DeepReadonly } from 'vue';
+import { computed, DeepReadonly, shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 defineProps<{
@@ -68,6 +73,8 @@ defineProps<{
 const { moveBudget, getBudget, getBudgetGroup, setBudgetName, removeBudget } = useDataStore();
 const { onRefCallback, value: currencyCells } = useOrderedTemplateRefs<InstanceType<typeof CurrencyCell>>();
 const { t } = useI18n();
+
+const dropLine = shallowRef<{ type: DropOrder; target: string } | undefined>();
 
 const buildDraggableText = (store: DraggableStore) => {
   const [srcGroup, src] = store.source ? (getBudget(store.source) ?? []) : [];
@@ -119,5 +126,14 @@ defineExpose({
     font-weight: var(--font-weight-l);
     text-decoration: underline;
   }
+}
+
+.reOrderLine {
+  grid-column: 1 / -1;
+  width: 100%;
+  border-top: 2px solid var(--c-primary);
+  margin-top: -1px;
+  margin-bottom: -1px;
+  z-index: 1;
 }
 </style>
