@@ -139,7 +139,11 @@
       "jumpToExpenses": "Перейти к расходам за {year}",
       "lastYear": "Прошлый год",
       "surplus": "Профицит",
-      "deficit": "Дефицит"
+      "deficit": "Дефицит",
+      "downloadChart": "Скачать диаграмму",
+      "toggleBetweenAveragesAndTotals": "Переключить средние за месяц / итоги",
+      "toggleChartType": "Переключить тип диаграммы",
+      "togglePercentages": "Переключить проценты / абсолютные значения"
     }
   },
   "feature": {

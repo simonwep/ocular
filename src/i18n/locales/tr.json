@@ -139,7 +139,11 @@
       "jumpToExpenses": "{year} harcamalarına atla",
       "lastYear": "Geçen Yıl",
       "surplus": "Artı",
-      "deficit": "Eksi"
+      "deficit": "Eksi",
+      "downloadChart": "Grafiği indir",
+      "toggleBetweenAveragesAndTotals": "Aylık ortalamalar / toplamlar arasında geçiş yap",
+      "toggleChartType": "Grafik türünü değiştir",
+      "togglePercentages": "Yüzdeler / mutlak değerler arasında geçiş yap"
     }
   },
   "feature": {

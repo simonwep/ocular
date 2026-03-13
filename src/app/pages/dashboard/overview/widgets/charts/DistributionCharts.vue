@@ -8,8 +8,21 @@
     </ComponentTransition>
 
     <div :class="$style.controls">
+      <ComponentTransition fadeIn="bottom">
+        <Switch
+          v-if="!showPercentages"
+          v-model="showAverages"
+          v-tooltip.top="t('page.dashboard.toggleBetweenAveragesAndTotals')"
+          testId="show-averages"
+          :class="$style.switch"
+          :iconOn="RiCalendar2Line"
+          :iconOff="RiFunctions"
+        />
+      </ComponentTransition>
+
       <Switch
         v-model="showPercentages"
+        v-tooltip.top="t('page.dashboard.togglePercentages')"
         testId="show-percentages"
         :class="$style.switch"
         :iconOn="RiPercentFill"
@@ -17,6 +30,7 @@
       />
       <Switch
         v-model="showBarChart"
+        v-tooltip.top="t('page.dashboard.toggleChartType')"
         testId="show-bar-chart"
         :class="$style.switch"
         :iconOn="RiBarChartHorizontalLine"
@@ -25,7 +39,12 @@
 
       <ContextMenu position="top-end">
         <template #default="{ toggle }">
-          <button type="button" :class="$style.downloadBtn" @click="toggle">
+          <button
+            v-tooltip.top="t('page.dashboard.downloadChart')"
+            type="button"
+            :class="$style.downloadBtn"
+            @click="toggle"
+          >
             <RiDownload2Line size="14" />
           </button>
         </template>
@@ -61,7 +80,9 @@ import { sumOfBudgetGroups, totals } from '@store/state/utils/budgets.ts';
 import { sum } from '@utils/array/array.ts';
 import {
   RiBarChartHorizontalLine,
+  RiCalendar2Line,
   RiDownload2Line,
+  RiFunctions,
   RiGitMergeLine,
   RiImageLine,
   RiLandscapeLine,
@@ -83,6 +104,7 @@ const { state } = useDataStore();
 
 const chart = useTemplateRef('chart');
 const showBarChart = useLocalStorage('dashboard/show-bar-chart', false);
+const showAverages = useLocalStorage('dashboard/show-averages', false);
 const showPercentages = useLocalStorage('dashboard/show-percentages', false);
 
 const totalIncome = computed(() =>
@@ -99,7 +121,8 @@ const chartProps = computed(() => ({
   totalIncome: totalIncome.value,
   totalExpenses: totalExpenses.value,
   highlight: props.highlight,
-  percentages: showPercentages.value
+  percentages: showPercentages.value,
+  averages: showAverages.value
 }));
 
 const fileName = computed(() => {

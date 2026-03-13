@@ -139,7 +139,11 @@
       "jumpToExpenses": "Přejít na výdaje za {year}",
       "lastYear": "Minulý rok",
       "surplus": "Přebytek",
-      "deficit": "Deficit"
+      "deficit": "Deficit",
+      "downloadChart": "Stáhnout graf",
+      "toggleBetweenAveragesAndTotals": "Přepnout měsíční průměry / součty",
+      "toggleChartType": "Přepnout typ grafu",
+      "togglePercentages": "Přepnout procenta / absolutní hodnoty"
     }
   },
   "feature": {

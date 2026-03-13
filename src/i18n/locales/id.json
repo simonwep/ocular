@@ -139,7 +139,11 @@
       "jumpToExpenses": "Loncat ke pengeluaran untuk {year}",
       "lastYear": "Tahun lalu",
       "surplus": "Surplus",
-      "deficit": "Defisit"
+      "deficit": "Defisit",
+      "downloadChart": "Unduh grafik",
+      "toggleBetweenAveragesAndTotals": "Alihkan rata-rata bulanan / total",
+      "toggleChartType": "Alihkan jenis grafik",
+      "togglePercentages": "Alihkan persentase / nilai absolut"
     }
   },
   "feature": {

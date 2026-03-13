@@ -139,7 +139,11 @@
       "jumpToExpenses": "Vai alle spese del {year}",
       "lastYear": "Anno scorso",
       "surplus": "Eccedenza",
-      "deficit": "Deficit"
+      "deficit": "Deficit",
+      "downloadChart": "Scarica grafico",
+      "toggleBetweenAveragesAndTotals": "Attiva/disattiva medie mensili / totali",
+      "toggleChartType": "Attiva/disattiva tipo di grafico",
+      "togglePercentages": "Attiva/disattiva percentuali / valori assoluti"
     }
   },
   "feature": {

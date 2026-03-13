@@ -139,7 +139,11 @@
       "jumpToExpenses": "Jump to expenses for {year}",
       "lastYear": "Last Year",
       "surplus": "Surplus",
-      "deficit": "Deficit"
+      "deficit": "Deficit",
+      "downloadChart": "Download chart",
+      "toggleBetweenAveragesAndTotals": "Toggle monthly averages / totals",
+      "toggleChartType": "Toggle chart type",
+      "togglePercentages": "Toggle percentages / absolute values"
     }
   },
   "feature": {

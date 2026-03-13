@@ -139,7 +139,11 @@
       "jumpToExpenses": "Springe zu den Ausgaben für {year}",
       "lastYear": "Letztes Jahr",
       "surplus": "Überschuss",
-      "deficit": "Defizit"
+      "deficit": "Defizit",
+      "downloadChart": "Diagramm herunterladen",
+      "toggleBetweenAveragesAndTotals": "Monatliche Durchschnitte / Summen umschalten",
+      "toggleChartType": "Diagrammtyp umschalten",
+      "togglePercentages": "Prozente / absolute Werte umschalten"
     }
   },
   "feature": {

@@ -139,7 +139,11 @@
       "jumpToExpenses": "Zobacz wydatki za {year}",
       "lastYear": "Ostatni rok",
       "surplus": "Nadwyżka",
-      "deficit": "Deficyt"
+      "deficit": "Deficyt",
+      "downloadChart": "Pobierz wykres",
+      "toggleBetweenAveragesAndTotals": "Przełącz miesięczne średnie / sumy",
+      "toggleChartType": "Przełącz typ wykresu",
+      "togglePercentages": "Przełącz wartości procentowe / wartości absolutne"
     }
   },
   "feature": {

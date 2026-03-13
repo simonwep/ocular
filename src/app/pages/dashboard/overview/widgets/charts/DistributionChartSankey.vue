@@ -19,6 +19,7 @@ import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   highlight?: 'income' | 'expenses';
+  averages?: boolean;
   percentages?: boolean;
   totalIncome: number;
   totalExpenses: number;
@@ -214,6 +215,10 @@ const data = computed((): SankeyChartConfig => {
       value: -endingBalance,
       muted: props.highlight === 'income'
     });
+  }
+
+  if (props.averages) {
+    links.forEach((v) => (v.value /= 12));
   }
 
   return { labels, links };

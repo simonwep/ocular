@@ -139,7 +139,11 @@
       "jumpToExpenses": "Pular para as Despesas de {year}",
       "lastYear": "Ano passado",
       "surplus": "Superávit",
-      "deficit": "Déficit"
+      "deficit": "Déficit",
+      "downloadChart": "Baixar gráfico",
+      "toggleBetweenAveragesAndTotals": "Alternar médias mensais / totais",
+      "toggleChartType": "Alternar tipo de gráfico",
+      "togglePercentages": "Alternar porcentagens / valores absolutos"
     }
   },
   "feature": {
