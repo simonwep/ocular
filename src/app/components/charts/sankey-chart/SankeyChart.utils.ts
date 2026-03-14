@@ -13,7 +13,31 @@ export type TransformedSankeyChart = {
   links: SankeyChartLink[];
 };
 
-export const transformSankeyChart = (config: SankeyChartConfig, type: SankeyChartType): TransformedSankeyChart => {
+const absoluteSankeyChart = (config: SankeyChartConfig): TransformedSankeyChart => ({
+  links: config.links,
+  labels: config.labels.map((label) => {
+    let sources = config.links.filter((link) => link.target === label.id);
+
+    // First level of sankey chart
+    if (!sources.length) {
+      sources = config.links.filter((link) => link.source === label.id);
+    }
+
+    const value = sources.reduce((acc, link) => link.value + acc, 0);
+    const name = label.formatter(value, 'absolute');
+
+    return {
+      id: label.id,
+      align: label.align,
+      color: label.color,
+      muted: label.muted,
+      value,
+      name
+    };
+  })
+});
+
+const relativeSankeyChart = (config: SankeyChartConfig): TransformedSankeyChart => {
   const linkSums = new Map<string, number>();
   const labels: TransformedSankeyChartLabel[] = [];
   let links = config.links.filter((v) => !config.links.some((link) => link.target === v.source));
@@ -38,10 +62,7 @@ export const transformSankeyChart = (config: SankeyChartConfig, type: SankeyChar
           color: v.color,
           muted: v.muted,
           value: (linkSums.get(v.id) ?? 0) / levelTotal,
-          name:
-            type === 'percentage'
-              ? v.formatter((linkSums.get(v.id) ?? 0) / levelTotal, type)
-              : v.formatter(linkSums.get(v.id) ?? 0, type)
+          name: v.formatter((linkSums.get(v.id) ?? 0) / levelTotal, 'percentage')
         }))
     );
 
@@ -62,3 +83,6 @@ export const transformSankeyChart = (config: SankeyChartConfig, type: SankeyChar
     links: config.links
   };
 };
+
+export const transformSankeyChart = (config: SankeyChartConfig, type: SankeyChartType): TransformedSankeyChart =>
+  type === 'absolute' ? absoluteSankeyChart(config) : relativeSankeyChart(config);

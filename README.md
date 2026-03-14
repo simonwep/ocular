@@ -17,6 +17,7 @@
 
 ## Features
 
+- ⭐ Handcrafted. No AI used during development, except for translations.
 - 🏠 Self-hosted. [Deploy it](https://simonwep.github.io/ocular/pages/deploy.html) it via docker in seconds.
 - 🎨 Themed, light and dark mode.
 - 🌍 Multi-language and support for all common currencies.
