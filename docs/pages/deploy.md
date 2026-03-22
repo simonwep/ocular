@@ -10,6 +10,9 @@ outline: deep
 > For deploying Ocular [Docker](https://docs.docker.com/engine/install/) is required.
 >
 > Running `v1`? Head over to the [migration guide](migrating.md) to update to `v2`!
+>
+> Don't want to deploy it yourself?
+> Please head over to the [managed deployment](managed.md) page to see the available options for a managed deployment of Ocular.
 
 ## Quickstart
 

@@ -15,6 +15,13 @@
   <a href="https://simonwep.github.io/ocular/pages/deploy">Deploy it!</a>
 </h6>
 
+<h6 align="center">
+  <a href="https://www.pikapods.com/pods?run=ocular">
+    <img alt="Run on PikaPods" src="https://www.pikapods.com/static/run-button.svg" alt="Logo" height="150">
+  </a>
+</h6>
+
+
 ## Features
 
 - ⭐ Handcrafted. No AI used during development, except for translations.

@@ -21,6 +21,7 @@ Your data stays on your server and is not shared with anyone else.
 
 ## Notable features
 
+- ⭐ Handcrafted. No AI used during development, except for translations.
 - 🏠 Self-hosted. Deploy it via docker in seconds, your data stays on your server.
 - 🎨 Themed, light and dark mode.
 - 🌍 Multi-language and support for all common currencies.

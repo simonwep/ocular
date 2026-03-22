@@ -101,6 +101,7 @@ export default defineConfig({
         items: [
           { text: 'Quickstart', link: '/pages/quickstart' },
           { text: 'How to Deploy', link: '/pages/deploy' },
+          { text: 'Managed Deployment', link: '/pages/managed' },
           { text: 'Migrating from v1', link: '/pages/migrating' },
           { text: 'FAQs', link: '/pages/faq' }
         ]
@@ -121,7 +122,7 @@ export default defineConfig({
             link: 'https://github.com/simonwep/ocular'
           },
           {
-            text: 'Support',
+            text: 'Support me',
             link: 'https://github.com/sponsors/simonwep'
           }
         ]
