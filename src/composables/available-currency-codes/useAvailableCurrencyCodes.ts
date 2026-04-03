@@ -1,4 +1,4 @@
-import codes from './currencies.json' assert { type: 'json' };
+import codes from './currencies.json' with { type: 'json' };
 import { computed, MaybeRefOrGetter, toValue } from 'vue';
 
 const availableCurrencies = new Set(codes);

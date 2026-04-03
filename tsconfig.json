@@ -8,7 +8,6 @@
     "eslint.config.mjs"
   ],
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -41,7 +40,7 @@
     "types": ["vite/client", "vite-plugin-pwa/client"],
 
     /* Convenience */
-    "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
       "@composables/*": ["./src/composables/*"],
       "@directives/*": ["./src/directives/*"],

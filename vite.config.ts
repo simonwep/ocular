@@ -30,7 +30,7 @@ export default defineConfig({
     }
   },
   build: {
-    target: 'ES2022'
+    target: 'ES2025'
   },
   plugins: [
     tsconfigPaths({ loose: true }),
