@@ -8,7 +8,7 @@
       tooltipPosition="bottom"
       :options="availableOptions"
       :offset="[0, 4]"
-      position="bottom-start"
+      position="bottom span-right"
       @open="focusInput"
       @select="modelValue = $event.id"
     >

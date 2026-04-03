@@ -37,7 +37,7 @@
         :iconOff="RiGitMergeLine"
       />
 
-      <ContextMenu position="top-end">
+      <ContextMenu position="top">
         <template #default="{ toggle }">
           <button
             v-tooltip.top="t('page.dashboard.downloadChart')"

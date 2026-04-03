@@ -3,7 +3,7 @@
     :class="classes"
     :tooltip="t('navigation.year.change')"
     tooltipPosition="right"
-    :position="appSize === 'mobile' ? 'top' : 'right-end'"
+    :position="appSize === 'mobile' ? 'top' : 'right center'"
     :options="options"
     testId="navigation-change-year"
     :highlight="state.activeYear"

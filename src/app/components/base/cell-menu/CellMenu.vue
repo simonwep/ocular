@@ -21,30 +21,19 @@
 
 <script lang="ts" setup>
 import { CellMenuAction } from '@components/base/cell-menu/CellMenu.types';
-import { createPopper, Instance } from '@popperjs/core';
-import { ref, useTemplateRef, watch } from 'vue';
+import { uuid } from '@utils/uuid/uuid.ts';
+import { ref, watch } from 'vue';
 
 defineProps<{
   actions: () => CellMenuAction[];
 }>();
 
-const reference = useTemplateRef('reference');
-const popper = useTemplateRef('popper');
+const anchorId = `--${uuid()}`;
+
 const visible = ref(false);
 const focused = ref(0);
-let instance: Instance | undefined;
-let frame = -1;
 
-watch([visible, reference, popper], () => {
-  if (visible.value && reference.value && popper.value) {
-    instance?.destroy();
-    instance = createPopper(reference.value, popper.value, {
-      strategy: 'absolute',
-      placement: 'top-start',
-      modifiers: [{ name: 'offset', options: { offset: [0, 5] } }]
-    });
-  }
-});
+let frame = -1;
 
 watch(focused, (count) => {
   cancelAnimationFrame(frame);
@@ -61,13 +50,18 @@ const triggerAction = (action: CellMenuAction) => {
 <style lang="scss" module>
 .reference {
   display: inline-flex;
+  anchor-name: v-bind(anchorId);
 }
 
 .popper {
   display: flex;
-  position: absolute;
+  position: absolute; // fixed doesn't work in safari
   pointer-events: all;
   z-index: 1;
+  margin-bottom: 5px;
+  inset: auto;
+  position-anchor: v-bind(anchorId);
+  position-area: top span-right;
 }
 
 .list {

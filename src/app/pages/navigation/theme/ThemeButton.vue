@@ -2,6 +2,7 @@
   <Button
     ref="button"
     testId="navigation-toggle-theme"
+    tooltipPosition="bottom"
     :tooltip="viewTransition ? undefined : t('navigation.theme.change')"
     :class="classes"
     :icon="icon"

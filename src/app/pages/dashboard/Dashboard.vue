@@ -25,6 +25,7 @@
           :icon="RiDashboardLine"
           testId="view-overview"
           :tooltip="t('page.dashboard.title')"
+          tooltipPosition="bottom"
           :color="view === Overview ? 'primary' : 'dimmed'"
           @click="view = Overview"
         />
@@ -34,6 +35,7 @@
           testId="view-summary"
           :icon="RiTableLine"
           :tooltip="t('page.dashboard.tables')"
+          tooltipPosition="bottom"
           :color="view === Summary ? 'primary' : 'dimmed'"
           @click="view = Summary"
         />
@@ -45,6 +47,7 @@
           size="l"
           :icon="RiEarthLine"
           :tooltip="t('page.dashboard.allTime')"
+          tooltipPosition="bottom"
           :color="view === AllTime ? 'primary' : 'dimmed'"
           @click="view = AllTime"
         />

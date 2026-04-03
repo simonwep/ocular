@@ -1,4 +1,8 @@
 .tooltip {
+  inset: auto;
+  margin: 5px;
+  position: absolute; // fixed doesn't work in safari
+  position-try-fallbacks: flip-inline flip-block;
   -webkit-backdrop-filter: var(--tooltip-backdrop);
   backdrop-filter: var(--tooltip-backdrop);
   padding: 4px 8px;

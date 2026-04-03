@@ -2,7 +2,7 @@
   <ContextMenu
     :class="classes"
     :tooltip="t('navigation.tools.tools')"
-    :position="appSize === 'mobile' ? 'top' : 'right-end'"
+    :position="appSize === 'mobile' ? 'top' : 'right center'"
     tooltipPosition="right"
   >
     <template #default="{ toggle }">

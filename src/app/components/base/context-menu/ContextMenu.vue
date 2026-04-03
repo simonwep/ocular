@@ -3,7 +3,7 @@
     <slot :toggle="toggle" />
   </div>
   <div ref="popper" :class="[$style.popper, { [$style.visible]: visible }]">
-    <div :class="listClasses">
+    <div :class="listClasses" @transitionend="transitionEnd">
       <slot name="header" />
 
       <ul v-if="options?.length || $slots.options" :class="$style.options">
@@ -40,8 +40,9 @@ import {
 } from '@components/base/context-menu/ContextMenu.types';
 import { useBrowserType } from '@composables/browser-type/useBrowserType.ts';
 import { useOutOfElementClick } from '@composables/out-of-element-click/useOutOfElementClick.ts';
+import { getAnchorNames, Placement } from '@directives/v-tooltip/vTooltip.ts';
 import { ClassNames } from '@utils/types.ts';
-import { createPopper, Modifier, Instance, Placement } from '@popperjs/core';
+import { uuid } from '@utils/uuid/uuid.ts';
 import { computed, provide, ref, useCssModule, useTemplateRef, watch } from 'vue';
 
 const emit = defineEmits<{
@@ -55,7 +56,7 @@ const props = withDefaults(
     class?: ClassNames;
     tooltip?: string;
     tooltipPosition?: Placement;
-    position?: Placement;
+    position?: string;
     options?: ContextMenuOption[];
     highlight?: ContextMenuOptionId;
     testId?: string;
@@ -63,10 +64,12 @@ const props = withDefaults(
     placeholder?: string;
   }>(),
   {
-    position: 'right-end',
+    position: 'right',
     offset: () => [10, 10]
   }
 );
+
+const anchorId = `--${uuid()}`;
 
 const styles = useCssModule();
 const reference = useTemplateRef('reference');
@@ -74,32 +77,8 @@ const popper = useTemplateRef('popper');
 const browser = useBrowserType();
 const visible = ref(false);
 const placement = ref<'top' | 'bottom' | 'left' | 'right' | 'auto'>('auto');
-let instance: Instance | undefined;
 
 useOutOfElementClick([popper, reference], () => (visible.value = false));
-
-watch([visible, reference, popper], () => {
-  if (visible.value && reference.value && popper.value) {
-    instance?.destroy();
-    instance = createPopper(reference.value, popper.value, {
-      placement: props.position,
-      modifiers: [
-        { name: 'offset', options: { offset: props.offset } },
-        {
-          name: 'positionTracker',
-          enabled: true,
-          phase: 'afterWrite',
-          fn: ({ state }) => void (placement.value = state.placement.split('-')[0] as 'auto')
-        } satisfies Modifier<'positionTracker', Record<string, never>>
-      ]
-    });
-  }
-});
-
-watch(
-  () => props.position,
-  (placement) => instance?.setOptions({ placement })
-);
 
 const hasOptionWithIcon = computed(() => props.options?.some((v) => v.icon));
 const classes = computed(() => [props.class, styles.reference]);
@@ -114,7 +93,22 @@ const select = (option: ContextMenuOption): void => {
   visible.value = false;
 };
 
-const toggle = () => requestAnimationFrame(() => (visible.value = !visible.value));
+const toggle = () =>
+  requestAnimationFrame(() => {
+    visible.value = !visible.value;
+
+    if (visible.value && reference.value) {
+      const anchorNames = getAnchorNames(reference.value);
+      reference.value.style.setProperty('anchor-name', anchorNames.concat(anchorId).join(','));
+    }
+  });
+
+const transitionEnd = () => {
+  if (!visible.value && reference.value) {
+    const anchorNames = getAnchorNames(reference.value);
+    reference.value.style.setProperty('anchor-name', anchorNames.filter((v) => v !== anchorId).join(','));
+  }
+};
 
 watch(visible, (value) => (value ? emit('open') : emit('close')));
 
@@ -132,9 +126,13 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
 
 .popper {
   display: flex;
-  position: absolute;
+  position: absolute; // fixed doesn't work in safari
   pointer-events: none;
   z-index: var(--context-menu-z-index);
+  position-anchor: v-bind(anchorId);
+  position-area: v-bind(position);
+  margin: 5px;
+  inset: auto;
 
   &.visible {
     pointer-events: all;
@@ -194,6 +192,7 @@ provide<ContextMenuStore>(ContextMenuStoreKey, {
   list-style: none outside none;
   max-height: 130px;
   overflow: auto;
+  overflow-x: hidden;
 }
 
 .placeholder {

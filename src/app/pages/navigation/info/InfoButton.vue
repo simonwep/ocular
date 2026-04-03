@@ -2,6 +2,7 @@
   <Button
     :tooltip="t('navigation.info.about')"
     testId="navigation-info"
+    tooltipPosition="right"
     :class="classes"
     textual
     color="dimmed"

@@ -7,6 +7,7 @@
     :disabled="!OCULAR_GENESIS_HOST"
     :color="icon[0]"
     :tooltip="OCULAR_GENESIS_HOST ? undefined : t('navigation.auth.loginNotAvailable')"
+    tooltipPosition="right"
     :icon="icon[1]"
     @click="auth"
   />

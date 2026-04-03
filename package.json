@@ -30,7 +30,6 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@popperjs/core": "2.11.8",
     "@remixicon/vue": "4.8.0",
     "@vueuse/core": "14.1.0",
     "echarts": "6.0.0",

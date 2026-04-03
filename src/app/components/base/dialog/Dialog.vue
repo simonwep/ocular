@@ -11,15 +11,17 @@
       >
         <div :class="$style.backdrop" />
         <div ref="content" :class="[$style.content, contentClass]">
-          <h3 v-if="title" :class="$style.title">{{ title }}</h3>
-          <Button
-            v-if="!lock"
-            :class="$style.closeBtn"
-            textual
-            color="dimmed"
-            :icon="RiCloseCircleFill"
-            @click="emit('close')"
-          />
+          <div :class="$style.title">
+            <h3 v-if="title" :class="$style.text">{{ title }}</h3>
+            <Button
+              v-if="!lock"
+              :class="$style.closeBtn"
+              textual
+              color="dimmed"
+              :icon="RiCloseCircleFill"
+              @click="emit('close')"
+            />
+          </div>
           <slot />
         </div>
       </component>
@@ -120,7 +122,6 @@ onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
 }
 
 .content {
-  position: relative;
   transition: opacity var(--transition-m);
   background: var(--dialog-background);
   color: var(--theme-text);
@@ -130,15 +131,19 @@ onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
 }
 
 .title {
+  position: relative;
   text-align: center;
-  font-weight: var(--font-weight-l);
-  font-style: var(--font-size-m);
   padding-bottom: 14px;
   padding-right: 14px;
-}
 
-.closeBtn {
-  position: absolute;
-  inset: 4px 4px auto auto;
+  .text {
+    font-weight: var(--font-weight-l);
+    font-style: var(--font-size-m);
+  }
+
+  .closeBtn {
+    position: absolute;
+    inset: 0 0 auto auto;
+  }
 }
 </style>

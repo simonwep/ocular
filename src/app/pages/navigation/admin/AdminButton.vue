@@ -1,7 +1,7 @@
 <template>
   <ContextMenu
     :tooltip="t('navigation.admin.settings')"
-    :position="appSize === 'mobile' ? 'top' : 'right-end'"
+    :position="appSize === 'mobile' ? 'top' : 'right center'"
     tooltipPosition="right"
     :class="classes"
   >

@@ -1,6 +1,7 @@
 <template>
   <Button
     :tooltip="t('navigation.settings.settings')"
+    tooltipPosition="right"
     :class="classes"
     textual
     color="dimmed"
