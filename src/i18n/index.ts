@@ -6,6 +6,7 @@ import fr from './locales/fr.json?url';
 import hu from './locales/hu.json?url';
 import id from './locales/id.json?url';
 import it from './locales/it.json?url';
+import ja from './locales/ja.json?url';
 import pl from './locales/pl.json?url';
 import ptbr from './locales/pt-br.json?url';
 import ru from './locales/ru.json?url';
@@ -13,7 +14,7 @@ import tr from './locales/tr.json?url';
 
 import { createI18n, IntlNumberFormat } from 'vue-i18n';
 
-const localeUrls = { de, en, tr, it, 'pt-br': ptbr, cze, hu, pl, ru, es, fr, id };
+const localeUrls = { de, en, tr, it, 'pt-br': ptbr, cze, hu, pl, ru, es, fr, id, ja };
 
 export const availableLocales = Object.keys(localeUrls);
 
