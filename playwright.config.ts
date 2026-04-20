@@ -1,7 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
-import { config } from 'dotenv';
 
-config({ quiet: true });
+try {
+  process.loadEnvFile();
+} catch (_) {
+  /* empty */
+}
 
 export default defineConfig({
   testDir: './test',

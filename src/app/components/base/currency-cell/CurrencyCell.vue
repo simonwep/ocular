@@ -88,8 +88,6 @@ watch(focused, (value) => {
   try {
     modelValue.value = innerValue.value ? evalMathExpression(innerValue.value, locale.value) : 0;
     invalid.value = false;
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_) {
     invalid.value = true;
   }

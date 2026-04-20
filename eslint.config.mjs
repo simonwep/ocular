@@ -71,6 +71,15 @@ export default defineConfig([
           ignoreStringEscape: false
         }
       ],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_'
+        }
+      ],
       'prettier/prettier': [
         'error',
         {

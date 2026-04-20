@@ -1,4 +1,4 @@
-FROM ghcr.io/simonwep/genesis:v1.6.0 AS genesis
+FROM ghcr.io/simonwep/genesis:v1.6.1 AS genesis
 
 FROM --platform=$BUILDPLATFORM node:24-alpine AS frontend
 

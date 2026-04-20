@@ -10,6 +10,7 @@ on:
 
 env:
   HUSKY: 0
+  GENESIS_VERSION: v1.6.1
 
 jobs:
   test:
@@ -43,7 +44,7 @@ jobs:
       - name: Start genesis and ocular
         run: |
           docker pull ghcr.io/simonwep/genesis:latest
-          docker run -p 8080:8080 -v "./.data:/app/.data" --env-file .env.genesis ghcr.io/simonwep/genesis:v1.6.0 start &
+          docker run -p 8080:8080 -v "./.data:/app/.data" --env-file .env.genesis ghcr.io/simonwep/genesis:${{ env.GENESIS_VERSION }} start &
           pnpm vite preview &
 
       - name: Wait for genesis to be healthy
