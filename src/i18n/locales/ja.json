@@ -1,0 +1,341 @@
+{
+  "navigation": {
+    "tools": {
+      "tools": "ツール",
+      "changePassword": {
+        "change": "パスワードを変更",
+        "current": "現在のパスワード",
+        "new": "新しいパスワード",
+        "invalid": "現在のパスワードが無効です。",
+        "unknownError": "エラーが発生しました。しばらくしてから再試行してください。"
+      },
+      "copyPaste": {
+        "copyPasteData": "データのコピー／貼り付け",
+        "copyPasteDataFromOneYearToAnother": "データを別の年にコピー／貼り付け",
+        "fromYear": "コピー元の年",
+        "copyTheseGroupsFromIncome": "収入からこれらのグループをコピー",
+        "andTheseGroupsFromExpenses": "支出からこれらのグループもコピー",
+        "nothingToAddAnymore": "追加するものはありません...",
+        "toYear": "コピー先の年",
+        "includeValues": "値を含める",
+        "transferData": "データを転送"
+      },
+      "demo": {
+        "loadDemoData": "デモデータを読み込む",
+        "overwriteExistingData": "すでにデータがあります。上書きしますか？"
+      },
+      "deleteYear": {
+        "delete": "{year}を削除",
+        "confirm": "{year}を削除してもよろしいですか？"
+      },
+      "export": {
+        "export": "JSONファイルとしてエクスポート"
+      },
+      "import": {
+        "import": "JSONファイルからインポート",
+        "what": {
+          "google": "Google Sheetsの年間予算ファイル",
+          "ocular": "以前にエクスポートしたファイル",
+          "title": "何をインポートしますか？"
+        },
+        "ocular": {
+          "pickFile": "インポートする.jsonファイルを選択",
+          "import": "Ocularデータをインポート"
+        },
+        "google": {
+          "import": "Googleデータをインポート",
+          "pickFile": "インポートする.csvファイルを選択",
+          "expenses": "Expenses.csv",
+          "income": "Income.csv"
+        }
+      },
+      "privacyMode": {
+        "disable": "公開モードに切り替え",
+        "enable": "プライバシーモードに切り替え"
+      }
+    },
+    "info": {
+      "about": "Ocularについて",
+      "github": "{link}でこのプロジェクトをチェックして、継続のために{donation}を検討してください！",
+      "madeWithLove": "Simonが❤️を込めて制作",
+      "meta": "{version} / {date} / {sha}",
+      "donation": "寄付"
+    },
+    "theme": {
+      "change": "カラーテーマを変更"
+    },
+    "year": {
+      "change": "別の年に切り替え"
+    },
+    "auth": {
+      "welcomeBack": "おかえりなさい！",
+      "signIn": "サインイン",
+      "username": "ユーザー名",
+      "password": "パスワード",
+      "loginNotAvailable": "ログインできません。バックエンドが設定されていません。",
+      "loginNotAvailableDueToHttp": "HTTPでアクセスしている場合、ログインが正常に機能しない可能性があります。.envファイルでGENESIS_JWT_COOKIE_ALLOW_HTTPをtrueに設定するか、HTTPSでアクセスしてください。",
+      "incorrectUsernameOrPassword": "ログインに失敗しました。ユーザー名またはパスワードが無効です。",
+      "tooManyFailedAttempts": "ログイン試行回数が上限を超えました。{duration}後に再試行してください。",
+      "unknownError": "エラーが発生しました。しばらくしてから再試行してください。（エラー: {error}）"
+    },
+    "admin": {
+      "settings": "管理者設定",
+      "createUser": "ユーザーを作成",
+      "username": "ユーザー名",
+      "password": "パスワード",
+      "admin": "管理者",
+      "conflict": "同名のユーザーがすでに存在します。",
+      "error": "エラーが発生しました。しばらくしてから再試行してください。",
+      "deleteUserConfirmation": "このユーザーを削除してもよろしいですか？",
+      "manageUsers": "ユーザー管理",
+      "noUsersFound": "ユーザーが見つかりません..."
+    },
+    "settings": {
+      "settings": "設定",
+      "language": "言語",
+      "currency": "通貨",
+      "firstMonthOfYear": "年度の開始月",
+      "carryOverNetSavings": "純貯蓄を繰り越す",
+      "carryOverNetSavingsInfo": "有効にすると、前年の純貯蓄が翌年に繰り越されます。",
+      "showAnimationsAndTransitions": "アニメーションとトランジションを表示"
+    },
+    "update": {
+      "updateApp": "アプリを更新"
+    }
+  },
+  "page": {
+    "income": {
+      "title": "収入",
+      "incomeFor": "{year}年の収入"
+    },
+    "expenses": {
+      "title": "支出",
+      "expensesFor": "{year}年の支出"
+    },
+    "dashboard": {
+      "title": "ダッシュボード",
+      "tables": "テーブル",
+      "income": "収入",
+      "incomeTrend": "収入トレンド",
+      "allTime": "全期間の概要",
+      "allTimeFromTo": "{from}から{to}までの全期間",
+      "expenses": "支出",
+      "expensesTrend": "支出トレンド",
+      "endingBalance": "期末残高",
+      "budgetFor": "{year}年の年間予算",
+      "remainingBalance": "{year}年までの残高",
+      "netSavings": "純貯蓄",
+      "yearInThePast": "過去の年",
+      "yearInTheFuture": "将来の年",
+      "yearEnding": "今年もそろそろ終わります...",
+      "yoyIncomeGrowth": "前年比収入成長率",
+      "yoyExpenseGrowth": "前年比支出成長率",
+      "allTimeIncome": "累計収入",
+      "allTimeExpenses": "累計支出",
+      "allTimeSavings": "累計貯蓄",
+      "downloadAsPNG": "PNGとしてダウンロード",
+      "downloadAsSVG": "SVGとしてダウンロード",
+      "jumpToIncome": "{year}年の収入へ移動",
+      "jumpToExpenses": "{year}年の支出へ移動",
+      "lastYear": "前年",
+      "surplus": "黒字",
+      "deficit": "赤字",
+      "downloadChart": "チャートをダウンロード",
+      "toggleBetweenAveragesAndTotals": "月次平均／合計を切り替え",
+      "toggleChartType": "チャートタイプを切り替え",
+      "togglePercentages": "割合／絶対値を切り替え"
+    }
+  },
+  "feature": {
+    "budgetGroup": {
+      "budgetGroupsHidden": "非表示の予算グループはありません。 | 予算グループが1件非表示です。 | 予算グループが{count}件非表示です。",
+      "newCategory": "新しいカテゴリ"
+    },
+    "statusBar": {
+      "synchronizationFailedDueToNetworkError": "ネットワークエラーにより同期に失敗しました！",
+      "retryingPleaseWait": "再試行中です。しばらくお待ちください...",
+      "retrySynchronization": "同期を再試行",
+      "noBackendAttached": "バックエンドが設定されていません。デモモードで実行中です。データは保存されません。",
+      "newVersionAvailable": "新しいバージョンが利用可能です！",
+      "dismiss": "閉じる",
+      "newVersionRequired": "アプリを引き続き使用するには新しいバージョンが必要です。ページを更新してアップデートしてください。"
+    },
+    "budgetPane": {
+      "addGroup": "グループを追加",
+      "newGroup": "新しいグループ",
+      "append": "「{from}」を「{to}」の後に移動",
+      "average": "平均",
+      "move": "「{from}」を移動",
+      "moveInto": "「{from}」を「{to}」の中に移動",
+      "prepend": "「{from}」を「{to}」の前に移動",
+      "fillRow": "行を埋める",
+      "fillRowToRight": "右方向に埋める",
+      "total": "合計",
+      "totals": "合計"
+    },
+    "chartPlaceholder": {
+      "placeholder": "収入／支出タブを入力してはじめましょう！ :)"
+    },
+    "templates": {
+      "demo": {
+        "expenses": {
+          "children": "子ども",
+          "debt": "負債",
+          "education": "教育",
+          "entertainment": "娯楽",
+          "everyday": "日常",
+          "gifts": "贈り物",
+          "healthMedical": "医療・健康",
+          "home": "住居",
+          "insurance": "保険",
+          "transportation": "交通",
+          "travel": "旅行",
+          "utilities": "光熱費"
+        },
+        "budgets": {
+          "activities": "アクティビティ",
+          "medical": "医療",
+          "childcare": "育児",
+          "school": "学校",
+          "other": "その他",
+          "studentLoans": "奨学金",
+          "musicLessons": "音楽レッスン",
+          "concertsShows": "コンサート／ショー",
+          "music": "音楽",
+          "theatrePlays": "演劇／舞台",
+          "groceries": "食料品",
+          "restaurants": "外食",
+          "personalSupplies": "日用品",
+          "subscriptions": "サブスクリプション",
+          "gifts": "贈り物",
+          "donationsCharity": "寄付（チャリティ）",
+          "doctorsDentalVision": "医師／歯科／視力",
+          "rentMortgage": "家賃／住宅ローン",
+          "propertyTaxes": "固定資産税",
+          "car": "自動車",
+          "health": "健康",
+          "fuel": "燃料",
+          "supplies": "備品",
+          "airfare": "航空運賃",
+          "hotels": "ホテル",
+          "phone": "電話",
+          "internet": "インターネット",
+          "electricity": "電気",
+          "gas": "ガス",
+          "water": "水道"
+        },
+        "income": {
+          "wages": "給与",
+          "paySlip": "給与明細",
+          "bonus": "ボーナス",
+          "other": "その他",
+          "interestIncome": "利子収入",
+          "dividends": "配当金"
+        }
+      },
+      "base": {
+        "group": {
+          "children": "子ども",
+          "debt": "負債",
+          "education": "教育",
+          "entertainment": "娯楽",
+          "everyday": "日常",
+          "gifts": "贈り物",
+          "healthMedical": "医療・健康",
+          "home": "住居",
+          "insurance": "保険",
+          "pets": "ペット",
+          "technology": "テクノロジー",
+          "transportation": "交通",
+          "travel": "旅行",
+          "utilities": "光熱費",
+          "other": "その他",
+          "wages": "給与"
+        },
+        "category": {
+          "activities": "アクティビティ",
+          "medical": "医療",
+          "childcare": "育児",
+          "clothing": "衣類",
+          "school": "学校",
+          "toys": "おもちゃ",
+          "other": "その他",
+          "creditCards": "クレジットカード",
+          "studentLoans": "奨学金",
+          "otherLoans": "その他ローン",
+          "taxes": "税金",
+          "tuition": "授業料",
+          "books": "書籍",
+          "musicLessons": "音楽レッスン",
+          "concertsShows": "コンサート／ショー",
+          "games": "ゲーム",
+          "hobbies": "趣味",
+          "films": "映画",
+          "music": "音楽",
+          "outdoorActivities": "アウトドア",
+          "photography": "写真",
+          "sport": "スポーツ",
+          "theatrePlays": "演劇／舞台",
+          "tv": "テレビ",
+          "groceries": "食料品",
+          "restaurants": "外食",
+          "personalSupplies": "日用品",
+          "clothes": "衣服",
+          "laundryDryCleaning": "洗濯／クリーニング",
+          "hairBeauty": "美容",
+          "subscriptions": "サブスクリプション",
+          "gifts": "贈り物",
+          "donationsCharity": "寄付（チャリティ）",
+          "doctorsDentalVision": "医師／歯科／視力",
+          "specialistCare": "専門外来",
+          "pharmacy": "薬局",
+          "emergency": "緊急",
+          "rentMortgage": "家賃／住宅ローン",
+          "propertyTaxes": "固定資産税",
+          "furnishings": "家具",
+          "lawnGarden": "庭・園芸",
+          "supplies": "備品",
+          "maintenance": "メンテナンス",
+          "improvements": "リフォーム",
+          "moving": "引越し",
+          "car": "自動車",
+          "health": "健康",
+          "homeInsurance": "住居保険",
+          "life": "生命",
+          "food": "食費",
+          "vetMedical": "獣医／医療",
+          "domainsAndHosting": "ドメイン・ホスティング",
+          "onlineServices": "オンラインサービス",
+          "hardware": "ハードウェア",
+          "software": "ソフトウェア",
+          "fuel": "燃料",
+          "carPayments": "自動車ローン",
+          "repairs": "修理",
+          "registrationLicense": "登録／免許",
+          "publicTransit": "公共交通機関",
+          "airfare": "航空運賃",
+          "hotels": "ホテル",
+          "transportation": "交通",
+          "phone": "電話",
+          "internet": "インターネット",
+          "electricity": "電気",
+          "heatGas": "暖房／ガス",
+          "water": "水道",
+          "category1": "[カテゴリ 1]",
+          "category2": "[カテゴリ 2]",
+          "paySlip": "給与明細",
+          "tips": "チップ",
+          "bonus": "ボーナス",
+          "commission": "歩合",
+          "transferFromSavings": "貯蓄からの振替",
+          "interestIncome": "利子収入",
+          "dividends": "配当金",
+          "refunds": "返金"
+        }
+      }
+    },
+    "undoButton": {
+      "undo": "最後の操作を元に戻す"
+    }
+  }
+}
