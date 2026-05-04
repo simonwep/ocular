@@ -1,9 +1,9 @@
 <template>
   <div :class="$style.budgetGroups">
     <!-- Header -->
-    <span />
-    <span />
-    <span />
+    <span :class="$style.month" />
+    <span :class="$style.month" />
+    <span :class="$style.month" />
 
     <!-- Months -->
     <span
@@ -14,8 +14,8 @@
     >
       <span>{{ month }}</span>
     </span>
-    <span />
-    <span />
+    <span :class="$style.month" />
+    <span :class="$style.month" />
 
     <!-- Sums -->
     <span />
@@ -133,7 +133,10 @@ const totals = computed(() => {
 }
 
 .month {
-  margin-left: 5px;
+  position: sticky;
+  background: var(--app-background);
+  height: 24px;
+  top: 0;
 
   &.current > span {
     background: var(--c-primary);
@@ -143,9 +146,6 @@ const totals = computed(() => {
   }
 
   > span {
-    position: absolute;
-    margin-top: -22px;
-    z-index: 1;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-m);
   }

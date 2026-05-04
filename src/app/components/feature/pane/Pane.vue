@@ -47,7 +47,6 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: var(--app-background);
 }
 
 .header {
@@ -56,7 +55,6 @@ useScrollShadow(header, content, 'var(--app-scroll-box-shadow)');
   position: sticky;
   top: 0;
   padding: 16px 10px;
-  background: var(--app-background);
   animation: var(--animation-fade-in-right) var(--transition-s);
   transition: all var(--transition-m);
   z-index: 1;
