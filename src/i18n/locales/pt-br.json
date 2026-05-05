@@ -171,7 +171,9 @@
       "fillRow": "Completar esta linha",
       "fillRowToRight": "Completar para a direita",
       "total": "Total",
-      "totals": "Totais"
+      "totals": "Totais",
+      "groupName": "Nome do grupo ({name})",
+      "budgetName": "Nome do orçamento ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Comece preenchendo as abas de Receita / Despesas! :)"

@@ -3,6 +3,7 @@
     ref="input"
     :class="[$style.currencyCell, { [$style.invalid]: invalid }]"
     type="text"
+    :name="name"
     :value="value"
     :data-testid="testId"
     @blur="focused = false"
@@ -24,6 +25,7 @@ const modelValue = defineModel<number>();
 const props = withDefaults(
   defineProps<{
     max?: number;
+    name?: string;
     testId?: string;
   }>(),
   {

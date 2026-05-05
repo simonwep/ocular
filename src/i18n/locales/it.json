@@ -171,7 +171,9 @@
       "fillRow": "Completa la riga",
       "fillRowToRight": "Completa a destra",
       "total": "Totale",
-      "totals": "Totali"
+      "totals": "Totali",
+      "groupName": "Nome del gruppo ({name})",
+      "budgetName": "Nome del budget ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Inizia a compilare le schede delle entrate e delle uscite! :)"

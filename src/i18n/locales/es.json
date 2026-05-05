@@ -171,7 +171,9 @@
       "fillRow": "Llenar fila",
       "fillRowToRight": "Llenar hacia la derecha",
       "total": "Total",
-      "totals": "Totales"
+      "totals": "Totales",
+      "groupName": "Nombre del grupo ({name})",
+      "budgetName": "Nombre del presupuesto ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "¡Empieza llenando las pestañas de ingresos/gastos! :)"

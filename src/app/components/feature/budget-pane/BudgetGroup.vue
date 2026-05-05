@@ -25,6 +25,7 @@
     <TextCell
       :modelValue="group.name"
       :testId="`${testId}-name`"
+      :name="t('feature.budgetPane.groupName', { name: group.name })"
       inline
       @update:modelValue="setBudgetGroupName(group.id, $event ?? '')"
     />

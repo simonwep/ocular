@@ -171,7 +171,9 @@
       "fillRow": "Vyplnit řádek",
       "fillRowToRight": "Vyplnit doprava",
       "total": "Součet",
-      "totals": "Součty"
+      "totals": "Součty",
+      "groupName": "Název skupiny ({name})",
+      "budgetName": "Název rozpočtu ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Začněte vyplňováním tabulky záložek příjmů / výdajů! :)"

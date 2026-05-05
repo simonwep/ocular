@@ -171,7 +171,9 @@
       "fillRow": "Satırı doldur",
       "fillRowToRight": "Sağa doğru doldur",
       "total": "Toplam",
-      "totals": "Toplamlar"
+      "totals": "Toplamlar",
+      "groupName": "Grup adı ({name})",
+      "budgetName": "Bütçe adı ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Gelir/gider sekmelerini doldurarak başlayın! :)"

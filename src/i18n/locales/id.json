@@ -171,7 +171,9 @@
       "fillRow": "Isi seluruh baris",
       "fillRowToRight": "Isi baris kanan",
       "total": "Total",
-      "totals": "Total"
+      "totals": "Total",
+      "groupName": "Nama grup ({name})",
+      "budgetName": "Nama anggaran ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Mulailah dengan mengisi tab pemasukan/pengeluaran! :)"

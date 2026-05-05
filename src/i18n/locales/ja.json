@@ -171,7 +171,9 @@
       "fillRow": "行を埋める",
       "fillRowToRight": "右方向に埋める",
       "total": "合計",
-      "totals": "合計"
+      "totals": "合計",
+      "groupName": "グループ名 ({name})",
+      "budgetName": "予算名 ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "収入／支出タブを入力してはじめましょう！ :)"

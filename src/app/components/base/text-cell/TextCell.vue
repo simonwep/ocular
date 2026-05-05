@@ -2,6 +2,7 @@
   <span :class="classes">
     <input
       ref="input"
+      :name="name"
       :data-testid="testId"
       :value="modelValue"
       :class="$style.input"
@@ -22,6 +23,7 @@ const modelValue = defineModel<string>();
 const props = withDefaults(
   defineProps<{
     inline?: boolean;
+    name?: string;
     testId?: string;
   }>(),
   {

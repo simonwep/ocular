@@ -171,7 +171,9 @@
       "fillRow": "Wypełnij wiersz",
       "fillRowToRight": "Wypełnij w prawo",
       "total": "Suma",
-      "totals": "Suma całkowita"
+      "totals": "Suma całkowita",
+      "groupName": "Nazwa grupy ({name})",
+      "budgetName": "Nazwa budżetu ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Zacznij od uzupełnienia zakładek dochody / wydatki! :)"

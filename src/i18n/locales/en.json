@@ -171,7 +171,9 @@
       "fillRow": "Fill row",
       "fillRowToRight": "Fill to right",
       "total": "Total",
-      "totals": "Totals"
+      "totals": "Totals",
+      "groupName": "Group name ({name})",
+      "budgetName": "Budget name ({name}"
     },
     "chartPlaceholder": {
       "placeholder": "Start by filling out the income / expenses tabs! :)"

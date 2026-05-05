@@ -171,7 +171,9 @@
       "fillRow": "Заполнить строку",
       "fillRowToRight": "Заполнить строку вправо",
       "total": "Итого",
-      "totals": "Итоги"
+      "totals": "Итоги",
+      "groupName": "Название группы ({name})",
+      "budgetName": "Название бюджета ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Начните с заполнения вкладок доходов / расходов! :)"

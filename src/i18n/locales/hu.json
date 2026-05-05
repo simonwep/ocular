@@ -171,7 +171,9 @@
       "fillRow": "Sor kitöltése",
       "fillRowToRight": "Kitöltés jobbra",
       "total": "Összesen",
-      "totals": "Összesen"
+      "totals": "Összesen",
+      "groupName": "Csoport neve ({name})",
+      "budgetName": "Költségvetés neve ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Kezdd a bevételek/kiadások lap kitöltésével! :)"

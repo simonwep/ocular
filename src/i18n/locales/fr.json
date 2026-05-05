@@ -171,7 +171,9 @@
       "fillRow": "Remplir la ligne",
       "fillRowToRight": "Remplir vers la droite",
       "total": "Total",
-      "totals": "Totaux"
+      "totals": "Totaux",
+      "groupName": "Nom du groupe ({name})",
+      "budgetName": "Nom du budget ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Commencez par remplir les onglets revenus / dépenses! :)"

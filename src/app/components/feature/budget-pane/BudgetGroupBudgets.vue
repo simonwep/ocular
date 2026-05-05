@@ -23,6 +23,7 @@
 
     <span :class="$style.header">
       <TextCell
+        :name="t('feature.budgetPane.budgetName', { name: budget.name })"
         :testId="`${testId}-budget-${index}-name`"
         :modelValue="budget.name"
         @update:modelValue="setBudgetName(budget.id, $event ?? '')"

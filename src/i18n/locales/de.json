@@ -171,7 +171,9 @@
       "fillRow": "Zeile ausfüllen",
       "fillRowToRight": "Nach rechts füllen",
       "total": "Gesamt",
-      "totals": "Summen"
+      "totals": "Summen",
+      "groupName": "Gruppenname ({name})",
+      "budgetName": "Budgetname ({name})"
     },
     "chartPlaceholder": {
       "placeholder": "Beginnen Sie damit, die Registerkarten für Einnahmen/Ausgaben auszufüllen! :)"

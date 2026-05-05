@@ -32,6 +32,7 @@
     >
       <CurrencyCell
         :ref="(value) => emit('cellRendered', value as InstanceType<typeof CurrencyCell>)"
+        :name="`${budget.name} ${monthNames[month]}`"
         :testId="`${testId}-budget-${index}-${month}`"
         :modelValue="budget.values[month]"
         @update:modelValue="setBudget(budget.id, month, $event ?? 0)"
@@ -44,6 +45,7 @@
 import CellMenu from '@components/base/cell-menu/CellMenu.vue';
 import CurrencyCell from '@components/base/currency-cell/CurrencyCell.vue';
 import { useStateUtils } from '@composables/state-utils/useStateUtils.ts';
+import { useMonthNames } from '@composables/time/useMonthNames.ts';
 import { useDataStore } from '@store/state';
 import { Budget } from '@store/state/types';
 import { DeepReadonly } from 'vue';
@@ -63,6 +65,7 @@ defineProps<{
 
 const { setBudget, fillBudget } = useDataStore();
 const { isCurrentMonth } = useStateUtils();
+const monthNames = useMonthNames();
 const { t } = useI18n();
 </script>
 
