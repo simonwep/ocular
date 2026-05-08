@@ -4,7 +4,11 @@
       <div
         v-for="card of cards"
         :key="card.title"
-        :class="[$style.card, { [$style.hoverable]: !!card.onPointerEnter }]"
+        :class="[
+          $style.card,
+          card.hoverEffect ? $style[card.hoverEffect] : undefined,
+          { [$style.hoverable]: !!card.onPointerEnter }
+        ]"
         @pointerenter="card.onPointerEnter"
         @pointerleave="card.onPointerLeave"
         @pointercancel="card.onPointerLeave"
@@ -43,6 +47,7 @@ type Card = {
   icon?: Component;
   iconClass?: ClassNames;
   testId?: string;
+  hoverEffect?: 'success' | 'danger';
   onPointerEnter?: () => void;
   onPointerLeave?: () => void;
 };
@@ -94,6 +99,7 @@ const cards = computed((): Card[] => {
       value: allTimeIncome,
       text: allTimeIncome ? undefined : '—',
       testId: 'all-time-income',
+      hoverEffect: 'success',
       onPointerEnter: () => (highlight.value = 'income'),
       onPointerLeave: () => (highlight.value = undefined)
     },
@@ -102,6 +108,7 @@ const cards = computed((): Card[] => {
       value: allTimeExpenses,
       text: allTimeExpenses ? undefined : '—',
       testId: 'all-time-expenses',
+      hoverEffect: 'danger',
       onPointerEnter: () => (highlight.value = 'expenses'),
       onPointerLeave: () => (highlight.value = undefined)
     },
@@ -205,11 +212,18 @@ const cards = computed((): Card[] => {
     transition: background 0.2s ease-in-out;
 
     &:hover {
-      background: var(--c-primary);
+      &.danger {
+        background: var(--c-danger);
+      }
+
+      &.success {
+        background: var(--c-success);
+      }
 
       .title,
-      .value {
-        color: var(--c-primary-text);
+      .value,
+      .clickIndicator {
+        color: var(--c-dimmed-text);
       }
     }
   }

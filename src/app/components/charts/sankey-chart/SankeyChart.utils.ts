@@ -6,6 +6,7 @@ export type TransformedSankeyChartLabel = {
   color: string;
   muted?: boolean;
   align?: 'left' | 'right';
+  radius?: [number, number, number, number];
 };
 
 export type TransformedSankeyChart = {
@@ -31,6 +32,7 @@ const absoluteSankeyChart = (config: SankeyChartConfig): TransformedSankeyChart 
       align: label.align,
       color: label.color,
       muted: label.muted,
+      radius: label.radius,
       value,
       name
     };
@@ -61,6 +63,7 @@ const relativeSankeyChart = (config: SankeyChartConfig): TransformedSankeyChart 
           align: v.align,
           color: v.color,
           muted: v.muted,
+          radius: v.radius,
           value: (linkSums.get(v.id) ?? 0) / levelTotal,
           name: v.formatter((linkSums.get(v.id) ?? 0) / levelTotal, 'percentage')
         }))

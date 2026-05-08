@@ -121,7 +121,8 @@ const data = computed((): SankeyChartConfig => {
           id: budget.id,
           formatter: (value, type) => `${budget.name} (${format(value, type)})`,
           color: color(60 + 60 * (total / props.totalIncome)),
-          muted: props.highlight === 'expenses'
+          muted: props.highlight === 'expenses',
+          radius: [5, 0, 0, 5]
         });
 
         links.push({
@@ -167,7 +168,8 @@ const data = computed((): SankeyChartConfig => {
           formatter: (value, type) => `${budget.name} (${format(value, type)})`,
           color: color(60 * (1 - total / props.totalExpenses)),
           align: 'left',
-          muted: props.highlight === 'income'
+          muted: props.highlight === 'income',
+          radius: [0, 5, 5, 0]
         });
 
         links.push({

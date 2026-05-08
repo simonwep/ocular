@@ -106,7 +106,7 @@ const status = computed((): Status | undefined => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 4px 6px;
   gap: 6px;
   text-shadow: 0 1px 1px rgba(black, 0.5);
 

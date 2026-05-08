@@ -8,7 +8,7 @@
   --app-max-height: 1000px;
   --app-drop-shadow: 0 4px 7px #000000;
   --app-scroll-box-shadow: 0 0 10px #0c0c0c;
-  --app-background: #15161e;
+  --app-background: #0c0e17;
   --app-border: var(--theme);
   --app-scrollbar: #3f4354;
   --app-snowflakes: #b9d3e1;
@@ -19,9 +19,9 @@
   --c-text-light-accent: #b8bbcc;
   --c-text-light-muted: #d2d2da;
 
-  --c-dimmed: #708dab;
-  --c-dimmed-light: #1b1d27;
-  --c-dimmed-hover: #5d758f;
+  --c-dimmed: #40568d;
+  --c-dimmed-light: #10131e;
+  --c-dimmed-hover: #7289d5;
   --c-dimmed-text: var(--c-text-light);
   --c-dimmed-text-hover: var(--c-dimmed-text);
   --c-dimmed-text-accent: var(--c-text-light);
@@ -29,10 +29,10 @@
   --c-dimmed-pure-hover: var(--c-dimmed-hover);
   --c-dimmed-shadow: #555c655c;
 
-  --c-primary: #3f5df3;
-  --c-primary-light: #3f94f3;
+  --c-primary: #2f48c5;
+  --c-primary-light: #317ccf;
   --c-primary-light-dimmed: #bcdcff;
-  --c-primary-hover: #3450d8;
+  --c-primary-hover: #223698;
   --c-primary-text: var(--c-text-light);
   --c-primary-text-hover: var(--c-primary-text);
   --c-primary-text-accent: #eaf4ff;
@@ -40,7 +40,7 @@
   --c-primary-pure-hover: #5970de;
   --c-primary-shadow: #4fa2ff5c;
 
-  --c-secondary: #b460ff;
+  --c-secondary: #8e3cd7;
   --c-secondary-light: var(--c-secondary);
   --c-secondary-light-dimmed: #dab2ff;
   --c-secondary-hover: #9730f1;
@@ -51,7 +51,7 @@
   --c-secondary-pure-hover: var(--c-secondary-hover);
   --c-secondary-shadow: #ac4fff5c;
 
-  --c-success: #36b399;
+  --c-success: #178b74;
   --c-success-light: var(--c-success);
   --c-success-light-dimmed: #4ddfc1;
   --c-success-hover: #1d9e83;
@@ -62,7 +62,7 @@
   --c-success-pure-hover: var(--c-success-hover);
   --c-success-shadow: #17a6895c;
 
-  --c-warning: #edbc3d;
+  --c-warning: #d3a52c;
   --c-warning-light: var(--c-warning);
   --c-warning-light-dimmed: #ffe59f;
   --c-warning-hover: #d2a01f;
@@ -127,21 +127,14 @@
   --input-field-transition: var(--transition-s);
   --input-field-font-size: var(--font-size-xs);
   --input-field-caret-color: #a6aab7;
-  --input-field-border: #54516d;
   --input-field-placeholder: #5d6275;
-  --input-field-background: var(--app-background);
-
-  --input-field-hover-border: var(--c-primary-pure);
-  --input-field-hover-background: var(--input-field-background);
-
-  --input-field-focus-border: var(--c-primary-pure);
-  --input-field-focus-background: var(--input-field-background);
-  --input-field-focus-box-shadow: 0 0 0 2px #005ad173;
-
+  --input-field-background: #10121b;
+  --input-field-hover-background: #0b0c10;
+  --input-field-focus-background: #0b0c10;
   --input-field-max-width: 200px;
 
-  --dialog-background: #1f1f2b;
-  --dialog-box-shadow: 0 2px 10px #00000080;
+  --dialog-background: #191928;
+  --dialog-box-shadow: 0 4px 22px #000000ad;
 
   --context-menu-item-color: #c1c1cf;
   --context-menu-item-color-muted: #6e6e72;
@@ -154,6 +147,7 @@
   --cell-menu-background: #0b0c0e;
   --cell-menu-backdrop: blur(3px) brightness(0.3);
   --cell-menu-shadow: 0 1px 5px #0c0b0e;
+  --cell-menu-divider: #2c314a;
 
   --grid-background-odd: #1b1d26;
   --grid-background-odd-hover: #1b1d26;

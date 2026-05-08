@@ -4,6 +4,7 @@
     :class="[classes, { [$style.spin]: updating }]"
     textual
     color="success"
+    size="l"
     tooltipPosition="right"
     :tooltip="t('navigation.update.updateApp')"
     :icon="RiLoopRightLine"

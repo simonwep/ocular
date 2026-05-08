@@ -32,12 +32,13 @@ const props = withDefaults(
     text?: string;
     tooltip?: string;
     type?: 'button' | 'reset' | 'submit';
-    size?: 'xs' | 's' | 'm' | 'l';
+    size?: 'xxs' | 'xs' | 's' | 'm' | 'l';
     tooltipPosition?: Placement;
     color?: Color;
     textual?: boolean;
     rounded?: boolean;
     disabled?: boolean;
+    shadow?: boolean;
     testId?: string;
     data?: Record<string, string>;
   }>(),
@@ -45,6 +46,7 @@ const props = withDefaults(
     color: 'primary',
     type: 'button',
     size: 'm',
+    shadow: false,
     textual: false,
     rounded: false,
     disabled: false
@@ -66,6 +68,7 @@ const classes = computed(() => [
     [styles.disabled]: props.disabled,
     [styles.textual]: props.textual,
     [styles.rounded]: props.rounded,
+    [styles.shadow]: props.shadow,
     [styles.iconOnly]: props.icon && !props.text
   },
   props.class
@@ -110,6 +113,10 @@ const classes = computed(() => [
     font-size: var(--font-size-s);
     font-weight: var(--font-weight-l);
     line-height: 1em;
+  }
+
+  &.xxs {
+    padding: 0;
   }
 
   &.xs {
@@ -166,7 +173,7 @@ const classes = computed(() => [
 
     &.disabled,
     &.disabled:hover {
-      color: v-bind('theme.pure.hover');
+      color: v-bind('theme.pure.base');
     }
   }
 

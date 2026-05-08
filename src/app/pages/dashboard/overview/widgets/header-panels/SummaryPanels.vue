@@ -4,7 +4,7 @@
       :values="income"
       :value="incomeSum + startingBalance"
       color="success"
-      to="/income"
+      to="income"
       testId="income"
       :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
@@ -21,7 +21,7 @@
 
     <SummaryPanel
       :subTitle="n(expensePercentage, 'percent')"
-      to="/expenses"
+      to="expenses"
       testId="expenses"
       :tooltip="t('page.dashboard.jumpToExpenses', { year: state.activeYear })"
       :values="expenses"
@@ -69,7 +69,7 @@ import { useTime } from '@composables/time/useTime.ts';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { totals } from '@store/state/utils/budgets';
-import { aggregate, subtract, sum } from '@utils/array/array.ts';
+import { subtract, sum } from '@utils/array/array.ts';
 import { ClassNames } from '@utils/types.ts';
 import { RiAddCircleFill, RiIndeterminateCircleFill } from '@remixicon/vue';
 import { computed, ref, useCssModule } from 'vue';
@@ -116,8 +116,8 @@ const startingBalance = computed(() => (!settings.general.carryOver ? 0 : (state
 const incomeTotals = computed(() => totals(state.income));
 const expensesTotals = computed(() => totals(state.expenses));
 
-const income = computed(() => aggregate(incomeTotals.value));
-const expenses = computed(() => aggregate(expensesTotals.value));
+const income = computed(() => incomeTotals.value);
+const expenses = computed(() => expensesTotals.value);
 const endingBalance = computed(() => subtract(incomeTotals.value, expensesTotals.value));
 
 const incomeSum = computed(() => sum(incomeTotals.value));

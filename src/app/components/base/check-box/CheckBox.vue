@@ -7,14 +7,16 @@
 
     <div :class="$style.box">
       <input :id="inputId" v-model="modelValue" :data-testid="testId" :class="$style.input" type="checkbox" />
-      <RiCheckLine size="16" :class="$style.icon" />
+
+      <svg :class="$style.icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path pathLength="1000" d="M 4.2647378,10.971204 9.921592,16.53967 19.942621,6.7396115" />
+      </svg>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { uuid } from '@utils/uuid/uuid.ts';
-import { RiCheckLine } from '@remixicon/vue';
 
 const modelValue = defineModel<boolean>({ default: false });
 
@@ -62,20 +64,32 @@ const inputId = uuid();
   width: 18px;
   height: 18px;
   position: relative;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--input-field-background);
   border-radius: var(--border-radius-m);
-  border: 2px solid transparent;
+  transition: all var(--input-field-transition);
 
   .icon {
-    opacity: 0;
-    color: var(--c-primary);
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke-width: 2;
+    stroke: var(--c-primary);
+    stroke-linecap: round;
+    stroke-dasharray: 1000 1000;
+    stroke-dashoffset: 1000;
+    transition: all var(--input-field-transition);
+  }
+
+  &:hover:not(:focus-within) {
+    background: var(--input-field-hover-background);
   }
 
   &:focus-within {
-    border-color: var(--input-field-hover-border);
+    background: var(--input-field-focus-background);
   }
 }
 
@@ -89,7 +103,7 @@ const inputId = uuid();
   outline: none;
 
   &:checked ~ .icon {
-    opacity: 1;
+    stroke-dashoffset: 0;
   }
 }
 </style>

@@ -30,7 +30,7 @@ const amount = computed(() => total.value.reduce((a, b) => a + b, 0));
 
 <style lang="scss" module>
 .miniChart {
-  width: 75px;
+  width: 100px;
   height: 100%;
   cursor: default;
 }
@@ -40,6 +40,6 @@ const amount = computed(() => total.value.reduce((a, b) => a + b, 0));
 }
 
 .content {
-  margin-top: -22px;
+  margin-top: -24px;
 }
 </style>

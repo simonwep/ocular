@@ -45,8 +45,7 @@ const pick = () => {
   padding: 8px 12px;
   border-radius: var(--border-radius-m);
   cursor: pointer;
-  border: 1px dashed var(--input-field-border);
-  transition: var(--input-field-transition);
+  transition: all var(--input-field-transition);
   overflow: hidden;
 
   .icon {
@@ -64,12 +63,11 @@ const pick = () => {
   }
 
   &:hover:not(:focus) {
-    border: 1px dashed var(--input-field-hover-border);
     background: var(--input-field-hover-background);
   }
 
   &:focus {
-    border: 1px dashed var(--input-field-focus-border);
+    border-color: var(--input-field-focus-border);
     background: var(--input-field-focus-background);
   }
 

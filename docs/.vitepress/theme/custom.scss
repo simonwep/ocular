@@ -1,0 +1,42 @@
+:root {
+  &.dark {
+    --vp-c-bg: #0c0e17;
+    --vp-c-bg-alt: #10121b;
+    --vp-c-bg-soft: #1b1d26;
+    --vp-c-bg-mute: #2c2f3d;
+  }
+
+  &:not(.dark) {
+    --vp-c-default-1: #333946;
+    --vp-c-default-2: #b5bbbf;
+    --vp-c-default-3: #ccd2d6;
+    --vp-c-default-soft: #f4f7f9;
+  }
+
+  .VPImage {
+    filter: drop-shadow(0 4px 16px var(--vp-c-brand-3));
+  }
+
+  .VPFeature {
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+  }
+
+  .VPFeatures.VPHomeFeatures {
+    margin-top: 24px;
+  }
+
+  .VPSwitch {
+    border: 0;
+    outline: none;
+  }
+  
+  .VPHero {
+    margin-top: 0;
+  }
+
+  .custom-block,
+  div[class*='language-'] {
+    border-radius: 14px;
+  }
+}

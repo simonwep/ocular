@@ -21,7 +21,7 @@
 
   --c-dimmed: #a3aab0;
   --c-dimmed-light: #f4f7f9;
-  --c-dimmed-hover: #8f979d;
+  --c-dimmed-hover: #585b5d;
   --c-dimmed-text: var(--c-text-light);
   --c-dimmed-text-hover: var(--c-dimmed-text);
   --c-dimmed-text-accent: var(--c-text-light);
@@ -29,10 +29,10 @@
   --c-dimmed-pure-hover: var(--c-dimmed-hover);
   --c-dimmed-shadow: #555c655c;
 
-  --c-primary: #202023;
+  --c-primary: #4b69d5;
   --c-primary-light: #e8f0fb;
   --c-primary-light-dimmed: #adc4e1;
-  --c-primary-hover: #2f2f34;
+  --c-primary-hover: #324da7;
   --c-primary-text: var(--c-text-light);
   --c-primary-text-hover: var(--c-primary-text);
   --c-primary-text-accent: #57749e;
@@ -79,7 +79,7 @@
   --c-danger-hover: #de4e4e;
   --c-danger-text: var(--c-text-light);
   --c-danger-text-hover: var(--c-danger-text);
-  --c-danger-text-accent: #bd5f5f;
+  --c-danger-text-accent: #9a4f4f;
   --c-danger-pure: var(--c-danger);
   --c-danger-pure-hover: var(--c-danger-hover);
   --c-danger-shadow: #ee7a7a5c;
@@ -127,17 +127,10 @@
   --input-field-transition: var(--transition-s);
   --input-field-font-size: var(--font-size-xs);
   --input-field-caret-color: #2d3036;
-  --input-field-border: #bec9d4;
   --input-field-placeholder: var(--c-dimmed-pure);
   --input-field-background: #efeff3;
-
-  --input-field-hover-border: var(--c-primary-pure);
-  --input-field-hover-background: var(--input-field-background);
-
-  --input-field-focus-border: var(--c-primary-pure);
-  --input-field-focus-background: var(--input-field-background);
-  --input-field-focus-box-shadow: #0059ff5c;
-
+  --input-field-hover-background: #dfdfe7;
+  --input-field-focus-background: #dfdfe7;
   --input-field-max-width: 200px;
 
   --dialog-background: var(--app-background);
@@ -148,12 +141,13 @@
   --context-menu-item-color-hover: #222228;
   --context-menu-item-background-hover: #0000000d;
   --context-menu-backdrop: brightness(10);
-  --context-menu-shadow: 0 2px 10px #c5c3db;
+  --context-menu-shadow: 0 4px 6px #e6e8ec;
   --context-menu-z-index: 2;
 
   --cell-menu-background: #ffffff;
   --cell-menu-backdrop: blur(3px) brightness(0.15);
-  --cell-menu-shadow: 0 1px 2px #46434d;
+  --cell-menu-shadow: 0 1px 2px #c1c2c8;
+  --cell-menu-divider: #48485a;
 
   --grid-background-odd: #fff;
   --grid-background-odd-hover: #f5f5f7;
@@ -165,7 +159,7 @@
   --grid-border-color: #e4e5e6;
   --grid-border-radius: var(--border-radius-l);
 
-  --grid-header-background: #1b1e2a;
+  --grid-header-background: #31364e;
   --grid-header-text: #dfe2e8;
 
   --tooltip-backdrop: var(--context-menu-backdrop);

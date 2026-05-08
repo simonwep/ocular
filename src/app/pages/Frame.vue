@@ -11,6 +11,7 @@
         :key="button.name"
         :tooltip="button.tooltip"
         tooltipPosition="right"
+        shaped
         testId="navigation"
         :class="[$style.btn, button.class]"
         :color="(currentRoute) => (currentRoute ? 'primary' : 'dimmed')"
@@ -111,8 +112,9 @@ const buttons = computed((): FrameButton[] => [
   display: flex;
   height: 100%;
   flex-direction: column;
+  align-items: center;
   border-right: 1px solid var(--app-border);
-  padding: 15px 10px;
+  padding: 16px 10px;
   gap: 15px;
 
   .top {
@@ -158,9 +160,12 @@ const buttons = computed((): FrameButton[] => [
     justify-content: space-evenly;
     flex-direction: row;
     height: auto;
-    padding: 14px 4px;
+    padding: 6px 4px;
 
     .btn {
+      width: 34px;
+      height: 34px;
+
       &.cloud {
         order: 1;
       }

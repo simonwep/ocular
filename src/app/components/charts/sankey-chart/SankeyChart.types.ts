@@ -14,6 +14,7 @@ export type SankeyChartLabel = {
   color: string;
   muted?: boolean;
   align?: 'left' | 'right';
+  radius?: [number, number, number, number];
 };
 
 export type SankeyChartConfig = {

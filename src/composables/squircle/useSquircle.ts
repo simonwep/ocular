@@ -1,38 +1,26 @@
-import { watchEffect, MaybeRefOrGetter, toValue, shallowRef, TemplateRef } from 'vue';
+import { useElementSize } from '@vueuse/core';
+import { MaybeRefOrGetter, toValue, TemplateRef, watch } from 'vue';
 
 export const useSquircle = (el: TemplateRef<HTMLElement | null>, curvature: MaybeRefOrGetter<number>) => {
-  const resizeEntry = shallowRef<ResizeObserverEntry>();
-  let observer: ResizeObserver;
+  const { width, height } = useElementSize(el, new DOMRect(), { box: 'border-box' });
 
-  watchEffect(() => {
-    if (!resizeEntry.value || !el.value || !toValue(curvature)) {
-      el.value?.style.removeProperty('clip-path');
-      return;
-    }
+  watch([width, height], ([w, h]) => {
+    if (!w || !h) return;
 
-    const { width, height } = resizeEntry.value.contentRect;
-    const min = Math.min(width, height) * toValue(curvature);
+    const min = Math.min(w, h) * toValue(curvature);
+
     const commands = [
       `M 0,${min}`,
       `C 0,0 0,0 ${min},0`,
-      `L ${width - min},0`,
-      `C ${width},0 ${width},0 ${width},${min}`,
-      `L ${width},${min} ${width},${height - min}`,
-      `C ${width},${height} ${width},${height} ${width - min},${height}`,
-      `L ${width - min},${height} ${min},${height}`,
-      `C 0,${height} 0,${height} 0,${height - min}`,
+      `L ${w - min},0`,
+      `C ${w},0 ${w},0 ${w},${min}`,
+      `L ${w},${min} ${w},${h - min}`,
+      `C ${w},${h} ${w},${h} ${w - min},${h}`,
+      `L ${w - min},${h} ${min},${h}`,
+      `C 0,${h} 0,${h} 0,${h - min}`,
       `Z`
     ];
 
-    el.value.style.setProperty('clip-path', `path('${commands.join(' ')}')`);
-  });
-
-  watchEffect(() => {
-    observer?.disconnect();
-
-    if (el.value) {
-      observer = new ResizeObserver((entries) => (resizeEntry.value = entries.at(-1)));
-      observer.observe(el.value);
-    }
+    el.value?.style.setProperty('clip-path', `path('${commands.join(' ')}')`);
   });
 };

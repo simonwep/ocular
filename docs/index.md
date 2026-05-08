@@ -20,28 +20,28 @@ hero:
       link: pages/deploy
 
 features:
-  - icon: 🦾
-    title: Self-hosted
+  - icon: ❤️
+    title: Handcrafted & Battle Tested
+    details: No AI used during development - in development since 2022, except for translations.
+  - icon: 🔒
+    title: Self-hosted & Private
     details: Deploy it via docker-compose in seconds, your data stays on your server.
-  - icon: 🌚
-    title: Beautiful Themes
-    details: The app comes with a beautiful light and dark theme.
-  - icon: 💻
-    title: PWA Ready
-    details: Installable as a Progressive Web App and optimized for mobile devices as well.
-  - icon: 🔄
-    title: Importer/Exporter
-    details: Import your data from Google sheet's annual planner or export as json.
-  - icon: 🙈
-    title: Privacy Mode
-    details: A privacy mode for when you're in a public place.
   - icon: 📊
-    title: Dashboard
-    details: The dashboard comes with extensive statistics and a detailed view.
+    title: Dashboards and Charts
+    details: Extensive dashboards and charts for a quick overview of your budget.
   - icon: 🎇
     title: Multi-Year Budgets
-    details: Track budgets across multiple years.
+    details: Track your income and expenses over multiple years.
+  - icon: 💻
+    title: Installable & Portable
+    details: Installable as a Progressive Web App and optimized for mobile devices as well.
+  - icon: 📃
+    title: Importer & Exporter
+    details: Import your data from Google sheet's annual planner or export as json.
+  - icon: 💪
+    title: Power features
+    details: Keyboard navigation, inline expression evaluation and more!
   - icon: 🗺️
     title: Fully localized
-    details: Supports multiple languages and currencies.
+    details: Over 12 languages supported and all currently available currencies!
 ---

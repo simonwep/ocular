@@ -39,14 +39,15 @@
 
       <ContextMenu position="top">
         <template #default="{ toggle }">
-          <button
+          <Button
             v-tooltip.top="t('page.dashboard.downloadChart')"
             type="button"
+            size="xxs"
             :class="$style.downloadBtn"
+            :icon="RiDownload2Line"
+            rounded
             @click="toggle"
-          >
-            <RiDownload2Line size="14" />
-          </button>
+          />
         </template>
 
         <template #options>
@@ -69,6 +70,7 @@
 <script lang="ts" setup>
 import DistributionChartBar from '@app/pages/dashboard/overview/widgets/charts/DistributionChartBar.vue';
 import DistributionChartSankey from '@app/pages/dashboard/overview/widgets/charts/DistributionChartSankey.vue';
+import Button from '@components/base/button/Button.vue';
 import ContextMenu from '@components/base/context-menu/ContextMenu.vue';
 import ContextMenuButton from '@components/base/context-menu/ContextMenuButton.vue';
 import Switch from '@components/base/switch/Switch.vue';
@@ -146,26 +148,12 @@ const fileName = computed(() => {
   flex-shrink: 0;
   gap: 10px;
   height: 26px;
-  margin: 10px 0;
+  margin: 12px 4px;
 }
 
 .downloadBtn {
-  all: unset;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 26px;
   height: 26px;
-  border-radius: 100px;
-  background: var(--c-primary);
-  color: var(--c-primary-text);
-  cursor: pointer;
-  transition: var(--transition-m) background;
-
-  &:hover {
-    background: var(--c-primary-hover);
-    color: var(--c-primary-text-hover);
-  }
 }
 
 .switch {

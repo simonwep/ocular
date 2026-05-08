@@ -63,7 +63,8 @@ const options = computed((): EChartsOption => {
         id: v.id,
         itemStyle: {
           color: v.color,
-          opacity: v.muted ? 0.25 : 1
+          opacity: v.muted ? 0.25 : 1,
+          borderRadius: v.radius
         },
         label:
           v.align === 'left'

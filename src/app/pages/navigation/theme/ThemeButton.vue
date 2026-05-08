@@ -7,6 +7,7 @@
     :class="classes"
     :icon="icon"
     textual
+    size="l"
     @click="toggle"
   />
 </template>

@@ -4,6 +4,7 @@
     testId="navigation-cloud"
     :data="{ status: status }"
     textual
+    size="l"
     :disabled="!OCULAR_GENESIS_HOST"
     :color="icon[0]"
     :tooltip="OCULAR_GENESIS_HOST ? undefined : t('navigation.auth.loginNotAvailable')"

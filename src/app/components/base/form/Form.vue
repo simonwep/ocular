@@ -7,6 +7,7 @@
       :icon="submitIcon"
       :class="$style.btn"
       :text="submitLabel"
+      shadow
       type="submit"
     />
   </form>
@@ -40,7 +41,7 @@ const maxWidthValue = computed(() => (props.maxWidth ? `${props.maxWidth}px` : '
 .fields {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   width: v-bind('maxWidthValue');
 
   .btn {

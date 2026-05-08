@@ -13,14 +13,7 @@
         <div ref="content" :class="[$style.content, contentClass]">
           <div :class="$style.title">
             <h3 v-if="title" :class="$style.text">{{ title }}</h3>
-            <Button
-              v-if="!lock"
-              :class="$style.closeBtn"
-              textual
-              color="dimmed"
-              :icon="RiCloseCircleFill"
-              @click="emit('close')"
-            />
+            <Button v-if="!lock" :class="$style.closeBtn" textual :icon="RiCloseCircleFill" @click="emit('close')" />
           </div>
           <slot />
         </div>
@@ -50,7 +43,7 @@ const props = withDefaults(
     closeOnBackgroundClick?: boolean;
   }>(),
   {
-    // Password managers for example don't work with native dialogs
+    // Password managers, for example, don't work with native dialogs
     native: true,
     closeOnBackgroundClick: true
   }
@@ -125,7 +118,7 @@ onUnmounted(() => window.removeEventListener('keydown', onKeyDown));
   transition: opacity var(--transition-m);
   background: var(--dialog-background);
   color: var(--theme-text);
-  padding: 16px 18px;
+  padding: 14px 24px 20px;
   border-radius: var(--border-radius-l);
   box-shadow: var(--dialog-box-shadow);
 }

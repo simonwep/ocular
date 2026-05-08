@@ -25,7 +25,7 @@
 ## Features
 
 - ⭐ Handcrafted. No AI used during development, except for translations.
-- 🏠 Self-hosted. [Deploy it](https://simonwep.github.io/ocular/pages/deploy.html) it via docker in seconds.
+- 🏠 Self-hosted. [Deploy it](https://simonwep.github.io/ocular/pages/deploy.html) via docker in seconds.
 - 🎨 Themed, light and dark mode.
 - 🌍 Multi-language and support for all common currencies.
 - 📱 Installable as a Progressive Web App and optimized for mobile devices.
@@ -43,9 +43,9 @@
 
 ## Screenshots
 
-<img width="1660" height="1070" alt="Dashboard" src="https://github.com/user-attachments/assets/ba90874d-8a62-413a-af65-bf6f3d308e84" />
-<img width="1660" height="1070" alt="Dashboard Yearly Overview" src="https://github.com/user-attachments/assets/1be0a27b-a30e-42a3-82ea-f1b217ec163c" />
-<img width="1660" height="1070" alt="All-time Overview" src="https://github.com/user-attachments/assets/f365d526-d261-4274-9c68-816b401927fe" />
-<img width="1660" height="1070" alt="Demo expenses" src="https://github.com/user-attachments/assets/980818a7-0862-4696-8215-feabeea71bf7" />
+<img width="1660" height="1070" alt="Dashboard" src="https://github.com/user-attachments/assets/3391dcaa-da27-4b72-ba7d-42a50b1c1023" /> <br/>
+<img width="1660" height="1070" alt="Dashboard Yearly Overview" src="https://github.com/user-attachments/assets/2b423d9a-b800-4977-bb6e-5431a3644498" /> <br/>
+<img width="1660" height="1070" alt="All-time Overview" src="https://github.com/user-attachments/assets/09bf8cf4-acf0-479c-bc28-e5f40a238279" /> <br/>
+<img width="1660" height="1070" alt="Demo expenses" src="https://github.com/user-attachments/assets/ed687574-6ae6-4af4-8ab4-f09e0907f4bf" />
 
-<p align="center"><i>...the rest is up for you to <a href="https://simonwep.github.io/ocular/demo">discover</a> ✨</i></p>
+<p align="center"><i>...the rest is up to you to <a href="https://simonwep.github.io/ocular/demo">discover</a> ✨</i></p>

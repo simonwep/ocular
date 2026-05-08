@@ -21,6 +21,7 @@
       <Button
         v-if="type === 'password'"
         textual
+        color="dimmed"
         :icon="showPassword ? RiEyeCloseLine : RiEyeLine"
         @click="showPassword = !showPassword"
       />
@@ -94,7 +95,6 @@ const passwordBarColor = computed(() => {
 
 .inputBox {
   background: var(--input-field-background);
-  border: 1px solid var(--input-field-border);
   border-radius: var(--border-radius-m);
   height: 30px;
   padding: 0 12px;
@@ -106,7 +106,6 @@ const passwordBarColor = computed(() => {
     all: unset;
     appearance: none;
     flex-grow: 1;
-    margin-right: 6px;
 
     &::placeholder {
       color: var(--input-field-placeholder);
@@ -118,13 +117,10 @@ const passwordBarColor = computed(() => {
   }
 
   &:hover:not(:focus-within) {
-    border-color: var(--input-field-hover-border);
     background: var(--input-field-hover-background);
   }
 
   &:focus-within {
-    box-shadow: 0 0 0 1px inset var(--input-field-hover-border);
-    border-color: var(--input-field-focus-border);
     background: var(--input-field-focus-background);
   }
 }

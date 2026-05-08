@@ -6,7 +6,7 @@
     :class="classes"
   >
     <template #default="{ toggle }">
-      <Button testId="admin-settings" :icon="RiShieldFlashLine" textual color="dimmed" @click="toggle" />
+      <Button size="l" testId="admin-settings" :icon="RiShieldFlashLine" textual color="dimmed" @click="toggle" />
     </template>
 
     <template #options>

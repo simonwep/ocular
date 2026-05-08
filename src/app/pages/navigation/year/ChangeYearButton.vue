@@ -10,7 +10,7 @@
     @select="changeYear($event.id as number)"
   >
     <template #default="{ toggle }">
-      <Button testId="navigation-change-year" :icon="RiCalendarLine" textual color="dimmed" @click="toggle" />
+      <Button size="l" testId="navigation-change-year" :icon="RiCalendarLine" textual color="dimmed" @click="toggle" />
     </template>
   </ContextMenu>
 </template>

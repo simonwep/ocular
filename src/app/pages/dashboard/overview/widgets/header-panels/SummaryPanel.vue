@@ -163,7 +163,7 @@ const element = computed(() => (props.to ? Link : 'div'));
 }
 
 .chart {
-  width: 30%;
+  width: 100%;
 }
 
 @include globals.onMobileDevices {

@@ -3,6 +3,7 @@
     :tooltip="t('navigation.settings.settings')"
     tooltipPosition="right"
     :class="classes"
+    size="l"
     textual
     color="dimmed"
     testId="navigation-settings"

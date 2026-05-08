@@ -47,7 +47,7 @@ const options = computed(
         smooth: true,
         showSymbol: false,
         lineStyle: {
-          width: 5,
+          width: 3,
           cap: 'round',
           color: props.color
         }

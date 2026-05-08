@@ -5,6 +5,7 @@
     tooltipPosition="right"
     :class="classes"
     textual
+    size="l"
     color="dimmed"
     :icon="RiInformationLine"
     @click="showInfoDialog = true"

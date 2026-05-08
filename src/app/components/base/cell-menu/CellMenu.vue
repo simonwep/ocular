@@ -95,7 +95,7 @@ const triggerAction = (action: CellMenuAction) => {
     }
 
     &:not(:first-child) {
-      border-left: 1px solid var(--app-background);
+      border-left: 1px solid var(--cell-menu-divider);
     }
   }
 }

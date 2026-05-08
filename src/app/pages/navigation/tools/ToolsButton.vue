@@ -6,7 +6,7 @@
     tooltipPosition="right"
   >
     <template #default="{ toggle }">
-      <Button testId="navigation-tools-menu" :icon="RiToolsLine" textual color="dimmed" @click="toggle" />
+      <Button size="l" testId="navigation-tools-menu" :icon="RiToolsLine" textual color="dimmed" @click="toggle" />
     </template>
 
     <template #options>

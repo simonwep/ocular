@@ -1,5 +1,5 @@
 <template>
-  <Dialog :title="t('navigation.admin.createUser')" :open="open" @close="emit('close')">
+  <Dialog :title="t('navigation.admin.createUser')" :contentClass="$style.dialog" :open="open" @close="emit('close')">
     <Form :submitIcon="RiUserAddLine" :submitLabel="t('navigation.admin.createUser')" @submit="submit">
       <TextField
         v-model="newUser.name"
@@ -92,5 +92,9 @@ const submit = () => {
   .btn {
     text-align: center;
   }
+}
+
+.dialog {
+  width: 300px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <Dialog :title="t('navigation.admin.manageUsers')" :open="open" @close="emit('close')">
+  <Dialog :title="t('navigation.admin.manageUsers')" :contentClass="$style.dialog" :open="open" @close="emit('close')">
     <ul v-if="users.length" :class="$style.list">
       <li v-for="usr of users" :key="usr.name" :class="$style.item">
         <span :class="$style.name">{{ usr.name }}</span>
@@ -114,5 +114,9 @@ watch(
   font-weight: var(--font-weight-l);
   font-size: var(--font-size-xs);
   color: var(--c-dimmed);
+}
+
+.dialog {
+  width: 300px;
 }
 </style>

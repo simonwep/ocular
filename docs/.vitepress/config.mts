@@ -1,34 +1,21 @@
 import { defineConfig } from 'vitepress';
 
+const keywords = 'ocular, finance, budgeting, budget planner, self-hosted, privacy, docker, PWA, Simon Reinisch';
+
+const description =
+  'Ocular - A simplistic, straight-forward budgeting app. Self-hosted, privacy-focused, and easy to use.';
+
 export default defineConfig({
   title: 'Ocular',
   base: '/ocular/',
   description: 'Ocular - A simplistic, straight-forward budgeting app. Self-hosted, privacy-focused, and easy to use.',
   head: [
     // SEO
-    [
-      'meta',
-      {
-        name: 'keywords',
-        content: 'ocular, budgeting, budget planner, self-hosted, privacy, docker, PWA, simonwep'
-      }
-    ],
-    [
-      'meta',
-      {
-        name: 'description',
-        content: 'Ocular - A simplistic, straight-forward budgeting app. Self-hosted, privacy-focused, and easy to use.'
-      }
-    ],
+    ['meta', { name: 'keywords', content: keywords }],
+    ['meta', { name: 'description', content: description }],
     ['meta', { name: 'subject', content: 'Budgeting software' }],
     ['meta', { name: 'topic', content: 'Budgeting software' }],
-    [
-      'meta',
-      {
-        name: 'summary',
-        content: 'Ocular - A simplistic, straight-forward budgeting app. Self-hosted, privacy-focused, and easy to use.'
-      }
-    ],
+    ['meta', { name: 'summary', content: description }],
     ['meta', { name: 'copyright', content: 'Simon Reinisch' }],
     ['meta', { name: 'owner', content: 'Simon Reinisch' }],
     ['meta', { name: 'author', content: 'Simon Reinisch' }],
@@ -51,20 +38,8 @@ export default defineConfig({
     ['meta', { property: 'og:image:type', content: 'image/png' }],
     ['meta', { property: 'og:image:height', content: '150' }],
     ['meta', { property: 'og:image:width', content: '150' }],
-    [
-      'meta',
-      {
-        property: 'og:image:alt',
-        content: 'Ocular logo featuring the name and tagline.'
-      }
-    ],
-    [
-      'meta',
-      {
-        property: 'og:description',
-        content: 'Ocular - A simplistic, straight-forward budgeting app. Self-hosted, privacy-focused, and easy to use.'
-      }
-    ],
+    ['meta', { property: 'og:description', content: description }],
+    ['meta', { property: 'og:image:alt', content: 'Ocular logo featuring the name and tagline.' }],
 
     // Analytics
     [
@@ -78,15 +53,7 @@ export default defineConfig({
 
     // Icons
     ['link', { rel: 'icon', href: '/ocular/favicon.ico', sizes: '32x32' }],
-    [
-      'link',
-      {
-        rel: 'icon',
-        href: '/ocular/favicon.svg',
-        sizes: 'any',
-        type: 'image/svg+xml'
-      }
-    ],
+    ['link', { rel: 'icon', href: '/ocular/favicon.svg', sizes: 'any', type: 'image/svg+xml' }],
     ['link', { rel: 'apple-touch-icon', href: '/ocular/apple-touch-icon.png' }]
   ],
   themeConfig: {
