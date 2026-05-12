@@ -77,14 +77,14 @@ const cards = computed((): Card[] => {
 
   return [
     {
-      title: t('page.dashboard.yoyIncomeGrowth'),
+      title: t('page.dashboard.allTime.yoyIncomeGrowth'),
       text: lastYear ? percent.format((currentYearIncome - lastYearIncome) / lastYearIncome) : '—',
       icon: lastYear ? (currentYearIncome > lastYearIncome ? RiArrowUpDoubleLine : RiArrowDownDoubleLine) : undefined,
       iconClass: currentYearIncome > lastYearIncome ? styles.iconSuccess : styles.iconDanger,
       testId: 'yoy-income-growth'
     },
     {
-      title: t('page.dashboard.yoyExpenseGrowth'),
+      title: t('page.dashboard.allTime.yoyExpenseGrowth'),
       text: lastYear ? percent.format((lastYearExpenses - currentYearExpenses) / currentYearExpenses) : '—',
       icon: lastYear
         ? lastYearExpenses > currentYearExpenses
@@ -95,7 +95,7 @@ const cards = computed((): Card[] => {
       testId: 'yoy-expense-growth'
     },
     {
-      title: t('page.dashboard.allTimeIncome'),
+      title: t('page.dashboard.allTime.allTimeIncome'),
       value: allTimeIncome,
       text: allTimeIncome ? undefined : '—',
       testId: 'all-time-income',
@@ -104,7 +104,7 @@ const cards = computed((): Card[] => {
       onPointerLeave: () => (highlight.value = undefined)
     },
     {
-      title: t('page.dashboard.allTimeExpenses'),
+      title: t('page.dashboard.allTime.allTimeExpenses'),
       value: allTimeExpenses,
       text: allTimeExpenses ? undefined : '—',
       testId: 'all-time-expenses',
@@ -113,7 +113,7 @@ const cards = computed((): Card[] => {
       onPointerLeave: () => (highlight.value = undefined)
     },
     {
-      title: t('page.dashboard.allTimeSavings'),
+      title: t('page.dashboard.allTime.allTimeSavings'),
       value: allTimeIncome - allTimeExpenses,
       text: allTimeIncome && allTimeExpenses ? undefined : '—',
       testId: 'all-time-savings'

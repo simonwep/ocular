@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Impor data google",
-          "pickFile": "Pilih berkas .csv untuk di impor",
           "expenses": "Pengeluaran.csv",
           "income": "Pemasukan.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Login tidak tersedia, backend belum dikonfigurasi.",
       "loginNotAvailableDueToHttp": "Login mungkin tidak berfungsi jika halaman diakses melalui HTTP. Pastikan untuk mengatur GENESIS_JWT_COOKIE_ALLOW_HTTP ke true di file .env Anda atau lebih baik gunakan HTTPS untuk mengakses aplikasi.",
       "incorrectUsernameOrPassword": "Login gagal, nama pengguna dan/atau kata sandi tidak valid.",
-      "tooManyFailedAttempts": "Terlalu banyak percobaan login yang gagal, coba lagi {duration}.",
-      "unknownError": "Ada yang salah, silakan coba lagi nanti. (Kesalahan: {error})"
+      "tooManyFailedAttempts": "Terlalu banyak percobaan login yang gagal, coba lagi {duration}."
     },
     "admin": {
       "settings": "Pengaturan admin",
@@ -113,37 +111,43 @@
       "expensesFor": "Pengeluaran tahun {year}"
     },
     "dashboard": {
-      "title": "Dashboard",
-      "tables": "Tabel",
       "income": "Pemasukan",
-      "incomeTrend": "Tren pemasukan",
-      "allTime": "Tinjauan keseluruhan",
-      "allTimeFromTo": "Tinjauan dari {from} sampai {to}",
       "expenses": "Pemasukan",
-      "expensesTrend": "Tren pemasukan",
       "endingBalance": "Saldo akhir",
       "budgetFor": "Anggaran tahunan {year}",
-      "remainingBalance": "Sisa saldo hingga {year}",
-      "netSavings": "Tabungan bersih",
-      "yearInThePast": "Tahun sudah berlalu",
-      "yearInTheFuture": "Tahun mendatang",
-      "yearEnding": "Tahun ini akan segera berakhir...",
-      "yoyIncomeGrowth": "Pertumbuhan pemasukan tahunan",
-      "yoyExpenseGrowth": "Pertumbuhan pengeluaran tahunan",
-      "allTimeIncome": "Pemasukan keseluruhan",
-      "allTimeExpenses": "Pengeluaran keseluruhan",
-      "allTimeSavings": "Tabungan keseluruhan",
-      "downloadAsPNG": "Unduh sebagai PNG",
-      "downloadAsSVG": "Unduh sebagai SVG",
-      "jumpToIncome": "Loncat ke pemasukan untuk {year}",
-      "jumpToExpenses": "Loncat ke pengeluaran untuk {year}",
-      "lastYear": "Tahun lalu",
-      "surplus": "Surplus",
-      "deficit": "Defisit",
-      "downloadChart": "Unduh grafik",
-      "toggleBetweenAveragesAndTotals": "Alihkan rata-rata bulanan / total",
-      "toggleChartType": "Alihkan jenis grafik",
-      "togglePercentages": "Alihkan persentase / nilai absolut"
+      "summary": {
+        "title": "Dashboard",
+        "netSavings": "Tabungan bersih"
+      },
+      "overview": {
+        "title": "Dashboard",
+        "remainingBalance": "Sisa saldo hingga {year}",
+        "yearInThePast": "Tahun sudah berlalu",
+        "yearInTheFuture": "Tahun mendatang",
+        "yearEnding": "Tahun ini akan segera berakhir...",
+        "downloadAsPNG": "Unduh sebagai PNG",
+        "downloadAsSVG": "Unduh sebagai SVG",
+        "jumpToIncome": "Loncat ke pemasukan untuk {year}",
+        "jumpToExpenses": "Loncat ke pengeluaran untuk {year}",
+        "lastYear": "Tahun lalu",
+        "surplus": "Surplus",
+        "deficit": "Defisit",
+        "downloadChart": "Unduh grafik",
+        "toggleBetweenAveragesAndTotals": "Alihkan rata-rata bulanan / total",
+        "toggleChartType": "Alihkan jenis grafik",
+        "togglePercentages": "Alihkan persentase / nilai absolut"
+      },
+      "allTime": {
+        "title": "Dashboard",
+        "incomeTrend": "Tren pemasukan",
+        "allTimeFromTo": "Tinjauan dari {from} sampai {to}",
+        "expensesTrend": "Tren pemasukan",
+        "yoyIncomeGrowth": "Pertumbuhan pemasukan tahunan",
+        "yoyExpenseGrowth": "Pertumbuhan pengeluaran tahunan",
+        "allTimeIncome": "Pemasukan keseluruhan",
+        "allTimeExpenses": "Pengeluaran keseluruhan",
+        "allTimeSavings": "Tabungan keseluruhan"
+      }
     }
   },
   "feature": {

@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Google verisini içe aktar",
-          "pickFile": "İçe aktarmak için .csv dosyanızı seçin",
           "expenses": "Expenses.csv",
           "income": "Income.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Giriş kullanılamıyor, backend yapılandırılmamış.",
       "loginNotAvailableDueToHttp": "Sayfa HTTP üzerinden erişiliyorsa oturum açma çalışmayabilir. .env dosyanızda GENESIS_JWT_COOKIE_ALLOW_HTTP değerini true olarak ayarladığınızdan emin olun veya daha iyisi uygulamaya erişmek için HTTPS kullanın.",
       "incorrectUsernameOrPassword": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
-      "tooManyFailedAttempts": "Çok fazla başarısız giriş denemesi, {duration} sonra tekrar deneyin.",
-      "unknownError": "Bir şeyler yanlış gitti, lütfen daha sonra tekrar deneyin. (Hata: {error})"
+      "tooManyFailedAttempts": "Çok fazla başarısız giriş denemesi, {duration} sonra tekrar deneyin."
     },
     "admin": {
       "settings": "Yönetici ayarları",
@@ -113,37 +111,43 @@
       "expensesFor": "{year} için Harcamalar"
     },
     "dashboard": {
-      "title": "Gösterge Paneli",
-      "tables": "Tablolar",
       "income": "Gelir",
-      "incomeTrend": "Gelir Eğilimi",
-      "allTime": "Tüm zamanlara genel bakış",
-      "allTimeFromTo": "{from} ile {to} arasındaki tüm zamanlar",
       "expenses": "Harcamalar",
-      "expensesTrend": "Gider Eğilimi",
       "endingBalance": "Bitiş Bakiyesi",
       "budgetFor": "{year} için yıllık bütçe",
-      "remainingBalance": "{year} tarihine kadar Kalan Bakiye",
-      "netSavings": "Net Tasarruflar",
-      "yearInThePast": "Yıl geçmişte",
-      "yearInTheFuture": "Yıl gelecekte",
-      "yearEnding": "Bu yıla sona eriyor...",
-      "yoyIncomeGrowth": "Yıllık Gelir Artışı",
-      "yoyExpenseGrowth": "Yıllık Gider Artışı",
-      "allTimeIncome": "Tüm Zamanların Gelirleri",
-      "allTimeExpenses": "Tüm Zamanların Giderleri",
-      "allTimeSavings": "Tüm Zamanların Tasarrufları",
-      "downloadAsPNG": "PNG olarak indir",
-      "downloadAsSVG": "SVG olarak indir",
-      "jumpToIncome": "{year} gelirlerine atla",
-      "jumpToExpenses": "{year} harcamalarına atla",
-      "lastYear": "Geçen Yıl",
-      "surplus": "Artı",
-      "deficit": "Eksi",
-      "downloadChart": "Grafiği indir",
-      "toggleBetweenAveragesAndTotals": "Aylık ortalamalar / toplamlar arasında geçiş yap",
-      "toggleChartType": "Grafik türünü değiştir",
-      "togglePercentages": "Yüzdeler / mutlak değerler arasında geçiş yap"
+      "summary": {
+        "title": "Gösterge Paneli",
+        "netSavings": "Net Tasarruflar"
+      },
+      "overview": {
+        "title": "Gösterge Paneli",
+        "remainingBalance": "{year} tarihine kadar Kalan Bakiye",
+        "yearInThePast": "Yıl geçmişte",
+        "yearInTheFuture": "Yıl gelecekte",
+        "yearEnding": "Bu yıla sona eriyor...",
+        "downloadAsPNG": "PNG olarak indir",
+        "downloadAsSVG": "SVG olarak indir",
+        "jumpToIncome": "{year} gelirlerine atla",
+        "jumpToExpenses": "{year} harcamalarına atla",
+        "lastYear": "Geçen Yıl",
+        "surplus": "Artı",
+        "deficit": "Eksi",
+        "downloadChart": "Grafiği indir",
+        "toggleBetweenAveragesAndTotals": "Aylık ortalamalar / toplamlar arasında geçiş yap",
+        "toggleChartType": "Grafik türünü değiştir",
+        "togglePercentages": "Yüzdeler / mutlak değerler arasında geçiş yap"
+      },
+      "allTime": {
+        "title": "Gösterge Paneli",
+        "incomeTrend": "Gelir Eğilimi",
+        "allTimeFromTo": "{from} ile {to} arasındaki tüm zamanlar",
+        "expensesTrend": "Gider Eğilimi",
+        "yoyIncomeGrowth": "Yıllık Gelir Artışı",
+        "yoyExpenseGrowth": "Yıllık Gider Artışı",
+        "allTimeIncome": "Tüm Zamanların Gelirleri",
+        "allTimeExpenses": "Tüm Zamanların Giderleri",
+        "allTimeSavings": "Tüm Zamanların Tasarrufları"
+      }
     }
   },
   "feature": {

@@ -5,11 +5,11 @@
         <i18n-t keypath="navigation.info.github" scope="global">
           <template #link>
             <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-            <Link :custom="false" color="primary" to="https://github.com/simonwep/ocular">GitHub</Link>
+            <Link inline to="https://github.com/simonwep/ocular">GitHub</Link>
           </template>
           <template #donation>
             <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-            <Link :custom="false" color="primary" to="https://github.com/sponsors/simonwep">
+            <Link inline to="https://github.com/sponsors/simonwep">
               {{ t('navigation.info.donation') }}
             </Link>
           </template>

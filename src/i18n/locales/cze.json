@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Import google data",
-          "pickFile": "Vyberte .csv soubor, který chcete importovat",
           "expenses": "Výdaje.csv (Expenses.csv)",
           "income": "Příjmy.csv (Income.csv)"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Přihlášení není dostupné, backend není nakonfigurován.",
       "loginNotAvailableDueToHttp": "Přihlášení nemusí fungovat, pokud je stránka načtena přes HTTP. Ujistěte se, že v souboru .env nastavíte GENESIS_JWT_COOKIE_ALLOW_HTTP na true, nebo raději používejte HTTPS pro přístup k aplikaci.",
       "incorrectUsernameOrPassword": "Přihlášení se nezdařilo, uživatelské jméno a/nebo heslo jsou neplatné.",
-      "tooManyFailedAttempts": "Příliš mnoho neúspěšných pokusů o přihlášení, zopakujte za {duration}.",
-      "unknownError": "Něco se pokazilo, zkuste to prosím později. (Chyba: {error})"
+      "tooManyFailedAttempts": "Příliš mnoho neúspěšných pokusů o přihlášení, zopakujte za {duration}."
     },
     "admin": {
       "settings": "Nastavení správce",
@@ -113,37 +111,43 @@
       "expensesFor": "Výdaje za {year}"
     },
     "dashboard": {
-      "title": "Panel",
-      "tables": "Tabulky",
       "income": "Příjmy",
-      "incomeTrend": "Předpoklad příjmů",
-      "allTime": "Přehled všech dob",
-      "allTimeFromTo": "Po celou dobu od {from} do {to}",
       "expenses": "Výdaje",
-      "expensesTrend": "Předpoklad výdajů",
       "endingBalance": "Konečný Zůstatek",
       "budgetFor": "Ročná rozpočet pro rok {year}",
-      "remainingBalance": "Zbývající Zůstatek do roku {year}",
-      "netSavings": "Čisté Úspory",
-      "yearInThePast": "Předchozí rok",
-      "yearInTheFuture": "Příští rok",
-      "yearEnding": "Letošní rok se chýlí ke konci...",
-      "yoyIncomeGrowth": "Meziroční růst Příjmů",
-      "yoyExpenseGrowth": "Meziroční růst Výdajů",
-      "allTimeIncome": "Celkový Příjmy",
-      "allTimeExpenses": "Celkový Výdaje",
-      "allTimeSavings": "Celkový Úspory",
-      "downloadAsPNG": "Stáhnout jako PNG",
-      "downloadAsSVG": "Stáhnout jako SVG",
-      "jumpToIncome": "Přejít na příjmy za {year}",
-      "jumpToExpenses": "Přejít na výdaje za {year}",
-      "lastYear": "Minulý rok",
-      "surplus": "Přebytek",
-      "deficit": "Deficit",
-      "downloadChart": "Stáhnout graf",
-      "toggleBetweenAveragesAndTotals": "Přepnout měsíční průměry / součty",
-      "toggleChartType": "Přepnout typ grafu",
-      "togglePercentages": "Přepnout procenta / absolutní hodnoty"
+      "summary": {
+        "title": "Panel",
+        "netSavings": "Čisté Úspory"
+      },
+      "overview": {
+        "title": "Panel",
+        "remainingBalance": "Zbývající Zůstatek do roku {year}",
+        "yearInThePast": "Předchozí rok",
+        "yearInTheFuture": "Příští rok",
+        "yearEnding": "Letošní rok se chýlí ke konci...",
+        "downloadAsPNG": "Stáhnout jako PNG",
+        "downloadAsSVG": "Stáhnout jako SVG",
+        "jumpToIncome": "Přejít na příjmy za {year}",
+        "jumpToExpenses": "Přejít na výdaje za {year}",
+        "lastYear": "Minulý rok",
+        "surplus": "Přebytek",
+        "deficit": "Deficit",
+        "downloadChart": "Stáhnout graf",
+        "toggleBetweenAveragesAndTotals": "Přepnout měsíční průměry / součty",
+        "toggleChartType": "Přepnout typ grafu",
+        "togglePercentages": "Přepnout procenta / absolutní hodnoty"
+      },
+      "allTime": {
+        "title": "Panel",
+        "incomeTrend": "Předpoklad příjmů",
+        "allTimeFromTo": "Po celou dobu od {from} do {to}",
+        "expensesTrend": "Předpoklad výdajů",
+        "yoyIncomeGrowth": "Meziroční růst Příjmů",
+        "yoyExpenseGrowth": "Meziroční růst Výdajů",
+        "allTimeIncome": "Celkový Příjmy",
+        "allTimeExpenses": "Celkový Výdaje",
+        "allTimeSavings": "Celkový Úspory"
+      }
     }
   },
   "feature": {

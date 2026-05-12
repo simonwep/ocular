@@ -8,6 +8,7 @@
       <component
         :is="element"
         :to="to"
+        inline
         :class="[$style.summaryPanel, classes]"
         @pointerenter="emit('pointerEnter', $event)"
         @pointerleave="emit('pointerLeave', $event)"

@@ -6,7 +6,7 @@
       color="success"
       to="income"
       testId="income"
-      :tooltip="t('page.dashboard.jumpToIncome', { year: state.activeYear })"
+      :tooltip="t('page.dashboard.overview.jumpToIncome', { year: state.activeYear })"
       :title="t('page.dashboard.income')"
       :hoverable="appSize !== 'mobile'"
       @pointerEnter="emit('hoveredPanel', 'income')"
@@ -23,7 +23,7 @@
       :subTitle="n(expensePercentage, 'percent')"
       to="expenses"
       testId="expenses"
-      :tooltip="t('page.dashboard.jumpToExpenses', { year: state.activeYear })"
+      :tooltip="t('page.dashboard.overview.jumpToExpenses', { year: state.activeYear })"
       :values="expenses"
       :value="expenseSum"
       color="warning"
@@ -46,17 +46,17 @@
       :subTitle="n(remainingBalancePercentage, 'percent')"
       :alt="
         currentMonthIndex < startOfCycle
-          ? t('page.dashboard.yearInThePast')
+          ? t('page.dashboard.overview.yearInThePast')
           : currentMonthIndex > endOfCycle
-            ? t('page.dashboard.yearInTheFuture')
+            ? t('page.dashboard.overview.yearInTheFuture')
             : currentMonthIndex + 1 === endOfCycle
-              ? t('page.dashboard.yearEnding')
+              ? t('page.dashboard.overview.yearEnding')
               : undefined
       "
       :value="remainingBalance"
       color="secondary"
       testId="remaining-balance"
-      :title="t('page.dashboard.remainingBalance', { year: startOfNextYear })"
+      :title="t('page.dashboard.overview.remainingBalance', { year: startOfNextYear })"
     />
   </div>
 </template>

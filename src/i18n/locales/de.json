@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Google-Daten importieren",
-          "pickFile": "Wählen Sie Ihre .csv-Datei zum Importieren aus",
           "expenses": "Ausgaben.csv",
           "income": "Einnahmen.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Login nicht verfügbar, Backend nicht konfiguriert.",
       "loginNotAvailableDueToHttp": "Die Anmeldung funktioniert möglicherweise nicht, wenn die Seite über HTTP aufgerufen wird. Stellen Sie sicher, dass Sie in Ihrer .env-Datei GENESIS_JWT_COOKIE_ALLOW_HTTP auf true setzen, oder noch besser – verwenden Sie HTTPS, um auf die Anwendung zuzugreifen.",
       "incorrectUsernameOrPassword": "Anmeldung fehlgeschlagen, Benutzername und/oder Passwort ungültig.",
-      "tooManyFailedAttempts": "Zu viele fehlgeschlagene Anmeldeversuche, bitte versuchen Sie es in {duration} erneut.",
-      "unknownError": "Etwas ist schiefgelaufen, bitte versuchen Sie es später noch einmal. (Fehler: {error})"
+      "tooManyFailedAttempts": "Zu viele fehlgeschlagene Anmeldeversuche, bitte versuchen Sie es in {duration} erneut."
     },
     "admin": {
       "settings": "Admin-Einstellungen",
@@ -113,37 +111,43 @@
       "expensesFor": "Ausgaben für {year}"
     },
     "dashboard": {
-      "title": "Dashboard",
-      "tables": "Tabellen",
       "income": "Einnahmen",
-      "incomeTrend": "Einnahmen-Trend",
       "expenses": "Ausgaben",
-      "expensesTrend": "Ausgaben-Trend",
-      "allTime": "Allzeit Übersicht",
-      "allTimeFromTo": "Allzeit Übersicht von {from} bis {to}",
       "endingBalance": "Endsaldo",
       "budgetFor": "Jährliches Budget für {year}",
-      "remainingBalance": "Verbleibendes Netto bis {year}",
-      "netSavings": "Nettoersparnisse",
-      "yearInThePast": "Jahr liegt in der Vergangenheit",
-      "yearInTheFuture": "Jahr liegt in der Zukunft",
-      "yearEnding": "Dieses Jahr neigt sich dem Ende zu...",
-      "yoyIncomeGrowth": "Jährliches Einkommenswachstum",
-      "yoyExpenseGrowth": "Jährliches Ausgabenwachstum",
-      "allTimeIncome": "Allzeit Einnahmen",
-      "allTimeExpenses": "Allzeit Ausgaben",
-      "allTimeSavings": "Allzeit Ersparnisse",
-      "downloadAsPNG": "Als PNG herunterladen",
-      "downloadAsSVG": "Als SVG herunterladen",
-      "jumpToIncome": "Springe zu den Einnahmen für {year}",
-      "jumpToExpenses": "Springe zu den Ausgaben für {year}",
-      "lastYear": "Letztes Jahr",
-      "surplus": "Überschuss",
-      "deficit": "Defizit",
-      "downloadChart": "Diagramm herunterladen",
-      "toggleBetweenAveragesAndTotals": "Monatliche Durchschnitte / Summen umschalten",
-      "toggleChartType": "Diagrammtyp umschalten",
-      "togglePercentages": "Prozente / absolute Werte umschalten"
+      "summary": {
+        "title": "Dashboard",
+        "netSavings": "Nettoersparnisse"
+      },
+      "overview": {
+        "title": "Dashboard",
+        "remainingBalance": "Verbleibendes Netto bis {year}",
+        "yearInThePast": "Jahr liegt in der Vergangenheit",
+        "yearInTheFuture": "Jahr liegt in der Zukunft",
+        "yearEnding": "Dieses Jahr neigt sich dem Ende zu...",
+        "downloadAsPNG": "Als PNG herunterladen",
+        "downloadAsSVG": "Als SVG herunterladen",
+        "jumpToIncome": "Springe zu den Einnahmen für {year}",
+        "jumpToExpenses": "Springe zu den Ausgaben für {year}",
+        "lastYear": "Letztes Jahr",
+        "surplus": "Überschuss",
+        "deficit": "Defizit",
+        "downloadChart": "Diagramm herunterladen",
+        "toggleBetweenAveragesAndTotals": "Monatliche Durchschnitte / Summen umschalten",
+        "toggleChartType": "Diagrammtyp umschalten",
+        "togglePercentages": "Prozente / absolute Werte umschalten"
+      },
+      "allTime": {
+        "title": "Dashboard",
+        "incomeTrend": "Einnahmen-Trend",
+        "expensesTrend": "Ausgaben-Trend",
+        "allTimeFromTo": "Allzeit Übersicht von {from} bis {to}",
+        "yoyIncomeGrowth": "Jährliches Einkommenswachstum",
+        "yoyExpenseGrowth": "Jährliches Ausgabenwachstum",
+        "allTimeIncome": "Allzeit Einnahmen",
+        "allTimeExpenses": "Allzeit Ausgaben",
+        "allTimeSavings": "Allzeit Ersparnisse"
+      }
     }
   },
   "feature": {

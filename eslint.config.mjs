@@ -1,7 +1,6 @@
 /* eslint-disable import-x/no-named-as-default-member */
 import js from '@eslint/js';
 import vueI18n from '@intlify/eslint-plugin-vue-i18n';
-import tsParser from '@typescript-eslint/parser';
 import vuePrettier from '@vue/eslint-config-prettier';
 import { defineConfig } from 'eslint/config';
 import { importX } from 'eslint-plugin-import-x';
@@ -20,7 +19,36 @@ export default defineConfig([
   ...vueI18n.configs['flat/recommended'],
   vuePrettier,
   {
-    ignores: ['.data', 'test-results', 'dist', 'node_modules/', 'docs/.vitepress/{dist,cache}']
+    ignores: ['.data/', 'test-results/', 'dist/', 'node_modules/', 'docs/.vitepress/{dist,cache}']
+  },
+  {
+    files: ['**/*.{vue,ts,mts,js,mjs,json}'],
+    settings: {
+      'vue-i18n': {
+        messageSyntaxVersion: '^9.0.0',
+        localeDir: './src/i18n/locales/*.json'
+      }
+    },
+    rules: {
+      '@intlify/vue-i18n/no-missing-keys-in-other-locales': 'error',
+      '@intlify/vue-i18n/no-dynamic-keys': 'error',
+      '@intlify/vue-i18n/no-html-messages': 'error',
+      '@intlify/vue-i18n/no-missing-keys': 'error',
+      '@intlify/vue-i18n/no-unused-keys': [
+        'error',
+        {
+          enableFix: true,
+          extensions: ['.vue', '.ts'],
+          ignores: ['page.income.incomeFor', 'page.expenses.expensesFor', 'page.dashboard.budgetFor']
+        }
+      ],
+      '@intlify/vue-i18n/no-raw-text': [
+        'error',
+        {
+          ignoreText: ['-', '(', ')']
+        }
+      ]
+    }
   },
   {
     files: ['**/*.{vue,ts,mts,js,mjs}'],
@@ -28,16 +56,13 @@ export default defineConfig([
       ecmaVersion: 'latest',
       sourceType: 'module',
       parserOptions: {
+        tsconfigRootDir: process.cwd(),
         extraFileExtensions: ['.vue'],
-        parser: tsParser
+        parser: '@typescript-eslint/parser',
+        project: './tsconfig.json'
       },
       globals: {
         process: true
-      }
-    },
-    settings: {
-      'vue-i18n': {
-        localeDir: 'src/i18n/locales/*.json'
       }
     },
     plugins: {

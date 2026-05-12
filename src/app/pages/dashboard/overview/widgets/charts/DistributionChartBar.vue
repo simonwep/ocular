@@ -57,9 +57,9 @@ const data = computed((): StackedBarChartConfig => {
   if (settings.general.carryOver) {
     incomeBlocks.splice(0, 0, {
       id: uuid(),
-      label: t('page.dashboard.lastYear'),
+      label: t('page.dashboard.overview.lastYear'),
       color: color(60 + ((state.overallBalance ?? 0) / props.totalIncome) * 60),
-      formatter: (num, type) => `${t('page.dashboard.lastYear')} (${format(num, type)})`,
+      formatter: (num, type) => `${t('page.dashboard.overview.lastYear')} (${format(num, type)})`,
       value: state.overallBalance ?? 0,
       muted: props.highlight === 'expenses'
     });
@@ -81,18 +81,18 @@ const data = computed((): StackedBarChartConfig => {
   if (props.totalIncome > props.totalExpenses) {
     expenseBlocks.push({
       id: uuid(),
-      label: t('page.dashboard.surplus'),
+      label: t('page.dashboard.overview.surplus'),
       color: color(120),
-      formatter: (num, type) => `${t('page.dashboard.surplus')} (${format(num, type)})`,
+      formatter: (num, type) => `${t('page.dashboard.overview.surplus')} (${format(num, type)})`,
       muted: props.highlight === 'income',
       value: props.totalIncome - props.totalExpenses
     });
   } else if (props.totalExpenses > props.totalIncome) {
     incomeBlocks.push({
       id: uuid(),
-      label: t('page.dashboard.deficit'),
+      label: t('page.dashboard.overview.deficit'),
       color: color(0),
-      formatter: (num, type) => `${t('page.dashboard.deficit')} (${format(num, type)})`,
+      formatter: (num, type) => `${t('page.dashboard.overview.deficit')} (${format(num, type)})`,
       muted: props.highlight === 'expenses',
       value: props.totalExpenses - props.totalIncome
     });

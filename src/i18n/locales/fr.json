@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Importer les données google",
-          "pickFile": "Sélectionnez votre fichier .csv à importer",
           "expenses": "Expenses.csv",
           "income": "Income.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Connexion non disponible, le backend n'est pas configuré.",
       "loginNotAvailableDueToHttp": "La connexion peut ne pas fonctionner si la page est accessible via HTTP. Assurez-vous de définir GENESIS_JWT_COOKIE_ALLOW_HTTP sur true dans votre fichier .env ou, mieux, utilisez HTTPS pour accéder à l'application.",
       "incorrectUsernameOrPassword": "Échec de la connexion, nom d'utilisateur et/ou mot de passe invalide.",
-      "tooManyFailedAttempts": "Trop de tentatives de connexion échouées, réessayez dans {duration}.",
-      "unknownError": "Une erreur est survenue, veuillez réessayer plus tard. (Erreur : {error})"
+      "tooManyFailedAttempts": "Trop de tentatives de connexion échouées, réessayez dans {duration}."
     },
     "admin": {
       "settings": "Paramètres administrateur",
@@ -113,37 +111,43 @@
       "expensesFor": "Dépenses pour {year}"
     },
     "dashboard": {
-      "title": "Tableau de bord",
-      "tables": "Tableaux",
       "income": "Revenu",
-      "incomeTrend": "Tendance des revenus",
-      "allTime": "Aperçu de tous les temps",
-      "allTimeFromTo": "Tous les temps de {from} à {to}",
       "expenses": "Dépenses",
-      "expensesTrend": "Tendance des dépenses",
       "endingBalance": "Solde final",
       "budgetFor": "Budget annuel pour {year}",
-      "remainingBalance": "Solde restant jusqu'à {year}",
-      "netSavings": "Économies nettes",
-      "yearInThePast": "L'année est dans le passé",
-      "yearInTheFuture": "L'année est dans le futur",
-      "yearEnding": "Cette année touche à sa fin...",
-      "yoyIncomeGrowth": "Croissance des revenus d'une année sur l'autre",
-      "yoyExpenseGrowth": "Croissance des dépenses d'une année sur l'autre",
-      "allTimeIncome": "Revenu total",
-      "allTimeExpenses": "Dépenses totales",
-      "allTimeSavings": "Économies totales",
-      "downloadAsPNG": "Télécharger en PNG",
-      "downloadAsSVG": "Télécharger en SVG",
-      "jumpToIncome": "Aller au revenu pour {year}",
-      "jumpToExpenses": "Aller aux dépenses pour {year}",
-      "lastYear": "L'année dernière",
-      "surplus": "Excédent",
-      "deficit": "Déficit",
-      "downloadChart": "Télécharger le graphique",
-      "toggleBetweenAveragesAndTotals": "Basculer moyennes mensuelles / totaux",
-      "toggleChartType": "Basculer le type de graphique",
-      "togglePercentages": "Basculer pourcentages / valeurs absolues"
+      "summary": {
+        "title": "Tableau de bord",
+        "netSavings": "Économies nettes"
+      },
+      "overview": {
+        "title": "Tableau de bord",
+        "remainingBalance": "Solde restant jusqu'à {year}",
+        "yearInThePast": "L'année est dans le passé",
+        "yearInTheFuture": "L'année est dans le futur",
+        "yearEnding": "Cette année touche à sa fin...",
+        "downloadAsPNG": "Télécharger en PNG",
+        "downloadAsSVG": "Télécharger en SVG",
+        "jumpToIncome": "Aller au revenu pour {year}",
+        "jumpToExpenses": "Aller aux dépenses pour {year}",
+        "lastYear": "L'année dernière",
+        "surplus": "Excédent",
+        "deficit": "Déficit",
+        "downloadChart": "Télécharger le graphique",
+        "toggleBetweenAveragesAndTotals": "Basculer moyennes mensuelles / totaux",
+        "toggleChartType": "Basculer le type de graphique",
+        "togglePercentages": "Basculer pourcentages / valeurs absolues"
+      },
+      "allTime": {
+        "title": "Tableau de bord",
+        "incomeTrend": "Tendance des revenus",
+        "allTimeFromTo": "Tous les temps de {from} à {to}",
+        "expensesTrend": "Tendance des dépenses",
+        "yoyIncomeGrowth": "Croissance des revenus d'une année sur l'autre",
+        "yoyExpenseGrowth": "Croissance des dépenses d'une année sur l'autre",
+        "allTimeIncome": "Revenu total",
+        "allTimeExpenses": "Dépenses totales",
+        "allTimeSavings": "Économies totales"
+      }
     }
   },
   "feature": {

@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Importuj dane z Google",
-          "pickFile": "Wybierz plik .csv do importu",
           "expenses": "Wydatki.csv",
           "income": "Dochody.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Logowanie niedostępne, backend nie jest skonfigurowany.",
       "loginNotAvailableDueToHttp": "Logowanie może nie działać, jeśli strona jest dostępna przez HTTP. Upewnij się, że w pliku .env ustawisz GENESIS_JWT_COOKIE_ALLOW_HTTP na true, lub lepiej — użyj HTTPS, aby uzyskać dostęp do aplikacji.",
       "incorrectUsernameOrPassword": "Logowanie nie powiodło się, nazwa użytkownika i/lub hasło są nieprawidłowe.",
-      "tooManyFailedAttempts": "Zbyt wiele nieudanych prób logowania, spróbuj ponownie za {duration}.",
-      "unknownError": "Coś poszło nie tak, spróbuj ponownie później. (Błąd: {error})"
+      "tooManyFailedAttempts": "Zbyt wiele nieudanych prób logowania, spróbuj ponownie za {duration}."
     },
     "admin": {
       "settings": "Ustawienia administratora",
@@ -113,37 +111,43 @@
       "expensesFor": "Wydatki za {year}"
     },
     "dashboard": {
-      "title": "Panel",
-      "tables": "Tabele",
       "income": "Dochody",
-      "incomeTrend": "Trend dochodów",
-      "allTime": "Przegląd całościowy",
-      "allTimeFromTo": "Całość od {from} do {to}",
       "expenses": "Wydatki",
-      "expensesTrend": "Trend wydatków",
       "endingBalance": "Stan końcowy",
       "budgetFor": "Roczny budżet za {year}",
-      "remainingBalance": "Pozostały stan do {year}",
-      "netSavings": "Oszczędności netto",
-      "yearInThePast": "Rok jest w przeszłości",
-      "yearInTheFuture": "Rok jest w przyszłości",
-      "yearEnding": "Rok dobiega końca...",
-      "yoyIncomeGrowth": "Wzrost dochodów rok do roku",
-      "yoyExpenseGrowth": "Wzrost wydatków rok do roku",
-      "allTimeIncome": "Całkowite dochody",
-      "allTimeExpenses": "Całkowite wydatki",
-      "allTimeSavings": "Całkowite oszczędności",
-      "downloadAsPNG": "Pobierz jako PNG",
-      "downloadAsSVG": "Pobierz jako SVG",
-      "jumpToIncome": "Zobacz dochody za {year}",
-      "jumpToExpenses": "Zobacz wydatki za {year}",
-      "lastYear": "Ostatni rok",
-      "surplus": "Nadwyżka",
-      "deficit": "Deficyt",
-      "downloadChart": "Pobierz wykres",
-      "toggleBetweenAveragesAndTotals": "Przełącz miesięczne średnie / sumy",
-      "toggleChartType": "Przełącz typ wykresu",
-      "togglePercentages": "Przełącz wartości procentowe / wartości absolutne"
+      "summary": {
+        "title": "Panel",
+        "netSavings": "Oszczędności netto"
+      },
+      "overview": {
+        "title": "Panel",
+        "remainingBalance": "Pozostały stan do {year}",
+        "yearInThePast": "Rok jest w przeszłości",
+        "yearInTheFuture": "Rok jest w przyszłości",
+        "yearEnding": "Rok dobiega końca...",
+        "downloadAsPNG": "Pobierz jako PNG",
+        "downloadAsSVG": "Pobierz jako SVG",
+        "jumpToIncome": "Zobacz dochody za {year}",
+        "jumpToExpenses": "Zobacz wydatki za {year}",
+        "lastYear": "Ostatni rok",
+        "surplus": "Nadwyżka",
+        "deficit": "Deficyt",
+        "downloadChart": "Pobierz wykres",
+        "toggleBetweenAveragesAndTotals": "Przełącz miesięczne średnie / sumy",
+        "toggleChartType": "Przełącz typ wykresu",
+        "togglePercentages": "Przełącz wartości procentowe / wartości absolutne"
+      },
+      "allTime": {
+        "title": "Panel",
+        "incomeTrend": "Trend dochodów",
+        "allTimeFromTo": "Całość od {from} do {to}",
+        "expensesTrend": "Trend wydatków",
+        "yoyIncomeGrowth": "Wzrost dochodów rok do roku",
+        "yoyExpenseGrowth": "Wzrost wydatków rok do roku",
+        "allTimeIncome": "Całkowite dochody",
+        "allTimeExpenses": "Całkowite wydatki",
+        "allTimeSavings": "Całkowite oszczędności"
+      }
     }
   },
   "feature": {

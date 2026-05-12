@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Googleデータをインポート",
-          "pickFile": "インポートする.csvファイルを選択",
           "expenses": "Expenses.csv",
           "income": "Income.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "ログインできません。バックエンドが設定されていません。",
       "loginNotAvailableDueToHttp": "HTTPでアクセスしている場合、ログインが正常に機能しない可能性があります。.envファイルでGENESIS_JWT_COOKIE_ALLOW_HTTPをtrueに設定するか、HTTPSでアクセスしてください。",
       "incorrectUsernameOrPassword": "ログインに失敗しました。ユーザー名またはパスワードが無効です。",
-      "tooManyFailedAttempts": "ログイン試行回数が上限を超えました。{duration}後に再試行してください。",
-      "unknownError": "エラーが発生しました。しばらくしてから再試行してください。（エラー: {error}）"
+      "tooManyFailedAttempts": "ログイン試行回数が上限を超えました。{duration}後に再試行してください。"
     },
     "admin": {
       "settings": "管理者設定",
@@ -113,37 +111,43 @@
       "expensesFor": "{year}年の支出"
     },
     "dashboard": {
-      "title": "ダッシュボード",
-      "tables": "テーブル",
       "income": "収入",
-      "incomeTrend": "収入トレンド",
-      "allTime": "全期間の概要",
-      "allTimeFromTo": "{from}から{to}までの全期間",
       "expenses": "支出",
-      "expensesTrend": "支出トレンド",
       "endingBalance": "期末残高",
       "budgetFor": "{year}年の年間予算",
-      "remainingBalance": "{year}年までの残高",
-      "netSavings": "純貯蓄",
-      "yearInThePast": "過去の年",
-      "yearInTheFuture": "将来の年",
-      "yearEnding": "今年もそろそろ終わります...",
-      "yoyIncomeGrowth": "前年比収入成長率",
-      "yoyExpenseGrowth": "前年比支出成長率",
-      "allTimeIncome": "累計収入",
-      "allTimeExpenses": "累計支出",
-      "allTimeSavings": "累計貯蓄",
-      "downloadAsPNG": "PNGとしてダウンロード",
-      "downloadAsSVG": "SVGとしてダウンロード",
-      "jumpToIncome": "{year}年の収入へ移動",
-      "jumpToExpenses": "{year}年の支出へ移動",
-      "lastYear": "前年",
-      "surplus": "黒字",
-      "deficit": "赤字",
-      "downloadChart": "チャートをダウンロード",
-      "toggleBetweenAveragesAndTotals": "月次平均／合計を切り替え",
-      "toggleChartType": "チャートタイプを切り替え",
-      "togglePercentages": "割合／絶対値を切り替え"
+      "summary": {
+        "title": "ダッシュボード",
+        "netSavings": "純貯蓄"
+      },
+      "overview": {
+        "title": "ダッシュボード",
+        "remainingBalance": "{year}年までの残高",
+        "yearInThePast": "過去の年",
+        "yearInTheFuture": "将来の年",
+        "yearEnding": "今年もそろそろ終わります...",
+        "downloadAsPNG": "PNGとしてダウンロード",
+        "downloadAsSVG": "SVGとしてダウンロード",
+        "jumpToIncome": "{year}年の収入へ移動",
+        "jumpToExpenses": "{year}年の支出へ移動",
+        "lastYear": "前年",
+        "surplus": "黒字",
+        "deficit": "赤字",
+        "downloadChart": "チャートをダウンロード",
+        "toggleBetweenAveragesAndTotals": "月次平均／合計を切り替え",
+        "toggleChartType": "チャートタイプを切り替え",
+        "togglePercentages": "割合／絶対値を切り替え"
+      },
+      "allTime": {
+        "title": "ダッシュボード",
+        "incomeTrend": "収入トレンド",
+        "allTimeFromTo": "{from}から{to}までの全期間",
+        "expensesTrend": "支出トレンド",
+        "yoyIncomeGrowth": "前年比収入成長率",
+        "yoyExpenseGrowth": "前年比支出成長率",
+        "allTimeIncome": "累計収入",
+        "allTimeExpenses": "累計支出",
+        "allTimeSavings": "累計貯蓄"
+      }
     }
   },
   "feature": {

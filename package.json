@@ -15,7 +15,7 @@
     "dev:backend": "docker run --pull always -p 8080:8080 -v \"./.data:/app/.data\" --env-file .env.genesis ghcr.io/simonwep/genesis:v1.6.1 start",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint \"**/*.{js,mjs,ts,mts,vue}\" --cache",
+    "lint": "eslint \"**/*.{js,mjs,ts,mts,vue,json}\" --cache",
     "lint:fix": "pnpm lint --fix",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",

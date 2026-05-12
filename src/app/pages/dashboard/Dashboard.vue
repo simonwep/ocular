@@ -1,11 +1,11 @@
 <template>
   <Pane :class="$style.dashboard">
     <template #title>
-      <template v-if="view === AllTime">
+      <template v-if="route.name === 'dashboard.allTime'">
         <RiCalendar2Line size="18" />
         <span>
           {{
-            t('page.dashboard.allTimeFromTo', {
+            t('page.dashboard.allTime.allTimeFromTo', {
               from: state.years[0].year,
               to: settings.general.monthOffset ? state.years.at(-1)!.year + 1 : state.years.at(-1)!.year
             })
@@ -19,49 +19,51 @@
     </template>
     <template #header>
       <div :class="$style.viewButtons">
-        <Button
+        <Link
           textual
-          size="l"
+          size="s"
+          exactRouteMatch
+          color="primary"
           :icon="RiDashboardLine"
+          to="dashboard.overview"
           testId="view-overview"
-          :tooltip="t('page.dashboard.title')"
+          :tooltip="t('page.dashboard.overview.title')"
           tooltipPosition="bottom"
-          :color="view === Overview ? 'primary' : 'dimmed'"
-          @click="view = Overview"
         />
-        <Button
+        <Link
           textual
-          size="l"
+          size="s"
+          color="primary"
+          to="dashboard.summary"
           testId="view-summary"
           :icon="RiTableLine"
-          :tooltip="t('page.dashboard.tables')"
+          :tooltip="t('page.dashboard.summary.title')"
           tooltipPosition="bottom"
-          :color="view === Summary ? 'primary' : 'dimmed'"
-          @click="view = Summary"
         />
         <span :class="$style.divider" />
-        <Button
+        <Link
           v-if="appSize !== 'mobile'"
           textual
+          size="s"
+          color="primary"
+          to="dashboard.allTime"
           testId="view-all-time"
-          size="l"
           :icon="RiEarthLine"
-          :tooltip="t('page.dashboard.allTime')"
+          :tooltip="t('page.dashboard.allTime.title')"
           tooltipPosition="bottom"
-          :color="view === AllTime ? 'primary' : 'dimmed'"
-          @click="view = AllTime"
         />
       </div>
     </template>
-    <ComponentTransition :is="view" />
+    <RouterView v-slot="{ Component }">
+      <ComponentTransition>
+        <component :is="Component" />
+      </ComponentTransition>
+    </RouterView>
   </Pane>
 </template>
 
 <script lang="ts" setup>
-import AllTime from '@app/pages/dashboard/all-time/AllTime.vue';
-import Overview from '@app/pages/dashboard/overview/Overview.vue';
-import Summary from '@app/pages/dashboard/summary/Summary.vue';
-import Button from '@components/base/button/Button.vue';
+import Link from '@components/base/link/Link.vue';
 import Pane from '@components/feature/pane/Pane.vue';
 import UndoButton from '@components/feature/undo-button/UndoButton.vue';
 import YearToggle from '@components/feature/year-toggle/YearToggle.vue';
@@ -70,16 +72,14 @@ import { useAppSize } from '@composables/app-size/useAppSize.ts';
 import { useSettingsStore } from '@store/settings';
 import { useDataStore } from '@store/state';
 import { RiCalendar2Line, RiDashboardLine, RiEarthLine, RiTableLine } from '@remixicon/vue';
-import { shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
-import type { Component } from 'vue';
+import { useRoute } from 'vue-router';
 
 const { t } = useI18n();
 const { state } = useDataStore();
 const { state: settings } = useSettingsStore();
+const route = useRoute();
 const appSize = useAppSize();
-
-const view = shallowRef<Component>(Overview);
 </script>
 
 <style lang="scss" module>

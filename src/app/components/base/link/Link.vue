@@ -5,6 +5,7 @@
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
     :href="to"
     :class="classes"
+    :data-testid="testId"
     rel="noopener,noreferrer,nofollow"
     target="_blank"
   >
@@ -15,10 +16,10 @@
     v-else
     ref="routerLink"
     v-tooltip="{ text: tooltip, position: tooltipPosition }"
-    :data-testid="testId ? `${testId}-${to}` : undefined"
+    :data-testid="testId"
     :to="{ name: to }"
-    :activeClass="$style.active"
     :class="classes"
+    v-bind="exactRouteMatch ? { exactActiveClass: $style.active } : { activeClass: $style.active }"
   >
     <component :is="icon" v-if="icon" :class="$style.icon" />
     <slot />
@@ -31,8 +32,7 @@ import { Color, useThemeStyles } from '@composables/theme-styles/useThemeStyles.
 import { Placement } from '@directives/v-tooltip/vTooltip.ts';
 import { ClassNames } from '@utils/types.ts';
 import { useElementSize } from '@vueuse/core';
-import { computed, useCssModule, useSlots, useTemplateRef } from 'vue';
-import { useRouter } from 'vue-router';
+import { computed, useCssModule, useTemplateRef } from 'vue';
 import type { Component } from 'vue';
 
 // All shapes have a size of 30x30
@@ -48,101 +48,114 @@ const props = withDefaults(
   defineProps<{
     class?: ClassNames;
     icon?: Component;
-    color?: Color | ((currentRoute: boolean) => Color);
+    size?: 'm' | 's';
+    color?: Color;
     shaped?: boolean;
-    custom?: boolean;
+    inline?: boolean;
     tooltip?: string;
+    exactRouteMatch?: boolean;
     tooltipPosition?: Placement;
     to: string;
     testId?: string;
   }>(),
   {
+    size: 'm',
     shaped: false,
-    custom: undefined
+    squircle: false,
+    color: 'primary',
+    exactRouteMatch: false,
+    inline: false
   }
 );
 
-const slots = useSlots();
 const styles = useCssModule();
-const router = useRouter();
 const routerLink = useTemplateRef('routerLink');
 const browserLink = useTemplateRef('browserLink');
 const linkElement = computed(() => (routerLink.value as { $el?: HTMLElement } | undefined)?.$el ?? browserLink.value);
 
-const size = useElementSize(linkElement);
+const elementSize = useElementSize(linkElement);
 
-const theme = useThemeStyles(() =>
-  typeof props.color === 'function'
-    ? props.color(router.currentRoute.value.name === props.to)
-    : (props.color ?? 'primary')
-);
+const theme = useThemeStyles(() => props.color);
 
 const classes = computed(() => [
   props.class,
   styles.link,
+  styles[props.size],
   {
-    [styles.custom]: props.custom ?? slots.default,
+    [styles.inline]: props.inline,
     [styles.shaped]: props.shaped
   }
 ]);
 
 const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-const randomClipPath = computed(() => `path('${scaleSvgPath(randomShape, 30, size.width.value)}')`);
+const randomClipPath = computed(() => `path('${scaleSvgPath(randomShape, 30, elementSize.width.value)}')`);
 </script>
 
 <style lang="scss" module>
-@use '@styles/globals.scss';
-
 .link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   color: v-bind('theme.pure.base');
   transition: all var(--transition-s);
+  text-decoration: none;
+  outline: none;
 
-  .icon {
-    transition: transform var(--transition-s);
-    width: 20px;
-    height: 20px;
-  }
+  &.inline {
+    color: v-bind('theme.pure.base');
 
-  &.custom {
-    text-decoration: none;
-    color: inherit;
-    outline: none;
-  }
+    &:hover {
+      color: v-bind('theme.pure.hover');
+    }
 
-  &.shaped {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    clip-path: v-bind(randomClipPath);
-  }
-
-  &:not(.custom) {
-    width: 30px;
-    height: 30px;
-  }
-
-  &.active {
-    background: var(--c-primary);
-    color: var(--c-primary-text);
-
-    .icon {
-      transform: scale(0.9);
+    &.active {
+      color: v-bind('theme.pure.hover');
     }
   }
-}
 
-@media (pointer: fine) {
-  .link:not(.custom, .active):hover {
-    background: transparent;
-    color: v-bind('theme.pure.hover');
-  }
-}
+  &:not(.inline) {
+    color: v-bind('theme.pure.base');
 
-@include globals.onMobileDevices {
-  .link .icon {
-    width: 20px;
-    height: 20px;
+    .icon {
+      transition: transform var(--transition-s);
+      width: 20px;
+      height: 20px;
+    }
+
+    &.shaped {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: v-bind(randomClipPath);
+
+      &.active {
+        background: v-bind('theme.color.base');
+        color: v-bind('theme.text.base');
+
+        .icon {
+          transform: scale(0.9);
+        }
+      }
+    }
+
+    &:hover {
+      color: v-bind('theme.pure.hover');
+    }
+
+    &:not(.shaped).active {
+      color: v-bind('theme.pure.hover');
+    }
+
+    &.m {
+      width: 30px;
+      height: 30px;
+    }
+
+    &.s {
+      width: 26px;
+      height: 26px;
+    }
   }
 }
 </style>

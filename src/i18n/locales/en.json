@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Import google data",
-          "pickFile": "Select your .csv file to import",
           "expenses": "Expenses.csv",
           "income": "Income.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Login not available, backend not configured.",
       "loginNotAvailableDueToHttp": "Login might not work if the page is accessed via HTTP. Make sure to set GENESIS_JWT_COOKIE_ALLOW_HTTP to true in your .env file or, better yet, use HTTPS to access the application.",
       "incorrectUsernameOrPassword": "Login failed, username and/or password invalid.",
-      "tooManyFailedAttempts": "Too many failed login attempts, retry {duration}.",
-      "unknownError": "Something went wrong, please try again later. (Error: {error})"
+      "tooManyFailedAttempts": "Too many failed login attempts, retry {duration}."
     },
     "admin": {
       "settings": "Admin settings",
@@ -113,37 +111,43 @@
       "expensesFor": "Expenses for {year}"
     },
     "dashboard": {
-      "title": "Dashboard",
-      "tables": "Tables",
       "income": "Income",
-      "incomeTrend": "Income Trend",
-      "allTime": "All time overview",
-      "allTimeFromTo": "All time from {from} to {to}",
       "expenses": "Expenses",
-      "expensesTrend": "Expenses Trend",
       "endingBalance": "Ending Balance",
       "budgetFor": "Annual budget for {year}",
-      "remainingBalance": "Remaining Balance until {year}",
-      "netSavings": "Net Savings",
-      "yearInThePast": "Year is in the past",
-      "yearInTheFuture": "Year is in the future",
-      "yearEnding": "This Year is coming to an end...",
-      "yoyIncomeGrowth": "YoY Income Growth",
-      "yoyExpenseGrowth": "YoY Expense Growth",
-      "allTimeIncome": "All Time Income",
-      "allTimeExpenses": "All Time Expenses",
-      "allTimeSavings": "All Time Savings",
-      "downloadAsPNG": "Download as PNG",
-      "downloadAsSVG": "Download as SVG",
-      "jumpToIncome": "Jump to income for {year}",
-      "jumpToExpenses": "Jump to expenses for {year}",
-      "lastYear": "Last Year",
-      "surplus": "Surplus",
-      "deficit": "Deficit",
-      "downloadChart": "Download chart",
-      "toggleBetweenAveragesAndTotals": "Toggle monthly averages / totals",
-      "toggleChartType": "Toggle chart type",
-      "togglePercentages": "Toggle percentages / absolute values"
+      "summary": {
+        "title": "Dashboard",
+        "netSavings": "Net Savings"
+      },
+      "overview": {
+        "title": "Dashboard",
+        "remainingBalance": "Remaining Balance until {year}",
+        "yearInThePast": "Year is in the past",
+        "yearInTheFuture": "Year is in the future",
+        "yearEnding": "This Year is coming to an end...",
+        "downloadAsPNG": "Download as PNG",
+        "downloadAsSVG": "Download as SVG",
+        "jumpToIncome": "Jump to income for {year}",
+        "jumpToExpenses": "Jump to expenses for {year}",
+        "lastYear": "Last Year",
+        "surplus": "Surplus",
+        "deficit": "Deficit",
+        "downloadChart": "Download chart",
+        "toggleBetweenAveragesAndTotals": "Toggle monthly averages / totals",
+        "toggleChartType": "Toggle chart type",
+        "togglePercentages": "Toggle percentages / absolute values"
+      },
+      "allTime": {
+        "title": "Dashboard",
+        "incomeTrend": "Income Trend",
+        "allTimeFromTo": "All time from {from} to {to}",
+        "expensesTrend": "Expenses Trend",
+        "yoyIncomeGrowth": "YoY Income Growth",
+        "yoyExpenseGrowth": "YoY Expense Growth",
+        "allTimeIncome": "All Time Income",
+        "allTimeExpenses": "All Time Expenses",
+        "allTimeSavings": "All Time Savings"
+      }
     }
   },
   "feature": {

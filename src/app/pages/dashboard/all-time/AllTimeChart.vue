@@ -46,14 +46,14 @@ const data = computed((): StackedLineChartConfig => {
     series: [
       {
         name: t('page.dashboard.income'),
-        trendName: t('page.dashboard.incomeTrend'),
+        trendName: t('page.dashboard.allTime.incomeTrend'),
         data: allIncomes.value,
         color: 'var(--c-success-light-dimmed)',
         muted: props.highlight === 'expenses'
       },
       {
         name: t('page.dashboard.expenses'),
-        trendName: t('page.dashboard.expensesTrend'),
+        trendName: t('page.dashboard.allTime.expensesTrend'),
         data: allExpenses.value,
         color: 'var(--c-danger-light-dimmed)',
         muted: props.highlight === 'income'

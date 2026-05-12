@@ -38,7 +38,7 @@
       <span :class="$style.muted">{{ n(average(expenses), 'currency') }}</span>
 
       <!-- Net savings  -->
-      <span :class="[$style.bold, $style.muted]">{{ t('page.dashboard.netSavings') }}</span>
+      <span :class="[$style.bold, $style.muted]">{{ t('page.dashboard.summary.netSavings') }}</span>
       <span
         v-for="(amount, index) of netSavings"
         :key="index"

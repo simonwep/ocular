@@ -12,7 +12,7 @@
         <Switch
           v-if="!showPercentages"
           v-model="showAverages"
-          v-tooltip.top="t('page.dashboard.toggleBetweenAveragesAndTotals')"
+          v-tooltip.top="t('page.dashboard.overview.toggleBetweenAveragesAndTotals')"
           testId="show-averages"
           :class="$style.switch"
           :iconOn="RiCalendar2Line"
@@ -22,7 +22,7 @@
 
       <Switch
         v-model="showPercentages"
-        v-tooltip.top="t('page.dashboard.togglePercentages')"
+        v-tooltip.top="t('page.dashboard.overview.togglePercentages')"
         testId="show-percentages"
         :class="$style.switch"
         :iconOn="RiPercentFill"
@@ -30,7 +30,7 @@
       />
       <Switch
         v-model="showBarChart"
-        v-tooltip.top="t('page.dashboard.toggleChartType')"
+        v-tooltip.top="t('page.dashboard.overview.toggleChartType')"
         testId="show-bar-chart"
         :class="$style.switch"
         :iconOn="RiBarChartHorizontalLine"
@@ -40,7 +40,7 @@
       <ContextMenu position="top">
         <template #default="{ toggle }">
           <Button
-            v-tooltip.top="t('page.dashboard.downloadChart')"
+            v-tooltip.top="t('page.dashboard.overview.downloadChart')"
             type="button"
             size="xxs"
             :class="$style.downloadBtn"
@@ -53,12 +53,12 @@
         <template #options>
           <ContextMenuButton
             :icon="RiLandscapeLine"
-            :text="t('page.dashboard.downloadAsPNG')"
+            :text="t('page.dashboard.overview.downloadAsPNG')"
             @click="chart?.download(fileName, 'png')"
           />
           <ContextMenuButton
             :icon="RiImageLine"
-            :text="t('page.dashboard.downloadAsSVG')"
+            :text="t('page.dashboard.overview.downloadAsSVG')"
             @click="chart?.download(fileName, 'svg')"
           />
         </template>

@@ -12,9 +12,9 @@
         :tooltip="button.tooltip"
         tooltipPosition="right"
         shaped
-        testId="navigation"
+        :testId="`navigation-${button.name}`"
         :class="[$style.btn, button.class]"
-        :color="(currentRoute) => (currentRoute ? 'primary' : 'dimmed')"
+        color="primary"
         :icon="button.icon"
         :to="button.name"
       />
@@ -83,7 +83,7 @@ const { t } = useI18n();
 useSquircle(frame, () => (['minimized', 'mobile'].includes(appSize.value) ? 0 : 0.035));
 
 const buttons = computed((): FrameButton[] => [
-  { icon: RiDonutChartLine, name: 'dashboard', tooltip: t('page.dashboard.title'), class: styles.dashboard },
+  { icon: RiDonutChartLine, name: 'dashboard', tooltip: t('page.dashboard.overview.title'), class: styles.dashboard },
   { icon: RiHandCoinLine, name: 'income', tooltip: t('page.income.title'), class: styles.income },
   { icon: RiShoppingBagLine, name: 'expenses', tooltip: t('page.expenses.title'), class: styles.expenses }
 ]);

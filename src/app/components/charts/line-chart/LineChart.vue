@@ -6,7 +6,7 @@
 import { LineChartConfig } from './LineChart.types';
 import EChart from '@components/charts/echart/EChart.vue';
 import { ClassNames } from '@utils/types.ts';
-import { LineSeriesOption } from 'echarts/charts';
+import { LineChart, LineSeriesOption } from 'echarts/charts';
 import {
   GridComponent,
   GridComponentOption,
@@ -19,7 +19,7 @@ import * as echarts from 'echarts/core';
 import { SVGRenderer } from 'echarts/renderers';
 import { computed } from 'vue';
 
-echarts.use([SVGRenderer, LegendComponent, GridComponent, TooltipComponent]);
+echarts.use([SVGRenderer, LineChart, LegendComponent, GridComponent, TooltipComponent]);
 
 type EChartsOption = echarts.ComposeOption<
   LineSeriesOption | TooltipComponentOption | GridComponentOption | LegendComponentOption

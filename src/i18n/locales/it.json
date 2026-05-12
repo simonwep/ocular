@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Importa i dati da Google",
-          "pickFile": "Seleziona il tuo file .csv da importare",
           "expenses": "Spese.csv",
           "income": "Entrate.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Accesso non disponibile, il backend non è configurato.",
       "loginNotAvailableDueToHttp": "Il login potrebbe non funzionare se la pagina viene caricata tramite HTTP. Assicurati di impostare GENESIS_JWT_COOKIE_ALLOW_HTTP su true nel tuo file .env oppure, meglio ancora, usa HTTPS per accedere all'applicazione.",
       "incorrectUsernameOrPassword": "Accesso non riuscito, nome utente e/o password non validi.",
-      "tooManyFailedAttempts": "Troppi tentativi di accesso falliti, riprova tra {duration}.",
-      "unknownError": "Si è verificato un errore, riprova più tardi. (Errore: {error})"
+      "tooManyFailedAttempts": "Troppi tentativi di accesso falliti, riprova tra {duration}."
     },
     "admin": {
       "settings": "Impostazioni dell'amministratore",
@@ -113,37 +111,43 @@
       "expensesFor": "Spese del {year}"
     },
     "dashboard": {
-      "title": "Dashboard",
-      "tables": "Tabelle",
       "income": "Entrate",
-      "incomeTrend": "Andamento del reddito",
-      "allTime": "Panoramica generale",
-      "allTimeFromTo": "Panoramica generale da {from} a {to}",
       "expenses": "Spese",
-      "expensesTrend": "Andamento delle Spese",
       "endingBalance": "Saldo finale",
       "budgetFor": "Budget annuale del {year}",
-      "remainingBalance": "Saldo residuo fino al {anno}",
-      "netSavings": "Risparmio Netto",
-      "yearInThePast": "Anno precedente",
-      "yearInTheFuture": "Anno successivo",
-      "yearEnding": "Quest'anno finirà ...",
-      "yoyIncomeGrowth": "YoY Crescita del reddito",
-      "yoyExpenseGrowth": "YoY Crescita delle spese",
-      "allTimeIncome": "Reddito Totale",
-      "allTimeExpenses": "Spese Totali",
-      "allTimeSavings": "Risparmio Totale",
-      "downloadAsPNG": "Download come PNG",
-      "downloadAsSVG": "Download come SVG",
-      "jumpToIncome": "Vai al reddito del {year}",
-      "jumpToExpenses": "Vai alle spese del {year}",
-      "lastYear": "Anno scorso",
-      "surplus": "Eccedenza",
-      "deficit": "Deficit",
-      "downloadChart": "Scarica grafico",
-      "toggleBetweenAveragesAndTotals": "Attiva/disattiva medie mensili / totali",
-      "toggleChartType": "Attiva/disattiva tipo di grafico",
-      "togglePercentages": "Attiva/disattiva percentuali / valori assoluti"
+      "summary": {
+        "title": "Dashboard",
+        "netSavings": "Risparmio Netto"
+      },
+      "overview": {
+        "title": "Dashboard",
+        "remainingBalance": "Saldo residuo fino al {anno}",
+        "yearInThePast": "Anno precedente",
+        "yearInTheFuture": "Anno successivo",
+        "yearEnding": "Quest'anno finirà ...",
+        "downloadAsPNG": "Download come PNG",
+        "downloadAsSVG": "Download come SVG",
+        "jumpToIncome": "Vai al reddito del {year}",
+        "jumpToExpenses": "Vai alle spese del {year}",
+        "lastYear": "Anno scorso",
+        "surplus": "Eccedenza",
+        "deficit": "Deficit",
+        "downloadChart": "Scarica grafico",
+        "toggleBetweenAveragesAndTotals": "Attiva/disattiva medie mensili / totali",
+        "toggleChartType": "Attiva/disattiva tipo di grafico",
+        "togglePercentages": "Attiva/disattiva percentuali / valori assoluti"
+      },
+      "allTime": {
+        "title": "Dashboard",
+        "incomeTrend": "Andamento del reddito",
+        "allTimeFromTo": "Panoramica generale da {from} a {to}",
+        "expensesTrend": "Andamento delle Spese",
+        "yoyIncomeGrowth": "YoY Crescita del reddito",
+        "yoyExpenseGrowth": "YoY Crescita delle spese",
+        "allTimeIncome": "Reddito Totale",
+        "allTimeExpenses": "Spese Totali",
+        "allTimeSavings": "Risparmio Totale"
+      }
     }
   },
   "feature": {

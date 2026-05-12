@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Importar datos de Google",
-          "pickFile": "Selecciona tu archivo .csv para importar",
           "expenses": "Expenses.csv",
           "income": "Income.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Inicio de sesión no disponible, el backend no está configurado.",
       "loginNotAvailableDueToHttp": "El inicio de sesión puede no funcionar si la página se accede mediante HTTP. Asegúrate de establecer GENESIS_JWT_COOKIE_ALLOW_HTTP en true en tu archivo .env o, mejor aún, utiliza HTTPS para acceder a la aplicación.",
       "incorrectUsernameOrPassword": "Error de inicio de sesión, nombre de usuario y/o contraseña inválidos.",
-      "tooManyFailedAttempts": "Demasiados intentos fallidos de inicio de sesión, inténtalo de nuevo en {duration}.",
-      "unknownError": "Algo salió mal, por favor inténtalo de nuevo más tarde. (Error: {error})"
+      "tooManyFailedAttempts": "Demasiados intentos fallidos de inicio de sesión, inténtalo de nuevo en {duration}."
     },
     "admin": {
       "settings": "Configuraciones de administrador",
@@ -113,37 +111,43 @@
       "expensesFor": "Gastos de {year}"
     },
     "dashboard": {
-      "title": "Panel de control",
-      "tables": "Tablas",
       "income": "Ingresos",
-      "incomeTrend": "Tendencia de ingresos",
-      "allTime": "Resumen de todos los tiempos",
-      "allTimeFromTo": "Resumen desde {from} hasta {to}",
       "expenses": "Gastos",
-      "expensesTrend": "Tendencia de gastos",
       "endingBalance": "Saldo final",
       "budgetFor": "Presupuesto anual para {year}",
-      "remainingBalance": "Saldo restante hasta {year}",
-      "netSavings": "Ahorros netos",
-      "yearInThePast": "El año está en el pasado",
-      "yearInTheFuture": "El año está en el futuro",
-      "yearEnding": "Este año está llegando a su fin...",
-      "yoyIncomeGrowth": "Crecimiento de ingresos interanual",
-      "yoyExpenseGrowth": "Crecimiento de gastos interanual",
-      "allTimeIncome": "Ingresos de todos los tiempos",
-      "allTimeExpenses": "Gastos de todos los tiempos",
-      "allTimeSavings": "Ahorros de todos los tiempos",
-      "downloadAsPNG": "Descargar como PNG",
-      "downloadAsSVG": "Descargar como SVG",
-      "jumpToIncome": "Ir a ingresos de {year}",
-      "jumpToExpenses": "Ir a gastos de {year}",
-      "lastYear": "Año pasado",
-      "surplus": "Superávit",
-      "deficit": "Déficit",
-      "downloadChart": "Descargar gráfico",
-      "toggleBetweenAveragesAndTotals": "Alternar promedios mensuales / totales",
-      "toggleChartType": "Alternar tipo de gráfico",
-      "togglePercentages": "Alternar porcentajes / valores absolutos"
+      "summary": {
+        "title": "Panel de control",
+        "netSavings": "Ahorros netos"
+      },
+      "overview": {
+        "title": "Panel de control",
+        "remainingBalance": "Saldo restante hasta {year}",
+        "yearInThePast": "El año está en el pasado",
+        "yearInTheFuture": "El año está en el futuro",
+        "yearEnding": "Este año está llegando a su fin...",
+        "downloadAsPNG": "Descargar como PNG",
+        "downloadAsSVG": "Descargar como SVG",
+        "jumpToIncome": "Ir a ingresos de {year}",
+        "jumpToExpenses": "Ir a gastos de {year}",
+        "lastYear": "Año pasado",
+        "surplus": "Superávit",
+        "deficit": "Déficit",
+        "downloadChart": "Descargar gráfico",
+        "toggleBetweenAveragesAndTotals": "Alternar promedios mensuales / totales",
+        "toggleChartType": "Alternar tipo de gráfico",
+        "togglePercentages": "Alternar porcentajes / valores absolutos"
+      },
+      "allTime": {
+        "title": "Panel de control",
+        "incomeTrend": "Tendencia de ingresos",
+        "allTimeFromTo": "Resumen desde {from} hasta {to}",
+        "expensesTrend": "Tendencia de gastos",
+        "yoyIncomeGrowth": "Crecimiento de ingresos interanual",
+        "yoyExpenseGrowth": "Crecimiento de gastos interanual",
+        "allTimeIncome": "Ingresos de todos los tiempos",
+        "allTimeExpenses": "Gastos de todos los tiempos",
+        "allTimeSavings": "Ahorros de todos los tiempos"
+      }
     }
   },
   "feature": {

@@ -89,6 +89,7 @@ watch(status, (v) => {
 
 watch(router.currentRoute, (route) => {
   if (route) {
+    // eslint-disable-next-line @intlify/vue-i18n/no-dynamic-keys
     document.title = t(`page.${route.name as string}.title`);
   }
 });

@@ -61,14 +61,14 @@ const data = computed((): SankeyChartConfig => {
 
     labels.push({
       id: carryOverSource,
-      formatter: (value, type) => `${t('page.dashboard.lastYear')} (${format(value, type)})`,
+      formatter: (value, type) => `${t('page.dashboard.overview.lastYear')} (${format(value, type)})`,
       color: color(60 + 60 * (endingBalance / props.totalIncome)),
       muted: props.highlight === 'expenses'
     });
 
     labels.push({
       id: carryOverTarget,
-      formatter: (value, type) => `${t('page.dashboard.surplus')} (${format(value, type)})`,
+      formatter: (value, type) => `${t('page.dashboard.overview.surplus')} (${format(value, type)})`,
       color: color(60 + 60 * (endingBalance / props.totalIncome)),
       muted: props.highlight === 'expenses'
     });
@@ -189,14 +189,14 @@ const data = computed((): SankeyChartConfig => {
 
     labels.push({
       id: deficitSource,
-      formatter: (value, type) => `${t('page.dashboard.lastYear')} (${format(value, type)})`,
+      formatter: (value, type) => `${t('page.dashboard.overview.lastYear')} (${format(value, type)})`,
       color: color(60 + 60 * (-endingBalance / props.totalIncome)),
       muted: props.highlight === 'income'
     });
 
     labels.push({
       id: deficitTarget,
-      formatter: (value, type) => `${t('page.dashboard.deficit')} (${format(value, type)})`,
+      formatter: (value, type) => `${t('page.dashboard.overview.deficit')} (${format(value, type)})`,
       color: color(60 + 60 * (-endingBalance / props.totalIncome)),
       muted: props.highlight === 'income',
       align: 'left'

@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Google adatok importálása",
-          "pickFile": "Válassza ki az importálandó .csv fájlt",
           "expenses": "Kiadás.csv",
           "income": "Bevétel.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "A bejelentkezés jelenleg nem elérhető.",
       "loginNotAvailableDueToHttp": "A bejelentkezés előfordulhat, hogy nem működik, ha az oldal HTTP-n keresztül érhető el. Győződjön meg róla, hogy a .env fájlban a GENESIS_JWT_COOKIE_ALLOW_HTTP értékét true-ra állítja, vagy még jobb, használjon HTTPS-t az alkalmazás eléréséhez.",
       "incorrectUsernameOrPassword": "Bejelentkezés sikertelen, a felhasználónév és/vagy a jelszó érvénytelen.",
-      "tooManyFailedAttempts": "Túl sok sikertelen bejelentkezési kísérlet, próbáld újra {duration} múlva.",
-      "unknownError": "Valami elromlott, kérjük próbáld meg később. (Hiba: {error})"
+      "tooManyFailedAttempts": "Túl sok sikertelen bejelentkezési kísérlet, próbáld újra {duration} múlva."
     },
     "admin": {
       "settings": "Admin beállítások",
@@ -113,37 +111,43 @@
       "expensesFor": "{year} kiadásai"
     },
     "dashboard": {
-      "title": "Műszerfal",
-      "tables": "Táblák",
       "income": "Bevételek",
-      "incomeTrend": "Bevétel alakulása",
-      "allTime": "Teljes időszak áttekintése",
-      "allTimeFromTo": "Teljes időszak ettől: {from}, eddig: {to}",
       "expenses": "Kiadások",
-      "expensesTrend": "Kiadás alakulása",
       "endingBalance": "Záróegyenleg",
       "budgetFor": "Költségvetés {year} évre",
-      "remainingBalance": "Maradék egyenleg {year}-ig",
-      "netSavings": "Nettó megtakarítás",
-      "yearInThePast": "Az év a múltban van",
-      "yearInTheFuture": "Az év a jövőben van",
-      "yearEnding": "Ez az év a végéhez közeledik...",
-      "yoyIncomeGrowth": "Éves bevételnövekedés",
-      "yoyExpenseGrowth": "Éves kiadásnövekedés",
-      "allTimeIncome": "Teljes időszak bevételei",
-      "allTimeExpenses": "Teljes időszak kiadásai",
-      "allTimeSavings": "Teljes időszak megtakarításai",
-      "downloadAsPNG": "Letöltés PNG formátumban",
-      "downloadAsSVG": "Letöltés SVG-ként",
-      "jumpToIncome": "Ugrás a {year} évi bevételekhez",
-      "jumpToExpenses": "Ugrás a {year} évi kiadásokhoz",
-      "lastYear": "Múlt év",
-      "surplus": "Többlet",
-      "deficit": "Hiány",
-      "downloadChart": "Diagram letöltése",
-      "toggleBetweenAveragesAndTotals": "Havi átlagok / összesítések váltása",
-      "toggleChartType": "Diagramtípus váltása",
-      "togglePercentages": "Százalékok / abszolút értékek váltása"
+      "summary": {
+        "title": "Műszerfal",
+        "netSavings": "Nettó megtakarítás"
+      },
+      "overview": {
+        "title": "Műszerfal",
+        "remainingBalance": "Maradék egyenleg {year}-ig",
+        "yearInThePast": "Az év a múltban van",
+        "yearInTheFuture": "Az év a jövőben van",
+        "yearEnding": "Ez az év a végéhez közeledik...",
+        "downloadAsPNG": "Letöltés PNG formátumban",
+        "downloadAsSVG": "Letöltés SVG-ként",
+        "jumpToIncome": "Ugrás a {year} évi bevételekhez",
+        "jumpToExpenses": "Ugrás a {year} évi kiadásokhoz",
+        "lastYear": "Múlt év",
+        "surplus": "Többlet",
+        "deficit": "Hiány",
+        "downloadChart": "Diagram letöltése",
+        "toggleBetweenAveragesAndTotals": "Havi átlagok / összesítések váltása",
+        "toggleChartType": "Diagramtípus váltása",
+        "togglePercentages": "Százalékok / abszolút értékek váltása"
+      },
+      "allTime": {
+        "title": "Műszerfal",
+        "incomeTrend": "Bevétel alakulása",
+        "allTimeFromTo": "Teljes időszak ettől: {from}, eddig: {to}",
+        "expensesTrend": "Kiadás alakulása",
+        "yoyIncomeGrowth": "Éves bevételnövekedés",
+        "yoyExpenseGrowth": "Éves kiadásnövekedés",
+        "allTimeIncome": "Teljes időszak bevételei",
+        "allTimeExpenses": "Teljes időszak kiadásai",
+        "allTimeSavings": "Teljes időszak megtakarításai"
+      }
     }
   },
   "feature": {

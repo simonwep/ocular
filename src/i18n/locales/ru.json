@@ -44,7 +44,6 @@
         },
         "google": {
           "import": "Импортировать данные Google",
-          "pickFile": "Выберите ваш .csv файл для импорта",
           "expenses": "Expenses.csv",
           "income": "Income.csv"
         }
@@ -75,8 +74,7 @@
       "loginNotAvailable": "Вход недоступен, бэкенд не настроен.",
       "loginNotAvailableDueToHttp": "Вход может не работать, если страница открыта по HTTP. Убедитесь, что в файле .env вы установили GENESIS_JWT_COOKIE_ALLOW_HTTP в true, или, что ещё лучше, используйте HTTPS для доступа к приложению.",
       "incorrectUsernameOrPassword": "Вход не выполнен, неверное имя пользователя и/или пароль.",
-      "tooManyFailedAttempts": "Слишком много неудачных попыток входа, повторите через {duration}.",
-      "unknownError": "Что-то пошло не так, попробуйте позже. (Ошибка: {error})"
+      "tooManyFailedAttempts": "Слишком много неудачных попыток входа, повторите через {duration}."
     },
     "admin": {
       "settings": "Настройки",
@@ -113,37 +111,43 @@
       "expensesFor": "Расходы за {year}"
     },
     "dashboard": {
-      "title": "Дашборд",
-      "tables": "Таблицы",
       "income": "Доходы",
-      "incomeTrend": "Тренд доходов",
-      "allTime": "Обзор за все время",
-      "allTimeFromTo": "Обзор за все время с {from} до {to}",
       "expenses": "Расходы",
-      "expensesTrend": "Тренд расходов",
       "endingBalance": "Остаток на конец года",
       "budgetFor": "Годовой бюджет за {year}",
-      "remainingBalance": "Остаток до {year}",
-      "netSavings": "Чистые сбережения",
-      "yearInThePast": "Год в прошлом",
-      "yearInTheFuture": "Год в будущем",
-      "yearEnding": "Этот год заканчивается...",
-      "yoyIncomeGrowth": "Годовой рост доходов",
-      "yoyExpenseGrowth": "Годовой рост расходов",
-      "allTimeIncome": "Доходы за все время",
-      "allTimeExpenses": "Расходы за все время",
-      "allTimeSavings": "Сбережения за все время",
-      "downloadAsPNG": "Скачать как PNG",
-      "downloadAsSVG": "Скачать как SVG",
-      "jumpToIncome": "Перейти к доходам за {year}",
-      "jumpToExpenses": "Перейти к расходам за {year}",
-      "lastYear": "Прошлый год",
-      "surplus": "Профицит",
-      "deficit": "Дефицит",
-      "downloadChart": "Скачать диаграмму",
-      "toggleBetweenAveragesAndTotals": "Переключить средние за месяц / итоги",
-      "toggleChartType": "Переключить тип диаграммы",
-      "togglePercentages": "Переключить проценты / абсолютные значения"
+      "summary": {
+        "title": "Дашборд",
+        "netSavings": "Чистые сбережения"
+      },
+      "overview": {
+        "title": "Дашборд",
+        "remainingBalance": "Остаток до {year}",
+        "yearInThePast": "Год в прошлом",
+        "yearInTheFuture": "Год в будущем",
+        "yearEnding": "Этот год заканчивается...",
+        "downloadAsPNG": "Скачать как PNG",
+        "downloadAsSVG": "Скачать как SVG",
+        "jumpToIncome": "Перейти к доходам за {year}",
+        "jumpToExpenses": "Перейти к расходам за {year}",
+        "lastYear": "Прошлый год",
+        "surplus": "Профицит",
+        "deficit": "Дефицит",
+        "downloadChart": "Скачать диаграмму",
+        "toggleBetweenAveragesAndTotals": "Переключить средние за месяц / итоги",
+        "toggleChartType": "Переключить тип диаграммы",
+        "togglePercentages": "Переключить проценты / абсолютные значения"
+      },
+      "allTime": {
+        "title": "Дашборд",
+        "incomeTrend": "Тренд доходов",
+        "allTimeFromTo": "Обзор за все время с {from} до {to}",
+        "expensesTrend": "Тренд расходов",
+        "yoyIncomeGrowth": "Годовой рост доходов",
+        "yoyExpenseGrowth": "Годовой рост расходов",
+        "allTimeIncome": "Доходы за все время",
+        "allTimeExpenses": "Расходы за все время",
+        "allTimeSavings": "Сбережения за все время"
+      }
     }
   },
   "feature": {

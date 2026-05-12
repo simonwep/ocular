@@ -4,8 +4,10 @@
     "src/**/*.vue",
     "test/**/*.ts",
     "scripts/**/*.ts",
+    "docs/.vitepress/**/*.ts",
     "vite.config.ts",
-    "eslint.config.mjs"
+    "eslint.config.mjs",
+    "playwright.config.ts"
   ],
   "compilerOptions": {
     "target": "ESNext",
