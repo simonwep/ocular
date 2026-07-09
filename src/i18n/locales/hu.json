@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Nincs elrejthető költségvetési csoport. | Egy költségvetési csoport elrejtve. | {count} költségvetési csoport elrejtve.",
-      "newCategory": "Új kategória"
+      "newBudget": "Új költségvetés"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "A szinkronizálás hálózati hiba miatt meghiúsult!",

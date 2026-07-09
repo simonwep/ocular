@@ -2,6 +2,8 @@ import { clear, moveInArrays, remove } from '@utils/array/array.ts';
 import { uuid } from '@utils/uuid/uuid.ts';
 import type { ActionOptions } from '@store/state/actions/action.types.ts';
 
+export const generateBudget = (name: string) => ({ id: uuid(), name, values: new Array(12).fill(0) });
+
 export const budgetActions = ({ getBudgetGroup, budgetGroups, getBudget, undoFunctions }: ActionOptions) => ({
   getBudget: (id: string) => {
     for (const group of budgetGroups.value) {
@@ -13,7 +15,7 @@ export const budgetActions = ({ getBudgetGroup, budgetGroups, getBudget, undoFun
   },
 
   addBudget: (id: string, name: string) => {
-    getBudgetGroup(id)?.budgets.push({ id: uuid(), name, values: new Array(12).fill(0) });
+    getBudgetGroup(id)?.budgets.push(generateBudget(name));
   },
 
   setBudget: (id: string, month: number, amount: number) => {

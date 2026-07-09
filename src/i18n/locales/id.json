@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Tidak ada grup anggaran untuk disembunyikan. | Satu grup anggaran disembunyikan. | {count} grup anggaran disembunyikan.",
-      "newCategory": "Kategori baru"
+      "newBudget": "Anggaran baru"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Sinkronisasi gagal karena masalah jaringan!",

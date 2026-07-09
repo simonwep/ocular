@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Nenhum grupo de orçamento para ocultar. | Um grupo de orçamento oculto. | {count} grupos de orçamento ocultos.",
-      "newCategory": "Nova categoria"
+      "newBudget": "Novo orçamento"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Falha de sincronização devido a erro de rede!",

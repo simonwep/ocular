@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "No budget groups to hide. | One budget group hidden. | {count} budget groups hidden.",
-      "newCategory": "New category"
+      "newBudget": "New budget"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Synchronization failed due to network error!",

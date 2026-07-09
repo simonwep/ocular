@@ -63,7 +63,7 @@
 
     <!-- Footer -->
     <span />
-    <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id, t('feature.budgetGroup.newCategory'))" />
+    <Button :icon="RiAddCircleLine" textual @click="addBudget(group.id, t('feature.budgetGroup.newBudget'))" />
     <span style="grid-column: 3 / 16" />
     <Currency :testId="`${testId}-total`" :class="[$style.meta, $style.bold]" :value="totalAmount" />
     <Currency :testId="`${testId}-average`" :class="[$style.meta, $style.bold]" :value="averageAmount" />

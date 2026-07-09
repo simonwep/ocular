@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Gizlenecek bütçe grubu yok. | Bir bütçe grubu gizlendi. | {count} bütçe grubu gizlendi.",
-      "newCategory": "Yeni kategori"
+      "newBudget": "Yeni bütçe"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Ağ hatası nedeniyle senkronizasyon başarısız oldu!",

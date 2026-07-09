@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "非表示の予算グループはありません。 | 予算グループが1件非表示です。 | 予算グループが{count}件非表示です。",
-      "newCategory": "新しいカテゴリ"
+      "newBudget": "新しい予算"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "ネットワークエラーにより同期に失敗しました！",

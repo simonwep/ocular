@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Keine Budgetgruppen zum Ausblenden. | Eine Budgetgruppe ausgeblendet. | {count} Budgetgruppen ausgeblendet.",
-      "newCategory": "Neue Kategorie"
+      "newBudget": "Neues Budget"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Synchronisierung fehlgeschlagen, bitte überprüfen Sie Ihre Netzwerkverbindung!",

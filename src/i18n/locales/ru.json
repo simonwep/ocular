@@ -166,7 +166,7 @@
   "feature": {
     "budgetGroup": {
       "budgetGroupsHidden": "Нет групп бюджета для скрытия. | Одна группа бюджета скрыта. | {count} групп бюджета скрыто.",
-      "newCategory": "Новая категория"
+      "newBudget": "Новый бюджет"
     },
     "statusBar": {
       "synchronizationFailedDueToNetworkError": "Синхронизация не удалась из-за сетевой ошибки.",

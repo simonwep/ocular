@@ -174,6 +174,7 @@ test('Collapse budget groups', async ({ page }) => {
 
   await page.getByTestId('group-1-delete-2').click();
   await page.getByTestId('group-1-delete-1').click();
+  await page.getByTestId('group-2-delete-0').click();
 
   await page.getByTestId('group-0-collapse').click();
   await page.getByTestId('group-1-collapse').click();

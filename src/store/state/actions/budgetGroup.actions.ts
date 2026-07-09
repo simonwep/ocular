@@ -1,3 +1,4 @@
+import { generateBudget } from '@store/state/actions/budget.actions.ts';
 import { clear, moveInArrays, remove } from '@utils/array/array.ts';
 import { uuid } from '@utils/uuid/uuid.ts';
 import type { ActionOptions } from '@store/state/actions/action.types.ts';
@@ -8,8 +9,12 @@ type Group = 'expenses' | 'income';
 export const budgetGroupActions = ({ getBudgetGroup, budgetYear, undoFunctions }: ActionOptions) => ({
   getBudgetGroup: (id: string) => getBudgetGroup(id),
 
-  addBudgetGroup: (target: Group, name: string) => {
-    budgetYear.value[target].push({ id: uuid(), name, budgets: [] });
+  addBudgetGroup: (target: Group, name: string, budget?: string) => {
+    budgetYear.value[target].push({
+      name,
+      id: uuid(),
+      budgets: budget ? [generateBudget(budget)] : []
+    });
   },
 
   setBudgetGroupName: (id: string, name: string) => {

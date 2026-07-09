@@ -58,7 +58,7 @@
       size="s"
       :icon="RiAddCircleLine"
       :text="t('feature.budgetPane.addGroup')"
-      @click="addBudgetGroup(type, t('feature.budgetPane.newGroup'))"
+      @click="addBudgetGroup(type, t('feature.budgetPane.newGroup'), t('feature.budgetGroup.newBudget'))"
     />
   </div>
 </template>
