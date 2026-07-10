@@ -14,7 +14,7 @@ type Config = {
 
 const concurrency = Math.max(1, Math.floor(cpus().length / 2));
 const screenSize = { width: 1660, height: 1070 };
-const screenshots = resolve(process.cwd(), 'scripts', 'screenshots');
+const screenshots = resolve(process.cwd(), 'scripts', 'screenshots', 'images');
 const url = 'http://localhost:3000/#demo';
 
 const config: Config[] = [
