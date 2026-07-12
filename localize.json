@@ -1,0 +1,9 @@
+{
+  "projects": [
+    {
+      "name": "ocular",
+      "base": "en",
+      "files": "src/i18n/locales/*.json"
+    }
+  ]
+}
