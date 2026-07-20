@@ -13,6 +13,16 @@ test('Change the locale', async ({ page }) => {
   await expect(page.getByTestId('current-year-text')).toContainText('Jährliches Budget für');
 });
 
+test('Support german variants', async ({ page }) => {
+  await page.goto('/#demo');
+  await expect(page.getByTestId('income-value')).toContainText('108,600');
+
+  await page.getByTestId('navigation-settings').click();
+  await page.getByTestId('change-locale').click();
+  await page.getByTestId('change-locale-de-ch').click();
+  await expect(page.getByTestId('income-value')).toContainText("108'600");
+});
+
 test('Change the currency and apply correct locale format', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByTestId('income-value')).toHaveText('€0');

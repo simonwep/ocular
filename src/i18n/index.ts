@@ -15,13 +15,30 @@ import tr from './locales/tr.json?url';
 import { createI18n } from 'vue-i18n';
 import type { IntlNumberFormat } from 'vue-i18n';
 
-const localeUrls = { de, en, tr, it, 'pt-br': ptbr, cze, hu, pl, ru, es, fr, id, ja };
+const localeUrls = {
+  de,
+  'de-ch': de,
+  'de-at': de,
+  en,
+  tr,
+  it,
+  cze,
+  hu,
+  pl,
+  ru,
+  es,
+  fr,
+  id,
+  ja,
+  'pt-br': ptbr
+};
 
 export const availableLocales = Object.keys(localeUrls);
 
 export const initialLocale =
   (navigator.languages
     .flatMap((v) => [v, ...v.split('-')])
+    .map((v) => v.toLowerCase())
     .find((locale) => availableLocales.includes(locale)) as AvailableLocale) ?? 'en';
 
 export type AvailableLocale = keyof typeof localeUrls;
@@ -46,8 +63,16 @@ export const i18n = createI18n({
 
 export const changeLocale = async (locale: AvailableLocale, currency?: Intl.NumberFormatOptions) => {
   if (!(locale in i18n.global.messages.value)) {
-    const messages = await fetch(localeUrls[locale]).then((res) => res.json());
-    i18n.global.setLocaleMessage(locale, messages);
+    const url = localeUrls[locale];
+    const existing = Object.entries(localeUrls)
+      .filter((value) => value[1] === url)
+      .find((value) => value[0] in i18n.global.messages.value)?.[1];
+
+    // Some localizations are aliased
+    if (!existing) {
+      const messages = await fetch(url).then((res) => res.json());
+      i18n.global.setLocaleMessage(locale, messages);
+    }
   }
 
   const numberFormat: IntlNumberFormat = {
