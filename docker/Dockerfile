@@ -1,4 +1,16 @@
-FROM ghcr.io/simonwep/genesis:v1.6.1 AS genesis
+FROM --platform=$BUILDPLATFORM golang:1.26-alpine AS genesis
+
+ARG TARGETOS
+ARG TARGETARCH
+
+WORKDIR /app
+COPY genesis/go.mod genesis/go.sum ./genesis/
+
+RUN go -C genesis mod download
+
+COPY genesis ./genesis
+
+RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go -C genesis build -o genesis
 
 FROM --platform=$BUILDPLATFORM node:24-alpine AS frontend
 
@@ -16,7 +28,7 @@ ENV OCULAR_BUILD_SHA=${OCULAR_BUILD_SHA}
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml /app/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml /app/
 
 RUN corepack enable
 RUN pnpm install --frozen-lockfile
@@ -41,7 +53,7 @@ ENV GENESIS_KEYS_PER_USER='2'
 ENV GENESIS_LOGIN_MAX_ATTEMPTS='5'
 ENV GENESIS_LOGIN_LOCKOUT_DURATIONS='1m,5m,15m,30m,1h'
 
-COPY --from=genesis /app/genesis /usr/local/bin/genesis
+COPY --from=genesis /app/genesis/genesis /usr/local/bin/genesis
 COPY --from=frontend /app/dist /usr/share/caddy
 
 COPY ./docker/Caddyfile /etc/caddy/Caddyfile

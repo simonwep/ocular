@@ -7,7 +7,6 @@ inputs:
   endpoint:
     description: 'The healthcheck endpoint'
     required: true
-    default: 'health'
   expected_code:
     description: 'The expected HTTP status code'
     default: '200'

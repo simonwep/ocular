@@ -14,7 +14,7 @@ export type Localization = { [key: string]: string | Localization };
 export const flattenLocalizations = (json: Localization): Map<string, string> => {
   const map = new Map<string, string>();
 
-  for (const [key, value] of Object.entries(json)) {
+  for (const [key, value] of Object.entries(json) as [string, Localization | undefined | null][]) {
     if (typeof value === 'object' && value !== null) {
       for (const [subKey, subValue] of flattenLocalizations(value).entries()) {
         map.set(`${key}.${subKey}`, subValue);
@@ -33,7 +33,7 @@ export const setValueInJson = (localization: Localization, path: string, value: 
   let current: Localization = localization;
 
   for (const key of keys.slice(0, -1)) {
-    const next = current[key];
+    const next = current[key] as Localization | undefined | null;
 
     if (next === undefined || next === null) {
       current = current[key] = {};
