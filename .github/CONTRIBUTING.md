@@ -19,13 +19,13 @@ Make sure you have the following installed:
 
 - [Node.js](https://nodejs.org/en/) (LTS version)
 - [pnpm](https://pnpm.io/) (for package management)
-- [Docker](https://www.docker.com/) (leave out if you want to work only on the frontend)
+- [GoLang](https://golang.org/) (leave out if you want to work only on the frontend)
 
 After you've installed the required software, follow these steps:
 
 1. Clone this repository via `git clone https://github.com/simonwep/ocular`.
 2. Run `pnpm install` in the root directory.
-3. Copy the `.env.example` to `.env`, you can leave the default values.
+3. Copy the `.env.example` to `.env`, you can leave the default values. Do the same under `/genesis` if you want to work on/with the backend as well.
 4. Comment out `OCULAR_GENESIS_HOST` if you want to work only on the frontend.
 5. Start both the back- and frontend with `pnpm dev` or only the frontend with `pnpm dev:frontend`.
 6. Open `http://localhost:3000` in your browser.
@@ -56,3 +56,4 @@ To add support for a new language, you need to do the following:
 
 If you want to add a new feature, make sure to [create an issue](https://github.com/simonwep/ocular/issues/new/choose) first to discuss it, so we can make sure it fits the project's scope.
 I appreciate every contribution, but I want to keep the project focused on its main goal.
+``

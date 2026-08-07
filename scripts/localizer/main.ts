@@ -7,12 +7,12 @@ import type { LocalizeConfig } from './utils.ts';
 
 const client = createAiClient();
 
-const config = await readFile(resolve(process.cwd(), 'localize.json'), 'utf-8')
-  .then((resolve) => JSON.parse(resolve) as LocalizeConfig)
+const config = await readFile(resolve(process.cwd(), 'scripts/localizer/config.json'), 'utf-8')
+  .then((data) => JSON.parse(data) as LocalizeConfig)
   .catch(() => null);
 
 if (!config) {
-  throw new Error('No localize.json found');
+  throw new Error(`No config found at '${resolve(process.cwd(), 'scripts/localizer/config.json')}'`);
 }
 
 logger.info(`Found ${config.projects.length} project(s)`);
@@ -23,4 +23,4 @@ for (const project of config.projects) {
 
 await client.close();
 
-logger.info('Done');
+logger.info('Done processing all projects, bye');

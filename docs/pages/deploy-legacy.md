@@ -52,7 +52,7 @@ To migrate to a newer version, follow these steps:
 
 ## Admin controls
 
-You can use the [genesis cli](https://github.com/simonwep/genesis?tab=readme-ov-file#cli) to manage users.
+You can use the CLI to manage users.
 For example, to change a user's password:
 
 ```sh

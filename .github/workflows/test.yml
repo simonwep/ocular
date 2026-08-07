@@ -1,7 +1,6 @@
 name: Test
 
 on:
-  pull_request:
   push:
     tags-ignore:
       - '**'
@@ -10,11 +9,10 @@ on:
 
 env:
   HUSKY: 0
-  GENESIS_VERSION: v1.6.1
 
 jobs:
   test:
-    name: Run unit, lint and e2e tests
+    name: Run tests
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
@@ -41,22 +39,31 @@ jobs:
           OCULAR_GENESIS_HOST: /api
           OCULAR_HYBRID_MODE: true
 
+      - name: Build genesis
+        run: go -C genesis build -v ./...
+
+      - name: Test genesis
+        run: go -C genesis test -v ./...
+        
+      - name: Prepare .env
+        run: cp genesis/.env.example genesis/.env
+
       - name: Start genesis and ocular
         run: |
-          docker pull ghcr.io/simonwep/genesis:latest
-          docker run -p 8080:8080 -v "./.data:/app/.data" --env-file .env.genesis ghcr.io/simonwep/genesis:${{ env.GENESIS_VERSION }} start &
-          pnpm vite preview &
+          pnpm dev:backend >genesis.log 2>&1 &
+          pnpm vite preview >ocular.log 2>&1 &
 
       - name: Wait for genesis to be healthy
         uses: ./.github/workflows/actions/wait-for-health-check
         with:
           host: localhost:8080
+          endpoint: health
 
       - name: Wait for ocular to be healthy
         uses: ./.github/workflows/actions/wait-for-health-check
         with:
           host: localhost:3000
-          endpoint: /dashboard
+          endpoint: dashboard
 
       - name: Install playwright browsers
         run: pnpm exec playwright install --with-deps firefox
@@ -70,4 +77,12 @@ jobs:
         with:
           name: test-results
           path: test-results/
+          retention-days: 7
+
+      - name: Upload service logs
+        uses: actions/upload-artifact@v7
+        if: ${{ failure() }}
+        with:
+          name: service-logs
+          path: "*.log"
           retention-days: 7
