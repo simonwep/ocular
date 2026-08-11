@@ -1,30 +1,55 @@
-export type GenesisResponse<TData> =
-  | {
-      error: { message: string; status: number } & Record<string, unknown>;
-      data?: undefined;
-    }
+// Utilities
+export type GenesisBaseError = { message: string; status: number };
+
+export type GenesisResponse<TData, TErr extends GenesisBaseError = GenesisBaseError> =
+  | { error: TErr; data?: undefined }
   | { error?: undefined; data: TData };
 
-export type GenesisUser = {
-  name: string;
-  admin: boolean;
-};
+// Classes
+export type GenesisUser = { name: string; admin: boolean };
 
-export type GenesisNewUser = {
-  name: string;
-  password: string;
-  admin: boolean;
-};
+// Login
+export type GenesisLoginError = GenesisBaseError & { retry_after?: number; retry_timestamp?: number };
+export type GenesisLoginResponse = GenesisResponse<GenesisUser, GenesisLoginError>;
+export type GenesisLoginBody = { user: string; password: string };
 
-export type GenesisLoginRequest = {
-  user: string;
-  password: string;
-};
+// Logout
+export type GenesisLogoutError = GenesisBaseError;
+export type GenesisLogoutResponse = GenesisResponse<undefined, GenesisLogoutError>;
 
-export type GenesisUpdatePasswordRequest = {
-  newPassword: string;
-  currentPassword: string;
-};
+// Update password
+export type GenesisUpdatePasswordError = GenesisBaseError;
+export type GenesisUpdatePasswordResponse = GenesisResponse<undefined, GenesisUpdatePasswordError>;
+export type GenesisUpdatePasswordBody = { newPassword: string; currentPassword: string };
+
+// Data
+export type GenesisGetDataError = GenesisBaseError;
+export type GenesisGetDataResponse = GenesisResponse<object, GenesisGetDataError>;
+
+export type GenesisGetDataByKeyError = GenesisBaseError;
+export type GenesisGetDataByKeyResponse<TData> = GenesisResponse<TData | undefined, GenesisGetDataByKeyError>;
+
+export type GenesisSetDataByKeyError = GenesisBaseError;
+export type GenesisSetDataByKeyResponse = GenesisResponse<undefined, GenesisSetDataByKeyError>;
+export type GenesisSetDataByKeyBody = unknown;
+
+export type GenesisDeleteDataByKeyError = GenesisBaseError;
+export type GenesisDeleteDataByKeyResponse = GenesisResponse<undefined, GenesisDeleteDataByKeyError>;
+
+// Users
+export type GenesisGetAllUsersError = GenesisBaseError;
+export type GenesisGetAllUsersResponse = GenesisResponse<GenesisUser[], GenesisGetAllUsersError>;
+
+export type GenesisCreateUserError = GenesisBaseError;
+export type GenesisCreateUserResponse = GenesisResponse<undefined, GenesisCreateUserError>;
+export type GenesisCreateUserBody = GenesisUser & { password: string };
+
+export type GenesisUpdateUserError = GenesisBaseError;
+export type GenesisUpdateUserResponse = GenesisResponse<undefined, GenesisUpdateUserError>;
+export type GenesisUpdateUserBody = GenesisUser;
+
+export type GenesisDeleteUserError = GenesisBaseError;
+export type GenesisDeleteUserResponse = GenesisResponse<undefined, GenesisDeleteUserError>;
 
 export type GenesisStoreOptions = {
   baseUrl: string;
@@ -35,7 +60,10 @@ export const createClient = (opt: GenesisStoreOptions) => {
   const middleware = opt.middleware ?? ((res: Response) => res);
   let sessionToken: string | undefined;
 
-  const request = async <TData = undefined>(url: string, options?: RequestInit): Promise<GenesisResponse<TData>> => {
+  const request = async <TData = undefined, TErr extends GenesisBaseError = GenesisBaseError>(
+    url: string,
+    options?: RequestInit
+  ): Promise<GenesisResponse<TData, TErr>> => {
     try {
       const response = await fetch(url, {
         ...options,
@@ -62,14 +90,14 @@ export const createClient = (opt: GenesisStoreOptions) => {
       return { error, data: undefined };
     } catch (error) {
       return {
-        error: { message: (error as Error).message, status: -1 },
+        error: { message: (error as Error).message, status: -1 } as TErr,
         data: undefined
       };
     }
   };
 
-  const login = async (body?: GenesisLoginRequest) =>
-    await request<GenesisUser>(`${opt.baseUrl}/login`, {
+  const login = async (body?: GenesisLoginBody): Promise<GenesisLoginResponse> =>
+    await request<GenesisUser, GenesisLoginError>(`${opt.baseUrl}/login`, {
       method: 'POST',
       ...(body && {
         headers: { 'Content-Type': 'application/json' },
@@ -77,45 +105,51 @@ export const createClient = (opt: GenesisStoreOptions) => {
       })
     });
 
-  const logout = async () => await request(`${opt.baseUrl}/logout`, { method: 'POST' });
+  const logout = async (): Promise<GenesisLogoutResponse> =>
+    await request<undefined, GenesisLogoutError>(`${opt.baseUrl}/logout`, { method: 'POST' });
 
-  const updatePassword = async (body: GenesisUpdatePasswordRequest) =>
-    await request(`${opt.baseUrl}/account/update`, {
+  const updatePassword = async (body: GenesisUpdatePasswordBody): Promise<GenesisUpdatePasswordResponse> =>
+    await request<undefined, GenesisUpdatePasswordError>(`${opt.baseUrl}/account/update`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
 
-  const getData = async (): Promise<object> => await request(`${opt.baseUrl}/data`);
+  const getData = async (): Promise<GenesisGetDataResponse> =>
+    await request<object, GenesisGetDataError>(`${opt.baseUrl}/data`);
 
-  const getDataByKey = async <P>(key: string) => await request<P | undefined>(`${opt.baseUrl}/data/${key}`);
+  const getDataByKey = async <P>(key: string): Promise<GenesisGetDataByKeyResponse<P>> =>
+    await request<P | undefined, GenesisGetDataByKeyError>(`${opt.baseUrl}/data/${key}`);
 
-  const setDataByKey = async (key: string, data: unknown) =>
-    await request(`${opt.baseUrl}/data/${key}`, {
+  const setDataByKey = async (key: string, data: GenesisSetDataByKeyBody): Promise<GenesisSetDataByKeyResponse> =>
+    await request<undefined, GenesisSetDataByKeyError>(`${opt.baseUrl}/data/${key}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
 
-  const deleteDataByKey = async (key: string) => await request(`${opt.baseUrl}/data/${key}`, { method: 'DELETE' });
+  const deleteDataByKey = async (key: string): Promise<GenesisDeleteDataByKeyResponse> =>
+    await request<undefined, GenesisDeleteDataByKeyError>(`${opt.baseUrl}/data/${key}`, { method: 'DELETE' });
 
-  const getAllUsers = async () => await request<GenesisUser[]>(`${opt.baseUrl}/user`, { method: 'GET' });
+  const getAllUsers = async (): Promise<GenesisGetAllUsersResponse> =>
+    await request<GenesisUser[], GenesisGetAllUsersError>(`${opt.baseUrl}/user`, { method: 'GET' });
 
-  const createUser = async (body: GenesisNewUser) =>
-    await request(`${opt.baseUrl}/user`, {
+  const createUser = async (body: GenesisCreateUserBody): Promise<GenesisCreateUserResponse> =>
+    await request<undefined, GenesisCreateUserError>(`${opt.baseUrl}/user`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
 
-  const updateUser = async (username: string, updatedUser: GenesisUser) =>
-    await request(`${opt.baseUrl}/user/${username}`, {
+  const updateUser = async (username: string, updatedUser: GenesisUpdateUserBody): Promise<GenesisUpdateUserResponse> =>
+    await request<undefined, GenesisUpdateUserError>(`${opt.baseUrl}/user/${username}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedUser)
     });
 
-  const deleteUser = async (username: string) => await request(`${opt.baseUrl}/user/${username}`, { method: 'DELETE' });
+  const deleteUser = async (username: string): Promise<GenesisDeleteUserResponse> =>
+    await request<undefined, GenesisDeleteUserError>(`${opt.baseUrl}/user/${username}`, { method: 'DELETE' });
 
   return {
     login,

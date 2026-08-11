@@ -1,12 +1,11 @@
-import { createClient } from '@store/genesis/genesis.sdk.ts';
+import { createClient, type GenesisLoginBody } from '@store/genesis/genesis.sdk.ts';
 import { expect } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import type { Page } from '@playwright/test';
-import type { GenesisLoginRequest } from '@store/genesis/genesis.sdk.ts';
 
 export const randomUsername = () => `e2e_${Math.random().toString(36).slice(-6)}`;
 
-export const useClient = async (login: GenesisLoginRequest) => {
+export const useClient = async (login: GenesisLoginBody) => {
   const client = createClient({ baseUrl: 'http://localhost:8080' });
   await client.login(login);
 

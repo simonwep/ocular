@@ -37,7 +37,7 @@ import { useStorage } from '@store/storage/useStorage.ts';
 import { RiUserAddLine } from '@remixicon/vue';
 import { reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import type { GenesisNewUser } from '@store/genesis/genesis.sdk.ts';
+import type { GenesisCreateUserBody } from '@store/genesis/genesis.sdk.ts';
 
 const emit = defineEmits<{
   close: [];
@@ -51,7 +51,7 @@ const { t } = useI18n();
 const { createUser } = useStorage();
 
 const state = ref<'idle' | 'loading' | 'conflict' | 'errored'>('idle');
-const newUser = reactive<GenesisNewUser>({
+const newUser = reactive<GenesisCreateUserBody>({
   name: '',
   password: '',
   admin: false

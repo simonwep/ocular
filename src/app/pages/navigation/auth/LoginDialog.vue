@@ -95,7 +95,7 @@ const retryTimeLeft = computed(() => {
     retry_timestamp: undefined
   };
 
-  if (status !== 429 || typeof retry_after !== 'number' || typeof retry_timestamp !== 'number') {
+  if (status !== 429 || !retry_after || !retry_timestamp) {
     return;
   }
 
