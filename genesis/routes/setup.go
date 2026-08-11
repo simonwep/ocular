@@ -40,5 +40,8 @@ func SetupRoutes() *gin.Engine {
 	// Heal check endpoints
 	router.GET("/health", Health)
 
+	// Meta endpoints
+	router.GET("/meta/version", Version)
+
 	return root
 }

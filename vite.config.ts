@@ -18,7 +18,7 @@ const proxy: Record<string, ProxyOptions> = {
 
 export default defineConfig({
   base,
-  envPrefix: ['OCULAR'],
+  envPrefix: ['OCULAR_'],
   preview: { proxy, port: 3000 },
   server: {
     proxy,
@@ -26,9 +26,6 @@ export default defineConfig({
     watch: {
       ignored: ['**/genesis/**']
     }
-  },
-  define: {
-    'import.meta.env.OCULAR_BUILD_TIMESTAMP': Date.now()
   },
   resolve: {
     alias: {

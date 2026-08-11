@@ -12,7 +12,7 @@ createApp(App).directive('tooltip', vTooltip).use(i18n).use(router).mount('#app'
 // Print info and register service worker
 const logger = createLogger('app');
 
-logger.info(`Ocular build on the ${new Date(import.meta.env.OCULAR_BUILD_TIMESTAMP).toLocaleString()}`);
+logger.info(`Ocular build on the ${new Date(import.meta.env.OCULAR_BUILD_DATE).toLocaleString()}`);
 
 if (!import.meta.env.OCULAR_GENESIS_HOST) {
   logger.info('No backend configured, running in offline mode');

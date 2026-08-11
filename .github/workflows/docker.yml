@@ -60,6 +60,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           file: docker/Dockerfile
           build-args: |
+            OCULAR_BUILD_DATE=${{ github.event.head_commit.timestamp }}
             OCULAR_BUILD_VERSION=${{ github.ref_name }}
             OCULAR_BUILD_SHA=${{ steps.vars.outputs.sha_short }}
 

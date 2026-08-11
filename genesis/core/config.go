@@ -11,6 +11,12 @@ import (
 	"go.uber.org/zap"
 )
 
+var (
+	Version   = "dev"
+	Commit    = "unknown"
+	BuildDate = "2022-03-24T17:38:03.000Z"
+)
+
 type AppConfig struct {
 	DbPath             string
 	BaseUrl            string
@@ -38,6 +44,9 @@ var Config = func() AppConfig {
 		JWTSecret:          []byte(env("GENESIS_JWT_SECRET")),
 		JWTExpiration:      time.Duration(parseInt(env("GENESIS_JWT_TOKEN_EXPIRATION"))) * time.Minute,
 		JWTCookieAllowHTTP: env("GENESIS_JWT_COOKIE_ALLOW_HTTP") == "true",
+		AppBuildVersion:    Version,
+		AppBuildDate:       BuildDate,
+		AppBuildCommit:     Commit,
 		AppGinMode:         env("GENESIS_GIN_MODE"),
 		AppPort:            env("GENESIS_PORT"),
 		AppUsersToCreate:   parseInitialUserList(env("GENESIS_CREATE_USERS")),

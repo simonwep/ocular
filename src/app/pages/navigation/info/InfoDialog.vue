@@ -19,9 +19,9 @@
       <span :class="$style.meta">
         {{
           t('navigation.info.meta', {
-            version: OCULAR_BUILD_VERSION ?? 'dev',
-            date: new Date(OCULAR_BUILD_TIMESTAMP).toDateString(),
-            sha: OCULAR_BUILD_SHA ?? 'uncommitted'
+            version: OCULAR_BUILD_VERSION,
+            date: new Date(OCULAR_BUILD_DATE).toDateString(),
+            sha: OCULAR_BUILD_SHA
           })
         }}
       </span>
@@ -34,7 +34,7 @@ import Dialog from '@components/base/dialog/Dialog.vue';
 import Link from '@components/base/link/Link.vue';
 import { useI18n } from 'vue-i18n';
 
-const { OCULAR_BUILD_SHA, OCULAR_BUILD_TIMESTAMP, OCULAR_BUILD_VERSION } = import.meta.env;
+const { OCULAR_BUILD_SHA, OCULAR_BUILD_DATE, OCULAR_BUILD_VERSION } = import.meta.env;
 
 const emit = defineEmits<{
   close: [];

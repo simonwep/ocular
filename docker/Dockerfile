@@ -3,6 +3,10 @@ FROM --platform=$BUILDPLATFORM golang:1.26-alpine AS genesis
 ARG TARGETOS
 ARG TARGETARCH
 
+ARG OCULAR_BUILD_VERSION
+ARG OCULAR_BUILD_SHA
+ARG OCULAR_BUILD_DATE
+
 WORKDIR /app
 COPY genesis/go.mod genesis/go.sum ./genesis/
 
@@ -10,21 +14,24 @@ RUN go -C genesis mod download
 
 COPY genesis ./genesis
 
-RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go -C genesis build -o genesis
+RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go -C genesis build \
+  -ldflags "-X github.com/simonwep/genesis/core.Version=${OCULAR_BUILD_VERSION} -X github.com/simonwep/genesis/core.Commit=${OCULAR_BUILD_SHA} -X github.com/simonwep/genesis/core.BuildDate=${OCULAR_BUILD_DATE}" \
+  -o genesis
 
 FROM --platform=$BUILDPLATFORM node:24-alpine AS frontend
 
 ARG OCULAR_BUILD_VERSION
 ARG OCULAR_BUILD_SHA
+ARG OCULAR_BUILD_DATE
 
 # Fixed environment for ocular build
 ENV OCULAR_GENESIS_HOST='/api'
+ENV OCULAR_BUILD_VERSION=${OCULAR_BUILD_VERSION}
+ENV OCULAR_BUILD_SHA=${OCULAR_BUILD_SHA}
+ENV OCULAR_BUILD_DATE=${OCULAR_BUILD_DATE}
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-
-ENV OCULAR_BUILD_VERSION=${OCULAR_BUILD_VERSION}
-ENV OCULAR_BUILD_SHA=${OCULAR_BUILD_SHA}
 
 WORKDIR /app
 
