@@ -63,9 +63,8 @@ const active = computed(() => props.id === store.target && store.type);
 const targets = computed(() => props.target ?? [props.name]);
 const matched = computed(() => store.targets?.includes(props.name));
 
-const icon = computed(
-  (): Component =>
-    active.value ? (props.icon?.(store) ?? (store.type === 'before' ? RiSkipUpLine : RiSkipDownLine)) : RiDraggable
+const icon = computed((): Component =>
+  active.value ? (props.icon?.(store) ?? (store.type === 'before' ? RiSkipUpLine : RiSkipDownLine)) : RiDraggable
 );
 
 const label = computed(() => (store.target && store.target && store.source ? props.text?.(store) : undefined));

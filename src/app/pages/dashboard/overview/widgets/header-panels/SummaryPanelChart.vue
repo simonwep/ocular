@@ -24,39 +24,37 @@ echarts.use([GridComponent, LineChart, SVGRenderer]);
 type EChartsOption = echarts.ComposeOption<GridComponentOption | LineSeriesOption>;
 
 const classes = computed(() => props.class);
-const options = computed(
-  (): EChartsOption => ({
-    animation: false,
-    xAxis: {
-      type: 'category',
-      show: false
-    },
-    yAxis: {
-      type: 'value',
-      show: false,
-      min: Math.min(...props.values)
-    },
-    grid: {
-      top: '5%',
-      left: '5%',
-      bottom: '5%',
-      right: '5%'
-    },
-    series: [
-      {
-        data: props.values,
-        type: 'line',
-        smooth: true,
-        showSymbol: false,
-        lineStyle: {
-          width: 3,
-          cap: 'round',
-          color: props.color
-        }
+const options = computed((): EChartsOption => ({
+  animation: false,
+  xAxis: {
+    type: 'category',
+    show: false
+  },
+  yAxis: {
+    type: 'value',
+    show: false,
+    min: Math.min(...props.values)
+  },
+  grid: {
+    top: '5%',
+    left: '5%',
+    bottom: '5%',
+    right: '5%'
+  },
+  series: [
+    {
+      data: props.values,
+      type: 'line',
+      smooth: true,
+      showSymbol: false,
+      lineStyle: {
+        width: 3,
+        cap: 'round',
+        color: props.color
       }
-    ]
-  })
-);
+    }
+  ]
+}));
 </script>
 
 <style lang="scss" module>

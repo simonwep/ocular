@@ -105,11 +105,9 @@ const budgetGroupToNode = (type: 'income' | 'expenses'): TreeMapChartNode => {
   return data;
 };
 
-const data = computed(
-  (): TreeMapChartConfig => ({
-    nodes: [budgetGroupToNode('income'), budgetGroupToNode('expenses')]
-  })
-);
+const data = computed((): TreeMapChartConfig => ({
+  nodes: [budgetGroupToNode('income'), budgetGroupToNode('expenses')]
+}));
 
 defineExpose({
   download: (name: string, type: 'png' | 'svg') => chart.value?.download(name, type)

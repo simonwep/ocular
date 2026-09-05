@@ -42,71 +42,69 @@ const transformNode = ({ color, children, label, ...rest }: TreeMapChartNode): T
   children: children?.map(transformNode)
 });
 
-const options = computed(
-  (): EChartsOption => ({
-    backgroundColor: 'var(--app-background)',
-    tooltip: {
-      show: true,
-      transitionDuration: 0,
-      renderMode: 'html',
-      borderWidth: 0,
-      backgroundColor: 'var(--chart-tooltip-background-color)',
-      textStyle: {
+const options = computed((): EChartsOption => ({
+  backgroundColor: 'var(--app-background)',
+  tooltip: {
+    show: true,
+    transitionDuration: 0,
+    renderMode: 'html',
+    borderWidth: 0,
+    backgroundColor: 'var(--chart-tooltip-background-color)',
+    textStyle: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      fontWeight: 'var(--font-weight-l)' as any,
+      fontFamily: 'var(--font-family)',
+      fontSize: 12,
+      color: 'var(--chart-tooltip-color)'
+    },
+    borderRadius: 4,
+    shadowColor: 'transparent',
+    formatter: (values) => {
+      const id = (values as { data: { id: string | undefined } }).data.id;
+      return id ? (props.data.tooltip?.(id) ?? '') : '';
+    }
+  },
+  series: [
+    {
+      type: 'treemap',
+      roam: false,
+      silent: !props.data.tooltip,
+      animation: false,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      top: 0,
+      nodeClick: false,
+      itemStyle: {
+        gapWidth: 2,
+        borderRadius: 5,
+        borderWidth: 0,
+        borderColor: 'transparent'
+      },
+      levels: [
+        {
+          itemStyle: {
+            gapWidth: 4
+          }
+        }
+      ],
+      label: {
+        textBorderWidth: 0,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         fontWeight: 'var(--font-weight-l)' as any,
         fontFamily: 'var(--font-family)',
-        fontSize: 12,
-        color: 'var(--chart-tooltip-color)'
+        color: 'var(--chart-label)'
       },
-      borderRadius: 4,
-      shadowColor: 'transparent',
-      formatter: (values) => {
-        const id = (values as { data: { id: string | undefined } }).data.id;
-        return id ? (props.data.tooltip?.(id) ?? '') : '';
-      }
-    },
-    series: [
-      {
-        type: 'treemap',
-        roam: false,
-        silent: !props.data.tooltip,
-        animation: false,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        top: 0,
-        nodeClick: false,
-        itemStyle: {
-          gapWidth: 2,
-          borderRadius: 5,
-          borderWidth: 0,
-          borderColor: 'transparent'
-        },
-        levels: [
-          {
-            itemStyle: {
-              gapWidth: 4
-            }
-          }
-        ],
-        label: {
-          textBorderWidth: 0,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          fontWeight: 'var(--font-weight-l)' as any,
-          fontFamily: 'var(--font-family)',
-          color: 'var(--chart-label)'
-        },
-        emphasis: {
-          disabled: true
-        },
-        breadcrumb: {
-          show: false
-        },
-        data: props.data.nodes.map(transformNode)
-      }
-    ]
-  })
-);
+      emphasis: {
+        disabled: true
+      },
+      breadcrumb: {
+        show: false
+      },
+      data: props.data.nodes.map(transformNode)
+    }
+  ]
+}));
 
 defineExpose({
   download: (name: string, type: 'png' | 'svg') => chart.value?.download(name, type)

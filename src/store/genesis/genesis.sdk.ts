@@ -2,8 +2,7 @@
 export type GenesisBaseError = { message: string; status: number };
 
 export type GenesisResponse<TData, TErr extends GenesisBaseError = GenesisBaseError> =
-  | { error: TErr; data?: undefined }
-  | { error?: undefined; data: TData };
+  { error: TErr; data?: undefined } | { error?: undefined; data: TData };
 
 // Classes
 export type GenesisUser = { name: string; admin: boolean };

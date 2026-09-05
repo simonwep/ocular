@@ -54,10 +54,15 @@ const start = () => {
   const context = config.canvas.getContext('2d')!;
 
   // Create snowflakes array
-  const snowflakes = Array.from(
-    { length: config.snowflakesCount },
-    (): SnowFlake => ({ createdAt: 0, maxAge: 0, vy: 0, vx: 0, size: 0, x: 0, y: 0 })
-  );
+  const snowflakes = Array.from({ length: config.snowflakesCount }, (): SnowFlake => ({
+    createdAt: 0,
+    maxAge: 0,
+    vy: 0,
+    vx: 0,
+    size: 0,
+    x: 0,
+    y: 0
+  }));
 
   // Generate sprite
   const sprite = new OffscreenCanvas(

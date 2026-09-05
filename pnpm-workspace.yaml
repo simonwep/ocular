@@ -1,1 +1,6 @@
 minimumReleaseAge: 1440
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+  koffi: false
+  unrs-resolver: false

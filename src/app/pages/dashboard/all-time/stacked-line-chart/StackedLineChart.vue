@@ -36,128 +36,126 @@ const props = defineProps<{
 
 const classes = computed(() => props.class);
 
-const options = computed(
-  (): EChartsOption => ({
-    animation: false,
-    legend: {
-      data: props.data.series.flatMap((v) => [v.name, v.trendName]),
-      textStyle: { color: 'var(--chart-label)' },
-      lineStyle: { width: 2, cap: 'round' },
-      itemStyle: { opacity: 0 },
-      ...(appSize.value === 'mobile' && {
-        top: 0,
-        left: 0,
-        right: 0,
-        padding: 0,
-        itemWidth: 10,
-        itemGap: 5
-      })
-    },
-    grid: {
+const options = computed((): EChartsOption => ({
+  animation: false,
+  legend: {
+    data: props.data.series.flatMap((v) => [v.name, v.trendName]),
+    textStyle: { color: 'var(--chart-label)' },
+    lineStyle: { width: 2, cap: 'round' },
+    itemStyle: { opacity: 0 },
+    ...(appSize.value === 'mobile' && {
+      top: 0,
       left: 0,
-      right: '5px',
-      bottom: '70px',
-      top: '25px'
-    },
-    dataZoom: [
-      {
-        type: 'inside',
-        throttle: 50
-      }
-    ],
-    tooltip: {
-      trigger: 'axis',
-      transitionDuration: 0,
-      backgroundColor: 'var(--chart-tooltip-background-color)',
-      borderColor: 'var(--chart-tooltip-border-color)',
-      textStyle: {
-        color: 'var(--chart-tooltip-color)',
-        fontFamily: 'var(--font-family)',
-        fontSize: 12
-      },
-      valueFormatter: (v) => props.data.valueFormatter?.(v as number) ?? String(v),
-      axisPointer: {
-        type: 'cross',
-        label: {
-          color: 'var(--c-primary-text)',
-          backgroundColor: 'var(--chart-tooltip-axis-label-background)',
-          formatter: (params) => {
-            if (params.axisDimension === 'x' || !props.data.valueFormatter) {
-              return ` ${params.value}`;
-            } else {
-              return props.data.valueFormatter(params.value as number);
-            }
-          }
-        },
-        lineStyle: {
-          color: 'var(--chart-tooltip-cross-color)'
-        },
-        crossStyle: {
-          color: 'var(--chart-tooltip-cross-color)'
-        }
-      }
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: props.data.labels,
-      axisTick: { lineStyle: { color: 'var(--chart-line-color)' } },
-      axisLine: { lineStyle: { color: 'var(--chart-line-color)' } },
-      axisLabel: { color: 'var(--chart-label)' }
-    },
-    yAxis: {
-      type: 'value',
-      axisTick: { lineStyle: { color: 'var(--chart-line-color)' } },
-      axisLine: { lineStyle: { color: 'var(--chart-line-color)' } },
-      axisLabel: {
-        color: 'var(--chart-label)',
-        formatter: props.data.valueFormatter
-      },
-      splitLine: { lineStyle: { color: 'var(--chart-line-color)' } }
-    },
-    series: props.data.series.flatMap((s) => {
-      const areaGraph: EChartsOption['series'] = {
-        name: s.name,
-        type: 'line',
-        data: s.data,
-        color: s.color,
-        silent: true,
-        areaStyle: {
-          color: s.color,
-          opacity: s.muted ? 0.05 : 0.25
-        },
-        lineStyle: {
-          opacity: s.muted ? 0.5 : 1
-        },
-        itemStyle: {
-          opacity: s.muted ? 0.5 : 1
-        },
-        emphasis: {
-          disabled: true
-        }
-      };
-
-      const trendLine: EChartsOption['series'] = {
-        name: s.trendName,
-        type: 'line',
-        data: rollingAverage(s.data, 6),
-        color: s.color,
-        showSymbol: false,
-        silent: true,
-        tooltip: {
-          show: false
-        },
-        lineStyle: {
-          width: 1,
-          type: 'dashed',
-          opacity: s.muted ? 0.1 : 0.25
-        }
-      };
-
-      return [areaGraph, trendLine];
+      right: 0,
+      padding: 0,
+      itemWidth: 10,
+      itemGap: 5
     })
+  },
+  grid: {
+    left: 0,
+    right: '5px',
+    bottom: '70px',
+    top: '25px'
+  },
+  dataZoom: [
+    {
+      type: 'inside',
+      throttle: 50
+    }
+  ],
+  tooltip: {
+    trigger: 'axis',
+    transitionDuration: 0,
+    backgroundColor: 'var(--chart-tooltip-background-color)',
+    borderColor: 'var(--chart-tooltip-border-color)',
+    textStyle: {
+      color: 'var(--chart-tooltip-color)',
+      fontFamily: 'var(--font-family)',
+      fontSize: 12
+    },
+    valueFormatter: (v) => props.data.valueFormatter?.(v as number) ?? String(v),
+    axisPointer: {
+      type: 'cross',
+      label: {
+        color: 'var(--c-primary-text)',
+        backgroundColor: 'var(--chart-tooltip-axis-label-background)',
+        formatter: (params) => {
+          if (params.axisDimension === 'x' || !props.data.valueFormatter) {
+            return ` ${params.value}`;
+          } else {
+            return props.data.valueFormatter(params.value as number);
+          }
+        }
+      },
+      lineStyle: {
+        color: 'var(--chart-tooltip-cross-color)'
+      },
+      crossStyle: {
+        color: 'var(--chart-tooltip-cross-color)'
+      }
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: props.data.labels,
+    axisTick: { lineStyle: { color: 'var(--chart-line-color)' } },
+    axisLine: { lineStyle: { color: 'var(--chart-line-color)' } },
+    axisLabel: { color: 'var(--chart-label)' }
+  },
+  yAxis: {
+    type: 'value',
+    axisTick: { lineStyle: { color: 'var(--chart-line-color)' } },
+    axisLine: { lineStyle: { color: 'var(--chart-line-color)' } },
+    axisLabel: {
+      color: 'var(--chart-label)',
+      formatter: props.data.valueFormatter
+    },
+    splitLine: { lineStyle: { color: 'var(--chart-line-color)' } }
+  },
+  series: props.data.series.flatMap((s) => {
+    const areaGraph: EChartsOption['series'] = {
+      name: s.name,
+      type: 'line',
+      data: s.data,
+      color: s.color,
+      silent: true,
+      areaStyle: {
+        color: s.color,
+        opacity: s.muted ? 0.05 : 0.25
+      },
+      lineStyle: {
+        opacity: s.muted ? 0.5 : 1
+      },
+      itemStyle: {
+        opacity: s.muted ? 0.5 : 1
+      },
+      emphasis: {
+        disabled: true
+      }
+    };
+
+    const trendLine: EChartsOption['series'] = {
+      name: s.trendName,
+      type: 'line',
+      data: rollingAverage(s.data, 6),
+      color: s.color,
+      showSymbol: false,
+      silent: true,
+      tooltip: {
+        show: false
+      },
+      lineStyle: {
+        width: 1,
+        type: 'dashed',
+        opacity: s.muted ? 0.1 : 0.25
+      }
+    };
+
+    return [areaGraph, trendLine];
   })
-);
+}));
 </script>
 
 <style lang="scss" module>

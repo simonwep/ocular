@@ -23,29 +23,27 @@ const props = defineProps<{
 }>();
 
 const classes = computed(() => props.class);
-const options = computed(
-  (): EChartsOption => ({
-    animation: false,
-    xAxis: { type: 'category', show: false },
-    yAxis: {
-      show: false,
-      min: Math.min(...props.values)
-    },
-    grid: {
-      top: '15%',
-      left: 0,
-      bottom: '20%',
-      right: 0
-    },
-    series: [
-      {
-        data: props.values,
-        type: 'line',
-        smooth: true,
-        showSymbol: false,
-        silent: true
-      }
-    ]
-  })
-);
+const options = computed((): EChartsOption => ({
+  animation: false,
+  xAxis: { type: 'category', show: false },
+  yAxis: {
+    show: false,
+    min: Math.min(...props.values)
+  },
+  grid: {
+    top: '15%',
+    left: 0,
+    bottom: '20%',
+    right: 0
+  },
+  series: [
+    {
+      data: props.values,
+      type: 'line',
+      smooth: true,
+      showSymbol: false,
+      silent: true
+    }
+  ]
+}));
 </script>
