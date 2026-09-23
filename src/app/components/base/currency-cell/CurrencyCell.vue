@@ -9,7 +9,6 @@
     @blur="focused = false"
     @focus="focus"
     @input="change"
-    @keydown="keydown"
     @keydown.enter="input?.blur()"
   />
 </template>
@@ -50,12 +49,6 @@ const value = computed(() =>
         })
       : innerValue.value
 );
-
-const keydown = (e: KeyboardEvent) => {
-  if (e.key === '-') {
-    e.preventDefault();
-  }
-};
 
 const focus = () => {
   focused.value = true;
