@@ -71,6 +71,20 @@ test('Evaluate expressions correctly without errors', async ({ page }) => {
   await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('');
 });
 
+test('Evaluate expressions typed with the keyboard', async ({ page }) => {
+  await page.goto('/income');
+
+  // Type instead of fill, as fill() sets the value without emitting key events
+  await page.getByTestId('group-0-budget-0-0').pressSequentially('500-120');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('380');
+
+  await page.getByTestId('group-0-budget-0-0').press('ControlOrMeta+a');
+  await page.getByTestId('group-0-budget-0-0').pressSequentially('1000 - 250 - 50');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('700');
+});
+
 test('Localizes numbers and parse them correctly', async ({ page }) => {
   await page.goto('/income');
 
