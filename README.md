@@ -19,6 +19,9 @@
   <a href="https://www.pikapods.com/pods?run=ocular">
     <img alt="Run on PikaPods" src="https://www.pikapods.com/static/run-button.svg" height="150">
   </a>
+  <a href="https://repocloud.io/details/Ocular/">
+    <img alt="Deploy on RepoCloud" src="https://d16t0pc4846x52.cloudfront.net/deploylobe.svg" height="32">
+  </a>
   <a href="https://github.com/simonwep/ocular/pkgs/container/ocular">
     <img alt="Docker image pulls" src="https://raw.githubusercontent.com/simondump/static/refs/heads/master/apps/ghcr-pulls/dist/ocular.svg" height="150">
   </a>
