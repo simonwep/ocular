@@ -72,7 +72,7 @@ func parseInitialUserList(raw string) []User {
 		return list
 	}
 
-	for _, item := range strings.Split(raw, ",") {
+	for item := range strings.SplitSeq(raw, ",") {
 		user := strings.Split(item, ":")
 
 		if len(user) != 2 {
@@ -105,7 +105,7 @@ func parseDurations(raw string) []time.Duration {
 		return list
 	}
 
-	for _, item := range strings.Split(raw, ",") {
+	for item := range strings.SplitSeq(raw, ",") {
 		trimmed := strings.TrimSpace(item)
 
 		if len(trimmed) == 0 {

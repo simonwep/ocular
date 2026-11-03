@@ -138,6 +138,96 @@ test('Allow retry on network error', async ({ page }) => {
   await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
 });
 
+test('Preserve unsaved edits after session expiration and save them after reauthentication', async ({
+  page,
+  context
+}) => {
+  const user = await createNewUserAndLogin(page);
+
+  await page.getByTestId('navigation-income').click();
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').fill('1000');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'syncing');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await context.clearCookies();
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').fill('3000');
+  await page.getByTestId('group-0-budget-0-0').blur();
+
+  await expect(page.getByTestId('session-expired')).toBeVisible();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'session-expired');
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('3,000');
+  await expect(page.getByTestId('username')).toHaveValue(user.name);
+
+  await page.getByTestId('password').fill(user.password);
+  await page.getByTestId('password').press('Enter');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('3,000');
+
+  await page.reload();
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('3,000');
+});
+
+test('Discard expired session data instead of syncing it to a different user', async ({ page, context }) => {
+  const expiredUser = await createNewUserAndLogin(page);
+
+  await page.getByTestId('navigation-income').click();
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').fill('1000');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'syncing');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  const otherUser = await createNewUser();
+  await page.getByTestId('navigation-cloud').click();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+  await page.getByTestId('navigation-cloud').click();
+  await page.getByTestId('username').fill(otherUser.name);
+  await page.getByTestId('password').fill(otherUser.password);
+  await page.getByTestId('password').press('Enter');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await page.getByTestId('navigation-income').click();
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').fill('2000');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'syncing');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await page.getByTestId('navigation-cloud').click();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+  await page.getByTestId('navigation-cloud').click();
+  await page.getByTestId('username').fill(expiredUser.name);
+  await page.getByTestId('password').fill(expiredUser.password);
+  await page.getByTestId('password').press('Enter');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('1,000');
+
+  await context.clearCookies();
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').fill('3000');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(page.getByTestId('session-expired')).toBeVisible();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'session-expired');
+
+  await page.getByTestId('username').fill(otherUser.name);
+  await page.getByTestId('password').fill(otherUser.password);
+  await page.getByTestId('password').press('Enter');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('2,000');
+
+  await page.reload();
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('2,000');
+});
+
 test('Add a new user and make it admin', async ({ page }) => {
   const admin = await createNewUserAndLogin(page, true);
 

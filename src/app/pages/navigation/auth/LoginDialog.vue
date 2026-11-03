@@ -15,6 +15,12 @@
       @submit="executeImmediate(username, password)"
     >
       <Alert v-if="INSECURE_CONNECTION" :text="t('navigation.auth.loginNotAvailableDueToHttp')" type="warning" />
+      <Alert
+        v-if="user"
+        testId="session-expired"
+        :text="t('navigation.auth.sessionExpired', { user: user.name })"
+        type="warning"
+      />
 
       <TextField
         v-model="username"
@@ -61,7 +67,7 @@ import Form from '@components/base/form/Form.vue';
 import TextField from '@components/base/text-field/TextField.vue';
 import { useStorage } from '@store/storage/useStorage.ts';
 import { RiLoginCircleLine } from '@remixicon/vue';
-import { useAsyncState, useTimestamp } from '@vueuse/core';
+import { useAsyncState, useTimestamp, watchImmediate } from '@vueuse/core';
 import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -72,21 +78,20 @@ const emit = defineEmits<{
   close: [];
 }>();
 
-defineProps<{
+const props = defineProps<{
   open: boolean;
   lockDialog?: boolean;
 }>();
 
 const time = useTimestamp();
 const { t, locale } = useI18n();
-const { login } = useStorage();
+const { login, user } = useStorage();
 const { state, executeImmediate } = useAsyncState(login, undefined, {
   immediate: false
 });
 
 const username = ref(OCULAR_TEST_USERNAME);
 const password = ref(OCULAR_TEST_PASSWORD);
-
 const relativeTimeFormatter = computed(() => new Intl.RelativeTimeFormat(locale.value, { numeric: 'auto' }));
 
 const retryTimeLeft = computed(() => {
@@ -115,6 +120,13 @@ const retryDuration = computed(() => {
 
   const minutes = Math.ceil(retryTimeLeft.value / 60);
   return relativeTimeFormatter.value.format(minutes, 'minute');
+});
+
+watchImmediate([user, () => props.open] as const, ([usr]) => {
+  if (usr) {
+    username.value = usr.name;
+    password.value = '';
+  }
 });
 
 watch(retryTimeLeft, (duration) => {

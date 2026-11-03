@@ -74,7 +74,8 @@
       "loginNotAvailable": "ログインできません。バックエンドが設定されていません。",
       "loginNotAvailableDueToHttp": "HTTPでアクセスしている場合、ログインが正常に機能しない可能性があります。.envファイルでGENESIS_JWT_COOKIE_ALLOW_HTTPをtrueに設定するか、HTTPSでアクセスしてください。",
       "incorrectUsernameOrPassword": "ログインに失敗しました。ユーザー名またはパスワードが無効です。",
-      "tooManyFailedAttempts": "ログイン試行回数が上限を超えました。{duration}後に再試行してください。"
+      "tooManyFailedAttempts": "ログイン試行回数が上限を超えました。{duration}後に再試行してください。",
+      "sessionExpired": "セッションの有効期限が切れました。変更を同期するには、{user} として再度ログインしてください。"
     },
     "admin": {
       "settings": "管理者設定",

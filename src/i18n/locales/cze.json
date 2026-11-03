@@ -74,7 +74,8 @@
       "loginNotAvailable": "Přihlášení není dostupné, backend není nakonfigurován.",
       "loginNotAvailableDueToHttp": "Přihlášení nemusí fungovat, pokud je stránka načtena přes HTTP. Ujistěte se, že v souboru .env nastavíte GENESIS_JWT_COOKIE_ALLOW_HTTP na true, nebo raději používejte HTTPS pro přístup k aplikaci.",
       "incorrectUsernameOrPassword": "Přihlášení se nezdařilo, uživatelské jméno a/nebo heslo jsou neplatné.",
-      "tooManyFailedAttempts": "Příliš mnoho neúspěšných pokusů o přihlášení, zopakujte za {duration}."
+      "tooManyFailedAttempts": "Příliš mnoho neúspěšných pokusů o přihlášení, zopakujte za {duration}.",
+      "sessionExpired": "Relace vypršela. Znovu se přihlaste jako {user}, abyste synchronizovali změny."
     },
     "admin": {
       "settings": "Nastavení správce",

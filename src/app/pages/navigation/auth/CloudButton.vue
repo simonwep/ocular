@@ -5,7 +5,7 @@
     :data="{ status: status }"
     textual
     size="l"
-    :disabled="!OCULAR_GENESIS_HOST"
+    :disabled="!OCULAR_GENESIS_HOST || status === 'syncing'"
     :color="icon[0]"
     :tooltip="OCULAR_GENESIS_HOST ? undefined : t('navigation.auth.loginNotAvailable')"
     tooltipPosition="right"
@@ -60,6 +60,8 @@ const icon = computed((): [Color, Component] => {
       return ['danger', RiSignalWifiErrorLine];
     case 'authenticated':
       return ['success', RiCloudLine];
+    case 'session-expired':
+      return ['danger', RiCloudOffLine];
   }
 
   return ['danger', RiCloudOffLine];
@@ -68,7 +70,7 @@ const icon = computed((): [Color, Component] => {
 const auth = async () => {
   if (!OCULAR_GENESIS_HOST) return;
 
-  if (status.value === 'idle') {
+  if (status.value === 'idle' || status.value === 'session-expired') {
     showLoginDialog.value = true;
   } else {
     logout();
@@ -79,6 +81,12 @@ const auth = async () => {
 watchImmediate(user, (value) => {
   if (FORCE_DIALOG) {
     showLoginDialog.value = !value;
+  }
+});
+
+watchImmediate(status, (value) => {
+  if (value === 'session-expired') {
+    showLoginDialog.value = true;
   }
 });
 </script>

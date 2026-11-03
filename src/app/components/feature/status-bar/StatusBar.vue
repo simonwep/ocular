@@ -38,7 +38,7 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const { status: storageStatus, retry: retrySync } = useStorage();
+const { status: storageStatus, user, retry: retrySync } = useStorage();
 const { needRefresh, updateServiceWorker } = useRegisterSW();
 
 const demoDismissed = useLocalStorage('status-bar/demo-version-dismissed', false);
@@ -47,6 +47,13 @@ const classes = computed(() => props.class);
 
 const status = computed((): Status | undefined => {
   switch (storageStatus.value) {
+    case 'session-expired':
+      return {
+        color: 'danger',
+        icon: RiCloudOffFill,
+        testId: 'session-expired-status',
+        title: t('navigation.auth.sessionExpired', { user: user.value?.name })
+      };
     case 'error':
       return {
         color: 'danger',

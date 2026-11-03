@@ -74,7 +74,8 @@
       "loginNotAvailable": "Вход недоступен, бэкенд не настроен.",
       "loginNotAvailableDueToHttp": "Вход может не работать, если страница открыта по HTTP. Убедитесь, что в файле .env вы установили GENESIS_JWT_COOKIE_ALLOW_HTTP в true, или, что ещё лучше, используйте HTTPS для доступа к приложению.",
       "incorrectUsernameOrPassword": "Вход не выполнен, неверное имя пользователя и/или пароль.",
-      "tooManyFailedAttempts": "Слишком много неудачных попыток входа, повторите через {duration}."
+      "tooManyFailedAttempts": "Слишком много неудачных попыток входа, повторите через {duration}.",
+      "sessionExpired": "Срок действия сеанса истёк. Войдите снова как {user}, чтобы синхронизировать изменения."
     },
     "admin": {
       "settings": "Настройки",

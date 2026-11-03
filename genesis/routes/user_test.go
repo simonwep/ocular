@@ -42,6 +42,24 @@ func TestUnauthorizedAccess(t *testing.T) {
 	})
 }
 
+func TestUnauthenticatedUserRoutes(t *testing.T) {
+	for _, route := range []struct {
+		method string
+		path   string
+	}{
+		{http.MethodGet, "/user"},
+		{http.MethodPost, "/user"},
+		{http.MethodPost, "/user/foo"},
+		{http.MethodDelete, "/user/foo"},
+	} {
+		tryRequest(route.path, route.method, "", AuthorizedConfig{
+			Handler: func(response *httptest.ResponseRecorder) {
+				assert.Equal(t, http.StatusUnauthorized, response.Code)
+			},
+		})
+	}
+}
+
 func TestRetrieveUsers(t *testing.T) {
 	token := loginAdmin(t)
 

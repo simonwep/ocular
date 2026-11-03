@@ -15,7 +15,9 @@ func CreateUser(c *gin.Context) {
 	user := authenticateUser(c)
 	var body core.User
 
-	if user == nil || !user.Admin {
+	if user == nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+	} else if !user.Admin {
 		c.JSON(http.StatusForbidden, gin.H{"error": "only admins can create users"})
 	} else if err := c.ShouldBindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid json"})
@@ -41,7 +43,9 @@ func UpdateUser(c *gin.Context) {
 	name := c.Param("name")
 	var body core.PartialUser
 
-	if user == nil || !user.Admin {
+	if user == nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+	} else if !user.Admin {
 		c.JSON(http.StatusForbidden, gin.H{"error": "user not found or you are not an admin"})
 	} else if name == user.Name {
 		c.JSON(http.StatusForbidden, gin.H{"error": "you cannot update yourself"})
@@ -63,7 +67,9 @@ func DeleteUser(c *gin.Context) {
 	name := c.Param("name")
 	user := authenticateUser(c)
 
-	if user == nil || !user.Admin {
+	if user == nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+	} else if !user.Admin {
 		c.JSON(http.StatusForbidden, gin.H{"error": "forbidden"})
 	} else if name == user.Name {
 		c.JSON(http.StatusForbidden, gin.H{"error": "you cannot delete yourself"})
@@ -80,7 +86,9 @@ func DeleteUser(c *gin.Context) {
 func GetUser(c *gin.Context) {
 	user := authenticateUser(c)
 
-	if user == nil || !user.Admin {
+	if user == nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+	} else if !user.Admin {
 		c.JSON(http.StatusForbidden, gin.H{"error": "forbidden"})
 	} else if list, err := core.GetUsers(user.Name); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to retrieve users"})

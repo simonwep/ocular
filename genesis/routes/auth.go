@@ -76,15 +76,7 @@ func Login(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create auth token"})
 		core.Logger.Error("failed to create auth token", zap.Error(err))
 	} else {
-		http.SetCookie(c.Writer, &http.Cookie{
-			Name:     cookieName,
-			Value:    refreshToken,
-			Path:     "/",
-			Expires:  time.Now().Add(core.Config.JWTExpiration),
-			Secure:   !core.Config.JWTCookieAllowHTTP,
-			HttpOnly: true,
-			SameSite: http.SameSiteStrictMode,
-		})
+		setAuthCookie(c, refreshToken)
 
 		c.JSON(http.StatusOK, core.PublicUser{
 			Name:  user.Name,
@@ -96,11 +88,12 @@ func Login(c *gin.Context) {
 func Logout(c *gin.Context) {
 	refreshToken, err := c.Cookie(cookieName)
 
+	// Renewed tokens share an ID, so invalidate the whole session for the longest possible lifetime.
 	if err != nil || len(refreshToken) == 0 {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "refresh token not found"})
 	} else if parsed, err := core.ParseAuthToken(refreshToken); err != nil || parsed == nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid refresh token"})
-	} else if err := core.StoreInvalidatedToken(parsed.ID, parsed.ExpiresAt.Sub(time.Now())); err != nil {
+	} else if err := core.StoreInvalidatedToken(parsed.ID, invalidationDuration(parsed)); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to store invalidated token"})
 	} else {
 		http.SetCookie(c.Writer, &http.Cookie{
@@ -117,6 +110,14 @@ func Logout(c *gin.Context) {
 	}
 }
 
+func invalidationDuration(claims *core.JWTClaim) time.Duration {
+	duration := core.Config.JWTExpiration
+	if claims.ExpiresAt != nil && time.Until(claims.ExpiresAt.Time) > duration {
+		duration = time.Until(claims.ExpiresAt.Time)
+	}
+	return duration + time.Second
+}
+
 func authenticateUser(c *gin.Context) *core.User {
 	refreshToken, err := c.Cookie(cookieName)
 
@@ -124,9 +125,25 @@ func authenticateUser(c *gin.Context) *core.User {
 		return nil
 	} else if parsed, err := core.ParseAuthToken(refreshToken); err != nil || parsed == nil {
 		return nil
-	} else if user, err := core.GetUser(parsed.User); err != nil {
+	} else if user, err := core.GetUser(parsed.User); err != nil || user == nil {
+		return nil
+	} else if token, err := core.RenewAuthToken(parsed); err != nil {
+		core.Logger.Error("failed to renew auth token", zap.Error(err))
 		return nil
 	} else {
+		setAuthCookie(c, token)
 		return user
 	}
+}
+
+func setAuthCookie(c *gin.Context, token string) {
+	http.SetCookie(c.Writer, &http.Cookie{
+		Name:     cookieName,
+		Value:    token,
+		Path:     "/",
+		Expires:  time.Now().Add(core.Config.JWTExpiration),
+		Secure:   !core.Config.JWTCookieAllowHTTP,
+		HttpOnly: true,
+		SameSite: http.SameSiteStrictMode,
+	})
 }

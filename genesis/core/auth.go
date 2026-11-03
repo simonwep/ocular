@@ -23,11 +23,17 @@ func CreateAuthToken(user *User) (string, error) {
 	}).SignedString(Config.JWTSecret)
 }
 
+func RenewAuthToken(claims *JWTClaim) (string, error) {
+	renewed := *claims
+	renewed.ExpiresAt = jwt.NewNumericDate(time.Now().Add(Config.JWTExpiration))
+	return jwt.NewWithClaims(jwt.SigningMethodHS256, renewed).SignedString(Config.JWTSecret)
+}
+
 func ParseAuthToken(token string) (*JWTClaim, error) {
 	var claims JWTClaim
 
 	_, err := jwt.ParseWithClaims(token, &claims,
-		func(t *jwt.Token) (interface{}, error) {
+		func(t *jwt.Token) (any, error) {
 			if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, fmt.Errorf("unexpected signing method: %v", t.Header["alg"])
 			}

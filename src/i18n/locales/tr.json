@@ -74,7 +74,8 @@
       "loginNotAvailable": "Giriş kullanılamıyor, backend yapılandırılmamış.",
       "loginNotAvailableDueToHttp": "Sayfa HTTP üzerinden erişiliyorsa oturum açma çalışmayabilir. .env dosyanızda GENESIS_JWT_COOKIE_ALLOW_HTTP değerini true olarak ayarladığınızdan emin olun veya daha iyisi uygulamaya erişmek için HTTPS kullanın.",
       "incorrectUsernameOrPassword": "Giriş başarısız, kullanıcı adı ve/veya parola geçersiz.",
-      "tooManyFailedAttempts": "Çok fazla başarısız giriş denemesi, {duration} sonra tekrar deneyin."
+      "tooManyFailedAttempts": "Çok fazla başarısız giriş denemesi, {duration} sonra tekrar deneyin.",
+      "sessionExpired": "Oturum süresi doldu. Değişikliklerinizi eşitlemek için {user} olarak tekrar giriş yapın."
     },
     "admin": {
       "settings": "Yönetici ayarları",

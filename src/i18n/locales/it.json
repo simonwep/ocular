@@ -74,7 +74,8 @@
       "loginNotAvailable": "Accesso non disponibile, il backend non è configurato.",
       "loginNotAvailableDueToHttp": "Il login potrebbe non funzionare se la pagina viene caricata tramite HTTP. Assicurati di impostare GENESIS_JWT_COOKIE_ALLOW_HTTP su true nel tuo file .env oppure, meglio ancora, usa HTTPS per accedere all'applicazione.",
       "incorrectUsernameOrPassword": "Accesso non riuscito, nome utente e/o password non validi.",
-      "tooManyFailedAttempts": "Troppi tentativi di accesso falliti, riprova tra {duration}."
+      "tooManyFailedAttempts": "Troppi tentativi di accesso falliti, riprova tra {duration}.",
+      "sessionExpired": "Sessione scaduta. Accedi di nuovo come {user} per sincronizzare le modifiche."
     },
     "admin": {
       "settings": "Impostazioni dell'amministratore",

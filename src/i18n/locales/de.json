@@ -74,7 +74,8 @@
       "loginNotAvailable": "Login nicht verfügbar, Backend nicht konfiguriert.",
       "loginNotAvailableDueToHttp": "Die Anmeldung funktioniert möglicherweise nicht, wenn die Seite über HTTP aufgerufen wird. Stellen Sie sicher, dass Sie in Ihrer .env-Datei GENESIS_JWT_COOKIE_ALLOW_HTTP auf true setzen, oder noch besser – verwenden Sie HTTPS, um auf die Anwendung zuzugreifen.",
       "incorrectUsernameOrPassword": "Anmeldung fehlgeschlagen, Benutzername und/oder Passwort ungültig.",
-      "tooManyFailedAttempts": "Zu viele fehlgeschlagene Anmeldeversuche, bitte versuchen Sie es in {duration} erneut."
+      "tooManyFailedAttempts": "Zu viele fehlgeschlagene Anmeldeversuche, bitte versuchen Sie es in {duration} erneut.",
+      "sessionExpired": "Sitzung abgelaufen. Bitte melden Sie sich erneut als {user} an, um Ihre Änderungen zu synchronisieren."
     },
     "admin": {
       "settings": "Admin-Einstellungen",

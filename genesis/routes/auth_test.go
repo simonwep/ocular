@@ -6,8 +6,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/simonwep/genesis/core"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func loginUser(t *testing.T) string {
@@ -116,6 +118,26 @@ func TestReLogin(t *testing.T) {
 	})
 }
 
+func TestExpiredTokenCannotBeRenewed(t *testing.T) {
+	core.ResetDatabase()
+	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, core.JWTClaim{
+		User: "foo",
+		RegisteredClaims: jwt.RegisteredClaims{
+			ID:        "expired-session",
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(-time.Minute)),
+		},
+	}).SignedString(core.Config.JWTSecret)
+	require.NoError(t, err)
+
+	tryAuthorizedGet("/data", AuthorizedConfig{
+		Token: cookieName + "=" + token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusUnauthorized, response.Code)
+			assert.Empty(t, response.Header().Get("Set-Cookie"))
+		},
+	})
+}
+
 func TestLoginRateLimitExistingUser(t *testing.T) {
 	core.ResetDatabase()
 
@@ -157,7 +179,7 @@ func TestLoginLockResetsAfterSuccessAndDurationProgression(t *testing.T) {
 	maxLoginAttempts := int(core.Config.LoginMaxAttempts)
 
 	// Fail until first lock
-	for i := 0; i < maxLoginAttempts; i++ {
+	for range maxLoginAttempts {
 		tryUnauthorizedPost("/login", UnauthorizedBodyConfig{
 			Body: "{\"user\": \"foo\", \"password\": \"wrong\"}",
 			Handler: func(response *httptest.ResponseRecorder) {
@@ -214,7 +236,7 @@ func TestLoginLockResetsAfterSuccessAndDurationProgression(t *testing.T) {
 		},
 	})
 
-	for i := 0; i < maxLoginAttempts; i++ {
+	for range maxLoginAttempts {
 		tryUnauthorizedPost("/login", UnauthorizedBodyConfig{
 			Body: "{\"user\": \"foo\", \"password\": \"wrong\"}",
 			Handler: func(response *httptest.ResponseRecorder) {
