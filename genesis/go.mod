@@ -4,6 +4,7 @@ go 1.26.0
 
 require (
 	github.com/dgraph-io/badger/v4 v4.9.6
+	github.com/evanphx/json-patch/v5 v5.9.11
 	github.com/gin-gonic/gin v1.12.0
 	github.com/go-playground/validator/v10 v10.30.4
 	github.com/golang-jwt/jwt/v5 v5.3.1

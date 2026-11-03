@@ -39,10 +39,11 @@ type AppConfig struct {
 
 var Config = func() AppConfig {
 	config := AppConfig{
-		DbPath:             resolvePath(env("GENESIS_DB_PATH")),
-		BaseUrl:            env("GENESIS_BASE_URL"),
-		JWTSecret:          []byte(env("GENESIS_JWT_SECRET")),
-		JWTExpiration:      time.Duration(parseInt(env("GENESIS_JWT_TOKEN_EXPIRATION"))) * time.Minute,
+		DbPath:    resolvePath(env("GENESIS_DB_PATH")),
+		BaseUrl:   env("GENESIS_BASE_URL"),
+		JWTSecret: []byte(env("GENESIS_JWT_SECRET")),
+		//JWTExpiration:      time.Duration(parseInt(env("GENESIS_JWT_TOKEN_EXPIRATION"))) * time.Minute,
+		JWTExpiration:      5 * time.Second,
 		JWTCookieAllowHTTP: env("GENESIS_JWT_COOKIE_ALLOW_HTTP") == "true",
 		AppBuildVersion:    Version,
 		AppBuildDate:       BuildDate,
