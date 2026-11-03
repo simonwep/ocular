@@ -154,6 +154,12 @@ func TestInvalidKeysAllEndpoints(t *testing.T) {
 			Handler: expectBadRequest,
 		})
 
+		tryAuthorizedPatch(path, AuthorizedBodyConfig{
+			Body:    `[{"op":"add","path":"/hello","value":"world"}]`,
+			Token:   token,
+			Handler: expectBadRequest,
+		})
+
 		tryAuthorizedGet(path, AuthorizedConfig{
 			Token:   token,
 			Handler: expectBadRequest,
@@ -164,6 +170,178 @@ func TestInvalidKeysAllEndpoints(t *testing.T) {
 			Handler: expectBadRequest,
 		})
 	}
+}
+
+func TestPatchData(t *testing.T) {
+	token := loginUser(t)
+
+	tryAuthorizedPost("/data/patch", AuthorizedBodyConfig{
+		Body:  `{"name":"old","items":[1,2],"nested":{"keep":true}}`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+		},
+	})
+
+	tryAuthorizedPatch("/data/patch", AuthorizedBodyConfig{
+		Body: `[
+			{"op":"replace","path":"/name","value":"new"},
+			{"op":"add","path":"/items/-","value":3},
+			{"op":"remove","path":"/nested/keep"},
+			{"op":"add","path":"/nested/added","value":"yes"},
+			{"op":"copy","from":"/name","path":"/copied"},
+			{"op":"move","from":"/copied","path":"/moved"},
+			{"op":"test","path":"/moved","value":"new"}
+		]`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+		},
+	})
+
+	tryAuthorizedGet("/data/patch", AuthorizedConfig{
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+			assert.JSONEq(t, `{"name":"new","items":[1,2,3],"nested":{"added":"yes"},"moved":"new"}`, response.Body.String())
+		},
+	})
+}
+
+func TestPatchDataCreatesMissingKeyFromEmptyObject(t *testing.T) {
+	token := loginUser(t)
+
+	tryAuthorizedPatch("/data/new", AuthorizedBodyConfig{
+		Body:  `[{"op":"add","path":"/created","value":{"nested":true}},{"op":"add","path":"/created/also","value":42}]`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+		},
+	})
+
+	tryAuthorizedGet("/data/new", AuthorizedConfig{
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+			assert.JSONEq(t, `{"created":{"nested":true,"also":42}}`, response.Body.String())
+		},
+	})
+}
+
+func TestPatchDataCreatesMissingKeyForEmptyPatch(t *testing.T) {
+	token := loginUser(t)
+
+	tryAuthorizedPatch("/data/new", AuthorizedBodyConfig{
+		Body:  `[]`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+		},
+	})
+
+	tryAuthorizedGet("/data/new", AuthorizedConfig{
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+			assert.Equal(t, "{}", response.Body.String())
+		},
+	})
+}
+
+func TestPatchDataFailureDoesNotPersistChanges(t *testing.T) {
+	token := loginUser(t)
+
+	tryAuthorizedPost("/data/atomic", AuthorizedBodyConfig{
+		Body:  `{"value":1}`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+		},
+	})
+
+	tryAuthorizedPatch("/data/atomic", AuthorizedBodyConfig{
+		Body:  `[{"op":"replace","path":"/value","value":2},{"op":"remove","path":"/missing"}]`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusBadRequest, response.Code)
+		},
+	})
+
+	tryAuthorizedGet("/data/atomic", AuthorizedConfig{
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+			assert.JSONEq(t, `{"value":1}`, response.Body.String())
+		},
+	})
+}
+
+func TestPatchDataResultTooBig(t *testing.T) {
+	token := loginUser(t)
+	value := strings.Repeat("x", 600)
+
+	tryAuthorizedPost("/data/size", AuthorizedBodyConfig{
+		Body:  `{"value":"` + value + `"}`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+		},
+	})
+
+	tryAuthorizedPatch("/data/size", AuthorizedBodyConfig{
+		Body:  `[{"op":"add","path":"/another","value":"` + value + `"}]`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusRequestEntityTooLarge, response.Code)
+		},
+	})
+
+	tryAuthorizedGet("/data/size", AuthorizedConfig{
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+			assert.JSONEq(t, `{"value":"`+value+`"}`, response.Body.String())
+		},
+	})
+}
+
+func TestInvalidJSONPatches(t *testing.T) {
+	token := loginUser(t)
+
+	patches := []string{
+		``,
+		`{}`,
+		`[{"op":"replace","path":"/missing","value":1}]`,
+		`[{"op":"unsupported","path":"/foo","value":1}]`,
+		`[{"op":"test","path":"/foo","value":1}]`,
+	}
+
+	for _, body := range patches {
+		tryAuthorizedPatch("/data/new", AuthorizedBodyConfig{
+			Body:  body,
+			Token: token,
+			Handler: func(response *httptest.ResponseRecorder) {
+				assert.Equal(t, http.StatusBadRequest, response.Code, "body: %s", body)
+			},
+		})
+	}
+
+	tryAuthorizedPatch("/data/new", AuthorizedBodyConfig{
+		Body:  `[{"op":"add","path":"/foo","value":1}`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusBadRequest, response.Code)
+		},
+	})
+}
+
+func TestPatchDataUnauthorized(t *testing.T) {
+	tryRequest("/data/foo", "PATCH", `[{"op":"add","path":"/hello","value":"world"}]`, AuthorizedConfig{
+		Token: "",
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusUnauthorized, response.Code)
+		},
+	})
 }
 
 func TestDeleteData(t *testing.T) {
@@ -197,6 +375,13 @@ func TestDeleteData(t *testing.T) {
 		Handler: func(response *httptest.ResponseRecorder) {
 			assert.Equal(t, http.StatusNoContent, response.Code)
 		},
+	})
+}
+
+func tryAuthorizedPatch(url string, config AuthorizedBodyConfig) {
+	tryRequest(url, "PATCH", config.Body, AuthorizedConfig{
+		Token:   config.Token,
+		Handler: config.Handler,
 	})
 }
 

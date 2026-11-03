@@ -33,6 +33,7 @@ func SetupRoutes() *gin.Engine {
 
 	// Data endpoints
 	router.POST("/data/:key", middleware.LimitBodySize(core.Config.AppDataMaxSize), middleware.MinifyJson(), SetData)
+	router.PATCH("/data/:key", middleware.LimitBodySize(core.Config.AppDataMaxSize), middleware.MinifyJson(), PatchData)
 	router.DELETE("/data/:key", DeleteData)
 	router.GET("/data/:key", DataByKey)
 	router.GET("/data", Data)
