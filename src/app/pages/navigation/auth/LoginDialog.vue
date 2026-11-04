@@ -16,7 +16,7 @@
     >
       <Alert v-if="INSECURE_CONNECTION" :text="t('navigation.auth.loginNotAvailableDueToHttp')" type="warning" />
       <Alert
-        v-if="user"
+        v-if="user && !isLoading"
         testId="session-expired"
         :text="t('navigation.auth.sessionExpired', { user: user.name })"
         type="warning"
@@ -86,7 +86,7 @@ const props = defineProps<{
 const time = useTimestamp();
 const { t, locale } = useI18n();
 const { login, user } = useStorage();
-const { state, executeImmediate } = useAsyncState(login, undefined, {
+const { state, isLoading, executeImmediate } = useAsyncState(login, undefined, {
   immediate: false
 });
 

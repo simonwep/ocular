@@ -1,14 +1,16 @@
 import type { Budget, BudgetGroup, BudgetYear, DataState } from '@store/state/types.ts';
-import type { ComputedRef, Ref } from 'vue';
+import type { StorageMutate } from '@store/storage/useStorage.ts';
+import type { ComputedRef, DeepReadonly, Ref } from 'vue';
 
 export type UndoFn = () => void;
 
 export type ActionOptions = {
-  state: DataState;
+  state: DeepReadonly<DataState>;
   currentYear: Ref<number>;
   undoFunctions: UndoFn[];
-  budgetYear: ComputedRef<BudgetYear>;
-  budgetGroups: ComputedRef<BudgetGroup[]>;
-  getBudget: (id: string) => Budget | undefined;
-  getBudgetGroup: (id: string) => BudgetGroup | undefined;
+  mutate: StorageMutate;
+  budgetYear: ComputedRef<DeepReadonly<BudgetYear>>;
+  budgetGroups: ComputedRef<DeepReadonly<BudgetGroup[]>>;
+  getBudget: (id: string) => DeepReadonly<Budget> | undefined;
+  getBudgetGroup: (id: string) => DeepReadonly<BudgetGroup> | undefined;
 };

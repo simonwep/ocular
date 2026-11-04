@@ -264,6 +264,31 @@ func SetDataForUser(name string, key string, data []byte) error {
 	return txn.Commit()
 }
 
+func UpdateDataForUser(name string, key string, update func([]byte) ([]byte, error)) error {
+	dbKey := buildUserDataKey(name, key)
+
+	return database.Update(func(txn *badger.Txn) error {
+		item, err := txn.Get(dbKey)
+		var data []byte
+
+		if err != nil {
+			if !errors.Is(err, badger.ErrKeyNotFound) {
+				return err
+			}
+			data = []byte("{}")
+		} else if data, err = item.ValueCopy(nil); err != nil {
+			return err
+		}
+
+		updated, err := update(data)
+		if err != nil {
+			return err
+		}
+
+		return txn.Set(dbKey, updated)
+	})
+}
+
 func DeleteDataFromUser(name string, key string) error {
 	txn := database.NewTransaction(true)
 	defer txn.Discard()

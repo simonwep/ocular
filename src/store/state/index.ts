@@ -11,7 +11,7 @@ import { useStorage } from '@store/storage/useStorage.ts';
 import { sum } from '@utils/array/array.ts';
 import { readFile } from '@utils/read-file/readFile.ts';
 import { createGlobalState, watchImmediate } from '@vueuse/core';
-import { computed, reactive, readonly, shallowReactive, shallowRef } from 'vue';
+import { computed, readonly, shallowReactive, shallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import type { DataState, DataStates } from './types';
 import type { AvailableLocale } from '@i18n/index';
@@ -25,7 +25,12 @@ export const useDataStore = createGlobalState(() => {
   const { t } = useI18n();
 
   const base = migrateApplicationState();
-  const state = reactive<DataState>(generateTemplateData(base.currency, base.locale, t));
+
+  const { mutate, replace, state } = storage.sync<DataState, DataStates>({
+    key: 'data',
+    init: generateTemplateData(base.currency, base.locale, t),
+    migrate: migrateApplicationState
+  });
 
   const budgetYear = computed(() => state.years.find((v) => v.year === currentYear.value)!);
   const budgetGroups = computed(() => [...budgetYear.value.expenses, ...budgetYear.value.income]);
@@ -38,27 +43,21 @@ export const useDataStore = createGlobalState(() => {
     ([locale, currency]) => changeLocale(locale, { currency })
   );
 
-  storage.sync<DataState, DataStates>({
-    name: 'data',
-    state: () => state,
-    clear: () => {
-      Object.assign(state, generateTemplateData(state.currency, state.locale, t));
-      currentYear.value = state.years[0].year;
-    },
-    push: (data) => {
-      Object.assign(state, migrateApplicationState(data));
-
-      currentYear.value = state.years.some((v) => v.year === time.year.value)
-        ? time.year.value
-        : (state.years.at(-1)?.year ?? time.year.value);
+  watchImmediate(
+    () => state.years.map((year) => year.year),
+    (years) => {
+      if (!years.includes(currentYear.value)) {
+        currentYear.value = years.includes(time.year.value) ? time.year.value : (years.at(-1) ?? time.year.value);
+      }
     }
-  });
+  );
 
   const actionOptions: ActionOptions = {
     state,
     currentYear,
     budgetGroups,
     undoFunctions,
+    mutate,
     budgetYear,
     getBudgetGroup,
     getBudget
@@ -97,26 +96,30 @@ export const useDataStore = createGlobalState(() => {
 
     undoLastAction: () => undoFunctions.pop()?.(),
 
-    changeLocale: (locale: AvailableLocale) => (state.locale = locale),
+    changeLocale: (locale: AvailableLocale) => mutate({ op: 'replace', path: '/locale', value: locale }),
 
-    changeCurrency: (currency: string) => (state.currency = currency),
+    changeCurrency: (currency: string) => mutate({ op: 'replace', path: '/currency', value: currency }),
 
     serialize: (): string => JSON.stringify(state),
 
     deserialize: async (data: File | DataStates) => {
+      let migrated: DataState;
+
       if (data instanceof File) {
-        await readFile(data)
+        migrated = await readFile(data)
           .then(JSON.parse)
-          .then((content: DataStates) => Object.assign(state, migrateApplicationState(content)));
+          .then((content: DataStates) => migrateApplicationState(content));
       } else {
-        Object.assign(state, migrateApplicationState(data));
+        migrated = migrateApplicationState(data);
       }
 
-      if (!state.years.length) {
-        state.years.push(generateBudgetYear({ year: time.year.value }));
-      }
+      const imported: DataState = {
+        ...migrated,
+        years: migrated.years.length ? migrated.years : [generateBudgetYear({ year: time.year.value })]
+      };
 
-      currentYear.value = state.years.at(-1)!.year;
+      replace(imported);
+      currentYear.value = imported.years.at(-1)!.year;
     },
 
     ...yearActions(actionOptions),
