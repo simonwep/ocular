@@ -71,22 +71,35 @@ func PatchData(c *gin.Context) {
 	} else if patch, err := jsonpatch.DecodePatch(body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "body must be a valid JSON patch"})
 	} else {
-		data, err := core.GetDataFromUser(user.Name, key)
-		if errors.Is(err, badger.ErrKeyNotFound) {
-			data = []byte("{}")
-		} else if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to retrieve unit of data"})
-			core.Logger.Error("failed to retrieve unit of data", zap.Error(err))
-			return
-		}
+		options := jsonpatch.NewApplyOptions()
+		options.AccumulatedCopySizeLimit = core.Config.AppDataMaxSize
 
-		if patched, err := patch.Apply(data); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "failed to apply JSON patch"})
-		} else if int64(len(patched)) > core.Config.AppDataMaxSize {
+		var errPatchedDataTooLarge = errors.New("patched data exceeds configured maximum size")
+		var patchErr error
+
+		err := core.UpdateDataForUser(user.Name, key, func(data []byte) ([]byte, error) {
+			patchErr = nil
+			patched, err := patch.ApplyWithOptions(data, options)
+
+			if err != nil {
+				patchErr = err
+				return nil, err
+			}
+
+			if int64(len(patched)) > core.Config.AppDataMaxSize {
+				return nil, errPatchedDataTooLarge
+			}
+
+			return patched, nil
+		})
+
+		if errors.Is(err, errPatchedDataTooLarge) {
 			c.JSON(http.StatusRequestEntityTooLarge, gin.H{"error": "request entity too large, limit is " + strconv.FormatInt(core.Config.AppDataMaxSize, 10) + " kilobytes"})
-		} else if err := core.SetDataForUser(user.Name, key, patched); err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to set data"})
-			core.Logger.Error("failed to set data", zap.Error(err))
+		} else if patchErr != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "failed to apply JSON patch: " + patchErr.Error()})
+		} else if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update data"})
+			core.Logger.Error("failed to update data", zap.Error(err))
 		} else {
 			c.Status(http.StatusOK)
 		}

@@ -32,6 +32,18 @@ export type GenesisSetDataByKeyError = GenesisBaseError;
 export type GenesisSetDataByKeyResponse = GenesisResponse<undefined, GenesisSetDataByKeyError>;
 export type GenesisSetDataByKeyBody = unknown;
 
+export type GenesisJsonPatchOperation<TValue = unknown> =
+  | { op: 'add'; path: string; value: TValue }
+  | { op: 'replace'; path: string; value: TValue }
+  | { op: 'test'; path: string; value: TValue }
+  | { op: 'remove'; path: string }
+  | { op: 'move'; from: string; path: string }
+  | { op: 'copy'; from: string; path: string };
+
+export type GenesisPatchDataByKeyError = GenesisBaseError;
+export type GenesisPatchDataByKeyResponse = GenesisResponse<undefined, GenesisPatchDataByKeyError>;
+export type GenesisPatchDataByKeyBody<TValue = unknown> = GenesisJsonPatchOperation<TValue>[];
+
 export type GenesisDeleteDataByKeyError = GenesisBaseError;
 export type GenesisDeleteDataByKeyResponse = GenesisResponse<undefined, GenesisDeleteDataByKeyError>;
 
@@ -127,6 +139,16 @@ export const createClient = (opt: GenesisStoreOptions) => {
       body: JSON.stringify(data)
     });
 
+  const patchDataByKey = async <TValue>(
+    key: string,
+    patches: GenesisPatchDataByKeyBody<TValue>
+  ): Promise<GenesisPatchDataByKeyResponse> =>
+    await request<undefined, GenesisPatchDataByKeyError>(`${opt.baseUrl}/data/${key}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(patches)
+    });
+
   const deleteDataByKey = async (key: string): Promise<GenesisDeleteDataByKeyResponse> =>
     await request<undefined, GenesisDeleteDataByKeyError>(`${opt.baseUrl}/data/${key}`, { method: 'DELETE' });
 
@@ -157,6 +179,7 @@ export const createClient = (opt: GenesisStoreOptions) => {
     getData,
     getDataByKey,
     setDataByKey,
+    patchDataByKey,
     deleteDataByKey,
     getAllUsers,
     createUser,

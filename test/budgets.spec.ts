@@ -216,8 +216,8 @@ test('Undo destructive actions', async ({ page }) => {
   await expect(page.getByTestId('income-amount')).toHaveText('€96,000');
 
   await page.getByTestId('undo-button').click();
-  await expect(page.getByTestId('group-0-budget-1-name')).toHaveValue('Other');
-  await expect(page.getByTestId('group-0-budget-2-name')).toHaveValue('Bonus');
+  await expect(page.getByTestId('group-0-budget-1-name')).toHaveValue('Bonus');
+  await expect(page.getByTestId('group-0-budget-2-name')).toHaveValue('Other');
   await expect(page.getByTestId('income-amount')).toHaveText('€99,000');
 
   await page.getByTestId('undo-button').click();

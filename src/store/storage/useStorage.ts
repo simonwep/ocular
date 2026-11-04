@@ -1,8 +1,9 @@
 import { createClient } from '@store/genesis/genesis.sdk.ts';
-import { debounce } from '@utils/debounce/debounce.ts';
-import { createGlobalState, watchImmediate } from '@vueuse/core';
-import { computed, nextTick, readonly, ref, shallowReactive, shallowRef, watch } from 'vue';
-import type { GenesisUser } from '@store/genesis/genesis.sdk.ts';
+import { createLogger } from '@utils/logger/logger.ts';
+import { createGlobalState, watchDebounced, watchImmediate } from '@vueuse/core';
+import { applyPatch } from 'rfc6902';
+import { computed, nextTick, reactive, readonly, ref, shallowReactive, shallowRef, watch } from 'vue';
+import type { GenesisJsonPatchOperation, GenesisUser } from '@store/genesis/genesis.sdk.ts';
 import type { MigratableState } from 'yuppee';
 
 const { OCULAR_GENESIS_HOST } = import.meta.env;
@@ -13,21 +14,24 @@ export type StorageAuthenticationState =
   'idle' | 'authenticated' | 'syncing' | 'error' | 'retrying' | 'push-failed' | 'session-expired';
 
 export type StorageSync<T extends MigratableState, P extends MigratableState = T> = {
-  name: string;
-  state(): T;
-  clear(): void;
-  push(data: P): void;
+  key: string;
+  init: T;
+  migrate(data: P): T;
 };
 
+export type StorageMutate = (...changes: GenesisJsonPatchOperation[]) => void;
+
 export const useStorage = createGlobalState(() => {
-  const authenticatedUser = shallowRef<GenesisUser | undefined>();
+  const globalUser = shallowRef<GenesisUser | undefined>();
   const syncsFailed = shallowReactive<Set<() => Promise<void>>>(new Set());
   const pushFailed = ref(false);
   const syncsActive = ref(0);
   const sessionExpired = ref(false);
 
+  const logger = createLogger('storage');
+
   const logout = () => {
-    authenticatedUser.value = undefined;
+    globalUser.value = undefined;
   };
 
   const store = createClient({
@@ -41,112 +45,189 @@ export const useStorage = createGlobalState(() => {
     }
   });
 
-  const login = async (user?: string, password?: string) =>
-    store.login(user && password ? { user, password } : undefined).then((res) => {
-      if (res.data) {
-        authenticatedUser.value = res.data;
-        sessionExpired.value = false;
-      }
-
-      return res;
-    });
-
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
     const initializing = ref(true);
     const errored = ref(false);
     const syncing = ref(false);
-    let loadedUser: GenesisUser | undefined;
 
-    const push = async () => {
-      if (initializing.value) {
+    const state = reactive(config.init) as T;
+    const defaultState = JSON.parse(JSON.stringify(config.init)) as T;
+    const localUser = shallowRef<GenesisUser | undefined>();
+    const pendingChanges = shallowReactive<GenesisJsonPatchOperation[]>([]);
+    const initialState = shallowRef<T>();
+
+    let pushing = false;
+
+    const resetLocalState = () => {
+      initializing.value = true;
+      initialState.value = undefined;
+      pendingChanges.length = 0;
+      errored.value = false;
+      replace(defaultState, false);
+    };
+
+    const pushToRemote = async () => {
+      if (initializing.value || !globalUser.value) {
         syncing.value = false;
         return;
       }
 
+      if (pushing || (!initialState.value && !pendingChanges.length)) {
+        return;
+      }
+
+      pushing = true;
       syncing.value = true;
 
-      await store
-        .setDataByKey(config.name, config.state())
-        .then(({ error }) => (errored.value = !!error))
-        .finally(() => (syncing.value = false));
+      try {
+        if (initialState.value) {
+          const nextState = initialState.value;
+          logger.info(`Pushing initial state for user ${globalUser.value.name}...`);
+          const { error } = await store.setDataByKey(config.key, nextState);
+          errored.value = !!error;
+
+          if (errored.value) {
+            logger.error(`Failed to push initial state for user ${globalUser.value.name}`, error);
+            return;
+          }
+
+          if (initialState.value === nextState) initialState.value = undefined;
+          logger.info(`Initial state pushed for user ${globalUser.value.name}`);
+        }
+
+        if (pendingChanges.length) {
+          logger.info(`Pushing ${pendingChanges.length} pending changes for user ${globalUser.value.name}...`);
+          const changes = pendingChanges.slice();
+          const { error } = await store.patchDataByKey(config.key, changes);
+          errored.value = !!error;
+
+          if (error) {
+            logger.error(`Failed to push pending changes for user ${globalUser.value.name}`, error);
+            return;
+          }
+
+          pendingChanges.splice(0, changes.length);
+          logger.info(`Pending changes pushed for user ${globalUser.value.name}`);
+        }
+      } finally {
+        pushing = false;
+        syncing.value = false;
+
+        // If there are still pending changes or initial state, try to push again
+        if (!errored.value && (initialState.value || pendingChanges.length)) {
+          void pushToRemote();
+        }
+      }
     };
 
-    const change = debounce(push, 1000);
+    watchDebounced(pendingChanges, pushToRemote, { debounce: 1000 });
+
+    watch([initialState, initializing], ([state, init]) => {
+      if (state && !init) void pushToRemote();
+    });
+
+    const mutate: StorageMutate = (...changes) => {
+      if (!changes.length) return;
+      const errors = applyPatch(state, changes);
+
+      if (errors.some(Boolean)) throw errors;
+      if (!globalUser.value || initializing.value) return;
+
+      logger.info(`Mutating storage for user ${globalUser.value.name} with ${changes.length} changes...`);
+      pendingChanges.push(...changes);
+      syncing.value = true;
+    };
+
+    const replace = (next: T, persist = true) => {
+      Object.assign(state, next);
+
+      if (persist && globalUser.value) {
+        pendingChanges.length = 0;
+        initialState.value = next;
+      }
+    };
 
     // initial sync on log in
-    watchImmediate([authenticatedUser, initializing], async ([user, init]) => {
+    watchImmediate([globalUser, initializing], async ([user, init]) => {
       if (!user || !init) return;
+      logger.info(`Initializing storage for user ${user.name}...`);
+      pendingChanges.length = 0;
 
       try {
-        const { data, error } = await store.getDataByKey<P>(config.name);
-
-        if (user !== authenticatedUser.value) return;
+        const { data, error } = await store.getDataByKey<P>(config.key);
+        if (user !== globalUser.value) return;
 
         if (error) {
           logout();
-        } else if (data) {
-          config.push(data);
+        } else if (data !== undefined) {
+          const migrated = config.migrate(data);
+          replace(migrated, data.version !== migrated.version);
+        } else {
+          initialState.value = state;
         }
 
-        if (!error && user === authenticatedUser.value) {
-          loadedUser = user;
+        if (!error && user === globalUser.value) {
+          localUser.value = user;
         }
       } catch {
         logout();
         pushFailed.value = true;
       } finally {
-        if (user === authenticatedUser.value || !authenticatedUser.value) {
+        if (user === globalUser.value || !globalUser.value) {
           await nextTick(() => (initializing.value = false));
         }
       }
     });
 
+    // clear on user change
     watch(
-      authenticatedUser,
-      (user) => {
-        if (user && loadedUser && user.name !== loadedUser.name) {
-          initializing.value = true;
-          errored.value = false;
-          config.clear();
+      [globalUser, localUser],
+      ([user, syncUser]) => {
+        if (user && syncUser && user.name !== syncUser.name) {
+          logger.info(`User changed from ${syncUser.name} to ${user.name}, clearing storage...`);
+          resetLocalState();
         }
       },
       { flush: 'sync' }
     );
 
-    // push data
-    watch(
-      [authenticatedUser, config.state],
-      ([user]) => {
-        if (user && !initializing.value) {
-          syncing.value = true;
-          void change();
-        }
-      },
-      { immediate: true, deep: true }
-    );
-
     // clear on log out
-    watch([authenticatedUser, syncing, initializing], ([user, syncing, init]) => {
+    watch([globalUser, syncing, initializing], ([user, syncing, init]) => {
       if (!user && !syncing && !init) {
-        initializing.value = true;
-        config.clear();
+        logger.info(`User logged out, clearing storage...`);
+        resetLocalState();
       }
     });
 
     // forward syncing status
     watch(syncing, (value) => (syncsActive.value += value ? 1 : -1));
-    watch(errored, (value) => syncsFailed[value ? 'add' : 'delete'](push));
+    watch(errored, (value) => syncsFailed[value ? 'add' : 'delete'](pushToRemote));
+
+    return { mutate, replace, state: readonly(state) };
   };
 
   const retry = async () => {
     if (syncsFailed.size) {
+      logger.info(`Retrying ${syncsFailed.size} failed syncs...`);
       await Promise.allSettled([...syncsFailed].map((fn) => fn()));
     }
   };
 
+  const login = async (user?: string, password?: string) =>
+    store.login(user && password ? { user, password } : undefined).then((res) => {
+      if (res.data) {
+        globalUser.value = res.data;
+        sessionExpired.value = false;
+        retry(); // retry failed syncs on successful login
+      }
+
+      return res;
+    });
+
   // clear on log out
-  watch([authenticatedUser, syncsActive], ([user, syncsActive]) => {
+  watch([globalUser, syncsActive], ([user, syncsActive]) => {
     if (!user && !syncsActive) {
+      logger.info(`User logged out, clearing storage...`);
       void store.logout();
     }
   });
@@ -158,7 +239,7 @@ export const useStorage = createGlobalState(() => {
       return 'push-failed';
     } else if (syncsFailed.size) {
       return syncsActive.value ? 'retrying' : 'error';
-    } else if (authenticatedUser.value) {
+    } else if (globalUser.value) {
       return syncsActive.value ? 'syncing' : 'authenticated';
     } else {
       return 'idle';
@@ -167,12 +248,13 @@ export const useStorage = createGlobalState(() => {
 
   // Check if user is logged in
   if (OCULAR_GENESIS_HOST) {
+    logger.info(`Checking if user is logged in...`);
     void login();
   }
 
   return {
     status,
-    user: readonly(authenticatedUser),
+    user: readonly(globalUser),
     getAllUsers: store.getAllUsers,
     deleteUser: store.deleteUser,
     createUser: store.createUser,
