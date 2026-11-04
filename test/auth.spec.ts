@@ -369,3 +369,39 @@ test('Force user to update app if data is ahead of client', async ({ page }) => 
   await expect(page.getByTestId('ending-balance-value')).toHaveText('€36,000');
   await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
 });
+
+test('Migrate old versions upon page load', async ({ page }) => {
+  const user = await createNewUserAndLogin(page);
+  const client = await useClient({ user: user.name, password: user.password });
+
+  await page.getByTestId('navigation-income').click();
+  await page.getByTestId('group-0-budget-0-0').focus();
+  await page.getByTestId('group-0-budget-0-0').fill('3000');
+  await page.getByTestId('cell-menu-action-fill-row').click();
+  await expect(page.getByTestId('income-amount')).toHaveText('€36,000');
+
+  await page.getByTestId('navigation-dashboard').click();
+  await expect(page.getByTestId('ending-balance-value')).toHaveText('€36,000');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  // Simulate data being ahead of client by updating the version in the database
+  const { data: currentData } = (await client.getDataByKey('data')) as {
+    data: { years: { income: unknown; expenses: unknown }[] };
+  };
+
+  await client.setDataByKey('data', {
+    version: 1,
+    income: currentData.years[0].income,
+    expenses: currentData.years[0].expenses
+  });
+
+  await page.reload();
+  await page.getByTestId('navigation-income').click();
+  await expect(page.getByTestId('ending-balance-value')).toHaveText('€36,000');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  // Verify no data has been corrupted and user can retry
+  const { data } = (await client.getDataByKey('data')) as { data: { version: number; years: unknown[] } };
+  expect(data.version).toBe(3);
+  expect(data.years).toHaveLength(1);
+});

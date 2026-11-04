@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 test.beforeEach(({ page }) => assertNoErrors(page));
 
-test('Show snowflakes during december', async ({ browser }) => {
+test('Show snowflakes during December', async ({ browser }) => {
   const context = await browser.newContext({ reducedMotion: 'no-preference' });
   const page = await context.newPage();
 

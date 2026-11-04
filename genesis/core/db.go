@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/signal"
 	"strings"
+	"sync"
 	"syscall"
 	"time"
 
@@ -26,6 +27,7 @@ const (
 var (
 	ErrUserAlreadyExists = errors.New("a user with this name already exists")
 	ErrUserNotFound      = errors.New("user not found")
+	mutationMutex        sync.Mutex // Used to prevent concurrent mutations to the database that could cause race conditions
 )
 
 // dummyHash is used to equalize timing for non-existent users in
@@ -229,6 +231,9 @@ func GetAllUsers() ([]*PublicUser, error) {
 }
 
 func DeleteUser(name string) error {
+	mutationMutex.Lock()
+	defer mutationMutex.Unlock()
+
 	txn := database.NewTransaction(true)
 	defer txn.Discard()
 
@@ -254,6 +259,9 @@ func DeleteUser(name string) error {
 }
 
 func SetDataForUser(name string, key string, data []byte) error {
+	mutationMutex.Lock()
+	defer mutationMutex.Unlock()
+
 	txn := database.NewTransaction(true)
 	defer txn.Discard()
 
@@ -264,7 +272,38 @@ func SetDataForUser(name string, key string, data []byte) error {
 	return txn.Commit()
 }
 
+func UpdateDataForUser(name string, key string, update func([]byte) ([]byte, error)) error {
+	dbKey := buildUserDataKey(name, key)
+
+	mutationMutex.Lock()
+	defer mutationMutex.Unlock()
+
+	return database.Update(func(txn *badger.Txn) error {
+		item, err := txn.Get(dbKey)
+		var data []byte
+
+		if err != nil {
+			if !errors.Is(err, badger.ErrKeyNotFound) {
+				return err
+			}
+			data = []byte("{}")
+		} else if data, err = item.ValueCopy(nil); err != nil {
+			return err
+		}
+
+		updated, err := update(data)
+		if err != nil {
+			return err
+		}
+
+		return txn.Set(dbKey, updated)
+	})
+}
+
 func DeleteDataFromUser(name string, key string) error {
+	mutationMutex.Lock()
+	defer mutationMutex.Unlock()
+
 	txn := database.NewTransaction(true)
 	defer txn.Discard()
 

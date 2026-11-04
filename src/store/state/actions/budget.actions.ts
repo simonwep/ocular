@@ -1,77 +1,101 @@
-import { clear, moveInArrays, remove } from '@utils/array/array.ts';
+import { findBudgetGroupLocation, findBudgetLocation, moveOperation } from './action.helpers.ts';
+import { clear } from '@utils/array/array.ts';
 import { uuid } from '@utils/uuid/uuid.ts';
 import type { ActionOptions } from '@store/state/actions/action.types.ts';
+import type { Budget } from '@store/state/types.ts';
 
 export const generateBudget = (name: string) => ({ id: uuid(), name, values: new Array(12).fill(0) });
 
-export const budgetActions = ({ getBudgetGroup, budgetGroups, getBudget, undoFunctions }: ActionOptions) => ({
+export const budgetActions = ({ state, stack, mutate, year }: ActionOptions) => ({
   getBudget: (id: string) => {
-    for (const group of budgetGroups.value) {
-      const budget = group.budgets.find((v) => v.id === id);
-      if (budget) {
-        return [group, budget];
-      }
+    const location = findBudgetLocation(state, year.value, id);
+
+    if (location) {
+      return [location.group, location.budget];
     }
   },
 
   addBudget: (id: string, name: string) => {
-    getBudgetGroup(id)?.budgets.push(generateBudget(name));
+    const budget = generateBudget(name);
+    const location = findBudgetGroupLocation(state, year.value, id);
+    if (!location) return;
+
+    mutate({ op: 'add', path: `${location.path}/budgets/-`, value: budget });
   },
 
   setBudget: (id: string, month: number, amount: number) => {
-    const group = getBudget(id);
+    const location = findBudgetLocation(state, year.value, id);
+    if (!location) return;
 
-    if (group) {
-      group.values[month] = amount;
-      clear(undoFunctions);
-    }
+    clear(stack);
+    mutate({ op: 'replace', path: `${location.budgetPath}/values/${month}`, value: amount });
   },
 
   fillBudget: (id: string, amount: number, offset = 0) => {
-    const group = getBudget(id);
-    const oldValues = [...(group?.values ?? [])];
-    group?.values.fill(amount, offset);
+    const location = findBudgetLocation(state, year.value, id);
+    if (!location) return;
 
-    undoFunctions.push(() => {
-      if (group) {
-        group.values = oldValues;
+    const budget = [...location.budget.values];
+    const newValues = [...budget];
+    newValues.fill(amount, offset);
+
+    mutate({ op: 'replace', path: `${location.budgetPath}/values`, value: newValues });
+
+    stack.push(() => {
+      const location = findBudgetLocation(state, year.value, id);
+
+      if (location) {
+        mutate({ op: 'replace', path: `${location.budgetPath}/values`, value: budget });
       }
     });
   },
 
   setBudgetName: (id: string, name: string) => {
-    const group = getBudget(id);
+    const location = findBudgetLocation(state, year.value, id);
+    if (!location) return;
 
-    if (group) {
-      group.name = name;
-      clear(undoFunctions);
-    }
+    clear(stack);
+    mutate({ op: 'replace', path: `${location.budgetPath}/name`, value: name });
   },
 
   removeBudget: (id: string) => {
-    const allGroups = budgetGroups.value;
-    const targetGroup = allGroups.find((g) => g.budgets.find((v) => v.id === id));
-    const oldBudget = remove(targetGroup?.budgets ?? [], (v) => v.id === id);
+    const location = findBudgetLocation(state, year.value, id);
+    if (!location) return;
 
-    undoFunctions.push(() => {
-      if (oldBudget && targetGroup) {
-        targetGroup.budgets.push(oldBudget);
-      }
-    });
+    const budget = JSON.parse(JSON.stringify(location.budget)) as Budget;
+
+    mutate({ op: 'remove', path: location.budgetPath });
+    stack.push(() => mutate({ op: 'add', path: location.budgetPath, value: budget }));
   },
 
   moveBudget: (id: string, target: string, after?: boolean) => {
-    const budgets = budgetGroups.value.map((v) => v.budgets);
-    moveInArrays(budgets, id, target, after);
+    const source = findBudgetLocation(state, year.value, id);
+    const destination = findBudgetLocation(state, year.value, target);
+    if (!source || !destination || id === target) return;
+
+    mutate(
+      moveOperation(
+        `${source.path}/budgets`,
+        source.budgetIndex,
+        `${destination.path}/budgets`,
+        destination.budgetIndex,
+        after
+      )
+    );
   },
 
   moveBudgetIntoGroup: (id: string, target: string) => {
-    const sourceGroup = getBudgetGroup(id);
-    const budgetIndex = sourceGroup?.budgets.findIndex((v) => v.id === id) ?? -1;
-    const targetGroup = getBudgetGroup(target);
+    const source = findBudgetLocation(state, year.value, id);
+    const destination = findBudgetGroupLocation(state, year.value, target);
+    if (!source || !destination) return;
 
-    if (targetGroup && sourceGroup && budgetIndex !== -1) {
-      targetGroup.budgets.push(...sourceGroup.budgets.splice(budgetIndex, 1));
-    }
+    mutate(
+      moveOperation(
+        `${source.path}/budgets`,
+        source.budgetIndex,
+        `${destination.path}/budgets`,
+        destination.group.budgets.length
+      )
+    );
   }
 });

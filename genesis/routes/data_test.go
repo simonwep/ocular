@@ -1,10 +1,12 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -244,6 +246,59 @@ func TestPatchDataCreatesMissingKeyForEmptyPatch(t *testing.T) {
 		Handler: func(response *httptest.ResponseRecorder) {
 			assert.Equal(t, http.StatusOK, response.Code)
 			assert.Equal(t, "{}", response.Body.String())
+		},
+	})
+}
+
+func TestConcurrentPatchDataPreservesAllUpdates(t *testing.T) {
+	token := loginUser(t)
+	const patchCount = 16
+
+	tryAuthorizedPost("/data/concurrent", AuthorizedBodyConfig{
+		Body:  `{}`,
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+		},
+	})
+
+	statuses := make(chan int, patchCount)
+	var waitGroup sync.WaitGroup
+	for i := 0; i < patchCount; i++ {
+		waitGroup.Add(1)
+		go func(i int) {
+			defer waitGroup.Done()
+			tryAuthorizedPatch("/data/concurrent", AuthorizedBodyConfig{
+				Body:  fmt.Sprintf(`[{"op":"add","path":"/field%d","value":%d}]`, i, i),
+				Token: token,
+				Handler: func(response *httptest.ResponseRecorder) {
+					statuses <- response.Code
+				},
+			})
+		}(i)
+	}
+	waitGroup.Wait()
+	close(statuses)
+
+	for status := range statuses {
+		assert.Equal(t, http.StatusOK, status)
+	}
+
+	var expected strings.Builder
+	expected.WriteByte('{')
+	for i := 0; i < patchCount; i++ {
+		if i > 0 {
+			expected.WriteByte(',')
+		}
+		fmt.Fprintf(&expected, `"field%d":%d`, i, i)
+	}
+	expected.WriteByte('}')
+
+	tryAuthorizedGet("/data/concurrent", AuthorizedConfig{
+		Token: token,
+		Handler: func(response *httptest.ResponseRecorder) {
+			assert.Equal(t, http.StatusOK, response.Code)
+			assert.JSONEq(t, expected.String(), response.Body.String())
 		},
 	})
 }
