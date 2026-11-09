@@ -130,6 +130,15 @@ docker stack deploy -c compose.yml ocular
 
 Ocular should then be accessible under `http://localhost:3030` in your browser 🚀
 
+## Easypanel
+
+[Easypanel](https://easypanel.io) is a self-hosted Docker deployment platform, and Ocular has a one-click deployment template there. It deploys the same image with a persistent volume for `/data/genesis` already set up.
+
+[![Deploy on Easypanel][easypanel-btn]][easypanel-deploy]
+
+[easypanel-btn]: https://easypanel.io/img/deploy-on-easypanel-40.svg
+[easypanel-deploy]: https://easypanel.io/templates/ocular
+
 ## Using ocular over `http`
 
 > [!DANGER]
