@@ -1,12 +1,19 @@
 import { createClient } from '@store/genesis/genesis.sdk.ts';
+import { createBroadcastChannel } from '@utils/broadcast/broadcast.ts';
 import { createLogger } from '@utils/logger/logger.ts';
-import { createGlobalState, watchDebounced, watchImmediate } from '@vueuse/core';
+import { createGlobalState, useLocalStorage, watchDebounced, watchImmediate } from '@vueuse/core';
 import { applyPatch } from 'rfc6902';
 import { computed, nextTick, reactive, readonly, ref, shallowReactive, shallowRef, watch } from 'vue';
 import type { GenesisJsonPatchOperation, GenesisUser } from '@store/genesis/genesis.sdk.ts';
 import type { MigratableState } from 'yuppee';
 
 const { OCULAR_GENESIS_HOST } = import.meta.env;
+
+type StorageWorkerUpdate =
+  | { type: 'change'; payload: { key: string; userName: string; changes: GenesisJsonPatchOperation[] } }
+  | { type: 'replace'; payload: { key: string; userName: string; state: object } };
+
+const broadcast = createBroadcastChannel<StorageWorkerUpdate>('storage');
 
 export type Storage = ReturnType<typeof useStorage>;
 
@@ -22,17 +29,19 @@ export type StorageSync<T extends MigratableState, P extends MigratableState = T
 export type StorageMutate = (...changes: GenesisJsonPatchOperation[]) => void;
 
 export const useStorage = createGlobalState(() => {
-  const globalUser = shallowRef<GenesisUser | undefined>();
+  const globalUser = useLocalStorage<GenesisUser | undefined>('app/global-user', undefined, {
+    serializer: {
+      read: (value) => (value ? JSON.parse(value) : undefined),
+      write: (value) => (value ? JSON.stringify(value) : '')
+    }
+  });
+
+  const sessionExpired = useLocalStorage<boolean>('app/session-expired', false);
   const syncsFailed = shallowReactive<Set<() => Promise<void>>>(new Set());
   const pushFailed = ref(false);
   const syncsActive = ref(0);
-  const sessionExpired = ref(false);
 
   const logger = createLogger('storage');
-
-  const logout = () => {
-    globalUser.value = undefined;
-  };
 
   const store = createClient({
     baseUrl: OCULAR_GENESIS_HOST,
@@ -45,6 +54,11 @@ export const useStorage = createGlobalState(() => {
     }
   });
 
+  const logout = () => {
+    globalUser.value = undefined;
+    void store.logout();
+  };
+
   const sync = <T extends MigratableState, P extends MigratableState = T>(config: StorageSync<T, P>) => {
     const initializing = ref(true);
     const errored = ref(false);
@@ -55,8 +69,23 @@ export const useStorage = createGlobalState(() => {
     const localUser = shallowRef<GenesisUser | undefined>();
     const pendingChanges = shallowReactive<GenesisJsonPatchOperation[]>([]);
     const initialState = shallowRef<T>();
-
     let pushing = false;
+
+    broadcast.onMessage((message) => {
+      if (message.payload.key !== config.key || message.payload.userName !== localUser.value?.name) {
+        return;
+      }
+
+      if (message.type === 'change') {
+        const errors = applyPatch(state, message.payload.changes);
+
+        if (errors.some(Boolean)) {
+          logger.error(`Failed to apply changes from another tab for ${config.key}`, errors);
+        }
+      } else if (message.type === 'replace') {
+        Object.assign(state, message.payload.state);
+      }
+    });
 
     const resetLocalState = () => {
       initializing.value = true;
@@ -128,12 +157,18 @@ export const useStorage = createGlobalState(() => {
 
     const mutate: StorageMutate = (...changes) => {
       if (!changes.length) return;
+
       const errors = applyPatch(state, changes);
-
       if (errors.some(Boolean)) throw errors;
-      if (!globalUser.value || initializing.value) return;
 
-      logger.info(`Mutating storage for user ${globalUser.value.name} with ${changes.length} changes...`);
+      if (!localUser.value || initializing.value) return;
+
+      broadcast.send({
+        type: 'change',
+        payload: { key: config.key, userName: localUser.value.name, changes }
+      });
+
+      logger.info(`Mutating storage for user ${localUser.value.name} with ${changes.length} changes...`);
       pendingChanges.push(...changes);
       syncing.value = true;
     };
@@ -141,9 +176,14 @@ export const useStorage = createGlobalState(() => {
     const replace = (next: T, persist = true) => {
       Object.assign(state, next);
 
-      if (persist && globalUser.value) {
+      if (persist && localUser.value) {
         pendingChanges.length = 0;
         initialState.value = next;
+
+        broadcast.send({
+          type: 'replace',
+          payload: { key: config.key, userName: localUser.value.name, state: next }
+        });
       }
     };
 
@@ -158,16 +198,15 @@ export const useStorage = createGlobalState(() => {
         if (user !== globalUser.value) return;
 
         if (error) {
-          logout();
-        } else if (data !== undefined) {
+          return logout();
+        }
+
+        localUser.value = user;
+        if (data !== undefined) {
           const migrated = config.migrate(data);
           replace(migrated, data.version !== migrated.version);
         } else {
           initialState.value = state;
-        }
-
-        if (!error && user === globalUser.value) {
-          localUser.value = user;
         }
       } catch {
         logout();
@@ -219,18 +258,13 @@ export const useStorage = createGlobalState(() => {
         globalUser.value = res.data;
         sessionExpired.value = false;
         retry(); // retry failed syncs on successful login
+      } else if (res.error) {
+        globalUser.value = undefined;
+        sessionExpired.value = res.error.status === 401;
       }
 
       return res;
     });
-
-  // clear on log out
-  watch([globalUser, syncsActive], ([user, syncsActive]) => {
-    if (!user && !syncsActive) {
-      logger.info(`User logged out, clearing storage...`);
-      void store.logout();
-    }
-  });
 
   const status = computed((): StorageAuthenticationState => {
     if (sessionExpired.value) {

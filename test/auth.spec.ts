@@ -1,3 +1,4 @@
+import { assertNoErrors } from './utils/assertNoErrors.ts';
 import { createNewUser, createNewUserAndLogin, randomUsername, useClient } from './utils/tenant.ts';
 import { expect, test } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
@@ -404,4 +405,66 @@ test('Migrate old versions upon page load', async ({ page }) => {
   const { data } = (await client.getDataByKey('data')) as { data: { version: number; years: unknown[] } };
   expect(data.version).toBe(3);
   expect(data.years).toHaveLength(1);
+});
+
+test('Log in in one tab and authenticate other open tabs', async ({ page, context }) => {
+  const secondPage = await context.newPage();
+  assertNoErrors(secondPage);
+
+  await Promise.all([page.goto('/'), secondPage.goto('/')]);
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+
+  const user = await createNewUser();
+  await page.getByTestId('navigation-cloud').click();
+  await page.getByTestId('username').fill(user.name);
+  await page.getByTestId('password').fill(user.password);
+  await page.getByTestId('password').press('Enter');
+
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+});
+
+test('Logging out in one tab logs out other open tabs', async ({ page, context }) => {
+  const secondPage = await context.newPage();
+  assertNoErrors(secondPage);
+
+  await Promise.all([page.goto('/'), secondPage.goto('/')]);
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+
+  await createNewUserAndLogin(page);
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await page.getByTestId('navigation-cloud').click();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'idle');
+});
+
+test('Sync edits and session expiration across tabs', async ({ page, context }) => {
+  await createNewUserAndLogin(page);
+
+  const secondPage = await context.newPage();
+  assertNoErrors(secondPage);
+  await secondPage.goto('/');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await page.getByTestId('navigation-income').click();
+  await secondPage.getByTestId('navigation-income').click();
+
+  await page.getByTestId('group-0-budget-0-0').fill('1000');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(secondPage.getByTestId('group-0-budget-0-0')).toHaveValue('1,000');
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await context.clearCookies();
+  await secondPage.getByTestId('group-0-budget-0-0').fill('2000');
+  await secondPage.getByTestId('group-0-budget-0-0').blur();
+
+  await expect(page.getByTestId('group-0-budget-0-0')).toHaveValue('2,000');
+  await expect(page.getByTestId('session-expired')).toBeVisible();
+  await expect(secondPage.getByTestId('session-expired')).toBeVisible();
+  await expect(page.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'session-expired');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'session-expired');
 });

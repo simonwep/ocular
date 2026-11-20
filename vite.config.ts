@@ -35,6 +35,9 @@ export default defineConfig({
   build: {
     target: 'ES2025'
   },
+  worker: {
+    format: 'es'
+  },
   plugins: [
     tsconfigPaths({ loose: true }),
     optimizeCssModules(),
