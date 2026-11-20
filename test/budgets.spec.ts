@@ -1,4 +1,5 @@
 import { assertNoErrors } from './utils/assertNoErrors.ts';
+import { createNewUserAndLogin } from './utils/tenant.ts';
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(({ page }) => assertNoErrors(page));
@@ -288,4 +289,25 @@ test('Re-order a budget group', async ({ page }) => {
   await page.getByTestId('group-1-dragger').dragTo(page.getByTestId('group-0-dragger'));
   await expect(page.getByTestId('group-0-name')).toHaveValue('Other');
   await expect(page.getByTestId('group-1-name')).toHaveValue('Wages');
+});
+
+test('Sync budget changes between logged-in tabs', async ({ page, context }) => {
+  await createNewUserAndLogin(page);
+
+  const secondPage = await context.newPage();
+  assertNoErrors(secondPage);
+
+  await secondPage.goto('/');
+  await expect(secondPage.getByTestId('navigation-cloud')).toHaveAttribute('data-status', 'authenticated');
+
+  await page.getByTestId('navigation-income').click();
+  await secondPage.getByTestId('navigation-income').click();
+
+  await page.getByTestId('group-0-budget-0-0').fill('1234');
+  await page.getByTestId('group-0-budget-0-0').blur();
+  await expect(secondPage.getByTestId('group-0-budget-0-0')).toHaveValue('1,234');
+
+  await secondPage.getByTestId('group-0-budget-0-1').fill('250');
+  await secondPage.getByTestId('group-0-budget-0-1').blur();
+  await expect(page.getByTestId('group-0-budget-0-1')).toHaveValue('250');
 });
