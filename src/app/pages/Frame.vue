@@ -140,6 +140,7 @@ const buttons = computed((): FrameButton[] => [
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
 }
 
